@@ -1,0 +1,2255 @@
+[
+  {
+    "id": "dev.od.trial.01",
+    "title": "Чья это ошибка?",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.od.trial.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "opportunist-diplomat",
+    "from": "opportunist",
+    "to": "diplomat",
+    "fn": "trial",
+    "beat": "trial",
+    "retry": false,
+    "facet": "work",
+    "contextId": "shared-responsibility",
+    "pressure": false,
+    "requires": "",
+    "cast": [
+      "npc.colleague.primary",
+      "npc.manager.primary"
+    ],
+    "text": "В совместной работе обнаружилась ошибка. Она возникла не из одного решения: Алексей пропустил важную проверку, а Коллега позже внёс изменение, после которого проблема проявилась. Руководитель спрашивает прямо: «Кто отвечал за этот участок?» Если Алексей отделит свою часть, основной удар почти наверняка придётся на Коллегу.",
+    "choices": [
+      {
+        "id": "share_responsibility",
+        "position": 0,
+        "text": "Сказать, что ошибка сложилась из двух решений, и назвать свою часть ответственности.",
+        "event": "trial",
+        "note": "`developmentEvent: trial`  \n   Смысл: добровольно принять цену ради взаимности.  \n   worldEffectSpec: риск санкции для Алексея повышается; через 1–3 обычных решения открыть `dev.od.consequence.01`."
+      },
+      {
+        "id": "protect_self",
+        "position": 1,
+        "text": "«После меня всё работало, дальше меняли без меня».",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`  \n   Смысл: непосредственная самозащита.  \n   worldEffectSpec: руководитель переключает внимание на Коллегу; Алексей снижает личный риск, но доверие между ними ухудшается."
+      },
+      {
+        "id": "coordinate_facts",
+        "position": 2,
+        "text": "Предложить сначала вместе восстановить последовательность действий и только потом отвечать.",
+        "event": null,
+        "note": "Без development evidence.  \n   Смысл: гибрид; сам по себе не показывает, будет ли это честное распределение ответственности или совместное сокрытие."
+      }
+    ]
+  },
+  {
+    "id": "dev.od.consequence.01",
+    "title": "После разговора",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.od.consequence.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "opportunist-diplomat",
+    "from": "opportunist",
+    "to": "diplomat",
+    "fn": "consequence",
+    "beat": "consequence",
+    "retry": false,
+    "facet": "work",
+    "contextId": "shared-responsibility-consequence",
+    "pressure": false,
+    "requires": "`trial@dev.od.trial.01`",
+    "cast": [
+      "npc.colleague.primary"
+    ],
+    "text": "Алексей действительно платит цену: руководитель снимает с него часть премии за пропущенную проверку. Через некоторое время Коллега без просьбы предупреждает Алексея о другом риске и берёт на себя неприятный разговор с подрядчиком. Формально он ничего Алексею не должен.",
+    "choices": [
+      {
+        "id": "ledger",
+        "position": 0,
+        "text": "«Хорошо. Теперь у меня перед ним есть кредит доверия».",
+        "event": null,
+        "note": "Без evidence. Взаимность остаётся точным обменом."
+      },
+      {
+        "id": "trust_has_value",
+        "position": 1,
+        "text": "Принять помощь без немедленного расчёта и заметить, что сохранённое доверие само изменило их возможности.",
+        "event": "consequence",
+        "note": "`developmentEvent: consequence`  \n   worldEffectSpec: опыт краткосрочной цены и ценности связи зафиксирован; открыть `dev.od.review.01`."
+      },
+      {
+        "id": "chance",
+        "position": 2,
+        "text": "«Это просто совпадение».",
+        "event": null,
+        "note": "Без evidence."
+      }
+    ]
+  },
+  {
+    "id": "dev.od.review.01",
+    "title": "Зачем я это сделал?",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.od.review.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "opportunist-diplomat",
+    "from": "opportunist",
+    "to": "diplomat",
+    "fn": "review",
+    "beat": "review",
+    "retry": false,
+    "facet": "inner",
+    "contextId": "reciprocity-meaning",
+    "pressure": false,
+    "requires": "`consequence@dev.od.consequence.01`",
+    "cast": [],
+    "text": "Вечером Алексей возвращается к ситуации. Потеря денег была реальной. Но и реакция Коллеги оказалась реальной. Ему нужно решить, что именно было важным в его поступке.",
+    "choices": [
+      {
+        "id": "future_debt",
+        "position": 0,
+        "text": "«В итоге это всё равно может окупиться — полезно иметь людей, которые тебе обязаны».",
+        "event": null,
+        "note": "Без evidence."
+      },
+      {
+        "id": "never_again",
+        "position": 1,
+        "text": "«Цена оказалась слишком высокой. В следующий раз лучше страховаться».",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "relationship_value",
+        "position": 2,
+        "text": "«Важно, что я не спас себя его ценой. Между нами осталось то, что нельзя гарантировать приказом».",
+        "event": "review",
+        "note": "`developmentEvent: review`  \n   Открыть `dev.od.transfer.01`."
+      }
+    ]
+  },
+  {
+    "id": "dev.od.transfer.01",
+    "title": "Обещал приехать",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.od.transfer.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "opportunist-diplomat",
+    "from": "opportunist",
+    "to": "diplomat",
+    "fn": "transfer",
+    "beat": "transfer",
+    "retry": false,
+    "facet": "relationships",
+    "contextId": "promise-to-close-person",
+    "pressure": false,
+    "requires": "`review@dev.od.review.01`",
+    "cast": [
+      "npc.close.primary"
+    ],
+    "text": "Близкий человек заранее попросил Алексея помочь вечером и рассчитывает на него. За час до встречи появляется выгодная возможность: человек, которого трудно поймать, готов обсуждать сделку только сегодня. Отмену легко объяснить «рабочей необходимостью».",
+    "choices": [
+      {
+        "id": "take_opportunity",
+        "position": 0,
+        "text": "Отменить встречу и ехать на переговоры.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "keep_promise",
+        "position": 1,
+        "text": "Выполнить обещание, приняв, что возможность может уйти.",
+        "event": "transfer",
+        "note": "`developmentEvent: transfer`  \n   worldEffectSpec: принцип взаимности перенесён из работы в отношения; открыть `dev.od.pressure.01`."
+      },
+      {
+        "id": "open_renegotiation",
+        "position": 2,
+        "text": "Честно рассказать о возможности и спросить, можно ли перенести помощь.",
+        "event": null,
+        "note": "Без transfer evidence в v1. Если близкий человек согласен свободно, это допустимый мир-исход, но строгую проверку переноса не закрывает."
+      }
+    ]
+  },
+  {
+    "id": "dev.od.pressure.01",
+    "title": "Цена слова",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.od.pressure.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "opportunist-diplomat",
+    "from": "opportunist",
+    "to": "diplomat",
+    "fn": "pressure",
+    "beat": "pressure",
+    "retry": false,
+    "facet": "work",
+    "contextId": "promise-under-pressure",
+    "pressure": true,
+    "requires": "`transfer@dev.od.transfer.01`",
+    "cast": [
+      "npc.partner.primary"
+    ],
+    "text": "Алексей заранее пообещал партнёру сохранить согласованные условия. Теперь другой покупатель готов заплатить заметно больше, если Алексей нарушит договорённость сегодня. Юридически лазейка есть. Партнёр не сможет заставить его сохранить слово.",
+    "choices": [
+      {
+        "id": "take_better_deal",
+        "position": 0,
+        "text": "Использовать лазейку и взять более выгодную сделку.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "renegotiate",
+        "position": 1,
+        "text": "До нарушения открыто предложить изменить условия и принять право партнёра отказаться.",
+        "event": null,
+        "note": "Без pressure evidence в v1: иначе проверку цены слишком легко обойти переговорами."
+      },
+      {
+        "id": "honor_terms",
+        "position": 2,
+        "text": "Сохранить согласованные условия, несмотря на ощутимую потерю выгоды.",
+        "event": "pressure",
+        "note": "`developmentEvent: pressure`  \n   Если все обязательные beats собраны — arc готова к `pendingPromotion`."
+      }
+    ]
+  },
+  {
+    "id": "dev.od.retry.01",
+    "title": "Чужая слабость",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.od.retry.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "opportunist-diplomat",
+    "from": "opportunist",
+    "to": "diplomat",
+    "fn": "retry",
+    "beat": "pressure",
+    "retry": true,
+    "facet": "relationships",
+    "contextId": "trusted-information",
+    "pressure": true,
+    "requires": "`withdrawal@pressure` + cooldown: минимум 1 вечер или 2 non-arc choices",
+    "cast": [
+      "npc.close.secondary"
+    ],
+    "text": "Близкий знакомый доверяет Алексею информацию, которую можно использовать в споре с третьим человеком. Никто не узнает, откуда она взялась. Это даёт сильное преимущество.",
+    "choices": [
+      {
+        "id": "keep_confidence",
+        "position": 0,
+        "text": "Не использовать доверенную информацию и искать другой ход.",
+        "event": "pressure",
+        "note": "`developmentEvent: pressure`  \n   Может закрыть ранее не пройденный pressure, если остальные beats уже есть."
+      },
+      {
+        "id": "use_info",
+        "position": 1,
+        "text": "Использовать информацию: шанс слишком хороший, чтобы упускать.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "hint_without_source",
+        "position": 2,
+        "text": "Использовать намёк так, чтобы формально не раскрывать источник.",
+        "event": null,
+        "note": "Без evidence: технический обход доверия не считается освоением.\n\n---"
+      }
+    ]
+  },
+  {
+    "id": "dev.od.retry-trial.01",
+    "title": "Последний комплект",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.od.retry-trial.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "opportunist-diplomat",
+    "from": "opportunist",
+    "to": "diplomat",
+    "fn": "retry-trial",
+    "beat": "trial",
+    "retry": true,
+    "facet": "work",
+    "contextId": "scarce-resource-sharing",
+    "pressure": false,
+    "requires": "withdrawal@trial + cooldown",
+    "cast": [],
+    "text": "Для совместной задачи остался один комплект оборудования. Формально Алексей первым записался на него, но без комплекта коллега не сможет выполнить свою часть, а общий срок сдвинется.",
+    "choices": [
+      {
+        "id": "share",
+        "position": 0,
+        "text": "Договориться о разделении времени и принять неудобство для себя, чтобы сохранить взаимность в общей работе.",
+        "event": "trial",
+        "note": "`developmentEvent: trial`  \n   Закрывает отсутствующий beat `trial` и возвращает arc к следующему незакрытому beat."
+      },
+      {
+        "id": "claim",
+        "position": 1,
+        "text": "Забрать комплект себе: право приоритета уже у Алексея.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`"
+      },
+      {
+        "id": "optimize",
+        "position": 2,
+        "text": "Пересобрать график всей задачи так, чтобы оборудование использовалось там, где сейчас максимальный эффект.",
+        "event": null,
+        "note": "Без evidence."
+      }
+    ]
+  },
+  {
+    "id": "dev.od.retry-review.01",
+    "title": "Что оказалось ценным?",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.od.retry-review.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "opportunist-diplomat",
+    "from": "opportunist",
+    "to": "diplomat",
+    "fn": "retry-review",
+    "beat": "review",
+    "retry": true,
+    "facet": "inner",
+    "contextId": "reciprocity-review-retry",
+    "pressure": false,
+    "requires": "consequence present + withdrawal@review + cooldown",
+    "cast": [],
+    "text": "После ещё одного обычного эпизода взаимной помощи Алексей замечает: коллега поддержал его без просьбы и без очевидной будущей выгоды.",
+    "choices": [
+      {
+        "id": "ledger",
+        "position": 0,
+        "text": "Считать это ещё одной услугой, которую можно будет обменять позже.",
+        "event": null,
+        "note": "Без evidence."
+      },
+      {
+        "id": "recognize",
+        "position": 1,
+        "text": "Признать, что само качество доверия между ними создаёт возможности, не сводимые к точному обмену.",
+        "event": "review",
+        "note": "`developmentEvent: review`  \n   Закрывает отсутствующий beat `review` и возвращает arc к следующему незакрытому beat."
+      },
+      {
+        "id": "dismiss",
+        "position": 2,
+        "text": "Не придавать значения: люди иногда помогают случайно.",
+        "event": null,
+        "note": "Без evidence."
+      }
+    ]
+  },
+  {
+    "id": "dev.od.retry-transfer.01",
+    "title": "Договорённость с другом",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.od.retry-transfer.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "opportunist-diplomat",
+    "from": "opportunist",
+    "to": "diplomat",
+    "fn": "retry-transfer",
+    "beat": "transfer",
+    "retry": true,
+    "facet": "relationships",
+    "contextId": "promise-retry",
+    "pressure": false,
+    "requires": "review present + withdrawal@transfer + cooldown",
+    "cast": [],
+    "text": "Алексей заранее обещал другу помочь с важным делом. В то же время появляется редкая личная возможность, которую удобно использовать именно сегодня.",
+    "choices": [
+      {
+        "id": "take",
+        "position": 0,
+        "text": "Отменить помощь и использовать возможность.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`"
+      },
+      {
+        "id": "excuse",
+        "position": 1,
+        "text": "Придумать уважительную причину отмены, чтобы друг не обиделся.",
+        "event": null,
+        "note": "Без evidence."
+      },
+      {
+        "id": "keep",
+        "position": 2,
+        "text": "Сохранить обещание и принять потерю возможности.",
+        "event": "transfer",
+        "note": "`developmentEvent: transfer`  \n   Закрывает отсутствующий beat `transfer` и возвращает arc к следующему незакрытому beat.\n\n---"
+      }
+    ]
+  },
+  {
+    "id": "dev.de.trial.01",
+    "title": "Так принято",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.de.trial.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "diplomat-expert",
+    "from": "diplomat",
+    "to": "expert",
+    "fn": "trial",
+    "beat": "trial",
+    "retry": false,
+    "facet": "work",
+    "contextId": "group-norm-vs-quality",
+    "pressure": false,
+    "requires": "",
+    "cast": [
+      "npc.colleague.senior",
+      "npc.manager.primary"
+    ],
+    "text": "Команда готовит важный результат привычным способом. Опытный Коллега говорит: «Не усложняй, мы так делаем много лет». Алексей замечает, что один расчёт опирается на старое допущение и может давать ошибку. Проверка займёт время и почти наверняка будет воспринята как сомнение в компетентности коллег.",
+    "choices": [
+      {
+        "id": "follow_norm",
+        "position": 0,
+        "text": "Сделать как принято: сейчас важнее не раскачивать команду.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "verify_and_show",
+        "position": 1,
+        "text": "Проверить допущение и спокойно показать конкретное расхождение, если оно подтвердится.",
+        "event": "trial",
+        "note": "`developmentEvent: trial`  \n   Открыть `dev.de.consequence.01`."
+      },
+      {
+        "id": "escalate_unchecked",
+        "position": 2,
+        "text": "Сразу сообщить руководителю, что старый способ команды неверен.",
+        "event": null,
+        "note": "Без evidence: демонстративная независимость без проверки не является Expert."
+      }
+    ]
+  },
+  {
+    "id": "dev.de.consequence.01",
+    "title": "Ты считаешь нас глупее?",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.de.consequence.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "diplomat-expert",
+    "from": "diplomat",
+    "to": "expert",
+    "fn": "consequence",
+    "beat": "consequence",
+    "retry": false,
+    "facet": "relationships",
+    "contextId": "disagreement-cost",
+    "pressure": false,
+    "requires": "`trial@dev.de.trial.01`",
+    "cast": [
+      "npc.colleague.senior"
+    ],
+    "text": "Проверка подтверждает проблему, но выясняется и другое: старый способ появился не из глупости — когда-то он решал реальное ограничение. Коллега раздражён: «Ты думаешь, мы тут ничего не понимаем?»",
+    "choices": [
+      {
+        "id": "victory",
+        "position": 0,
+        "text": "«Факт в том, что я оказался прав».",
+        "event": null,
+        "note": "Без evidence: техническая правота превращается в статусную победу."
+      },
+      {
+        "id": "back_down",
+        "position": 1,
+        "text": "Извиниться и отказаться от вывода, чтобы вернуть прежнюю атмосферу.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "separate_people_from_solution",
+        "position": 2,
+        "text": "Признать разумную историю старого подхода и предложить вместе проверить новый вариант по тем же критериям.",
+        "event": "consequence",
+        "note": "`developmentEvent: consequence`  \n   Открыть `dev.de.review.01`."
+      }
+    ]
+  },
+  {
+    "id": "dev.de.review.01",
+    "title": "Правота и принадлежность",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.de.review.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "diplomat-expert",
+    "from": "diplomat",
+    "to": "expert",
+    "fn": "review",
+    "beat": "review",
+    "retry": false,
+    "facet": "inner",
+    "contextId": "independent-judgment",
+    "pressure": false,
+    "requires": "`consequence@dev.de.consequence.01`",
+    "cast": [],
+    "text": "После конфликта Алексей замечает, что больше всего боялся не самой ошибки, а ощущения, что команда может перестать считать его «своим». При этом проверка действительно была нужна.",
+    "choices": [
+      {
+        "id": "respect_and_check",
+        "position": 0,
+        "text": "«Я могу уважать людей и всё равно проверять их решения. Несогласие не обязано означать отвержение».",
+        "event": "review",
+        "note": "`developmentEvent: review`  \n   Открыть `dev.de.transfer.01`."
+      },
+      {
+        "id": "peace_first",
+        "position": 1,
+        "text": "«Если из-за правоты портятся отношения, лучше было промолчать».",
+        "event": null,
+        "note": "Без evidence."
+      },
+      {
+        "id": "trust_no_one",
+        "position": 2,
+        "text": "«Никому нельзя доверять, всё надо проверять самому».",
+        "event": null,
+        "note": "Без evidence: тотальный контроль — ложная версия Expert."
+      }
+    ]
+  },
+  {
+    "id": "dev.de.transfer.01",
+    "title": "Второе мнение",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.de.transfer.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "diplomat-expert",
+    "from": "diplomat",
+    "to": "expert",
+    "fn": "transfer",
+    "beat": "transfer",
+    "retry": false,
+    "facet": "body",
+    "contextId": "authority-vs-evidence",
+    "pressure": false,
+    "requires": "`review@dev.de.review.01`",
+    "cast": [
+      "npc.specialist.primary",
+      "npc.specialist.secondary"
+    ],
+    "text": "Алексей меняет тренировочный режим. Авторитетный тренер предлагает жёсткую схему нагрузки, но другой специалист и собственные наблюдения Алексея указывают на риск перегрузки. Оба звучат убедительно.",
+    "choices": [
+      {
+        "id": "follow_authority",
+        "position": 0,
+        "text": "Следовать первому тренеру: у него репутация, значит лучше не спорить.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "ignore_experts",
+        "position": 1,
+        "text": "Игнорировать обоих и сделать по-своему: «я лучше знаю себя».",
+        "event": null,
+        "note": "Без evidence: независимость без критерия качества не является Expert.\n\nПримечание: карточка не должна давать медицинские рекомендации; речь только о способе принятия решения."
+      },
+      {
+        "id": "check_basis",
+        "position": 2,
+        "text": "Спросить об основаниях, сопоставить рекомендации и выбрать режим по проверяемым критериям и наблюдаемой реакции тела.",
+        "event": "transfer",
+        "note": "`developmentEvent: transfer`  \n   Открыть `dev.de.pressure.01`."
+      }
+    ]
+  },
+  {
+    "id": "dev.de.pressure.01",
+    "title": "Неудобный вывод",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.de.pressure.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "diplomat-expert",
+    "from": "diplomat",
+    "to": "expert",
+    "fn": "pressure",
+    "beat": "pressure",
+    "retry": false,
+    "facet": "work",
+    "contextId": "evidence-against-group",
+    "pressure": true,
+    "requires": "`transfer@dev.de.transfer.01`",
+    "cast": [
+      "npc.manager.primary"
+    ],
+    "text": "Перед важной встречей Алексей находит ошибку в решении уважаемого руководителя. Если сказать сейчас — встреча задержится и человек может воспринять это как подрыв авторитета. Если промолчать — внешне всё пройдёт спокойно, но решение останется непроверенным.",
+    "choices": [
+      {
+        "id": "present_checkable_basis",
+        "position": 0,
+        "text": "Сказать о риске спокойно, показать проверяемое основание и предложить быстрый способ перепроверки.",
+        "event": "pressure",
+        "note": "`developmentEvent: pressure`."
+      },
+      {
+        "id": "stay_silent",
+        "position": 1,
+        "text": "Промолчать: сейчас не время ставить человека в неловкое положение.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "public_proof",
+        "position": 2,
+        "text": "На встрече подробно разобрать ошибку, чтобы всем стало ясно, кто был прав.",
+        "event": null,
+        "note": "Без evidence: Expert ≠ публичное унижение."
+      }
+    ]
+  },
+  {
+    "id": "dev.de.retry.01",
+    "title": "Семейный совет",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.de.retry.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "diplomat-expert",
+    "from": "diplomat",
+    "to": "expert",
+    "fn": "retry",
+    "beat": "pressure",
+    "retry": true,
+    "facet": "work",
+    "contextId": "family-advice-vs-check",
+    "pressure": true,
+    "requires": "`withdrawal@pressure` + cooldown",
+    "cast": [
+      "npc.family.group"
+    ],
+    "text": "Близкие единодушно советуют Алексею выбрать понятную им рабочую возможность. Они искренне желают ему добра. Алексей находит несколько фактов, которые не совпадают с семейной уверенностью.",
+    "choices": [
+      {
+        "id": "follow_family",
+        "position": 0,
+        "text": "Согласиться: когда все близкие говорят одно и то же, не стоит спорить.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "verify_independently",
+        "position": 1,
+        "text": "Не спорить о вкусах, а отдельно проверить факты, риски и после этого принять своё решение.",
+        "event": "pressure",
+        "note": "`developmentEvent: pressure`."
+      },
+      {
+        "id": "reject_to_prove_independence",
+        "position": 2,
+        "text": "Отказаться именно потому, что совет исходит от семьи.",
+        "event": null,
+        "note": "Без evidence: реактивная независимость не является Expert.\n\n---"
+      }
+    ]
+  },
+  {
+    "id": "dev.de.retry-trial.01",
+    "title": "Старый регламент",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.de.retry-trial.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "diplomat-expert",
+    "from": "diplomat",
+    "to": "expert",
+    "fn": "retry-trial",
+    "beat": "trial",
+    "retry": true,
+    "facet": "work",
+    "contextId": "procedure-vs-source",
+    "pressure": false,
+    "requires": "withdrawal@trial + cooldown",
+    "cast": [],
+    "text": "В рабочем регламенте есть пункт, который все продолжают выполнять по привычке. Алексей находит более новый первоисточник, где требование сформулировано иначе.",
+    "choices": [
+      {
+        "id": "verify",
+        "position": 0,
+        "text": "Проверить актуальную норму и показать расхождение с источником, не опираясь на статус участников.",
+        "event": "trial",
+        "note": "`developmentEvent: trial`  \n   Закрывает отсутствующий beat `trial` и возвращает arc к следующему незакрытому beat."
+      },
+      {
+        "id": "follow",
+        "position": 1,
+        "text": "Оставить всё как принято, чтобы не создавать спор из-за формулировки.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`"
+      },
+      {
+        "id": "escalate",
+        "position": 2,
+        "text": "Сразу потребовать отменить старый регламент: раз источник новый, обсуждать нечего.",
+        "event": null,
+        "note": "Без evidence."
+      }
+    ]
+  },
+  {
+    "id": "dev.de.retry-consequence.01",
+    "title": "Проблема проявилась снова",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.de.retry-consequence.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "diplomat-expert",
+    "from": "diplomat",
+    "to": "expert",
+    "fn": "retry-consequence",
+    "beat": "consequence",
+    "retry": true,
+    "facet": "work",
+    "contextId": "independent-check-consequence",
+    "pressure": false,
+    "requires": "trial present + withdrawal@consequence + cooldown",
+    "cast": [],
+    "text": "Позже похожее допущение снова даёт ошибку. Опытный коллега признаёт, что прежний способ имел исторические причины, но теперь их уже нет.",
+    "choices": [
+      {
+        "id": "prove",
+        "position": 0,
+        "text": "Подчеркнуть, что Алексей был прав с самого начала.",
+        "event": null,
+        "note": "Без evidence."
+      },
+      {
+        "id": "separate",
+        "position": 1,
+        "text": "Отделить достоинство коллеги от качества метода и вместе закрепить новый критерий проверки.",
+        "event": "consequence",
+        "note": "`developmentEvent: consequence`  \n   Закрывает отсутствующий beat `consequence` и возвращает arc к следующему незакрытому beat."
+      },
+      {
+        "id": "back",
+        "position": 2,
+        "text": "Не возвращаться к теме, чтобы окончательно не портить отношения.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`"
+      }
+    ]
+  },
+  {
+    "id": "dev.de.retry-transfer.01",
+    "title": "Совет близкого человека",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.de.retry-transfer.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "diplomat-expert",
+    "from": "diplomat",
+    "to": "expert",
+    "fn": "retry-transfer",
+    "beat": "transfer",
+    "retry": true,
+    "facet": "relationships",
+    "contextId": "trusted-advice-vs-check",
+    "pressure": false,
+    "requires": "review present + withdrawal@transfer + cooldown",
+    "cast": [],
+    "text": "Близкий человек рекомендует Алексею мастера, которому давно доверяет. В смете есть несколько непонятных пунктов, но дополнительная проверка может выглядеть как недоверие к совету.",
+    "choices": [
+      {
+        "id": "accept",
+        "position": 0,
+        "text": "Согласиться: важнее довериться человеку, который ручается за мастера.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`"
+      },
+      {
+        "id": "reject",
+        "position": 1,
+        "text": "Отказаться от мастера только потому, что рекомендация слишком настойчивая.",
+        "event": null,
+        "note": "Без evidence."
+      },
+      {
+        "id": "check",
+        "position": 2,
+        "text": "Уточнить смету и сравнить критерии качества, не превращая проверку в оценку отношений.",
+        "event": "transfer",
+        "note": "`developmentEvent: transfer`  \n   Закрывает отсутствующий beat `transfer` и возвращает arc к следующему незакрытому beat.\n\n---"
+      }
+    ]
+  },
+  {
+    "id": "dev.ai.trial.01",
+    "title": "Хорошая возможность",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.ai.trial.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "achiever-individualist",
+    "from": "achiever",
+    "to": "individualist",
+    "fn": "trial",
+    "beat": "trial",
+    "retry": false,
+    "facet": "work",
+    "contextId": "attractive-goal",
+    "pressure": false,
+    "requires": "",
+    "cast": [
+      "npc.manager.primary",
+      "npc.close.primary"
+    ],
+    "text": "Алексею предлагают роль с заметно большей оплатой и статусом. Она выглядит как очевидный следующий шаг: больше ответственности, сильнее команда, красивее название. Но работа почти полностью вытеснит направление, которым Алексей давно хотел заниматься, и сильно изменит его образ жизни.",
+    "choices": [
+      {
+        "id": "accept_and_optimize",
+        "position": 0,
+        "text": "Согласиться и сразу думать, как организовать нагрузку: такие возможности нельзя упускать.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "reject_system",
+        "position": 1,
+        "text": "Отказаться: «Я не хочу быть частью гонки за статусом».",
+        "event": null,
+        "note": "Без evidence: реактивный бунт против цели не равен собственному осмысленному выбору."
+      },
+      {
+        "id": "pause_and_examine",
+        "position": 2,
+        "text": "Не отказываться сразу, но запросить время и проверить, почему эта цель важна лично ему — кроме денег, статуса и ожиданий окружающих.",
+        "event": "trial",
+        "note": "`developmentEvent: trial`  \n   Открыть `dev.ai.consequence.01`."
+      }
+    ]
+  },
+  {
+    "id": "dev.ai.consequence.01",
+    "title": "Цена успеха",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.ai.consequence.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "achiever-individualist",
+    "from": "achiever",
+    "to": "individualist",
+    "fn": "consequence",
+    "beat": "consequence",
+    "retry": false,
+    "facet": "relationships",
+    "contextId": "goal-side-effects",
+    "pressure": false,
+    "requires": "`trial@dev.ai.trial.01`",
+    "cast": [
+      "npc.close.primary"
+    ],
+    "text": "После паузы Алексей получает полную картину: новая роль действительно даст деньги и влияние. Близкий человек не просит отказываться, но честно говорит, что совместная жизнь изменится: меньше времени, больше поездок и постоянная доступность.",
+    "choices": [
+      {
+        "id": "recognize_values_conflict",
+        "position": 0,
+        "text": "Признать, что здесь сталкиваются две реальные ценности и их нельзя полностью свести к тайм-менеджменту.",
+        "event": "consequence",
+        "note": "`developmentEvent: consequence`  \n   Открыть `dev.ai.review.01`."
+      },
+      {
+        "id": "optimize_schedule",
+        "position": 1,
+        "text": "«Значит, просто лучше распишем календарь и всё поместится».",
+        "event": null,
+        "note": "Без evidence: конфликт ценностей снова превращён в задачу эффективности."
+      },
+      {
+        "id": "blame_close",
+        "position": 2,
+        "text": "Решить, что близкий человек просто боится его роста.",
+        "event": null,
+        "note": "Без evidence."
+      }
+    ]
+  },
+  {
+    "id": "dev.ai.review.01",
+    "title": "Чей это успех?",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.ai.review.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "achiever-individualist",
+    "from": "achiever",
+    "to": "individualist",
+    "fn": "review",
+    "beat": "review",
+    "retry": false,
+    "facet": "inner",
+    "contextId": "borrowed-goal",
+    "pressure": false,
+    "requires": "`consequence@dev.ai.consequence.01`",
+    "cast": [],
+    "text": "Алексей замечает неприятную вещь: часть привлекательности предложения связана с тем, что его легко показать другим как «успех». Если убрать чужое восхищение, выбор становится менее очевидным.",
+    "choices": [
+      {
+        "id": "recognized_goal",
+        "position": 0,
+        "text": "«Если цель признают сильные люди, это хороший ориентир».",
+        "event": null,
+        "note": "Без evidence."
+      },
+      {
+        "id": "live_with_result",
+        "position": 1,
+        "text": "«Умение достичь цель ещё не отвечает на вопрос, хочу ли я жить её последствиями».",
+        "event": "review",
+        "note": "`developmentEvent: review`  \n   Открыть `dev.ai.transfer.01`."
+      },
+      {
+        "id": "all_goals_fake",
+        "position": 2,
+        "text": "«Любые цели искусственны, поэтому лучше ни к чему не привязываться».",
+        "event": null,
+        "note": "Без evidence: уход от обязательства не является Individualist."
+      }
+    ]
+  },
+  {
+    "id": "dev.ai.transfer.01",
+    "title": "План, который начал управлять жизнью",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.ai.transfer.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "achiever-individualist",
+    "from": "achiever",
+    "to": "individualist",
+    "fn": "transfer",
+    "beat": "transfer",
+    "retry": false,
+    "facet": "body",
+    "contextId": "optimization-vs-lived-value",
+    "pressure": false,
+    "requires": "`review@dev.ai.review.01`",
+    "cast": [],
+    "text": "Алексей выстроил режим тренировок и восстановления вокруг измеримой цели. Прогресс есть, но режим начал вытеснять встречи, отдых и занятия, ради которых он вообще хотел быть в хорошей форме.",
+    "choices": [
+      {
+        "id": "redefine_goal",
+        "position": 0,
+        "text": "Пересобрать цель: показатели остаются, но служат выбранному образу жизни, а не заменяют его.",
+        "event": "transfer",
+        "note": "`developmentEvent: transfer`  \n   Открыть `dev.ai.pressure.01`."
+      },
+      {
+        "id": "tighten_plan",
+        "position": 1,
+        "text": "Ужесточить дисциплину: если прогресс идёт, нельзя терять темп.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "quit_tracking",
+        "position": 2,
+        "text": "Вообще отказаться от режима и измерений: «Хочу просто жить».",
+        "event": null,
+        "note": "Без evidence: отказ от структуры не равен новому способу."
+      }
+    ]
+  },
+  {
+    "id": "dev.ai.pressure.01",
+    "title": "Победа, которую все увидят",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.ai.pressure.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "achiever-individualist",
+    "from": "achiever",
+    "to": "individualist",
+    "fn": "pressure",
+    "beat": "pressure",
+    "retry": false,
+    "facet": "work",
+    "contextId": "status-under-pressure",
+    "pressure": true,
+    "requires": "`transfer@dev.ai.transfer.01`",
+    "cast": [],
+    "text": "В последний момент у Алексея появляется шанс получить заметный статусный результат. Для этого нужно согласиться на условия, которые противоречат границе, сформулированной им после предыдущих событий. Окружающие считают предложение отличным.",
+    "choices": [
+      {
+        "id": "take_status",
+        "position": 0,
+        "text": "Согласиться: потом можно будет пересобрать условия, а такой шанс бывает редко.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "honor_own_frame",
+        "position": 1,
+        "text": "Отказаться или изменить сделку так, чтобы не предать осмысленную границу, даже если результат будет выглядеть скромнее.",
+        "event": "pressure",
+        "note": "`developmentEvent: pressure`."
+      },
+      {
+        "id": "reject_to_be_different",
+        "position": 2,
+        "text": "Отказаться демонстративно, чтобы показать, что «он не как все».",
+        "event": null,
+        "note": "Без evidence: внешняя независимость тоже может стать новой ролью."
+      }
+    ]
+  },
+  {
+    "id": "dev.ai.retry.01",
+    "title": "Чужой сценарий отношений",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.ai.retry.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "achiever-individualist",
+    "from": "achiever",
+    "to": "individualist",
+    "fn": "retry",
+    "beat": "pressure",
+    "retry": true,
+    "facet": "relationships",
+    "contextId": "social-script",
+    "pressure": true,
+    "requires": "`withdrawal@pressure` + cooldown",
+    "cast": [
+      "npc.family.group"
+    ],
+    "text": "Окружение почти единодушно объясняет Алексею, какое решение в личных отношениях «нормально для взрослого человека». Совет разумный, но Алексей замечает, что часть исходных ценностей ему не принадлежит.",
+    "choices": [
+      {
+        "id": "follow_script",
+        "position": 0,
+        "text": "Поступить как советуют: коллективный опыт всё-таки надёжнее личных сомнений.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "oppose_everyone",
+        "position": 1,
+        "text": "Сделать наоборот именно потому, что все советуют одно и то же.",
+        "event": null,
+        "note": "Без evidence: реактивный протест.\n\n---"
+      },
+      {
+        "id": "own_choice",
+        "position": 2,
+        "text": "Выслушать советы, назвать собственные ценности и принять решение вместе с его ценой, даже если его труднее объяснить окружающим.",
+        "event": "pressure",
+        "note": "`developmentEvent: pressure`."
+      }
+    ]
+  },
+  {
+    "id": "dev.ai.retry-trial.01",
+    "title": "Контракт на два года",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.ai.retry-trial.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "achiever-individualist",
+    "from": "achiever",
+    "to": "individualist",
+    "fn": "retry-trial",
+    "beat": "trial",
+    "retry": true,
+    "facet": "work",
+    "contextId": "long-contract-goal",
+    "pressure": false,
+    "requires": "withdrawal@trial + cooldown",
+    "cast": [],
+    "text": "Алексею предлагают выгодный двухлетний контракт с понятными показателями успеха. Он почти гарантирует рост дохода, но сильно сузит свободу выбора других направлений.",
+    "choices": [
+      {
+        "id": "examine",
+        "position": 0,
+        "text": "Перед решением проверить, хочет ли он именно такой жизни два года, а не только такого результата.",
+        "event": "trial",
+        "note": "`developmentEvent: trial`  \n   Закрывает отсутствующий beat `trial` и возвращает arc к следующему незакрытому beat."
+      },
+      {
+        "id": "accept",
+        "position": 1,
+        "text": "Взять контракт и оптимизировать выполнение: выгода и цель достаточно ясны.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`"
+      },
+      {
+        "id": "reject",
+        "position": 2,
+        "text": "Отказаться, потому что любые долгие обязательства ограничивают свободу.",
+        "event": null,
+        "note": "Без evidence."
+      }
+    ]
+  },
+  {
+    "id": "dev.ai.retry-transfer.01",
+    "title": "Правильный следующий шаг",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.ai.retry-transfer.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "achiever-individualist",
+    "from": "achiever",
+    "to": "individualist",
+    "fn": "retry-transfer",
+    "beat": "transfer",
+    "retry": true,
+    "facet": "relationships",
+    "contextId": "relationship-success-script",
+    "pressure": false,
+    "requires": "review present + withdrawal@transfer + cooldown",
+    "cast": [],
+    "text": "Окружение считает, что отношения Алексея должны перейти к следующему «правильному» этапу. Внешне всё складывается хорошо, но сам Алексей не уверен, что хочет именно такой формы сейчас.",
+    "choices": [
+      {
+        "id": "follow",
+        "position": 0,
+        "text": "Сделать следующий шаг: это естественный показатель развития отношений.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`"
+      },
+      {
+        "id": "ownframe",
+        "position": 1,
+        "text": "Обсудить, что этот шаг означает для обоих, и выбрать форму отношений по их ценностям, а не по внешней шкале.",
+        "event": "transfer",
+        "note": "`developmentEvent: transfer`  \n   Закрывает отсутствующий beat `transfer` и возвращает arc к следующему незакрытому beat."
+      },
+      {
+        "id": "avoid",
+        "position": 2,
+        "text": "Не принимать никаких обязательств, пока нет абсолютной уверенности.",
+        "event": null,
+        "note": "Без evidence.\n\n---"
+      }
+    ]
+  },
+  {
+    "id": "dev.is.trial.01",
+    "title": "Мы опять здесь",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.is.trial.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "individualist-strategist",
+    "from": "individualist",
+    "to": "strategist",
+    "fn": "trial",
+    "beat": "trial",
+    "retry": false,
+    "facet": "relationships",
+    "contextId": "recurring-pattern",
+    "pressure": false,
+    "requires": "",
+    "cast": [
+      "npc.close.primary",
+      "npc.close.secondary"
+    ],
+    "text": "Между двумя близкими Алексею людьми снова происходит один и тот же конфликт. Алексей уже хорошо понимает обоих и много раз помогал им проговорить позиции. После каждого разговора становится легче — а через пару недель всё повторяется.",
+    "choices": [
+      {
+        "id": "change_mechanism",
+        "position": 0,
+        "text": "Предложить изменить сам способ взаимодействия: кто принимает решение, когда обсуждение останавливается и как фиксируется договорённость.",
+        "event": "trial",
+        "note": "`developmentEvent: trial`  \n   Открыть `dev.is.consequence.01`."
+      },
+      {
+        "id": "mediate_again",
+        "position": 1,
+        "text": "Снова поговорить с каждым отдельно: сейчас им прежде всего нужно быть услышанными.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "step_out",
+        "position": 2,
+        "text": "Отойти: «Это их отношения, я не хочу строить систему за взрослых людей».",
+        "event": null,
+        "note": "Без evidence. В мире это может быть разумно, но не является trial этой arc."
+      }
+    ]
+  },
+  {
+    "id": "dev.is.consequence.01",
+    "title": "Правило тоже кого-то ограничивает",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.is.consequence.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "individualist-strategist",
+    "from": "individualist",
+    "to": "strategist",
+    "fn": "consequence",
+    "beat": "consequence",
+    "retry": false,
+    "facet": "relationships",
+    "contextId": "system-rule-cost",
+    "pressure": false,
+    "requires": "`trial@dev.is.trial.01`",
+    "cast": [],
+    "text": "Новый порядок снижает число конфликтов, но один участник чувствует, что потерял привычную свободу. Его претензия не выдумана: механизм действительно удобнее одним участникам, чем другим.",
+    "choices": [
+      {
+        "id": "remove_rule",
+        "position": 0,
+        "text": "Отменить правило: если кому-то плохо, система не должна стоять выше человека.",
+        "event": null,
+        "note": "Без evidence."
+      },
+      {
+        "id": "enforce_rule",
+        "position": 1,
+        "text": "Оставить всё как есть: иначе система никогда не заработает.",
+        "event": null,
+        "note": "Без evidence: бюрократическая ложная версия Стратега."
+      },
+      {
+        "id": "adjust_feedback",
+        "position": 2,
+        "text": "Сохранить функцию механизма, собрать обратную связь и изменить его так, чтобы учитывать выявленное ограничение.",
+        "event": "consequence",
+        "note": "`developmentEvent: consequence`  \n   Открыть `dev.is.review.01`."
+      }
+    ]
+  },
+  {
+    "id": "dev.is.review.01",
+    "title": "От понимания к конструкции",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.is.review.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "individualist-strategist",
+    "from": "individualist",
+    "to": "strategist",
+    "fn": "review",
+    "beat": "review",
+    "retry": false,
+    "facet": "inner",
+    "contextId": "architecture-responsibility",
+    "pressure": false,
+    "requires": "`consequence@dev.is.consequence.01`",
+    "cast": [],
+    "text": "Алексей видит, что прежние разговоры не были бесполезны: без них он не понял бы участников. Но одного понимания не хватало, потому что в плохой день все возвращались к привычным реакциям.",
+    "choices": [
+      {
+        "id": "understanding_enough",
+        "position": 0,
+        "text": "«Главное всё равно — чтобы люди глубже поняли друг друга».",
+        "event": null,
+        "note": "Без evidence."
+      },
+      {
+        "id": "structure_for_bad_day",
+        "position": 1,
+        "text": "«Понимание важно, но устойчивая практика должна работать и тогда, когда мы устали, заняты или не согласны».",
+        "event": "review",
+        "note": "`developmentEvent: review`  \n   Открыть `dev.is.transfer.01`."
+      },
+      {
+        "id": "control_people",
+        "position": 2,
+        "text": "«Надо просто жёстче контролировать соблюдение правил».",
+        "event": null,
+        "note": "Без evidence: контроль подменяет систему адаптации."
+      }
+    ]
+  },
+  {
+    "id": "dev.is.transfer.01",
+    "title": "Деньги без силы воли",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.is.transfer.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "individualist-strategist",
+    "from": "individualist",
+    "to": "strategist",
+    "fn": "transfer",
+    "beat": "transfer",
+    "retry": false,
+    "facet": "work",
+    "contextId": "recurring-financial-system",
+    "pressure": false,
+    "requires": "`review@dev.is.review.01`",
+    "cast": [],
+    "text": "У Алексея повторяется одна и та же рабочая финансовая проблема: небольшие обязательные платежи вспоминаются слишком поздно, а затем он героически закрывает кассовый разрыв вручную. В этот раз он снова может «просто разрулить».",
+    "choices": [
+      {
+        "id": "heroic_fix",
+        "position": 0,
+        "text": "Закрыть дыру вручную и пообещать себе быть внимательнее.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "complex_dashboard",
+        "position": 1,
+        "text": "Построить сложную систему показателей и контролей, прежде чем закрыть текущий разрыв.",
+        "event": null,
+        "note": "Без evidence: сложность системы не равна уместности."
+      },
+      {
+        "id": "build_mechanism",
+        "position": 2,
+        "text": "Создать резерв, автоматический сигнал/платёж, правило проверки и понятного владельца процесса.",
+        "event": "transfer",
+        "note": "`developmentEvent: transfer`  \n   Открыть `dev.is.pressure.01`."
+      }
+    ]
+  },
+  {
+    "id": "dev.is.pressure.01",
+    "title": "Система сломалась",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.is.pressure.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "individualist-strategist",
+    "from": "individualist",
+    "to": "strategist",
+    "fn": "pressure",
+    "beat": "pressure",
+    "retry": false,
+    "facet": "work",
+    "contextId": "system-under-crisis",
+    "pressure": true,
+    "requires": "`transfer@dev.is.transfer.01`",
+    "cast": [
+      "npc.team"
+    ],
+    "text": "Во время кризиса часть нового процесса перестаёт работать. Самый быстрый путь — забрать все решения себе и до ночи вручную закрывать задачи. Команда привыкла, что Алексей умеет так спасать ситуацию.",
+    "choices": [
+      {
+        "id": "take_over",
+        "position": 0,
+        "text": "Забрать управление и самому принимать все решения до конца кризиса.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "simplify_system",
+        "position": 1,
+        "text": "Сократить процесс до критического минимума, распределить роли и оставить короткий цикл обратной связи, не превращая себя в единственную точку решения.",
+        "event": "pressure",
+        "note": "`developmentEvent: pressure`."
+      },
+      {
+        "id": "follow_process_blindly",
+        "position": 2,
+        "text": "Требовать полного соблюдения процесса: «Иначе зачем мы его строили?»",
+        "event": null,
+        "note": "Без evidence: система стала догмой."
+      }
+    ]
+  },
+  {
+    "id": "dev.is.retry.01",
+    "title": "Режим, который переживает плохой день",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.is.retry.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "individualist-strategist",
+    "from": "individualist",
+    "to": "strategist",
+    "fn": "retry",
+    "beat": "pressure",
+    "retry": true,
+    "facet": "body",
+    "contextId": "resilient-routine",
+    "pressure": true,
+    "requires": "`withdrawal@pressure` + cooldown",
+    "cast": [],
+    "text": "После неудачной проверки Алексей снова сталкивается с привычным срывом режима: в загруженный день идеальный план здоровья полностью разваливается. Можно ждать «нормальной недели» или изменить саму систему.",
+    "choices": [
+      {
+        "id": "minimum_viable_routine",
+        "position": 0,
+        "text": "Определить минимальный режим, который выполняется даже в плохой день, и механизм возврата к полной версии.",
+        "event": "pressure",
+        "note": "`developmentEvent: pressure`."
+      },
+      {
+        "id": "restart_monday",
+        "position": 1,
+        "text": "Считать день потерянным и начать идеальный режим заново с понедельника.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "track_everything",
+        "position": 2,
+        "text": "Добавить ещё больше метрик, чтобы больше ничего не упускать.",
+        "event": null,
+        "note": "Без evidence: контроль усложняется без проверки жизнеспособности.\n\n---"
+      }
+    ]
+  },
+  {
+    "id": "dev.is.retry-trial.01",
+    "title": "Совещание по кругу",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.is.retry-trial.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "individualist-strategist",
+    "from": "individualist",
+    "to": "strategist",
+    "fn": "retry-trial",
+    "beat": "trial",
+    "retry": true,
+    "facet": "work",
+    "contextId": "recurring-meeting-loop",
+    "pressure": false,
+    "requires": "withdrawal@trial + cooldown",
+    "cast": [],
+    "text": "Команда уже несколько раз обсуждала одну проблему. Все позиции понятны, но после каждой встречи решения размываются и через неделю спор начинается заново.",
+    "choices": [
+      {
+        "id": "talk",
+        "position": 0,
+        "text": "Ещё раз дать всем высказаться глубже: возможно, прошлые разговоры были недостаточно честными.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`"
+      },
+      {
+        "id": "decide",
+        "position": 1,
+        "text": "Самому выбрать вариант и закрыть вопрос ради результата.",
+        "event": null,
+        "note": "Без evidence."
+      },
+      {
+        "id": "mechanism",
+        "position": 2,
+        "text": "Изменить механизм решения: владелец, критерий, срок пересмотра и обратная связь.",
+        "event": "trial",
+        "note": "`developmentEvent: trial`  \n   Закрывает отсутствующий beat `trial` и возвращает arc к следующему незакрытому beat."
+      }
+    ]
+  },
+  {
+    "id": "dev.is.retry-transfer.01",
+    "title": "Утро после срыва",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.is.retry-transfer.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "individualist-strategist",
+    "from": "individualist",
+    "to": "strategist",
+    "fn": "retry-transfer",
+    "beat": "transfer",
+    "retry": true,
+    "facet": "body",
+    "contextId": "resilient-health-system",
+    "pressure": false,
+    "requires": "review present + withdrawal@transfer + cooldown",
+    "cast": [],
+    "text": "После нескольких загруженных дней привычный режим снова исчез. Алексей понимает причины, но простого намерения «слушать себя» раньше не хватало.",
+    "choices": [
+      {
+        "id": "minimum",
+        "position": 0,
+        "text": "Задать минимальные опоры, триггеры и способ возврата к полной версии режима.",
+        "event": "transfer",
+        "note": "`developmentEvent: transfer`  \n   Закрывает отсутствующий beat `transfer` и возвращает arc к следующему незакрытому beat."
+      },
+      {
+        "id": "feel",
+        "position": 1,
+        "text": "Каждое утро заново решать по самочувствию, не превращая жизнь в систему.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`"
+      },
+      {
+        "id": "push",
+        "position": 2,
+        "text": "Поставить жёсткую цель на неделю и наверстать пропущенное.",
+        "event": null,
+        "note": "Без evidence.\n\n---"
+      }
+    ]
+  },
+  {
+    "id": "dev.sa.trial.01",
+    "title": "Ещё один процесс не поможет",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.sa.trial.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "strategist-alchemist",
+    "from": "strategist",
+    "to": "alchemist",
+    "fn": "trial",
+    "beat": "trial",
+    "retry": false,
+    "facet": "work",
+    "contextId": "unsolved-system-conflict",
+    "pressure": false,
+    "requires": "",
+    "cast": [
+      "npc.team.a",
+      "npc.team.b"
+    ],
+    "text": "Алексей уже несколько раз менял процесс между двумя частями команды. Новые роли, правила и точки контроля делают работу понятнее, но конфликт не исчезает: стороны по-разному понимают, что вообще считается хорошим результатом. Ещё один регламент почти готов.",
+    "choices": [
+      {
+        "id": "add_process",
+        "position": 0,
+        "text": "Дописать регламент и жёстко определить границы ответственности.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "reframe_together",
+        "position": 1,
+        "text": "Собрать стороны не для выбора готового варианта, а чтобы заново сформулировать проблему и допустить решение, которого нет в плане Алексея.",
+        "event": "trial",
+        "note": "`developmentEvent: trial`  \n   Открыть `dev.sa.consequence.01`."
+      },
+      {
+        "id": "let_them_decide",
+        "position": 2,
+        "text": "Уйти из обсуждения: «Если решение должно возникнуть само, пусть они разберутся».",
+        "event": null,
+        "note": "Без evidence: отказ от ответственности не является Алхимиком."
+      }
+    ]
+  },
+  {
+    "id": "dev.sa.consequence.01",
+    "title": "Третья возможность",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.sa.consequence.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "strategist-alchemist",
+    "from": "strategist",
+    "to": "alchemist",
+    "fn": "consequence",
+    "beat": "consequence",
+    "retry": false,
+    "facet": "work",
+    "contextId": "emergent-option",
+    "pressure": false,
+    "requires": "`trial@dev.sa.trial.01`",
+    "cast": [],
+    "text": "В совместном разговоре появляется вариант, которого Алексей не предлагал: часть функций объединяется временно, а один из прежних KPI убирается. Решение нарушает красивую архитектуру Алексея, но снимает сам источник спора.",
+    "choices": [
+      {
+        "id": "integrate_emergent",
+        "position": 0,
+        "text": "Принять новый вариант как рабочую гипотезу и перестроить систему вокруг реального открытия, сохранив границы ответственности.",
+        "event": "consequence",
+        "note": "`developmentEvent: consequence`  \n   Открыть `dev.sa.review.01`."
+      },
+      {
+        "id": "return_to_plan",
+        "position": 1,
+        "text": "Вернуть разговор к исходной системе: новый вариант слишком трудно контролировать.",
+        "event": null,
+        "note": "Без evidence."
+      },
+      {
+        "id": "accept_anything",
+        "position": 2,
+        "text": "Поддержать предложение только потому, что оно возникло «снизу».",
+        "event": null,
+        "note": "Без evidence: эмерджентность превращена в культ, ответственность исчезает."
+      }
+    ]
+  },
+  {
+    "id": "dev.sa.review.01",
+    "title": "Я тоже часть системы",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.sa.review.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "strategist-alchemist",
+    "from": "strategist",
+    "to": "alchemist",
+    "fn": "review",
+    "beat": "review",
+    "retry": false,
+    "facet": "inner",
+    "contextId": "observer-in-system",
+    "pressure": false,
+    "requires": "`consequence@dev.sa.consequence.01`",
+    "cast": [],
+    "text": "Разбирая случившееся, Алексей замечает: его первоначальная схема не просто описывала конфликт — она задавала язык, в котором участники пытались его решать. Его роль архитектора тоже была частью происходящего.",
+    "choices": [
+      {
+        "id": "better_requirements",
+        "position": 0,
+        "text": "«В следующий раз надо просто лучше собрать требования заранее».",
+        "event": null,
+        "note": "Без evidence."
+      },
+      {
+        "id": "planning_useless",
+        "position": 1,
+        "text": "«Значит, планы вообще мешают живым системам».",
+        "event": null,
+        "note": "Без evidence: новая догма вместо более широкой позиции."
+      },
+      {
+        "id": "own_frame_limits",
+        "position": 2,
+        "text": "«Моя формулировка проблемы сама ограничивала набор решений. Иногда мне нужно менять не только систему, но и собственную позицию в ней».",
+        "event": "review",
+        "note": "`developmentEvent: review`  \n   Открыть `dev.sa.transfer.01`."
+      }
+    ]
+  },
+  {
+    "id": "dev.sa.transfer.01",
+    "title": "Не исправлять близкого",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.sa.transfer.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "strategist-alchemist",
+    "from": "strategist",
+    "to": "alchemist",
+    "fn": "transfer",
+    "beat": "transfer",
+    "retry": false,
+    "facet": "relationships",
+    "contextId": "relationship-transformation",
+    "pressure": false,
+    "requires": "`review@dev.sa.review.01`",
+    "cast": [
+      "npc.close.primary"
+    ],
+    "text": "В близких отношениях повторяется конфликт. Алексей уже видит систему: кто отступает, кто давит, какие договорённости нужны. Он может предложить готовый новый порядок — и уверен, что тот разумный.",
+    "choices": [
+      {
+        "id": "explore_conflict_function",
+        "position": 0,
+        "text": "Вместо готовой схемы исследовать вместе, что каждый защищает этим конфликтом, и позволить новой форме договорённости возникнуть из разговора.",
+        "event": "transfer",
+        "note": "`developmentEvent: transfer`  \n   Открыть `dev.sa.pressure.01`."
+      },
+      {
+        "id": "present_solution",
+        "position": 1,
+        "text": "Предложить готовую схему отношений и объяснить, почему она сбалансирована.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "wait_for_emergence",
+        "position": 2,
+        "text": "Ничего не предлагать и ждать, что отношения сами найдут форму.",
+        "event": null,
+        "note": "Без evidence: пассивность не является Алхимиком."
+      }
+    ]
+  },
+  {
+    "id": "dev.sa.pressure.01",
+    "title": "Вернуть контроль",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.sa.pressure.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "strategist-alchemist",
+    "from": "strategist",
+    "to": "alchemist",
+    "fn": "pressure",
+    "beat": "pressure",
+    "retry": false,
+    "facet": "work",
+    "contextId": "emergence-under-risk",
+    "pressure": true,
+    "requires": "`transfer@dev.sa.transfer.01`",
+    "cast": [
+      "npc.team",
+      "npc.manager.primary"
+    ],
+    "text": "Новый совместный процесс ещё не стабилен, а появляется реальный риск по сроку и деньгам. Руководство требует от Алексея «навести порядок» и дать один финальный план сегодня.",
+    "choices": [
+      {
+        "id": "centralize",
+        "position": 0,
+        "text": "Закрыть обсуждение, вернуть централизованное управление и самому определить конечное решение.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "remove_constraints",
+        "position": 1,
+        "text": "Не вводить ограничений: давление разрушит возможность настоящей трансформации.",
+        "event": null,
+        "note": "Без evidence: открытость без ответственности."
+      },
+      {
+        "id": "boundaries_not_outcome",
+        "position": 2,
+        "text": "Жёстко зафиксировать срок, бюджет и неприемлемые риски, но внутри этих границ оставить команде пространство доформировать решение.",
+        "event": "pressure",
+        "note": "`developmentEvent: pressure`."
+      }
+    ]
+  },
+  {
+    "id": "dev.sa.retry.01",
+    "title": "Кризис плана",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.sa.retry.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "strategist-alchemist",
+    "from": "strategist",
+    "to": "alchemist",
+    "fn": "retry",
+    "beat": "pressure",
+    "retry": true,
+    "facet": "relationships",
+    "contextId": "plan-disrupted",
+    "pressure": true,
+    "requires": "`withdrawal@pressure` + cooldown",
+    "cast": [
+      "npc.family.group"
+    ],
+    "text": "Тщательно подготовленный семейный план рушится из-за неожиданного события. Старый вариант уже невозможен, а времени на проектирование новой идеальной системы нет.",
+    "choices": [
+      {
+        "id": "restore_original",
+        "position": 0,
+        "text": "Сконцентрироваться на том, чтобы как можно быстрее вернуть первоначальный план в исходный вид.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "hold_direction_change_form",
+        "position": 1,
+        "text": "Сохранить ключевые границы и направление, но позволить ситуации изменить сам способ достижения и роль Алексея в нём.",
+        "event": "pressure",
+        "note": "`developmentEvent: pressure`."
+      },
+      {
+        "id": "abandon_direction",
+        "position": 2,
+        "text": "Отказаться от любых ориентиров и «посмотреть, куда всё само придёт».",
+        "event": null,
+        "note": "Без evidence: открытость без ответственности.\n\n---"
+      }
+    ]
+  },
+  {
+    "id": "dev.sa.retry-trial.01",
+    "title": "Спор соседей",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.sa.retry-trial.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "strategist-alchemist",
+    "from": "strategist",
+    "to": "alchemist",
+    "fn": "retry-trial",
+    "beat": "trial",
+    "retry": true,
+    "facet": "relationships",
+    "contextId": "community-frame-conflict",
+    "pressure": false,
+    "requires": "withdrawal@trial + cooldown",
+    "cast": [],
+    "text": "Две группы соседей спорят об общем пространстве. Алексей уже может предложить разумный компромисс и правила использования, но стороны по-разному понимают, для чего это место вообще существует.",
+    "choices": [
+      {
+        "id": "design",
+        "position": 0,
+        "text": "Собрать требования и спроектировать максимально сбалансированный порядок.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`"
+      },
+      {
+        "id": "reframe",
+        "position": 1,
+        "text": "Задать границы безопасности и дать сторонам через малые совместные пробы заново определить назначение пространства.",
+        "event": "trial",
+        "note": "`developmentEvent: trial`  \n   Закрывает отсутствующий beat `trial` и возвращает arc к следующему незакрытому beat."
+      },
+      {
+        "id": "leave",
+        "position": 2,
+        "text": "Не вмешиваться: если решение должно возникнуть, участники сами его найдут.",
+        "event": null,
+        "note": "Без evidence."
+      }
+    ]
+  },
+  {
+    "id": "dev.sa.retry-transfer.01",
+    "title": "Не чинить разговор",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.sa.retry-transfer.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "strategist-alchemist",
+    "from": "strategist",
+    "to": "alchemist",
+    "fn": "retry-transfer",
+    "beat": "transfer",
+    "retry": true,
+    "facet": "relationships",
+    "contextId": "close-role-reframe",
+    "pressure": false,
+    "requires": "review present + withdrawal@transfer + cooldown",
+    "cast": [],
+    "text": "Близкий человек приходит с повторяющейся проблемой. Алексей видит системное решение и почти готов предложить новую схему действий, но собеседник говорит, что сейчас сам не понимает, чего хочет.",
+    "choices": [
+      {
+        "id": "plan",
+        "position": 0,
+        "text": "Предложить проверенную структуру: она поможет выйти из повторяющегося круга.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`"
+      },
+      {
+        "id": "withdraw",
+        "position": 1,
+        "text": "Полностью отойти: любое влияние помешает естественному процессу.",
+        "event": null,
+        "note": "Без evidence."
+      },
+      {
+        "id": "hold",
+        "position": 2,
+        "text": "Сохранить границы разговора, но позволить вместе изменить сам вопрос и роль Алексея в этой ситуации.",
+        "event": "transfer",
+        "note": "`developmentEvent: transfer`  \n   Закрывает отсутствующий beat `transfer` и возвращает arc к следующему незакрытому beat.\n\n---"
+      }
+    ]
+  },
+  {
+    "id": "dev.alir.trial.01",
+    "title": "Просто сказать «нет»",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.alir.trial.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "alchemist-ironic",
+    "from": "alchemist",
+    "to": "ironic",
+    "fn": "trial",
+    "beat": "trial",
+    "retry": false,
+    "facet": "relationships",
+    "contextId": "simple-boundary",
+    "pressure": false,
+    "requires": "",
+    "cast": [
+      "npc.acquaintance.primary"
+    ],
+    "text": "Знакомый регулярно нарушает простую границу Алексея: опаздывает, переносит договорённости в последний момент и рассчитывает, что Алексей снова подстроится. Алексей уже понимает возможные причины его поведения и может долго обсуждать динамику отношений.",
+    "choices": [
+      {
+        "id": "explore_deeper",
+        "position": 0,
+        "text": "Предложить ещё раз разобрать, что стоит за повторяющимся поведением и почему граница не работает.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "punish",
+        "position": 1,
+        "text": "Жёстко оборвать контакт, чтобы человек наконец понял серьёзность.",
+        "event": null,
+        "note": "Без evidence: силовая граница из раздражения не является Ироником."
+      },
+      {
+        "id": "state_boundary",
+        "position": 2,
+        "text": "Спокойно сказать «нет» конкретному нарушению, обозначить простое последствие и не превращать это в диагноз отношений.",
+        "event": "trial",
+        "note": "`developmentEvent: trial`  \n   Открыть `dev.alir.consequence.01`."
+      }
+    ]
+  },
+  {
+    "id": "dev.alir.consequence.01",
+    "title": "Мир не стал мельче",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.alir.consequence.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "alchemist-ironic",
+    "from": "alchemist",
+    "to": "ironic",
+    "fn": "consequence",
+    "beat": "consequence",
+    "retry": false,
+    "facet": "relationships",
+    "contextId": "simplicity-works",
+    "pressure": false,
+    "requires": "`trial@dev.alir.trial.01`",
+    "cast": [],
+    "text": "После прямой границы человек недоволен, но ситуация становится яснее. Отношения не исчезают и не становятся «поверхностными». Алексей замечает, что простое действие не отменило всей сложности, которую он видел раньше.",
+    "choices": [
+      {
+        "id": "simple_always",
+        "position": 0,
+        "text": "Решить, что сложные разговоры вообще были лишними: надо всегда говорить прямо и жёстко.",
+        "event": null,
+        "note": "Без evidence: один способ снова превращён в универсальный."
+      },
+      {
+        "id": "complexity_is_tool",
+        "position": 1,
+        "text": "Увидеть, что сложность — инструмент: иногда она нужна, а иногда достаточно простого ясного действия.",
+        "event": "consequence",
+        "note": "`developmentEvent: consequence`  \n   Открыть `dev.alir.review.01`."
+      },
+      {
+        "id": "nothing_matters",
+        "position": 2,
+        "text": "Отнестись к ситуации с иронией: «Всё это не так уж важно».",
+        "event": null,
+        "note": "Без evidence: дистанция подменяет участие."
+      }
+    ]
+  },
+  {
+    "id": "dev.alir.review.01",
+    "title": "Кем я должен быть?",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.alir.review.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "alchemist-ironic",
+    "from": "alchemist",
+    "to": "ironic",
+    "fn": "review",
+    "beat": "review",
+    "retry": false,
+    "facet": "inner",
+    "contextId": "identity-as-stage",
+    "pressure": false,
+    "requires": "`consequence@dev.alir.consequence.01`",
+    "cast": [],
+    "text": "Алексей замечает, что иногда выбирал сложные способы не только потому, что они были нужны, но и потому, что не хотел выглядеть «простым» — даже перед самим собой.",
+    "choices": [
+      {
+        "id": "use_without_being",
+        "position": 0,
+        "text": "«Я могу видеть сложность и всё равно выбрать простой способ. Мне не нужно доказывать, кем я являюсь».",
+        "event": "review",
+        "note": "`developmentEvent: review`  \n   Открыть `dev.alir.transfer.01`."
+      },
+      {
+        "id": "act_advanced",
+        "position": 1,
+        "text": "«Если я уже вижу больше, странно действовать так, будто я этого не вижу».",
+        "event": null,
+        "note": "Без evidence: идентичность стадии управляет выбором."
+      },
+      {
+        "id": "all_relative",
+        "position": 2,
+        "text": "«Любая позиция условна, так что нет смысла всерьёз выбирать одну».",
+        "event": null,
+        "note": "Без evidence: релятивизм и уход от выбора."
+      }
+    ]
+  },
+  {
+    "id": "dev.alir.transfer.01",
+    "title": "Сделать по инструкции",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.alir.transfer.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "alchemist-ironic",
+    "from": "alchemist",
+    "to": "ironic",
+    "fn": "transfer",
+    "beat": "transfer",
+    "retry": false,
+    "facet": "work",
+    "contextId": "simple-expertise",
+    "pressure": false,
+    "requires": "`review@dev.alir.review.01`",
+    "cast": [
+      "npc.team"
+    ],
+    "text": "На работе возникает техническая проблема с известным надёжным решением. Команда привыкла ждать от Алексея более широкого «видения» и спрашивает, не стоит ли за проблемой что-то системное.",
+    "choices": [
+      {
+        "id": "transform_program",
+        "position": 0,
+        "text": "Использовать повод, чтобы запустить пересмотр всей системы: локальная проблема может быть симптомом большего.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "use_expert_mode",
+        "position": 1,
+        "text": "Проверить факты, применить хороший стандартный способ и закрыть задачу. К системной версии вернуться только при новых данных.",
+        "event": "transfer",
+        "note": "`developmentEvent: transfer`  \n   Открыть `dev.alir.pressure.01`."
+      },
+      {
+        "id": "delegate_below_me",
+        "position": 2,
+        "text": "Передать задачу кому-то ещё: «Мне не стоит тратить время на такой уровень».",
+        "event": null,
+        "note": "Без evidence: идентичность всё ещё ограничивает доступ к простому способу."
+      }
+    ]
+  },
+  {
+    "id": "dev.alir.pressure.01",
+    "title": "Не доказывать глубину",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.alir.pressure.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "alchemist-ironic",
+    "from": "alchemist",
+    "to": "ironic",
+    "fn": "pressure",
+    "beat": "pressure",
+    "retry": false,
+    "facet": "work",
+    "contextId": "identity-under-status-pressure",
+    "pressure": true,
+    "requires": "`transfer@dev.alir.transfer.01`",
+    "cast": [
+      "npc.authority.primary"
+    ],
+    "text": "На встрече авторитетный человек резко обесценивает подход Алексея: «Ты всё усложняешь. Здесь ничего глубокого нет». Алексей может легко ответить так, чтобы показать превосходство своей картины. Но текущая задача действительно требует короткого конкретного решения.",
+    "choices": [
+      {
+        "id": "do_needed",
+        "position": 0,
+        "text": "Коротко уточнить факты, сделать нужное действие и позволить собеседнику остаться при своём мнении о глубине Алексея.",
+        "event": "pressure",
+        "note": "`developmentEvent: pressure`."
+      },
+      {
+        "id": "demonstrate_depth",
+        "position": 1,
+        "text": "Развернуть сложную аргументацию и показать, сколько уровней собеседник не замечает.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "joke_and_withdraw",
+        "position": 2,
+        "text": "Отшутиться: «Ну раз всё так просто, разбирайтесь сами».",
+        "event": null,
+        "note": "Без evidence: ирония становится дистанцией."
+      }
+    ]
+  },
+  {
+    "id": "dev.alir.retry.01",
+    "title": "Обычная помощь",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.alir.retry.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "alchemist-ironic",
+    "from": "alchemist",
+    "to": "ironic",
+    "fn": "retry",
+    "beat": "pressure",
+    "retry": true,
+    "facet": "relationships",
+    "contextId": "ordinary-help",
+    "pressure": true,
+    "requires": "`withdrawal@pressure` + cooldown",
+    "cast": [
+      "npc.close.primary"
+    ],
+    "text": "Близкий человек приходит к Алексею после тяжёлого дня. Причины понятны, системные связи тоже видны. Но человек не просит анализа — ему нужно, чтобы Алексей просто приехал, помог с обычным делом и побыл рядом.",
+    "choices": [
+      {
+        "id": "analyze",
+        "position": 0,
+        "text": "Начать разбирать, что этот кризис показывает о его жизни и повторяющихся паттернах.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`."
+      },
+      {
+        "id": "detach",
+        "position": 1,
+        "text": "Сказать, что человеку важно самому прожить этот опыт, и не вмешиваться.",
+        "event": null,
+        "note": "Без evidence: дистанция под видом уважения процесса.\n\n---"
+      },
+      {
+        "id": "show_up",
+        "position": 2,
+        "text": "Приехать и помочь так, как просят, без необходимости превращать момент в работу над человеком.",
+        "event": "pressure",
+        "note": "`developmentEvent: pressure`."
+      }
+    ]
+  },
+  {
+    "id": "dev.alir.retry-trial.01",
+    "title": "Кто забирает заказ",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.alir.retry-trial.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "alchemist-ironic",
+    "from": "alchemist",
+    "to": "ironic",
+    "fn": "retry-trial",
+    "beat": "trial",
+    "retry": true,
+    "facet": "relationships",
+    "contextId": "simple-decision-after-analysis",
+    "pressure": false,
+    "requires": "withdrawal@trial + cooldown",
+    "cast": [],
+    "text": "Небольшой бытовой вопрос обсуждают уже слишком долго. Все мотивы и отношения понятны, но решение нужно только одно: кто сегодня забирает заказ.",
+    "choices": [
+      {
+        "id": "simple",
+        "position": 0,
+        "text": "Выбрать конкретного человека по удобству сегодня и закрыть вопрос без дополнительной концепции отношений.",
+        "event": "trial",
+        "note": "`developmentEvent: trial`  \n   Закрывает отсутствующий beat `trial` и возвращает arc к следующему незакрытому beat."
+      },
+      {
+        "id": "deepen",
+        "position": 1,
+        "text": "Ещё немного обсудить, почему простая просьба вызывает напряжение.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`"
+      },
+      {
+        "id": "force",
+        "position": 2,
+        "text": "Назначить другого, потому что Алексей устал от обсуждения.",
+        "event": null,
+        "note": "Без evidence."
+      }
+    ]
+  },
+  {
+    "id": "dev.alir.retry-transfer.01",
+    "title": "Обычное восстановление",
+    "ref": {
+      "doc": "DEVELOPMENT-PRODUCTION-CARDS-v1-final.md",
+      "id": "dev.alir.retry-transfer.01",
+      "version": "v2.5-integrated-v2"
+    },
+    "arcId": "alchemist-ironic",
+    "from": "alchemist",
+    "to": "ironic",
+    "fn": "retry-transfer",
+    "beat": "transfer",
+    "retry": true,
+    "facet": "body",
+    "contextId": "simple-recovery-method",
+    "pressure": false,
+    "requires": "review present + withdrawal@transfer + cooldown",
+    "cast": [],
+    "text": "После нескольких поздних вечеров Алексей чувствует обычную усталость. У него уже есть простой режим сна и отдыха, который раньше работал.",
+    "choices": [
+      {
+        "id": "reframe",
+        "position": 0,
+        "text": "Использовать состояние, чтобы глубже пересмотреть отношения с работой, телом и собственной продуктивностью.",
+        "event": "withdrawal",
+        "note": "`developmentEvent: withdrawal`"
+      },
+      {
+        "id": "useknown",
+        "position": 1,
+        "text": "Просто вернуться к известному рабочему режиму на несколько дней и наблюдать, нужен ли более глубокий разбор.",
+        "event": "transfer",
+        "note": "`developmentEvent: transfer`  \n   Закрывает отсутствующий beat `transfer` и возвращает arc к следующему незакрытому beat."
+      },
+      {
+        "id": "ignore",
+        "position": 2,
+        "text": "Ничего не менять: любое вмешательство только создаёт новую историю о себе.",
+        "event": null,
+        "note": "Без evidence.\n\n---"
+      }
+    ]
+  }
+]

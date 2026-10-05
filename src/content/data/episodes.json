@@ -1,0 +1,339 @@
+[
+  {
+    "id": "fair",
+    "title": "К ярмарке",
+    "days": 30,
+    "daysPerChapter": 5,
+    "slotsPerDay": 4,
+    "intentionOptions": [
+      {
+        "id": "work",
+        "facet": "work",
+        "label": "Удержать мастерскую"
+      },
+      {
+        "id": "relationships",
+        "facet": "relationships",
+        "label": "Не потерять людей рядом"
+      },
+      {
+        "id": "body",
+        "facet": "body",
+        "label": "Дойти до ярмарки не выжатым"
+      },
+      {
+        "id": "inner",
+        "facet": "inner",
+        "label": "Не потерять себя в спешке"
+      }
+    ],
+    "routeMoments": [
+      {
+        "day": 2,
+        "slot": 2,
+        "options": [
+          {
+            "id": "workshop",
+            "label": "Вернуться к заказу в мастерской",
+            "facets": [
+              "work"
+            ],
+            "routePool": "r2_work"
+          },
+          {
+            "id": "marta",
+            "label": "Зайти к Марте",
+            "facets": [
+              "relationships"
+            ],
+            "routePool": "r2_people"
+          }
+        ]
+      },
+      {
+        "day": 5,
+        "slot": 1,
+        "options": [
+          {
+            "id": "market",
+            "label": "Зайти на рынок",
+            "facets": [
+              "work"
+            ],
+            "routePool": "r5_work"
+          },
+          {
+            "id": "river",
+            "label": "Час без работы у реки",
+            "facets": [
+              "body",
+              "inner"
+            ],
+            "routePool": "r5_river"
+          }
+        ]
+      },
+      {
+        "day": 7,
+        "slot": 2,
+        "options": [
+          {
+            "id": "alexey",
+            "label": "Остаться с Алексеем",
+            "facets": [
+              "relationships",
+              "work"
+            ],
+            "routePool": "r7_people"
+          },
+          {
+            "id": "rest",
+            "label": "Закончить раньше",
+            "facets": [
+              "body"
+            ],
+            "routePool": "r7_rest"
+          }
+        ]
+      },
+      {
+        "day": 9,
+        "slot": 1,
+        "options": [
+          {
+            "id": "order",
+            "label": "Проверить большой заказ",
+            "facets": [
+              "work"
+            ],
+            "routePool": "r9_work"
+          },
+          {
+            "id": "ilya",
+            "label": "Встретиться с Ильёй",
+            "facets": [
+              "relationships",
+              "inner"
+            ],
+            "routePool": "r9_people"
+          }
+        ]
+      }
+    ],
+    "routePools": {
+      "r2_work": [
+        "c1_rain_delivery",
+        "r_customer_wait"
+      ],
+      "r2_people": [
+        "c1_marta_firewood",
+        "c1_customer_hurry"
+      ],
+      "r5_work": [
+        "c1_market_spot",
+        "c1_last_clay"
+      ],
+      "r5_river": [
+        "c2_shadow_attention",
+        "r_river"
+      ],
+      "r7_people": [
+        "c2_old_master_tools",
+        "r_kiln"
+      ],
+      "r7_rest": [
+        "c2_bridge_repair",
+        "c2_shadow_compassion"
+      ],
+      "r9_work": [
+        "c2_shadow_letgo",
+        "r_coins"
+      ],
+      "r9_people": [
+        "c2_shadow_honesty",
+        "c2_shadow_courage"
+      ]
+    },
+    "opportunities": [
+      {
+        "id": "marta_help",
+        "facet": "relationships",
+        "opensWhen": {
+          "all": [
+            {
+              "shown": "c1_alexey_broken_jug"
+            },
+            {
+              "dayGte": 2
+            }
+          ]
+        },
+        "throughDay": 2,
+        "resolvedFact": "liaison.martaHelp",
+        "takenValue": "hero",
+        "expiredValue": "other",
+        "offeredAt": {
+          "day": 2,
+          "slot": 2
+        },
+        "cardIds": [
+          "c1_marta_firewood",
+          "c1_customer_hurry"
+        ],
+        "offerText": "Марта, твоя соседка, до вечера переносит дрова. Потом она договорится с соседом."
+      },
+      {
+        "id": "market_place",
+        "facet": "work",
+        "opensWhen": {
+          "all": [
+            {
+              "shown": "c1_alexey_broken_jug"
+            },
+            {
+              "dayGte": 5
+            }
+          ]
+        },
+        "throughDay": 5,
+        "resolvedFact": "market.window",
+        "takenValue": "reserved",
+        "expiredValue": "other",
+        "offeredAt": {
+          "day": 5,
+          "slot": 1
+        },
+        "cardIds": [
+          "c1_market_spot",
+          "c1_last_clay"
+        ],
+        "offerText": "Тимон придержит место до вечера, потом предложит другому мастеру."
+      },
+      {
+        "id": "quiet_evening",
+        "facet": "body",
+        "opensWhen": {
+          "all": [
+            {
+              "shown": "c1_alexey_broken_jug"
+            },
+            {
+              "dayGte": 7
+            }
+          ]
+        },
+        "throughDay": 7,
+        "resolvedFact": "rest.beforeFair",
+        "takenValue": "kept",
+        "expiredValue": "missed",
+        "offeredAt": {
+          "day": 7,
+          "slot": 2
+        },
+        "cardIds": [
+          "c2_bridge_repair",
+          "c2_shadow_compassion"
+        ],
+        "offerText": "Сегодня можно закончить раньше; дальше начнётся последняя подготовка."
+      },
+      {
+        "id": "ilya_talk",
+        "facet": "inner",
+        "opensWhen": {
+          "all": [
+            {
+              "shown": "c1_alexey_broken_jug"
+            },
+            {
+              "dayGte": 9
+            }
+          ]
+        },
+        "throughDay": 9,
+        "resolvedFact": "ilya.meeting",
+        "takenValue": "talked",
+        "expiredValue": "missed",
+        "offeredAt": {
+          "day": 9,
+          "slot": 1
+        },
+        "cardIds": [
+          "c2_shadow_honesty",
+          "c2_shadow_courage"
+        ],
+        "offerText": "Илья ждёт сегодня. Завтра перед отъездом останется лишь короткая встреча."
+      }
+    ],
+    "finalFacts": [
+      "workshop.orderOutcome",
+      "alexey.path",
+      "market.arrangement"
+    ],
+    "initialFacts": {
+      "workshop.orderOutcome": "unresolved",
+      "alexey.path": "undecided",
+      "market.arrangement": "undecided",
+      "alexey.plan": "undecided",
+      "workshop.preparation": "unknown",
+      "timon.trust": "unknown",
+      "liaison.martaHelp": "waiting",
+      "market.window": "waiting",
+      "rest.beforeFair": "waiting",
+      "ilya.meeting": "waiting",
+      "body.pace": "unknown",
+      "inner.pause": "unknown"
+    },
+    "inheritedFactKeys": [],
+    "chapters": [
+      {
+        "id": 1,
+        "through": 5,
+        "title": "Подготовка",
+        "from": 1
+      },
+      {
+        "id": 2,
+        "through": 10,
+        "title": "К ярмарке",
+        "from": 6
+      },
+      {
+        "id": 3,
+        "through": 20,
+        "title": "Цена результата",
+        "from": 11
+      },
+      {
+        "id": 4,
+        "through": 30,
+        "title": "Новое дело",
+        "from": 21
+      }
+    ],
+    "milestones": [
+      {
+        "id": "fair",
+        "day": 10,
+        "slot": 3
+      }
+    ],
+    "goalReviewDays": [
+      11,
+      21
+    ],
+    "goals": [
+      {
+        "id": "order",
+        "label": "Выполнить обещанный заказ"
+      },
+      {
+        "id": "workshop",
+        "label": "Укрепить мастерскую"
+      },
+      {
+        "id": "alexey",
+        "label": "Подготовить Алексея к самостоятельной работе"
+      }
+    ]
+  }
+]

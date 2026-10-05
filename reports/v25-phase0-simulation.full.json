@@ -1,0 +1,368 @@
+{
+  "scoring": "full",
+  "runs": 100,
+  "baselines": 40,
+  "freeSlots": {
+    "min": 59,
+    "median": 61,
+    "max": 63
+  },
+  "modeA": {
+    "targets": [
+      {
+        "target": "opportunist",
+        "hitRate": 74,
+        "nonAdjacentWrong": 0,
+        "neverStable": 26,
+        "stableHeldAtDay30Pct": 34,
+        "wrongCenters": {},
+        "firstStableDay": {
+          "min": 7,
+          "median": 11,
+          "p90": 22
+        },
+        "avgNeutral": 29.8,
+        "avgProbe": 0,
+        "exhaustedPct": 6,
+        "maxProbeShare": 0
+      },
+      {
+        "target": "diplomat",
+        "hitRate": 74,
+        "nonAdjacentWrong": 0,
+        "neverStable": 26,
+        "stableHeldAtDay30Pct": 37,
+        "wrongCenters": {},
+        "firstStableDay": {
+          "min": 6,
+          "median": 12,
+          "p90": 25
+        },
+        "avgNeutral": 29.9,
+        "avgProbe": 0,
+        "exhaustedPct": 6,
+        "maxProbeShare": 0
+      },
+      {
+        "target": "expert",
+        "hitRate": 89,
+        "nonAdjacentWrong": 0,
+        "neverStable": 11,
+        "stableHeldAtDay30Pct": 68,
+        "wrongCenters": {},
+        "firstStableDay": {
+          "min": 6,
+          "median": 10,
+          "p90": 21
+        },
+        "avgNeutral": 29.5,
+        "avgProbe": 0,
+        "exhaustedPct": 6,
+        "maxProbeShare": 0
+      },
+      {
+        "target": "achiever",
+        "hitRate": 100,
+        "nonAdjacentWrong": 0,
+        "neverStable": 0,
+        "stableHeldAtDay30Pct": 99,
+        "wrongCenters": {},
+        "firstStableDay": {
+          "min": 6,
+          "median": 8,
+          "p90": 10
+        },
+        "avgNeutral": 29.5,
+        "avgProbe": 0,
+        "exhaustedPct": 7,
+        "maxProbeShare": 0
+      },
+      {
+        "target": "individualist",
+        "hitRate": 100,
+        "nonAdjacentWrong": 0,
+        "neverStable": 0,
+        "stableHeldAtDay30Pct": 100,
+        "wrongCenters": {},
+        "firstStableDay": {
+          "min": 7,
+          "median": 8,
+          "p90": 12
+        },
+        "avgNeutral": 29.7,
+        "avgProbe": 0,
+        "exhaustedPct": 7,
+        "maxProbeShare": 0
+      },
+      {
+        "target": "strategist",
+        "hitRate": 97,
+        "nonAdjacentWrong": 0,
+        "neverStable": 3,
+        "stableHeldAtDay30Pct": 92,
+        "wrongCenters": {},
+        "firstStableDay": {
+          "min": 6,
+          "median": 8,
+          "p90": 15
+        },
+        "avgNeutral": 30,
+        "avgProbe": 0,
+        "exhaustedPct": 15,
+        "maxProbeShare": 0
+      },
+      {
+        "target": "alchemist",
+        "hitRate": 29,
+        "nonAdjacentWrong": 0,
+        "neverStable": 71,
+        "stableHeldAtDay30Pct": 6,
+        "wrongCenters": {},
+        "firstStableDay": {
+          "min": 8,
+          "median": 11,
+          "p90": 26
+        },
+        "avgNeutral": 29.6,
+        "avgProbe": 0,
+        "exhaustedPct": 9,
+        "maxProbeShare": 0
+      },
+      {
+        "target": "ironic",
+        "hitRate": 66,
+        "nonAdjacentWrong": 0,
+        "neverStable": 34,
+        "stableHeldAtDay30Pct": 29,
+        "wrongCenters": {},
+        "firstStableDay": {
+          "min": 6,
+          "median": 10,
+          "p90": 25
+        },
+        "avgNeutral": 29.8,
+        "avgProbe": 0,
+        "exhaustedPct": 9,
+        "maxProbeShare": 0
+      }
+    ],
+    "mixedFalseStablePct": 1,
+    "insufficientFalseStablePct": 0,
+    "positionStrategies": [
+      {
+        "position": "A",
+        "stablePct": 1,
+        "centers": {
+          "achiever": 1
+        }
+      },
+      {
+        "position": "B",
+        "stablePct": 0,
+        "centers": {}
+      },
+      {
+        "position": "C",
+        "stablePct": 0,
+        "centers": {}
+      },
+      {
+        "position": "D",
+        "stablePct": 0,
+        "centers": {}
+      }
+    ],
+    "shiftExpertToStrategist": {
+      "expert": 72,
+      "none": 28
+    },
+    "medianOfMedians": 10,
+    "worstP90": 26
+  },
+  "modeB": {
+    "targets": [
+      {
+        "target": "opportunist",
+        "hitRate": 77,
+        "nonAdjacentWrong": 0,
+        "neverStable": 23,
+        "stableHeldAtDay30Pct": 38,
+        "wrongCenters": {},
+        "firstStableDay": {
+          "min": 7,
+          "median": 10,
+          "p90": 25
+        },
+        "avgNeutral": 29.5,
+        "avgProbe": 1,
+        "exhaustedPct": 3,
+        "maxProbeShare": 0.333
+      },
+      {
+        "target": "diplomat",
+        "hitRate": 74,
+        "nonAdjacentWrong": 0,
+        "neverStable": 26,
+        "stableHeldAtDay30Pct": 39,
+        "wrongCenters": {},
+        "firstStableDay": {
+          "min": 6,
+          "median": 10,
+          "p90": 23
+        },
+        "avgNeutral": 29.4,
+        "avgProbe": 1.4,
+        "exhaustedPct": 4,
+        "maxProbeShare": 0.333
+      },
+      {
+        "target": "expert",
+        "hitRate": 98,
+        "nonAdjacentWrong": 0,
+        "neverStable": 2,
+        "stableHeldAtDay30Pct": 80,
+        "wrongCenters": {},
+        "firstStableDay": {
+          "min": 6,
+          "median": 8,
+          "p90": 16
+        },
+        "avgNeutral": 28.6,
+        "avgProbe": 3.7,
+        "exhaustedPct": 0,
+        "maxProbeShare": 0.333
+      },
+      {
+        "target": "achiever",
+        "hitRate": 100,
+        "nonAdjacentWrong": 0,
+        "neverStable": 0,
+        "stableHeldAtDay30Pct": 100,
+        "wrongCenters": {},
+        "firstStableDay": {
+          "min": 6,
+          "median": 8,
+          "p90": 10
+        },
+        "avgNeutral": 28.6,
+        "avgProbe": 2.8,
+        "exhaustedPct": 3,
+        "maxProbeShare": 0.333
+      },
+      {
+        "target": "individualist",
+        "hitRate": 100,
+        "nonAdjacentWrong": 0,
+        "neverStable": 0,
+        "stableHeldAtDay30Pct": 100,
+        "wrongCenters": {},
+        "firstStableDay": {
+          "min": 6,
+          "median": 8,
+          "p90": 10
+        },
+        "avgNeutral": 29.1,
+        "avgProbe": 1.9,
+        "exhaustedPct": 4,
+        "maxProbeShare": 0.333
+      },
+      {
+        "target": "strategist",
+        "hitRate": 100,
+        "nonAdjacentWrong": 0,
+        "neverStable": 0,
+        "stableHeldAtDay30Pct": 95,
+        "wrongCenters": {},
+        "firstStableDay": {
+          "min": 6,
+          "median": 8,
+          "p90": 15
+        },
+        "avgNeutral": 29.2,
+        "avgProbe": 2.7,
+        "exhaustedPct": 5,
+        "maxProbeShare": 0.333
+      },
+      {
+        "target": "alchemist",
+        "hitRate": 51,
+        "nonAdjacentWrong": 0,
+        "neverStable": 49,
+        "stableHeldAtDay30Pct": 13,
+        "wrongCenters": {},
+        "firstStableDay": {
+          "min": 7,
+          "median": 10,
+          "p90": 25
+        },
+        "avgNeutral": 29,
+        "avgProbe": 2.4,
+        "exhaustedPct": 5,
+        "maxProbeShare": 0.333
+      },
+      {
+        "target": "ironic",
+        "hitRate": 64,
+        "nonAdjacentWrong": 0,
+        "neverStable": 36,
+        "stableHeldAtDay30Pct": 27,
+        "wrongCenters": {},
+        "firstStableDay": {
+          "min": 6,
+          "median": 10,
+          "p90": 24
+        },
+        "avgNeutral": 29.6,
+        "avgProbe": 0.7,
+        "exhaustedPct": 9,
+        "maxProbeShare": 0.333
+      }
+    ],
+    "mixedFalseStablePct": 5,
+    "insufficientFalseStablePct": 0,
+    "positionStrategies": [
+      {
+        "position": "A",
+        "stablePct": 1,
+        "centers": {
+          "achiever": 1
+        }
+      },
+      {
+        "position": "B",
+        "stablePct": 0,
+        "centers": {}
+      },
+      {
+        "position": "C",
+        "stablePct": 0,
+        "centers": {}
+      },
+      {
+        "position": "D",
+        "stablePct": 1,
+        "centers": {
+          "individualist": 1
+        }
+      }
+    ],
+    "shiftExpertToStrategist": {
+      "expert": 86,
+      "none": 14
+    },
+    "medianOfMedians": 10,
+    "worstP90": 25
+  },
+  "failures": [
+    "[A] opportunist: hit-rate 74% < 95%",
+    "[A] diplomat: hit-rate 74% < 95%",
+    "[A] expert: hit-rate 89% < 95%",
+    "[A] alchemist: hit-rate 29% < 95%",
+    "[A] ironic: hit-rate 66% < 95%",
+    "[B] opportunist: hit-rate 77% < 95%",
+    "[B] diplomat: hit-rate 74% < 95%",
+    "[B] alchemist: hit-rate 51% < 95%",
+    "[B] ironic: hit-rate 64% < 95%",
+    "[B] P90 first stable day > 16 for opportunist,diplomat,alchemist,ironic"
+  ]
+}

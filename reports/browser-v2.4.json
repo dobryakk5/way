@@ -1,0 +1,26 @@
+[
+  {
+    "name": "control",
+    "stage": "Эксперт",
+    "width": 390,
+    "stableReload": true,
+    "saveVersion": 4,
+    "errors": []
+  },
+  {
+    "name": "grow",
+    "stage": "Достиженец",
+    "width": 390,
+    "stableReload": true,
+    "saveVersion": 4,
+    "errors": []
+  },
+  {
+    "name": "legacy",
+    "stage": "Эксперт",
+    "width": 390,
+    "stableReload": true,
+    "saveVersion": 4,
+    "errors": []
+  }
+]

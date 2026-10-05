@@ -1,0 +1,63 @@
+{
+  "contentVersion": "mvp-v2.4-alpha.2",
+  "totalRuns": 500,
+  "trajectories": [
+    {
+      "name": "control",
+      "runs": 100,
+      "stages": {
+        "expert": 100
+      },
+      "promotionDays": {},
+      "visibleNewContent": 0,
+      "retriesShown": 100
+    },
+    {
+      "name": "withdraw",
+      "runs": 100,
+      "stages": {
+        "expert": 100
+      },
+      "promotionDays": {},
+      "visibleNewContent": 0,
+      "retriesShown": 100
+    },
+    {
+      "name": "grow",
+      "runs": 100,
+      "stages": {
+        "achiever": 100
+      },
+      "promotionDays": {
+        "25": 100
+      },
+      "visibleNewContent": 100,
+      "retriesShown": 100
+    },
+    {
+      "name": "retry",
+      "runs": 100,
+      "stages": {
+        "achiever": 100
+      },
+      "promotionDays": {
+        "25": 100
+      },
+      "visibleNewContent": 100,
+      "retriesShown": 100
+    },
+    {
+      "name": "late",
+      "runs": 100,
+      "stages": {
+        "achiever": 100
+      },
+      "promotionDays": {
+        "28": 100
+      },
+      "visibleNewContent": 100,
+      "retriesShown": 100
+    }
+  ],
+  "failures": []
+}

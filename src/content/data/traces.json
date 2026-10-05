@@ -1,0 +1,3698 @@
+[
+  {
+    "source": {
+      "cardId": "c1_alexey_broken_jug",
+      "choiceId": "show"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_alexey_broken_jug/show"
+      },
+      {
+        "kind": "card",
+        "id": "c1_alexey_after_jug"
+      }
+    ],
+    "response": "Алексей вытер свою чашку и поставил её рядом с заказом.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c1_alexey_broken_jug",
+      "choiceId": "prepare"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_alexey_broken_jug/prepare"
+      },
+      {
+        "kind": "card",
+        "id": "c1_alexey_after_jug"
+      }
+    ],
+    "response": "Алексей отнёс чашку на свой стол и начал готовить отдельную подставку.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c1_wounded_road",
+      "choiceId": "stop"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_wounded_road/stop"
+      },
+      {
+        "kind": "card",
+        "id": "c1_wanderer_returns"
+      }
+    ],
+    "response": "Ты помог путнику, и часть заказа осталась ждать в мастерской.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c1_wounded_road",
+      "choiceId": "pass"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_wounded_road/pass"
+      },
+      {
+        "kind": "card",
+        "id": "c1_wanderer_bridge"
+      }
+    ],
+    "response": "Ты успел вовремя к заказу. Путник остался ждать помощи на дороге.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c1_extra_change",
+      "choiceId": "return"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_extra_change/return"
+      },
+      {
+        "kind": "card",
+        "id": "c1_timon_returns"
+      }
+    ],
+    "response": "Лишние монеты вернулись на стол Тимона; он пересчитал сдачу при герое.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c1_extra_change",
+      "choiceId": "keep"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_extra_change/keep"
+      },
+      {
+        "kind": "card",
+        "id": "c1_timon_returns"
+      }
+    ],
+    "response": "Монеты остались у героя. Тимон продолжил торговлю, ещё не сверив кассу.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c1_marta_firewood",
+      "choiceId": "help"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_marta_firewood/help"
+      }
+    ],
+    "response": "Дрова перенесены вместе с Мартой; ручки чашек остались ждать."
+  },
+  {
+    "source": {
+      "cardId": "c1_marta_firewood",
+      "choiceId": "arrange"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_marta_firewood/arrange"
+      }
+    ],
+    "response": "Марта пошла звать другого соседа, а ты вернулся к мастерской."
+  },
+  {
+    "source": {
+      "cardId": "c1_alexey_bad_work",
+      "choiceId": "together"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_alexey_bad_work/together"
+      },
+      {
+        "kind": "card",
+        "id": "c2_timon_order_result"
+      }
+    ],
+    "response": "Чашка Алексея встала в печь рядом с твоим заказом.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c1_alexey_bad_work",
+      "choiceId": "independent"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_alexey_bad_work/independent"
+      },
+      {
+        "kind": "card",
+        "id": "c2_timon_order_result"
+      }
+    ],
+    "response": "Алексей пошёл узнавать про другую печь, а ты помог ему с первым знакомством.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c1_liya_letter",
+      "choiceId": "later"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_liya_letter/later"
+      },
+      {
+        "kind": "card",
+        "id": "c1_liya_second_letter"
+      }
+    ],
+    "response": "Письмо осталось под расчётом заказа. Ответ на него ещё не написан."
+  },
+  {
+    "source": {
+      "cardId": "c1_liya_letter",
+      "choiceId": "reply"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_liya_letter/reply"
+      },
+      {
+        "kind": "card",
+        "id": "c1_liya_second_letter"
+      }
+    ],
+    "response": "Ты написал ответ Лии. Он лежит у двери, а работа над заказом продолжится позже."
+  },
+  {
+    "source": {
+      "cardId": "c1_market_spot",
+      "choiceId": "reserve"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_market_spot/reserve"
+      }
+    ],
+    "response": "Тимон придержал часть прилавка до общего разговора."
+  },
+  {
+    "source": {
+      "cardId": "c1_market_spot",
+      "choiceId": "release"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_market_spot/release"
+      }
+    ],
+    "response": "Тимон предложит свободную часть прилавка другому мастеру."
+  },
+  {
+    "source": {
+      "cardId": "c1_rain_delivery",
+      "choiceId": "finish"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_rain_delivery/finish"
+      }
+    ],
+    "response": "Ручки чашек готовы к сушке. Вечер ушёл на партию."
+  },
+  {
+    "source": {
+      "cardId": "c1_rain_delivery",
+      "choiceId": "revise"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_rain_delivery/revise"
+      }
+    ],
+    "response": "В расчёте появилась меньшая партия; вечер освободился от части работы."
+  },
+  {
+    "source": {
+      "cardId": "c1_old_bowl",
+      "choiceId": "pause"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_old_bowl/pause"
+      },
+      {
+        "kind": "card",
+        "id": "c2_marta_window_result"
+      }
+    ],
+    "response": "Ты посидел у воды, поставив старую чашу рядом."
+  },
+  {
+    "source": {
+      "cardId": "c1_old_bowl",
+      "choiceId": "return"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_old_bowl/return"
+      },
+      {
+        "kind": "card",
+        "id": "c2_marta_window_result"
+      }
+    ],
+    "response": "Ты вернулся к работе, забрав старую чашу с собой."
+  },
+  {
+    "source": {
+      "cardId": "c1_customer_hurry",
+      "choiceId": "help"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_customer_hurry/help"
+      }
+    ],
+    "response": "Под навесом Марты стало теснее от дров. Время в мастерской пришлось уступить этой работе."
+  },
+  {
+    "source": {
+      "cardId": "c1_customer_hurry",
+      "choiceId": "arrange"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_customer_hurry/arrange"
+      }
+    ],
+    "response": "Марта передала другому соседу, что ждёт его вечером. Ты вернулся к своим чашкам."
+  },
+  {
+    "source": {
+      "cardId": "c1_neighbor_noise",
+      "choiceId": "rest"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_neighbor_noise/rest"
+      },
+      {
+        "kind": "card",
+        "id": "c2_alexey_tools_result"
+      }
+    ],
+    "response": "Алексей взял часть работы, а твоя кисть получила передышку."
+  },
+  {
+    "source": {
+      "cardId": "c1_neighbor_noise",
+      "choiceId": "continue"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_neighbor_noise/continue"
+      },
+      {
+        "kind": "card",
+        "id": "c2_alexey_tools_result"
+      }
+    ],
+    "response": "Ты закончил сам, оставив часть чашек на следующую партию."
+  },
+  {
+    "source": {
+      "cardId": "c1_last_clay",
+      "choiceId": "reserve"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_last_clay/reserve"
+      }
+    ],
+    "response": "Тимон отметил свободное место в расчёте для мастерской."
+  },
+  {
+    "source": {
+      "cardId": "c1_last_clay",
+      "choiceId": "release"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_last_clay/release"
+      }
+    ],
+    "response": "Разговор о месте отложен; Тимон больше не придерживает эту половину прилавка."
+  },
+  {
+    "source": {
+      "cardId": "c1_alexey_after_jug",
+      "choiceId": "work"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_alexey_after_jug/work"
+      }
+    ],
+    "response": "Алексей сам разложил чашку и подставку для будущего показа."
+  },
+  {
+    "source": {
+      "cardId": "c1_alexey_after_jug",
+      "choiceId": "teach"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_alexey_after_jug/teach"
+      }
+    ],
+    "response": "На листке появился общий расчёт времени обжига чашки Алексея."
+  },
+  {
+    "source": {
+      "cardId": "c1_wanderer_returns",
+      "choiceId": "decline"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_wanderer_returns/decline"
+      }
+    ],
+    "response": "Свёрток остался у Странника; разговор у мастерской закончился без подарка."
+  },
+  {
+    "source": {
+      "cardId": "c1_wanderer_returns",
+      "choiceId": "accept"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_wanderer_returns/accept"
+      }
+    ],
+    "response": "Свёрток занял место у окна мастерской. Странник продолжил свой путь."
+  },
+  {
+    "source": {
+      "cardId": "c1_wanderer_bridge",
+      "choiceId": "approach"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_wanderer_bridge/approach"
+      }
+    ],
+    "response": "Они поговорили на мосту; чужая палка осталась в руке путника."
+  },
+  {
+    "source": {
+      "cardId": "c1_wanderer_bridge",
+      "choiceId": "pass"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_wanderer_bridge/pass"
+      }
+    ],
+    "response": "Он прошёл мост, не остановившись. Путник продолжил дорогу своим темпом."
+  },
+  {
+    "source": {
+      "cardId": "c1_timon_returns",
+      "choiceId": "deny"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_timon_returns/deny"
+      }
+    ],
+    "response": "Расчёт остался несверенным: герой сказал, что ничего не заметил."
+  },
+  {
+    "source": {
+      "cardId": "c1_timon_returns",
+      "choiceId": "admit"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_timon_returns/admit"
+      }
+    ],
+    "response": "Монеты вернулись Тимону во время разговора о кассе."
+  },
+  {
+    "source": {
+      "cardId": "c1_timon_returns",
+      "choiceId": "check"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_timon_returns/check"
+      }
+    ],
+    "response": "Они с Тимоном сверили расчёт общего места вместе."
+  },
+  {
+    "source": {
+      "cardId": "c1_timon_returns",
+      "choiceId": "later"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_timon_returns/later"
+      }
+    ],
+    "response": "Расчёт общего места остался у героя до следующего разговора."
+  },
+  {
+    "source": {
+      "cardId": "c1_liya_second_letter",
+      "choiceId": "shelve"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_liya_second_letter/shelve"
+      }
+    ],
+    "response": "Второе письмо осталось с первым на столе."
+  },
+  {
+    "source": {
+      "cardId": "c1_liya_second_letter",
+      "choiceId": "read"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_liya_second_letter/read"
+      }
+    ],
+    "response": "Работа подождала, пока ты читал второе письмо Лии."
+  },
+  {
+    "source": {
+      "cardId": "c2_stones_bag",
+      "choiceId": "insist"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_stones_bag/insist"
+      },
+      {
+        "kind": "card",
+        "id": "c2_ilya_leaves"
+      }
+    ],
+    "response": "Илья услышал, что долг остаётся обязательством перед отъездом.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c2_stones_bag",
+      "choiceId": "forgive"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_stones_bag/forgive"
+      },
+      {
+        "kind": "card",
+        "id": "c2_ilya_after_forgive"
+      }
+    ],
+    "response": "Денежное требование снято; у разговора с Ильёй остались другие слова.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c2_timon_joint_order",
+      "choiceId": "shared"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_timon_joint_order/shared"
+      },
+      {
+        "kind": "card",
+        "id": "c2_timon_order_result"
+      }
+    ],
+    "response": "В плане ярмарки отмечен общий прилавок с Тимоном.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c2_timon_joint_order",
+      "choiceId": "solo"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_timon_joint_order/solo"
+      },
+      {
+        "kind": "card",
+        "id": "c2_timon_order_result"
+      }
+    ],
+    "response": "Для мастерской оплачено отдельное место.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c2_timon_joint_order",
+      "choiceId": "late_solo"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_timon_joint_order/late_solo"
+      },
+      {
+        "kind": "card",
+        "id": "c2_timon_order_result"
+      }
+    ],
+    "response": "Мастерская заняла отдельное место у ворот.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c2_timon_joint_order",
+      "choiceId": "absent"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_timon_joint_order/absent"
+      },
+      {
+        "kind": "card",
+        "id": "c2_timon_order_result"
+      }
+    ],
+    "response": "На эту ярмарку заказ поедет без собственного прилавка.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c2_liya_arrives",
+      "choiceId": "fulfilled"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_liya_arrives/fulfilled"
+      },
+      {
+        "kind": "card",
+        "id": "c2_timon_order_result"
+      }
+    ],
+    "response": "Заказчик ждёт всю согласованную партию на ярмарке.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c2_liya_arrives",
+      "choiceId": "revised"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_liya_arrives/revised"
+      },
+      {
+        "kind": "card",
+        "id": "c2_timon_order_result"
+      }
+    ],
+    "response": "Заказчик согласовал меньшую партию и новые условия.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c2_liya_arrives",
+      "choiceId": "revise_now"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_liya_arrives/revise_now"
+      },
+      {
+        "kind": "card",
+        "id": "c2_timon_order_result"
+      }
+    ],
+    "response": "Заказчик принял готовую часть и пересогласованный объём.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c2_liya_arrives",
+      "choiceId": "deferred"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_liya_arrives/deferred"
+      },
+      {
+        "kind": "card",
+        "id": "c2_timon_order_result"
+      }
+    ],
+    "response": "Для всей партии назван новый срок после ярмарки.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c2_bridge_repair",
+      "choiceId": "rest"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_bridge_repair/rest"
+      }
+    ],
+    "response": "Он ушёл домой до конца упаковки. Алексей закончит её своим способом."
+  },
+  {
+    "source": {
+      "cardId": "c2_bridge_repair",
+      "choiceId": "walk"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_bridge_repair/walk"
+      }
+    ],
+    "response": "Прогулка закончилась возвращением к упаковке. Свободный вечер ушёл на подготовку."
+  },
+  {
+    "source": {
+      "cardId": "c2_old_master_tools",
+      "choiceId": "stay"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_old_master_tools/stay"
+      }
+    ],
+    "response": "Коробку для чаши собирали вдвоём."
+  },
+  {
+    "source": {
+      "cardId": "c2_old_master_tools",
+      "choiceId": "trust"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_old_master_tools/trust"
+      }
+    ],
+    "response": "Алексей закончил коробку сам, пока герой вернулся к заказу."
+  },
+  {
+    "source": {
+      "cardId": "c2_shadow_attention",
+      "choiceId": "sit"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_shadow_attention/sit"
+      }
+    ],
+    "response": "У воды хватило времени дать рукам покой."
+  },
+  {
+    "source": {
+      "cardId": "c2_shadow_attention",
+      "choiceId": "walk"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_shadow_attention/walk"
+      }
+    ],
+    "response": "Во время прогулки он вернулся мыслями к названному обещанию."
+  },
+  {
+    "source": {
+      "cardId": "c2_shadow_honesty",
+      "choiceId": "talk"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_shadow_honesty/talk"
+      }
+    ],
+    "response": "Дорожный мешок подождал: они успели поговорить без спешки."
+  },
+  {
+    "source": {
+      "cardId": "c2_shadow_honesty",
+      "choiceId": "pack"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_shadow_honesty/pack"
+      }
+    ],
+    "response": "Часть сборов закончена вместе. Он вернулся к мастерской до вечера."
+  },
+  {
+    "source": {
+      "cardId": "c2_shadow_compassion",
+      "choiceId": "rest"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_shadow_compassion/rest"
+      }
+    ],
+    "response": "Еда не остыла в ожидании новой работы; упаковка осталась Алексею."
+  },
+  {
+    "source": {
+      "cardId": "c2_shadow_compassion",
+      "choiceId": "walk"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_shadow_compassion/walk"
+      }
+    ],
+    "response": "После еды он вернулся к упаковке. Вечер снова прошёл в мастерской."
+  },
+  {
+    "source": {
+      "cardId": "c2_shadow_letgo",
+      "choiceId": "confirm"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_shadow_letgo/confirm"
+      }
+    ],
+    "response": "Расчёт готовой партии оставлен для последнего разговора с заказчиком."
+  },
+  {
+    "source": {
+      "cardId": "c2_shadow_letgo",
+      "choiceId": "revise"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_shadow_letgo/revise"
+      }
+    ],
+    "response": "Подготовлен расчёт меньшего объёма; заказчику предстоит его обсудить."
+  },
+  {
+    "source": {
+      "cardId": "c2_shadow_courage",
+      "choiceId": "talk"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_shadow_courage/talk"
+      }
+    ],
+    "response": "Они с Ильёй остались за столом, пока сборы ждали."
+  },
+  {
+    "source": {
+      "cardId": "c2_shadow_courage",
+      "choiceId": "pack"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_shadow_courage/pack"
+      }
+    ],
+    "response": "Вещи Ильи собраны с его помощью. В мастерскую он вернулся позже."
+  },
+  {
+    "source": {
+      "cardId": "c2_silence_marta_cup",
+      "choiceId": "leave"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_silence_marta_cup/leave"
+      }
+    ],
+    "response": "Разговор закончился на словах Марты о том, что всё в порядке."
+  },
+  {
+    "source": {
+      "cardId": "c2_silence_marta_cup",
+      "choiceId": "ask"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_silence_marta_cup/ask"
+      }
+    ],
+    "response": "Он остался у стола, дав Марте время ответить на второй вопрос."
+  },
+  {
+    "source": {
+      "cardId": "c2_silence_alexey_hand",
+      "choiceId": "trust"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_silence_alexey_hand/trust"
+      }
+    ],
+    "response": "Алексей продолжил убирать, не показывая ладонь."
+  },
+  {
+    "source": {
+      "cardId": "c2_silence_alexey_hand",
+      "choiceId": "look"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_silence_alexey_hand/look"
+      }
+    ],
+    "response": "Алексей вынул руку из рукава; работа прервалась на осмотр ладони."
+  },
+  {
+    "source": {
+      "cardId": "c2_silence_market_pause",
+      "choiceId": "deal"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_silence_market_pause/deal"
+      }
+    ],
+    "response": "Разговор остался в пределах условий сделки."
+  },
+  {
+    "source": {
+      "cardId": "c2_silence_market_pause",
+      "choiceId": "ask"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_silence_market_pause/ask"
+      }
+    ],
+    "response": "Тимон отвлёкся от расчёта на вопрос о соседней лавке."
+  },
+  {
+    "source": {
+      "cardId": "c2_gaze_wanderer_bread",
+      "choiceId": "watch"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_gaze_wanderer_bread/watch"
+      }
+    ],
+    "response": "Странник разделил купленный ломоть без его участия."
+  },
+  {
+    "source": {
+      "cardId": "c2_gaze_wanderer_bread",
+      "choiceId": "offer"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_gaze_wanderer_bread/offer"
+      }
+    ],
+    "response": "К разделённому хлебу прибавился ещё один ломоть."
+  },
+  {
+    "source": {
+      "cardId": "c2_gaze_marta_window",
+      "choiceId": "home"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_gaze_marta_window/home"
+      }
+    ],
+    "response": "Тёмное окно осталось позади, когда он пошёл домой."
+  },
+  {
+    "source": {
+      "cardId": "c2_gaze_marta_window",
+      "choiceId": "visit"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_gaze_marta_window/visit"
+      }
+    ],
+    "response": "Дорога домой прервалась у двери Марты."
+  },
+  {
+    "source": {
+      "cardId": "c2_gaze_alexey_silence",
+      "choiceId": "ask"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_gaze_alexey_silence/ask"
+      }
+    ],
+    "response": "Работу остановили ради разговора с Алексеем."
+  },
+  {
+    "source": {
+      "cardId": "c2_gaze_alexey_silence",
+      "choiceId": "respect"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_gaze_alexey_silence/respect"
+      }
+    ],
+    "response": "Алексей закончил работу в своём молчании."
+  },
+  {
+    "source": {
+      "cardId": "c2_ilya_after_forgive",
+      "choiceId": "take"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_ilya_after_forgive/take"
+      }
+    ],
+    "response": "Возвращённый резец снова лежит среди инструментов мастерской."
+  },
+  {
+    "source": {
+      "cardId": "c2_ilya_after_forgive",
+      "choiceId": "refuse"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_ilya_after_forgive/refuse"
+      }
+    ],
+    "response": "Резец остался у Ильи; герой назвал то, что не сводится к возврату вещи."
+  },
+  {
+    "source": {
+      "cardId": "c2_ilya_leaves",
+      "choiceId": "catch"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_ilya_leaves/catch"
+      }
+    ],
+    "response": "Он вышел к Илье перед отъездом; часть долга осталась у двери."
+  },
+  {
+    "source": {
+      "cardId": "c2_ilya_leaves",
+      "choiceId": "leave"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_ilya_leaves/leave"
+      }
+    ],
+    "response": "Илья ушёл без нового разговора. Часть долга лежит у двери мастерской."
+  },
+  {
+    "source": {
+      "cardId": "c2_timon_order_result",
+      "choiceId": "together"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_timon_order_result/together"
+      },
+      {
+        "kind": "ending",
+        "id": "to_fair"
+      }
+    ],
+    "response": "Чашу Алексея представили рядом с общей работой.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c2_timon_order_result",
+      "choiceId": "independent"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_timon_order_result/independent"
+      },
+      {
+        "kind": "ending",
+        "id": "to_fair"
+      }
+    ],
+    "response": "Алексей сам ответил людям, которые подошли к его чаше.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c2_timon_order_result",
+      "choiceId": "own"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_timon_order_result/own"
+      },
+      {
+        "kind": "ending",
+        "id": "to_fair"
+      }
+    ],
+    "response": "Алексей представил свою чашу отдельно; герой остался рядом.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c2_timon_order_result",
+      "choiceId": "paused"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_timon_order_result/paused"
+      },
+      {
+        "kind": "ending",
+        "id": "to_fair"
+      }
+    ],
+    "response": "Показ чаши отложен. Они договорились вернуться к нему после ярмарки.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c2_alexey_tools_result",
+      "choiceId": "adapt"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_alexey_tools_result/adapt"
+      }
+    ],
+    "response": "Подставка помогла иначе положить кисть. Работе предстоит другой темп."
+  },
+  {
+    "source": {
+      "cardId": "c2_alexey_tools_result",
+      "choiceId": "reduce"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_alexey_tools_result/reduce"
+      }
+    ],
+    "response": "В новой партии будет меньше чаш; привычный способ работы сохранён."
+  },
+  {
+    "source": {
+      "cardId": "c2_marta_window_result",
+      "choiceId": "write"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_marta_window_result/write"
+      }
+    ],
+    "response": "Мысль о разговоре с Ильёй осталась записанной у окна."
+  },
+  {
+    "source": {
+      "cardId": "c2_marta_window_result",
+      "choiceId": "carry"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c2_marta_window_result/carry"
+      }
+    ],
+    "response": "Чаша поставлена у двери как напоминание о встрече."
+  },
+  {
+    "source": {
+      "cardId": "d11_0_apprentice",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d11_0_apprentice/a"
+      }
+    ],
+    "response": "Алексей записывает число проданных чаш, но свою чашу откладывает в сторону."
+  },
+  {
+    "source": {
+      "cardId": "d11_0_apprentice",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d11_0_apprentice/b"
+      }
+    ],
+    "response": "Алексей показывает неровный край: впервые он исправил его без подсказки."
+  },
+  {
+    "source": {
+      "cardId": "d11_3_apprentice",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d11_3_apprentice/a"
+      }
+    ],
+    "response": "Алексей дополнил записи конкретными чашами."
+  },
+  {
+    "source": {
+      "cardId": "d11_3_apprentice",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d11_3_apprentice/b"
+      }
+    ],
+    "response": "Записи остались у Алексея; он вернётся с вопросом при следующей партии."
+  },
+  {
+    "source": {
+      "cardId": "d12_0_pace",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d12_0_pace/a"
+      }
+    ],
+    "response": "Заказ принят. Герой замечает, что руки устают раньше, чем глина готова."
+  },
+  {
+    "source": {
+      "cardId": "d12_0_pace",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d12_0_pace/b"
+      }
+    ],
+    "response": "Тимон согласен ждать. Одного быстрого покупателя мастерская потеряла."
+  },
+  {
+    "source": {
+      "cardId": "d12_3_pace",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d12_3_pace/a"
+      }
+    ],
+    "response": "Помощник начал работу; герой потратил время на объяснение."
+  },
+  {
+    "source": {
+      "cardId": "d12_3_pace",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d12_3_pace/b"
+      }
+    ],
+    "response": "Герой знает каждый этап, но вся нагрузка осталась на нём."
+  },
+  {
+    "source": {
+      "cardId": "d13_0_commitments",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d13_0_commitments/a"
+      }
+    ],
+    "response": "Счёт сошёлся; Марта убрала еду и просит заранее говорить, когда ждать."
+  },
+  {
+    "source": {
+      "cardId": "d13_0_commitments",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d13_0_commitments/b"
+      }
+    ],
+    "response": "Подсчёт отложен. Марта накрывает на двоих в оговорённый час."
+  },
+  {
+    "source": {
+      "cardId": "d13_3_commitments",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d13_3_commitments/a"
+      }
+    ],
+    "response": "Марта знает, когда ждать."
+  },
+  {
+    "source": {
+      "cardId": "d13_3_commitments",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d13_3_commitments/b"
+      }
+    ],
+    "response": "Марта строит свои планы. Встречу придётся предложить заново."
+  },
+  {
+    "source": {
+      "cardId": "d14_0_apprentice",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d14_0_apprentice/a"
+      }
+    ],
+    "response": "Покупатель слушает, но снова берёт чашу с удобной ручкой."
+  },
+  {
+    "source": {
+      "cardId": "d14_0_apprentice",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d14_0_apprentice/b"
+      }
+    ],
+    "response": "Алексей записывает, как покупатель держит чашу. Цена и удобство оказались разными доводами."
+  },
+  {
+    "source": {
+      "cardId": "d14_3_apprentice",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d14_3_apprentice/a"
+      }
+    ],
+    "response": "Образец показал удобство и слабый край."
+  },
+  {
+    "source": {
+      "cardId": "d14_3_apprentice",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d14_3_apprentice/b"
+      }
+    ],
+    "response": "Партия надёжна; вопрос удобства остался открытым."
+  },
+  {
+    "source": {
+      "cardId": "d15_0_pace",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d15_0_pace/a"
+      }
+    ],
+    "response": "Изделий больше; к концу дня герой не берётся за тонкую ручку."
+  },
+  {
+    "source": {
+      "cardId": "d15_0_pace",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d15_0_pace/b"
+      }
+    ],
+    "response": "Лия показывает, как чередует тяжёлые и лёгкие операции. На разговор ушло рабочее время."
+  },
+  {
+    "source": {
+      "cardId": "d15_3_pace",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d15_3_pace/a"
+      }
+    ],
+    "response": "Пауза сократила вечерний выпуск; тонкая работа далась легче."
+  },
+  {
+    "source": {
+      "cardId": "d15_3_pace",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d15_3_pace/b"
+      }
+    ],
+    "response": "Герой сохранил выпуск и заметил усталость к тонкой работе."
+  },
+  {
+    "source": {
+      "cardId": "d16_0_commitments",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d16_0_commitments/a"
+      }
+    ],
+    "response": "Илья не спорит, но точной даты снова не называет."
+  },
+  {
+    "source": {
+      "cardId": "d16_0_commitments",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d16_0_commitments/b"
+      }
+    ],
+    "response": "Илья предлагает конкретный день для первой части. Остальная сумма остаётся открытой."
+  },
+  {
+    "source": {
+      "cardId": "d16_3_commitments",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d16_3_commitments/a"
+      }
+    ],
+    "response": "Илья понял срок ожидания, хотя долг ещё не закрыт."
+  },
+  {
+    "source": {
+      "cardId": "d16_3_commitments",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d16_3_commitments/b"
+      }
+    ],
+    "response": "Илья предложил меньшую часть и точную дату."
+  },
+  {
+    "source": {
+      "cardId": "d17_0_apprentice",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d17_0_apprentice/a"
+      }
+    ],
+    "response": "Партия ровная. Алексей ждёт указаний даже там, где уже знает ответ."
+  },
+  {
+    "source": {
+      "cardId": "d17_0_apprentice",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d17_0_apprentice/b"
+      }
+    ],
+    "response": "Две чаши испорчены. Алексей сам объясняет, где поднял температуру слишком быстро."
+  },
+  {
+    "source": {
+      "cardId": "d17_3_apprentice",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d17_3_apprentice/a"
+      }
+    ],
+    "response": "Алексей нашёл причину трещин и назвал следующую проверку."
+  },
+  {
+    "source": {
+      "cardId": "d17_3_apprentice",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d17_3_apprentice/b"
+      }
+    ],
+    "response": "Следующую партию ведёт мастер. Алексей сохраняет записи и просит новый шанс позже."
+  },
+  {
+    "source": {
+      "cardId": "d18_0_pace",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d18_0_pace/a"
+      }
+    ],
+    "response": "Ручки готовы сегодня. Герой откладывает уборку из-за боли в спине."
+  },
+  {
+    "source": {
+      "cardId": "d18_0_pace",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d18_0_pace/b"
+      }
+    ],
+    "response": "Две ручки остаются на утро. После остановки герой ещё способен спокойно убрать стол."
+  },
+  {
+    "source": {
+      "cardId": "d18_3_pace",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d18_3_pace/a"
+      }
+    ],
+    "response": "Ритм записан рядом со сроком; его ещё предстоит проверить на большом деле."
+  },
+  {
+    "source": {
+      "cardId": "d18_3_pace",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d18_3_pace/b"
+      }
+    ],
+    "response": "Герой вернулся к знакомой работе, сохранив запись о цене попытки."
+  },
+  {
+    "source": {
+      "cardId": "d19_0_commitments",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d19_0_commitments/a"
+      }
+    ],
+    "response": "Марта оставляет ужин, но не откладывает свои планы в ожидании."
+  },
+  {
+    "source": {
+      "cardId": "d19_0_commitments",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d19_0_commitments/b"
+      }
+    ],
+    "response": "Они договорились о коротком вечере. Большого обещания больше нет."
+  },
+  {
+    "source": {
+      "cardId": "d19_3_commitments",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d19_3_commitments/a"
+      }
+    ],
+    "response": "Они согласовали простой способ предупредить друг друга."
+  },
+  {
+    "source": {
+      "cardId": "d19_3_commitments",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d19_3_commitments/b"
+      }
+    ],
+    "response": "Марта согласна встречаться при возможности, но ждать весь вечер больше не будет."
+  },
+  {
+    "source": {
+      "cardId": "d20_0_apprentice",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d20_0_apprentice/a"
+      }
+    ],
+    "response": "Тимон доволен знакомым порядком. Алексей просит хотя бы объяснять причины исправлений."
+  },
+  {
+    "source": {
+      "cardId": "d20_0_apprentice",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d20_0_apprentice/b"
+      }
+    ],
+    "response": "Тимон согласен на пробную часть с отдельной приёмкой. Срок приходится удлинить."
+  },
+  {
+    "source": {
+      "cardId": "d20_3_apprentice",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d20_3_apprentice/a"
+      }
+    ],
+    "response": "Тимон услышал ограничения до обещания."
+  },
+  {
+    "source": {
+      "cardId": "d20_3_apprentice",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d20_3_apprentice/b"
+      }
+    ],
+    "response": "Заказ закреплён. Ограничения придётся обсуждать с уже ожидающими людьми."
+  },
+  {
+    "source": {
+      "cardId": "d21_0_pace",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d21_0_pace/a"
+      }
+    ],
+    "response": "Заказ начат в быстром темпе. Для отдыха придётся искать место внутри уже данного обещания."
+  },
+  {
+    "source": {
+      "cardId": "d21_0_pace",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d21_0_pace/b"
+      }
+    ],
+    "response": "Кухня получает изделия позже. В плане появилась пауза после тяжёлого обжига."
+  },
+  {
+    "source": {
+      "cardId": "d21_3_pace",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d21_3_pace/a"
+      }
+    ],
+    "response": "В плане появился промежуток без тяжёлой работы."
+  },
+  {
+    "source": {
+      "cardId": "d21_3_pace",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d21_3_pace/b"
+      }
+    ],
+    "response": "Выпуск запланирован целиком; восстановление пока не получило времени."
+  },
+  {
+    "source": {
+      "cardId": "d22_0_apprentice",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d22_0_apprentice/a"
+      }
+    ],
+    "response": "Ручки знакомые. Алексей просит сохранить свой рисунок для следующей пробы."
+  },
+  {
+    "source": {
+      "cardId": "d22_0_apprentice",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d22_0_apprentice/b"
+      }
+    ],
+    "response": "Повар находит слабое место. Алексей меняет изгиб до изготовления всей партии."
+  },
+  {
+    "source": {
+      "cardId": "d22_3_apprentice",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d22_3_apprentice/a"
+      }
+    ],
+    "response": "Алексей исправил образец до серии."
+  },
+  {
+    "source": {
+      "cardId": "d22_3_apprentice",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d22_3_apprentice/b"
+      }
+    ],
+    "response": "Серия начата по знакомому рисунку. Замечание осталось в записи."
+  },
+  {
+    "source": {
+      "cardId": "d23_0_commitments",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d23_0_commitments/a"
+      }
+    ],
+    "response": "Марта планирует вечер сама. Дополнительные миски будут готовы к сроку."
+  },
+  {
+    "source": {
+      "cardId": "d23_0_commitments",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d23_0_commitments/b"
+      }
+    ],
+    "response": "Повар принимает часть мисок позже. Герой приходит в оговорённое время."
+  },
+  {
+    "source": {
+      "cardId": "d23_3_commitments",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d23_3_commitments/a"
+      }
+    ],
+    "response": "Марта смогла спланировать свой день."
+  },
+  {
+    "source": {
+      "cardId": "d23_3_commitments",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d23_3_commitments/b"
+      }
+    ],
+    "response": "Марта не ждёт; герой сохраняет возможность предложить встречу позже."
+  },
+  {
+    "source": {
+      "cardId": "d24_0_pace",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d24_0_pace/a"
+      }
+    ],
+    "response": "Заготовки готовы. На следующий этап герой оставляет меньше сил."
+  },
+  {
+    "source": {
+      "cardId": "d24_0_pace",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d24_0_pace/b"
+      }
+    ],
+    "response": "Помощнику нужна оплата и объяснение. Тяжёлую часть закончили вдвоём."
+  },
+  {
+    "source": {
+      "cardId": "d24_3_pace",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d24_3_pace/a"
+      }
+    ],
+    "response": "Сил осталось больше, а денег на материалы меньше."
+  },
+  {
+    "source": {
+      "cardId": "d24_3_pace",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d24_3_pace/b"
+      }
+    ],
+    "response": "Деньги сбережены. Герой снова несёт тяжёлую часть сам."
+  },
+  {
+    "source": {
+      "cardId": "d25_0_apprentice",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d25_0_apprentice/a"
+      }
+    ],
+    "response": "Повар получает быстрый ответ. Алексей не участвует в договорённости о замене."
+  },
+  {
+    "source": {
+      "cardId": "d25_0_apprentice",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d25_0_apprentice/b"
+      }
+    ],
+    "response": "Алексей признаёт трещину и договаривается о замене. Мастер остаётся рядом на трудном вопросе."
+  },
+  {
+    "source": {
+      "cardId": "d25_3_apprentice",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d25_3_apprentice/a"
+      }
+    ],
+    "response": "Алексей сохранил своё решение и нашёл недостающий довод."
+  },
+  {
+    "source": {
+      "cardId": "d25_3_apprentice",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d25_3_apprentice/b"
+      }
+    ],
+    "response": "Мастер нашёл ещё один недочёт. Проверка снова стала его полной ответственностью."
+  },
+  {
+    "source": {
+      "cardId": "d26_0_commitments",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d26_0_commitments/a"
+      }
+    ],
+    "response": "Илья оставляет принесённую часть. Остальное требует нового разговора."
+  },
+  {
+    "source": {
+      "cardId": "d26_0_commitments",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d26_0_commitments/b"
+      }
+    ],
+    "response": "На топливо пока не хватает. Зато оба знают, какое обязательство осталось."
+  },
+  {
+    "source": {
+      "cardId": "d26_3_commitments",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d26_3_commitments/a"
+      }
+    ],
+    "response": "Они записали, какую сумму заменит доставка."
+  },
+  {
+    "source": {
+      "cardId": "d26_3_commitments",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d26_3_commitments/b"
+      }
+    ],
+    "response": "Граница ясна. Помощь не меняет денежного обязательства."
+  },
+  {
+    "source": {
+      "cardId": "d27_0_pace",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d27_0_pace/a"
+      }
+    ],
+    "response": "Партия придёт вовремя. Герой выбирает только уже проверенную форму."
+  },
+  {
+    "source": {
+      "cardId": "d27_0_pace",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d27_0_pace/b"
+      }
+    ],
+    "response": "Одна новая форма выдержала проверку. Кухня перестроила свой день под позднюю поставку."
+  },
+  {
+    "source": {
+      "cardId": "d27_3_pace",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d27_3_pace/a"
+      }
+    ],
+    "response": "Повар увидел, чем оплачены скорость и проба."
+  },
+  {
+    "source": {
+      "cardId": "d27_3_pace",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d27_3_pace/b"
+      }
+    ],
+    "response": "Следующая партия получит знакомый порядок; разговор о другом способе остаётся возможным."
+  },
+  {
+    "source": {
+      "cardId": "d28_0_apprentice",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d28_0_apprentice/a"
+      }
+    ],
+    "response": "Выручка поступит быстрее. Алексей остаётся помощником на этой партии."
+  },
+  {
+    "source": {
+      "cardId": "d28_0_apprentice",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d28_0_apprentice/b"
+      }
+    ],
+    "response": "Доход придёт позже. Алексей сам называет сроки двух проверок."
+  },
+  {
+    "source": {
+      "cardId": "d28_3_apprentice",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d28_3_apprentice/a"
+      }
+    ],
+    "response": "Ученик знает, когда можно обратиться за помощью."
+  },
+  {
+    "source": {
+      "cardId": "d28_3_apprentice",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d28_3_apprentice/b"
+      }
+    ],
+    "response": "Алексей не получил отдельный заказ, но получил объяснение ограничения."
+  },
+  {
+    "source": {
+      "cardId": "d29_0_commitments",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d29_0_commitments/a"
+      }
+    ],
+    "response": "Приёмка сохранена. Марта договаривается с соседом, а герой обещает оплатить материалы."
+  },
+  {
+    "source": {
+      "cardId": "d29_0_commitments",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d29_0_commitments/b"
+      }
+    ],
+    "response": "Повар освобождает другой час. Герой успевает к крыше, но вечер в мастерской становится длиннее."
+  },
+  {
+    "source": {
+      "cardId": "d29_3_commitments",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d29_3_commitments/a"
+      }
+    ],
+    "response": "Одно изделие отложено; после встреч осталось время на восстановление."
+  },
+  {
+    "source": {
+      "cardId": "d29_3_commitments",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d29_3_commitments/b"
+      }
+    ],
+    "response": "Изделия готовы. Герой замечает усталость и оставляет запись перед ночью."
+  },
+  {
+    "source": {
+      "cardId": "d30_0_pace",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d30_0_pace/a"
+      }
+    ],
+    "response": "Следующее дело герой начинает с прежней целью и названным пределом нагрузки."
+  },
+  {
+    "source": {
+      "cardId": "d30_0_pace",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d30_0_pace/b"
+      }
+    ],
+    "response": "Герой записывает, что хочет проверить в новом деле. Предложение остаётся на столе, жизнь продолжается."
+  },
+  {
+    "source": {
+      "cardId": "d30_3_pace",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d30_3_pace/a"
+      }
+    ],
+    "response": "Герой сохранил цель, услышав разные оценки результата."
+  },
+  {
+    "source": {
+      "cardId": "d30_3_pace",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:d30_3_pace/b"
+      }
+    ],
+    "response": "В записях осталось мнение повара, Марты и ученика; следующий выбор ещё впереди."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_0",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_0/a"
+      }
+    ],
+    "response": "После паузы плечи расслабились; одна заготовка осталась на потом."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_0",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_0/b"
+      }
+    ],
+    "response": "Заготовка закончена. Напряжение осталось."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_1",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_1/a"
+      }
+    ],
+    "response": "Ученик назвал прочность и удобство; мастер услышал новый довод."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_1",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_1/b"
+      }
+    ],
+    "response": "Партия получила знакомую форму. Алексей сохранил второй образец."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_2",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_2/a"
+      }
+    ],
+    "response": "Разговор получился коротким и законченным; работу пришлось отложить."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_2",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_2/b"
+      }
+    ],
+    "response": "Марта назвала удобный день, не обещая ждать сегодня."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_3",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_3/a"
+      }
+    ],
+    "response": "Вода у двери. Герой сможет потратить силы на обжиг."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_3",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_3/b"
+      }
+    ],
+    "response": "Герой размялся по дороге, но работа заняла больше времени."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_4",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_4/a"
+      }
+    ],
+    "response": "Покупатель расспросил ученика о форме."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_4",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_4/b"
+      }
+    ],
+    "response": "Покупатель услышал про мастерскую; ученик остался за столом."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_5",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_5/a"
+      }
+    ],
+    "response": "Они договорились о границе дня."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_5",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_5/b"
+      }
+    ],
+    "response": "Доставка принята. Остальные планы пока не получили точного часа."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_6",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_6/a"
+      }
+    ],
+    "response": "Тишина дала передышку; герой вернулся к столу позже."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_6",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_6/b"
+      }
+    ],
+    "response": "Работа продолжилась. Герой отметил, что пауза осталась возможной."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_7",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_7/a"
+      }
+    ],
+    "response": "На полке появился пример ошибки с пояснением ученика."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_7",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_7/b"
+      }
+    ],
+    "response": "Места стало больше; причину ошибки записали отдельно."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_8",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_8/a"
+      }
+    ],
+    "response": "Илья рассказал о своей работе. Долг от этого не изменился."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_8",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_8/b"
+      }
+    ],
+    "response": "Илья продолжил путь один; встреча осталась возможной."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_9",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_9/a"
+      }
+    ],
+    "response": "Чаша возвращена хозяину; рабочий день стал длиннее."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_9",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_9/b"
+      }
+    ],
+    "response": "Хозяин согласен ждать. В плане появилась отдельная работа."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_10",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_10/a"
+      }
+    ],
+    "response": "Алексей ошибся в расходе топлива и исправил расчёт после вопроса."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_10",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_10/b"
+      }
+    ],
+    "response": "Тимон получил точную цену; расчёт остался задачей мастера."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_11",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_11/a"
+      }
+    ],
+    "response": "Марта рассказала о ремонте. Доставка началась позже."
+  },
+  {
+    "source": {
+      "cardId": "enc_3_11",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_3_11/b"
+      }
+    ],
+    "response": "Заказ отправлен вовремя; разговор остался на другой час."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_0",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_0/a"
+      }
+    ],
+    "response": "После паузы плечи расслабились; одна заготовка осталась на потом."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_0",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_0/b"
+      }
+    ],
+    "response": "Заготовка закончена. Напряжение осталось."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_1",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_1/a"
+      }
+    ],
+    "response": "Ученик назвал прочность и удобство; мастер услышал новый довод."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_1",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_1/b"
+      }
+    ],
+    "response": "Партия получила знакомую форму. Алексей сохранил второй образец."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_2",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_2/a"
+      }
+    ],
+    "response": "Разговор получился коротким и законченным; работу пришлось отложить."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_2",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_2/b"
+      }
+    ],
+    "response": "Марта назвала удобный день, не обещая ждать сегодня."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_3",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_3/a"
+      }
+    ],
+    "response": "Вода у двери. Герой сможет потратить силы на обжиг."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_3",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_3/b"
+      }
+    ],
+    "response": "Герой размялся по дороге, но работа заняла больше времени."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_4",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_4/a"
+      }
+    ],
+    "response": "Покупатель расспросил ученика о форме."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_4",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_4/b"
+      }
+    ],
+    "response": "Покупатель услышал про мастерскую; ученик остался за столом."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_5",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_5/a"
+      }
+    ],
+    "response": "Они договорились о границе дня."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_5",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_5/b"
+      }
+    ],
+    "response": "Доставка принята. Остальные планы пока не получили точного часа."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_6",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_6/a"
+      }
+    ],
+    "response": "Тишина дала передышку; герой вернулся к столу позже."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_6",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_6/b"
+      }
+    ],
+    "response": "Работа продолжилась. Герой отметил, что пауза осталась возможной."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_7",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_7/a"
+      }
+    ],
+    "response": "На полке появился пример ошибки с пояснением ученика."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_7",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_7/b"
+      }
+    ],
+    "response": "Места стало больше; причину ошибки записали отдельно."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_8",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_8/a"
+      }
+    ],
+    "response": "Илья рассказал о своей работе. Долг от этого не изменился."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_8",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_8/b"
+      }
+    ],
+    "response": "Илья продолжил путь один; встреча осталась возможной."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_9",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_9/a"
+      }
+    ],
+    "response": "Чаша возвращена хозяину; рабочий день стал длиннее."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_9",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_9/b"
+      }
+    ],
+    "response": "Хозяин согласен ждать. В плане появилась отдельная работа."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_10",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_10/a"
+      }
+    ],
+    "response": "Алексей ошибся в расходе топлива и исправил расчёт после вопроса."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_10",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_10/b"
+      }
+    ],
+    "response": "Тимон получил точную цену; расчёт остался задачей мастера."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_11",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_11/a"
+      }
+    ],
+    "response": "Марта рассказала о ремонте. Доставка началась позже."
+  },
+  {
+    "source": {
+      "cardId": "enc_4_11",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:enc_4_11/b"
+      }
+    ],
+    "response": "Заказ отправлен вовремя; разговор остался на другой час."
+  },
+  {
+    "source": {
+      "cardId": "dev_retry_1",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev_retry_1/a"
+      }
+    ],
+    "response": "Герой сохранил привычный порядок. Алексей записал предложение для другого заказа."
+  },
+  {
+    "source": {
+      "cardId": "dev_retry_1",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev_retry_1/b"
+      }
+    ],
+    "response": "Проба ограничена одной частью работы; её результат ещё предстоит увидеть."
+  },
+  {
+    "source": {
+      "cardId": "dev_retry_1_review",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev_retry_1_review/a"
+      }
+    ],
+    "response": "Герой и Алексей записали, где нужна общая проверка, а где ученик может действовать сам."
+  },
+  {
+    "source": {
+      "cardId": "dev_retry_1_review",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev_retry_1_review/b"
+      }
+    ],
+    "response": "Мастер снова отвечает за каждое решение; проба осталась опытом этого заказа."
+  },
+  {
+    "source": {
+      "cardId": "dev_retry_2",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev_retry_2/a"
+      }
+    ],
+    "response": "Герой сохранил привычный порядок. Алексей записал предложение для другого заказа."
+  },
+  {
+    "source": {
+      "cardId": "dev_retry_2",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev_retry_2/b"
+      }
+    ],
+    "response": "Проба ограничена одной частью работы; её результат ещё предстоит увидеть."
+  },
+  {
+    "source": {
+      "cardId": "dev_retry_2_review",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev_retry_2_review/a"
+      }
+    ],
+    "response": "Герой и Алексей записали, где нужна общая проверка, а где ученик может действовать сам."
+  },
+  {
+    "source": {
+      "cardId": "dev_retry_2_review",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev_retry_2_review/b"
+      }
+    ],
+    "response": "Мастер снова отвечает за каждое решение; проба осталась опытом этого заказа."
+  },
+  {
+    "source": {
+      "cardId": "dev_retry_3",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev_retry_3/a"
+      }
+    ],
+    "response": "Герой сохранил привычный порядок. Алексей записал предложение для другого заказа."
+  },
+  {
+    "source": {
+      "cardId": "dev_retry_3",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev_retry_3/b"
+      }
+    ],
+    "response": "Проба ограничена одной частью работы; её результат ещё предстоит увидеть."
+  },
+  {
+    "source": {
+      "cardId": "dev_retry_3_review",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev_retry_3_review/a"
+      }
+    ],
+    "response": "Герой и Алексей записали, где нужна общая проверка, а где ученик может действовать сам."
+  },
+  {
+    "source": {
+      "cardId": "dev_retry_3_review",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev_retry_3_review/b"
+      }
+    ],
+    "response": "Мастер снова отвечает за каждое решение; проба осталась опытом этого заказа."
+  },
+  {
+    "source": {
+      "cardId": "dev_achiever_1",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev_achiever_1/a"
+      }
+    ],
+    "response": "Мастерская берёт больший заказ; время на исправления сокращается."
+  },
+  {
+    "source": {
+      "cardId": "dev_achiever_1",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev_achiever_1/b"
+      }
+    ],
+    "response": "Выручка растёт медленнее, зато есть время проверить повторяемость."
+  },
+  {
+    "source": {
+      "cardId": "dev_achiever_2",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev_achiever_2/a"
+      }
+    ],
+    "response": "Покупатель согласовал более тяжёлую чашу для этого заказа."
+  },
+  {
+    "source": {
+      "cardId": "dev_achiever_2",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev_achiever_2/b"
+      }
+    ],
+    "response": "Покупатель ждёт дольше; Алексей получил время изменить толщину стенки."
+  },
+  {
+    "source": {
+      "cardId": "dev_achiever_3",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev_achiever_3/a"
+      }
+    ],
+    "response": "Срок заказа сохранён; Лада согласна лишь на конкретную дату."
+  },
+  {
+    "source": {
+      "cardId": "dev_achiever_3",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev_achiever_3/b"
+      }
+    ],
+    "response": "Выручка меньше; вечер впервые остался свободным."
+  },
+  {
+    "source": {
+      "cardId": "dev_achiever_4",
+      "choiceId": "a"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev_achiever_4/a"
+      }
+    ],
+    "response": "Алексей выбирает в пределах согласованного дохода."
+  },
+  {
+    "source": {
+      "cardId": "dev_achiever_4",
+      "choiceId": "b"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev_achiever_4/b"
+      }
+    ],
+    "response": "План прибыльнее, но собственный замысел ученика ждёт следующей пробы."
+  },
+  {
+    "source": {
+      "cardId": "probe_od_price",
+      "choiceId": "under"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_od_price/under"
+      }
+    ],
+    "response": "Покупатель забрал партию. Цена на рынке осталась прежней для всех, кроме него."
+  },
+  {
+    "source": {
+      "cardId": "probe_od_price",
+      "choiceId": "hold"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_od_price/hold"
+      }
+    ],
+    "response": "Покупатель ушёл к соседнему прилавку. Мастера заметили, что цена не поплыла."
+  },
+  {
+    "source": {
+      "cardId": "probe_od_kiln",
+      "choiceId": "skip"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_od_kiln/skip"
+      }
+    ],
+    "response": "Мешок остался на полке. Печь в тот вечер прогорела чуть раньше обычного."
+  },
+  {
+    "source": {
+      "cardId": "probe_od_kiln",
+      "choiceId": "leave"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_od_kiln/leave"
+      }
+    ],
+    "response": "Мешок лёг к остальным. Кто-то из соседей кивнул, не говоря ни слова."
+  },
+  {
+    "source": {
+      "cardId": "probe_od_vouch",
+      "choiceId": "vague"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_od_vouch/vague"
+      }
+    ],
+    "response": "Соседи переглянулись. Марта поблагодарила тихо и ушла к себе."
+  },
+  {
+    "source": {
+      "cardId": "probe_od_vouch",
+      "choiceId": "vouch"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_od_vouch/vouch"
+      }
+    ],
+    "response": "Соседи кивнули. Марта впервые за неделю подняла голову."
+  },
+  {
+    "source": {
+      "cardId": "probe_de_glaze",
+      "choiceId": "green"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_de_glaze/green"
+      }
+    ],
+    "response": "Партия вышла зелёной и прошла приёмку без вопросов."
+  },
+  {
+    "source": {
+      "cardId": "probe_de_glaze",
+      "choiceId": "grey"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_de_glaze/grey"
+      }
+    ],
+    "response": "Серые чаши вышли ровными. Старшие мастера долго вертели одну в руках."
+  },
+  {
+    "source": {
+      "cardId": "probe_de_shortcut",
+      "choiceId": "fast"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_de_shortcut/fast"
+      }
+    ],
+    "response": "Две чаши из десяти пошли в сторону. Остальные ушли в срок."
+  },
+  {
+    "source": {
+      "cardId": "probe_de_shortcut",
+      "choiceId": "slow"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_de_shortcut/slow"
+      }
+    ],
+    "response": "Партия вышла целой, но заказчик получил её на день позже."
+  },
+  {
+    "source": {
+      "cardId": "probe_de_cut",
+      "choiceId": "usual"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_de_cut/usual"
+      }
+    ],
+    "response": "Алексей повторил движение и кивнул. Ручки вышли одинаковыми."
+  },
+  {
+    "source": {
+      "cardId": "probe_de_cut",
+      "choiceId": "test"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_de_cut/test"
+      }
+    ],
+    "response": "Они сделали по две ручки каждым способом. Алексей молча взял ту, что лежала лучше."
+  },
+  {
+    "source": {
+      "cardId": "probe_ea_third",
+      "choiceId": "redo"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_ea_third/redo"
+      }
+    ],
+    "response": "Четвёртая получилась ровной. Заказ ушёл к вечеру следующего дня."
+  },
+  {
+    "source": {
+      "cardId": "probe_ea_third",
+      "choiceId": "ship"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_ea_third/ship"
+      }
+    ],
+    "response": "Заказ ушёл вовремя. Изъяна на донышке никто не заметил."
+  },
+  {
+    "source": {
+      "cardId": "probe_ea_method",
+      "choiceId": "old"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_ea_method/old"
+      }
+    ],
+    "response": "Партия вышла как всегда. Лия молча свернула таблицу."
+  },
+  {
+    "source": {
+      "cardId": "probe_ea_method",
+      "choiceId": "new"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_ea_method/new"
+      }
+    ],
+    "response": "Малая партия вышла ровной. Лия записала разницу во времени."
+  },
+  {
+    "source": {
+      "cardId": "probe_ea_whole",
+      "choiceId": "alone"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_ea_whole/alone"
+      }
+    ],
+    "response": "Он закончил последнюю чашу за полночь. Все были его работы."
+  },
+  {
+    "source": {
+      "cardId": "probe_ea_whole",
+      "choiceId": "help"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_ea_whole/help"
+      }
+    ],
+    "response": "Помощники сделали две трети. Он отобрал несколько чаш на проверку."
+  },
+  {
+    "source": {
+      "cardId": "probe_ai_order",
+      "choiceId": "mugs"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_ai_order/mugs"
+      }
+    ],
+    "response": "Заказ на кружки закрыл неделю. Заготовка осталась под тканью."
+  },
+  {
+    "source": {
+      "cardId": "probe_ai_order",
+      "choiceId": "vessel"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_ai_order/vessel"
+      }
+    ],
+    "response": "Сосуд вышел странным. Тимон пожал плечами и предложил заказ другому."
+  },
+  {
+    "source": {
+      "cardId": "probe_ai_shelf",
+      "choiceId": "best"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_ai_shelf/best"
+      }
+    ],
+    "response": "Чаша ушла в первый час. Прилавок выглядел собранно."
+  },
+  {
+    "source": {
+      "cardId": "probe_ai_shelf",
+      "choiceId": "own"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_ai_shelf/own"
+      }
+    ],
+    "response": "Чашу долго держали в руках. Купили её только к вечеру."
+  },
+  {
+    "source": {
+      "cardId": "probe_ai_mark",
+      "choiceId": "remove"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_ai_mark/remove"
+      }
+    ],
+    "response": "Чаши ушли без знака. Деньги легли в кошель, а на донышках осталась гладкая глина."
+  },
+  {
+    "source": {
+      "cardId": "probe_ai_mark",
+      "choiceId": "keep"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_ai_mark/keep"
+      }
+    ],
+    "response": "Покупатель ушёл. Знак остался на донышках."
+  },
+  {
+    "source": {
+      "cardId": "probe_is_evening",
+      "choiceId": "alone"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_is_evening/alone"
+      }
+    ],
+    "response": "Он написал три строки и перечитал их дважды."
+  },
+  {
+    "source": {
+      "cardId": "probe_is_evening",
+      "choiceId": "rota"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_is_evening/rota"
+      }
+    ],
+    "response": "Очередь висела у печи весь следующий месяц. Споров стало меньше."
+  },
+  {
+    "source": {
+      "cardId": "probe_is_leaving",
+      "choiceId": "feel"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_is_leaving/feel"
+      }
+    ],
+    "response": "Он просидел у печи час. К вечеру чувство стало тише."
+  },
+  {
+    "source": {
+      "cardId": "probe_is_leaving",
+      "choiceId": "write"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_is_leaving/write"
+      }
+    ],
+    "response": "Порядок занял два листа. На следующее утро он прибил их к стене."
+  },
+  {
+    "source": {
+      "cardId": "probe_is_quarrel",
+      "choiceId": "feel"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_is_quarrel/feel"
+      }
+    ],
+    "response": "Оба помолчали. Потом Марта сказала, что тоже устала от этого."
+  },
+  {
+    "source": {
+      "cardId": "probe_is_quarrel",
+      "choiceId": "rule"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_is_quarrel/rule"
+      }
+    ],
+    "response": "Они записали правило на обороте счёта. Следующий расчёт прошёл без повышенных голосов."
+  },
+  {
+    "source": {
+      "cardId": "probe_sl_delays",
+      "choiceId": "board"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_sl_delays/board"
+      }
+    ],
+    "response": "Доска заняла стену мастерской. К концу недели задержек стало меньше."
+  },
+  {
+    "source": {
+      "cardId": "probe_sl_delays",
+      "choiceId": "ask"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_sl_delays/ask"
+      }
+    ],
+    "response": "Ответы оказались разными. Для Алексея задержка была обидой, для Тимона — потерей денег."
+  },
+  {
+    "source": {
+      "cardId": "probe_sl_pot",
+      "choiceId": "rule"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_sl_pot/rule"
+      }
+    ],
+    "response": "Горшок заменили. Правило записали и повесили у двери мастерской."
+  },
+  {
+    "source": {
+      "cardId": "probe_sl_pot",
+      "choiceId": "ask"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_sl_pot/ask"
+      }
+    ],
+    "response": "Оказалось, что горшок ставили на слишком сильный огонь. Покупатель ушёл уже без сердитости."
+  },
+  {
+    "source": {
+      "cardId": "probe_sl_two",
+      "choiceId": "order"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_sl_two/order"
+      }
+    ],
+    "response": "Печь разделили на две закладки. Обе семьи ушли с горячими чашами."
+  },
+  {
+    "source": {
+      "cardId": "probe_sl_two",
+      "choiceId": "why"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_sl_two/why"
+      }
+    ],
+    "response": "Одна семья призналась, что день — это свадьба. Другая вдруг согласилась на следующий."
+  },
+  {
+    "source": {
+      "cardId": "probe_lr_rumor",
+      "choiceId": "look"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_lr_rumor/look"
+      }
+    ],
+    "response": "Он обошёл три двора и услышал три версии. Сам слух показался ему менее важным, чем то, откуда он взялся."
+  },
+  {
+    "source": {
+      "cardId": "probe_lr_rumor",
+      "choiceId": "laugh"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_lr_rumor/laugh"
+      }
+    ],
+    "response": "Он рассказал слух Марте как анекдот. К вечеру о нём уже не вспоминали."
+  },
+  {
+    "source": {
+      "cardId": "probe_lr_smile",
+      "choiceId": "think"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_lr_smile/think"
+      }
+    ],
+    "response": "Он просидел над чашей до сумерек. Потом записал две строки о том, как глина держит напряжение."
+  },
+  {
+    "source": {
+      "cardId": "probe_lr_smile",
+      "choiceId": "shelf"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_lr_smile/shelf"
+      }
+    ],
+    "response": "Чаша стала самой улыбчивой на полке. Он больше не вспоминал о ней."
+  },
+  {
+    "source": {
+      "cardId": "probe_lr_philosophy",
+      "choiceId": "think"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_lr_philosophy/think"
+      }
+    ],
+    "response": "Странник слушал долго и ничего не сказал. Только положил ладонь на край чаши."
+  },
+  {
+    "source": {
+      "cardId": "probe_lr_philosophy",
+      "choiceId": "joke"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:probe_lr_philosophy/joke"
+      }
+    ],
+    "response": "Странник засмеялся и взял миску. Они ещё долго сидели молча."
+  }
+]

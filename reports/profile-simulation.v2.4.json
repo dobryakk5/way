@@ -1,0 +1,271 @@
+{
+  "contentVersion": "1",
+  "algorithmVersion": "1",
+  "runsPerTarget": 20,
+  "targets": [
+    {
+      "target": "opportunist",
+      "stableHitRate": 100,
+      "nonAdjacentWrongRate": 0,
+      "firstStableDay": {
+        "min": 4,
+        "median": 4,
+        "max": 5
+      },
+      "newIndependentActionsBetweenCandidateAndStable": 4
+    },
+    {
+      "target": "diplomat",
+      "stableHitRate": 100,
+      "nonAdjacentWrongRate": 0,
+      "firstStableDay": {
+        "min": 4,
+        "median": 4,
+        "max": 5
+      },
+      "newIndependentActionsBetweenCandidateAndStable": 4
+    },
+    {
+      "target": "expert",
+      "stableHitRate": 100,
+      "nonAdjacentWrongRate": 0,
+      "firstStableDay": {
+        "min": 4,
+        "median": 4,
+        "max": 5
+      },
+      "newIndependentActionsBetweenCandidateAndStable": 4
+    },
+    {
+      "target": "achiever",
+      "stableHitRate": 100,
+      "nonAdjacentWrongRate": 0,
+      "firstStableDay": {
+        "min": 4,
+        "median": 4,
+        "max": 5
+      },
+      "newIndependentActionsBetweenCandidateAndStable": 4
+    },
+    {
+      "target": "individualist",
+      "stableHitRate": 100,
+      "nonAdjacentWrongRate": 0,
+      "firstStableDay": {
+        "min": 4,
+        "median": 4,
+        "max": 5
+      },
+      "newIndependentActionsBetweenCandidateAndStable": 4
+    },
+    {
+      "target": "strategist",
+      "stableHitRate": 100,
+      "nonAdjacentWrongRate": 0,
+      "firstStableDay": {
+        "min": 4,
+        "median": 4,
+        "max": 5
+      },
+      "newIndependentActionsBetweenCandidateAndStable": 4
+    },
+    {
+      "target": "alchemist",
+      "stableHitRate": 100,
+      "nonAdjacentWrongRate": 0,
+      "firstStableDay": {
+        "min": 4,
+        "median": 4,
+        "max": 5
+      },
+      "newIndependentActionsBetweenCandidateAndStable": 4
+    },
+    {
+      "target": "ironic",
+      "stableHitRate": 100,
+      "nonAdjacentWrongRate": 0,
+      "firstStableDay": {
+        "min": 4,
+        "median": 4,
+        "max": 5
+      },
+      "newIndependentActionsBetweenCandidateAndStable": 4
+    }
+  ],
+  "confusion": {
+    "opportunist": {
+      "opportunist": 20
+    },
+    "diplomat": {
+      "diplomat": 20
+    },
+    "expert": {
+      "expert": 20
+    },
+    "achiever": {
+      "achiever": 20
+    },
+    "individualist": {
+      "individualist": 20
+    },
+    "strategist": {
+      "strategist": 20
+    },
+    "alchemist": {
+      "alchemist": 20
+    },
+    "ironic": {
+      "ironic": 20
+    }
+  },
+  "falseStable": {
+    "mixed": 0,
+    "insufficientTooFewCases": 0,
+    "insufficientOneContext": 0,
+    "adaptiveOnly": 0
+  },
+  "dynamics": {
+    "shiftOverTime": {
+      "firstStableAs": "expert",
+      "firstStableDay": 5,
+      "final": "strategist",
+      "finalStatus": "stable",
+      "finalCurrentDistribution": {
+        "opportunist": 0.036,
+        "diplomat": 0.071,
+        "expert": 0.06,
+        "achiever": 0.06,
+        "individualist": 0.111,
+        "strategist": 0.452,
+        "alchemist": 0.152,
+        "ironic": 0.057
+      }
+    },
+    "motiveDivergesFromBehavior": {
+      "final": "expert",
+      "status": "stable"
+    },
+    "adaptiveHeavy": {
+      "final": "expert",
+      "status": "stable",
+      "independentCasesInWindow": 24
+    },
+    "probeHeavy": {
+      "maxProbeShareOfIndependent": 0.333,
+      "limit": 0.333
+    },
+    "noNewActionsNeverConfirms": true
+  },
+  "realContentConsistentHero": [
+    {
+      "target": "opportunist",
+      "reachedAsCenterPct": 100,
+      "stableAtDay30Pct": 35,
+      "firstStableDay": {
+        "min": 5,
+        "median": 5,
+        "p90": 10
+      },
+      "endStates": {
+        "provisional/opportunist": 13,
+        "stable/opportunist": 7
+      }
+    },
+    {
+      "target": "diplomat",
+      "reachedAsCenterPct": 100,
+      "stableAtDay30Pct": 40,
+      "firstStableDay": {
+        "min": 5,
+        "median": 17,
+        "p90": 21
+      },
+      "endStates": {
+        "provisional/diplomat": 12,
+        "stable/diplomat": 8
+      }
+    },
+    {
+      "target": "expert",
+      "reachedAsCenterPct": 100,
+      "stableAtDay30Pct": 50,
+      "firstStableDay": {
+        "min": 5,
+        "median": 10,
+        "p90": 16
+      },
+      "endStates": {
+        "stable/expert": 10,
+        "provisional/expert": 10
+      }
+    },
+    {
+      "target": "achiever",
+      "reachedAsCenterPct": 100,
+      "stableAtDay30Pct": 55,
+      "firstStableDay": {
+        "min": 5,
+        "median": 10,
+        "p90": 12
+      },
+      "endStates": {
+        "stable/achiever": 11,
+        "provisional/achiever": 9
+      }
+    },
+    {
+      "target": "individualist",
+      "reachedAsCenterPct": 0,
+      "stableAtDay30Pct": 0,
+      "firstStableDay": {},
+      "endStates": {
+        "provisional/-": 19,
+        "provisional/achiever": 1
+      }
+    },
+    {
+      "target": "strategist",
+      "reachedAsCenterPct": 0,
+      "stableAtDay30Pct": 0,
+      "firstStableDay": {},
+      "endStates": {
+        "provisional/-": 20
+      }
+    },
+    {
+      "target": "alchemist",
+      "reachedAsCenterPct": 0,
+      "stableAtDay30Pct": 0,
+      "firstStableDay": {},
+      "endStates": {
+        "provisional/-": 20
+      }
+    },
+    {
+      "target": "ironic",
+      "reachedAsCenterPct": 0,
+      "stableAtDay30Pct": 0,
+      "firstStableDay": {},
+      "endStates": {
+        "provisional/-": 19,
+        "stable/achiever": 1
+      }
+    }
+  ],
+  "contentGate": {
+    "allEightReachable": false,
+    "reachableLogics": [
+      "opportunist",
+      "diplomat",
+      "expert",
+      "achiever"
+    ],
+    "unreachableLogics": [
+      "individualist",
+      "strategist",
+      "alchemist",
+      "ironic"
+    ]
+  },
+  "failures": []
+}

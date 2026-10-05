@@ -1,0 +1,2035 @@
+[
+  {
+    "id": "probe_od_price",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "work",
+      "relationships"
+    ],
+    "text": "Мастера рынка договорились держать одну цену на чашки. Покупатель шепчет, что возьмёт сразу много, если уступишь немного — остальные не узнают.",
+    "choices": [
+      {
+        "id": "under",
+        "label": "Уступить втихую",
+        "effects": {
+          "resources": {
+            "wealth": 6,
+            "bonds": -3
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.5,
+            "diplomat": 0.0,
+            "expert": 0.2,
+            "achiever": 0.3,
+            "individualist": 0.0,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "берёт выгоду и прикрывает себя",
+            "OTHERS": "остальные не узнают, значит и не помешают",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "сделка сегодня",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "hold",
+        "label": "Держать общую цену",
+        "effects": {
+          "resources": {
+            "wealth": -2,
+            "bonds": 3
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.2,
+            "diplomat": 0.5,
+            "expert": 0.3,
+            "achiever": 0.0,
+            "individualist": 0.0,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "остаётся в общем порядке",
+            "OTHERS": "мастера рассчитывают друг на друга",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "прочность общей договорённости",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-od-price",
+      "contextId": "money",
+      "facets": [
+        "work",
+        "relationships"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "opportunist",
+        "diplomat"
+      ]
+    }
+  },
+  {
+    "id": "probe_od_kiln",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "relationships",
+      "work"
+    ],
+    "text": "У общей печи на краю улицы каждый оставляет мешок глины на топливо. Твоя полка полна, а соседи сегодня не смотрят.",
+    "choices": [
+      {
+        "id": "skip",
+        "label": "Промолчать и ничего не оставить",
+        "effects": {
+          "resources": {
+            "wealth": 3
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.5,
+            "diplomat": 0.0,
+            "expert": 0.0,
+            "achiever": 0.25,
+            "individualist": 0.0,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.25
+          },
+          "rationale": {
+            "SELF": "оставляет свою долю себе",
+            "OTHERS": "никто не увидит",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "выгода сегодня",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "leave",
+        "label": "Оставить свою долю",
+        "effects": {
+          "resources": {
+            "wealth": -2,
+            "bonds": 3
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.5,
+            "expert": 0.25,
+            "achiever": 0.0,
+            "individualist": 0.25,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "вносит, как принято",
+            "OTHERS": "печь общая, значит и забота общая",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "сохраняет порядок",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-od-kiln",
+      "contextId": "neighbors",
+      "facets": [
+        "relationships",
+        "work"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "opportunist",
+        "diplomat"
+      ]
+    }
+  },
+  {
+    "id": "probe_od_vouch",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "relationships"
+    ],
+    "text": "Марта просит при соседях подтвердить, что она всегда возвращала долги. Один раз она всё же задержала расплату, и вы оба это помните.",
+    "choices": [
+      {
+        "id": "vague",
+        "label": "Сказать, что не знаешь подробностей",
+        "effects": {
+          "resources": {
+            "bonds": -3,
+            "peace": 2
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.5,
+            "diplomat": 0.0,
+            "expert": 0.25,
+            "achiever": 0.25,
+            "individualist": 0.0,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "держится в стороне, чтобы не отвечать",
+            "OTHERS": "чужая репутация — не его забота",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "избегает последствий",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "vouch",
+        "label": "Подтвердить её слова",
+        "effects": {
+          "resources": {
+            "bonds": 4,
+            "peace": -2
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.5,
+            "expert": 0.0,
+            "achiever": 0.0,
+            "individualist": 0.25,
+            "strategist": 0.25,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "становится за свою улицу и соседку",
+            "OTHERS": "общая репутация держится на слове друг за друга",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "сохраняет доверие на будущее",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-od-vouch",
+      "contextId": "neighbors",
+      "facets": [
+        "relationships"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "opportunist",
+        "diplomat"
+      ]
+    }
+  },
+  {
+    "id": "probe_de_glaze",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "work"
+    ],
+    "text": "Старшие мастера говорят: глазурь всегда зелёная, иначе чашку не примут. Твои пробы показали, что серая держится дольше и не трескается.",
+    "choices": [
+      {
+        "id": "green",
+        "label": "Сделать зелёную, как принято",
+        "effects": {
+          "resources": {
+            "wealth": 2,
+            "bonds": 2
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.25,
+            "diplomat": 0.5,
+            "expert": 0.0,
+            "achiever": 0.25,
+            "individualist": 0.0,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "следует принятому образцу",
+            "OTHERS": "мастера знают, что принимают",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "спокойный приём заказа",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "grey",
+        "label": "Сделать серую, как показала проба",
+        "effects": {
+          "resources": {
+            "wealth": -2,
+            "peace": 3
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.0,
+            "expert": 0.5,
+            "achiever": 0.25,
+            "individualist": 0.25,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "опирается на собственную проверку",
+            "OTHERS": "мастера могут не принять, но проба важнее",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "прочность изделия",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-de-glaze",
+      "contextId": "craft",
+      "facets": [
+        "work"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "diplomat",
+        "expert"
+      ]
+    }
+  },
+  {
+    "id": "probe_de_shortcut",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "work",
+      "body"
+    ],
+    "text": "Соседи сушат чашки у печи вдвое быстрее — все так делают. У тебя при этом трескались две из десяти, а заказчик торопит.",
+    "choices": [
+      {
+        "id": "fast",
+        "label": "Сушить, как все",
+        "effects": {
+          "resources": {
+            "wealth": 4,
+            "peace": -2
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.3,
+            "diplomat": 0.5,
+            "expert": 0.0,
+            "achiever": 0.2,
+            "individualist": 0.0,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "делает, как все вокруг",
+            "OTHERS": "если все так, значит допустимо",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "срок заказчика",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "slow",
+        "label": "Сушить дольше, как надёжнее",
+        "effects": {
+          "resources": {
+            "wealth": -3,
+            "strength": -2
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.0,
+            "expert": 0.5,
+            "achiever": 0.3,
+            "individualist": 0.2,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "держится собственного стандарта качества",
+            "OTHERS": "чужая привычка не отвечает за его чаши",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "срок отодвигается",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-de-shortcut",
+      "contextId": "deadline",
+      "facets": [
+        "work",
+        "body"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "diplomat",
+        "expert"
+      ]
+    }
+  },
+  {
+    "id": "probe_de_cut",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "work",
+      "relationships"
+    ],
+    "text": "Алексей спрашивает, как срезать ручку: так, как принято в мастерской, или так, как лучше ложится в ладонь, — по его пробе.",
+    "choices": [
+      {
+        "id": "usual",
+        "label": "Показать принятый способ",
+        "effects": {
+          "resources": {
+            "bonds": 2
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.45,
+            "expert": 0.0,
+            "achiever": 0.3,
+            "individualist": 0.0,
+            "strategist": 0.25,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "передаёт то, что принято в мастерской",
+            "OTHERS": "ученик должен научиться порядку",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "спокойный ход ученика",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "test",
+        "label": "Проверить его способ",
+        "effects": {
+          "resources": {
+            "peace": 2,
+            "strength": -2
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.0,
+            "expert": 0.5,
+            "achiever": 0.0,
+            "individualist": 0.25,
+            "strategist": 0.25,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "проверяет способ по существу",
+            "OTHERS": "ученик может быть прав",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "готов к тому, что принятое окажется хуже"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-de-cut",
+      "contextId": "apprentice",
+      "facets": [
+        "work",
+        "relationships"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "diplomat",
+        "expert"
+      ]
+    }
+  },
+  {
+    "id": "probe_ea_third",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "work"
+    ],
+    "text": "Третья чаша почти идеальна, но на донышке едва заметный изъян. До срока доставки остаётся день.",
+    "choices": [
+      {
+        "id": "redo",
+        "label": "Сделать четвёртую",
+        "effects": {
+          "resources": {
+            "strength": -4,
+            "wealth": -2
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.25,
+            "expert": 0.5,
+            "achiever": 0.0,
+            "individualist": 0.25,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "не отдаёт то, что считает недоделанным",
+            "OTHERS": "чаша должна быть такой, какой её можно показать",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "срок отодвигается",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "ship",
+        "label": "Отправить как есть",
+        "effects": {
+          "resources": {
+            "wealth": 4,
+            "peace": -1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.25,
+            "diplomat": 0.0,
+            "expert": 0.0,
+            "achiever": 0.5,
+            "individualist": 0.0,
+            "strategist": 0.25,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "выполняет обещанный срок",
+            "OTHERS": "заказчик ждёт, изъян почти не виден",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "срок и результат",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-ea-third",
+      "contextId": "craft",
+      "facets": [
+        "work"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "expert",
+        "achiever"
+      ]
+    }
+  },
+  {
+    "id": "probe_ea_method",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "work"
+    ],
+    "text": "Мастер, у которого ты учился, обжигает по старому порядку, и он проверен. Лия показывает таблицу: новый порядок экономит день на каждой партии.",
+    "choices": [
+      {
+        "id": "old",
+        "label": "Остаться на проверенном порядке",
+        "effects": {
+          "resources": {
+            "peace": 2
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.2,
+            "diplomat": 0.3,
+            "expert": 0.5,
+            "achiever": 0.0,
+            "individualist": 0.0,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "доверяет проверенному порядку",
+            "OTHERS": "старый мастер знал, что делал",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "надёжность важнее выигрыша дня",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "new",
+        "label": "Попробовать новый на малой партии",
+        "effects": {
+          "resources": {
+            "wealth": -2,
+            "strength": -2
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.0,
+            "expert": 0.2,
+            "achiever": 0.5,
+            "individualist": 0.0,
+            "strategist": 0.3,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "проверяет способ по результату",
+            "OTHERS": "Лия может быть права",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "выигрыш времени на каждой партии",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-ea-method",
+      "contextId": "craft",
+      "facets": [
+        "work"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "expert",
+        "achiever"
+      ]
+    }
+  },
+  {
+    "id": "probe_ea_whole",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "work",
+      "body"
+    ],
+    "text": "Заказ вдвое больше обычного. Можно сделать всё самому, зная, что каждая чаша будет твоей, или взять двоих помощников и проверять выборочно.",
+    "choices": [
+      {
+        "id": "alone",
+        "label": "Сделать всё самому",
+        "effects": {
+          "resources": {
+            "strength": -6,
+            "wealth": 2
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.25,
+            "diplomat": 0.25,
+            "expert": 0.5,
+            "achiever": 0.0,
+            "individualist": 0.0,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "каждая чаша должна быть сделана его рукой",
+            "OTHERS": "помощники сделают иначе",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "ценой сил",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "help",
+        "label": "Взять помощников и проверять выборочно",
+        "effects": {
+          "resources": {
+            "wealth": -3,
+            "strength": 3
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.0,
+            "expert": 0.2,
+            "achiever": 0.5,
+            "individualist": 0.0,
+            "strategist": 0.3,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "отвечает за результат, а не за каждую чашу",
+            "OTHERS": "помощники могут выполнить часть",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "успевает в срок",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-ea-whole",
+      "contextId": "deadline",
+      "facets": [
+        "work",
+        "body"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "expert",
+        "achiever"
+      ]
+    }
+  },
+  {
+    "id": "probe_ai_order",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "work",
+      "inner"
+    ],
+    "text": "Тимон предлагает выгодный заказ на сотню одинаковых кружек. А в мастерской давно стоит заготовка странного высокого сосуда, который тебе хочется довести.",
+    "choices": [
+      {
+        "id": "mugs",
+        "label": "Взять заказ на кружки",
+        "effects": {
+          "resources": {
+            "wealth": 6,
+            "peace": -2
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.25,
+            "diplomat": 0.0,
+            "expert": 0.25,
+            "achiever": 0.5,
+            "individualist": 0.0,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "выбирает ясный результат и деньги",
+            "OTHERS": "Тимон ждёт ответа",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "срок и заработок",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "vessel",
+        "label": "Заняться своим сосудом",
+        "effects": {
+          "resources": {
+            "wealth": -3,
+            "peace": 4
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.0,
+            "expert": 0.2,
+            "achiever": 0.0,
+            "individualist": 0.5,
+            "strategist": 0.0,
+            "alchemist": 0.3,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "идёт за тем, что для него важно",
+            "OTHERS": "чужой заказ подождёт",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не знает, что выйдет"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-ai-order",
+      "contextId": "money",
+      "facets": [
+        "work",
+        "inner"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "achiever",
+        "individualist"
+      ]
+    }
+  },
+  {
+    "id": "probe_ai_shelf",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "work",
+      "inner"
+    ],
+    "text": "На ярмарочный прилавок осталось одно место. Можно поставить то, что лучше всего продаётся, или чашу с неровной глазурью, которая для тебя что-то значит.",
+    "choices": [
+      {
+        "id": "best",
+        "label": "Поставить лучшее для продажи",
+        "effects": {
+          "resources": {
+            "wealth": 4
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.25,
+            "expert": 0.0,
+            "achiever": 0.5,
+            "individualist": 0.0,
+            "strategist": 0.25,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "выбирает то, что даст результат",
+            "OTHERS": "покупатели выбирают привычное",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "итог ярмарки",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "own",
+        "label": "Поставить свою неровную чашу",
+        "effects": {
+          "resources": {
+            "wealth": -2,
+            "peace": 3
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.0,
+            "expert": 0.0,
+            "achiever": 0.0,
+            "individualist": 0.5,
+            "strategist": 0.0,
+            "alchemist": 0.25,
+            "ironic": 0.25
+          },
+          "rationale": {
+            "SELF": "показывает то, что значит для него",
+            "OTHERS": "не гонится за ожиданием покупателей",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не знает, найдётся ли покупатель"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-ai-shelf",
+      "contextId": "inner",
+      "facets": [
+        "work",
+        "inner"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "achiever",
+        "individualist"
+      ]
+    }
+  },
+  {
+    "id": "probe_ai_mark",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "work",
+      "inner"
+    ],
+    "text": "Покупатель из города готов платить втрое, если ты уберёшь с донышек свой знак, который кажется ему странным.",
+    "choices": [
+      {
+        "id": "remove",
+        "label": "Убрать знак",
+        "effects": {
+          "resources": {
+            "wealth": 7,
+            "peace": -3
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.3,
+            "diplomat": 0.0,
+            "expert": 0.0,
+            "achiever": 0.5,
+            "individualist": 0.0,
+            "strategist": 0.2,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "меняет знак ради выгодной сделки",
+            "OTHERS": "покупатель знает, чего хочет",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "выгода сейчас",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "keep",
+        "label": "Оставить знак",
+        "effects": {
+          "resources": {
+            "wealth": -3,
+            "peace": 4
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.25,
+            "expert": 0.25,
+            "achiever": 0.0,
+            "individualist": 0.5,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "знак остаётся его знаком",
+            "OTHERS": "покупатель может уйти",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не торгует тем, что для него важно",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-ai-mark",
+      "contextId": "money",
+      "facets": [
+        "work",
+        "inner"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "achiever",
+        "individualist"
+      ]
+    }
+  },
+  {
+    "id": "probe_is_evening",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "inner",
+      "relationships"
+    ],
+    "text": "Вечер свободен. Можно побыть одному и записать мысли дня, а можно сесть с соседями и составить очередь на общую печь, чтобы никто не оставался без обжига.",
+    "choices": [
+      {
+        "id": "alone",
+        "label": "Побыть одному",
+        "effects": {
+          "resources": {
+            "peace": 5
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.0,
+            "expert": 0.0,
+            "achiever": 0.0,
+            "individualist": 0.5,
+            "strategist": 0.0,
+            "alchemist": 0.25,
+            "ironic": 0.25
+          },
+          "rationale": {
+            "SELF": "дорожит тишиной и своим вечером",
+            "OTHERS": "соседи справятся и без очереди",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "мысли не обязаны сложиться"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "rota",
+        "label": "Составить очередь",
+        "effects": {
+          "resources": {
+            "bonds": 4,
+            "peace": -2
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.25,
+            "expert": 0.0,
+            "achiever": 0.25,
+            "individualist": 0.0,
+            "strategist": 0.5,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "берёт на себя то, что решит повторяющуюся трудность",
+            "OTHERS": "общая печь касается каждого",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "порядок будет работать и дальше",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-is-evening",
+      "contextId": "inner",
+      "facets": [
+        "inner",
+        "relationships"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "individualist",
+        "strategist"
+      ]
+    }
+  },
+  {
+    "id": "probe_is_leaving",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "inner",
+      "work"
+    ],
+    "text": "Прежний подмастерье уехал. Тебе тоскливо. Можно просто посидеть с этим чувством, а можно записать, как в мастерской учат новичков, чтобы следующему было легче.",
+    "choices": [
+      {
+        "id": "feel",
+        "label": "Побыть с чувством",
+        "effects": {
+          "resources": {
+            "peace": 3
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.0,
+            "expert": 0.0,
+            "achiever": 0.0,
+            "individualist": 0.5,
+            "strategist": 0.0,
+            "alchemist": 0.3,
+            "ironic": 0.2
+          },
+          "rationale": {
+            "SELF": "позволяет себе чувство и не ищет решения",
+            "OTHERS": "уехавшего не заменить",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не знает, чем это закончится"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "write",
+        "label": "Записать порядок обучения",
+        "effects": {
+          "resources": {
+            "wealth": -2,
+            "bonds": 2
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.0,
+            "expert": 0.25,
+            "achiever": 0.25,
+            "individualist": 0.0,
+            "strategist": 0.5,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "превращает потерю в улучшение мастерской",
+            "OTHERS": "следующему новичку нужна опора",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "на несколько лет вперёд",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-is-leaving",
+      "contextId": "apprentice",
+      "facets": [
+        "inner",
+        "work"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "individualist",
+        "strategist"
+      ]
+    }
+  },
+  {
+    "id": "probe_is_quarrel",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "relationships"
+    ],
+    "text": "Марта и Тимон повздорили из-за расчёта. Можно сказать им, что чувствуешь сам, а можно предложить правило, по которому спорные расчёты будут сверять всегда.",
+    "choices": [
+      {
+        "id": "feel",
+        "label": "Сказать, что чувствуешь",
+        "effects": {
+          "resources": {
+            "peace": 3,
+            "bonds": 2
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.25,
+            "expert": 0.0,
+            "achiever": 0.0,
+            "individualist": 0.5,
+            "strategist": 0.0,
+            "alchemist": 0.25,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "говорит от своего чувства",
+            "OTHERS": "спор задевает и его",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не знает, как они ответят"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "rule",
+        "label": "Предложить правило сверки",
+        "effects": {
+          "resources": {
+            "peace": -1,
+            "bonds": 3
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.25,
+            "expert": 0.0,
+            "achiever": 0.25,
+            "individualist": 0.0,
+            "strategist": 0.5,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "предлагает порядок, который избавит от повторных ссор",
+            "OTHERS": "оба смогут на него опереться",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "спорные расчёты и дальше",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-is-quarrel",
+      "contextId": "neighbors",
+      "facets": [
+        "relationships"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "individualist",
+        "strategist"
+      ]
+    }
+  },
+  {
+    "id": "probe_sl_delays",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "work"
+    ],
+    "text": "Партии снова задерживаются. Можно завести доску со сроками и ответственными, а можно спросить каждого, что для него значит «задержка».",
+    "choices": [
+      {
+        "id": "board",
+        "label": "Завести доску",
+        "effects": {
+          "resources": {
+            "wealth": 2,
+            "strength": -2
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.0,
+            "expert": 0.25,
+            "achiever": 0.25,
+            "individualist": 0.0,
+            "strategist": 0.5,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "строит порядок, в котором задержки видны",
+            "OTHERS": "каждый отвечает за свою часть",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "устойчиво на будущее",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "ask",
+        "label": "Спросить, что значит задержка",
+        "effects": {
+          "resources": {
+            "peace": 3,
+            "wealth": -1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.0,
+            "expert": 0.0,
+            "achiever": 0.0,
+            "individualist": 0.3,
+            "strategist": 0.0,
+            "alchemist": 0.5,
+            "ironic": 0.2
+          },
+          "rationale": {
+            "SELF": "не наблюдается",
+            "OTHERS": "не наблюдается",
+            "COMPLEXITY": "задержка может значить разное для разных людей",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "пробует увидеть слово глазами каждого",
+            "UNCERTAINTY": "не торопится с решением"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-sl-delays",
+      "contextId": "deadline",
+      "facets": [
+        "work"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "strategist",
+        "alchemist"
+      ]
+    }
+  },
+  {
+    "id": "probe_sl_pot",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "work",
+      "relationships"
+    ],
+    "text": "Покупатель вернул треснувший горшок и сердится. Можно установить правило возврата и замены, а можно спросить, для чего горшок был нужен: вдруг дело не в трещине.",
+    "choices": [
+      {
+        "id": "rule",
+        "label": "Установить правило замены",
+        "effects": {
+          "resources": {
+            "wealth": -3,
+            "bonds": 2
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.2,
+            "expert": 0.0,
+            "achiever": 0.3,
+            "individualist": 0.0,
+            "strategist": 0.5,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "решает так, чтобы дальше не спорить",
+            "OTHERS": "следующие покупатели получат ясность",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "порядок на будущее",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "ask",
+        "label": "Спросить, для чего горшок",
+        "effects": {
+          "resources": {
+            "peace": 2,
+            "bonds": 2
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.0,
+            "expert": 0.0,
+            "achiever": 0.0,
+            "individualist": 0.25,
+            "strategist": 0.25,
+            "alchemist": 0.5,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "не наблюдается",
+            "OTHERS": "не наблюдается",
+            "COMPLEXITY": "дело может быть не в трещине",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "переворачивает вопрос покупателя",
+            "UNCERTAINTY": "не знает, что услышит"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-sl-pot",
+      "contextId": "money",
+      "facets": [
+        "work",
+        "relationships"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "strategist",
+        "alchemist"
+      ]
+    }
+  },
+  {
+    "id": "probe_sl_two",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "work",
+      "relationships"
+    ],
+    "text": "Две семьи просят одну и ту же печь на один день. Можно придумать порядок, в котором поместятся оба заказа, а можно спросить, почему этот день кажется единственным.",
+    "choices": [
+      {
+        "id": "order",
+        "label": "Придумать порядок для обоих",
+        "effects": {
+          "resources": {
+            "strength": -3,
+            "bonds": 3
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.25,
+            "expert": 0.0,
+            "achiever": 0.25,
+            "individualist": 0.0,
+            "strategist": 0.5,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "ищет устройство, где никто не в проигрыше",
+            "OTHERS": "интересы обеих семей учтены",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "печь будет делиться и дальше",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "why",
+        "label": "Спросить, почему именно этот день",
+        "effects": {
+          "resources": {
+            "peace": 3
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.0,
+            "expert": 0.0,
+            "achiever": 0.0,
+            "individualist": 0.25,
+            "strategist": 0.0,
+            "alchemist": 0.5,
+            "ironic": 0.25
+          },
+          "rationale": {
+            "SELF": "не наблюдается",
+            "OTHERS": "не наблюдается",
+            "COMPLEXITY": "день может быть не тем, чем кажется",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "ставит под вопрос сам спор",
+            "UNCERTAINTY": "не обещает решения"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-sl-two",
+      "contextId": "neighbors",
+      "facets": [
+        "work",
+        "relationships"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "strategist",
+        "alchemist"
+      ]
+    }
+  },
+  {
+    "id": "probe_lr_rumor",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "inner",
+      "relationships"
+    ],
+    "text": "По улице ходит слух, будто ты берёшь за чашки вдвое. Можно присмотреться, как рождаются такие слухи и что они говорят о людях, а можно рассмеяться и пустить всё как есть.",
+    "choices": [
+      {
+        "id": "look",
+        "label": "Присмотреться, как рождается слух",
+        "effects": {
+          "resources": {
+            "peace": -1,
+            "bonds": 2
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.0,
+            "expert": 0.0,
+            "achiever": 0.0,
+            "individualist": 0.25,
+            "strategist": 0.25,
+            "alchemist": 0.5,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "не наблюдается",
+            "OTHERS": "не наблюдается",
+            "COMPLEXITY": "слух говорит и о людях, и о себе",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "смотрит на историю со стороны",
+            "UNCERTAINTY": "не знает, чем кончится"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "laugh",
+        "label": "Посмеяться и отпустить",
+        "effects": {
+          "resources": {
+            "peace": 4
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.25,
+            "diplomat": 0.0,
+            "expert": 0.0,
+            "achiever": 0.0,
+            "individualist": 0.25,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.5
+          },
+          "rationale": {
+            "SELF": "не держится за образ мастера",
+            "OTHERS": "не наблюдается",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "слух не требует ответа",
+            "UNCERTAINTY": "не настаивает на объяснении"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-lr-rumor",
+      "contextId": "neighbors",
+      "facets": [
+        "inner",
+        "relationships"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "alchemist",
+        "ironic"
+      ]
+    }
+  },
+  {
+    "id": "probe_lr_smile",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "inner"
+    ],
+    "text": "После обжига на чаше трещина легла линией, похожей на улыбку. Можно задуматься, что она показывает о глине и огне, а можно поставить чашу на полку «как есть» и не объяснять.",
+    "choices": [
+      {
+        "id": "think",
+        "label": "Задуматься над трещиной",
+        "effects": {
+          "resources": {
+            "peace": 2
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.0,
+            "expert": 0.25,
+            "achiever": 0.0,
+            "individualist": 0.25,
+            "strategist": 0.0,
+            "alchemist": 0.5,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "не наблюдается",
+            "OTHERS": "не наблюдается",
+            "COMPLEXITY": "трещина показывает, как работают огонь и глина",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "видит в ней сообщение, а не изъян",
+            "UNCERTAINTY": "не спешит с выводом"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "shelf",
+        "label": "Поставить без объяснений",
+        "effects": {
+          "resources": {
+            "peace": 3
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.25,
+            "diplomat": 0.0,
+            "expert": 0.0,
+            "achiever": 0.0,
+            "individualist": 0.25,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.5
+          },
+          "rationale": {
+            "SELF": "не нуждается в объяснении",
+            "OTHERS": "не наблюдается",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "чаша просто такая",
+            "UNCERTAINTY": "не настаивает на смысле"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-lr-smile",
+      "contextId": "craft",
+      "facets": [
+        "inner"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "alchemist",
+        "ironic"
+      ]
+    }
+  },
+  {
+    "id": "probe_lr_philosophy",
+    "type": "situation",
+    "chapter": "any",
+    "facets": [
+      "inner"
+    ],
+    "text": "Странник спрашивает, как ты понимаешь своё дело. Можно ответить обдуманно, переворачивая вопрос, а можно улыбнуться: «Я просто леплю миски».",
+    "choices": [
+      {
+        "id": "think",
+        "label": "Ответить обдуманно",
+        "effects": {
+          "resources": {
+            "peace": 2
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.0,
+            "expert": 0.0,
+            "achiever": 0.0,
+            "individualist": 0.25,
+            "strategist": 0.25,
+            "alchemist": 0.5,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "не наблюдается",
+            "OTHERS": "не наблюдается",
+            "COMPLEXITY": "дело понимается через вопрос о вопросе",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "переворачивает рамку",
+            "UNCERTAINTY": "не боится остаться без ответа"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "joke",
+        "label": "Улыбнуться и пошутить",
+        "effects": {
+          "resources": {
+            "peace": 3
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.25,
+            "diplomat": 0.0,
+            "expert": 0.25,
+            "achiever": 0.0,
+            "individualist": 0.0,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.5
+          },
+          "rationale": {
+            "SELF": "не делает из дела философию",
+            "OTHERS": "собеседник услышит шутку",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не цепляется за объяснение"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "tags": [
+      "probe-only"
+    ],
+    "diagnostic": {
+      "situationId": "probe-lr-philosophy",
+      "contextId": "strangers",
+      "facets": [
+        "inner"
+      ],
+      "developmentWeight": 1.0,
+      "distinguishes": [
+        "alchemist",
+        "ironic"
+      ]
+    }
+  }
+]

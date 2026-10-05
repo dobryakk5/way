@@ -1,0 +1,321 @@
+{
+  "overall": true,
+  "aggregateVectorSums": {
+    "opportunist": 11.25,
+    "diplomat": 13.65,
+    "expert": 19.05,
+    "achiever": 23.8,
+    "individualist": 21.9,
+    "strategist": 17.05,
+    "alchemist": 10.95,
+    "ironic": 10.35
+  },
+  "checks": [
+    {
+      "name": "neutral situations",
+      "actual": 32,
+      "expected": 32,
+      "pass": true
+    },
+    {
+      "name": "neutral main vectors",
+      "actual": 128,
+      "expected": 128,
+      "pass": true
+    },
+    {
+      "name": "neutral top1 counts",
+      "actual": {
+        "expert": 16,
+        "achiever": 16,
+        "opportunist": 16,
+        "diplomat": 16,
+        "alchemist": 16,
+        "ironic": 16,
+        "individualist": 16,
+        "strategist": 16
+      },
+      "expected": {
+        "opportunist": 16,
+        "diplomat": 16,
+        "expert": 16,
+        "achiever": 16,
+        "individualist": 16,
+        "strategist": 16,
+        "alchemist": 16,
+        "ironic": 16
+      },
+      "pass": true
+    },
+    {
+      "name": "neutral top1 positions",
+      "actual": {
+        "opportunist": {
+          "C": 4,
+          "A": 4,
+          "B": 4,
+          "D": 4
+        },
+        "diplomat": {
+          "D": 4,
+          "C": 4,
+          "B": 4,
+          "A": 4
+        },
+        "expert": {
+          "A": 4,
+          "C": 4,
+          "B": 4,
+          "D": 4
+        },
+        "achiever": {
+          "B": 4,
+          "A": 4,
+          "D": 4,
+          "C": 4
+        },
+        "individualist": {
+          "C": 4,
+          "D": 4,
+          "A": 4,
+          "B": 4
+        },
+        "strategist": {
+          "D": 4,
+          "B": 4,
+          "C": 4,
+          "A": 4
+        },
+        "alchemist": {
+          "A": 4,
+          "B": 4,
+          "D": 4,
+          "C": 4
+        },
+        "ironic": {
+          "B": 4,
+          "D": 4,
+          "C": 4,
+          "A": 4
+        }
+      },
+      "expected": {
+        "opportunist": {
+          "A": 4,
+          "B": 4,
+          "C": 4,
+          "D": 4
+        },
+        "diplomat": {
+          "A": 4,
+          "B": 4,
+          "C": 4,
+          "D": 4
+        },
+        "expert": {
+          "A": 4,
+          "B": 4,
+          "C": 4,
+          "D": 4
+        },
+        "achiever": {
+          "A": 4,
+          "B": 4,
+          "C": 4,
+          "D": 4
+        },
+        "individualist": {
+          "A": 4,
+          "B": 4,
+          "C": 4,
+          "D": 4
+        },
+        "strategist": {
+          "A": 4,
+          "B": 4,
+          "C": 4,
+          "D": 4
+        },
+        "alchemist": {
+          "A": 4,
+          "B": 4,
+          "C": 4,
+          "D": 4
+        },
+        "ironic": {
+          "A": 4,
+          "B": 4,
+          "C": 4,
+          "D": 4
+        }
+      },
+      "pass": true
+    },
+    {
+      "name": "neutral facets",
+      "actual": {
+        "work": 8,
+        "relationships": 8,
+        "body": 8,
+        "inner": 8
+      },
+      "expected": {
+        "work": 8,
+        "relationships": 8,
+        "body": 8,
+        "inner": 8
+      },
+      "pass": true
+    },
+    {
+      "name": "neutral unique contexts",
+      "actual": 32,
+      "expected": 32,
+      "pass": true
+    },
+    {
+      "name": "neutral pressure true",
+      "actual": 8,
+      "expected": 8,
+      "pass": true
+    },
+    {
+      "name": "probe count",
+      "actual": 21,
+      "expected": 21,
+      "pass": true
+    },
+    {
+      "name": "probe unique",
+      "actual": 21,
+      "expected": 21,
+      "pass": true
+    },
+    {
+      "name": "probe rotation",
+      "actual": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "probe generic checklist count",
+      "actual": 21,
+      "expected": 21,
+      "pass": true
+    },
+    {
+      "name": "development cards",
+      "actual": 50,
+      "expected": 50,
+      "pass": true
+    },
+    {
+      "name": "development unique",
+      "actual": 50,
+      "expected": 50,
+      "pass": true
+    },
+    {
+      "name": "legacy dev.si refs",
+      "actual": 0,
+      "expected": 0,
+      "pass": true
+    },
+    {
+      "name": "retry.01 count",
+      "actual": 6,
+      "expected": 6,
+      "pass": true
+    },
+    {
+      "name": "retry.01 pressure requires",
+      "actual": 6,
+      "expected": 6,
+      "pass": true
+    },
+    {
+      "name": "development internal missing refs",
+      "actual": [],
+      "expected": [],
+      "pass": true
+    },
+    {
+      "name": "v2.5 marker ## 2.4. Канонический словарь v2.5",
+      "actual": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "v2.5 marker ## 8.4. Facet diversity первой stable-фиксации",
+      "actual": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "v2.5 marker ## 9.1. Initial reconciliation: однократный rebase ошибочного первого центра",
+      "actual": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "v2.5 marker ## 16.8. `check-retry-beat-routing`",
+      "actual": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "v2.5 marker ## 16.9. `check-aggregate-vector-bias`",
+      "actual": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "v2.5 marker ## 16.10. `check-probe-role-rotation`",
+      "actual": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "v2.5 marker ## 16.11. `check-initial-rebase`",
+      "actual": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "v2.5 marker ## 16.12. `check-initial-stable-facet-diversity`",
+      "actual": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "v2.5 marker ## 30.1. Граница продуктовой интерпретации",
+      "actual": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "obsolete pattern withdrawal на `transfer/pressure`",
+      "actual": [],
+      "expected": [],
+      "pass": true
+    },
+    {
+      "name": "obsolete pattern вариант C является содержательным контролем вне пары",
+      "actual": [],
+      "expected": [],
+      "pass": true
+    },
+    {
+      "name": "obsolete pattern dev.si.",
+      "actual": [],
+      "expected": [],
+      "pass": true
+    },
+    {
+      "name": "obsolete pattern Final v2.5 spec        TODO",
+      "actual": [],
+      "expected": [],
+      "pass": true
+    }
+  ]
+}

@@ -1,0 +1,1098 @@
+{
+  "shadowWitnesses": [
+    {
+      "quality": "attention",
+      "seed": 1,
+      "choices": {
+        "c1_old_bowl": "pause"
+      },
+      "routes": {
+        "5": "river"
+      },
+      "scene": "c2_shadow_attention"
+    },
+    {
+      "quality": "honesty",
+      "seed": 1,
+      "choices": {
+        "c1_extra_change": "return"
+      },
+      "routes": {
+        "9": "ilya"
+      },
+      "scene": "c2_shadow_honesty"
+    },
+    {
+      "quality": "compassion",
+      "seed": 2,
+      "choices": {
+        "c1_neighbor_noise": "continue",
+        "c1_wounded_road": "stop"
+      },
+      "routes": {
+        "7": "rest"
+      },
+      "scene": "c2_shadow_compassion"
+    },
+    {
+      "quality": "letgo",
+      "seed": 2,
+      "choices": {
+        "c1_old_bowl": "return",
+        "c1_rain_delivery": "revise"
+      },
+      "routes": {
+        "9": "order"
+      },
+      "scene": "c2_shadow_letgo"
+    },
+    {
+      "quality": "courage",
+      "seed": 2,
+      "choices": {
+        "c1_neighbor_noise": "continue",
+        "c1_rain_delivery": "finish"
+      },
+      "routes": {
+        "9": "ilya"
+      },
+      "scene": "c2_shadow_courage"
+    }
+  ],
+  "contentVersion": "mvp-v2.2-alpha.1",
+  "runsPerPolicy": 1000,
+  "summaries": [
+    {
+      "policy": "random",
+      "runs": 1000,
+      "endings": {
+        "to_fair": 773,
+        "after_fair": 227
+      },
+      "facts": {
+        "workshop.orderOutcome": {
+          "revised": 491,
+          "deferred": 227,
+          "fulfilled": 282
+        },
+        "alexey.path": {
+          "together": 272,
+          "independent": 492,
+          "paused": 236
+        },
+        "market.arrangement": {
+          "solo": 496,
+          "shared": 112,
+          "absent": 392
+        },
+        "alexey.plan": {
+          "together": 495,
+          "independent": 505
+        },
+        "workshop.preparation": {
+          "ready": 282,
+          "revised": 329,
+          "unknown": 389
+        },
+        "timon.trust": {
+          "open": 513,
+          "guarded": 487
+        },
+        "liaison.martaHelp": {
+          "hero": 236,
+          "other": 764
+        },
+        "market.window": {
+          "other": 769,
+          "reserved": 231
+        },
+        "rest.beforeFair": {
+          "missed": 740,
+          "kept": 260
+        },
+        "ilya.meeting": {
+          "missed": 530,
+          "talked": 470
+        },
+        "body.pace": {
+          "shared": 469,
+          "alone": 477,
+          "unknown": 54
+        },
+        "inner.pause": {
+          "kept": 477,
+          "carried": 458,
+          "unknown": 65
+        }
+      },
+      "opportunities": {
+        "marta_help": {
+          "taken": 236,
+          "expired": 764
+        },
+        "market_place": {
+          "expired": 769,
+          "taken": 231
+        },
+        "quiet_evening": {
+          "expired": 740,
+          "taken": 260
+        },
+        "ilya_talk": {
+          "expired": 530,
+          "taken": 470
+        }
+      },
+      "averageCrises": 0.134,
+      "optionalDropPct": 0,
+      "cardShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "r_market_price": 93.5,
+        "r_sweep": 91.9,
+        "r_kiln": 84.7,
+        "c1_alexey_after_jug": 100,
+        "c1_neighbor_noise": 94.6,
+        "c1_customer_hurry": 24.4,
+        "r_marta_hello": 92.30000000000001,
+        "c1_wounded_road": 100,
+        "c1_alexey_bad_work": 100,
+        "r_coins": 90.2,
+        "c1_liya_letter": 85.1,
+        "c1_extra_change": 100,
+        "r_customer_wait": 91.8,
+        "c1_old_bowl": 93.5,
+        "c1_liya_second_letter": 85.1,
+        "c2_shadow_attention": 37.6,
+        "r_river": 83.8,
+        "r_evening_light": 90.9,
+        "c1_timon_returns": 100,
+        "c1_wanderer_returns": 50.3,
+        "c2_alexey_tools_result": 94.6,
+        "c2_marta_window_result": 93.5,
+        "c2_timon_joint_order": 100,
+        "c2_bridge_repair": 24.9,
+        "cr_wealth_zero": 13.3,
+        "c2_stones_bag": 100,
+        "r_breakfast": 92.80000000000001,
+        "c2_silence_market_pause": 81.69999999999999,
+        "c2_gaze_alexey_silence": 50.7,
+        "c2_gaze_wanderer_bread": 49.1,
+        "c2_shadow_letgo": 37.7,
+        "c2_liya_arrives": 100,
+        "c2_ilya_after_forgive": 50,
+        "c2_silence_alexey_hand": 80.9,
+        "c2_timon_order_result": 100,
+        "c1_rain_delivery": 39.1,
+        "r_letter_stack": 92.60000000000001,
+        "c1_last_clay": 26.1,
+        "c2_old_master_tools": 37.1,
+        "c2_silence_marta_cup": 79.60000000000001,
+        "c2_gaze_marta_window": 51.800000000000004,
+        "c1_wanderer_bridge": 49.7,
+        "c2_shadow_compassion": 26.3,
+        "c2_shadow_courage": 23,
+        "c2_ilya_leaves": 50,
+        "c1_marta_firewood": 24.3,
+        "c1_market_spot": 22.900000000000002,
+        "c2_shadow_honesty": 24,
+        "cr_wealth_full": 0.1
+      },
+      "insightDays": {
+        "insight_silence": {
+          "min": 6,
+          "max": 8,
+          "count": 956
+        },
+        "insight_gaze": {
+          "min": 6,
+          "max": 8,
+          "count": 643
+        }
+      },
+      "shadows": {
+        "letgo": 33,
+        "courage": 13,
+        "honesty": 10,
+        "compassion": 2,
+        "attention": 3
+      },
+      "facets": {
+        "work": 13806,
+        "relationships": 12499,
+        "body": 9083,
+        "inner": 9902
+      },
+      "intentionDivergenceCount": 502
+    },
+    {
+      "policy": "always-first",
+      "runs": 1000,
+      "endings": {
+        "to_fair": 1000
+      },
+      "facts": {
+        "workshop.orderOutcome": {
+          "fulfilled": 1000
+        },
+        "alexey.path": {
+          "together": 1000
+        },
+        "market.arrangement": {
+          "shared": 1000
+        },
+        "alexey.plan": {
+          "together": 1000
+        },
+        "workshop.preparation": {
+          "ready": 929,
+          "unknown": 71
+        },
+        "timon.trust": {
+          "open": 1000
+        },
+        "liaison.martaHelp": {
+          "other": 1000
+        },
+        "market.window": {
+          "reserved": 1000
+        },
+        "rest.beforeFair": {
+          "missed": 1000
+        },
+        "ilya.meeting": {
+          "missed": 1000
+        },
+        "body.pace": {
+          "shared": 929,
+          "unknown": 71
+        },
+        "inner.pause": {
+          "kept": 922,
+          "unknown": 78
+        }
+      },
+      "opportunities": {
+        "marta_help": {
+          "expired": 1000
+        },
+        "market_place": {
+          "taken": 1000
+        },
+        "quiet_evening": {
+          "expired": 1000
+        },
+        "ilya_talk": {
+          "expired": 1000
+        }
+      },
+      "averageCrises": 0.029,
+      "optionalDropPct": 0,
+      "cardShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "r_market_price": 94.1,
+        "r_sweep": 92.9,
+        "r_kiln": 86.1,
+        "c1_alexey_after_jug": 100,
+        "c1_neighbor_noise": 92.9,
+        "r_customer_wait": 92,
+        "r_marta_hello": 93.8,
+        "c1_wounded_road": 100,
+        "c1_alexey_bad_work": 100,
+        "r_breakfast": 93.4,
+        "c1_liya_letter": 83.1,
+        "c1_extra_change": 100,
+        "c1_old_bowl": 92.2,
+        "r_letter_stack": 88.9,
+        "c1_liya_second_letter": 83.1,
+        "c1_last_clay": 51.7,
+        "r_river": 75.8,
+        "r_evening_light": 87.6,
+        "c1_timon_returns": 100,
+        "c1_wanderer_returns": 100,
+        "c2_alexey_tools_result": 92.9,
+        "c2_marta_window_result": 92.2,
+        "c2_timon_joint_order": 100,
+        "c2_old_master_tools": 75.3,
+        "c2_silence_market_pause": 80.60000000000001,
+        "c2_stones_bag": 100,
+        "c2_gaze_wanderer_bread": 78.9,
+        "c2_gaze_alexey_silence": 84.89999999999999,
+        "c2_gaze_marta_window": 80.5,
+        "c2_shadow_letgo": 73.3,
+        "c2_liya_arrives": 100,
+        "c2_ilya_leaves": 100,
+        "c2_silence_alexey_hand": 76,
+        "c2_timon_order_result": 100,
+        "r_coins": 91.9,
+        "c1_rain_delivery": 76.2,
+        "c2_silence_marta_cup": 72.5,
+        "c1_market_spot": 48.3,
+        "cr_wealth_zero": 2.9000000000000004
+      },
+      "insightDays": {
+        "insight_gaze": {
+          "min": 6,
+          "max": 7,
+          "count": 1000
+        },
+        "insight_silence": {
+          "min": 6,
+          "max": 8,
+          "count": 977
+        }
+      },
+      "shadows": {},
+      "facets": {
+        "work": 12130,
+        "relationships": 15520,
+        "body": 9715,
+        "inner": 6564
+      },
+      "intentionDivergenceCount": 815
+    },
+    {
+      "policy": "always-second",
+      "runs": 1000,
+      "endings": {
+        "after_fair": 1000
+      },
+      "facts": {
+        "workshop.orderOutcome": {
+          "deferred": 1000
+        },
+        "alexey.path": {
+          "paused": 1000
+        },
+        "market.arrangement": {
+          "absent": 1000
+        },
+        "alexey.plan": {
+          "independent": 1000
+        },
+        "workshop.preparation": {
+          "unknown": 1000
+        },
+        "timon.trust": {
+          "guarded": 1000
+        },
+        "liaison.martaHelp": {
+          "other": 1000
+        },
+        "market.window": {
+          "other": 1000
+        },
+        "rest.beforeFair": {
+          "missed": 1000
+        },
+        "ilya.meeting": {
+          "talked": 1000
+        },
+        "body.pace": {
+          "alone": 959,
+          "unknown": 41
+        },
+        "inner.pause": {
+          "carried": 921,
+          "unknown": 79
+        }
+      },
+      "opportunities": {
+        "marta_help": {
+          "expired": 1000
+        },
+        "market_place": {
+          "expired": 1000
+        },
+        "quiet_evening": {
+          "expired": 1000
+        },
+        "ilya_talk": {
+          "taken": 1000
+        }
+      },
+      "averageCrises": 0,
+      "optionalDropPct": 0,
+      "cardShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "r_breakfast": 93.30000000000001,
+        "c1_neighbor_noise": 95.89999999999999,
+        "r_kiln": 91.10000000000001,
+        "c1_alexey_after_jug": 100,
+        "r_sweep": 94.19999999999999,
+        "c1_customer_hurry": 50.1,
+        "r_marta_hello": 96.39999999999999,
+        "c1_wounded_road": 100,
+        "c1_alexey_bad_work": 100,
+        "r_coins": 88.8,
+        "c1_liya_letter": 87.3,
+        "c1_extra_change": 100,
+        "c1_old_bowl": 92.10000000000001,
+        "r_customer_wait": 91.9,
+        "c1_liya_second_letter": 87.3,
+        "c2_shadow_attention": 73.3,
+        "r_river": 86.7,
+        "r_evening_light": 95.39999999999999,
+        "c1_timon_returns": 100,
+        "c1_wanderer_bridge": 100,
+        "c2_alexey_tools_result": 95.89999999999999,
+        "c2_marta_window_result": 92.10000000000001,
+        "c2_timon_joint_order": 100,
+        "c2_bridge_repair": 48.699999999999996,
+        "r_market_price": 93.89999999999999,
+        "c2_stones_bag": 100,
+        "c2_silence_alexey_hand": 87.2,
+        "c2_silence_market_pause": 83.39999999999999,
+        "c2_shadow_honesty": 47.5,
+        "c2_liya_arrives": 100,
+        "c2_ilya_after_forgive": 100,
+        "c2_silence_marta_cup": 87,
+        "c2_timon_order_result": 100,
+        "c1_marta_firewood": 49.9,
+        "r_letter_stack": 96,
+        "c2_shadow_compassion": 51.300000000000004,
+        "c2_shadow_courage": 52.5
+      },
+      "insightDays": {
+        "insight_silence": {
+          "min": 6,
+          "max": 7,
+          "count": 921
+        }
+      },
+      "shadows": {},
+      "facets": {
+        "work": 18296,
+        "relationships": 9463,
+        "body": 7794,
+        "inner": 12406
+      },
+      "intentionDivergenceCount": 973
+    },
+    {
+      "policy": "always-costly",
+      "runs": 1000,
+      "endings": {
+        "to_fair": 120,
+        "after_fair": 880
+      },
+      "facts": {
+        "workshop.orderOutcome": {
+          "fulfilled": 120,
+          "deferred": 880
+        },
+        "alexey.path": {
+          "together": 541,
+          "independent": 459
+        },
+        "market.arrangement": {
+          "solo": 1000
+        },
+        "alexey.plan": {
+          "together": 1000
+        },
+        "workshop.preparation": {
+          "ready": 611,
+          "unknown": 389
+        },
+        "timon.trust": {
+          "open": 1000
+        },
+        "liaison.martaHelp": {
+          "hero": 487,
+          "other": 513
+        },
+        "market.window": {
+          "other": 510,
+          "reserved": 490
+        },
+        "rest.beforeFair": {
+          "kept": 512,
+          "missed": 488
+        },
+        "ilya.meeting": {
+          "missed": 530,
+          "talked": 470
+        },
+        "body.pace": {
+          "alone": 946,
+          "unknown": 54
+        },
+        "inner.pause": {
+          "kept": 477,
+          "carried": 458,
+          "unknown": 65
+        }
+      },
+      "opportunities": {
+        "marta_help": {
+          "taken": 487,
+          "expired": 513
+        },
+        "market_place": {
+          "expired": 510,
+          "taken": 490
+        },
+        "quiet_evening": {
+          "taken": 512,
+          "expired": 488
+        },
+        "ilya_talk": {
+          "expired": 530,
+          "taken": 470
+        }
+      },
+      "averageCrises": 0.956,
+      "optionalDropPct": 0,
+      "cardShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "r_market_price": 91.10000000000001,
+        "r_sweep": 89.7,
+        "r_kiln": 80.60000000000001,
+        "c1_alexey_after_jug": 100,
+        "c1_neighbor_noise": 94.6,
+        "c1_customer_hurry": 24.4,
+        "r_marta_hello": 91.10000000000001,
+        "c1_wounded_road": 100,
+        "c1_alexey_bad_work": 100,
+        "r_coins": 90,
+        "c1_liya_letter": 85.1,
+        "c1_extra_change": 100,
+        "r_customer_wait": 90.5,
+        "c1_old_bowl": 93.5,
+        "c1_liya_second_letter": 85.1,
+        "c2_shadow_attention": 37.6,
+        "r_river": 78.4,
+        "r_evening_light": 89,
+        "c1_timon_returns": 100,
+        "c1_wanderer_returns": 100,
+        "c2_alexey_tools_result": 94.6,
+        "c2_marta_window_result": 93.5,
+        "c2_timon_joint_order": 100,
+        "c2_bridge_repair": 24.9,
+        "cr_wealth_zero": 95,
+        "c2_stones_bag": 100,
+        "r_breakfast": 90.8,
+        "c2_silence_market_pause": 70.39999999999999,
+        "c2_gaze_alexey_silence": 77.2,
+        "c2_gaze_wanderer_bread": 76.3,
+        "c2_shadow_letgo": 37.7,
+        "c2_liya_arrives": 100,
+        "c2_ilya_after_forgive": 100,
+        "c2_silence_alexey_hand": 70.6,
+        "c2_timon_order_result": 100,
+        "c1_rain_delivery": 39.1,
+        "r_letter_stack": 90.5,
+        "c1_last_clay": 26.1,
+        "c2_old_master_tools": 37.1,
+        "c2_silence_marta_cup": 68.30000000000001,
+        "c2_gaze_marta_window": 79.7,
+        "c2_shadow_compassion": 26.3,
+        "c2_shadow_courage": 23,
+        "c1_marta_firewood": 24.3,
+        "c1_market_spot": 22.900000000000002,
+        "c2_shadow_honesty": 24,
+        "cr_strength_zero": 0.6
+      },
+      "insightDays": {
+        "insight_gaze": {
+          "min": 6,
+          "max": 7,
+          "count": 1000
+        },
+        "insight_silence": {
+          "min": 6,
+          "max": 8,
+          "count": 941
+        }
+      },
+      "shadows": {
+        "courage": 36,
+        "compassion": 40,
+        "honesty": 1
+      },
+      "facets": {
+        "work": 14118,
+        "relationships": 15945,
+        "body": 8509,
+        "inner": 5724
+      },
+      "intentionDivergenceCount": 498
+    },
+    {
+      "policy": "greedy-resources",
+      "runs": 1000,
+      "endings": {
+        "to_fair": 1000
+      },
+      "facts": {
+        "workshop.orderOutcome": {
+          "revised": 1000
+        },
+        "alexey.path": {
+          "independent": 541,
+          "paused": 459
+        },
+        "market.arrangement": {
+          "absent": 1000
+        },
+        "alexey.plan": {
+          "independent": 1000
+        },
+        "workshop.preparation": {
+          "revised": 611,
+          "unknown": 389
+        },
+        "timon.trust": {
+          "guarded": 1000
+        },
+        "liaison.martaHelp": {
+          "other": 1000
+        },
+        "market.window": {
+          "other": 1000
+        },
+        "rest.beforeFair": {
+          "kept": 512,
+          "missed": 488
+        },
+        "ilya.meeting": {
+          "missed": 530,
+          "talked": 470
+        },
+        "body.pace": {
+          "shared": 946,
+          "unknown": 54
+        },
+        "inner.pause": {
+          "kept": 935,
+          "unknown": 65
+        }
+      },
+      "opportunities": {
+        "marta_help": {
+          "expired": 1000
+        },
+        "market_place": {
+          "expired": 1000
+        },
+        "quiet_evening": {
+          "taken": 512,
+          "expired": 488
+        },
+        "ilya_talk": {
+          "expired": 530,
+          "taken": 470
+        }
+      },
+      "averageCrises": 0,
+      "optionalDropPct": 0,
+      "cardShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "r_market_price": 94.6,
+        "r_sweep": 93.7,
+        "r_kiln": 90,
+        "c1_alexey_after_jug": 100,
+        "c1_neighbor_noise": 94.6,
+        "c1_customer_hurry": 24.4,
+        "r_marta_hello": 95,
+        "c1_wounded_road": 100,
+        "c1_alexey_bad_work": 100,
+        "r_coins": 93,
+        "c1_liya_letter": 85.1,
+        "c1_extra_change": 100,
+        "r_customer_wait": 94,
+        "c1_old_bowl": 93.5,
+        "c1_liya_second_letter": 85.1,
+        "c2_shadow_attention": 37.6,
+        "r_river": 89.2,
+        "r_evening_light": 93.10000000000001,
+        "c1_timon_returns": 100,
+        "c1_wanderer_bridge": 100,
+        "c2_alexey_tools_result": 94.6,
+        "c2_marta_window_result": 93.5,
+        "c2_timon_joint_order": 100,
+        "c2_bridge_repair": 24.9,
+        "c2_silence_alexey_hand": 91.60000000000001,
+        "c2_stones_bag": 100,
+        "c2_silence_market_pause": 90,
+        "c2_shadow_letgo": 37.7,
+        "c2_liya_arrives": 100,
+        "c2_ilya_leaves": 100,
+        "c2_silence_marta_cup": 90.7,
+        "c2_timon_order_result": 100,
+        "c1_rain_delivery": 39.1,
+        "r_breakfast": 95.5,
+        "r_letter_stack": 94.5,
+        "c1_last_clay": 26.1,
+        "c2_old_master_tools": 37.1,
+        "c2_shadow_compassion": 26.3,
+        "c2_shadow_courage": 23,
+        "c1_marta_firewood": 24.3,
+        "c1_market_spot": 22.900000000000002,
+        "c2_shadow_honesty": 24
+      },
+      "insightDays": {
+        "insight_silence": {
+          "min": 6,
+          "max": 8,
+          "count": 974
+        }
+      },
+      "shadows": {
+        "attention": 4
+      },
+      "facets": {
+        "work": 12221,
+        "relationships": 8071,
+        "body": 10346,
+        "inner": 15492
+      },
+      "intentionDivergenceCount": 553
+    },
+    {
+      "policy": "greedy-qualities",
+      "runs": 1000,
+      "endings": {
+        "to_fair": 751,
+        "after_fair": 249
+      },
+      "facts": {
+        "workshop.orderOutcome": {
+          "revised": 487,
+          "deferred": 249,
+          "fulfilled": 264
+        },
+        "alexey.path": {
+          "independent": 541,
+          "paused": 459
+        },
+        "market.arrangement": {
+          "solo": 496,
+          "shared": 112,
+          "absent": 392
+        },
+        "alexey.plan": {
+          "independent": 1000
+        },
+        "workshop.preparation": {
+          "ready": 282,
+          "revised": 329,
+          "unknown": 389
+        },
+        "timon.trust": {
+          "open": 1000
+        },
+        "liaison.martaHelp": {
+          "other": 1000
+        },
+        "market.window": {
+          "other": 769,
+          "reserved": 231
+        },
+        "rest.beforeFair": {
+          "missed": 740,
+          "kept": 260
+        },
+        "ilya.meeting": {
+          "missed": 530,
+          "talked": 470
+        },
+        "body.pace": {
+          "shared": 469,
+          "alone": 477,
+          "unknown": 54
+        },
+        "inner.pause": {
+          "kept": 477,
+          "carried": 458,
+          "unknown": 65
+        }
+      },
+      "opportunities": {
+        "marta_help": {
+          "expired": 1000
+        },
+        "market_place": {
+          "expired": 769,
+          "taken": 231
+        },
+        "quiet_evening": {
+          "expired": 740,
+          "taken": 260
+        },
+        "ilya_talk": {
+          "expired": 530,
+          "taken": 470
+        }
+      },
+      "averageCrises": 0.78,
+      "optionalDropPct": 0,
+      "cardShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "r_market_price": 91.8,
+        "r_sweep": 90.60000000000001,
+        "r_kiln": 81.10000000000001,
+        "c1_alexey_after_jug": 100,
+        "c1_neighbor_noise": 94.6,
+        "c1_customer_hurry": 24.4,
+        "r_marta_hello": 91.10000000000001,
+        "c1_wounded_road": 100,
+        "c1_alexey_bad_work": 100,
+        "r_coins": 89.5,
+        "c1_liya_letter": 85.1,
+        "c1_extra_change": 100,
+        "r_customer_wait": 90.60000000000001,
+        "c1_old_bowl": 93.5,
+        "c1_liya_second_letter": 85.1,
+        "c2_shadow_attention": 37.6,
+        "r_river": 78.7,
+        "r_evening_light": 89.1,
+        "c1_timon_returns": 100,
+        "c1_wanderer_returns": 100,
+        "c2_alexey_tools_result": 94.6,
+        "c2_marta_window_result": 93.5,
+        "c2_timon_joint_order": 100,
+        "c2_bridge_repair": 24.9,
+        "cr_wealth_zero": 77.8,
+        "c2_stones_bag": 100,
+        "r_breakfast": 91.4,
+        "c2_silence_market_pause": 75.7,
+        "c2_gaze_alexey_silence": 77.10000000000001,
+        "c2_gaze_wanderer_bread": 76.3,
+        "c2_shadow_letgo": 37.7,
+        "c2_liya_arrives": 100,
+        "c2_ilya_after_forgive": 50,
+        "c2_silence_alexey_hand": 74.7,
+        "c2_timon_order_result": 100,
+        "c1_rain_delivery": 39.1,
+        "r_letter_stack": 91.10000000000001,
+        "c1_last_clay": 26.1,
+        "c2_old_master_tools": 37.1,
+        "c2_silence_marta_cup": 71,
+        "c2_gaze_marta_window": 78.8,
+        "c2_shadow_compassion": 26.3,
+        "c2_shadow_courage": 23,
+        "c2_ilya_leaves": 50,
+        "c1_marta_firewood": 24.3,
+        "c1_market_spot": 22.900000000000002,
+        "c2_shadow_honesty": 24
+      },
+      "insightDays": {
+        "insight_silence": {
+          "min": 6,
+          "max": 8,
+          "count": 981
+        },
+        "insight_gaze": {
+          "min": 6,
+          "max": 7,
+          "count": 1000
+        }
+      },
+      "shadows": {
+        "honesty": 108,
+        "courage": 10,
+        "attention": 13,
+        "letgo": 29,
+        "compassion": 5
+      },
+      "facets": {
+        "work": 14814,
+        "relationships": 13071,
+        "body": 10157,
+        "inner": 8213
+      },
+      "intentionDivergenceCount": 485
+    },
+    {
+      "policy": "mixed",
+      "runs": 1000,
+      "endings": {
+        "to_fair": 810,
+        "after_fair": 190
+      },
+      "facts": {
+        "workshop.orderOutcome": {
+          "fulfilled": 425,
+          "revised": 385,
+          "deferred": 190
+        },
+        "alexey.path": {
+          "together": 365,
+          "independent": 469,
+          "paused": 166
+        },
+        "market.arrangement": {
+          "solo": 610,
+          "absent": 230,
+          "shared": 160
+        },
+        "alexey.plan": {
+          "together": 658,
+          "independent": 342
+        },
+        "workshop.preparation": {
+          "ready": 397,
+          "revised": 214,
+          "unknown": 389
+        },
+        "timon.trust": {
+          "open": 663,
+          "guarded": 337
+        },
+        "liaison.martaHelp": {
+          "hero": 305,
+          "other": 695
+        },
+        "market.window": {
+          "other": 681,
+          "reserved": 319
+        },
+        "rest.beforeFair": {
+          "kept": 512,
+          "missed": 488
+        },
+        "ilya.meeting": {
+          "missed": 530,
+          "talked": 470
+        },
+        "body.pace": {
+          "alone": 498,
+          "shared": 448,
+          "unknown": 54
+        },
+        "inner.pause": {
+          "kept": 789,
+          "carried": 146,
+          "unknown": 65
+        }
+      },
+      "opportunities": {
+        "marta_help": {
+          "taken": 305,
+          "expired": 695
+        },
+        "market_place": {
+          "expired": 681,
+          "taken": 319
+        },
+        "quiet_evening": {
+          "taken": 512,
+          "expired": 488
+        },
+        "ilya_talk": {
+          "expired": 530,
+          "taken": 470
+        }
+      },
+      "averageCrises": 0.297,
+      "optionalDropPct": 0,
+      "cardShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "r_market_price": 93.4,
+        "r_sweep": 91.8,
+        "r_kiln": 83.3,
+        "c1_alexey_after_jug": 100,
+        "c1_neighbor_noise": 94.6,
+        "c1_customer_hurry": 24.4,
+        "r_marta_hello": 92,
+        "c1_wounded_road": 100,
+        "c1_alexey_bad_work": 100,
+        "r_coins": 90.2,
+        "c1_liya_letter": 85.1,
+        "c1_extra_change": 100,
+        "r_customer_wait": 91.10000000000001,
+        "c1_old_bowl": 93.5,
+        "c1_liya_second_letter": 85.1,
+        "c2_shadow_attention": 37.6,
+        "r_river": 83.1,
+        "r_evening_light": 90.60000000000001,
+        "c1_timon_returns": 100,
+        "c1_wanderer_returns": 65.9,
+        "c2_alexey_tools_result": 94.6,
+        "c2_marta_window_result": 93.5,
+        "c2_timon_joint_order": 100,
+        "c2_bridge_repair": 24.9,
+        "cr_wealth_zero": 29.7,
+        "c2_stones_bag": 100,
+        "r_breakfast": 92.30000000000001,
+        "c2_silence_market_pause": 78.8,
+        "c2_gaze_alexey_silence": 62.5,
+        "c2_gaze_wanderer_bread": 62,
+        "c2_shadow_letgo": 37.7,
+        "c2_liya_arrives": 100,
+        "c2_ilya_after_forgive": 54.2,
+        "c2_silence_alexey_hand": 79.9,
+        "c2_timon_order_result": 100,
+        "c1_rain_delivery": 39.1,
+        "r_letter_stack": 91.60000000000001,
+        "c1_last_clay": 26.1,
+        "c2_old_master_tools": 37.1,
+        "c2_silence_marta_cup": 77.7,
+        "c2_gaze_marta_window": 62.1,
+        "c2_ilya_leaves": 45.800000000000004,
+        "c2_shadow_compassion": 26.3,
+        "c2_shadow_courage": 23,
+        "c1_marta_firewood": 24.3,
+        "c1_wanderer_bridge": 34.1,
+        "c1_market_spot": 22.900000000000002,
+        "c2_shadow_honesty": 24
+      },
+      "insightDays": {
+        "insight_silence": {
+          "min": 6,
+          "max": 8,
+          "count": 962
+        },
+        "insight_gaze": {
+          "min": 6,
+          "max": 8,
+          "count": 794
+        }
+      },
+      "shadows": {
+        "courage": 15,
+        "honesty": 14,
+        "letgo": 7,
+        "attention": 3,
+        "compassion": 6
+      },
+      "facets": {
+        "work": 13428,
+        "relationships": 12695,
+        "body": 9098,
+        "inner": 9407
+      },
+      "intentionDivergenceCount": 488
+    }
+  ],
+  "facetScenarios": [
+    {
+      "facet": "work",
+      "endings": {
+        "to_fair": 100
+      }
+    },
+    {
+      "facet": "relationships",
+      "endings": {
+        "to_fair": 100
+      }
+    },
+    {
+      "facet": "body",
+      "endings": {
+        "after_fair": 68,
+        "to_fair": 32
+      }
+    },
+    {
+      "facet": "inner",
+      "endings": {
+        "to_fair": 82,
+        "after_fair": 18
+      }
+    }
+  ],
+  "failures": []
+}

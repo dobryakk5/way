@@ -1,0 +1,275 @@
+[
+  {
+    "id": "workshop.orderOutcome_fulfilled",
+    "group": "order",
+    "text": "Мастерская выполнила согласованный заказ. Готовая партия заняла своё место на ярмарке, и прежнее обещание больше не ждёт работы по вечерам.",
+    "requires": {
+      "fact": "workshop.orderOutcome",
+      "equals": "fulfilled"
+    }
+  },
+  {
+    "id": "workshop.orderOutcome_revised",
+    "group": "order",
+    "text": "Мастерская пересогласовала заказ. На ярмарку приехала меньшая партия; заказчик знает, что изменилось, и оставшееся дело получило названные условия.",
+    "requires": {
+      "fact": "workshop.orderOutcome",
+      "equals": "revised"
+    }
+  },
+  {
+    "id": "workshop.orderOutcome_deferred",
+    "group": "order",
+    "text": "Заказ перенесён на срок после ярмарки. Договорённость осталась открытой, но теперь у неё есть новый срок, а готовые вещи не выданы за всю партию.",
+    "requires": {
+      "fact": "workshop.orderOutcome",
+      "equals": "deferred"
+    }
+  },
+  {
+    "id": "alexey.path_together",
+    "group": "alexey",
+    "text": "Алексей показал чашу рядом с работой мастерской. Ученическая подпись осталась видна: общий показ не стёр его собственного труда.",
+    "requires": {
+      "fact": "alexey.path",
+      "equals": "together"
+    }
+  },
+  {
+    "id": "alexey.path_independent",
+    "group": "alexey",
+    "text": "Алексей представил чашу самостоятельно. Люди спрашивали его о глазури, и отвечать за свою работу он вышел сам.",
+    "requires": {
+      "fact": "alexey.path",
+      "equals": "independent"
+    }
+  },
+  {
+    "id": "alexey.path_paused",
+    "group": "alexey",
+    "text": "Показ чаши Алексея отложен до времени после ярмарки. Его работа осталась у него; к разговору о показе ещё предстоит вернуться.",
+    "requires": {
+      "fact": "alexey.path",
+      "equals": "paused"
+    }
+  },
+  {
+    "id": "market.arrangement_shared",
+    "group": "market",
+    "text": "Место на рынке разделено с Тимоном. За одним прилавком теперь приходится договариваться и о товаре, и о том, кому дать слово.",
+    "requires": {
+      "fact": "market.arrangement",
+      "equals": "shared"
+    }
+  },
+  {
+    "id": "market.arrangement_solo",
+    "group": "market",
+    "text": "На рынке у мастерской отдельное место. Решения о товаре остаются её собственными, как и забота о расходах и прилавке.",
+    "requires": {
+      "fact": "market.arrangement",
+      "equals": "solo"
+    }
+  },
+  {
+    "id": "market.arrangement_absent",
+    "group": "market",
+    "text": "На этой ярмарке мастерская обошлась без собственного прилавка. Встречи и договорённости продолжились среди чужих лавок.",
+    "requires": {
+      "fact": "market.arrangement",
+      "equals": "absent"
+    }
+  },
+  {
+    "id": "liaison.martaHelp_hero",
+    "group": "relationship",
+    "text": "Марта убрала пустую корзину: дрова они перенесли вместе.",
+    "requires": {
+      "fact": "liaison.martaHelp",
+      "equals": "hero"
+    }
+  },
+  {
+    "id": "liaison.martaHelp_other",
+    "group": "relationship",
+    "text": "Марта уже договорилась с соседом. Дрова больше не ждут героя.",
+    "requires": {
+      "fact": "liaison.martaHelp",
+      "equals": "other"
+    }
+  },
+  {
+    "id": "market.window_reserved",
+    "group": "relationship",
+    "text": "Тимон оставил в плане место для общего прилавка.",
+    "requires": {
+      "fact": "market.window",
+      "equals": "reserved"
+    }
+  },
+  {
+    "id": "market.window_other",
+    "group": "relationship",
+    "text": "Свободную половину прилавка занял другой мастер. Тимон предложит другой формат встречи.",
+    "requires": {
+      "fact": "market.window",
+      "equals": "other"
+    }
+  },
+  {
+    "id": "rest.beforeFair_kept",
+    "group": "relationship",
+    "text": "Вечер дома остался свободным: еда не остыла в ожидании работы.",
+    "requires": {
+      "fact": "rest.beforeFair",
+      "equals": "kept"
+    }
+  },
+  {
+    "id": "rest.beforeFair_missed",
+    "group": "relationship",
+    "text": "Свободный вечер ушёл на подготовку. Завтра у мастерской уже другой распорядок.",
+    "requires": {
+      "fact": "rest.beforeFair",
+      "equals": "missed"
+    }
+  },
+  {
+    "id": "ilya.meeting_talked",
+    "group": "relationship",
+    "text": "Перед дорогой у Ильи было время для разговора и сборов вместе.",
+    "requires": {
+      "fact": "ilya.meeting",
+      "equals": "talked"
+    }
+  },
+  {
+    "id": "ilya.meeting_departed",
+    "group": "relationship",
+    "text": "Илья закончил сборы сам. Завтра остаётся только короткая встреча перед дорогой.",
+    "requires": {
+      "fact": "ilya.meeting",
+      "equals": "missed"
+    }
+  },
+  {
+    "id": "portrait_shadow_attention",
+    "group": "shadow",
+    "text": "Чаша снова в руках. Тогда у реки он дал себе паузу; сегодня заказчик ждёт ответа, пока он рассматривает старую трещину.",
+    "requires": {
+      "all": [
+        {
+          "chose": {
+            "card": "c1_old_bowl",
+            "choice": "pause"
+          }
+        },
+        {
+          "flag": "observed_shadow_attention"
+        }
+      ]
+    }
+  },
+  {
+    "id": "portrait_shadow_honesty",
+    "group": "shadow",
+    "text": "После возвращённых монет он привык говорить прямо. Илья просит сначала выслушать причину отъезда, а уже потом обсуждать долг.",
+    "requires": {
+      "all": [
+        {
+          "chose": {
+            "card": "c1_extra_change",
+            "choice": "return"
+          }
+        },
+        {
+          "flag": "observed_shadow_honesty"
+        }
+      ]
+    }
+  },
+  {
+    "id": "portrait_shadow_compassion",
+    "group": "shadow",
+    "text": "Он сам закончил вечернюю работу, потом задержался с раненым. Теперь Марте нужна помощь, а рука не успела отдохнуть.",
+    "requires": {
+      "all": [
+        {
+          "all": [
+            {
+              "chose": {
+                "card": "c1_neighbor_noise",
+                "choice": "continue"
+              }
+            },
+            {
+              "chose": {
+                "card": "c1_wounded_road",
+                "choice": "stop"
+              }
+            }
+          ]
+        },
+        {
+          "flag": "observed_shadow_compassion"
+        }
+      ]
+    }
+  },
+  {
+    "id": "portrait_shadow_letgo",
+    "group": "shadow",
+    "text": "Он уже ушёл от паузы к работе и изменил объём партии. Тимон спрашивает, какую часть договорённости всё же оставить в силе.",
+    "requires": {
+      "all": [
+        {
+          "all": [
+            {
+              "chose": {
+                "card": "c1_old_bowl",
+                "choice": "return"
+              }
+            },
+            {
+              "chose": {
+                "card": "c1_rain_delivery",
+                "choice": "revise"
+              }
+            }
+          ]
+        },
+        {
+          "flag": "observed_shadow_letgo"
+        }
+      ]
+    }
+  },
+  {
+    "id": "portrait_shadow_courage",
+    "group": "shadow",
+    "text": "Он дважды продолжил работу уставшей рукой. Сегодня снова хочется закончить всё самому; рядом стоит свободная скамья.",
+    "requires": {
+      "all": [
+        {
+          "all": [
+            {
+              "chose": {
+                "card": "c1_neighbor_noise",
+                "choice": "continue"
+              }
+            },
+            {
+              "chose": {
+                "card": "c1_rain_delivery",
+                "choice": "finish"
+              }
+            }
+          ]
+        },
+        {
+          "flag": "observed_shadow_courage"
+        }
+      ]
+    }
+  }
+]

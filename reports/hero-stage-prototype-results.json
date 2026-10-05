@@ -1,0 +1,1615 @@
+{
+  "purpose": "Exhaustive enumeration of authored fictional-hero progression gates; not a model of player psychology or production content coverage.",
+  "authoredDecisionScenes": 28,
+  "enumeratedPaths": 112,
+  "summaries": [
+    {
+      "stage": "Оппортунист",
+      "paths": 16,
+      "advancing": 1
+    },
+    {
+      "stage": "Дипломат",
+      "paths": 16,
+      "advancing": 1
+    },
+    {
+      "stage": "Эксперт",
+      "paths": 16,
+      "advancing": 1
+    },
+    {
+      "stage": "Достиженец",
+      "paths": 16,
+      "advancing": 1
+    },
+    {
+      "stage": "Индивидуалист",
+      "paths": 16,
+      "advancing": 1
+    },
+    {
+      "stage": "Стратег",
+      "paths": 16,
+      "advancing": 1
+    },
+    {
+      "stage": "Алхимик",
+      "paths": 16,
+      "advancing": 1
+    }
+  ],
+  "gateInvariantChecks": 42,
+  "paths": [
+    {
+      "stage": "Оппортунист",
+      "choices": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "evidence": [
+        "review",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Оппортунист",
+      "choices": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Оппортунист",
+      "choices": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "evidence": [
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Оппортунист",
+      "choices": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Оппортунист",
+      "choices": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "evidence": [
+        "review",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Оппортунист",
+      "choices": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": true
+    },
+    {
+      "stage": "Оппортунист",
+      "choices": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "evidence": [
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Оппортунист",
+      "choices": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Оппортунист",
+      "choices": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "evidence": [
+        "review"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Оппортунист",
+      "choices": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "review"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Оппортунист",
+      "choices": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "evidence": [],
+      "advanced": false
+    },
+    {
+      "stage": "Оппортунист",
+      "choices": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "evidence": [
+        "trial"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Оппортунист",
+      "choices": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "evidence": [
+        "review",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Оппортунист",
+      "choices": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Оппортунист",
+      "choices": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "evidence": [
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Оппортунист",
+      "choices": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Дипломат",
+      "choices": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Дипломат",
+      "choices": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "evidence": [
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Дипломат",
+      "choices": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Дипломат",
+      "choices": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "evidence": [
+        "review",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Дипломат",
+      "choices": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Дипломат",
+      "choices": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "evidence": [
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Дипломат",
+      "choices": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": true
+    },
+    {
+      "stage": "Дипломат",
+      "choices": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "evidence": [
+        "review",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Дипломат",
+      "choices": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "evidence": [
+        "trial"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Дипломат",
+      "choices": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "evidence": [],
+      "advanced": false
+    },
+    {
+      "stage": "Дипломат",
+      "choices": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "review"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Дипломат",
+      "choices": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "evidence": [
+        "review"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Дипломат",
+      "choices": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Дипломат",
+      "choices": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "evidence": [
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Дипломат",
+      "choices": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Дипломат",
+      "choices": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "evidence": [
+        "review",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Эксперт",
+      "choices": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "evidence": [
+        "review",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Эксперт",
+      "choices": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Эксперт",
+      "choices": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "evidence": [
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Эксперт",
+      "choices": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Эксперт",
+      "choices": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "evidence": [
+        "review",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Эксперт",
+      "choices": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": true
+    },
+    {
+      "stage": "Эксперт",
+      "choices": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "evidence": [
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Эксперт",
+      "choices": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Эксперт",
+      "choices": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "evidence": [
+        "review"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Эксперт",
+      "choices": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "review"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Эксперт",
+      "choices": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "evidence": [],
+      "advanced": false
+    },
+    {
+      "stage": "Эксперт",
+      "choices": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "evidence": [
+        "trial"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Эксперт",
+      "choices": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "evidence": [
+        "review",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Эксперт",
+      "choices": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Эксперт",
+      "choices": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "evidence": [
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Эксперт",
+      "choices": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Достиженец",
+      "choices": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "evidence": [
+        "review",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Достиженец",
+      "choices": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Достиженец",
+      "choices": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "evidence": [
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Достиженец",
+      "choices": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Достиженец",
+      "choices": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "evidence": [
+        "review"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Достиженец",
+      "choices": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "review"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Достиженец",
+      "choices": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "evidence": [],
+      "advanced": false
+    },
+    {
+      "stage": "Достиженец",
+      "choices": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "evidence": [
+        "trial"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Достиженец",
+      "choices": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "evidence": [
+        "review",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Достиженец",
+      "choices": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": true
+    },
+    {
+      "stage": "Достиженец",
+      "choices": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "evidence": [
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Достиженец",
+      "choices": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Достиженец",
+      "choices": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "evidence": [
+        "review",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Достиженец",
+      "choices": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Достиженец",
+      "choices": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "evidence": [
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Достиженец",
+      "choices": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Индивидуалист",
+      "choices": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "evidence": [
+        "review",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Индивидуалист",
+      "choices": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Индивидуалист",
+      "choices": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "evidence": [
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Индивидуалист",
+      "choices": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Индивидуалист",
+      "choices": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "evidence": [
+        "review",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Индивидуалист",
+      "choices": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": true
+    },
+    {
+      "stage": "Индивидуалист",
+      "choices": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "evidence": [
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Индивидуалист",
+      "choices": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Индивидуалист",
+      "choices": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "evidence": [
+        "review"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Индивидуалист",
+      "choices": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "review"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Индивидуалист",
+      "choices": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "evidence": [],
+      "advanced": false
+    },
+    {
+      "stage": "Индивидуалист",
+      "choices": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "evidence": [
+        "trial"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Индивидуалист",
+      "choices": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "evidence": [
+        "review",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Индивидуалист",
+      "choices": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Индивидуалист",
+      "choices": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "evidence": [
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Индивидуалист",
+      "choices": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Стратег",
+      "choices": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "evidence": [
+        "review",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Стратег",
+      "choices": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Стратег",
+      "choices": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "evidence": [
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Стратег",
+      "choices": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Стратег",
+      "choices": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "evidence": [
+        "review",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Стратег",
+      "choices": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": true
+    },
+    {
+      "stage": "Стратег",
+      "choices": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "evidence": [
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Стратег",
+      "choices": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Стратег",
+      "choices": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "evidence": [
+        "review"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Стратег",
+      "choices": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "review"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Стратег",
+      "choices": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "evidence": [],
+      "advanced": false
+    },
+    {
+      "stage": "Стратег",
+      "choices": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "evidence": [
+        "trial"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Стратег",
+      "choices": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "evidence": [
+        "review",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Стратег",
+      "choices": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Стратег",
+      "choices": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "evidence": [
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Стратег",
+      "choices": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Алхимик",
+      "choices": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Алхимик",
+      "choices": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "evidence": [
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Алхимик",
+      "choices": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Алхимик",
+      "choices": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "evidence": [
+        "review",
+        "transfer"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Алхимик",
+      "choices": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "evidence": [
+        "trial"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Алхимик",
+      "choices": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "evidence": [],
+      "advanced": false
+    },
+    {
+      "stage": "Алхимик",
+      "choices": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "evidence": [
+        "trial",
+        "review"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Алхимик",
+      "choices": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "evidence": [
+        "review"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Алхимик",
+      "choices": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Алхимик",
+      "choices": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "evidence": [
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Алхимик",
+      "choices": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": true
+    },
+    {
+      "stage": "Алхимик",
+      "choices": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "evidence": [
+        "review",
+        "transfer",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Алхимик",
+      "choices": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Алхимик",
+      "choices": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "evidence": [
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Алхимик",
+      "choices": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "evidence": [
+        "trial",
+        "review",
+        "pressure"
+      ],
+      "advanced": false
+    },
+    {
+      "stage": "Алхимик",
+      "choices": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "evidence": [
+        "review",
+        "pressure"
+      ],
+      "advanced": false
+    }
+  ],
+  "limitations": "Четыре разных условия в одной короткой демонстрации дают одну комбинацию немедленного перехода из 16. Это проверка авторского автомата, а не окончательный баланс: в кампании нужны альтернативные сцены, повторные возможности и несколько путей к каждому условию. Восьмой этап — авторское игровое расширение по названию из пользовательского текста.",
+  "campaignBudgetProposal": {
+    "transitions": 7,
+    "decisionsPerTransition": 12,
+    "stageScenes": 48,
+    "sharedScenes": 30,
+    "totalBaseCards": 162,
+    "minimumChoiceTexts": 324
+  }
+}

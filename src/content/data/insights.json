@@ -1,0 +1,83 @@
+[
+  {
+    "id": "insight_silence",
+    "title": "Тишина",
+    "text": "Иногда мир не становится тише. Просто между словами появляется место, которое раньше проходило мимо.",
+    "requires": {
+      "any": [
+        {
+          "quality": "attention",
+          "gte": 8
+        },
+        {
+          "all": [
+            {
+              "shown": "c1_old_bowl"
+            },
+            {
+              "shown": "c2_marta_window_result"
+            }
+          ]
+        }
+      ]
+    },
+    "effects": {
+      "setFlags": [
+        "insight_silence"
+      ]
+    },
+    "window": {
+      "fromDay": 6,
+      "throughDay": 8
+    },
+    "visibleResult": {
+      "shown": "c2_timon_order_result"
+    }
+  },
+  {
+    "id": "insight_gaze",
+    "title": "Взгляд",
+    "text": "Люди редко говорят всё, что с ними происходит. Но иногда достаточно перестать спешить мимо.",
+    "requires": {
+      "any": [
+        {
+          "quality": "compassion",
+          "gte": 8
+        },
+        {
+          "any": [
+            {
+              "all": [
+                {
+                  "chose": {
+                    "card": "c1_wounded_road",
+                    "choice": "stop"
+                  }
+                },
+                {
+                  "shown": "c1_wanderer_returns"
+                }
+              ]
+            },
+            {
+              "fact": "liaison.martaHelp",
+              "equals": "hero"
+            }
+          ]
+        }
+      ]
+    },
+    "effects": {
+      "setFlags": [
+        "insight_gaze"
+      ]
+    },
+    "window": {
+      "fromDay": 6,
+      "throughDay": 8
+    },
+    "visibleResult": {
+      "shown": "c2_timon_order_result"
+    }
+  }
+]

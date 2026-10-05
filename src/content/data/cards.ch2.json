@@ -1,0 +1,3462 @@
+[
+  {
+    "id": "c2_stones_bag",
+    "chapter": 2,
+    "type": "situation",
+    "character": "ilya",
+    "text": "Илья пришёл мириться. Долг он не вернул. Говорит, что пока не может, и ждёт твоего ответа.",
+    "choices": [
+      {
+        "id": "insist",
+        "label": "Потребовать вернуть",
+        "effects": {
+          "resources": {
+            "peace": -5,
+            "wealth": 4
+          },
+          "qualities": {
+            "honesty": 1,
+            "courage": 1
+          },
+          "wisdomId": "w_road_waits",
+          "schedule": [
+            {
+              "cardId": "c2_ilya_leaves",
+              "inDays": 2,
+              "latestDay": 10
+            }
+          ]
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "obligation": "Потребовать вернуть",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.35,
+            "diplomat": 0,
+            "expert": 0.3,
+            "achiever": 0.35,
+            "individualist": 0,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "защищает своё право на возврат",
+            "OTHERS": "долг — договорённость",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "сейчас",
+            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        },
+        "diagnosticMotive": {
+          "promptId": "stones-insist",
+          "text": "Что здесь было главным для героя?",
+          "optional": true,
+          "options": [
+            {
+              "id": "owed",
+              "label": "Долги должны возвращаться",
+              "signal": {
+                "vector": {
+                  "opportunist": 0.3,
+                  "diplomat": 0.45,
+                  "expert": 0.25,
+                  "achiever": 0.0,
+                  "individualist": 0.0,
+                  "strategist": 0.0,
+                  "alchemist": 0.0,
+                  "ironic": 0.0
+                },
+                "rationale": {
+                  "SELF": "не наблюдается",
+                  "OTHERS": "порядок договорённостей",
+                  "COMPLEXITY": "не наблюдается",
+                  "TIME": "не наблюдается",
+                  "PERSPECTIVE": "не наблюдается",
+                  "UNCERTAINTY": "не наблюдается"
+                },
+                "scoringVersion": "1",
+                "rubricVersion": "1"
+              }
+            },
+            {
+              "id": "money",
+              "label": "Мне нужны эти деньги",
+              "signal": {
+                "vector": {
+                  "opportunist": 0.55,
+                  "diplomat": 0.0,
+                  "expert": 0.2,
+                  "achiever": 0.25,
+                  "individualist": 0.0,
+                  "strategist": 0.0,
+                  "alchemist": 0.0,
+                  "ironic": 0.0
+                },
+                "rationale": {
+                  "SELF": "нужда",
+                  "OTHERS": "не наблюдается",
+                  "COMPLEXITY": "не наблюдается",
+                  "TIME": "не наблюдается",
+                  "PERSPECTIVE": "не наблюдается",
+                  "UNCERTAINTY": "не наблюдается"
+                },
+                "scoringVersion": "1",
+                "rubricVersion": "1"
+              }
+            },
+            {
+              "id": "change",
+              "label": "Иначе он не изменится",
+              "signal": {
+                "vector": {
+                  "opportunist": 0.0,
+                  "diplomat": 0.3,
+                  "expert": 0.0,
+                  "achiever": 0.3,
+                  "individualist": 0.0,
+                  "strategist": 0.4,
+                  "alchemist": 0.0,
+                  "ironic": 0.0
+                },
+                "rationale": {
+                  "SELF": "не наблюдается",
+                  "OTHERS": "не наблюдается",
+                  "COMPLEXITY": "не наблюдается",
+                  "TIME": "думает о следующем разе",
+                  "PERSPECTIVE": "не наблюдается",
+                  "UNCERTAINTY": "не наблюдается"
+                },
+                "scoringVersion": "1",
+                "rubricVersion": "1"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "forgive",
+        "label": "Простить долг",
+        "effects": {
+          "resources": {
+            "wealth": -10,
+            "peace": 5
+          },
+          "qualities": {
+            "letgo": 1,
+            "compassion": 1
+          },
+          "wisdomId": "w_two_prices",
+          "schedule": [
+            {
+              "cardId": "c2_ilya_after_forgive",
+              "inDays": 2,
+              "latestDay": 10
+            }
+          ]
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "obligation": "Простить долг",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.3,
+            "expert": 0.0,
+            "achiever": 0.15,
+            "individualist": 0.4,
+            "strategist": 0,
+            "alchemist": 0.15,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "ценит примирение выше суммы",
+            "OTHERS": "Илья важнее долга",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
+            "UNCERTAINTY": "принимает потерю"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        },
+        "diagnosticMotive": {
+          "promptId": "stones-forgive",
+          "text": "Что здесь было главным для героя?",
+          "optional": true,
+          "options": [
+            {
+              "id": "friend",
+              "label": "Дружба дороже суммы",
+              "signal": {
+                "vector": {
+                  "opportunist": 0.0,
+                  "diplomat": 0.35,
+                  "expert": 0.0,
+                  "achiever": 0.0,
+                  "individualist": 0.45,
+                  "strategist": 0.0,
+                  "alchemist": 0.0,
+                  "ironic": 0.2
+                },
+                "rationale": {
+                  "SELF": "не наблюдается",
+                  "OTHERS": "Илья важнее",
+                  "COMPLEXITY": "не наблюдается",
+                  "TIME": "не наблюдается",
+                  "PERSPECTIVE": "не наблюдается",
+                  "UNCERTAINTY": "не наблюдается"
+                },
+                "scoringVersion": "1",
+                "rubricVersion": "1"
+              }
+            },
+            {
+              "id": "close",
+              "label": "Хочется закончить это тянущееся дело",
+              "signal": {
+                "vector": {
+                  "opportunist": 0.0,
+                  "diplomat": 0.0,
+                  "expert": 0.0,
+                  "achiever": 0.0,
+                  "individualist": 0.3,
+                  "strategist": 0.45,
+                  "alchemist": 0.25,
+                  "ironic": 0.0
+                },
+                "rationale": {
+                  "SELF": "не наблюдается",
+                  "OTHERS": "не наблюдается",
+                  "COMPLEXITY": "не наблюдается",
+                  "TIME": "закрывает цикл",
+                  "PERSPECTIVE": "не наблюдается",
+                  "UNCERTAINTY": "не наблюдается"
+                },
+                "scoringVersion": "1",
+                "rubricVersion": "1"
+              }
+            },
+            {
+              "id": "humane",
+              "label": "Прощать — по-человечески принято",
+              "signal": {
+                "vector": {
+                  "opportunist": 0.0,
+                  "diplomat": 0.55,
+                  "expert": 0.0,
+                  "achiever": 0.0,
+                  "individualist": 0.25,
+                  "strategist": 0.2,
+                  "alchemist": 0.0,
+                  "ironic": 0.0
+                },
+                "rationale": {
+                  "SELF": "не наблюдается",
+                  "OTHERS": "общее представление о достойном",
+                  "COMPLEXITY": "не наблюдается",
+                  "TIME": "не наблюдается",
+                  "PERSPECTIVE": "не наблюдается",
+                  "UNCERTAINTY": "не наблюдается"
+                },
+                "scoringVersion": "1",
+                "rubricVersion": "1"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "facets": [
+      "inner",
+      "relationships"
+    ],
+    "at": {
+      "day": 8,
+      "slot": 0
+    },
+    "key": true,
+    "tags": [
+      "parable"
+    ],
+    "diagnostic": {
+      "situationId": "stones-bag",
+      "contextId": "old-debt",
+      "facets": [
+        "inner",
+        "relationships"
+      ],
+      "developmentWeight": 1.0
+    }
+  },
+  {
+    "id": "c2_timon_joint_order",
+    "type": "situation",
+    "chapter": 2,
+    "text": "Тимон раскладывает план ярмарки. Общий прилавок делит расходы и решения. Для своего нужно отложить часть денег на место.",
+    "facets": [
+      "work",
+      "relationships"
+    ],
+    "choices": [
+      {
+        "id": "shared",
+        "label": "Договориться об общем прилавке",
+        "effects": {
+          "resources": {
+            "wealth": -4,
+            "bonds": 4
+          },
+          "qualities": {
+            "compassion": 1
+          },
+          "setFacts": {
+            "market.arrangement": "shared"
+          }
+        },
+        "servesFacets": [
+          "relationships",
+          "work"
+        ],
+        "obligation": "Договориться об общем прилавке",
+        "decisionKinds": [
+          "pursue"
+        ],
+        "pursuesGoals": [
+          "order",
+          "workshop"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.35,
+            "expert": 0.0,
+            "achiever": 0.25,
+            "individualist": 0.0,
+            "strategist": 0.4,
+            "alchemist": 0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "делит расходы и решения",
+            "OTHERS": "Тимон — партнёр",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "общая выгода",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "solo",
+        "label": "Оплатить отдельное место",
+        "effects": {
+          "resources": {
+            "wealth": -8,
+            "peace": 4
+          },
+          "qualities": {
+            "honesty": 1
+          },
+          "setFacts": {
+            "market.arrangement": "solo"
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "obligation": "Оплатить отдельное место",
+        "decisionKinds": [
+          "pursue"
+        ],
+        "pursuesGoals": [
+          "order",
+          "workshop"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.25,
+            "diplomat": 0.0,
+            "expert": 0.35,
+            "achiever": 0.4,
+            "individualist": 0.0,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "опирается на себя и свой прилавок",
+            "OTHERS": "независимость важнее удобства",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "character": "timon",
+    "at": {
+      "day": 7,
+      "slot": 1
+    },
+    "key": true,
+    "choiceVariants": [
+      {
+        "when": {
+          "fact": "market.window",
+          "equals": "other"
+        },
+        "choices": [
+          {
+            "id": "late_solo",
+            "label": "Взять отдельное место у ворот",
+            "effects": {
+              "resources": {
+                "wealth": -10,
+                "strength": -3
+              },
+              "qualities": {
+                "courage": 1
+              },
+              "setFacts": {
+                "market.arrangement": "solo"
+              }
+            },
+            "servesFacets": [
+              "work"
+            ],
+            "obligation": "Взять отдельное место у ворот",
+            "diagnosticAction": {
+              "vector": {
+                "opportunist": 0.4,
+                "diplomat": 0.0,
+                "expert": 0.25,
+                "achiever": 0.35,
+                "individualist": 0.0,
+                "strategist": 0.0,
+                "alchemist": 0.0,
+                "ironic": 0.0
+              },
+              "rationale": {
+                "SELF": "берёт, что осталось, чтобы не остаться без места",
+                "OTHERS": "не наблюдается",
+                "COMPLEXITY": "не наблюдается",
+                "TIME": "сегодняшняя необходимость",
+                "PERSPECTIVE": "не наблюдается",
+                "UNCERTAINTY": "не наблюдается"
+              },
+              "scoringVersion": "1",
+              "rubricVersion": "1"
+            }
+          },
+          {
+            "id": "absent",
+            "label": "Привезти заказ без своего прилавка",
+            "effects": {
+              "resources": {
+                "wealth": -3,
+                "strength": 4
+              },
+              "qualities": {
+                "letgo": 1
+              },
+              "setFacts": {
+                "market.arrangement": "absent"
+              }
+            },
+            "servesFacets": [
+              "body",
+              "inner"
+            ],
+            "obligation": "Привезти заказ без своего прилавка",
+            "diagnosticAction": {
+              "vector": {
+                "opportunist": 0.3,
+                "diplomat": 0.0,
+                "expert": 0.0,
+                "achiever": 0.0,
+                "individualist": 0.4,
+                "strategist": 0.0,
+                "alchemist": 0.0,
+                "ironic": 0.3
+              },
+              "rationale": {
+                "SELF": "не гонится за прилавком",
+                "OTHERS": "не наблюдается",
+                "COMPLEXITY": "не наблюдается",
+                "TIME": "не наблюдается",
+                "PERSPECTIVE": "не наблюдается",
+                "UNCERTAINTY": "принимает отсутствие места"
+              },
+              "scoringVersion": "1",
+              "rubricVersion": "1"
+            }
+          }
+        ]
+      }
+    ],
+    "diagnostic": {
+      "situationId": "joint-order",
+      "contextId": "money",
+      "facets": [
+        "work",
+        "relationships"
+      ],
+      "developmentWeight": 1.0
+    }
+  },
+  {
+    "id": "c2_liya_arrives",
+    "type": "situation",
+    "chapter": 2,
+    "text": "До ярмарки один день. Заказчик пришёл сверить договор: сколько мастерская отдаст завтра и что останется на потом?",
+    "facets": [
+      "work",
+      "relationships"
+    ],
+    "choices": [
+      {
+        "id": "fulfilled",
+        "label": "Отдать всю согласованную партию",
+        "effects": {
+          "resources": {
+            "strength": -8,
+            "wealth": 8
+          },
+          "qualities": {
+            "courage": 1
+          },
+          "setFacts": {
+            "workshop.orderOutcome": "fulfilled"
+          },
+          "schedule": [
+            {
+              "cardId": "c2_timon_order_result",
+              "inDays": 1,
+              "latestDay": 10
+            }
+          ]
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "obligation": "Отдать всю согласованную партию",
+        "decisionKinds": [
+          "pursue"
+        ],
+        "pursuesGoals": [
+          "order",
+          "workshop"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.2,
+            "expert": 0.4,
+            "achiever": 0.4,
+            "individualist": 0.0,
+            "strategist": 0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "выполняет обещанное во что бы то ни стало",
+            "OTHERS": "не наблюдается",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "завтрашний срок",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        },
+        "diagnosticMotive": {
+          "promptId": "contract-keep",
+          "text": "Что здесь было главным для героя?",
+          "optional": true,
+          "options": [
+            {
+              "id": "word",
+              "label": "Обещание нельзя нарушать",
+              "signal": {
+                "vector": {
+                  "opportunist": 0.0,
+                  "diplomat": 0.4,
+                  "expert": 0.35,
+                  "achiever": 0.25,
+                  "individualist": 0.0,
+                  "strategist": 0.0,
+                  "alchemist": 0.0,
+                  "ironic": 0.0
+                },
+                "rationale": {
+                  "SELF": "не наблюдается",
+                  "OTHERS": "слово перед людьми",
+                  "COMPLEXITY": "не наблюдается",
+                  "TIME": "не наблюдается",
+                  "PERSPECTIVE": "не наблюдается",
+                  "UNCERTAINTY": "не наблюдается"
+                },
+                "scoringVersion": "1",
+                "rubricVersion": "1"
+              }
+            },
+            {
+              "id": "result",
+              "label": "Хочу ярмарку с полным результатом",
+              "signal": {
+                "vector": {
+                  "opportunist": 0.2,
+                  "diplomat": 0.0,
+                  "expert": 0.25,
+                  "achiever": 0.55,
+                  "individualist": 0.0,
+                  "strategist": 0.0,
+                  "alchemist": 0.0,
+                  "ironic": 0.0
+                },
+                "rationale": {
+                  "SELF": "не наблюдается",
+                  "OTHERS": "не наблюдается",
+                  "COMPLEXITY": "не наблюдается",
+                  "TIME": "итог ярмарки",
+                  "PERSPECTIVE": "не наблюдается",
+                  "UNCERTAINTY": "не наблюдается"
+                },
+                "scoringVersion": "1",
+                "rubricVersion": "1"
+              }
+            },
+            {
+              "id": "trust",
+              "label": "Не хочу терять доверие заказчика",
+              "signal": {
+                "vector": {
+                  "opportunist": 0.0,
+                  "diplomat": 0.3,
+                  "expert": 0.0,
+                  "achiever": 0.3,
+                  "individualist": 0.0,
+                  "strategist": 0.4,
+                  "alchemist": 0.0,
+                  "ironic": 0.0
+                },
+                "rationale": {
+                  "SELF": "не наблюдается",
+                  "OTHERS": "не наблюдается",
+                  "COMPLEXITY": "не наблюдается",
+                  "TIME": "отношения на будущее",
+                  "PERSPECTIVE": "не наблюдается",
+                  "UNCERTAINTY": "не наблюдается"
+                },
+                "scoringVersion": "1",
+                "rubricVersion": "1"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "revised",
+        "label": "Согласовать меньшую партию к утру",
+        "effects": {
+          "resources": {
+            "wealth": -4,
+            "peace": 5
+          },
+          "qualities": {
+            "honesty": 1
+          },
+          "setFacts": {
+            "workshop.orderOutcome": "revised"
+          },
+          "schedule": [
+            {
+              "cardId": "c2_timon_order_result",
+              "inDays": 1,
+              "latestDay": 10
+            }
+          ]
+        },
+        "servesFacets": [
+          "relationships",
+          "body"
+        ],
+        "obligation": "Согласовать меньшую партию к утру",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.35,
+            "diplomat": 0.25,
+            "expert": 0,
+            "achiever": 0,
+            "individualist": 0,
+            "strategist": 0.4,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "меняет объём заранее",
+            "OTHERS": "заказчик может принять меньшее",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "бережёт ресурс на потом",
+            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        },
+        "diagnosticMotive": {
+          "promptId": "contract-revise",
+          "text": "Что здесь было главным для героя?",
+          "optional": true,
+          "options": [
+            {
+              "id": "rest",
+              "label": "Не надорваться перед ярмаркой",
+              "signal": {
+                "vector": {
+                  "opportunist": 0.45,
+                  "diplomat": 0.0,
+                  "expert": 0.0,
+                  "achiever": 0.0,
+                  "individualist": 0.3,
+                  "strategist": 0.0,
+                  "alchemist": 0.0,
+                  "ironic": 0.25
+                },
+                "rationale": {
+                  "SELF": "бережёт силы",
+                  "OTHERS": "не наблюдается",
+                  "COMPLEXITY": "не наблюдается",
+                  "TIME": "не наблюдается",
+                  "PERSPECTIVE": "не наблюдается",
+                  "UNCERTAINTY": "не наблюдается"
+                },
+                "scoringVersion": "1",
+                "rubricVersion": "1"
+              }
+            },
+            {
+              "id": "sure",
+              "label": "Так заказчик получит то, что точно будет",
+              "signal": {
+                "vector": {
+                  "opportunist": 0.0,
+                  "diplomat": 0.0,
+                  "expert": 0.2,
+                  "achiever": 0.35,
+                  "individualist": 0.0,
+                  "strategist": 0.45,
+                  "alchemist": 0.0,
+                  "ironic": 0.0
+                },
+                "rationale": {
+                  "SELF": "не наблюдается",
+                  "OTHERS": "не наблюдается",
+                  "COMPLEXITY": "не наблюдается",
+                  "TIME": "надёжный результат",
+                  "PERSPECTIVE": "не наблюдается",
+                  "UNCERTAINTY": "не наблюдается"
+                },
+                "scoringVersion": "1",
+                "rubricVersion": "1"
+              }
+            },
+            {
+              "id": "honest",
+              "label": "Лучше честно сказать, что не успеваю",
+              "signal": {
+                "vector": {
+                  "opportunist": 0.0,
+                  "diplomat": 0.3,
+                  "expert": 0.0,
+                  "achiever": 0.0,
+                  "individualist": 0.45,
+                  "strategist": 0.25,
+                  "alchemist": 0.0,
+                  "ironic": 0.0
+                },
+                "rationale": {
+                  "SELF": "честность о пределе",
+                  "OTHERS": "не наблюдается",
+                  "COMPLEXITY": "не наблюдается",
+                  "TIME": "не наблюдается",
+                  "PERSPECTIVE": "не наблюдается",
+                  "UNCERTAINTY": "не наблюдается"
+                },
+                "scoringVersion": "1",
+                "rubricVersion": "1"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "character": "timon",
+    "at": {
+      "day": 9,
+      "slot": 3
+    },
+    "key": true,
+    "choiceVariants": [
+      {
+        "when": {
+          "any": [
+            {
+              "fact": "workshop.preparation",
+              "equals": "revised"
+            },
+            {
+              "resource": "strength",
+              "lte": 30
+            }
+          ]
+        },
+        "choices": [
+          {
+            "id": "revise_now",
+            "label": "Сдать готовое, изменить объём",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "peace": 4
+              },
+              "qualities": {
+                "honesty": 1
+              },
+              "setFacts": {
+                "workshop.orderOutcome": "revised"
+              },
+              "schedule": [
+                {
+                  "cardId": "c2_timon_order_result",
+                  "inDays": 1,
+                  "latestDay": 10
+                }
+              ]
+            },
+            "servesFacets": [
+              "work",
+              "relationships"
+            ],
+            "obligation": "Сдать готовое, изменить объём",
+            "diagnosticAction": {
+              "vector": {
+                "opportunist": 0.0,
+                "diplomat": 0.0,
+                "expert": 0.25,
+                "achiever": 0.4,
+                "individualist": 0.0,
+                "strategist": 0.35,
+                "alchemist": 0.0,
+                "ironic": 0.0
+              },
+              "rationale": {
+                "SELF": "сдаёт готовое и меняет остальное",
+                "OTHERS": "договорённость пересматривается честно",
+                "COMPLEXITY": "не наблюдается",
+                "TIME": "итог к утру",
+                "PERSPECTIVE": "не наблюдается",
+                "UNCERTAINTY": "не наблюдается"
+              },
+              "scoringVersion": "1",
+              "rubricVersion": "1"
+            }
+          },
+          {
+            "id": "deferred",
+            "label": "Назвать новый срок всей партии",
+            "effects": {
+              "resources": {
+                "wealth": -8,
+                "strength": 5
+              },
+              "qualities": {
+                "letgo": 1
+              },
+              "setFacts": {
+                "workshop.orderOutcome": "deferred"
+              },
+              "schedule": [
+                {
+                  "cardId": "c2_timon_order_result",
+                  "inDays": 1,
+                  "latestDay": 10
+                }
+              ]
+            },
+            "servesFacets": [
+              "body",
+              "inner"
+            ],
+            "obligation": "Назвать новый срок всей партии",
+            "diagnosticAction": {
+              "vector": {
+                "opportunist": 0.3,
+                "diplomat": 0.0,
+                "expert": 0.0,
+                "achiever": 0.0,
+                "individualist": 0.4,
+                "strategist": 0.3,
+                "alchemist": 0.0,
+                "ironic": 0.0
+              },
+              "rationale": {
+                "SELF": "честно называет свой предел",
+                "OTHERS": "заказчику нужен новый срок",
+                "COMPLEXITY": "не наблюдается",
+                "TIME": "растягивает срок",
+                "PERSPECTIVE": "не наблюдается",
+                "UNCERTAINTY": "не наблюдается"
+              },
+              "scoringVersion": "1",
+              "rubricVersion": "1"
+            }
+          }
+        ]
+      }
+    ],
+    "diagnostic": {
+      "situationId": "contract-eve",
+      "contextId": "deadline",
+      "facets": [
+        "work",
+        "relationships"
+      ],
+      "developmentWeight": 1.0,
+      "pressure": true
+    }
+  },
+  {
+    "id": "c2_bridge_repair",
+    "type": "situation",
+    "chapter": 2,
+    "text": "После разговора о рынке осталось полдня. Рука ещё помнит обжиги. Если уйти сейчас, Алексей закончит упаковку своим способом.",
+    "facets": [
+      "body",
+      "relationships"
+    ],
+    "choices": [
+      {
+        "id": "rest",
+        "label": "Закончить раньше и поесть дома",
+        "effects": {
+          "resources": {
+            "strength": 6,
+            "wealth": -3
+          },
+          "qualities": {
+            "letgo": 1
+          },
+          "setFacts": {
+            "rest.beforeFair": "kept"
+          }
+        },
+        "servesFacets": [
+          "body"
+        ],
+        "obligation": "Закончить раньше и поесть дома",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "pace",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.4,
+            "diplomat": 0.4,
+            "expert": 0.0,
+            "achiever": 0,
+            "individualist": 0,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.2
+          },
+          "rationale": {
+            "SELF": "бережёт себя",
+            "OTHERS": "не наблюдается",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "остаток дня для себя",
+            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "walk",
+        "label": "Пройтись и вернуться к упаковке",
+        "effects": {
+          "resources": {
+            "peace": 3,
+            "strength": -2
+          },
+          "qualities": {
+            "courage": 1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "inner"
+        ],
+        "obligation": "Пройтись и вернуться к упаковке",
+        "decisionKinds": [
+          "pursue"
+        ],
+        "pursuesGoals": [
+          "order",
+          "workshop"
+        ],
+        "lineStep": {
+          "line": "pace",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.3,
+            "expert": 0.35,
+            "achiever": 0.35,
+            "individualist": 0.0,
+            "strategist": 0.0,
+            "alchemist": 0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "сочетает отдых и дело",
+            "OTHERS": "не наблюдается",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "и прогулка, и упаковка",
+            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "requires": {
+      "dayGte": 7,
+      "dayLte": 7
+    },
+    "tags": [
+      "route-only"
+    ],
+    "diagnostic": {
+      "situationId": "half-day",
+      "contextId": "rest",
+      "facets": [
+        "body",
+        "relationships"
+      ],
+      "developmentWeight": 0.7
+    }
+  },
+  {
+    "id": "c2_old_master_tools",
+    "type": "situation",
+    "chapter": 2,
+    "text": "Алексей подбирает коробку для своей чаши. Можно остаться и сделать перегородки вместе или отдать упаковку ему, закончив свой заказ.",
+    "facets": [
+      "relationships",
+      "work"
+    ],
+    "choices": [
+      {
+        "id": "stay",
+        "label": "Остаться с Алексеем",
+        "effects": {
+          "resources": {
+            "strength": -4,
+            "bonds": 4
+          },
+          "qualities": {
+            "compassion": 1,
+            "honesty": -1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "obligation": "Остаться с Алексеем",
+        "decisionKinds": [
+          "cost",
+          "pursue"
+        ],
+        "pursuesGoals": [
+          "alexey"
+        ],
+        "lineStep": {
+          "line": "apprentice",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0,
+            "diplomat": 0.35,
+            "expert": 0.35,
+            "achiever": 0.3,
+            "individualist": 0,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "остаётся показать, как правильно",
+            "OTHERS": "ученик учится рядом",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "trust",
+        "label": "Доверить ему упаковку",
+        "effects": {
+          "resources": {
+            "wealth": 3,
+            "peace": 2
+          },
+          "qualities": {
+            "honesty": 1,
+            "letgo": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "obligation": "Доверить ему упаковку",
+        "decisionKinds": [
+          "pursue"
+        ],
+        "pursuesGoals": [
+          "order",
+          "workshop"
+        ],
+        "lineStep": {
+          "line": "apprentice",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.4,
+            "diplomat": 0.0,
+            "expert": 0,
+            "achiever": 0.45,
+            "individualist": 0.15,
+            "strategist": 0,
+            "alchemist": 0.0,
+            "ironic": 0
+          },
+          "rationale": {
+            "SELF": "передаёт ответственность",
+            "OTHERS": "ученик справится сам",
+            "COMPLEXITY": "оттенок: Принимает внутренние противоречия, не сводит к схеме",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "character": "alexey",
+    "requires": {
+      "dayGte": 7,
+      "dayLte": 7
+    },
+    "tags": [
+      "route-only"
+    ],
+    "diagnostic": {
+      "situationId": "packing-box",
+      "contextId": "apprentice",
+      "facets": [
+        "relationships",
+        "work"
+      ],
+      "developmentWeight": 0.8
+    }
+  },
+  {
+    "id": "c2_shadow_attention",
+    "chapter": "any",
+    "type": "situation",
+    "character": "marta",
+    "text": "У реки лодочник чинит сеть. Руки просят покоя, но голова всё ещё перебирает заказ. Можно посидеть рядом или пройтись без разговора.",
+    "choices": [
+      {
+        "id": "sit",
+        "label": "Посидеть, дав рукам отдохнуть",
+        "effects": {
+          "resources": {
+            "strength": 5,
+            "wealth": -2
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "body"
+        ],
+        "obligation": "Посидеть, дав рукам отдохнуть",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.3,
+            "diplomat": 0.0,
+            "expert": 0.0,
+            "achiever": 0.0,
+            "individualist": 0.35,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.35
+          },
+          "rationale": {
+            "SELF": "даёт рукам покой",
+            "OTHERS": "не наблюдается",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "сейчас",
+            "PERSPECTIVE": "не наблюдается",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "walk",
+        "label": "Пройтись и обдумать обещание",
+        "effects": {
+          "resources": {
+            "peace": 5
+          },
+          "qualities": {
+            "courage": 1
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "obligation": "Пройтись и обдумать обещание",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.35,
+            "expert": 0,
+            "achiever": 0.25,
+            "individualist": 0.4,
+            "strategist": 0.0,
+            "alchemist": 0,
+            "ironic": 0
+          },
+          "rationale": {
+            "SELF": "возвращается к своему обещанию",
+            "OTHERS": "не наблюдается",
+            "COMPLEXITY": "оттенок: Сравнивает способы по результату, выбирает действующий",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
+            "UNCERTAINTY": "обдумывает без спешки"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "facets": [
+      "inner",
+      "work"
+    ],
+    "shadow": {
+      "quality": "attention",
+      "evidence": {
+        "chose": {
+          "card": "c1_old_bowl",
+          "choice": "pause"
+        }
+      }
+    },
+    "textVariants": [
+      {
+        "id": "shadow_attention",
+        "kind": "shadow",
+        "when": {
+          "all": [
+            {
+              "quality": "attention",
+              "gte": 8
+            },
+            {
+              "chose": {
+                "card": "c1_old_bowl",
+                "choice": "pause"
+              }
+            }
+          ]
+        },
+        "text": "Чаша снова в руках. Тогда у реки он дал себе паузу; сегодня заказчик ждёт ответа, пока он рассматривает старую трещину."
+      }
+    ],
+    "requires": {
+      "dayGte": 5
+    },
+    "tags": [
+      "route-only"
+    ],
+    "diagnostic": {
+      "situationId": "river-net",
+      "contextId": "inner",
+      "facets": [
+        "inner",
+        "work"
+      ],
+      "developmentWeight": 0.7
+    }
+  },
+  {
+    "id": "c2_shadow_honesty",
+    "type": "situation",
+    "chapter": 2,
+    "text": "Илья собирает дорожный мешок. Завтра перед отъездом ещё будет короткая встреча, а сегодня можно спокойно поговорить или помочь со сборами.",
+    "facets": [
+      "relationships",
+      "inner"
+    ],
+    "choices": [
+      {
+        "id": "talk",
+        "label": "Остаться для разговора",
+        "effects": {
+          "resources": {
+            "wealth": -3,
+            "peace": 4
+          },
+          "qualities": {
+            "honesty": 1,
+            "compassion": -1
+          },
+          "setFacts": {
+            "ilya.meeting": "talked"
+          }
+        },
+        "servesFacets": [
+          "relationships",
+          "inner"
+        ],
+        "obligation": "Остаться для разговора",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.15,
+            "expert": 0.0,
+            "achiever": 0.4,
+            "individualist": 0.45,
+            "strategist": 0.0,
+            "alchemist": 0,
+            "ironic": 0
+          },
+          "rationale": {
+            "SELF": "выбирает честный разговор",
+            "OTHERS": "Илья остаётся важным",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
+            "UNCERTAINTY": "выдерживает неловкость"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "pack",
+        "label": "Помочь со сборами и вернуться",
+        "effects": {
+          "resources": {
+            "strength": -3,
+            "bonds": 3
+          },
+          "qualities": {
+            "compassion": 1
+          },
+          "setFacts": {
+            "ilya.meeting": "talked"
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "obligation": "Помочь со сборами и вернуться",
+        "decisionKinds": [
+          "pursue"
+        ],
+        "pursuesGoals": [
+          "order",
+          "workshop"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.35,
+            "diplomat": 0.4,
+            "expert": 0.25,
+            "achiever": 0,
+            "individualist": 0.0,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "помогает делом",
+            "OTHERS": "практическая забота",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "character": "ilya",
+    "requires": {
+      "dayGte": 9,
+      "dayLte": 9
+    },
+    "tags": [
+      "route-only"
+    ],
+    "shadow": {
+      "quality": "honesty",
+      "evidence": {
+        "chose": {
+          "card": "c1_extra_change",
+          "choice": "return"
+        }
+      }
+    },
+    "textVariants": [
+      {
+        "id": "shadow_honesty",
+        "kind": "shadow",
+        "when": {
+          "all": [
+            {
+              "quality": "honesty",
+              "gte": 8
+            },
+            {
+              "chose": {
+                "card": "c1_extra_change",
+                "choice": "return"
+              }
+            }
+          ]
+        },
+        "text": "После возвращённых монет он привык говорить прямо. Илья просит сначала выслушать причину отъезда, а уже потом обсуждать долг."
+      }
+    ],
+    "diagnostic": {
+      "situationId": "ilya-goodbye",
+      "contextId": "old-debt",
+      "facets": [
+        "relationships",
+        "inner"
+      ],
+      "developmentWeight": 0.8
+    }
+  },
+  {
+    "id": "c2_shadow_compassion",
+    "type": "situation",
+    "chapter": 2,
+    "text": "После разговора о рынке он заметил, что так и не поел. Можно оставить мастерскую Алексею до утра или закончить упаковку после еды.",
+    "facets": [
+      "body",
+      "relationships"
+    ],
+    "choices": [
+      {
+        "id": "rest",
+        "label": "Закончить раньше и поесть дома",
+        "effects": {
+          "resources": {
+            "strength": 6,
+            "wealth": -3
+          },
+          "qualities": {
+            "letgo": 1
+          },
+          "setFacts": {
+            "rest.beforeFair": "kept"
+          }
+        },
+        "servesFacets": [
+          "body"
+        ],
+        "obligation": "Закончить раньше и поесть дома",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "pace",
+          "step": "limitation"
+        }
+      },
+      {
+        "id": "walk",
+        "label": "Пройтись и вернуться к упаковке",
+        "effects": {
+          "resources": {
+            "peace": 3,
+            "strength": -2
+          },
+          "qualities": {
+            "courage": 1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "inner"
+        ],
+        "obligation": "Пройтись и вернуться к упаковке",
+        "decisionKinds": [
+          "pursue"
+        ],
+        "pursuesGoals": [
+          "order",
+          "workshop"
+        ],
+        "lineStep": {
+          "line": "pace",
+          "step": "limitation"
+        }
+      }
+    ],
+    "requires": {
+      "dayGte": 7,
+      "dayLte": 7
+    },
+    "tags": [
+      "route-only"
+    ],
+    "shadow": {
+      "quality": "compassion",
+      "evidence": {
+        "all": [
+          {
+            "chose": {
+              "card": "c1_neighbor_noise",
+              "choice": "continue"
+            }
+          },
+          {
+            "chose": {
+              "card": "c1_wounded_road",
+              "choice": "stop"
+            }
+          }
+        ]
+      }
+    },
+    "textVariants": [
+      {
+        "id": "shadow_compassion",
+        "kind": "shadow",
+        "when": {
+          "all": [
+            {
+              "quality": "compassion",
+              "gte": 8
+            },
+            {
+              "all": [
+                {
+                  "chose": {
+                    "card": "c1_neighbor_noise",
+                    "choice": "continue"
+                  }
+                },
+                {
+                  "chose": {
+                    "card": "c1_wounded_road",
+                    "choice": "stop"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "text": "Он закончил вечернюю работу сам и задержался с раненым. Теперь, после разговора о рынке, рука напоминает об обоих днях. Алексей может закончить упаковку."
+      }
+    ]
+  },
+  {
+    "id": "c2_shadow_letgo",
+    "chapter": 2,
+    "type": "situation",
+    "character": "timon",
+    "text": "Перед разговором с заказчиком он сверяет готовые чаши. Можно подтвердить объём или подготовить расчёт меньшей партии.",
+    "choices": [
+      {
+        "id": "confirm",
+        "label": "Подтвердить готовность",
+        "effects": {
+          "resources": {
+            "strength": -3
+          },
+          "qualities": {
+            "honesty": 1
+          },
+          "setFacts": {
+            "workshop.preparation": "ready"
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "obligation": "Подтвердить готовность",
+        "decisionKinds": [
+          "pursue"
+        ],
+        "pursuesGoals": [
+          "order",
+          "workshop"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0,
+            "expert": 0.4,
+            "achiever": 0.4,
+            "individualist": 0.0,
+            "strategist": 0,
+            "alchemist": 0.2,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "держит слово по объёму",
+            "OTHERS": "не наблюдается",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "обещанная партия",
+            "PERSPECTIVE": "оттенок: Меняет рамку понимания и проверяет её действием",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "revise",
+        "label": "Подготовить меньший объём",
+        "effects": {
+          "resources": {
+            "peace": 3
+          },
+          "qualities": {
+            "letgo": 1
+          },
+          "setFacts": {
+            "workshop.preparation": "revised"
+          }
+        },
+        "servesFacets": [
+          "body",
+          "inner"
+        ],
+        "obligation": "Подготовить меньший объём",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.35,
+            "diplomat": 0.35,
+            "expert": 0,
+            "achiever": 0.3,
+            "individualist": 0,
+            "strategist": 0,
+            "alchemist": 0.0,
+            "ironic": 0
+          },
+          "rationale": {
+            "SELF": "сокращает объём, чтобы не сорваться",
+            "OTHERS": "заказчик услышит заранее",
+            "COMPLEXITY": "оттенок: Сравнивает способы по результату, выбирает действующий",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "facets": [
+      "inner",
+      "work"
+    ],
+    "shadow": {
+      "quality": "letgo",
+      "evidence": {
+        "all": [
+          {
+            "chose": {
+              "card": "c1_old_bowl",
+              "choice": "return"
+            }
+          },
+          {
+            "chose": {
+              "card": "c1_rain_delivery",
+              "choice": "revise"
+            }
+          }
+        ]
+      }
+    },
+    "textVariants": [
+      {
+        "id": "shadow_letgo",
+        "kind": "shadow",
+        "when": {
+          "all": [
+            {
+              "quality": "letgo",
+              "gte": 8
+            },
+            {
+              "all": [
+                {
+                  "chose": {
+                    "card": "c1_old_bowl",
+                    "choice": "return"
+                  }
+                },
+                {
+                  "chose": {
+                    "card": "c1_rain_delivery",
+                    "choice": "revise"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "text": "Он уже ушёл от паузы к работе и изменил объём партии. Тимон спрашивает, какую часть договорённости всё же оставить в силе."
+      }
+    ],
+    "tags": [
+      "route-only"
+    ],
+    "requires": {
+      "dayGte": 9,
+      "dayLte": 9
+    },
+    "diagnostic": {
+      "situationId": "confirm-batch",
+      "contextId": "deadline",
+      "facets": [
+        "inner",
+        "work"
+      ],
+      "developmentWeight": 0.7
+    }
+  },
+  {
+    "id": "c2_shadow_courage",
+    "type": "situation",
+    "chapter": 2,
+    "text": "У Ильи почти всё собрано. Есть время пройти вместе до повозки или поговорить за столом перед последней подготовкой заказа.",
+    "facets": [
+      "relationships",
+      "inner"
+    ],
+    "choices": [
+      {
+        "id": "talk",
+        "label": "Остаться для разговора",
+        "effects": {
+          "resources": {
+            "wealth": -3,
+            "peace": 4
+          },
+          "qualities": {
+            "honesty": 1,
+            "compassion": -1
+          },
+          "setFacts": {
+            "ilya.meeting": "talked"
+          }
+        },
+        "servesFacets": [
+          "relationships",
+          "inner"
+        ],
+        "obligation": "Остаться для разговора",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        }
+      },
+      {
+        "id": "pack",
+        "label": "Помочь со сборами и вернуться",
+        "effects": {
+          "resources": {
+            "strength": -3,
+            "bonds": 3
+          },
+          "qualities": {
+            "compassion": 1
+          },
+          "setFacts": {
+            "ilya.meeting": "talked"
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "obligation": "Помочь со сборами и вернуться",
+        "decisionKinds": [
+          "pursue"
+        ],
+        "pursuesGoals": [
+          "order",
+          "workshop"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        }
+      }
+    ],
+    "character": "ilya",
+    "requires": {
+      "dayGte": 9,
+      "dayLte": 9
+    },
+    "tags": [
+      "route-only"
+    ],
+    "shadow": {
+      "quality": "courage",
+      "evidence": {
+        "all": [
+          {
+            "chose": {
+              "card": "c1_neighbor_noise",
+              "choice": "continue"
+            }
+          },
+          {
+            "chose": {
+              "card": "c1_rain_delivery",
+              "choice": "finish"
+            }
+          }
+        ]
+      }
+    },
+    "textVariants": [
+      {
+        "id": "shadow_courage",
+        "kind": "shadow",
+        "when": {
+          "all": [
+            {
+              "quality": "courage",
+              "gte": 8
+            },
+            {
+              "all": [
+                {
+                  "chose": {
+                    "card": "c1_neighbor_noise",
+                    "choice": "continue"
+                  }
+                },
+                {
+                  "chose": {
+                    "card": "c1_rain_delivery",
+                    "choice": "finish"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "text": "После двух вечеров работы через усталость он пришёл к Илье. Можно поговорить сидя или взяться за мешки; рука ещё помнит обжиги."
+      },
+      {
+        "id": "intention_body",
+        "kind": "intention",
+        "when": {
+          "intention": "body"
+        },
+        "text": "Он хотел дойти до ярмарки не выжатым. Рука всё ещё помнит обжиги; сегодня нужно решить, кто закончит последнюю часть работы."
+      }
+    ]
+  },
+  {
+    "id": "c2_silence_marta_cup",
+    "chapter": 2,
+    "type": "situation",
+    "character": "marta",
+    "text": "Марта говорит, что у неё всё в порядке. Чашку она так и не поставила на стол.",
+    "choices": [
+      {
+        "id": "leave",
+        "label": "Не настаивать",
+        "effects": {
+          "resources": {
+            "peace": 3
+          },
+          "qualities": {
+            "letgo": 1
+          },
+          "wisdomId": "w_hurry"
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "obligation": "Не настаивать",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0,
+            "expert": 0.0,
+            "achiever": 0.25,
+            "individualist": 0.4,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.35
+          },
+          "rationale": {
+            "SELF": "уважает чужую границу",
+            "OTHERS": "не наблюдается",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
+            "UNCERTAINTY": "не давит"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "ask",
+        "label": "Спросить ещё раз",
+        "effects": {
+          "resources": {
+            "strength": -3,
+            "bonds": 5
+          },
+          "qualities": {
+            "attention": 1,
+            "compassion": 1
+          },
+          "wisdomId": "w_nearby"
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "obligation": "Спросить ещё раз",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.3,
+            "diplomat": 0.35,
+            "expert": 0.35,
+            "achiever": 0.0,
+            "individualist": 0,
+            "strategist": 0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "не может пройти мимо",
+            "OTHERS": "Марте может быть нужно сказать",
+            "COMPLEXITY": "оттенок: Разбирает задачу по существу, ищет правильный способ",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "facets": [
+      "inner",
+      "relationships"
+    ],
+    "requires": {
+      "all": [
+        {
+          "dayGte": 7
+        },
+        {
+          "any": [
+            {
+              "flag": "insight_silence"
+            },
+            {
+              "chose": {
+                "card": "c1_old_bowl",
+                "choice": "pause"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "tags": [
+      "insight:insight_silence"
+    ],
+    "textVariants": [
+      {
+        "id": "c2_silence_marta_cup_detail",
+        "kind": "perception",
+        "when": {
+          "shown": "c1_marta_firewood"
+        },
+        "text": "Марта снова держит чашку у стола. Прежде она ставила её сразу; сегодня обхватила обеими ладонями и ждёт, пока ты сядешь.",
+        "familiarCardId": "c1_marta_firewood"
+      }
+    ],
+    "diagnostic": {
+      "situationId": "marta-cup",
+      "contextId": "neighbors",
+      "facets": [
+        "inner",
+        "relationships"
+      ],
+      "developmentWeight": 0.8
+    }
+  },
+  {
+    "id": "c2_silence_alexey_hand",
+    "chapter": 2,
+    "type": "situation",
+    "character": "alexey",
+    "text": "Алексей молча убирает осколки и прячет ладонь в рукав.",
+    "choices": [
+      {
+        "id": "trust",
+        "label": "Не вмешиваться",
+        "effects": {
+          "resources": {
+            "peace": 2
+          },
+          "qualities": {
+            "letgo": 1
+          },
+          "wisdomId": "w_soft_word"
+        },
+        "servesFacets": [
+          "body"
+        ],
+        "obligation": "Не вмешиваться",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "apprentice",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.15,
+            "diplomat": 0.2,
+            "expert": 0.0,
+            "achiever": 0.3,
+            "individualist": 0.0,
+            "strategist": 0,
+            "alchemist": 0.0,
+            "ironic": 0.35
+          },
+          "rationale": {
+            "SELF": "не берёт на себя заботу",
+            "OTHERS": "Алексей сам решит, показывать ли",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "look",
+        "label": "Попросить показать руку",
+        "effects": {
+          "resources": {
+            "strength": -3
+          },
+          "qualities": {
+            "attention": 1,
+            "compassion": 1
+          },
+          "wisdomId": "w_edge"
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "obligation": "Попросить показать руку",
+        "decisionKinds": [
+          "cost",
+          "pursue"
+        ],
+        "pursuesGoals": [
+          "alexey"
+        ],
+        "lineStep": {
+          "line": "apprentice",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.35,
+            "diplomat": 0.4,
+            "expert": 0.25,
+            "achiever": 0,
+            "individualist": 0,
+            "strategist": 0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "заботится открыто",
+            "OTHERS": "ученик может быть ранен",
+            "COMPLEXITY": "оттенок: Разбирает задачу по существу, ищет правильный способ",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "facets": [
+      "body",
+      "relationships"
+    ],
+    "requires": {
+      "all": [
+        {
+          "dayGte": 7
+        },
+        {
+          "any": [
+            {
+              "flag": "insight_silence"
+            },
+            {
+              "chose": {
+                "card": "c1_old_bowl",
+                "choice": "pause"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "tags": [
+      "insight:insight_silence"
+    ],
+    "textVariants": [
+      {
+        "id": "c2_silence_alexey_hand_detail",
+        "kind": "perception",
+        "when": {
+          "shown": "c1_alexey_broken_jug"
+        },
+        "text": "Алексей вновь поворачивает чашку к свету. Теперь заметно, как он меняет хват, оберегая большой палец.",
+        "familiarCardId": "c1_alexey_broken_jug"
+      }
+    ],
+    "diagnostic": {
+      "situationId": "alexey-hand",
+      "contextId": "apprentice",
+      "facets": [
+        "body",
+        "relationships"
+      ],
+      "developmentWeight": 0.8
+    }
+  },
+  {
+    "id": "c2_silence_market_pause",
+    "chapter": 2,
+    "type": "situation",
+    "character": "timon",
+    "text": "Тимон улыбается, предлагая сделку. Перед ответом он на секунду смотрит на пустую лавку напротив.",
+    "choices": [
+      {
+        "id": "deal",
+        "label": "Говорить только о сделке",
+        "effects": {
+          "resources": {
+            "wealth": 6
+          },
+          "qualities": {
+            "courage": 1
+          },
+          "wisdomId": "w_unopened"
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "obligation": "Говорить только о сделке",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.4,
+            "diplomat": 0.3,
+            "expert": 0.3,
+            "achiever": 0,
+            "individualist": 0,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0
+          },
+          "rationale": {
+            "SELF": "держится сделки",
+            "OTHERS": "Тимон — контрагент",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "ask",
+        "label": "Спросить о лавке",
+        "effects": {
+          "resources": {
+            "wealth": -3
+          },
+          "qualities": {
+            "attention": 1,
+            "honesty": 1
+          },
+          "wisdomId": "w_letter"
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "obligation": "Спросить о лавке",
+        "decisionKinds": [
+          "pursue"
+        ],
+        "pursuesGoals": [
+          "order",
+          "workshop"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.0,
+            "expert": 0.0,
+            "achiever": 0.3,
+            "individualist": 0,
+            "strategist": 0.35,
+            "alchemist": 0.35,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "замечает то, что вне сделки",
+            "OTHERS": "не наблюдается",
+            "COMPLEXITY": "смотрит на рамку разговора",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "facets": [
+      "inner",
+      "work"
+    ],
+    "requires": {
+      "all": [
+        {
+          "dayGte": 7
+        },
+        {
+          "any": [
+            {
+              "flag": "insight_silence"
+            },
+            {
+              "chose": {
+                "card": "c1_old_bowl",
+                "choice": "pause"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "tags": [
+      "insight:insight_silence"
+    ],
+    "textVariants": [
+      {
+        "id": "c2_silence_market_pause_detail",
+        "kind": "perception",
+        "when": {
+          "shown": "c1_extra_change"
+        },
+        "text": "Тимон, как тогда со сдачей, отсчитывает монеты. Перед последней задерживает руку и смотрит на пустую лавку напротив.",
+        "familiarCardId": "c1_extra_change"
+      }
+    ],
+    "diagnostic": {
+      "situationId": "timon-glance",
+      "contextId": "money",
+      "facets": [
+        "inner",
+        "work"
+      ],
+      "developmentWeight": 0.9
+    }
+  },
+  {
+    "id": "c2_gaze_wanderer_bread",
+    "chapter": 2,
+    "type": "situation",
+    "character": "wanderer",
+    "text": "Странник покупает один кусок хлеба и делит его с мальчиком у стены.",
+    "choices": [
+      {
+        "id": "watch",
+        "label": "Не вмешиваться",
+        "effects": {
+          "resources": {
+            "peace": 2
+          },
+          "qualities": {
+            "attention": 1
+          },
+          "wisdomId": "w_step_aside"
+        },
+        "servesFacets": [
+          "body"
+        ],
+        "obligation": "Не вмешиваться",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "pace",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.35,
+            "diplomat": 0,
+            "expert": 0.35,
+            "achiever": 0,
+            "individualist": 0,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0.3
+          },
+          "rationale": {
+            "SELF": "не навязывается",
+            "OTHERS": "чужое дело остаётся чужим",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "offer",
+        "label": "Предложить ещё хлеба",
+        "effects": {
+          "resources": {
+            "wealth": -5,
+            "bonds": 3
+          },
+          "qualities": {
+            "compassion": 1
+          },
+          "wisdomId": "w_ground"
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "obligation": "Предложить ещё хлеба",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "pace",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.2,
+            "diplomat": 0.4,
+            "expert": 0,
+            "achiever": 0.4,
+            "individualist": 0,
+            "strategist": 0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "разделяет заботу",
+            "OTHERS": "мальчик и Странник — не чужие",
+            "COMPLEXITY": "оттенок: Сравнивает способы по результату, выбирает действующий",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "facets": [
+      "body",
+      "relationships"
+    ],
+    "requires": {
+      "all": [
+        {
+          "dayGte": 7
+        },
+        {
+          "any": [
+            {
+              "flag": "insight_gaze"
+            },
+            {
+              "chose": {
+                "card": "c1_wounded_road",
+                "choice": "stop"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "tags": [
+      "insight:insight_gaze"
+    ],
+    "textVariants": [
+      {
+        "id": "c2_gaze_wanderer_bread_detail",
+        "kind": "perception",
+        "when": {
+          "shown": "c1_wounded_road"
+        },
+        "text": "Путник снова делит хлеб. Теперь он оставляет ломоть рядом с собой, прежде чем протянуть другой.",
+        "familiarCardId": "c1_wounded_road"
+      }
+    ],
+    "diagnostic": {
+      "situationId": "bread-shared",
+      "contextId": "strangers",
+      "facets": [
+        "body",
+        "relationships"
+      ],
+      "developmentWeight": 0.8
+    }
+  },
+  {
+    "id": "c2_gaze_marta_window",
+    "chapter": 2,
+    "type": "situation",
+    "character": "marta",
+    "text": "Вечером в окне Марты темно. Обычно в это время там горит свеча.",
+    "choices": [
+      {
+        "id": "home",
+        "label": "Пойти домой",
+        "effects": {
+          "resources": {
+            "strength": 4,
+            "peace": 3
+          },
+          "qualities": {
+            "letgo": 1
+          },
+          "wisdomId": "w_wet_road"
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "obligation": "Пойти домой",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.4,
+            "diplomat": 0.2,
+            "expert": 0,
+            "achiever": 0.4,
+            "individualist": 0,
+            "strategist": 0.0,
+            "alchemist": 0.0,
+            "ironic": 0
+          },
+          "rationale": {
+            "SELF": "бережёт свои силы",
+            "OTHERS": "не наблюдается",
+            "COMPLEXITY": "оттенок: Сравнивает способы по результату, выбирает действующий",
+            "TIME": "вечер для себя",
+            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "visit",
+        "label": "Зайти",
+        "effects": {
+          "resources": {
+            "strength": -4,
+            "bonds": 5
+          },
+          "qualities": {
+            "compassion": 1,
+            "courage": 1
+          },
+          "wisdomId": "w_weather"
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "obligation": "Зайти",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.4,
+            "expert": 0.4,
+            "achiever": 0.2,
+            "individualist": 0,
+            "strategist": 0,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "идёт на тревогу",
+            "OTHERS": "соседке может быть плохо",
+            "COMPLEXITY": "оттенок: Сравнивает способы по результату, выбирает действующий",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "facets": [
+      "inner",
+      "relationships"
+    ],
+    "requires": {
+      "all": [
+        {
+          "dayGte": 7
+        },
+        {
+          "any": [
+            {
+              "flag": "insight_gaze"
+            },
+            {
+              "chose": {
+                "card": "c1_wounded_road",
+                "choice": "stop"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "tags": [
+      "insight:insight_gaze"
+    ],
+    "textVariants": [
+      {
+        "id": "c2_gaze_marta_window_detail",
+        "kind": "perception",
+        "when": {
+          "shown": "c1_marta_firewood"
+        },
+        "text": "У Марты снова горит окно. Рядом с её чашкой стоит вторая; она переставляет её ближе к свободному стулу.",
+        "familiarCardId": "c1_marta_firewood"
+      }
+    ],
+    "diagnostic": {
+      "situationId": "dark-window",
+      "contextId": "neighbors",
+      "facets": [
+        "inner",
+        "relationships"
+      ],
+      "developmentWeight": 0.8
+    }
+  },
+  {
+    "id": "c2_gaze_alexey_silence",
+    "chapter": 2,
+    "type": "situation",
+    "character": "alexey",
+    "text": "Алексей весь день работает без обычных вопросов. Ошибок меньше, но и разговоров нет.",
+    "choices": [
+      {
+        "id": "ask",
+        "label": "Спросить, что случилось",
+        "effects": {
+          "resources": {
+            "wealth": -4,
+            "bonds": 5
+          },
+          "qualities": {
+            "attention": 1,
+            "honesty": 1
+          },
+          "wisdomId": "w_price_later"
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "obligation": "Спросить, что случилось",
+        "decisionKinds": [
+          "cost",
+          "pursue"
+        ],
+        "pursuesGoals": [
+          "alexey"
+        ],
+        "lineStep": {
+          "line": "apprentice",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.0,
+            "diplomat": 0.35,
+            "expert": 0.35,
+            "achiever": 0.0,
+            "individualist": 0,
+            "strategist": 0.3,
+            "alchemist": 0.0,
+            "ironic": 0.0
+          },
+          "rationale": {
+            "SELF": "не оставляет молчание без внимания",
+            "OTHERS": "ученик меняется",
+            "COMPLEXITY": "не наблюдается",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      },
+      {
+        "id": "respect",
+        "label": "Не трогать",
+        "effects": {
+          "resources": {
+            "wealth": 4,
+            "peace": 2
+          },
+          "qualities": {
+            "letgo": 1
+          },
+          "wisdomId": "w_truth_weight"
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "obligation": "Не трогать",
+        "decisionKinds": [
+          "pursue"
+        ],
+        "pursuesGoals": [
+          "order",
+          "workshop"
+        ],
+        "lineStep": {
+          "line": "apprentice",
+          "step": "limitation"
+        },
+        "diagnosticAction": {
+          "vector": {
+            "opportunist": 0.25,
+            "diplomat": 0.0,
+            "expert": 0,
+            "achiever": 0.25,
+            "individualist": 0,
+            "strategist": 0,
+            "alchemist": 0.15,
+            "ironic": 0.35
+          },
+          "rationale": {
+            "SELF": "не вмешивается без нужды",
+            "OTHERS": "ученик справляется сам",
+            "COMPLEXITY": "оттенок: Держит противоположности вместе, меняя саму постановку вопроса",
+            "TIME": "не наблюдается",
+            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
+            "UNCERTAINTY": "не наблюдается"
+          },
+          "scoringVersion": "1",
+          "rubricVersion": "1"
+        }
+      }
+    ],
+    "facets": [
+      "relationships",
+      "work"
+    ],
+    "requires": {
+      "all": [
+        {
+          "dayGte": 7
+        },
+        {
+          "any": [
+            {
+              "flag": "insight_gaze"
+            },
+            {
+              "chose": {
+                "card": "c1_wounded_road",
+                "choice": "stop"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "tags": [
+      "insight:insight_gaze"
+    ],
+    "textVariants": [
+      {
+        "id": "c2_gaze_alexey_silence_detail",
+        "kind": "perception",
+        "when": {
+          "shown": "c1_alexey_broken_jug"
+        },
+        "text": "Чашка Алексея снова на краю стола. Ученик уже не прячет дно с неровной подписью, а поворачивает его к свету.",
+        "familiarCardId": "c1_alexey_broken_jug"
+      }
+    ],
+    "diagnostic": {
+      "situationId": "alexey-silent-day",
+      "contextId": "apprentice",
+      "facets": [
+        "relationships",
+        "work"
+      ],
+      "developmentWeight": 0.8
+    }
+  },
+  {
+    "id": "c2_ilya_after_forgive",
+    "chapter": 2,
+    "type": "chain",
+    "character": "ilya",
+    "text": "Через два дня Илья приносит не деньги, а старый резец, который когда-то одолжил у тебя.",
+    "choices": [
+      {
+        "id": "take",
+        "label": "Принять резец",
+        "effects": {
+          "resources": {
+            "peace": 5
+          },
+          "qualities": {
+            "letgo": 1
+          },
+          "wisdomId": "w_two_prices"
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "obligation": "Принять резец",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticBehavior": {
+          "continuesSituationId": "stones-bag",
+          "signal": {
+            "vector": {
+              "opportunist": 0.0,
+              "diplomat": 0.35,
+              "expert": 0.0,
+              "achiever": 0.0,
+              "individualist": 0.4,
+              "strategist": 0.0,
+              "alchemist": 0.0,
+              "ironic": 0.25
+            },
+            "rationale": {
+              "SELF": "принимает резец",
+              "OTHERS": "Илья принёс знак примирения",
+              "COMPLEXITY": "не наблюдается",
+              "TIME": "не наблюдается",
+              "PERSPECTIVE": "не наблюдается",
+              "UNCERTAINTY": "не наблюдается"
+            },
+            "scoringVersion": "1",
+            "rubricVersion": "1"
+          }
+        }
+      },
+      {
+        "id": "refuse",
+        "label": "Сказать, что дело не в нём",
+        "effects": {
+          "resources": {
+            "peace": -2,
+            "bonds": 2
+          },
+          "qualities": {
+            "honesty": 1
+          },
+          "wisdomId": "w_road_waits"
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "obligation": "Сказать, что дело не в нём",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticBehavior": {
+          "continuesSituationId": "stones-bag",
+          "signal": {
+            "vector": {
+              "opportunist": 0.0,
+              "diplomat": 0.0,
+              "expert": 0.0,
+              "achiever": 0.0,
+              "individualist": 0.4,
+              "strategist": 0.3,
+              "alchemist": 0.3,
+              "ironic": 0.0
+            },
+            "rationale": {
+              "SELF": "говорит, что дело не в вещи",
+              "OTHERS": "не наблюдается",
+              "COMPLEXITY": "видит глубже предмета",
+              "TIME": "не наблюдается",
+              "PERSPECTIVE": "не наблюдается",
+              "UNCERTAINTY": "не наблюдается"
+            },
+            "scoringVersion": "1",
+            "rubricVersion": "1"
+          }
+        }
+      }
+    ],
+    "facets": [
+      "inner",
+      "relationships"
+    ],
+    "required": true
+  },
+  {
+    "id": "c2_ilya_leaves",
+    "chapter": 2,
+    "type": "chain",
+    "character": "ilya",
+    "text": "Илья собирается уехать. Перед дорогой он оставляет у двери часть долга, не заходя внутрь.",
+    "choices": [
+      {
+        "id": "catch",
+        "label": "Догнать его",
+        "effects": {
+          "resources": {
+            "strength": -4,
+            "bonds": 5
+          },
+          "qualities": {
+            "courage": 1,
+            "compassion": 1
+          },
+          "wisdomId": "w_open_palm"
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "obligation": "Догнать его",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticBehavior": {
+          "continuesSituationId": "stones-bag",
+          "signal": {
+            "vector": {
+              "opportunist": 0.0,
+              "diplomat": 0.4,
+              "expert": 0.0,
+              "achiever": 0.0,
+              "individualist": 0.35,
+              "strategist": 0.25,
+              "alchemist": 0.0,
+              "ironic": 0.0
+            },
+            "rationale": {
+              "SELF": "догоняет",
+              "OTHERS": "Илья уезжает, а связь важна",
+              "COMPLEXITY": "не наблюдается",
+              "TIME": "не наблюдается",
+              "PERSPECTIVE": "не наблюдается",
+              "UNCERTAINTY": "не наблюдается"
+            },
+            "scoringVersion": "1",
+            "rubricVersion": "1"
+          }
+        }
+      },
+      {
+        "id": "leave",
+        "label": "Оставить как есть",
+        "effects": {
+          "resources": {
+            "wealth": 5,
+            "peace": 2
+          },
+          "qualities": {
+            "letgo": 1
+          },
+          "wisdomId": "w_small_coin"
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "obligation": "Оставить как есть",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        },
+        "diagnosticBehavior": {
+          "continuesSituationId": "stones-bag",
+          "signal": {
+            "vector": {
+              "opportunist": 0.4,
+              "diplomat": 0.0,
+              "expert": 0.0,
+              "achiever": 0.3,
+              "individualist": 0.0,
+              "strategist": 0.0,
+              "alchemist": 0.0,
+              "ironic": 0.3
+            },
+            "rationale": {
+              "SELF": "оставляет как есть",
+              "OTHERS": "не наблюдается",
+              "COMPLEXITY": "не наблюдается",
+              "TIME": "не тратит время",
+              "PERSPECTIVE": "не наблюдается",
+              "UNCERTAINTY": "не наблюдается"
+            },
+            "scoringVersion": "1",
+            "rubricVersion": "1"
+          }
+        }
+      }
+    ],
+    "facets": [
+      "relationships",
+      "inner"
+    ],
+    "required": true
+  },
+  {
+    "id": "c2_timon_order_result",
+    "type": "chain",
+    "chapter": 2,
+    "text": "Ярмарка открылась. Большой заказ уже обсуждён, места заняты. Алексей принёс свою чашу: теперь нужно решить, как представить работу.",
+    "facets": [
+      "relationships",
+      "work"
+    ],
+    "choices": [
+      {
+        "id": "together",
+        "label": "Представить общую работу",
+        "effects": {
+          "resources": {
+            "bonds": 3
+          },
+          "qualities": {
+            "compassion": 1
+          },
+          "setFacts": {
+            "alexey.path": "together"
+          }
+        },
+        "servesFacets": [
+          "relationships",
+          "work"
+        ],
+        "obligation": "Представить общую работу",
+        "decisionKinds": [
+          "pursue"
+        ],
+        "pursuesGoals": [
+          "alexey"
+        ],
+        "lineStep": {
+          "line": "apprentice",
+          "step": "limitation"
+        }
+      },
+      {
+        "id": "independent",
+        "label": "Дать Алексею представить её самому",
+        "effects": {
+          "resources": {
+            "peace": 3
+          },
+          "qualities": {
+            "letgo": 1
+          },
+          "setFacts": {
+            "alexey.path": "independent"
+          }
+        },
+        "servesFacets": [
+          "relationships",
+          "inner"
+        ],
+        "obligation": "Дать Алексею представить её самому",
+        "decisionKinds": [
+          "cost",
+          "pursue"
+        ],
+        "pursuesGoals": [
+          "alexey"
+        ],
+        "lineStep": {
+          "line": "apprentice",
+          "step": "limitation"
+        }
+      }
+    ],
+    "character": "alexey",
+    "at": {
+      "day": 10,
+      "slot": 3
+    },
+    "key": true,
+    "required": true,
+    "choiceVariants": [
+      {
+        "when": {
+          "fact": "alexey.plan",
+          "equals": "independent"
+        },
+        "choices": [
+          {
+            "id": "own",
+            "label": "Побыть рядом на его отдельном показе",
+            "effects": {
+              "resources": {
+                "bonds": 3
+              },
+              "qualities": {
+                "compassion": 1
+              },
+              "setFacts": {
+                "alexey.path": "independent"
+              }
+            },
+            "servesFacets": [
+              "relationships"
+            ],
+            "obligation": "Побыть рядом на его отдельном показе"
+          },
+          {
+            "id": "paused",
+            "label": "Согласовать показ после ярмарки",
+            "effects": {
+              "resources": {
+                "strength": 3
+              },
+              "qualities": {
+                "honesty": 1
+              },
+              "setFacts": {
+                "alexey.path": "paused"
+              }
+            },
+            "servesFacets": [
+              "body",
+              "work"
+            ],
+            "obligation": "Согласовать показ после ярмарки"
+          }
+        ]
+      }
+    ],
+    "textVariants": [
+      {
+        "id": "fair_both",
+        "kind": "perception",
+        "when": {
+          "all": [
+            {
+              "flag": "insight_silence"
+            },
+            {
+              "flag": "insight_gaze"
+            }
+          ]
+        },
+        "text": "Ярмарка открылась. Среди шума он замечает ладонь Алексея на чаше и место, оставленное Мартой рядом. Алексей ждёт: как представить работу?",
+        "familiarCardId": "c1_alexey_broken_jug"
+      },
+      {
+        "id": "fair_silence",
+        "kind": "perception",
+        "when": {
+          "flag": "insight_silence"
+        },
+        "text": "Ярмарка открылась. Среди шума он замечает, как Алексей поворачивает чашу подписью к свету. Теперь нужно решить, как представить работу.",
+        "familiarCardId": "c1_alexey_broken_jug"
+      },
+      {
+        "id": "fair_gaze",
+        "kind": "perception",
+        "when": {
+          "flag": "insight_gaze"
+        },
+        "text": "Ярмарка открылась. Марта оставила место рядом с собой; Алексей придерживает край её стула. Теперь нужно решить, как представить его чашу.",
+        "familiarCardId": "c1_alexey_broken_jug"
+      }
+    ]
+  },
+  {
+    "id": "c2_alexey_tools_result",
+    "type": "chain",
+    "chapter": 2,
+    "text": "Алексей принёс подставку для кисти. Он заметил, как мастер держал руку после обжига. Теперь можно изменить привычный темп или объём партии.",
+    "facets": [
+      "body",
+      "work"
+    ],
+    "choices": [
+      {
+        "id": "adapt",
+        "label": "Попробовать новый хват и темп",
+        "effects": {
+          "resources": {
+            "strength": 4,
+            "wealth": -2
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "body"
+        ],
+        "obligation": "Попробовать новый хват и темп",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "apprentice",
+          "step": "limitation"
+        }
+      },
+      {
+        "id": "reduce",
+        "label": "Сократить партию, сохранив привычный способ",
+        "effects": {
+          "resources": {
+            "wealth": -3,
+            "peace": 3
+          },
+          "qualities": {
+            "honesty": 1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "body"
+        ],
+        "obligation": "Сократить партию, сохранив привычный способ",
+        "decisionKinds": [
+          "pursue"
+        ],
+        "pursuesGoals": [
+          "order",
+          "workshop"
+        ],
+        "lineStep": {
+          "line": "apprentice",
+          "step": "limitation"
+        }
+      }
+    ],
+    "character": "alexey",
+    "textVariants": [
+      {
+        "id": "body.pace_shared",
+        "kind": "consequence",
+        "when": {
+          "fact": "body.pace",
+          "equals": "shared"
+        },
+        "text": "Алексей принёс подставку для кисти. Он заметил, как мастер держал руку после обжига. Теперь можно изменить привычный темп или объём партии."
+      },
+      {
+        "id": "body.pace_alone",
+        "kind": "consequence",
+        "when": {
+          "fact": "body.pace",
+          "equals": "alone"
+        },
+        "text": "Алексей принёс подставку для кисти. Он заметил, как мастер держал руку после обжига. Теперь можно изменить привычный темп или объём партии."
+      }
+    ]
+  },
+  {
+    "id": "c2_marta_window_result",
+    "type": "chain",
+    "chapter": 2,
+    "text": "Старая чаша снова стоит у окна. Разговор о ярмарке закончился, а мысль о встрече с Ильёй осталась. Можно записать её или оставить чашу напоминанием.",
+    "facets": [
+      "inner",
+      "relationships"
+    ],
+    "choices": [
+      {
+        "id": "write",
+        "label": "Записать, о чём хочется поговорить",
+        "effects": {
+          "resources": {
+            "peace": 4
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "obligation": "Записать, о чём хочется поговорить",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        }
+      },
+      {
+        "id": "carry",
+        "label": "Поставить чашу у двери",
+        "effects": {
+          "resources": {
+            "bonds": 2
+          },
+          "qualities": {
+            "courage": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "obligation": "Поставить чашу у двери",
+        "decisionKinds": [
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "limitation"
+        }
+      }
+    ],
+    "textVariants": [
+      {
+        "id": "inner.pause_kept",
+        "kind": "consequence",
+        "when": {
+          "fact": "inner.pause",
+          "equals": "kept"
+        },
+        "text": "Старая чаша снова стоит у окна. Разговор о ярмарке закончился, а мысль о встрече с Ильёй осталась. Можно записать её или оставить чашу напоминанием."
+      },
+      {
+        "id": "inner.pause_carried",
+        "kind": "consequence",
+        "when": {
+          "fact": "inner.pause",
+          "equals": "carried"
+        },
+        "text": "Старая чаша снова стоит у окна. Разговор о ярмарке закончился, а мысль о встрече с Ильёй осталась. Можно записать её или оставить чашу напоминанием."
+      }
+    ]
+  }
+]

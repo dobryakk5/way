@@ -1,0 +1,1321 @@
+{
+  "purpose": "Проверка доступности сцен и корректности свидетельств. Не измеряет психологическую стадию, осознание или эффект игры на человека.",
+  "contentVersion": "mvp-v2.3-alpha.1",
+  "contentHash": "41fd10bf0a335c78a6e21b14c9a7f03461b76526be952ad34b5c8902cceb05d3",
+  "cards": 117,
+  "days": 30,
+  "decisionsPerRun": 120,
+  "runs": 400,
+  "baselinePolicy": "greedy-resources",
+  "commonGoal": "order",
+  "method": "По 100 одинаковых seed для четырёх сценариев. Различаются только явно заданные выборы в линии Алексея. Остальные решения выбирает одна ресурсная политика. Возникающие ресурсные последствия могут менять свободные встречи. Метки считаются только в обязательных сценах Алексея после дня 10.",
+  "results": [
+    {
+      "id": "control",
+      "label": "Сохранение контроля в линии Алексея",
+      "seeds": 100,
+      "completed": 100,
+      "apprenticeExperimentTags": {
+        "min": 4,
+        "max": 4
+      },
+      "apprenticePerspectiveTags": {
+        "min": 2,
+        "max": 2
+      },
+      "contraryExperimentLabels": {
+        "min": 4,
+        "max": 4
+      },
+      "uniqueCardsAcrossSeeds": 107,
+      "witness": {
+        "seed": 1,
+        "history": [
+          {
+            "day": 17,
+            "slot": 0,
+            "cardId": "d17_0_apprentice",
+            "choiceId": "a",
+            "text": "Алексей просит провести один обжиг самому. Мастер может вмешиваться при каждой ошибке или заранее договориться о границе.",
+            "label": "Оставить все решения за собой",
+            "facets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "pursue",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Партия ровная. Алексей ждёт указаний даже там, где уже знает ответ."
+          },
+          {
+            "day": 17,
+            "slot": 3,
+            "cardId": "d17_3_apprentice",
+            "choiceId": "b",
+            "text": "Партия ровная. Алексей ждёт указаний даже там, где уже знает ответ. После обжига Алексей кладёт испорченные чаши отдельно от удачных. Можно разобрать причины, не отнимая следующую попытку.",
+            "label": "Вернуться к контролю мастера",
+            "facets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "experiment",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Следующую партию ведёт мастер. Алексей сохраняет записи и просит новый шанс позже."
+          },
+          {
+            "day": 22,
+            "slot": 0,
+            "cardId": "d22_0_apprentice",
+            "choiceId": "a",
+            "text": "Прошлую пробу герой отложил. Алексей рисует ручки для кухонных кружек. Они непривычны мастеру, но подходят большим ладоням повара.",
+            "label": "Заменить рисунок проверенным",
+            "facets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "pursue",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Ручки знакомые. Алексей просит сохранить свой рисунок для следующей пробы."
+          },
+          {
+            "day": 22,
+            "slot": 3,
+            "cardId": "d22_3_apprentice",
+            "choiceId": "b",
+            "text": "Ручки знакомые. Алексей просит сохранить свой рисунок для следующей пробы. Повар вернул пробную ручку с замечанием. Это исправление стоит времени, но не требует переделывать всю партию.",
+            "label": "Оставить исходный образец",
+            "facets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "experiment",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Серия начата по знакомому рисунку. Замечание осталось в записи."
+          },
+          {
+            "day": 25,
+            "slot": 0,
+            "cardId": "d25_0_apprentice",
+            "choiceId": "a",
+            "text": "Прошлую пробу герой отложил. В самостоятельной части Алексея обнаружилась трещина. Повар ждёт ответ от того, кто отвечает за эту часть.",
+            "label": "Ответить вместо Алексея",
+            "facets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "pursue",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Повар получает быстрый ответ. Алексей не участвует в договорённости о замене."
+          },
+          {
+            "day": 25,
+            "slot": 3,
+            "cardId": "d25_3_apprentice",
+            "choiceId": "b",
+            "text": "Повар получает быстрый ответ. Алексей не участвует в договорённости о замене. После разговора с поваром Алексей просит разобрать только трудный вопрос, а не всю работу заново.",
+            "label": "Проверить всё самому",
+            "facets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "experiment",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Мастер нашёл ещё один недочёт. Проверка снова стала его полной ответственностью."
+          },
+          {
+            "day": 28,
+            "slot": 0,
+            "cardId": "d28_0_apprentice",
+            "choiceId": "a",
+            "text": "Прошлую пробу герой отложил. Алексей предлагает вести маленький следующий заказ сам. Мастерская может заработать больше, если мастер всё сделает быстрее.",
+            "label": "Оставить заказ мастеру",
+            "facets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "pursue",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Выручка поступит быстрее. Алексей остаётся помощником на этой партии."
+          },
+          {
+            "day": 28,
+            "slot": 3,
+            "cardId": "d28_3_apprentice",
+            "choiceId": "b",
+            "text": "Выручка поступит быстрее. Алексей остаётся помощником на этой партии. У Алексея появились свои сроки или новые записи о работе мастера. Он предлагает назвать условие следующей самостоятельной попытки.",
+            "label": "Пока оставить ответственность мастеру",
+            "facets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "experiment",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Алексей не получил отдельный заказ, но получил объяснение ограничения."
+          }
+        ],
+        "nights": [
+          {
+            "day": 17,
+            "primary": "Следующую партию ведёт мастер. Алексей сохраняет записи и просит новый шанс позже.",
+            "note": "Сегодня герой попробовал другой способ. Что из этого он захочет сохранить в следующем деле?",
+            "resources": {
+              "wealth": 53,
+              "strength": 87,
+              "peace": 88,
+              "bonds": 94
+            }
+          },
+          {
+            "day": 22,
+            "primary": "Серия начата по знакомому рисунку. Замечание осталось в записи.",
+            "note": "Сегодня герой попробовал другой способ. Что из этого он захочет сохранить в следующем деле?",
+            "resources": {
+              "wealth": 46,
+              "strength": 94,
+              "peace": 98,
+              "bonds": 100
+            }
+          },
+          {
+            "day": 25,
+            "primary": "Мастер нашёл ещё один недочёт. Проверка снова стала его полной ответственностью.",
+            "note": "Сегодня герой попробовал другой способ. Что из этого он захочет сохранить в следующем деле?",
+            "resources": {
+              "wealth": 34,
+              "strength": 98,
+              "peace": 100,
+              "bonds": 100
+            }
+          },
+          {
+            "day": 28,
+            "primary": "Алексей не получил отдельный заказ, но получил объяснение ограничения.",
+            "note": "Сегодня герой попробовал другой способ. Что из этого он захочет сохранить в следующем деле?",
+            "resources": {
+              "wealth": 27,
+              "strength": 100,
+              "peace": 100,
+              "bonds": 100
+            }
+          }
+        ],
+        "journey": [
+          {
+            "kind": "pursue",
+            "count": 19,
+            "recurring": true
+          },
+          {
+            "kind": "cost",
+            "count": 61,
+            "recurring": true
+          },
+          {
+            "kind": "perspective",
+            "count": 23,
+            "recurring": true
+          },
+          {
+            "kind": "experiment",
+            "count": 20,
+            "recurring": true
+          },
+          {
+            "kind": "reconsider",
+            "count": 2,
+            "recurring": false
+          }
+        ],
+        "evidence": [
+          {
+            "day": 17,
+            "slot": 0,
+            "cardId": "d17_0_apprentice",
+            "choiceId": "a",
+            "line": "apprentice",
+            "step": "experiment_kept"
+          },
+          {
+            "day": 17,
+            "slot": 3,
+            "cardId": "d17_3_apprentice",
+            "choiceId": "b",
+            "line": "apprentice",
+            "step": "experiment_accepted"
+          },
+          {
+            "day": 22,
+            "slot": 0,
+            "cardId": "d22_0_apprentice",
+            "choiceId": "a",
+            "line": "apprentice",
+            "step": "return_kept"
+          },
+          {
+            "day": 22,
+            "slot": 3,
+            "cardId": "d22_3_apprentice",
+            "choiceId": "b",
+            "line": "apprentice",
+            "step": "return_accepted"
+          },
+          {
+            "day": 25,
+            "slot": 0,
+            "cardId": "d25_0_apprentice",
+            "choiceId": "a",
+            "line": "apprentice",
+            "step": "return_kept"
+          },
+          {
+            "day": 25,
+            "slot": 3,
+            "cardId": "d25_3_apprentice",
+            "choiceId": "b",
+            "line": "apprentice",
+            "step": "return_accepted"
+          },
+          {
+            "day": 28,
+            "slot": 0,
+            "cardId": "d28_0_apprentice",
+            "choiceId": "a",
+            "line": "apprentice",
+            "step": "return_kept"
+          },
+          {
+            "day": 28,
+            "slot": 3,
+            "cardId": "d28_3_apprentice",
+            "choiceId": "b",
+            "line": "apprentice",
+            "step": "return_accepted"
+          }
+        ],
+        "milestone": {
+          "day": 10,
+          "facts": {
+            "workshop.orderOutcome": "revised",
+            "alexey.path": "independent",
+            "market.arrangement": "absent",
+            "alexey.plan": "independent",
+            "workshop.preparation": "revised",
+            "timon.trust": "guarded",
+            "liaison.martaHelp": "other",
+            "market.window": "other",
+            "rest.beforeFair": "kept",
+            "ilya.meeting": "missed",
+            "body.pace": "unknown",
+            "inner.pause": "kept"
+          },
+          "text": "Мастерская пересогласовала заказ. На ярмарку приехала меньшая партия; заказчик знает, что изменилось, и оставшееся дело получило названные условия. Алексей представил чашу самостоятельно. Люди спрашивали его о глазури, и отвечать за свою работу он вышел сам. На этой ярмарке мастерская обошлась без собственного прилавка. Встречи и договорённости продолжились среди чужих лавок."
+        },
+        "resources": {
+          "wealth": 21,
+          "strength": 100,
+          "peace": 100,
+          "bonds": 100
+        }
+      }
+    },
+    {
+      "id": "try_repeat",
+      "label": "Проба с дня 17 и повторение в новом заказе",
+      "seeds": 100,
+      "completed": 100,
+      "apprenticeExperimentTags": {
+        "min": 4,
+        "max": 4
+      },
+      "apprenticePerspectiveTags": {
+        "min": 7,
+        "max": 7
+      },
+      "contraryExperimentLabels": {
+        "min": 0,
+        "max": 0
+      },
+      "uniqueCardsAcrossSeeds": 107,
+      "witness": {
+        "seed": 1,
+        "history": [
+          {
+            "day": 17,
+            "slot": 0,
+            "cardId": "d17_0_apprentice",
+            "choiceId": "b",
+            "text": "Алексей просит провести один обжиг самому. Мастер может вмешиваться при каждой ошибке или заранее договориться о границе.",
+            "label": "Отдать пробную партию с общей проверкой",
+            "facets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "experiment",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Две чаши испорчены. Алексей сам объясняет, где поднял температуру слишком быстро."
+          },
+          {
+            "day": 17,
+            "slot": 3,
+            "cardId": "d17_3_apprentice",
+            "choiceId": "a",
+            "text": "Две чаши испорчены. Алексей сам объясняет, где поднял температуру слишком быстро. После обжига Алексей кладёт испорченные чаши отдельно от удачных. Можно разобрать причины, не отнимая следующую попытку.",
+            "label": "Разобрать вместе",
+            "facets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "cost",
+              "perspective"
+            ],
+            "goalId": "order",
+            "response": "Алексей нашёл причину трещин и назвал следующую проверку."
+          },
+          {
+            "day": 22,
+            "slot": 0,
+            "cardId": "d22_0_apprentice",
+            "choiceId": "b",
+            "text": "Прошлую пробу герой уже пережил. Алексей рисует ручки для кухонных кружек. Они непривычны мастеру, но подходят большим ладоням повара.",
+            "label": "Проверить одну ручку у повара",
+            "facets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "experiment",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Повар находит слабое место. Алексей меняет изгиб до изготовления всей партии."
+          },
+          {
+            "day": 22,
+            "slot": 3,
+            "cardId": "d22_3_apprentice",
+            "choiceId": "a",
+            "text": "Повар находит слабое место. Алексей меняет изгиб до изготовления всей партии. Повар вернул пробную ручку с замечанием. Это исправление стоит времени, но не требует переделывать всю партию.",
+            "label": "Проверить замечание",
+            "facets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "cost",
+              "perspective"
+            ],
+            "goalId": "order",
+            "response": "Алексей исправил образец до серии."
+          },
+          {
+            "day": 25,
+            "slot": 0,
+            "cardId": "d25_0_apprentice",
+            "choiceId": "b",
+            "text": "Прошлую пробу герой уже пережил. В самостоятельной части Алексея обнаружилась трещина. Повар ждёт ответ от того, кто отвечает за эту часть.",
+            "label": "Подготовить ответ и дать Алексею говорить",
+            "facets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "experiment",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Алексей признаёт трещину и договаривается о замене. Мастер остаётся рядом на трудном вопросе."
+          },
+          {
+            "day": 25,
+            "slot": 3,
+            "cardId": "d25_3_apprentice",
+            "choiceId": "a",
+            "text": "Алексей признаёт трещину и договаривается о замене. Мастер остаётся рядом на трудном вопросе. После разговора с поваром Алексей просит разобрать только трудный вопрос, а не всю работу заново.",
+            "label": "Разобрать вопрос отдельно",
+            "facets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "cost",
+              "perspective"
+            ],
+            "goalId": "order",
+            "response": "Алексей сохранил своё решение и нашёл недостающий довод."
+          },
+          {
+            "day": 28,
+            "slot": 0,
+            "cardId": "d28_0_apprentice",
+            "choiceId": "b",
+            "text": "Прошлую пробу герой уже пережил. Алексей предлагает вести маленький следующий заказ сам. Мастерская может заработать больше, если мастер всё сделает быстрее.",
+            "label": "Дать Алексею заказ с точками проверки",
+            "facets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "experiment",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Доход придёт позже. Алексей сам называет сроки двух проверок."
+          },
+          {
+            "day": 28,
+            "slot": 3,
+            "cardId": "d28_3_apprentice",
+            "choiceId": "a",
+            "text": "Доход придёт позже. Алексей сам называет сроки двух проверок. У Алексея появились свои сроки или новые записи о работе мастера. Он предлагает назвать условие следующей самостоятельной попытки.",
+            "label": "Назвать точку общей проверки",
+            "facets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "cost",
+              "perspective"
+            ],
+            "goalId": "order",
+            "response": "Ученик знает, когда можно обратиться за помощью."
+          }
+        ],
+        "nights": [
+          {
+            "day": 17,
+            "primary": "Алексей нашёл причину трещин и назвал следующую проверку.",
+            "note": "Сегодня герой попробовал другой способ. Что из этого он захочет сохранить в следующем деле?",
+            "resources": {
+              "wealth": 53,
+              "strength": 87,
+              "peace": 88,
+              "bonds": 94
+            }
+          },
+          {
+            "day": 22,
+            "primary": "Алексей исправил образец до серии.",
+            "note": "Сегодня герой попробовал другой способ. Что из этого он захочет сохранить в следующем деле?",
+            "resources": {
+              "wealth": 46,
+              "strength": 94,
+              "peace": 98,
+              "bonds": 100
+            }
+          },
+          {
+            "day": 25,
+            "primary": "Алексей сохранил своё решение и нашёл недостающий довод.",
+            "note": "Сегодня герой попробовал другой способ. Что из этого он захочет сохранить в следующем деле?",
+            "resources": {
+              "wealth": 34,
+              "strength": 96,
+              "peace": 100,
+              "bonds": 100
+            }
+          },
+          {
+            "day": 28,
+            "primary": "Ученик знает, когда можно обратиться за помощью.",
+            "note": "Сегодня герой попробовал другой способ. Что из этого он захочет сохранить в следующем деле?",
+            "resources": {
+              "wealth": 27,
+              "strength": 96,
+              "peace": 100,
+              "bonds": 100
+            }
+          }
+        ],
+        "journey": [
+          {
+            "kind": "pursue",
+            "count": 14,
+            "recurring": true
+          },
+          {
+            "kind": "cost",
+            "count": 61,
+            "recurring": true
+          },
+          {
+            "kind": "perspective",
+            "count": 28,
+            "recurring": true
+          },
+          {
+            "kind": "experiment",
+            "count": 20,
+            "recurring": true
+          },
+          {
+            "kind": "reconsider",
+            "count": 2,
+            "recurring": false
+          }
+        ],
+        "evidence": [
+          {
+            "day": 17,
+            "slot": 0,
+            "cardId": "d17_0_apprentice",
+            "choiceId": "b",
+            "line": "apprentice",
+            "step": "experiment_accepted"
+          },
+          {
+            "day": 17,
+            "slot": 3,
+            "cardId": "d17_3_apprentice",
+            "choiceId": "a",
+            "line": "apprentice",
+            "step": "experiment_kept"
+          },
+          {
+            "day": 22,
+            "slot": 0,
+            "cardId": "d22_0_apprentice",
+            "choiceId": "b",
+            "line": "apprentice",
+            "step": "return_accepted"
+          },
+          {
+            "day": 22,
+            "slot": 3,
+            "cardId": "d22_3_apprentice",
+            "choiceId": "a",
+            "line": "apprentice",
+            "step": "return_kept"
+          },
+          {
+            "day": 25,
+            "slot": 0,
+            "cardId": "d25_0_apprentice",
+            "choiceId": "b",
+            "line": "apprentice",
+            "step": "return_accepted"
+          },
+          {
+            "day": 25,
+            "slot": 3,
+            "cardId": "d25_3_apprentice",
+            "choiceId": "a",
+            "line": "apprentice",
+            "step": "return_kept"
+          },
+          {
+            "day": 28,
+            "slot": 0,
+            "cardId": "d28_0_apprentice",
+            "choiceId": "b",
+            "line": "apprentice",
+            "step": "return_accepted"
+          },
+          {
+            "day": 28,
+            "slot": 3,
+            "cardId": "d28_3_apprentice",
+            "choiceId": "a",
+            "line": "apprentice",
+            "step": "return_kept"
+          }
+        ],
+        "milestone": {
+          "day": 10,
+          "facts": {
+            "workshop.orderOutcome": "revised",
+            "alexey.path": "independent",
+            "market.arrangement": "absent",
+            "alexey.plan": "independent",
+            "workshop.preparation": "revised",
+            "timon.trust": "guarded",
+            "liaison.martaHelp": "other",
+            "market.window": "other",
+            "rest.beforeFair": "kept",
+            "ilya.meeting": "missed",
+            "body.pace": "unknown",
+            "inner.pause": "kept"
+          },
+          "text": "Мастерская пересогласовала заказ. На ярмарку приехала меньшая партия; заказчик знает, что изменилось, и оставшееся дело получило названные условия. Алексей представил чашу самостоятельно. Люди спрашивали его о глазури, и отвечать за свою работу он вышел сам. На этой ярмарке мастерская обошлась без собственного прилавка. Встречи и договорённости продолжились среди чужих лавок."
+        },
+        "resources": {
+          "wealth": 21,
+          "strength": 100,
+          "peace": 100,
+          "bonds": 100
+        }
+      }
+    },
+    {
+      "id": "try_revert",
+      "label": "Проба в день 17 и возвращение к контролю с дня 22",
+      "seeds": 100,
+      "completed": 100,
+      "apprenticeExperimentTags": {
+        "min": 4,
+        "max": 4
+      },
+      "apprenticePerspectiveTags": {
+        "min": 4,
+        "max": 4
+      },
+      "contraryExperimentLabels": {
+        "min": 3,
+        "max": 3
+      },
+      "uniqueCardsAcrossSeeds": 107,
+      "witness": {
+        "seed": 1,
+        "history": [
+          {
+            "day": 17,
+            "slot": 0,
+            "cardId": "d17_0_apprentice",
+            "choiceId": "b",
+            "text": "Алексей просит провести один обжиг самому. Мастер может вмешиваться при каждой ошибке или заранее договориться о границе.",
+            "label": "Отдать пробную партию с общей проверкой",
+            "facets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "experiment",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Две чаши испорчены. Алексей сам объясняет, где поднял температуру слишком быстро."
+          },
+          {
+            "day": 17,
+            "slot": 3,
+            "cardId": "d17_3_apprentice",
+            "choiceId": "a",
+            "text": "Две чаши испорчены. Алексей сам объясняет, где поднял температуру слишком быстро. После обжига Алексей кладёт испорченные чаши отдельно от удачных. Можно разобрать причины, не отнимая следующую попытку.",
+            "label": "Разобрать вместе",
+            "facets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "cost",
+              "perspective"
+            ],
+            "goalId": "order",
+            "response": "Алексей нашёл причину трещин и назвал следующую проверку."
+          },
+          {
+            "day": 22,
+            "slot": 0,
+            "cardId": "d22_0_apprentice",
+            "choiceId": "a",
+            "text": "Прошлую пробу герой уже пережил. Алексей рисует ручки для кухонных кружек. Они непривычны мастеру, но подходят большим ладоням повара.",
+            "label": "Заменить рисунок проверенным",
+            "facets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "pursue",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Ручки знакомые. Алексей просит сохранить свой рисунок для следующей пробы."
+          },
+          {
+            "day": 22,
+            "slot": 3,
+            "cardId": "d22_3_apprentice",
+            "choiceId": "b",
+            "text": "Ручки знакомые. Алексей просит сохранить свой рисунок для следующей пробы. Повар вернул пробную ручку с замечанием. Это исправление стоит времени, но не требует переделывать всю партию.",
+            "label": "Оставить исходный образец",
+            "facets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "experiment",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Серия начата по знакомому рисунку. Замечание осталось в записи."
+          },
+          {
+            "day": 25,
+            "slot": 0,
+            "cardId": "d25_0_apprentice",
+            "choiceId": "a",
+            "text": "Прошлую пробу герой уже пережил. В самостоятельной части Алексея обнаружилась трещина. Повар ждёт ответ от того, кто отвечает за эту часть.",
+            "label": "Ответить вместо Алексея",
+            "facets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "pursue",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Повар получает быстрый ответ. Алексей не участвует в договорённости о замене."
+          },
+          {
+            "day": 25,
+            "slot": 3,
+            "cardId": "d25_3_apprentice",
+            "choiceId": "b",
+            "text": "Повар получает быстрый ответ. Алексей не участвует в договорённости о замене. После разговора с поваром Алексей просит разобрать только трудный вопрос, а не всю работу заново.",
+            "label": "Проверить всё самому",
+            "facets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "experiment",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Мастер нашёл ещё один недочёт. Проверка снова стала его полной ответственностью."
+          },
+          {
+            "day": 28,
+            "slot": 0,
+            "cardId": "d28_0_apprentice",
+            "choiceId": "a",
+            "text": "Прошлую пробу герой уже пережил. Алексей предлагает вести маленький следующий заказ сам. Мастерская может заработать больше, если мастер всё сделает быстрее.",
+            "label": "Оставить заказ мастеру",
+            "facets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "pursue",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Выручка поступит быстрее. Алексей остаётся помощником на этой партии."
+          },
+          {
+            "day": 28,
+            "slot": 3,
+            "cardId": "d28_3_apprentice",
+            "choiceId": "b",
+            "text": "Выручка поступит быстрее. Алексей остаётся помощником на этой партии. У Алексея появились свои сроки или новые записи о работе мастера. Он предлагает назвать условие следующей самостоятельной попытки.",
+            "label": "Пока оставить ответственность мастеру",
+            "facets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "experiment",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Алексей не получил отдельный заказ, но получил объяснение ограничения."
+          }
+        ],
+        "nights": [
+          {
+            "day": 17,
+            "primary": "Алексей нашёл причину трещин и назвал следующую проверку.",
+            "note": "Сегодня герой попробовал другой способ. Что из этого он захочет сохранить в следующем деле?",
+            "resources": {
+              "wealth": 53,
+              "strength": 87,
+              "peace": 88,
+              "bonds": 94
+            }
+          },
+          {
+            "day": 22,
+            "primary": "Серия начата по знакомому рисунку. Замечание осталось в записи.",
+            "note": "Сегодня герой попробовал другой способ. Что из этого он захочет сохранить в следующем деле?",
+            "resources": {
+              "wealth": 46,
+              "strength": 94,
+              "peace": 98,
+              "bonds": 100
+            }
+          },
+          {
+            "day": 25,
+            "primary": "Мастер нашёл ещё один недочёт. Проверка снова стала его полной ответственностью.",
+            "note": "Сегодня герой попробовал другой способ. Что из этого он захочет сохранить в следующем деле?",
+            "resources": {
+              "wealth": 34,
+              "strength": 98,
+              "peace": 100,
+              "bonds": 100
+            }
+          },
+          {
+            "day": 28,
+            "primary": "Алексей не получил отдельный заказ, но получил объяснение ограничения.",
+            "note": "Сегодня герой попробовал другой способ. Что из этого он захочет сохранить в следующем деле?",
+            "resources": {
+              "wealth": 27,
+              "strength": 100,
+              "peace": 100,
+              "bonds": 100
+            }
+          }
+        ],
+        "journey": [
+          {
+            "kind": "pursue",
+            "count": 17,
+            "recurring": true
+          },
+          {
+            "kind": "cost",
+            "count": 61,
+            "recurring": true
+          },
+          {
+            "kind": "perspective",
+            "count": 25,
+            "recurring": true
+          },
+          {
+            "kind": "experiment",
+            "count": 20,
+            "recurring": true
+          },
+          {
+            "kind": "reconsider",
+            "count": 2,
+            "recurring": false
+          }
+        ],
+        "evidence": [
+          {
+            "day": 17,
+            "slot": 0,
+            "cardId": "d17_0_apprentice",
+            "choiceId": "b",
+            "line": "apprentice",
+            "step": "experiment_accepted"
+          },
+          {
+            "day": 17,
+            "slot": 3,
+            "cardId": "d17_3_apprentice",
+            "choiceId": "a",
+            "line": "apprentice",
+            "step": "experiment_kept"
+          },
+          {
+            "day": 22,
+            "slot": 0,
+            "cardId": "d22_0_apprentice",
+            "choiceId": "a",
+            "line": "apprentice",
+            "step": "return_kept"
+          },
+          {
+            "day": 22,
+            "slot": 3,
+            "cardId": "d22_3_apprentice",
+            "choiceId": "b",
+            "line": "apprentice",
+            "step": "return_accepted"
+          },
+          {
+            "day": 25,
+            "slot": 0,
+            "cardId": "d25_0_apprentice",
+            "choiceId": "a",
+            "line": "apprentice",
+            "step": "return_kept"
+          },
+          {
+            "day": 25,
+            "slot": 3,
+            "cardId": "d25_3_apprentice",
+            "choiceId": "b",
+            "line": "apprentice",
+            "step": "return_accepted"
+          },
+          {
+            "day": 28,
+            "slot": 0,
+            "cardId": "d28_0_apprentice",
+            "choiceId": "a",
+            "line": "apprentice",
+            "step": "return_kept"
+          },
+          {
+            "day": 28,
+            "slot": 3,
+            "cardId": "d28_3_apprentice",
+            "choiceId": "b",
+            "line": "apprentice",
+            "step": "return_accepted"
+          }
+        ],
+        "milestone": {
+          "day": 10,
+          "facts": {
+            "workshop.orderOutcome": "revised",
+            "alexey.path": "independent",
+            "market.arrangement": "absent",
+            "alexey.plan": "independent",
+            "workshop.preparation": "revised",
+            "timon.trust": "guarded",
+            "liaison.martaHelp": "other",
+            "market.window": "other",
+            "rest.beforeFair": "kept",
+            "ilya.meeting": "missed",
+            "body.pace": "unknown",
+            "inner.pause": "kept"
+          },
+          "text": "Мастерская пересогласовала заказ. На ярмарку приехала меньшая партия; заказчик знает, что изменилось, и оставшееся дело получило названные условия. Алексей представил чашу самостоятельно. Люди спрашивали его о глазури, и отвечать за свою работу он вышел сам. На этой ярмарке мастерская обошлась без собственного прилавка. Встречи и договорённости продолжились среди чужих лавок."
+        },
+        "resources": {
+          "wealth": 21,
+          "strength": 100,
+          "peace": 100,
+          "bonds": 100
+        }
+      }
+    },
+    {
+      "id": "examine_no_trial",
+      "label": "Обсуждение чужого критерия без самостоятельной партии",
+      "seeds": 100,
+      "completed": 100,
+      "apprenticeExperimentTags": {
+        "min": 4,
+        "max": 4
+      },
+      "apprenticePerspectiveTags": {
+        "min": 4,
+        "max": 4
+      },
+      "contraryExperimentLabels": {
+        "min": 4,
+        "max": 4
+      },
+      "uniqueCardsAcrossSeeds": 108,
+      "witness": {
+        "seed": 1,
+        "history": [
+          {
+            "day": 17,
+            "slot": 0,
+            "cardId": "d17_0_apprentice",
+            "choiceId": "a",
+            "text": "Алексей просит провести один обжиг самому. Мастер может вмешиваться при каждой ошибке или заранее договориться о границе.",
+            "label": "Оставить все решения за собой",
+            "facets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "pursue",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Партия ровная. Алексей ждёт указаний даже там, где уже знает ответ."
+          },
+          {
+            "day": 17,
+            "slot": 3,
+            "cardId": "d17_3_apprentice",
+            "choiceId": "b",
+            "text": "Партия ровная. Алексей ждёт указаний даже там, где уже знает ответ. После обжига Алексей кладёт испорченные чаши отдельно от удачных. Можно разобрать причины, не отнимая следующую попытку.",
+            "label": "Вернуться к контролю мастера",
+            "facets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "experiment",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Следующую партию ведёт мастер. Алексей сохраняет записи и просит новый шанс позже."
+          },
+          {
+            "day": 22,
+            "slot": 0,
+            "cardId": "d22_0_apprentice",
+            "choiceId": "a",
+            "text": "Прошлую пробу герой отложил. Алексей рисует ручки для кухонных кружек. Они непривычны мастеру, но подходят большим ладоням повара.",
+            "label": "Заменить рисунок проверенным",
+            "facets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "pursue",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Ручки знакомые. Алексей просит сохранить свой рисунок для следующей пробы."
+          },
+          {
+            "day": 22,
+            "slot": 3,
+            "cardId": "d22_3_apprentice",
+            "choiceId": "b",
+            "text": "Ручки знакомые. Алексей просит сохранить свой рисунок для следующей пробы. Повар вернул пробную ручку с замечанием. Это исправление стоит времени, но не требует переделывать всю партию.",
+            "label": "Оставить исходный образец",
+            "facets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "experiment",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Серия начата по знакомому рисунку. Замечание осталось в записи."
+          },
+          {
+            "day": 25,
+            "slot": 0,
+            "cardId": "d25_0_apprentice",
+            "choiceId": "a",
+            "text": "Прошлую пробу герой отложил. В самостоятельной части Алексея обнаружилась трещина. Повар ждёт ответ от того, кто отвечает за эту часть.",
+            "label": "Ответить вместо Алексея",
+            "facets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "pursue",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Повар получает быстрый ответ. Алексей не участвует в договорённости о замене."
+          },
+          {
+            "day": 25,
+            "slot": 3,
+            "cardId": "d25_3_apprentice",
+            "choiceId": "b",
+            "text": "Повар получает быстрый ответ. Алексей не участвует в договорённости о замене. После разговора с поваром Алексей просит разобрать только трудный вопрос, а не всю работу заново.",
+            "label": "Проверить всё самому",
+            "facets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "experiment",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Мастер нашёл ещё один недочёт. Проверка снова стала его полной ответственностью."
+          },
+          {
+            "day": 28,
+            "slot": 0,
+            "cardId": "d28_0_apprentice",
+            "choiceId": "a",
+            "text": "Прошлую пробу герой отложил. Алексей предлагает вести маленький следующий заказ сам. Мастерская может заработать больше, если мастер всё сделает быстрее.",
+            "label": "Оставить заказ мастеру",
+            "facets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "pursue",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Выручка поступит быстрее. Алексей остаётся помощником на этой партии."
+          },
+          {
+            "day": 28,
+            "slot": 3,
+            "cardId": "d28_3_apprentice",
+            "choiceId": "b",
+            "text": "Выручка поступит быстрее. Алексей остаётся помощником на этой партии. У Алексея появились свои сроки или новые записи о работе мастера. Он предлагает назвать условие следующей самостоятельной попытки.",
+            "label": "Пока оставить ответственность мастеру",
+            "facets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "experiment",
+              "cost"
+            ],
+            "goalId": "order",
+            "response": "Алексей не получил отдельный заказ, но получил объяснение ограничения."
+          }
+        ],
+        "nights": [
+          {
+            "day": 17,
+            "primary": "Следующую партию ведёт мастер. Алексей сохраняет записи и просит новый шанс позже.",
+            "note": "Сегодня герой попробовал другой способ. Что из этого он захочет сохранить в следующем деле?",
+            "resources": {
+              "wealth": 48,
+              "strength": 92,
+              "peace": 88,
+              "bonds": 96
+            }
+          },
+          {
+            "day": 22,
+            "primary": "Серия начата по знакомому рисунку. Замечание осталось в записи.",
+            "note": "Сегодня герой попробовал другой способ. Что из этого он захочет сохранить в следующем деле?",
+            "resources": {
+              "wealth": 41,
+              "strength": 98,
+              "peace": 98,
+              "bonds": 100
+            }
+          },
+          {
+            "day": 25,
+            "primary": "Мастер нашёл ещё один недочёт. Проверка снова стала его полной ответственностью.",
+            "note": "Сегодня герой попробовал другой способ. Что из этого он захочет сохранить в следующем деле?",
+            "resources": {
+              "wealth": 29,
+              "strength": 98,
+              "peace": 100,
+              "bonds": 100
+            }
+          },
+          {
+            "day": 28,
+            "primary": "Алексей не получил отдельный заказ, но получил объяснение ограничения.",
+            "note": "Сегодня герой попробовал другой способ. Что из этого он захочет сохранить в следующем деле?",
+            "resources": {
+              "wealth": 22,
+              "strength": 100,
+              "peace": 100,
+              "bonds": 100
+            }
+          }
+        ],
+        "journey": [
+          {
+            "kind": "pursue",
+            "count": 17,
+            "recurring": true
+          },
+          {
+            "kind": "cost",
+            "count": 60,
+            "recurring": true
+          },
+          {
+            "kind": "perspective",
+            "count": 25,
+            "recurring": true
+          },
+          {
+            "kind": "experiment",
+            "count": 20,
+            "recurring": true
+          },
+          {
+            "kind": "reconsider",
+            "count": 2,
+            "recurring": false
+          }
+        ],
+        "evidence": [
+          {
+            "day": 17,
+            "slot": 0,
+            "cardId": "d17_0_apprentice",
+            "choiceId": "a",
+            "line": "apprentice",
+            "step": "experiment_kept"
+          },
+          {
+            "day": 17,
+            "slot": 3,
+            "cardId": "d17_3_apprentice",
+            "choiceId": "b",
+            "line": "apprentice",
+            "step": "experiment_accepted"
+          },
+          {
+            "day": 22,
+            "slot": 0,
+            "cardId": "d22_0_apprentice",
+            "choiceId": "a",
+            "line": "apprentice",
+            "step": "return_kept"
+          },
+          {
+            "day": 22,
+            "slot": 3,
+            "cardId": "d22_3_apprentice",
+            "choiceId": "b",
+            "line": "apprentice",
+            "step": "return_accepted"
+          },
+          {
+            "day": 25,
+            "slot": 0,
+            "cardId": "d25_0_apprentice",
+            "choiceId": "a",
+            "line": "apprentice",
+            "step": "return_kept"
+          },
+          {
+            "day": 25,
+            "slot": 3,
+            "cardId": "d25_3_apprentice",
+            "choiceId": "b",
+            "line": "apprentice",
+            "step": "return_accepted"
+          },
+          {
+            "day": 28,
+            "slot": 0,
+            "cardId": "d28_0_apprentice",
+            "choiceId": "a",
+            "line": "apprentice",
+            "step": "return_kept"
+          },
+          {
+            "day": 28,
+            "slot": 3,
+            "cardId": "d28_3_apprentice",
+            "choiceId": "b",
+            "line": "apprentice",
+            "step": "return_accepted"
+          }
+        ],
+        "milestone": {
+          "day": 10,
+          "facts": {
+            "workshop.orderOutcome": "revised",
+            "alexey.path": "independent",
+            "market.arrangement": "absent",
+            "alexey.plan": "independent",
+            "workshop.preparation": "revised",
+            "timon.trust": "guarded",
+            "liaison.martaHelp": "other",
+            "market.window": "other",
+            "rest.beforeFair": "kept",
+            "ilya.meeting": "missed",
+            "body.pace": "unknown",
+            "inner.pause": "kept"
+          },
+          "text": "Мастерская пересогласовала заказ. На ярмарку приехала меньшая партия; заказчик знает, что изменилось, и оставшееся дело получило названные условия. Алексей представил чашу самостоятельно. Люди спрашивали его о глазури, и отвечать за свою работу он вышел сам. На этой ярмарке мастерская обошлась без собственного прилавка. Встречи и договорённости продолжились среди чужих лавок."
+        },
+        "resources": {
+          "wealth": 16,
+          "strength": 100,
+          "peace": 100,
+          "bonds": 100
+        }
+      }
+    }
+  ],
+  "mirroredEncounters": [
+    "enc_4_0",
+    "enc_4_1",
+    "enc_4_2",
+    "enc_4_3",
+    "enc_4_4",
+    "enc_4_5",
+    "enc_4_6",
+    "enc_4_7",
+    "enc_4_8",
+    "enc_4_9",
+    "enc_4_10",
+    "enc_4_11"
+  ],
+  "errors": []
+}

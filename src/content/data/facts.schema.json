@@ -1,0 +1,116 @@
+{
+  "workshop.orderOutcome": {
+    "values": [
+      "unresolved",
+      "fulfilled",
+      "revised",
+      "deferred"
+    ],
+    "initial": "unresolved",
+    "finalValues": [
+      "fulfilled",
+      "revised",
+      "deferred"
+    ]
+  },
+  "alexey.path": {
+    "values": [
+      "undecided",
+      "together",
+      "independent",
+      "paused"
+    ],
+    "initial": "undecided",
+    "finalValues": [
+      "together",
+      "independent",
+      "paused"
+    ]
+  },
+  "market.arrangement": {
+    "values": [
+      "undecided",
+      "shared",
+      "solo",
+      "absent"
+    ],
+    "initial": "undecided",
+    "finalValues": [
+      "shared",
+      "solo",
+      "absent"
+    ]
+  },
+  "alexey.plan": {
+    "values": [
+      "undecided",
+      "together",
+      "independent"
+    ],
+    "initial": "undecided"
+  },
+  "workshop.preparation": {
+    "values": [
+      "unknown",
+      "ready",
+      "revised"
+    ],
+    "initial": "unknown"
+  },
+  "timon.trust": {
+    "values": [
+      "unknown",
+      "open",
+      "guarded"
+    ],
+    "initial": "unknown"
+  },
+  "liaison.martaHelp": {
+    "values": [
+      "waiting",
+      "hero",
+      "other"
+    ],
+    "initial": "waiting"
+  },
+  "market.window": {
+    "values": [
+      "waiting",
+      "reserved",
+      "other"
+    ],
+    "initial": "waiting"
+  },
+  "rest.beforeFair": {
+    "values": [
+      "waiting",
+      "kept",
+      "missed"
+    ],
+    "initial": "waiting"
+  },
+  "ilya.meeting": {
+    "values": [
+      "waiting",
+      "talked",
+      "missed"
+    ],
+    "initial": "waiting"
+  },
+  "body.pace": {
+    "values": [
+      "unknown",
+      "shared",
+      "alone"
+    ],
+    "initial": "unknown"
+  },
+  "inner.pause": {
+    "values": [
+      "unknown",
+      "kept",
+      "carried"
+    ],
+    "initial": "unknown"
+  }
+}

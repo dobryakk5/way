@@ -1,0 +1,914 @@
+[
+  {
+    "id": "dev_retry_1",
+    "chapter": 4,
+    "type": "situation",
+    "facets": [
+      "work",
+      "relationships"
+    ],
+    "text": "Алексей предлагает другой способ упаковки: он дольше, зато чаши не трутся ручками. Заказчик согласен сравнить две коробки до отправки.",
+    "choices": [
+      {
+        "id": "a",
+        "label": "Использовать проверенный порядок",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "wealth": 1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "response": "Герой сохранил привычный порядок. Алексей записал предложение для другого заказа."
+      },
+      {
+        "id": "b",
+        "label": "Согласовать ограниченную пробу",
+        "effects": {
+          "resources": {
+            "strength": -2,
+            "wealth": -1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "decisionKinds": [
+          "experiment",
+          "cost"
+        ],
+        "response": "Проба ограничена одной частью работы; её результат ещё предстоит увидеть.",
+        "developmentEvents": [
+          {
+            "eventId": "dev_retry_1-trial",
+            "arcId": "expert-achiever",
+            "kind": "trial",
+            "contextId": "packing"
+          },
+          {
+            "eventId": "dev_retry_1-transfer",
+            "arcId": "expert-achiever",
+            "kind": "transfer",
+            "contextId": "packing"
+          },
+          {
+            "eventId": "dev_retry_1-pressure",
+            "arcId": "expert-achiever",
+            "kind": "pressure",
+            "contextId": "packing"
+          }
+        ]
+      }
+    ],
+    "once": true,
+    "requires": {
+      "all": [
+        {
+          "dayGte": 23
+        },
+        {
+          "dayLte": 30
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "expert"
+      ],
+      "arcId": "expert-achiever",
+      "presentedEvents": [
+        {
+          "eventId": "dev_retry_1-limit",
+          "arcId": "expert-achiever",
+          "kind": "limitation",
+          "contextId": "packing"
+        }
+      ]
+    }
+  },
+  {
+    "id": "dev_retry_1_review",
+    "chapter": 4,
+    "type": "situation",
+    "facets": [
+      "work",
+      "relationships"
+    ],
+    "text": "Время разобрать работу и решить, что сохранить для следующего заказа.",
+    "choices": [
+      {
+        "id": "a",
+        "label": "Сверить результат и сохранить точки проверки",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "wealth": 1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost",
+          "perspective"
+        ],
+        "response": "Герой и Алексей записали, где нужна общая проверка, а где ученик может действовать сам.",
+        "developmentEvents": [
+          {
+            "eventId": "dev_retry_1-review",
+            "arcId": "expert-achiever",
+            "kind": "review",
+            "contextId": "packing",
+            "when": {
+              "chose": {
+                "card": "dev_retry_1",
+                "choice": "b"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "b",
+        "label": "Вернуть все решения мастеру",
+        "effects": {
+          "resources": {
+            "strength": -2,
+            "wealth": -1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "response": "Мастер снова отвечает за каждое решение; проба осталась опытом этого заказа.",
+        "developmentEvents": [
+          {
+            "eventId": "dev_retry_1-withdraw",
+            "arcId": "expert-achiever",
+            "kind": "withdrawal",
+            "contextId": "packing",
+            "when": {
+              "chose": {
+                "card": "dev_retry_1",
+                "choice": "b"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "once": true,
+    "requires": {
+      "all": [
+        {
+          "dayGte": 23
+        },
+        {
+          "shown": "dev_retry_1"
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "expert"
+      ],
+      "arcId": "expert-achiever",
+      "presentedEvents": [
+        {
+          "eventId": "dev_retry_1-result",
+          "arcId": "expert-achiever",
+          "kind": "consequence",
+          "contextId": "packing",
+          "when": {
+            "chose": {
+              "card": "dev_retry_1",
+              "choice": "b"
+            }
+          }
+        }
+      ]
+    },
+    "textVariants": [
+      {
+        "id": "dev_retry_1_result",
+        "when": {
+          "chose": {
+            "card": "dev_retry_1",
+            "choice": "b"
+          }
+        },
+        "kind": "consequence",
+        "text": "Обе коробки доехали. В быстрой упаковке одна ручка потёрлась; в новой всё цело, но сборка заняла лишний час. Что из этого оставить в следующей работе?"
+      },
+      {
+        "id": "dev_retry_1_no_trial",
+        "when": {
+          "not": {
+            "chose": {
+              "card": "dev_retry_1",
+              "choice": "b"
+            }
+          }
+        },
+        "kind": "consequence",
+        "text": "Партия сделана привычным способом. Алексей просит объяснить, какое наблюдение позволит доверить ему часть следующего заказа."
+      }
+    ]
+  },
+  {
+    "id": "dev_retry_2",
+    "chapter": 4,
+    "type": "situation",
+    "facets": [
+      "work",
+      "relationships"
+    ],
+    "text": "Для срочной доставки Алексей предлагает принять часть заказа у повара. Мастер может проверить каждую чашу сам или договориться о трёх признаках качества.",
+    "choices": [
+      {
+        "id": "a",
+        "label": "Использовать проверенный порядок",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "wealth": 1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "response": "Герой сохранил привычный порядок. Алексей записал предложение для другого заказа."
+      },
+      {
+        "id": "b",
+        "label": "Согласовать ограниченную пробу",
+        "effects": {
+          "resources": {
+            "strength": -2,
+            "wealth": -1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "decisionKinds": [
+          "experiment",
+          "cost"
+        ],
+        "response": "Проба ограничена одной частью работы; её результат ещё предстоит увидеть.",
+        "developmentEvents": [
+          {
+            "eventId": "dev_retry_2-trial",
+            "arcId": "expert-achiever",
+            "kind": "trial",
+            "contextId": "delivery"
+          },
+          {
+            "eventId": "dev_retry_2-transfer",
+            "arcId": "expert-achiever",
+            "kind": "transfer",
+            "contextId": "delivery"
+          },
+          {
+            "eventId": "dev_retry_2-pressure",
+            "arcId": "expert-achiever",
+            "kind": "pressure",
+            "contextId": "delivery"
+          }
+        ]
+      }
+    ],
+    "once": true,
+    "requires": {
+      "all": [
+        {
+          "dayGte": 26
+        },
+        {
+          "dayLte": 30
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "expert"
+      ],
+      "arcId": "expert-achiever",
+      "presentedEvents": [
+        {
+          "eventId": "dev_retry_2-limit",
+          "arcId": "expert-achiever",
+          "kind": "limitation",
+          "contextId": "delivery"
+        }
+      ]
+    }
+  },
+  {
+    "id": "dev_retry_2_review",
+    "chapter": 4,
+    "type": "situation",
+    "facets": [
+      "work",
+      "relationships"
+    ],
+    "text": "Время разобрать работу и решить, что сохранить для следующего заказа.",
+    "choices": [
+      {
+        "id": "a",
+        "label": "Сверить результат и сохранить точки проверки",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "wealth": 1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost",
+          "perspective"
+        ],
+        "response": "Герой и Алексей записали, где нужна общая проверка, а где ученик может действовать сам.",
+        "developmentEvents": [
+          {
+            "eventId": "dev_retry_2-review",
+            "arcId": "expert-achiever",
+            "kind": "review",
+            "contextId": "delivery",
+            "when": {
+              "chose": {
+                "card": "dev_retry_2",
+                "choice": "b"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "b",
+        "label": "Вернуть все решения мастеру",
+        "effects": {
+          "resources": {
+            "strength": -2,
+            "wealth": -1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "response": "Мастер снова отвечает за каждое решение; проба осталась опытом этого заказа.",
+        "developmentEvents": [
+          {
+            "eventId": "dev_retry_2-withdraw",
+            "arcId": "expert-achiever",
+            "kind": "withdrawal",
+            "contextId": "delivery",
+            "when": {
+              "chose": {
+                "card": "dev_retry_2",
+                "choice": "b"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "once": true,
+    "requires": {
+      "all": [
+        {
+          "dayGte": 26
+        },
+        {
+          "shown": "dev_retry_2"
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "expert"
+      ],
+      "arcId": "expert-achiever",
+      "presentedEvents": [
+        {
+          "eventId": "dev_retry_2-result",
+          "arcId": "expert-achiever",
+          "kind": "consequence",
+          "contextId": "delivery",
+          "when": {
+            "chose": {
+              "card": "dev_retry_2",
+              "choice": "b"
+            }
+          }
+        }
+      ]
+    },
+    "textVariants": [
+      {
+        "id": "dev_retry_2_result",
+        "when": {
+          "chose": {
+            "card": "dev_retry_2",
+            "choice": "b"
+          }
+        },
+        "kind": "consequence",
+        "text": "Повар принял чаши по трём признакам. Одну Алексей заменил сам. Проверка мастера потребовалась только для спорной глазури. Что из этого оставить в следующей работе?"
+      },
+      {
+        "id": "dev_retry_2_no_trial",
+        "when": {
+          "not": {
+            "chose": {
+              "card": "dev_retry_2",
+              "choice": "b"
+            }
+          }
+        },
+        "kind": "consequence",
+        "text": "Партия сделана привычным способом. Алексей просит объяснить, какое наблюдение позволит доверить ему часть следующего заказа."
+      }
+    ]
+  },
+  {
+    "id": "dev_retry_3",
+    "chapter": 4,
+    "type": "situation",
+    "facets": [
+      "work",
+      "relationships"
+    ],
+    "text": "Следующую партию можно начать сразу. Алексей предлагает сперва согласовать с покупателем срок и критерии приёмки; сегодняшняя выручка придёт позже.",
+    "choices": [
+      {
+        "id": "a",
+        "label": "Использовать проверенный порядок",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "wealth": 1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "response": "Герой сохранил привычный порядок. Алексей записал предложение для другого заказа."
+      },
+      {
+        "id": "b",
+        "label": "Согласовать ограниченную пробу",
+        "effects": {
+          "resources": {
+            "strength": -2,
+            "wealth": -1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "decisionKinds": [
+          "experiment",
+          "cost"
+        ],
+        "response": "Проба ограничена одной частью работы; её результат ещё предстоит увидеть.",
+        "developmentEvents": [
+          {
+            "eventId": "dev_retry_3-trial",
+            "arcId": "expert-achiever",
+            "kind": "trial",
+            "contextId": "planning"
+          },
+          {
+            "eventId": "dev_retry_3-transfer",
+            "arcId": "expert-achiever",
+            "kind": "transfer",
+            "contextId": "planning"
+          },
+          {
+            "eventId": "dev_retry_3-pressure",
+            "arcId": "expert-achiever",
+            "kind": "pressure",
+            "contextId": "planning"
+          }
+        ]
+      }
+    ],
+    "once": true,
+    "requires": {
+      "all": [
+        {
+          "dayGte": 29
+        },
+        {
+          "dayLte": 30
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "expert"
+      ],
+      "arcId": "expert-achiever",
+      "presentedEvents": [
+        {
+          "eventId": "dev_retry_3-limit",
+          "arcId": "expert-achiever",
+          "kind": "limitation",
+          "contextId": "planning"
+        }
+      ]
+    }
+  },
+  {
+    "id": "dev_retry_3_review",
+    "chapter": 4,
+    "type": "situation",
+    "facets": [
+      "work",
+      "relationships"
+    ],
+    "text": "Время разобрать работу и решить, что сохранить для следующего заказа.",
+    "choices": [
+      {
+        "id": "a",
+        "label": "Сверить результат и сохранить точки проверки",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "wealth": 1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost",
+          "perspective"
+        ],
+        "response": "Герой и Алексей записали, где нужна общая проверка, а где ученик может действовать сам.",
+        "developmentEvents": [
+          {
+            "eventId": "dev_retry_3-review",
+            "arcId": "expert-achiever",
+            "kind": "review",
+            "contextId": "planning",
+            "when": {
+              "chose": {
+                "card": "dev_retry_3",
+                "choice": "b"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "b",
+        "label": "Вернуть все решения мастеру",
+        "effects": {
+          "resources": {
+            "strength": -2,
+            "wealth": -1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "response": "Мастер снова отвечает за каждое решение; проба осталась опытом этого заказа.",
+        "developmentEvents": [
+          {
+            "eventId": "dev_retry_3-withdraw",
+            "arcId": "expert-achiever",
+            "kind": "withdrawal",
+            "contextId": "planning",
+            "when": {
+              "chose": {
+                "card": "dev_retry_3",
+                "choice": "b"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "once": true,
+    "requires": {
+      "all": [
+        {
+          "dayGte": 29
+        },
+        {
+          "shown": "dev_retry_3"
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "expert"
+      ],
+      "arcId": "expert-achiever",
+      "presentedEvents": [
+        {
+          "eventId": "dev_retry_3-result",
+          "arcId": "expert-achiever",
+          "kind": "consequence",
+          "contextId": "planning",
+          "when": {
+            "chose": {
+              "card": "dev_retry_3",
+              "choice": "b"
+            }
+          }
+        }
+      ]
+    },
+    "textVariants": [
+      {
+        "id": "dev_retry_3_result",
+        "when": {
+          "chose": {
+            "card": "dev_retry_3",
+            "choice": "b"
+          }
+        },
+        "kind": "consequence",
+        "text": "Покупатель согласовал срок после двух проверок. Выручка сдвинулась, но Алексей уже распределил работу и назвал риск по обжигу. Что из этого оставить в следующей работе?"
+      },
+      {
+        "id": "dev_retry_3_no_trial",
+        "when": {
+          "not": {
+            "chose": {
+              "card": "dev_retry_3",
+              "choice": "b"
+            }
+          }
+        },
+        "kind": "consequence",
+        "text": "Партия сделана привычным способом. Алексей просит объяснить, какое наблюдение позволит доверить ему часть следующего заказа."
+      }
+    ]
+  },
+  {
+    "id": "dev_achiever_1",
+    "chapter": 4,
+    "type": "situation",
+    "facets": [
+      "work",
+      "relationships"
+    ],
+    "text": "Пробная часть удалась. Тимон предлагает удвоить объём, а Алексей ещё не умеет повторять результат без отдыха.",
+    "choices": [
+      {
+        "id": "a",
+        "label": "Увеличить объём сейчас",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "wealth": 1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "response": "Мастерская берёт больший заказ; время на исправления сокращается."
+      },
+      {
+        "id": "b",
+        "label": "Сохранить объём до второй проверки",
+        "effects": {
+          "resources": {
+            "strength": -2,
+            "wealth": -1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "response": "Выручка растёт медленнее, зато есть время проверить повторяемость."
+      }
+    ],
+    "once": true,
+    "requires": {
+      "dayGte": 18
+    },
+    "development": {
+      "stages": [
+        "achiever"
+      ]
+    }
+  },
+  {
+    "id": "dev_achiever_2",
+    "chapter": 4,
+    "type": "situation",
+    "facets": [
+      "work",
+      "relationships"
+    ],
+    "text": "Покупатель доволен сроком, но чаши стали тяжелее. Алексей спрашивает, что важнее для следующей партии.",
+    "choices": [
+      {
+        "id": "a",
+        "label": "Сохранить срок и договориться о весе",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "wealth": 1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "response": "Покупатель согласовал более тяжёлую чашу для этого заказа."
+      },
+      {
+        "id": "b",
+        "label": "Пересмотреть срок ради лёгкой чаши",
+        "effects": {
+          "resources": {
+            "strength": -2,
+            "wealth": -1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "response": "Покупатель ждёт дольше; Алексей получил время изменить толщину стенки."
+      }
+    ],
+    "once": true,
+    "requires": {
+      "dayGte": 18
+    },
+    "development": {
+      "stages": [
+        "achiever"
+      ]
+    }
+  },
+  {
+    "id": "dev_achiever_3",
+    "chapter": 4,
+    "type": "situation",
+    "facets": [
+      "work",
+      "relationships"
+    ],
+    "text": "Учёт показывает прибыль. Но Лада замечает, что все обещанные вечера герой провёл в мастерской.",
+    "choices": [
+      {
+        "id": "a",
+        "label": "Закончить заказ и назвать дату встречи",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "wealth": 1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "response": "Срок заказа сохранён; Лада согласна лишь на конкретную дату."
+      },
+      {
+        "id": "b",
+        "label": "Сократить заказ и освободить вечер",
+        "effects": {
+          "resources": {
+            "strength": -2,
+            "wealth": -1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "response": "Выручка меньше; вечер впервые остался свободным."
+      }
+    ],
+    "once": true,
+    "requires": {
+      "dayGte": 18
+    },
+    "development": {
+      "stages": [
+        "achiever"
+      ]
+    }
+  },
+  {
+    "id": "dev_achiever_4",
+    "chapter": 4,
+    "type": "situation",
+    "facets": [
+      "work",
+      "relationships"
+    ],
+    "text": "Алексей выполнил план без ошибок. Он просит выбрать следующий заказ сам, хотя его выбор менее выгоден.",
+    "choices": [
+      {
+        "id": "a",
+        "label": "Согласовать доход и оставить выбор ученику",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "wealth": 1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "response": "Алексей выбирает в пределах согласованного дохода."
+      },
+      {
+        "id": "b",
+        "label": "Выбрать выгодный заказ вместе",
+        "effects": {
+          "resources": {
+            "strength": -2,
+            "wealth": -1
+          }
+        },
+        "servesFacets": [
+          "work",
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "response": "План прибыльнее, но собственный замысел ученика ждёт следующей пробы."
+      }
+    ],
+    "once": true,
+    "requires": {
+      "dayGte": 18
+    },
+    "development": {
+      "stages": [
+        "achiever"
+      ]
+    }
+  }
+]

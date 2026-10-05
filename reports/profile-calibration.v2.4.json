@@ -1,0 +1,110 @@
+{
+  "coverage": {
+    "ok": true,
+    "checks": {
+      "neutralSituations": [
+        72,
+        32
+      ],
+      "contexts": [
+        10,
+        4
+      ],
+      "facet:work": [
+        42,
+        6
+      ],
+      "facet:relationships": [
+        42,
+        6
+      ],
+      "facet:body": [
+        29,
+        6
+      ],
+      "facet:inner": [
+        31,
+        6
+      ],
+      "probesTotal": [
+        21,
+        21
+      ],
+      "probes:opportunist↔diplomat": [
+        3,
+        3
+      ],
+      "probes:diplomat↔expert": [
+        3,
+        3
+      ],
+      "probes:expert↔achiever": [
+        3,
+        3
+      ],
+      "probes:achiever↔individualist": [
+        3,
+        3
+      ],
+      "probes:individualist↔strategist": [
+        3,
+        3
+      ],
+      "probes:strategist↔alchemist": [
+        3,
+        3
+      ],
+      "probes:alchemist↔ironic": [
+        3,
+        3
+      ]
+    }
+  },
+  "balance": {
+    "options": 172,
+    "topCount": {
+      "opportunist": 29,
+      "diplomat": 29,
+      "expert": 35,
+      "achiever": 25,
+      "individualist": 29,
+      "strategist": 15,
+      "alchemist": 3,
+      "ironic": 7
+    },
+    "meanComponent": {
+      "opportunist": 0.188,
+      "diplomat": 0.198,
+      "expert": 0.191,
+      "achiever": 0.198,
+      "individualist": 0.092,
+      "strategist": 0.059,
+      "alchemist": 0.022,
+      "ironic": 0.053
+    },
+    "maxMeanComponentRatio": 9,
+    "sceneBound": 2
+  },
+  "expertTiming": {
+    "runs": 40,
+    "withExpertCenter": 40,
+    "earliest": 5,
+    "median": 10,
+    "p90": 16,
+    "promotion": {
+      "centerByDay16": {
+        "runs": 38,
+        "promotedPct": 100
+      },
+      "centerAfterDay16": {
+        "runs": 2,
+        "promotedPct": 100
+      }
+    },
+    "note": "The first trial is on day 17: a center set later misses the first cycle and has to finish the arc through the repeat scenes."
+  },
+  "editorReview": {
+    "status": "pending",
+    "note": "Blind second-editor review has not been done. Export reports/profile-editor-review.json, give it to an editor, then run with --agreement <file>."
+  }
+}

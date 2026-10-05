@@ -1,0 +1,362 @@
+{
+  "runsPerPolicy": 1000,
+  "summaries": [
+    {
+      "policy": "random",
+      "runs": 1000,
+      "endings": {
+        "wheel": 592,
+        "first_step": 408
+      },
+      "firstStepPct": 40.8,
+      "averageCrises": 0.38,
+      "emptySlots": 0,
+      "parablesAllPct": 100,
+      "firstCallbackMedian": 2,
+      "firstCallbackByDay2Pct": 100,
+      "insightMedianDay": {
+        "insight_silence": 9,
+        "insight_gaze": 9
+      },
+      "ordinarySituationMinShowPct": 84.8,
+      "ordinarySituationShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "c1_wounded_road": 100,
+        "c1_extra_change": 100,
+        "c1_marta_firewood": 92.2,
+        "c1_alexey_bad_work": 92.2,
+        "c1_liya_letter": 93.6,
+        "c1_market_spot": 91.7,
+        "c1_rain_delivery": 91.2,
+        "c1_old_bowl": 91.1,
+        "c1_customer_hurry": 92.9,
+        "c1_neighbor_noise": 92.5,
+        "c1_last_clay": 91.4,
+        "c2_stones_bag": 100,
+        "c2_timon_joint_order": 100,
+        "c2_liya_arrives": 100,
+        "c2_bridge_repair": 91.1,
+        "c2_old_master_tools": 84.8,
+        "c2_shadow_attention": 92.1,
+        "c2_shadow_honesty": 91.3,
+        "c2_shadow_compassion": 91.3,
+        "c2_shadow_letgo": 91.6,
+        "c2_shadow_courage": 92
+      },
+      "shadowReachPct": {
+        "attention": 6.5,
+        "honesty": 18.6,
+        "compassion": 4.7,
+        "letgo": 22.9,
+        "courage": 55.5
+      },
+      "scheduledDropPct": 0
+    },
+    {
+      "policy": "always-first",
+      "runs": 1000,
+      "endings": {
+        "first_step": 519,
+        "wheel": 481
+      },
+      "firstStepPct": 51.9,
+      "averageCrises": 0,
+      "emptySlots": 0,
+      "parablesAllPct": 100,
+      "firstCallbackMedian": 2,
+      "firstCallbackByDay2Pct": 100,
+      "insightMedianDay": {
+        "insight_silence": 10,
+        "insight_gaze": null
+      },
+      "ordinarySituationMinShowPct": 89,
+      "ordinarySituationShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "c1_wounded_road": 100,
+        "c1_extra_change": 100,
+        "c1_marta_firewood": 93.8,
+        "c1_alexey_bad_work": 93.1,
+        "c1_liya_letter": 93.9,
+        "c1_market_spot": 92.8,
+        "c1_rain_delivery": 92.7,
+        "c1_old_bowl": 93.3,
+        "c1_customer_hurry": 93.4,
+        "c1_neighbor_noise": 93.5,
+        "c1_last_clay": 92.6,
+        "c2_stones_bag": 100,
+        "c2_timon_joint_order": 100,
+        "c2_liya_arrives": 100,
+        "c2_bridge_repair": 94.6,
+        "c2_old_master_tools": 89,
+        "c2_shadow_attention": 96.9,
+        "c2_shadow_honesty": 95.4,
+        "c2_shadow_compassion": 94.2,
+        "c2_shadow_letgo": 96.5,
+        "c2_shadow_courage": 95.6
+      },
+      "shadowReachPct": {
+        "attention": 2.5,
+        "honesty": 59.3,
+        "compassion": 0,
+        "letgo": 2.7,
+        "courage": 70.8
+      },
+      "scheduledDropPct": 0
+    },
+    {
+      "policy": "always-second",
+      "runs": 1000,
+      "endings": {
+        "first_step": 489,
+        "wheel": 511
+      },
+      "firstStepPct": 48.9,
+      "averageCrises": 0.2,
+      "emptySlots": 0,
+      "parablesAllPct": 100,
+      "firstCallbackMedian": 2,
+      "firstCallbackByDay2Pct": 100,
+      "insightMedianDay": {
+        "insight_silence": 10,
+        "insight_gaze": 9
+      },
+      "ordinarySituationMinShowPct": 81.6,
+      "ordinarySituationShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "c1_wounded_road": 100,
+        "c1_extra_change": 100,
+        "c1_marta_firewood": 91.6,
+        "c1_alexey_bad_work": 91.2,
+        "c1_liya_letter": 92.8,
+        "c1_market_spot": 91,
+        "c1_rain_delivery": 91.2,
+        "c1_old_bowl": 90.8,
+        "c1_customer_hurry": 91.9,
+        "c1_neighbor_noise": 91.3,
+        "c1_last_clay": 90.8,
+        "c2_stones_bag": 100,
+        "c2_timon_joint_order": 100,
+        "c2_liya_arrives": 100,
+        "c2_bridge_repair": 92.4,
+        "c2_old_master_tools": 81.6,
+        "c2_shadow_attention": 90.9,
+        "c2_shadow_honesty": 93.2,
+        "c2_shadow_compassion": 91.3,
+        "c2_shadow_letgo": 89.5,
+        "c2_shadow_courage": 89.8
+      },
+      "shadowReachPct": {
+        "attention": 0.2,
+        "honesty": 1.8,
+        "compassion": 0.3,
+        "letgo": 36.9,
+        "courage": 57.1
+      },
+      "scheduledDropPct": 0
+    },
+    {
+      "policy": "always-costly",
+      "runs": 1000,
+      "endings": {
+        "first_step": 739,
+        "wheel": 261
+      },
+      "firstStepPct": 73.9,
+      "averageCrises": 1,
+      "emptySlots": 0,
+      "parablesAllPct": 100,
+      "firstCallbackMedian": 2,
+      "firstCallbackByDay2Pct": 100,
+      "insightMedianDay": {
+        "insight_silence": 10,
+        "insight_gaze": 8
+      },
+      "ordinarySituationMinShowPct": 84.7,
+      "ordinarySituationShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "c1_wounded_road": 100,
+        "c1_extra_change": 100,
+        "c1_marta_firewood": 93.8,
+        "c1_alexey_bad_work": 93.1,
+        "c1_liya_letter": 93.8,
+        "c1_market_spot": 92.8,
+        "c1_rain_delivery": 92.7,
+        "c1_old_bowl": 93.3,
+        "c1_customer_hurry": 93.4,
+        "c1_neighbor_noise": 93.4,
+        "c1_last_clay": 92.6,
+        "c2_stones_bag": 100,
+        "c2_timon_joint_order": 100,
+        "c2_liya_arrives": 100,
+        "c2_bridge_repair": 91.7,
+        "c2_old_master_tools": 84.7,
+        "c2_shadow_attention": 90,
+        "c2_shadow_honesty": 85.3,
+        "c2_shadow_compassion": 92.5,
+        "c2_shadow_letgo": 87.3,
+        "c2_shadow_courage": 89.3
+      },
+      "shadowReachPct": {
+        "attention": 0,
+        "honesty": 23.6,
+        "compassion": 5.3,
+        "letgo": 0,
+        "courage": 78.6
+      },
+      "scheduledDropPct": 0
+    },
+    {
+      "policy": "greedy-resources",
+      "runs": 1000,
+      "endings": {
+        "wheel": 401,
+        "first_step": 599
+      },
+      "firstStepPct": 59.9,
+      "averageCrises": 0.11,
+      "emptySlots": 0,
+      "parablesAllPct": 100,
+      "firstCallbackMedian": 2,
+      "firstCallbackByDay2Pct": 100,
+      "insightMedianDay": {
+        "insight_silence": 9,
+        "insight_gaze": null
+      },
+      "ordinarySituationMinShowPct": 81.1,
+      "ordinarySituationShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "c1_wounded_road": 100,
+        "c1_extra_change": 100,
+        "c1_marta_firewood": 91.6,
+        "c1_alexey_bad_work": 91.2,
+        "c1_liya_letter": 92.7,
+        "c1_market_spot": 91.1,
+        "c1_rain_delivery": 91.2,
+        "c1_old_bowl": 90.8,
+        "c1_customer_hurry": 91.9,
+        "c1_neighbor_noise": 91.2,
+        "c1_last_clay": 90.8,
+        "c2_stones_bag": 100,
+        "c2_timon_joint_order": 100,
+        "c2_liya_arrives": 100,
+        "c2_bridge_repair": 91.7,
+        "c2_old_master_tools": 81.1,
+        "c2_shadow_attention": 90.9,
+        "c2_shadow_honesty": 91.3,
+        "c2_shadow_compassion": 89.8,
+        "c2_shadow_letgo": 90.2,
+        "c2_shadow_courage": 91.4
+      },
+      "shadowReachPct": {
+        "attention": 15,
+        "honesty": 0,
+        "compassion": 0,
+        "letgo": 57.7,
+        "courage": 24.2
+      },
+      "scheduledDropPct": 0
+    },
+    {
+      "policy": "greedy-qualities",
+      "runs": 1000,
+      "endings": {
+        "first_step": 871,
+        "wheel": 129
+      },
+      "firstStepPct": 87.1,
+      "averageCrises": 0.77,
+      "emptySlots": 0,
+      "parablesAllPct": 100,
+      "firstCallbackMedian": 2,
+      "firstCallbackByDay2Pct": 100,
+      "insightMedianDay": {
+        "insight_silence": 9,
+        "insight_gaze": 8
+      },
+      "ordinarySituationMinShowPct": 75.9,
+      "ordinarySituationShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "c1_wounded_road": 100,
+        "c1_extra_change": 100,
+        "c1_marta_firewood": 93.4,
+        "c1_alexey_bad_work": 92.7,
+        "c1_liya_letter": 93.7,
+        "c1_market_spot": 91.8,
+        "c1_rain_delivery": 92.1,
+        "c1_old_bowl": 91.9,
+        "c1_customer_hurry": 92.8,
+        "c1_neighbor_noise": 92.6,
+        "c1_last_clay": 92.1,
+        "c2_stones_bag": 100,
+        "c2_timon_joint_order": 100,
+        "c2_liya_arrives": 100,
+        "c2_bridge_repair": 84.6,
+        "c2_old_master_tools": 75.9,
+        "c2_shadow_attention": 84.8,
+        "c2_shadow_honesty": 83.8,
+        "c2_shadow_compassion": 81.5,
+        "c2_shadow_letgo": 82.8,
+        "c2_shadow_courage": 82.8
+      },
+      "shadowReachPct": {
+        "attention": 19.3,
+        "honesty": 39.5,
+        "compassion": 21.3,
+        "letgo": 33.5,
+        "courage": 30
+      },
+      "scheduledDropPct": 0
+    },
+    {
+      "policy": "human-like",
+      "runs": 1000,
+      "endings": {
+        "wheel": 600,
+        "first_step": 400
+      },
+      "firstStepPct": 40,
+      "averageCrises": 0.43,
+      "emptySlots": 0,
+      "parablesAllPct": 100,
+      "firstCallbackMedian": 2,
+      "firstCallbackByDay2Pct": 100,
+      "insightMedianDay": {
+        "insight_silence": 9,
+        "insight_gaze": 8
+      },
+      "ordinarySituationMinShowPct": 85.2,
+      "ordinarySituationShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "c1_wounded_road": 100,
+        "c1_extra_change": 100,
+        "c1_marta_firewood": 92.8,
+        "c1_alexey_bad_work": 92.7,
+        "c1_liya_letter": 92.5,
+        "c1_market_spot": 91.7,
+        "c1_rain_delivery": 92,
+        "c1_old_bowl": 92.2,
+        "c1_customer_hurry": 92.7,
+        "c1_neighbor_noise": 92,
+        "c1_last_clay": 91.9,
+        "c2_stones_bag": 100,
+        "c2_timon_joint_order": 100,
+        "c2_liya_arrives": 100,
+        "c2_bridge_repair": 92.2,
+        "c2_old_master_tools": 85.2,
+        "c2_shadow_attention": 92.3,
+        "c2_shadow_honesty": 91.7,
+        "c2_shadow_compassion": 90.4,
+        "c2_shadow_letgo": 92.7,
+        "c2_shadow_courage": 92.1
+      },
+      "shadowReachPct": {
+        "attention": 4.2,
+        "honesty": 19.4,
+        "compassion": 5,
+        "letgo": 17.6,
+        "courage": 60.6
+      },
+      "scheduledDropPct": 0
+    }
+  ]
+}
