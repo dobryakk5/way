@@ -1,5 +1,5 @@
 import { Pool } from 'pg';
-import type { ChoiceMadeEventInput, CreateCharacterInput, SceneInstanceInput } from './schemas.js';
+import type { ChoiceMadeEventInput, CompleteDayInput, CreateCharacterInput, SceneInstanceInput } from './schemas.js';
 
 export const pool = new Pool({
   connectionString: process.env.DATABASE_URL
@@ -31,6 +31,37 @@ export async function registerSceneInstance(userId: string, input: SceneInstance
     ]
   );
   return result.rows[0]!.status;
+}
+
+export interface CompleteDayResult {
+  status: 'completed' | 'alreadyCompleted';
+  gameDay: number;
+  lastSeq: number;
+  profileStatus: 'insufficient_data' | 'provisional' | 'stable' | 'transition';
+  centerScores: Record<string, number>;
+  currentCenter: string | null;
+  currentCenterConfidence: number | null;
+  emergingCenter: string | null;
+  emergingCenterConfidence: number | null;
+  dailyEvidence: Record<string, number>;
+  algorithmState: Record<string, unknown>;
+  evidenceCount: number;
+  taxonomyVersion: string;
+  evidenceModelVersion: string;
+  calculationVersion: string;
+}
+
+export async function completeCharacterDay(
+  userId: string,
+  characterId: string,
+  gameDay: number,
+  input: CompleteDayInput
+): Promise<CompleteDayResult> {
+  const result = await pool.query<{ result: CompleteDayResult }>(
+    'SELECT complete_character_day_v1($1,$2,$3,$4) AS result',
+    [userId, characterId, gameDay, input.lastSeq]
+  );
+  return result.rows[0]!.result;
 }
 
 export async function acceptChoiceEvent(
@@ -69,11 +100,16 @@ const BUSINESS_CODES = new Set([
   'EVENT_ID_PAYLOAD_MISMATCH',
   'CHOICE_ALREADY_RECORDED',
   'SEQ_CONFLICT',
-  'INVALID_EVENT'
+  'INVALID_EVENT',
+  'DAY_COMPLETE_PAYLOAD_MISMATCH',
+  'DAY_COMPLETE_INVALID_LAST_SEQ',
+  'DAY_COMPLETE_LAST_SEQ_TOO_LOW'
 ]);
 
 export function persistenceBusinessCode(error: unknown): string | undefined {
   if (!error || typeof error !== 'object' || !('message' in error)) return undefined;
   const message = String((error as { message: unknown }).message);
-  return BUSINESS_CODES.has(message) ? message : undefined;
+  if (BUSINESS_CODES.has(message)) return message;
+  if (message.startsWith('DAY_EVENTS_INCOMPLETE:')) return message;
+  return undefined;
 }
