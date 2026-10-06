@@ -32,7 +32,7 @@ WHERE si.id = ranked.id
   AND si.game_slot IS NULL;
 
 UPDATE scene_instances
-SET selection_origin = 'neutral'
+SET selection_origin = 'legacy-unknown'
 WHERE selection_origin IS NULL;
 
 DO $$
