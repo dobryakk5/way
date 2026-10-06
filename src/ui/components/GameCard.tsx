@@ -317,7 +317,10 @@ function sceneArtForCard(draw: DrawResult): SceneArt {
 }
 
 /** Painted portraits in public/art/characters/<id>.webp; characters without one keep the monogram. */
-const CHARACTER_PORTRAITS = new Set(['alexey', 'liya', 'savva', 'ilya', 'timon']);
+const CHARACTER_PORTRAITS = new Set([
+  'alexey', 'daria', 'fekla', 'ilya', 'liya', 'marta',
+  'miron', 'radim', 'savva', 'timon', 'ulyana', 'wanderer'
+]);
 
 function CardArt({ draw }: { draw: DrawResult }) {
   const scene = sceneArtForCard(draw);
