@@ -87,6 +87,153 @@ export async function acceptChoiceEvent(
   return result.rows[0]!.status;
 }
 
+
+export interface DevelopmentStateView {
+  processedThroughDay: number;
+  lastProcessedSeq: number;
+  taxonomyVersion: string;
+  evidenceModelVersion: string;
+  calculationVersion: string;
+  profileStatus: 'insufficient_data' | 'provisional' | 'stable' | 'transition';
+  centerScores: Record<string, number>;
+  currentCenter: string | null;
+  currentCenterConfidence: number | null;
+  emergingCenter: string | null;
+  emergingCenterConfidence: number | null;
+  algorithmState: Record<string, unknown>;
+  evidenceCount: number;
+  updatedAt: string;
+}
+
+export interface CharacterResumeView {
+  characterId: string;
+  game: {
+    currentGameDay: number;
+    currentSceneId: number | null;
+    currentSceneInstanceId: string | null;
+    storyState: Record<string, unknown>;
+    lastSeq: number;
+    updatedAt: string;
+  };
+  development: DevelopmentStateView;
+}
+
+export async function getDevelopmentState(
+  userId: string,
+  characterId: string
+): Promise<DevelopmentStateView | undefined> {
+  const result = await pool.query<{ state: DevelopmentStateView }>(
+    `SELECT jsonb_build_object(
+      'processedThroughDay', ds.processed_through_day,
+      'lastProcessedSeq', ds.last_processed_seq,
+      'taxonomyVersion', ds.taxonomy_version,
+      'evidenceModelVersion', ds.evidence_model_version,
+      'calculationVersion', ds.calculation_version,
+      'profileStatus', ds.profile_status,
+      'centerScores', ds.center_scores,
+      'currentCenter', ds.current_center,
+      'currentCenterConfidence', ds.current_center_confidence,
+      'emergingCenter', ds.emerging_center,
+      'emergingCenterConfidence', ds.emerging_center_confidence,
+      'algorithmState', ds.algorithm_state,
+      'evidenceCount', ds.evidence_count,
+      'updatedAt', ds.updated_at
+    ) AS state
+    FROM character_development_state ds
+    JOIN characters c ON c.id = ds.character_id
+    WHERE ds.character_id = $1 AND c.user_id = $2`,
+    [characterId, userId]
+  );
+  return result.rows[0]?.state;
+}
+
+export async function getCharacterResume(
+  userId: string,
+  characterId: string
+): Promise<CharacterResumeView | undefined> {
+  const result = await pool.query<{ state: CharacterResumeView }>(
+    `SELECT jsonb_build_object(
+      'characterId', c.id,
+      'game', jsonb_build_object(
+        'currentGameDay', gs.current_game_day,
+        'currentSceneId', gs.current_scene_id,
+        'currentSceneInstanceId', gs.current_scene_instance_id,
+        'storyState', gs.story_state,
+        'lastSeq', gs.last_seq,
+        'updatedAt', gs.updated_at
+      ),
+      'development', jsonb_build_object(
+        'processedThroughDay', ds.processed_through_day,
+        'lastProcessedSeq', ds.last_processed_seq,
+        'taxonomyVersion', ds.taxonomy_version,
+        'evidenceModelVersion', ds.evidence_model_version,
+        'calculationVersion', ds.calculation_version,
+        'profileStatus', ds.profile_status,
+        'centerScores', ds.center_scores,
+        'currentCenter', ds.current_center,
+        'currentCenterConfidence', ds.current_center_confidence,
+        'emergingCenter', ds.emerging_center,
+        'emergingCenterConfidence', ds.emerging_center_confidence,
+        'algorithmState', ds.algorithm_state,
+        'evidenceCount', ds.evidence_count,
+        'updatedAt', ds.updated_at
+      )
+    ) AS state
+    FROM characters c
+    JOIN character_game_state gs ON gs.character_id = c.id
+    JOIN character_development_state ds ON ds.character_id = c.id
+    WHERE c.id = $1 AND c.user_id = $2`,
+    [characterId, userId]
+  );
+  return result.rows[0]?.state;
+}
+
+export async function getDevelopmentHistory(
+  userId: string,
+  characterId: string,
+  versions: {
+    taxonomyVersion?: string;
+    evidenceModelVersion?: string;
+    calculationVersion?: string;
+  } = {}
+): Promise<CompleteDayResult[]> {
+  const result = await pool.query<{ snapshot: CompleteDayResult }>(
+    `SELECT jsonb_build_object(
+      'status', 'completed',
+      'gameDay', s.game_day,
+      'lastSeq', s.last_seq,
+      'profileStatus', s.profile_status,
+      'centerScores', s.center_scores,
+      'currentCenter', s.current_center,
+      'currentCenterConfidence', s.current_center_confidence,
+      'emergingCenter', s.emerging_center,
+      'emergingCenterConfidence', s.emerging_center_confidence,
+      'dailyEvidence', s.daily_evidence,
+      'algorithmState', s.algorithm_state,
+      'evidenceCount', s.evidence_count,
+      'taxonomyVersion', s.taxonomy_version,
+      'evidenceModelVersion', s.evidence_model_version,
+      'calculationVersion', s.calculation_version
+    ) AS snapshot
+    FROM character_development_snapshots s
+    JOIN characters c ON c.id = s.character_id
+    WHERE s.character_id = $1
+      AND c.user_id = $2
+      AND ($3::text IS NULL OR s.taxonomy_version = $3)
+      AND ($4::text IS NULL OR s.evidence_model_version = $4)
+      AND ($5::text IS NULL OR s.calculation_version = $5)
+    ORDER BY s.game_day, s.created_at`,
+    [
+      characterId,
+      userId,
+      versions.taxonomyVersion ?? null,
+      versions.evidenceModelVersion ?? null,
+      versions.calculationVersion ?? null
+    ]
+  );
+  return result.rows.map(row => row.snapshot);
+}
+
 const BUSINESS_CODES = new Set([
   'CHARACTER_NOT_FOUND',
   'CHARACTER_VERSION_MISMATCH',
