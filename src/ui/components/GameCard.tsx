@@ -316,16 +316,23 @@ function sceneArtForCard(draw: DrawResult): SceneArt {
   return 'workshop-dawn';
 }
 
+/** Painted portraits in public/art/characters/<id>.webp; characters without one keep the monogram. */
+const CHARACTER_PORTRAITS = new Set(['alexey', 'liya', 'savva', 'ilya', 'timon']);
+
 function CardArt({ draw }: { draw: DrawResult }) {
   const scene = sceneArtForCard(draw);
+  const character = draw.card.character;
+  const portrait = character && CHARACTER_PORTRAITS.has(character) ? character : undefined;
   return <div
-    className="card-art card-art-scene"
-    data-character={draw.card.character ?? 'city'}
+    className={`card-art card-art-scene${portrait ? ' has-portrait' : ''}`}
+    data-character={character ?? 'city'}
     data-scene={scene}
     style={{ backgroundImage: `url(${import.meta.env.BASE_URL}art/backgrounds/${scene}.webp)` }}
     aria-hidden="true"
   >
-    <span className="character-monogram">{characterName(draw.card.character).slice(0, 1)}</span>
+    {portrait
+      ? <img className="character-portrait" src={`${import.meta.env.BASE_URL}art/characters/${portrait}.webp`} alt="" width="480" height="600" decoding="async" />
+      : <span className="character-monogram">{characterName(character).slice(0, 1)}</span>}
   </div>;
 }
 

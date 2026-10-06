@@ -1400,6 +1400,21 @@ p { line-height: 1.6; }
     linear-gradient(180deg, rgba(15,10,14,.02) 35%, rgba(15,10,14,.16) 72%, rgba(15,10,14,.30) 100%),
     radial-gradient(circle at 50% 42%, transparent 45%, rgba(10,7,10,.13) 100%);
 }
+/* Character portrait layered over the scene: right side, face kept in frame, soft left edge. */
+.card-art .character-portrait {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 42%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 12%;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 34%);
+  mask-image: linear-gradient(to right, transparent 0, #000 34%);
+  pointer-events: none;
+}
+.game-card-list .card-art .character-portrait { width: 34%; }
 .card-art.card-art-scene .character-monogram {
   z-index: 2;
   background: rgba(15,10,15,.50);
