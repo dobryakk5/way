@@ -158,7 +158,7 @@ export interface GameState {
     schema: 1;
     processedThroughDay?: number;
     lastProcessedSeq?: number;
-    canonicalDevelopment?: {
+    serverDevelopmentProjection?: {
       taxonomyVersion: string;
       evidenceModelVersion: string;
       calculationVersion: string;
