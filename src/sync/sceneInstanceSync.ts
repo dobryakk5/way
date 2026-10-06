@@ -26,6 +26,8 @@ function apiScene(local: LocalSceneInstance): SceneInstancePayload {
     gameDay: local.gameDay,
     sceneId: local.sceneId,
     scenePresentationId: local.scenePresentationId,
+    gameSlot: local.gameSlot,
+    selectionOrigin: local.selectionOrigin,
     choices: local.choices
   });
 }
