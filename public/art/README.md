@@ -25,3 +25,36 @@ procedural pottery visual.
 - wine-brown shadows with restrained gold light;
 - painterly cinematic realism;
 - no diagnostic labels, stage names, percentages, or moral judgement in art.
+
+
+## Life-facet icon system
+
+`facets/facet-icons.webp` is a compact 4×2 sprite generated for the visual
+language of the game. It contains eight symbols:
+
+1. money
+2. relationships
+3. work
+4. health
+5. meaning
+6. family
+7. freedom
+8. responsibility
+
+The current engine has four canonical `LifeFacet` values, so the UI maps them
+without changing game logic:
+
+- `work` → work
+- `relationships` → relationships
+- `body` → health
+- `inner` → meaning
+
+The resource strip also reuses semantically matching symbols:
+
+- `wealth` → money
+- `strength` → health
+- `peace` → meaning
+- `bonds` → relationships
+
+Family, freedom and responsibility stay in the asset set for later expansion;
+they are not introduced as new engine facets by this visual change.
