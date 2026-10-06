@@ -4,6 +4,7 @@ import {
   markSceneInstanceRejected,
   markSceneInstanceSending,
   markSceneInstanceSynced,
+  resetSendingSceneInstances,
   type LocalSceneInstance
 } from '../persistence/sceneInstanceOutbox';
 import {
@@ -16,7 +17,7 @@ export type FlushSceneInstancesResult =
   | { status: 'idle'; sent: 0 }
   | { status: 'ok'; sent: number }
   | { status: 'paused-auth'; sent: number }
-  | { status: 'retry'; sent: number; reason: 'network' | 'server' | 'invalid-response' }
+  | { status: 'retry'; sent: number; reason: 'network' | 'server' | 'throttled' | 'invalid-response' }
   | { status: 'rejected'; sent: number; httpStatus: number };
 
 function apiScene(local: LocalSceneInstance): SceneInstancePayload {
@@ -31,6 +32,8 @@ function apiScene(local: LocalSceneInstance): SceneInstancePayload {
     choices: local.choices
   });
 }
+
+const THROTTLED_STATUSES = new Set([408, 425, 429]);
 
 async function returnToPending(scenes: LocalSceneInstance[], incrementRetry: boolean): Promise<void> {
   await Promise.all(scenes.map(scene => markSceneInstancePending(scene.sceneInstanceId, incrementRetry)));
@@ -70,6 +73,11 @@ export async function flushSceneInstances(options: {
     return { status: 'retry', sent: pending.length, reason: 'server' };
   }
 
+  if (THROTTLED_STATUSES.has(response.status)) {
+    await returnToPending(pending, true);
+    return { status: 'retry', sent: pending.length, reason: 'throttled' };
+  }
+
   if (!response.ok) {
     await Promise.all(pending.map(scene =>
       markSceneInstanceRejected(scene.sceneInstanceId, `HTTP_${response.status}`)
@@ -105,4 +113,14 @@ export async function flushSceneInstances(options: {
   }));
 
   return { status: 'ok', sent: pending.length };
+}
+
+
+export async function recoverAndFlushSceneInstances(options: {
+  characterId: string;
+  endpoint: string;
+  fetchImpl?: typeof fetch;
+}): Promise<FlushSceneInstancesResult> {
+  await resetSendingSceneInstances(options.characterId);
+  return flushSceneInstances(options);
 }
