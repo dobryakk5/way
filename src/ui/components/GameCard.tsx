@@ -21,18 +21,133 @@ type SceneArt =
   | 'country-road'
   | 'river-bridge';
 
-function sceneArtForCard(draw: DrawResult): SceneArt {
-  const text = draw.text.toLocaleLowerCase('ru-RU');
+/**
+ * Authored cards get an explicit art direction first. This keeps recurring scenes
+ * visually stable even when the text is edited later. Semantic rules below are
+ * only a fallback for neutral/probe/development cards and future content.
+ */
+const CARD_SCENE_ART: Partial<Record<string, SceneArt>> = {
+  // Chapter 1
+  c1_alexey_broken_jug: 'workshop-dawn',
+  c1_wounded_road: 'country-road',
+  c1_extra_change: 'market-fair',
+  c1_marta_firewood: 'workshop-dusk',
+  c1_alexey_bad_work: 'kiln-firing',
+  c1_liya_letter: 'workshop-dusk',
+  c1_market_spot: 'market-fair',
+  c1_rain_delivery: 'workshop-dusk',
+  c1_old_bowl: 'river-bridge',
+  c1_customer_hurry: 'workshop-dusk',
+  c1_neighbor_noise: 'workshop-dawn',
+  c1_last_clay: 'market-fair',
+  c1_alexey_after_jug: 'kiln-firing',
+  c1_wanderer_returns: 'workshop-dawn',
+  c1_wanderer_bridge: 'river-bridge',
+  c1_timon_returns: 'market-fair',
+  c1_liya_second_letter: 'workshop-dusk',
 
-  if (/(печь|обжиг|горн|жар|угл|раскал|огонь)/u.test(text)) return 'kiln-firing';
-  if (/(ярмарк|рынок|торг|покупател|прилав|продав|заказчик)/u.test(text)) return 'market-fair';
-  if (/(река|берег|мост|вод[аыуе]|переправ)/u.test(text)) return 'river-bridge';
-  if (/(дорог|за город|тракт|путник|повозк|телег)/u.test(text)) return 'country-road';
-  if (/(вечер|ноч|свеч|поздн|сумерк)/u.test(text)) return 'workshop-dusk';
+  // Chapter 2
+  c2_stones_bag: 'workshop-dusk',
+  c2_timon_joint_order: 'market-fair',
+  c2_liya_arrives: 'workshop-dawn',
+  c2_bridge_repair: 'workshop-dusk',
+  c2_old_master_tools: 'workshop-dawn',
+  c2_shadow_attention: 'river-bridge',
+  c2_shadow_honesty: 'country-road',
+  c2_shadow_compassion: 'workshop-dusk',
+  c2_shadow_letgo: 'workshop-dawn',
+  c2_shadow_courage: 'country-road',
+  c2_silence_marta_cup: 'workshop-dusk',
+  c2_silence_alexey_hand: 'workshop-dusk',
+  c2_silence_market_pause: 'market-fair',
+  c2_gaze_wanderer_bread: 'market-fair',
+  c2_gaze_marta_window: 'workshop-dusk',
+  c2_gaze_alexey_silence: 'workshop-dusk',
+  c2_ilya_after_forgive: 'workshop-dusk',
+  c2_ilya_leaves: 'country-road',
+  c2_timon_order_result: 'market-fair',
+  c2_alexey_tools_result: 'workshop-dawn',
+  c2_marta_window_result: 'workshop-dusk',
+
+  // Recurring cards
+  r_sweep: 'workshop-dawn',
+  r_breakfast: 'kiln-firing',
+  r_market_price: 'market-fair',
+  r_marta_hello: 'workshop-dusk',
+  r_kiln: 'kiln-firing',
+  r_coins: 'workshop-dawn',
+  r_river: 'river-bridge',
+  r_letter_stack: 'workshop-dusk',
+  r_customer_wait: 'workshop-dusk',
+  r_evening_light: 'workshop-dusk',
+  cr_wealth_zero: 'market-fair',
+  cr_wealth_full: 'workshop-dusk',
+  cr_strength_zero: 'workshop-dusk',
+  cr_peace_zero: 'workshop-dusk',
+  cr_bonds_zero: 'workshop-dusk',
+
+  // Continuation: stable story beats
+  d11_0_apprentice: 'market-fair',
+  d11_3_apprentice: 'market-fair',
+  d12_0_pace: 'workshop-dawn',
+  d12_3_pace: 'workshop-dawn',
+  d13_0_commitments: 'workshop-dusk',
+  d13_3_commitments: 'workshop-dusk',
+  d14_0_apprentice: 'workshop-dawn',
+  d14_3_apprentice: 'workshop-dawn',
+  d15_0_pace: 'workshop-dawn',
+  d15_3_pace: 'workshop-dawn',
+  d16_0_commitments: 'workshop-dusk',
+  d16_3_commitments: 'workshop-dusk',
+  d17_0_apprentice: 'kiln-firing',
+  d17_3_apprentice: 'kiln-firing',
+  d18_0_pace: 'workshop-dusk',
+  d18_3_pace: 'workshop-dawn',
+  d19_0_commitments: 'workshop-dusk',
+  d19_3_commitments: 'workshop-dusk',
+  d20_0_apprentice: 'workshop-dawn',
+  d20_3_apprentice: 'workshop-dawn',
+  d21_0_pace: 'workshop-dawn',
+  d21_3_pace: 'kiln-firing',
+  d22_0_apprentice: 'workshop-dawn',
+  d22_3_apprentice: 'workshop-dawn',
+  d23_0_commitments: 'workshop-dusk',
+  d23_3_commitments: 'workshop-dusk',
+  d24_0_pace: 'workshop-dusk',
+  d24_3_pace: 'workshop-dawn',
+  d25_0_apprentice: 'workshop-dawn',
+  d25_3_apprentice: 'workshop-dawn',
+  d26_0_commitments: 'market-fair',
+  d26_3_commitments: 'country-road',
+  d27_0_pace: 'workshop-dawn',
+  d27_3_pace: 'workshop-dawn',
+  d28_0_apprentice: 'workshop-dawn',
+  d28_3_apprentice: 'workshop-dawn',
+  d29_0_commitments: 'workshop-dusk',
+  d29_3_commitments: 'workshop-dusk',
+  d30_0_pace: 'market-fair',
+  d30_3_pace: 'workshop-dawn',
+  enc_3_8: 'country-road',
+  enc_4_8: 'country-road'
+};
+
+function sceneArtForCard(draw: DrawResult): SceneArt {
+  const authoredScene = CARD_SCENE_ART[draw.card.id];
+  if (authoredScene) return authoredScene;
+
+  const text = [draw.text, ...draw.choices.map((choice) => choice.label)]
+    .join(' ')
+    .toLocaleLowerCase('ru-RU');
+
+  if (/(печь|обжиг|горн|жар|угл|раскал|огонь|топить печь)/u.test(text)) return 'kiln-firing';
+  if (/(ярмарк|рынок|торг|покупател|прилав|продав|заказчик|выручк|монет|цена)/u.test(text)) return 'market-fair';
+  if (/(река|берег|мост|вод[аыуе]|переправ|лодоч)/u.test(text)) return 'river-bridge';
+  if (/(дорог|за город|тракт|путник|повозк|телег|отъезд|доставк|ехать|уехать)/u.test(text)) return 'country-road';
+  if (/(вечер|ноч|свеч|поздн|сумерк|письм|тишин|окн[ое]|ужин)/u.test(text)) return 'workshop-dusk';
 
   if (draw.card.facets?.includes('inner')) return 'workshop-dusk';
-  if (draw.card.facets?.includes('body')) return 'country-road';
-  if (draw.card.facets?.includes('relationships')) return 'river-bridge';
+  if (draw.card.facets?.includes('body')) return 'workshop-dawn';
+  if (draw.card.facets?.includes('relationships')) return 'workshop-dusk';
   return 'workshop-dawn';
 }
 
