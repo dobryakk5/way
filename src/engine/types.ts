@@ -163,6 +163,8 @@ export interface GameState {
       sceneInstanceId: string;
       sceneId: number;
       scenePresentationId: number;
+      gameSlot: number;
+      selectionOrigin: DiagnosticSelectionOrigin;
       choices: {
         authorChoiceId: string;
         choiceId: number;
