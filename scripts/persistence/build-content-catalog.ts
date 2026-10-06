@@ -13,10 +13,11 @@ import {
   scenePresentationId,
   scenePresentationKey
 } from '../../src/content/persistenceIds';
-
-const TAXONOMY_VERSION = 'development-centers-v1';
-const EVIDENCE_MODEL_VERSION = 'evidence-v1';
-const CALCULATION_VERSION = 'development-v1';
+import {
+  PERSISTENCE_PERSISTENCE_CALCULATION_VERSION,
+  PERSISTENCE_PERSISTENCE_EVIDENCE_MODEL_VERSION,
+  PERSISTENCE_PERSISTENCE_TAXONOMY_VERSION
+} from '../../src/persistence/versions';
 
 type Evidence = Record<string, number>;
 
@@ -155,9 +156,9 @@ export function buildPersistenceCatalog(): Catalog {
   }
 
   return {
-    taxonomyVersion: TAXONOMY_VERSION,
-    evidenceModelVersion: EVIDENCE_MODEL_VERSION,
-    calculationVersion: CALCULATION_VERSION,
+    taxonomyVersion: PERSISTENCE_TAXONOMY_VERSION,
+    evidenceModelVersion: PERSISTENCE_EVIDENCE_MODEL_VERSION,
+    calculationVersion: PERSISTENCE_CALCULATION_VERSION,
     scenes
   };
 }
