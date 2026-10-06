@@ -7,6 +7,7 @@ import {
 } from './sceneInstanceSync';
 
 export type GamePersistenceSyncResult =
+  | { status: 'done' }
   | { status: 'locked' }
   | { status: 'character'; result: EnsureCharacterResult }
   | { status: 'scenes'; result: FlushSceneInstancesResult }
@@ -55,7 +56,10 @@ async function runSync(options: {
     endpoint: `${base}/api/v1/game/motives/batch`,
     ...(options.fetchImpl ? { fetchImpl: options.fetchImpl } : {})
   });
-  return { status: 'motives', result: motives };
+  if (!complete(motives.status)) {
+    return { status: 'motives', result: motives };
+  }
+  return { status: 'done' };
 }
 
 const inFlightWithoutLocks = new Map<string, Promise<GamePersistenceSyncResult>>();
