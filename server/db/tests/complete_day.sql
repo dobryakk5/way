@@ -27,6 +27,11 @@ AS $$
         SELECT gc.id
         FROM game_choices gc
         WHERE gc.scene_id = gs.id
+          AND NOT EXISTS (
+              SELECT 1
+              FROM choice_motive_prompts mp
+              WHERE mp.choice_id = gc.id
+          )
         ORDER BY gc.id
         LIMIT 1
     ) c1 ON true
