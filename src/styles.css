@@ -1273,3 +1273,34 @@ p { line-height: 1.6; }
   .chapter-opening-copy { left: 20px; right: 20px; bottom: 17px; }
   .chapter-opening-copy strong { font-size: 1.48rem; }
 }
+
+
+/* ---------- life facet icon system ---------- */
+.facet-icon {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  background-repeat: no-repeat;
+  background-size: 400% 200%;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.22));
+}
+.resource-facet-icon { width: 23px; height: 23px; }
+.choice-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+}
+.choice-with-icon .facet-icon { width: 34px; height: 34px; }
+.choice-with-icon > span:last-child { min-width: 0; }
+.journal-facet-icon {
+  width: 28px;
+  height: 28px;
+  margin-right: 10px;
+}
+.journal-facet-label {
+  min-width: 0;
+  color: var(--gold-2);
+  font-weight: 600;
+}
