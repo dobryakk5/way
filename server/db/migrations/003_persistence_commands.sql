@@ -76,6 +76,7 @@ LANGUAGE plpgsql
 AS $$
 DECLARE
     open_day INTEGER;
+    expected_slots SMALLINT;
     existing_scene_id BIGINT;
     existing_character_id UUID;
     existing_game_day INTEGER;
@@ -89,8 +90,8 @@ BEGIN
         RAISE EXCEPTION 'INVALID_SCENE_CHOICES' USING ERRCODE = 'P0001';
     END IF;
 
-    SELECT ds.processed_through_day + 1
-    INTO open_day
+    SELECT ds.processed_through_day + 1, c.expected_slots_per_day
+    INTO open_day, expected_slots
     FROM character_development_state ds
     JOIN characters c ON c.id = ds.character_id
     WHERE ds.character_id = p_character_id
@@ -105,6 +106,10 @@ BEGIN
         RAISE EXCEPTION 'DAY_ALREADY_CLOSED' USING ERRCODE = 'P0001';
     ELSIF p_game_day > open_day THEN
         RAISE EXCEPTION 'DAY_NOT_OPEN' USING ERRCODE = 'P0001';
+    END IF;
+
+    IF p_game_slot < 0 OR p_game_slot >= expected_slots THEN
+        RAISE EXCEPTION 'INVALID_GAME_SLOT' USING ERRCODE = 'P0001';
     END IF;
 
     SELECT scene_id, character_id, game_day, scene_presentation_id, game_slot, selection_origin
@@ -203,6 +208,8 @@ LANGUAGE plpgsql
 AS $$
 DECLARE
     open_day INTEGER;
+    base_seq BIGINT;
+    scene_slot SMALLINT;
     existing_hash TEXT;
     existing_choice BIGINT;
 BEGIN
@@ -223,8 +230,8 @@ BEGIN
         RAISE EXCEPTION 'CHARACTER_NOT_FOUND' USING ERRCODE = 'P0001';
     END IF;
 
-    SELECT ds.processed_through_day + 1
-    INTO open_day
+    SELECT ds.processed_through_day + 1, ds.last_processed_seq
+    INTO open_day, base_seq
     FROM character_development_state ds
     JOIN characters c ON c.id = ds.character_id
     WHERE ds.character_id = p_character_id
@@ -239,6 +246,21 @@ BEGIN
         RAISE EXCEPTION 'DAY_ALREADY_CLOSED' USING ERRCODE = 'P0001';
     ELSIF p_game_day > open_day THEN
         RAISE EXCEPTION 'DAY_NOT_OPEN' USING ERRCODE = 'P0001';
+    END IF;
+
+    SELECT game_slot
+    INTO scene_slot
+    FROM scene_instances
+    WHERE id = p_scene_instance_id
+      AND character_id = p_character_id
+      AND game_day = p_game_day;
+
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'INVALID_SCENE_CHOICE' USING ERRCODE = 'P0001';
+    END IF;
+
+    IF p_seq <> base_seq + scene_slot + 1 THEN
+        RAISE EXCEPTION 'EVENT_SEQ_SLOT_MISMATCH' USING ERRCODE = 'P0001';
     END IF;
 
     SELECT choice_id
