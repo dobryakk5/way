@@ -10,9 +10,10 @@ export interface LocalSceneInstance extends SceneInstancePayload {
 }
 
 const DB_NAME = 'put-scene-instance-outbox';
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 const STORE = 'sceneInstances';
 const CHARACTER_STATUS_DAY = 'characterStatusDay';
+const CHARACTER_STATUS_ORDER = 'characterStatusOrder';
 
 function request<T>(value: IDBRequest<T>): Promise<T> {
   return new Promise((resolve, reject) => {
@@ -36,8 +37,18 @@ function openOutbox(): Promise<IDBDatabase> {
     database = new Promise((resolve, reject) => {
       const open = indexedDB.open(DB_NAME, DB_VERSION);
       open.onupgradeneeded = () => {
-        const store = open.result.createObjectStore(STORE, { keyPath: 'sceneInstanceId' });
-        store.createIndex(CHARACTER_STATUS_DAY, ['characterId', 'syncStatus', 'gameDay']);
+        const store = open.oldVersion === 0
+          ? open.result.createObjectStore(STORE, { keyPath: 'sceneInstanceId' })
+          : open.transaction!.objectStore(STORE);
+        if (!store.indexNames.contains(CHARACTER_STATUS_DAY)) {
+          store.createIndex(CHARACTER_STATUS_DAY, ['characterId', 'syncStatus', 'gameDay']);
+        }
+        if (!store.indexNames.contains(CHARACTER_STATUS_ORDER)) {
+          store.createIndex(
+            CHARACTER_STATUS_ORDER,
+            ['characterId', 'syncStatus', 'gameDay', 'gameSlot']
+          );
+        }
       };
       open.onsuccess = () => resolve(open.result);
       open.onerror = () => { database = undefined; reject(open.error); };
@@ -89,10 +100,10 @@ export async function listPendingSceneInstances(characterId: string, limit = 100
   const db = await openOutbox();
   const tx = db.transaction(STORE, 'readonly');
   const done = complete(tx);
-  const index = tx.objectStore(STORE).index(CHARACTER_STATUS_DAY);
+  const index = tx.objectStore(STORE).index(CHARACTER_STATUS_ORDER);
   const range = IDBKeyRange.bound(
-    [characterId, 'pending', 0],
-    [characterId, 'pending', Number.MAX_SAFE_INTEGER]
+    [characterId, 'pending', 0, 0],
+    [characterId, 'pending', Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER]
   );
   const result = await request(index.getAll(range, limit)) as LocalSceneInstance[];
   await done;
@@ -140,6 +151,30 @@ export function markSceneInstanceRejected(sceneInstanceId: string, code: string)
   return updateScene(sceneInstanceId, scene => ({
     ...scene, syncStatus: 'rejected', rejectCode: code, updatedAt: new Date().toISOString()
   }));
+}
+
+
+export async function resetSendingSceneInstances(characterId?: string): Promise<number> {
+  const db = await openOutbox();
+  const tx = db.transaction(STORE, 'readwrite');
+  const done = complete(tx);
+  const store = tx.objectStore(STORE);
+  const all = await request(store.getAll()) as LocalSceneInstance[];
+  let changed = 0;
+  for (const scene of all) {
+    if (
+      scene.syncStatus !== 'sending' ||
+      (characterId !== undefined && scene.characterId !== characterId)
+    ) continue;
+    store.put({
+      ...scene,
+      syncStatus: 'pending',
+      updatedAt: new Date().toISOString()
+    } satisfies LocalSceneInstance);
+    changed += 1;
+  }
+  await done;
+  return changed;
 }
 
 export async function getSceneInstance(sceneInstanceId: string): Promise<LocalSceneInstance | undefined> {
