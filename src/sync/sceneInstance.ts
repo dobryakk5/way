@@ -12,6 +12,8 @@ export const sceneInstanceSchema = z.object({
   gameDay: z.number().int().positive(),
   sceneId: z.number().int().positive(),
   scenePresentationId: z.number().int().positive(),
+  gameSlot: z.number().int().min(0).max(3),
+  selectionOrigin: z.enum(['neutral', 'probe', 'adaptive']),
   choices: z.array(presentedChoiceSchema).min(2).max(4)
 }).strict().superRefine((value, ctx) => {
   const choiceIds = new Set(value.choices.map(choice => choice.choiceId));
