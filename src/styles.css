@@ -155,6 +155,15 @@ button:disabled { cursor: wait; opacity: .52; }
 }
 .session-bar button:hover { border-color: rgba(240, 210, 154, .42); background: rgba(240, 210, 154, .06); transform: translateY(-1px); }
 
+.email-login { display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; gap: 6px; min-width: 0; }
+.email-login input {
+  min-width: 0; width: 11.5rem; padding: 6px 10px; border-radius: 999px; font: inherit; font-size: .82rem;
+  color: inherit; background: rgba(255, 255, 255, .06); border: 1px solid rgba(240, 210, 154, .28);
+}
+.email-login input:focus-visible { outline: 2px solid rgba(240, 210, 154, .7); outline-offset: 1px; }
+.email-login-message { flex-basis: 100%; text-align: right; font-size: .76rem; opacity: .8; }
+.account-email { max-width: 14rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .78rem; opacity: .75; }
+
 .save-warning {
   position: relative;
   z-index: 15;
