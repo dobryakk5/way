@@ -69,10 +69,10 @@ export const useGameStore = create<GameStore>((set,get) => {
   if(payload)await enqueueSceneInstance(payload);
  };
  const reconcileHeldPersistence = async (game: GameState) => {
-  await reconcileHeldPersistence(game);
+  await reconcileHeldChoiceEvents(game);
   await reconcileHeldMotiveResolutions(game);
  };
- const applyCanonicalDevelopment = (game: GameState, result: CompleteDayResponse): GameState => {
+ const applyServerDevelopmentProjection = (game: GameState, result: CompleteDayResponse): GameState => {
   if(!game.serverPersistence?.enabled)return game;
   return {
    ...game,
@@ -80,7 +80,7 @@ export const useGameStore = create<GameStore>((set,get) => {
     ...game.serverPersistence,
     processedThroughDay:result.gameDay,
     lastProcessedSeq:result.lastSeq,
-    canonicalDevelopment:{
+    serverDevelopmentProjection:{
      taxonomyVersion:result.taxonomyVersion,
      evidenceModelVersion:result.evidenceModelVersion,
      calculationVersion:result.calculationVersion,
@@ -226,7 +226,7 @@ export const useGameStore = create<GameStore>((set,get) => {
     }
 
     const advanced=leaveEvening(source,content);
-    const next=applyCanonicalDevelopment(present(advanced),completed.result);
+    const next=applyServerDevelopmentProjection(present(advanced),completed.result);
     set({game:next,error:undefined});
     const saved=await persist();
     if(!saved)throw new Error('День завершён на сервере, но локальное сохранение не записалось');
