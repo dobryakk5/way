@@ -81,22 +81,7 @@ jobs:
         run: |
           createdb -h 127.0.0.1 -U postgres way_upgrade
           psql -h 127.0.0.1 -U postgres -d way_upgrade -v ON_ERROR_STOP=1 -f server/db/migrations/001_character_state_persistence.sql
-          node --input-type=module -e "
-            import fs from 'node:fs';
-            const c=JSON.parse(fs.readFileSync('server/generated/content-catalog.v1.json','utf8'));
-            const s=c.scenes[0];
-            const q=(v)=>"'"+String(v).replaceAll("'","''")+"'";
-            process.stdout.write([
-              'BEGIN;',
-              'INSERT INTO development_taxonomies(version) VALUES ('+q(c.taxonomyVersion)+');',
-              'INSERT INTO evidence_model_versions(version,taxonomy_version) VALUES ('+q(c.evidenceModelVersion)+','+q(c.taxonomyVersion)+');',
-              'INSERT INTO calculation_versions(version) VALUES ('+q(c.calculationVersion)+');',
-              'INSERT INTO game_scenes(id,scene_key) OVERRIDING SYSTEM VALUE VALUES ('+s.id+','+q(s.sceneKey)+');',
-              'INSERT INTO characters(id,user_id,taxonomy_version,evidence_model_version,calculation_version) VALUES (\'00000000-0000-4000-8000-00000000aa01\',\'00000000-0000-4000-8000-00000000aa02\','+q(c.taxonomyVersion)+','+q(c.evidenceModelVersion)+','+q(c.calculationVersion)+');',
-              'INSERT INTO scene_instances(id,character_id,scene_id,game_day) VALUES (\'00000000-0000-4000-8000-00000000aa03\',\'00000000-0000-4000-8000-00000000aa01\','+s.id+',1);',
-              'COMMIT;'
-            ].join('\\n'));
-          " > /tmp/legacy-persistence.sql
+          node --import tsx scripts/persistence/build-legacy-upgrade-fixture.ts > /tmp/legacy-persistence.sql
           psql -h 127.0.0.1 -U postgres -d way_upgrade -v ON_ERROR_STOP=1 -f /tmp/legacy-persistence.sql
           psql -h 127.0.0.1 -U postgres -d way_upgrade -v ON_ERROR_STOP=1 -f server/db/migrations/002_scene_presentations.sql
           psql -h 127.0.0.1 -U postgres -d way_upgrade -v ON_ERROR_STOP=1 -f server/db/migrations/003_persistence_commands.sql
@@ -104,4 +89,4 @@ jobs:
           psql -h 127.0.0.1 -U postgres -d way_upgrade -v ON_ERROR_STOP=1 -f server/db/migrations/005_day_complete.sql
           psql -h 127.0.0.1 -U postgres -d way_upgrade -v ON_ERROR_STOP=1 -f server/generated/content-catalog.v1.sql
           psql -h 127.0.0.1 -U postgres -d way_upgrade -v ON_ERROR_STOP=1 -f server/db/migrations/006_post_catalog_hardening.sql
-          psql -h 127.0.0.1 -U postgres -d way_upgrade -v ON_ERROR_STOP=1 -c "SELECT scene_presentation_id,game_slot,selection_origin FROM scene_instances WHERE id='00000000-0000-4000-8000-00000000aa03' AND scene_presentation_id IS NOT NULL AND game_slot=0 AND selection_origin='neutral';"
+          psql -h 127.0.0.1 -U postgres -d way_upgrade -v ON_ERROR_STOP=1 -f server/db/tests/verify_upgrade_001.sql
