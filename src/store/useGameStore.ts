@@ -8,6 +8,7 @@ import { enqueueSceneInstance } from '../persistence/sceneInstanceOutbox';
 import { enqueueChoiceEvent, markChoiceEventPending } from '../persistence/eventOutbox';
 import { reconcileHeldChoiceEvents } from '../persistence/outboxRecovery';
 import { syncGamePersistence } from '../sync/gamePersistenceSync';
+import { completeCharacterDay, type CompleteDayResponse } from '../sync/dayComplete';
 interface GameStore {
  game: GameState; started: boolean; error: string | undefined;
  ready: boolean; readOnly: boolean; saveStatus: 'loading' | 'idle' | 'saving' | 'saved' | 'failed' | 'readonly'; saveError: string | undefined;
@@ -58,6 +59,29 @@ export const useGameStore = create<GameStore>((set,get) => {
  const queuePresentedScene = async (game: GameState) => {
   const payload=presentedScenePayload(game);
   if(payload)await enqueueSceneInstance(payload);
+ };
+ const applyCanonicalDevelopment = (game: GameState, result: CompleteDayResponse): GameState => {
+  if(!game.serverPersistence?.enabled)return game;
+  return {
+   ...game,
+   serverPersistence:{
+    ...game.serverPersistence,
+    processedThroughDay:result.gameDay,
+    lastProcessedSeq:result.lastSeq,
+    canonicalDevelopment:{
+     taxonomyVersion:result.taxonomyVersion,
+     evidenceModelVersion:result.evidenceModelVersion,
+     calculationVersion:result.calculationVersion,
+     profileStatus:result.profileStatus,
+     centerScores:{...result.centerScores},
+     currentCenter:result.currentCenter,
+     currentCenterConfidence:result.currentCenterConfidence,
+     emergingCenter:result.emergingCenter,
+     emergingCenterConfidence:result.emergingCenterConfidence,
+     evidenceCount:result.evidenceCount
+    }
+   }
+  };
  };
  const scheduleRemoteSync = (game: GameState) => {
   if(!persistenceApiBase||!game.serverPersistence?.enabled)return;
@@ -144,7 +168,63 @@ export const useGameStore = create<GameStore>((set,get) => {
     })().catch(e=>set({choiceWritePending:false,error:e instanceof Error?e.message:String(e)}));
    }catch(e){set({choiceWritePending:false,error:e instanceof Error?e.message:String(e)});}
   },
-  finishEvening:()=>transition(s=>leaveEvening(s,content)),
+  finishEvening:()=>{
+   const store=get();
+   if(store.readOnly||store.recovery||store.choiceWritePending)return;
+   const source=store.game;
+   if(source.phase!=='evening')return;
+   if(!source.serverPersistence?.enabled||!persistenceApiBase){
+    transition(s=>leaveEvening(s,content));
+    return;
+   }
+   set({choiceWritePending:true,error:undefined});
+   void (async()=>{
+    await queue;
+    await reconcileHeldChoiceEvents(source);
+    await queuePresentedScene(source);
+    let synced=await syncGamePersistence({characterId:source.runId,apiBaseUrl:persistenceApiBase});
+    if(synced.status!=='events'||!['ok','idle'].includes(synced.result.status)){
+     throw new Error(`Не удалось синхронизировать день: ${synced.status}`);
+    }
+
+    let completed=await completeCharacterDay({
+     characterId:source.runId,
+     gameDay:source.day,
+     lastSeq:source.history.length,
+     apiBaseUrl:persistenceApiBase
+    });
+    if(completed.status==='incomplete'){
+     synced=await syncGamePersistence({characterId:source.runId,apiBaseUrl:persistenceApiBase});
+     if(synced.status!=='events'||!['ok','idle'].includes(synced.result.status)){
+      throw new Error('Не удалось досинхронизировать события дня');
+     }
+     completed=await completeCharacterDay({
+      characterId:source.runId,
+      gameDay:source.day,
+      lastSeq:source.history.length,
+      apiBaseUrl:persistenceApiBase
+     });
+    }
+    if(completed.status!=='ok'){
+     if(completed.status==='paused-auth')throw new Error('Для завершения дня нужно снова войти в систему');
+     if(completed.status==='retry')throw new Error('Сервер временно недоступен. Завершение дня можно повторить');
+     if(completed.status==='incomplete')throw new Error(`Не все события дня доставлены: ${completed.missingSeq.join(', ')}`);
+     throw new Error(`Сервер отклонил завершение дня: ${completed.code}`);
+    }
+
+    const advanced=leaveEvening(source,content);
+    const next=applyCanonicalDevelopment(present(advanced),completed.result);
+    set({game:next,error:undefined});
+    const saved=await persist();
+    if(!saved)throw new Error('День завершён на сервере, но локальное сохранение не записалось');
+    await queuePresentedScene(next);
+    set({choiceWritePending:false});
+    scheduleRemoteSync(next);
+   })().catch(e=>set({
+    choiceWritePending:false,
+    error:e instanceof Error?e.message:String(e)
+   }));
+  },
   pause:()=>set({paused:true}),resume:()=>set({paused:false}),
   roll:()=>transition(s=>rollEncounter(s,content,fairDieFace(()=>crypto.getRandomValues(new Uint32Array(1))[0]!))),
   openEncounter:()=>transition(openEncounter),
