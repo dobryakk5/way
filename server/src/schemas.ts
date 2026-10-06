@@ -50,6 +50,32 @@ export const choiceMadeEventSchema = z.object({
   occurredAt: z.string().datetime()
 }).strict();
 
+export const motiveResolutionSchema = z.discriminatedUnion('resolutionType', [
+  z.object({
+    eventId: uuid,
+    characterId: uuid,
+    gameSessionId: uuid,
+    gameDay: z.number().int().positive(),
+    sceneInstanceId: uuid,
+    choiceId: positiveId,
+    promptId: positiveId,
+    resolutionType: z.literal('answered'),
+    motiveOptionId: positiveId,
+    occurredAt: z.string().datetime()
+  }).strict(),
+  z.object({
+    eventId: uuid,
+    characterId: uuid,
+    gameSessionId: uuid,
+    gameDay: z.number().int().positive(),
+    sceneInstanceId: uuid,
+    choiceId: positiveId,
+    promptId: positiveId,
+    resolutionType: z.literal('skipped'),
+    occurredAt: z.string().datetime()
+  }).strict()
+]);
+
 export const rawSceneBatchSchema = z.object({
   sceneInstances: z.array(z.unknown()).min(1).max(100)
 }).strict();
@@ -58,7 +84,12 @@ export const rawEventBatchSchema = z.object({
   events: z.array(z.unknown()).min(1).max(100)
 }).strict();
 
+export const rawMotiveBatchSchema = z.object({
+  resolutions: z.array(z.unknown()).min(1).max(100)
+}).strict();
+
 export type CreateCharacterInput = z.infer<typeof createCharacterSchema>;
 export type SceneInstanceInput = z.infer<typeof sceneInstanceSchema>;
 export type ChoiceMadeEventInput = z.infer<typeof choiceMadeEventSchema>;
 export type CompleteDayInput = z.infer<typeof completeDaySchema>;
+export type MotiveResolutionInput = z.infer<typeof motiveResolutionSchema>;
