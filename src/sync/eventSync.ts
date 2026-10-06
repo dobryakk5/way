@@ -5,6 +5,7 @@ import {
   markChoiceEventRetry,
   markChoiceEventSending,
   markChoiceEventSynced,
+  resetSendingChoiceEvents,
   type LocalChoiceEvent
 } from '../persistence/eventOutbox';
 import {
@@ -17,7 +18,7 @@ export type FlushChoiceEventsResult =
   | { status: 'idle'; sent: 0 }
   | { status: 'ok'; sent: number }
   | { status: 'paused-auth'; sent: number }
-  | { status: 'retry'; sent: number; reason: 'network' | 'server' | 'invalid-response' }
+  | { status: 'retry'; sent: number; reason: 'network' | 'server' | 'throttled' | 'invalid-response' }
   | { status: 'rejected'; sent: number; httpStatus: number };
 
 function apiEvent(local: LocalChoiceEvent): ChoiceMadeEvent {
@@ -33,6 +34,9 @@ function apiEvent(local: LocalChoiceEvent): ChoiceMadeEvent {
     occurredAt: local.occurredAt
   });
 }
+
+/** Transient client-side statuses: the request itself was fine, the server asked us to come back later. */
+const THROTTLED_STATUSES = new Set([408, 425, 429]);
 
 async function returnToPending(events: LocalChoiceEvent[], incrementRetry: boolean): Promise<void> {
   await Promise.all(events.map(event => markChoiceEventPending(event.eventId, incrementRetry)));
@@ -70,6 +74,11 @@ export async function flushChoiceEvents(options: {
   if (response.status >= 500) {
     await returnToPending(pending, true);
     return { status: 'retry', sent: pending.length, reason: 'server' };
+  }
+
+  if (THROTTLED_STATUSES.has(response.status)) {
+    await returnToPending(pending, true);
+    return { status: 'retry', sent: pending.length, reason: 'throttled' };
   }
 
   if (!response.ok) {
@@ -110,24 +119,42 @@ export async function flushChoiceEvents(options: {
   return { status: 'ok', sent: pending.length };
 }
 
-export async function syncChoiceEventsWithLock(options: {
-  characterId: string;
-  endpoint: string;
-  fetchImpl?: typeof fetch;
-}): Promise<FlushChoiceEventsResult | { status: 'locked'; sent: 0 }> {
-  if (!navigator.locks) return { status: 'locked', sent: 0 };
+type SyncOptions = Parameters<typeof flushChoiceEvents>[0];
+export type SyncChoiceEventsResult = FlushChoiceEventsResult | { status: 'locked'; sent: 0 };
 
-  let result: FlushChoiceEventsResult | { status: 'locked'; sent: 0 } = {
-    status: 'locked',
-    sent: 0
-  };
+/**
+ * Only one sync per character may run at a time, so any `sending` event seen here
+ * was stranded by an earlier interrupted run and is safe to return to `pending`.
+ * Without Web Locks another tab could still be mid-flight; resending is harmless
+ * because the server is idempotent by eventId + payload hash.
+ */
+async function recoverAndFlush(options: SyncOptions): Promise<FlushChoiceEventsResult> {
+  await resetSendingChoiceEvents(options.characterId);
+  return flushChoiceEvents(options);
+}
 
-  await navigator.locks.request(
+const inFlightWithoutLocks = new Map<string, Promise<FlushChoiceEventsResult>>();
+
+export async function syncChoiceEventsWithLock(options: SyncOptions): Promise<SyncChoiceEventsResult> {
+  const locks = typeof navigator === 'undefined' ? undefined : navigator.locks;
+
+  if (!locks) {
+    // Web Locks unavailable (old Safari, insecure context): never stall the outbox,
+    // just serialize runs within this tab.
+    if (inFlightWithoutLocks.has(options.characterId)) return { status: 'locked', sent: 0 };
+    const run = recoverAndFlush(options).finally(() => inFlightWithoutLocks.delete(options.characterId));
+    inFlightWithoutLocks.set(options.characterId, run);
+    return run;
+  }
+
+  let result: SyncChoiceEventsResult = { status: 'locked', sent: 0 };
+
+  await locks.request(
     `put-event-sync:${options.characterId}`,
     { ifAvailable: true },
     async lock => {
       if (!lock) return;
-      result = await flushChoiceEvents(options);
+      result = await recoverAndFlush(options);
     }
   );
 
