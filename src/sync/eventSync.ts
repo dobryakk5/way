@@ -104,10 +104,12 @@ export async function flushChoiceEvents(options: {
   }
 
   const results = new Map(parsed.data.results.map(result => [result.eventId, result]));
+  let missingResult = false;
   const rejected: { eventId: string; code: string }[] = [];
   await Promise.all(pending.map(async event => {
     const result = results.get(event.eventId);
     if (!result) {
+      missingResult = true;
       await markChoiceEventRetry(event.eventId);
       return;
     }
@@ -120,6 +122,9 @@ export async function flushChoiceEvents(options: {
     await markChoiceEventRejected(event.eventId, code);
   }));
 
+  if (missingResult) {
+    return { status: 'retry', sent: pending.length, reason: 'invalid-response' };
+  }
   return rejected.length
     ? { status: 'rejected', sent: pending.length, items: rejected }
     : { status: 'ok', sent: pending.length };
