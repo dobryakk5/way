@@ -820,16 +820,18 @@ p { line-height: 1.6; }
 
 .choice-buttons {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 8px;
   margin: 12px 2px 0;
 }
 .choice-buttons .choice-button {
-  min-height: 56px;
+  min-height: 50px;
   padding: 11px 13px;
   border-radius: 17px;
-  font-size: .82rem;
+  font-size: clamp(.68rem, 3.4vw, .82rem);
   line-height: 1.28;
+  white-space: nowrap;
+  text-align: center;
 }
 .swipe-hint {
   margin: 9px 0 0;
@@ -1009,7 +1011,6 @@ p { line-height: 1.6; }
   .resource { grid-template-columns: 1fr; grid-template-areas: "icon" "track" "dots"; justify-items: center; }
   .resource-track { width: 70%; }
   .game-card { width: min(94vw, 390px); }
-  .choice-buttons .choice-button { font-size: .77rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
