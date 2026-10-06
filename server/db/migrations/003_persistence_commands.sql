@@ -70,6 +70,8 @@ CREATE OR REPLACE FUNCTION register_scene_instance_v1(
     p_game_day INTEGER,
     p_scene_id BIGINT,
     p_scene_presentation_id BIGINT,
+    p_game_slot SMALLINT,
+    p_selection_origin TEXT,
     p_choices JSONB
 )
 RETURNS TEXT
@@ -81,6 +83,8 @@ DECLARE
     existing_character_id UUID;
     existing_game_day INTEGER;
     existing_presentation_id BIGINT;
+    existing_game_slot SMALLINT;
+    existing_selection_origin TEXT;
     input_count INTEGER;
     existing_count INTEGER;
 BEGIN
@@ -106,8 +110,8 @@ BEGIN
         RAISE EXCEPTION 'DAY_NOT_OPEN' USING ERRCODE = 'P0001';
     END IF;
 
-    SELECT scene_id, character_id, game_day, scene_presentation_id
-    INTO existing_scene_id, existing_character_id, existing_game_day, existing_presentation_id
+    SELECT scene_id, character_id, game_day, scene_presentation_id, game_slot, selection_origin
+    INTO existing_scene_id, existing_character_id, existing_game_day, existing_presentation_id, existing_game_slot, existing_selection_origin
     FROM scene_instances
     WHERE id = p_scene_instance_id;
 
@@ -115,7 +119,9 @@ BEGIN
         IF existing_scene_id <> p_scene_id
            OR existing_character_id <> p_character_id
            OR existing_game_day <> p_game_day
-           OR existing_presentation_id <> p_scene_presentation_id THEN
+           OR existing_presentation_id <> p_scene_presentation_id
+           OR existing_game_slot <> p_game_slot
+           OR existing_selection_origin <> p_selection_origin THEN
             RAISE EXCEPTION 'SCENE_INSTANCE_PAYLOAD_MISMATCH' USING ERRCODE = 'P0001';
         END IF;
 
@@ -145,9 +151,9 @@ BEGIN
     END IF;
 
     INSERT INTO scene_instances(
-        id, character_id, scene_id, game_day, scene_presentation_id
+        id, character_id, scene_id, game_day, scene_presentation_id, game_slot, selection_origin
     ) VALUES (
-        p_scene_instance_id, p_character_id, p_scene_id, p_game_day, p_scene_presentation_id
+        p_scene_instance_id, p_character_id, p_scene_id, p_game_day, p_scene_presentation_id, p_game_slot, p_selection_origin
     );
 
     INSERT INTO scene_instance_choices(
