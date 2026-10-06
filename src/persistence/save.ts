@@ -62,7 +62,19 @@ const persistenceChoice = z.object({authorChoiceId:str,choiceId:z.number().int()
 const presentedPersistence = z.object({sceneInstanceId:z.string().uuid(),sceneId:z.number().int().positive(),scenePresentationId:z.number().int().positive(),gameSlot:slot,selectionOrigin:origin,choices:z.array(persistenceChoice).min(2).max(4)}).strict();
 const currentOf = (c: typeof choice | typeof choice4) => z.object({cardId:str,leftChoiceId:str.optional(),choiceIds:z.array(str).min(2).max(4),text:str,variantId:str.optional(),choices:z.array(c).min(2).max(4),selectionOrigin:origin.optional(),persistence:presentedPersistence.optional()}).strict();
 const common = {
- episodeId:z.literal(content.episode.id),runId:str,seed:z.number().int().nonnegative(),serverPersistence:z.object({enabled:z.literal(true),schema:z.literal(1)}).strict().optional(),
+ episodeId:z.literal(content.episode.id),runId:str,seed:z.number().int().nonnegative(),serverPersistence:z.object({
+ enabled:z.literal(true),schema:z.literal(1),
+ processedThroughDay:z.number().int().min(0).optional(),
+ lastProcessedSeq:z.number().int().min(0).optional(),
+ canonicalDevelopment:z.object({
+  taxonomyVersion:str,evidenceModelVersion:str,calculationVersion:str,
+  profileStatus:z.enum(['insufficient_data','provisional','stable','transition']),
+  centerScores:z.record(z.number().finite()),
+  currentCenter:z.string().nullable(),currentCenterConfidence:z.number().finite().nullable(),
+  emergingCenter:z.string().nullable(),emergingCenterConfidence:z.number().finite().nullable(),
+  evidenceCount:z.number().int().min(0)
+ }).strict().optional()
+}).strict().optional(),
  chapter:z.number().int().positive(),day,slot,
  resources,qualities:z.object({attention:z.number(),honesty:z.number(),compassion:z.number(),letgo:z.number(),courage:z.number()}).strict(),
  declaredIntention:facet.optional(),intentionHistory:z.array(z.object({day,facet}).strict()),
