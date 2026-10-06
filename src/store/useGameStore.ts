@@ -111,7 +111,7 @@ export const useGameStore = create<GameStore>((set,get) => {
     const scene=presentedScenePayload(source);
     const persistence=source.current?.persistence;
     const selected=persistence?.choices.find(choice=>choice.authorChoiceId===authorChoiceId);
-    if(!source.serverPersistence?.enabled||!scene||!selected){
+    if(!source.serverPersistence?.enabled||!scene||!persistence||!selected){
      commitGame(shown);
      return;
     }
