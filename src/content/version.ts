@@ -1,1 +1,1 @@
-export const CONTENT_VERSION = 'mvp-v2.4-alpha.2';
+export const CONTENT_VERSION = 'mvp-v2.5-alpha.1';

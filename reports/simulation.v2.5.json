@@ -1,0 +1,1823 @@
+{
+  "shadowWitnesses": [
+    {
+      "quality": "attention",
+      "seed": 1,
+      "choices": {
+        "c1_old_bowl": "pause"
+      },
+      "routes": {
+        "5": "river"
+      },
+      "scene": "c2_shadow_attention"
+    },
+    {
+      "quality": "honesty",
+      "seed": 1,
+      "choices": {
+        "c1_extra_change": "return"
+      },
+      "routes": {
+        "9": "ilya"
+      },
+      "scene": "c2_shadow_honesty"
+    },
+    {
+      "quality": "compassion",
+      "seed": 2,
+      "choices": {
+        "c1_neighbor_noise": "continue",
+        "c1_wounded_road": "stop"
+      },
+      "routes": {
+        "7": "rest"
+      },
+      "scene": "c2_shadow_compassion"
+    },
+    {
+      "quality": "letgo",
+      "seed": 2,
+      "choices": {
+        "c1_old_bowl": "return",
+        "c1_rain_delivery": "revise"
+      },
+      "routes": {
+        "9": "order"
+      },
+      "scene": "c2_shadow_letgo"
+    },
+    {
+      "quality": "courage",
+      "seed": 2,
+      "choices": {
+        "c1_neighbor_noise": "continue",
+        "c1_rain_delivery": "finish"
+      },
+      "routes": {
+        "9": "ilya"
+      },
+      "scene": "c2_shadow_courage"
+    }
+  ],
+  "contentVersion": "mvp-v2.5-alpha.1",
+  "runsPerPolicy": 200,
+  "summaries": [
+    {
+      "policy": "random",
+      "runs": 200,
+      "endings": {
+        "after_fair": 70,
+        "to_fair": 130
+      },
+      "facts": {
+        "workshop.orderOutcome": {
+          "deferred": 70,
+          "revised": 107,
+          "fulfilled": 23
+        },
+        "alexey.path": {
+          "together": 48,
+          "independent": 104,
+          "paused": 48
+        },
+        "market.arrangement": {
+          "solo": 103,
+          "shared": 23,
+          "absent": 74
+        },
+        "alexey.plan": {
+          "together": 96,
+          "independent": 104
+        },
+        "workshop.preparation": {
+          "ready": 60,
+          "revised": 72,
+          "unknown": 68
+        },
+        "timon.trust": {
+          "open": 97,
+          "guarded": 103
+        },
+        "liaison.martaHelp": {
+          "hero": 51,
+          "other": 149
+        },
+        "market.window": {
+          "other": 145,
+          "reserved": 55
+        },
+        "rest.beforeFair": {
+          "missed": 151,
+          "kept": 49
+        },
+        "ilya.meeting": {
+          "missed": 110,
+          "talked": 90
+        },
+        "body.pace": {
+          "shared": 67,
+          "alone": 58,
+          "unknown": 75
+        },
+        "inner.pause": {
+          "carried": 50,
+          "kept": 59,
+          "unknown": 91
+        }
+      },
+      "opportunities": {
+        "marta_help": {
+          "taken": 51,
+          "expired": 149
+        },
+        "market_place": {
+          "expired": 145,
+          "taken": 55
+        },
+        "quiet_evening": {
+          "expired": 151,
+          "taken": 49
+        },
+        "ilya_talk": {
+          "expired": 110,
+          "taken": 90
+        }
+      },
+      "averageCrises": 0.905,
+      "optionalDropPct": 0,
+      "cardShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "r_coins": 82,
+        "c1_neighbor_noise": 62.5,
+        "r_marta_hello": 74.5,
+        "c1_alexey_after_jug": 100,
+        "neutral.relationships.03": 82,
+        "c1_customer_hurry": 24,
+        "neutral.body.01": 86,
+        "c1_wounded_road": 100,
+        "c1_alexey_bad_work": 100,
+        "neutral.relationships.02": 82.5,
+        "c1_old_bowl": 54.50000000000001,
+        "c1_extra_change": 100,
+        "neutral.behavior.relationships.01": 82,
+        "neutral.inner.06": 84,
+        "neutral.work.01": 87.5,
+        "neutral.body.08": 87,
+        "c2_shadow_attention": 37.5,
+        "neutral.body.03": 85.5,
+        "neutral.inner.08": 86,
+        "c1_timon_returns": 100,
+        "c1_wanderer_returns": 50.5,
+        "c2_alexey_tools_result": 62.5,
+        "c2_marta_window_result": 54.50000000000001,
+        "neutral.behavior.work.01": 87.5,
+        "c2_timon_joint_order": 100,
+        "c2_bridge_repair": 24,
+        "neutral.inner.04": 84,
+        "c2_stones_bag": 100,
+        "cr_wealth_zero": 15,
+        "r_customer_wait": 74,
+        "neutral.relationships.01": 89.5,
+        "neutral.work.03": 85,
+        "c2_shadow_letgo": 39.5,
+        "neutral.relationships.05": 89,
+        "c2_liya_arrives": 100,
+        "c2_ilya_after_forgive": 42,
+        "c2_gaze_alexey_silence": 10,
+        "r_letter_stack": 79.5,
+        "c2_timon_order_result": 100,
+        "d11_0_apprentice": 100,
+        "enc_3_6": 43.5,
+        "neutral.work.04": 85,
+        "d11_3_apprentice": 100,
+        "d12_0_pace": 100,
+        "neutral.inner.07": 90,
+        "enc_3_4": 50.5,
+        "d12_3_pace": 100,
+        "d13_0_commitments": 100,
+        "r_market_price": 74.5,
+        "neutral.body.05": 88,
+        "d13_3_commitments": 100,
+        "d14_0_apprentice": 100,
+        "neutral.work.02": 86.5,
+        "r_evening_light": 76.5,
+        "d14_3_apprentice": 100,
+        "d15_0_pace": 100,
+        "neutral.relationships.04": 83.5,
+        "enc_3_2": 41.5,
+        "d15_3_pace": 100,
+        "d16_0_commitments": 100,
+        "enc_3_5": 48.5,
+        "neutral.inner.01": 83,
+        "d16_3_commitments": 100,
+        "d17_0_apprentice": 100,
+        "neutral.work.05": 88.5,
+        "d17_3_apprentice": 100,
+        "d18_0_pace": 100,
+        "neutral.behavior.inner.01": 83,
+        "enc_3_3": 53.5,
+        "d18_3_pace": 100,
+        "d19_0_commitments": 100,
+        "neutral.inner.03": 89,
+        "d19_3_commitments": 100,
+        "d20_0_apprentice": 100,
+        "cr_strength_zero": 66.5,
+        "neutral.relationships.06": 86,
+        "d20_3_apprentice": 100,
+        "d21_0_pace": 100,
+        "enc_4_0": 56.49999999999999,
+        "enc_4_4": 52.5,
+        "d21_3_pace": 100,
+        "d22_0_apprentice": 100,
+        "r_kiln": 77,
+        "enc_4_8": 53.5,
+        "d22_3_apprentice": 100,
+        "d23_0_commitments": 100,
+        "neutral.inner.02": 86,
+        "enc_4_9": 51.5,
+        "d23_3_commitments": 100,
+        "d24_0_pace": 100,
+        "neutral.relationships.07": 86,
+        "neutral.body.06": 82,
+        "d24_3_pace": 100,
+        "d25_0_apprentice": 100,
+        "r_river": 77,
+        "d25_3_apprentice": 100,
+        "d26_0_commitments": 100,
+        "d26_3_commitments": 100,
+        "d27_0_pace": 100,
+        "neutral.work.08": 85,
+        "enc_4_11": 65.5,
+        "d27_3_pace": 100,
+        "d28_0_apprentice": 100,
+        "enc_4_3": 64.5,
+        "d28_3_apprentice": 100,
+        "d29_0_commitments": 100,
+        "neutral.inner.05": 83.5,
+        "enc_4_2": 60.5,
+        "d29_3_commitments": 100,
+        "d30_0_pace": 100,
+        "neutral.work.07": 83,
+        "d30_3_pace": 100,
+        "c1_rain_delivery": 39.5,
+        "neutral.body.02": 86,
+        "neutral.body.07": 81,
+        "neutral.work.06": 86.5,
+        "c1_last_clay": 31,
+        "neutral.behavior.body.01": 81,
+        "c2_old_master_tools": 35.5,
+        "c2_gaze_wanderer_bread": 14.000000000000002,
+        "c2_silence_marta_cup": 14.499999999999998,
+        "c2_silence_market_pause": 12.5,
+        "enc_3_7": 49,
+        "enc_3_11": 39,
+        "neutral.body.04": 88.5,
+        "enc_3_10": 44,
+        "enc_4_7": 60.5,
+        "enc_4_10": 56.49999999999999,
+        "neutral.relationships.08": 90,
+        "enc_4_5": 53,
+        "c1_wanderer_bridge": 49.5,
+        "c2_shadow_compassion": 27,
+        "c2_shadow_courage": 23,
+        "enc_3_0": 43.5,
+        "enc_3_8": 47,
+        "enc_3_1": 55.00000000000001,
+        "r_breakfast": 76.5,
+        "enc_4_1": 54,
+        "c1_liya_letter": 55.50000000000001,
+        "c1_liya_second_letter": 55.50000000000001,
+        "c2_ilya_leaves": 57.99999999999999,
+        "r_sweep": 76,
+        "enc_3_9": 46,
+        "c1_marta_firewood": 24,
+        "c2_silence_alexey_hand": 14.499999999999998,
+        "enc_4_6": 66,
+        "c1_market_spot": 20,
+        "c2_gaze_marta_window": 11.5,
+        "cr_wealth_full": 7.000000000000001,
+        "c2_shadow_honesty": 22,
+        "dev_retry_1": 1,
+        "dev_retry_1_review": 1,
+        "dev_retry_2": 1,
+        "dev_retry_2_review": 1,
+        "dev_retry_3": 1,
+        "dev_retry_3_review": 1
+      },
+      "insightDays": {
+        "insight_silence": {
+          "min": 6,
+          "max": 8,
+          "count": 130
+        },
+        "insight_gaze": {
+          "min": 6,
+          "max": 7,
+          "count": 123
+        }
+      },
+      "shadows": {
+        "honesty": 6,
+        "courage": 3,
+        "letgo": 1
+      },
+      "facets": {
+        "work": 7793,
+        "relationships": 7201,
+        "body": 5147,
+        "inner": 4895
+      },
+      "intentionDivergenceCount": 144
+    },
+    {
+      "policy": "always-first",
+      "runs": 200,
+      "endings": {
+        "to_fair": 200
+      },
+      "facts": {
+        "workshop.orderOutcome": {
+          "revised": 90,
+          "fulfilled": 110
+        },
+        "alexey.path": {
+          "together": 200
+        },
+        "market.arrangement": {
+          "shared": 200
+        },
+        "alexey.plan": {
+          "together": 200
+        },
+        "workshop.preparation": {
+          "ready": 189,
+          "unknown": 11
+        },
+        "timon.trust": {
+          "open": 200
+        },
+        "liaison.martaHelp": {
+          "other": 200
+        },
+        "market.window": {
+          "reserved": 200
+        },
+        "rest.beforeFair": {
+          "missed": 200
+        },
+        "ilya.meeting": {
+          "missed": 200
+        },
+        "body.pace": {
+          "shared": 119,
+          "unknown": 81
+        },
+        "inner.pause": {
+          "kept": 109,
+          "unknown": 91
+        }
+      },
+      "opportunities": {
+        "marta_help": {
+          "expired": 200
+        },
+        "market_place": {
+          "taken": 200
+        },
+        "quiet_evening": {
+          "expired": 200
+        },
+        "ilya_talk": {
+          "expired": 200
+        }
+      },
+      "averageCrises": 3.79,
+      "optionalDropPct": 0,
+      "cardShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "r_coins": 79,
+        "c1_neighbor_noise": 59.5,
+        "r_marta_hello": 78.5,
+        "c1_alexey_after_jug": 100,
+        "neutral.relationships.03": 83.5,
+        "r_customer_wait": 77.5,
+        "neutral.body.01": 89.5,
+        "c1_wounded_road": 100,
+        "c1_alexey_bad_work": 100,
+        "neutral.relationships.02": 80.5,
+        "c1_old_bowl": 54.50000000000001,
+        "c1_extra_change": 100,
+        "neutral.behavior.relationships.01": 83.5,
+        "neutral.inner.06": 81,
+        "neutral.work.01": 87.5,
+        "neutral.body.08": 89.5,
+        "c1_last_clay": 56.00000000000001,
+        "neutral.body.03": 85,
+        "neutral.inner.08": 84,
+        "c1_timon_returns": 100,
+        "c1_wanderer_returns": 100,
+        "c2_alexey_tools_result": 59.5,
+        "c2_marta_window_result": 54.50000000000001,
+        "neutral.behavior.work.01": 87.5,
+        "c2_timon_joint_order": 100,
+        "c2_old_master_tools": 72,
+        "neutral.inner.04": 81.5,
+        "c2_stones_bag": 100,
+        "c2_silence_alexey_hand": 14.000000000000002,
+        "neutral.work.02": 87,
+        "neutral.relationships.04": 80,
+        "neutral.work.03": 89.5,
+        "c2_shadow_letgo": 75.5,
+        "neutral.relationships.06": 85.5,
+        "c2_liya_arrives": 100,
+        "c2_ilya_leaves": 100,
+        "neutral.relationships.01": 83,
+        "c2_timon_order_result": 100,
+        "d11_0_apprentice": 100,
+        "r_letter_stack": 74,
+        "neutral.work.04": 87.5,
+        "d11_3_apprentice": 100,
+        "d12_0_pace": 100,
+        "neutral.inner.07": 77,
+        "enc_3_4": 47.5,
+        "d12_3_pace": 100,
+        "d13_0_commitments": 100,
+        "neutral.relationships.05": 86.5,
+        "neutral.body.05": 80.5,
+        "d13_3_commitments": 100,
+        "d14_0_apprentice": 100,
+        "d14_3_apprentice": 100,
+        "d15_0_pace": 100,
+        "r_evening_light": 75.5,
+        "enc_3_2": 38,
+        "d15_3_pace": 100,
+        "d16_0_commitments": 100,
+        "enc_3_5": 51.5,
+        "neutral.inner.01": 79,
+        "d16_3_commitments": 100,
+        "d17_0_apprentice": 100,
+        "cr_strength_zero": 100,
+        "d17_3_apprentice": 100,
+        "d18_0_pace": 100,
+        "neutral.behavior.inner.01": 79,
+        "neutral.relationships.07": 82.5,
+        "d18_3_pace": 100,
+        "d19_0_commitments": 100,
+        "enc_3_0": 46.5,
+        "neutral.inner.03": 82.5,
+        "d19_3_commitments": 100,
+        "d20_0_apprentice": 100,
+        "r_kiln": 78.5,
+        "d20_3_apprentice": 100,
+        "d21_0_pace": 100,
+        "enc_4_0": 47.5,
+        "enc_4_4": 51,
+        "d21_3_pace": 100,
+        "d22_0_apprentice": 100,
+        "enc_4_9": 46.5,
+        "d22_3_apprentice": 100,
+        "d23_0_commitments": 100,
+        "enc_4_6": 52.5,
+        "enc_4_10": 50,
+        "d23_3_commitments": 100,
+        "d24_0_pace": 100,
+        "neutral.inner.05": 77,
+        "d24_3_pace": 100,
+        "d25_0_apprentice": 100,
+        "r_river": 68,
+        "d25_3_apprentice": 100,
+        "d26_0_commitments": 100,
+        "d26_3_commitments": 100,
+        "d27_0_pace": 100,
+        "neutral.work.08": 82,
+        "neutral.work.06": 89,
+        "d27_3_pace": 100,
+        "d28_0_apprentice": 100,
+        "enc_4_5": 55.50000000000001,
+        "d28_3_apprentice": 100,
+        "d29_0_commitments": 100,
+        "enc_4_11": 54,
+        "enc_4_3": 53.5,
+        "d29_3_commitments": 100,
+        "d30_0_pace": 100,
+        "cr_wealth_full": 100,
+        "d30_3_pace": 100,
+        "r_market_price": 76.5,
+        "c1_rain_delivery": 74,
+        "neutral.body.02": 83,
+        "neutral.body.07": 80,
+        "neutral.work.07": 81,
+        "neutral.behavior.body.01": 79.5,
+        "c2_gaze_wanderer_bread": 22.5,
+        "neutral.work.05": 86.5,
+        "c2_silence_marta_cup": 16.5,
+        "c2_silence_market_pause": 15,
+        "neutral.body.06": 78.5,
+        "enc_3_7": 41.5,
+        "enc_3_11": 38.5,
+        "neutral.body.04": 82.5,
+        "enc_3_10": 45.5,
+        "enc_3_8": 52,
+        "neutral.relationships.08": 84,
+        "enc_4_2": 58.5,
+        "enc_4_7": 52.5,
+        "neutral.inner.02": 78.5,
+        "enc_3_9": 44.5,
+        "enc_3_1": 48.5,
+        "r_breakfast": 79.5,
+        "enc_4_8": 48.5,
+        "enc_4_1": 47.5,
+        "c1_liya_letter": 52,
+        "c1_liya_second_letter": 52,
+        "c1_market_spot": 44,
+        "c2_gaze_marta_window": 20,
+        "r_sweep": 80,
+        "enc_3_3": 47,
+        "enc_3_6": 42.5,
+        "c2_gaze_alexey_silence": 16.5,
+        "cr_wealth_zero": 1.5
+      },
+      "insightDays": {
+        "insight_silence": {
+          "min": 6,
+          "max": 8,
+          "count": 132
+        },
+        "insight_gaze": {
+          "min": 6,
+          "max": 7,
+          "count": 200
+        }
+      },
+      "shadows": {},
+      "facets": {
+        "work": 10398,
+        "relationships": 7622,
+        "body": 4595,
+        "inner": 2194
+      },
+      "intentionDivergenceCount": 0
+    },
+    {
+      "policy": "always-second",
+      "runs": 200,
+      "endings": {
+        "after_fair": 187,
+        "to_fair": 13
+      },
+      "facts": {
+        "workshop.orderOutcome": {
+          "deferred": 187,
+          "revised": 13
+        },
+        "alexey.path": {
+          "paused": 200
+        },
+        "market.arrangement": {
+          "absent": 200
+        },
+        "alexey.plan": {
+          "independent": 200
+        },
+        "workshop.preparation": {
+          "unknown": 200
+        },
+        "timon.trust": {
+          "guarded": 200
+        },
+        "liaison.martaHelp": {
+          "other": 200
+        },
+        "market.window": {
+          "other": 200
+        },
+        "rest.beforeFair": {
+          "missed": 200
+        },
+        "ilya.meeting": {
+          "talked": 200
+        },
+        "body.pace": {
+          "alone": 131,
+          "unknown": 69
+        },
+        "inner.pause": {
+          "carried": 104,
+          "unknown": 96
+        }
+      },
+      "opportunities": {
+        "marta_help": {
+          "expired": 200
+        },
+        "market_place": {
+          "expired": 200
+        },
+        "quiet_evening": {
+          "expired": 200
+        },
+        "ilya_talk": {
+          "taken": 200
+        }
+      },
+      "averageCrises": 0.985,
+      "optionalDropPct": 0,
+      "cardShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "r_coins": 77.5,
+        "c1_neighbor_noise": 65.5,
+        "r_marta_hello": 75,
+        "c1_alexey_after_jug": 100,
+        "neutral.relationships.03": 88.5,
+        "c1_customer_hurry": 52.5,
+        "neutral.body.01": 89,
+        "c1_wounded_road": 100,
+        "c1_alexey_bad_work": 100,
+        "neutral.relationships.02": 89,
+        "c1_old_bowl": 52,
+        "c1_extra_change": 100,
+        "neutral.behavior.relationships.01": 88.5,
+        "neutral.inner.06": 86,
+        "neutral.work.01": 87,
+        "neutral.body.08": 92.5,
+        "c2_shadow_attention": 74.5,
+        "neutral.body.03": 88,
+        "neutral.inner.08": 82.5,
+        "c1_timon_returns": 100,
+        "c1_wanderer_bridge": 100,
+        "c2_alexey_tools_result": 65.5,
+        "c2_marta_window_result": 52,
+        "neutral.behavior.work.01": 87,
+        "c2_timon_joint_order": 100,
+        "c2_bridge_repair": 46,
+        "neutral.inner.04": 85.5,
+        "c2_stones_bag": 100,
+        "c2_silence_alexey_hand": 14.000000000000002,
+        "neutral.work.05": 85.5,
+        "neutral.relationships.06": 84,
+        "neutral.work.07": 90,
+        "c2_shadow_honesty": 48,
+        "neutral.relationships.07": 88.5,
+        "c2_liya_arrives": 100,
+        "c2_ilya_after_forgive": 100,
+        "neutral.relationships.01": 88,
+        "neutral.work.02": 82,
+        "c2_timon_order_result": 100,
+        "d11_0_apprentice": 100,
+        "r_letter_stack": 81.5,
+        "enc_3_11": 46,
+        "d11_3_apprentice": 100,
+        "d12_0_pace": 100,
+        "enc_3_7": 49.5,
+        "enc_3_4": 48,
+        "d12_3_pace": 100,
+        "d13_0_commitments": 100,
+        "neutral.relationships.05": 91.5,
+        "neutral.body.06": 77,
+        "d13_3_commitments": 100,
+        "d14_0_apprentice": 100,
+        "enc_3_0": 42.5,
+        "r_customer_wait": 73.5,
+        "d14_3_apprentice": 100,
+        "d15_0_pace": 100,
+        "neutral.relationships.04": 87.5,
+        "enc_3_2": 43,
+        "d15_3_pace": 100,
+        "d16_0_commitments": 100,
+        "neutral.inner.03": 86.5,
+        "d16_3_commitments": 100,
+        "d17_0_apprentice": 100,
+        "neutral.work.03": 83.5,
+        "d17_3_apprentice": 100,
+        "d18_0_pace": 100,
+        "enc_3_9": 52.5,
+        "neutral.body.04": 89,
+        "d18_3_pace": 100,
+        "d19_0_commitments": 100,
+        "neutral.inner.07": 89.5,
+        "d19_3_commitments": 100,
+        "d20_0_apprentice": 100,
+        "neutral.relationships.08": 91.5,
+        "d20_3_apprentice": 100,
+        "d21_0_pace": 100,
+        "enc_4_0": 58.5,
+        "enc_4_3": 61.5,
+        "d21_3_pace": 100,
+        "d22_0_apprentice": 100,
+        "enc_4_7": 56.00000000000001,
+        "enc_4_8": 57.99999999999999,
+        "d22_3_apprentice": 100,
+        "d23_0_commitments": 100,
+        "enc_4_6": 53,
+        "enc_4_9": 48,
+        "d23_3_commitments": 100,
+        "d24_0_pace": 100,
+        "neutral.inner.02": 83.5,
+        "neutral.body.07": 80.5,
+        "d24_3_pace": 100,
+        "d25_0_apprentice": 100,
+        "r_breakfast": 77,
+        "r_evening_light": 78.5,
+        "d25_3_apprentice": 100,
+        "d26_0_commitments": 100,
+        "neutral.behavior.body.01": 80.5,
+        "d26_3_commitments": 100,
+        "d27_0_pace": 100,
+        "r_sweep": 80,
+        "enc_4_11": 61,
+        "d27_3_pace": 100,
+        "d28_0_apprentice": 100,
+        "enc_4_5": 59.5,
+        "d28_3_apprentice": 100,
+        "d29_0_commitments": 100,
+        "neutral.work.08": 86,
+        "d29_3_commitments": 100,
+        "d30_0_pace": 100,
+        "cr_wealth_zero": 98.5,
+        "d30_3_pace": 100,
+        "r_market_price": 73.5,
+        "r_kiln": 76,
+        "c1_marta_firewood": 47.5,
+        "neutral.body.02": 85.5,
+        "c1_liya_letter": 58.5,
+        "neutral.body.05": 81.5,
+        "c1_liya_second_letter": 58.5,
+        "c2_shadow_compassion": 54,
+        "c2_silence_marta_cup": 15.5,
+        "c2_shadow_courage": 52,
+        "c2_silence_market_pause": 13.5,
+        "enc_3_5": 52.5,
+        "neutral.inner.01": 79.5,
+        "enc_3_1": 53.5,
+        "neutral.behavior.inner.01": 79.5,
+        "neutral.work.04": 83,
+        "enc_4_4": 55.50000000000001,
+        "enc_4_2": 56.99999999999999,
+        "neutral.inner.05": 89,
+        "enc_4_10": 57.99999999999999,
+        "r_river": 78.5,
+        "enc_3_10": 45,
+        "enc_3_8": 46.5,
+        "neutral.work.06": 84.5,
+        "enc_3_3": 51.5,
+        "enc_3_6": 43,
+        "enc_4_1": 54.50000000000001
+      },
+      "insightDays": {
+        "insight_silence": {
+          "min": 6,
+          "max": 8,
+          "count": 110
+        }
+      },
+      "shadows": {},
+      "facets": {
+        "work": 5590,
+        "relationships": 6890,
+        "body": 5928,
+        "inner": 7123
+      },
+      "intentionDivergenceCount": 97
+    },
+    {
+      "policy": "always-costly",
+      "runs": 200,
+      "endings": {
+        "after_fair": 153,
+        "to_fair": 47
+      },
+      "facts": {
+        "workshop.orderOutcome": {
+          "deferred": 153,
+          "fulfilled": 47
+        },
+        "alexey.path": {
+          "together": 104,
+          "independent": 96
+        },
+        "market.arrangement": {
+          "solo": 200
+        },
+        "alexey.plan": {
+          "together": 200
+        },
+        "workshop.preparation": {
+          "ready": 132,
+          "unknown": 68
+        },
+        "timon.trust": {
+          "open": 200
+        },
+        "liaison.martaHelp": {
+          "hero": 96,
+          "other": 104
+        },
+        "market.window": {
+          "other": 98,
+          "reserved": 102
+        },
+        "rest.beforeFair": {
+          "kept": 102,
+          "missed": 98
+        },
+        "ilya.meeting": {
+          "missed": 110,
+          "talked": 90
+        },
+        "body.pace": {
+          "alone": 125,
+          "unknown": 75
+        },
+        "inner.pause": {
+          "carried": 50,
+          "kept": 59,
+          "unknown": 91
+        }
+      },
+      "opportunities": {
+        "marta_help": {
+          "taken": 96,
+          "expired": 104
+        },
+        "market_place": {
+          "expired": 98,
+          "taken": 102
+        },
+        "quiet_evening": {
+          "taken": 102,
+          "expired": 98
+        },
+        "ilya_talk": {
+          "expired": 110,
+          "taken": 90
+        }
+      },
+      "averageCrises": 5.405,
+      "optionalDropPct": 0,
+      "cardShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "r_coins": 78,
+        "c1_neighbor_noise": 62.5,
+        "r_marta_hello": 68.5,
+        "c1_alexey_after_jug": 100,
+        "neutral.relationships.03": 78.5,
+        "c1_customer_hurry": 24,
+        "neutral.body.01": 82,
+        "c1_wounded_road": 100,
+        "c1_alexey_bad_work": 100,
+        "neutral.relationships.02": 85.5,
+        "c1_old_bowl": 54.50000000000001,
+        "c1_extra_change": 100,
+        "neutral.behavior.relationships.01": 78.5,
+        "neutral.inner.06": 81,
+        "neutral.work.01": 79.5,
+        "neutral.body.08": 81.5,
+        "c2_shadow_attention": 37.5,
+        "neutral.body.03": 85,
+        "neutral.inner.08": 80,
+        "c1_timon_returns": 100,
+        "c1_wanderer_returns": 100,
+        "c2_alexey_tools_result": 62.5,
+        "c2_marta_window_result": 54.50000000000001,
+        "neutral.behavior.work.01": 79.5,
+        "c2_timon_joint_order": 100,
+        "c2_bridge_repair": 24,
+        "neutral.inner.04": 78.5,
+        "c2_stones_bag": 100,
+        "cr_wealth_zero": 86.5,
+        "r_customer_wait": 69,
+        "neutral.relationships.01": 87,
+        "neutral.work.03": 77.5,
+        "c2_shadow_letgo": 39.5,
+        "neutral.relationships.05": 86.5,
+        "c2_liya_arrives": 100,
+        "c2_ilya_after_forgive": 100,
+        "c2_gaze_alexey_silence": 16,
+        "r_letter_stack": 72,
+        "c2_timon_order_result": 100,
+        "d11_0_apprentice": 100,
+        "enc_3_6": 42.5,
+        "neutral.work.04": 83,
+        "d11_3_apprentice": 100,
+        "d12_0_pace": 100,
+        "neutral.inner.07": 81,
+        "enc_3_4": 44,
+        "d12_3_pace": 100,
+        "d13_0_commitments": 100,
+        "cr_strength_zero": 100,
+        "neutral.relationships.06": 82.5,
+        "d13_3_commitments": 100,
+        "d14_0_apprentice": 100,
+        "neutral.body.06": 83,
+        "d14_3_apprentice": 100,
+        "d15_0_pace": 100,
+        "neutral.work.02": 81.5,
+        "enc_3_2": 39.5,
+        "d15_3_pace": 100,
+        "d16_0_commitments": 100,
+        "enc_3_5": 47,
+        "neutral.inner.01": 82.5,
+        "d16_3_commitments": 100,
+        "d17_0_apprentice": 100,
+        "neutral.work.05": 82.5,
+        "d17_3_apprentice": 100,
+        "d18_0_pace": 100,
+        "neutral.behavior.inner.01": 82.5,
+        "neutral.relationships.07": 77.5,
+        "d18_3_pace": 100,
+        "d19_0_commitments": 100,
+        "d19_3_commitments": 100,
+        "d20_0_apprentice": 100,
+        "neutral.relationships.08": 86.5,
+        "d20_3_apprentice": 100,
+        "d21_0_pace": 100,
+        "neutral.relationships.04": 81,
+        "enc_4_3": 60,
+        "d21_3_pace": 100,
+        "d22_0_apprentice": 100,
+        "r_kiln": 79,
+        "enc_4_7": 56.00000000000001,
+        "d22_3_apprentice": 100,
+        "d23_0_commitments": 100,
+        "cr_wealth_full": 98,
+        "enc_4_9": 55.50000000000001,
+        "d23_3_commitments": 100,
+        "d24_0_pace": 100,
+        "neutral.inner.02": 79.5,
+        "neutral.body.07": 79.5,
+        "d24_3_pace": 100,
+        "d25_0_apprentice": 100,
+        "enc_4_0": 49.5,
+        "d25_3_apprentice": 100,
+        "d26_0_commitments": 100,
+        "neutral.behavior.body.01": 79.5,
+        "d26_3_commitments": 100,
+        "d27_0_pace": 100,
+        "neutral.work.08": 81,
+        "enc_4_11": 51.5,
+        "d27_3_pace": 100,
+        "d28_0_apprentice": 100,
+        "enc_4_5": 50,
+        "d28_3_apprentice": 100,
+        "d29_0_commitments": 100,
+        "neutral.inner.05": 84.5,
+        "d29_3_commitments": 100,
+        "d30_0_pace": 100,
+        "enc_4_6": 45.5,
+        "neutral.body.02": 81.5,
+        "d30_3_pace": 100,
+        "r_market_price": 71,
+        "c1_rain_delivery": 39.5,
+        "neutral.body.05": 83,
+        "neutral.work.06": 80,
+        "c1_last_clay": 31,
+        "neutral.work.07": 81,
+        "c2_old_master_tools": 35.5,
+        "c2_silence_marta_cup": 14.000000000000002,
+        "r_evening_light": 79.5,
+        "c2_silence_market_pause": 10,
+        "enc_3_7": 35,
+        "enc_3_11": 43.5,
+        "neutral.body.04": 81,
+        "enc_3_10": 37,
+        "enc_3_8": 46.5,
+        "enc_4_4": 50.5,
+        "enc_4_2": 46.5,
+        "neutral.inner.03": 81.5,
+        "enc_4_8": 50,
+        "r_river": 71,
+        "c2_shadow_compassion": 27,
+        "c2_shadow_courage": 23,
+        "enc_3_0": 41,
+        "enc_3_1": 42.5,
+        "r_breakfast": 70.5,
+        "enc_3_3": 48.5,
+        "enc_4_10": 47.5,
+        "c1_liya_letter": 55.50000000000001,
+        "c1_liya_second_letter": 55.50000000000001,
+        "r_sweep": 73.5,
+        "c1_marta_firewood": 24,
+        "enc_3_9": 38,
+        "c1_market_spot": 20,
+        "c2_gaze_wanderer_bread": 17,
+        "enc_4_1": 49.5,
+        "c2_silence_alexey_hand": 11.5,
+        "c2_gaze_marta_window": 20.5,
+        "c2_shadow_honesty": 22,
+        "dev_retry_1": 0.5,
+        "dev_retry_1_review": 0.5,
+        "dev_retry_2": 0.5,
+        "dev_retry_2_review": 0.5,
+        "dev_retry_3": 0.5,
+        "dev_retry_3_review": 0.5
+      },
+      "insightDays": {
+        "insight_silence": {
+          "min": 6,
+          "max": 8,
+          "count": 114
+        },
+        "insight_gaze": {
+          "min": 6,
+          "max": 7,
+          "count": 200
+        }
+      },
+      "shadows": {
+        "courage": 11,
+        "compassion": 5
+      },
+      "facets": {
+        "work": 10364,
+        "relationships": 7202,
+        "body": 4333,
+        "inner": 2875
+      },
+      "intentionDivergenceCount": 158
+    },
+    {
+      "policy": "greedy-resources",
+      "runs": 200,
+      "endings": {
+        "to_fair": 200
+      },
+      "facts": {
+        "workshop.orderOutcome": {
+          "revised": 200
+        },
+        "alexey.path": {
+          "independent": 104,
+          "paused": 96
+        },
+        "market.arrangement": {
+          "absent": 200
+        },
+        "alexey.plan": {
+          "independent": 200
+        },
+        "workshop.preparation": {
+          "revised": 132,
+          "unknown": 68
+        },
+        "timon.trust": {
+          "guarded": 200
+        },
+        "liaison.martaHelp": {
+          "other": 200
+        },
+        "market.window": {
+          "other": 200
+        },
+        "rest.beforeFair": {
+          "kept": 102,
+          "missed": 98
+        },
+        "ilya.meeting": {
+          "missed": 110,
+          "talked": 90
+        },
+        "body.pace": {
+          "shared": 125,
+          "unknown": 75
+        },
+        "inner.pause": {
+          "kept": 109,
+          "unknown": 91
+        }
+      },
+      "opportunities": {
+        "marta_help": {
+          "expired": 200
+        },
+        "market_place": {
+          "expired": 200
+        },
+        "quiet_evening": {
+          "taken": 102,
+          "expired": 98
+        },
+        "ilya_talk": {
+          "expired": 110,
+          "taken": 90
+        }
+      },
+      "averageCrises": 0.66,
+      "optionalDropPct": 0,
+      "cardShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "r_coins": 79.5,
+        "c1_neighbor_noise": 62.5,
+        "r_marta_hello": 74.5,
+        "c1_alexey_after_jug": 100,
+        "neutral.relationships.03": 86,
+        "c1_customer_hurry": 24,
+        "neutral.body.01": 87,
+        "c1_wounded_road": 100,
+        "c1_alexey_bad_work": 100,
+        "neutral.relationships.02": 86.5,
+        "c1_old_bowl": 54.50000000000001,
+        "c1_extra_change": 100,
+        "neutral.behavior.relationships.01": 86,
+        "neutral.inner.06": 87,
+        "neutral.work.01": 89.5,
+        "neutral.body.08": 87,
+        "c2_shadow_attention": 37.5,
+        "neutral.body.03": 93,
+        "neutral.inner.08": 86,
+        "c1_timon_returns": 100,
+        "c1_wanderer_bridge": 100,
+        "c2_alexey_tools_result": 62.5,
+        "c2_marta_window_result": 54.50000000000001,
+        "neutral.behavior.work.01": 89.5,
+        "c2_timon_joint_order": 100,
+        "c2_bridge_repair": 24,
+        "neutral.inner.04": 86.5,
+        "c2_stones_bag": 100,
+        "c2_silence_alexey_hand": 15,
+        "neutral.work.04": 86.5,
+        "neutral.relationships.06": 87,
+        "neutral.work.07": 87.5,
+        "c2_shadow_letgo": 39.5,
+        "neutral.relationships.07": 88,
+        "c2_liya_arrives": 100,
+        "c2_ilya_leaves": 100,
+        "neutral.relationships.01": 88.5,
+        "neutral.work.02": 86,
+        "c2_timon_order_result": 100,
+        "d11_0_apprentice": 100,
+        "r_letter_stack": 79,
+        "enc_3_11": 42,
+        "d11_3_apprentice": 100,
+        "d12_0_pace": 100,
+        "enc_3_7": 50,
+        "enc_3_4": 46,
+        "d12_3_pace": 100,
+        "d13_0_commitments": 100,
+        "neutral.relationships.05": 89,
+        "neutral.body.06": 83.5,
+        "d13_3_commitments": 100,
+        "d14_0_apprentice": 100,
+        "neutral.work.05": 87.5,
+        "d14_3_apprentice": 100,
+        "d15_0_pace": 100,
+        "neutral.relationships.04": 86,
+        "enc_3_2": 42.5,
+        "d15_3_pace": 100,
+        "d16_0_commitments": 100,
+        "neutral.inner.02": 90.5,
+        "d16_3_commitments": 100,
+        "d17_0_apprentice": 100,
+        "neutral.work.06": 88,
+        "enc_3_10": 53,
+        "d17_3_apprentice": 100,
+        "d18_0_pace": 100,
+        "enc_3_9": 44,
+        "neutral.body.04": 85.5,
+        "d18_3_pace": 100,
+        "d19_0_commitments": 100,
+        "enc_3_0": 45.5,
+        "neutral.inner.07": 87,
+        "d19_3_commitments": 100,
+        "d20_0_apprentice": 100,
+        "neutral.relationships.08": 89,
+        "d20_3_apprentice": 100,
+        "d21_0_pace": 100,
+        "enc_4_0": 59,
+        "enc_4_3": 63.5,
+        "d21_3_pace": 100,
+        "d22_0_apprentice": 100,
+        "enc_4_7": 53.5,
+        "enc_4_8": 54.50000000000001,
+        "d22_3_apprentice": 100,
+        "d23_0_commitments": 100,
+        "enc_4_10": 61,
+        "enc_4_6": 58.5,
+        "d23_3_commitments": 100,
+        "d24_0_pace": 100,
+        "neutral.work.03": 83,
+        "neutral.inner.01": 83.5,
+        "d24_3_pace": 100,
+        "d25_0_apprentice": 100,
+        "r_river": 80,
+        "r_customer_wait": 78.5,
+        "d25_3_apprentice": 100,
+        "d26_0_commitments": 100,
+        "neutral.behavior.inner.01": 83.5,
+        "d26_3_commitments": 100,
+        "d27_0_pace": 100,
+        "neutral.work.08": 90.5,
+        "enc_4_9": 56.00000000000001,
+        "d27_3_pace": 100,
+        "d28_0_apprentice": 100,
+        "enc_4_4": 53,
+        "d28_3_apprentice": 100,
+        "d29_0_commitments": 100,
+        "enc_4_11": 53.5,
+        "enc_4_2": 60.5,
+        "d29_3_commitments": 100,
+        "d30_0_pace": 100,
+        "cr_wealth_zero": 66,
+        "neutral.body.05": 88,
+        "d30_3_pace": 100,
+        "r_market_price": 75,
+        "r_kiln": 79,
+        "c1_rain_delivery": 39.5,
+        "neutral.body.02": 88,
+        "neutral.body.07": 83.5,
+        "c1_last_clay": 31,
+        "neutral.behavior.body.01": 83.5,
+        "c2_old_master_tools": 35.5,
+        "r_sweep": 78,
+        "c2_silence_marta_cup": 15,
+        "r_evening_light": 75,
+        "c2_silence_market_pause": 15.5,
+        "enc_3_5": 49.5,
+        "neutral.inner.03": 86,
+        "neutral.inner.05": 87.5,
+        "c2_shadow_compassion": 27,
+        "c2_shadow_courage": 23,
+        "enc_3_8": 48.5,
+        "enc_3_1": 51,
+        "r_breakfast": 79,
+        "enc_4_5": 59,
+        "c1_liya_letter": 55.50000000000001,
+        "c1_liya_second_letter": 55.50000000000001,
+        "enc_3_3": 54,
+        "enc_3_6": 49.5,
+        "enc_4_1": 53,
+        "c1_marta_firewood": 24,
+        "c1_market_spot": 20,
+        "c2_shadow_honesty": 22
+      },
+      "insightDays": {
+        "insight_silence": {
+          "min": 6,
+          "max": 8,
+          "count": 129
+        }
+      },
+      "shadows": {
+        "attention": 1
+      },
+      "facets": {
+        "work": 4816,
+        "relationships": 6813,
+        "body": 6683,
+        "inner": 6853
+      },
+      "intentionDivergenceCount": 78
+    },
+    {
+      "policy": "greedy-qualities",
+      "runs": 200,
+      "endings": {
+        "after_fair": 84,
+        "to_fair": 116
+      },
+      "facts": {
+        "workshop.orderOutcome": {
+          "deferred": 84,
+          "revised": 96,
+          "fulfilled": 20
+        },
+        "alexey.path": {
+          "independent": 104,
+          "paused": 96
+        },
+        "market.arrangement": {
+          "solo": 103,
+          "shared": 23,
+          "absent": 74
+        },
+        "alexey.plan": {
+          "independent": 200
+        },
+        "workshop.preparation": {
+          "ready": 60,
+          "revised": 72,
+          "unknown": 68
+        },
+        "timon.trust": {
+          "open": 200
+        },
+        "liaison.martaHelp": {
+          "other": 200
+        },
+        "market.window": {
+          "other": 145,
+          "reserved": 55
+        },
+        "rest.beforeFair": {
+          "missed": 151,
+          "kept": 49
+        },
+        "ilya.meeting": {
+          "missed": 110,
+          "talked": 90
+        },
+        "body.pace": {
+          "shared": 67,
+          "alone": 58,
+          "unknown": 75
+        },
+        "inner.pause": {
+          "carried": 50,
+          "kept": 59,
+          "unknown": 91
+        }
+      },
+      "opportunities": {
+        "marta_help": {
+          "expired": 200
+        },
+        "market_place": {
+          "expired": 145,
+          "taken": 55
+        },
+        "quiet_evening": {
+          "expired": 151,
+          "taken": 49
+        },
+        "ilya_talk": {
+          "expired": 110,
+          "taken": 90
+        }
+      },
+      "averageCrises": 1.49,
+      "optionalDropPct": 0,
+      "cardShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "r_coins": 79.5,
+        "c1_neighbor_noise": 62.5,
+        "r_marta_hello": 75,
+        "c1_alexey_after_jug": 100,
+        "neutral.relationships.03": 82,
+        "c1_customer_hurry": 24,
+        "neutral.body.01": 86.5,
+        "c1_wounded_road": 100,
+        "c1_alexey_bad_work": 100,
+        "neutral.relationships.02": 83,
+        "c1_old_bowl": 54.50000000000001,
+        "c1_extra_change": 100,
+        "neutral.behavior.relationships.01": 82,
+        "neutral.inner.06": 83,
+        "neutral.work.01": 83.5,
+        "neutral.body.08": 86.5,
+        "c2_shadow_attention": 37.5,
+        "neutral.body.03": 85.5,
+        "neutral.inner.08": 84.5,
+        "c1_timon_returns": 100,
+        "c1_wanderer_returns": 100,
+        "c2_alexey_tools_result": 62.5,
+        "c2_marta_window_result": 54.50000000000001,
+        "neutral.behavior.work.01": 83.5,
+        "c2_timon_joint_order": 100,
+        "c2_bridge_repair": 24,
+        "neutral.inner.04": 86,
+        "c2_stones_bag": 100,
+        "cr_wealth_zero": 74,
+        "r_customer_wait": 78,
+        "neutral.relationships.01": 88,
+        "neutral.work.03": 83,
+        "c2_shadow_letgo": 39.5,
+        "neutral.relationships.05": 86.5,
+        "c2_liya_arrives": 100,
+        "c2_ilya_after_forgive": 42,
+        "c2_gaze_alexey_silence": 16,
+        "r_letter_stack": 78,
+        "c2_timon_order_result": 100,
+        "d11_0_apprentice": 100,
+        "enc_3_6": 47,
+        "neutral.work.04": 85.5,
+        "d11_3_apprentice": 100,
+        "d12_0_pace": 100,
+        "neutral.inner.07": 87,
+        "enc_3_4": 52,
+        "d12_3_pace": 100,
+        "d13_0_commitments": 100,
+        "r_market_price": 78,
+        "neutral.body.05": 88.5,
+        "d13_3_commitments": 100,
+        "d14_0_apprentice": 100,
+        "neutral.work.02": 85,
+        "r_evening_light": 75.5,
+        "d14_3_apprentice": 100,
+        "d15_0_pace": 100,
+        "neutral.relationships.04": 87,
+        "enc_3_2": 38,
+        "d15_3_pace": 100,
+        "d16_0_commitments": 100,
+        "enc_3_5": 47,
+        "neutral.inner.01": 84,
+        "d16_3_commitments": 100,
+        "d17_0_apprentice": 100,
+        "neutral.work.05": 86,
+        "d17_3_apprentice": 100,
+        "d18_0_pace": 100,
+        "neutral.behavior.inner.01": 84,
+        "enc_3_3": 49,
+        "d18_3_pace": 100,
+        "d19_0_commitments": 100,
+        "neutral.inner.03": 87.5,
+        "d19_3_commitments": 100,
+        "d20_0_apprentice": 100,
+        "r_kiln": 80.5,
+        "d20_3_apprentice": 100,
+        "d21_0_pace": 100,
+        "enc_4_0": 57.49999999999999,
+        "enc_4_4": 55.00000000000001,
+        "d21_3_pace": 100,
+        "d22_0_apprentice": 100,
+        "enc_4_7": 58.5,
+        "enc_4_9": 54,
+        "d22_3_apprentice": 100,
+        "d23_0_commitments": 100,
+        "neutral.inner.02": 84.5,
+        "enc_4_10": 56.99999999999999,
+        "d23_3_commitments": 100,
+        "d24_0_pace": 100,
+        "neutral.body.06": 86.5,
+        "d24_3_pace": 100,
+        "d25_0_apprentice": 100,
+        "r_river": 76.5,
+        "d25_3_apprentice": 100,
+        "d26_0_commitments": 100,
+        "d26_3_commitments": 100,
+        "d27_0_pace": 100,
+        "neutral.work.08": 87,
+        "neutral.work.06": 82.5,
+        "d27_3_pace": 100,
+        "d28_0_apprentice": 100,
+        "neutral.body.07": 79.5,
+        "d28_3_apprentice": 100,
+        "d29_0_commitments": 100,
+        "cr_strength_zero": 70,
+        "neutral.work.07": 82.5,
+        "d29_3_commitments": 100,
+        "d30_0_pace": 100,
+        "neutral.behavior.body.01": 79.5,
+        "enc_4_6": 60,
+        "d30_3_pace": 100,
+        "c1_rain_delivery": 39.5,
+        "neutral.body.02": 82.5,
+        "c1_last_clay": 31,
+        "c2_old_master_tools": 35.5,
+        "neutral.relationships.06": 85,
+        "c2_silence_marta_cup": 16.5,
+        "c2_silence_market_pause": 13.5,
+        "enc_3_7": 43,
+        "enc_3_11": 43,
+        "neutral.body.04": 84,
+        "neutral.relationships.07": 86,
+        "enc_3_10": 39.5,
+        "enc_4_2": 58.5,
+        "enc_4_3": 60,
+        "neutral.relationships.08": 86.5,
+        "enc_4_11": 58.5,
+        "enc_4_5": 56.99999999999999,
+        "c2_shadow_compassion": 27,
+        "c2_shadow_courage": 23,
+        "enc_3_0": 47,
+        "r_breakfast": 79,
+        "enc_3_1": 56.99999999999999,
+        "enc_4_8": 47,
+        "enc_4_1": 53.5,
+        "c1_liya_letter": 55.50000000000001,
+        "c1_liya_second_letter": 55.50000000000001,
+        "neutral.inner.05": 82.5,
+        "c2_ilya_leaves": 57.99999999999999,
+        "enc_3_9": 48,
+        "enc_3_8": 44,
+        "r_sweep": 77.5,
+        "c1_marta_firewood": 24,
+        "c2_silence_alexey_hand": 17.5,
+        "c1_market_spot": 20,
+        "c2_gaze_marta_window": 20.5,
+        "c2_shadow_honesty": 22,
+        "dev_retry_1": 1,
+        "dev_retry_1_review": 1,
+        "dev_retry_2": 1,
+        "dev_retry_2_review": 1,
+        "dev_retry_3": 1,
+        "dev_retry_3_review": 1,
+        "c2_gaze_wanderer_bread": 21.5,
+        "cr_wealth_full": 0.5
+      },
+      "insightDays": {
+        "insight_silence": {
+          "min": 6,
+          "max": 8,
+          "count": 169
+        },
+        "insight_gaze": {
+          "min": 6,
+          "max": 7,
+          "count": 200
+        }
+      },
+      "shadows": {
+        "honesty": 28,
+        "courage": 3,
+        "letgo": 2,
+        "attention": 1
+      },
+      "facets": {
+        "work": 8025,
+        "relationships": 7043,
+        "body": 5444,
+        "inner": 4729
+      },
+      "intentionDivergenceCount": 136
+    },
+    {
+      "policy": "mixed",
+      "runs": 200,
+      "endings": {
+        "after_fair": 77,
+        "to_fair": 123
+      },
+      "facts": {
+        "workshop.orderOutcome": {
+          "deferred": 77,
+          "revised": 93,
+          "fulfilled": 30
+        },
+        "alexey.path": {
+          "together": 64,
+          "independent": 101,
+          "paused": 35
+        },
+        "market.arrangement": {
+          "solo": 124,
+          "absent": 38,
+          "shared": 38
+        },
+        "alexey.plan": {
+          "together": 125,
+          "independent": 75
+        },
+        "workshop.preparation": {
+          "ready": 91,
+          "revised": 41,
+          "unknown": 68
+        },
+        "timon.trust": {
+          "open": 134,
+          "guarded": 66
+        },
+        "liaison.martaHelp": {
+          "hero": 62,
+          "other": 138
+        },
+        "market.window": {
+          "other": 129,
+          "reserved": 71
+        },
+        "rest.beforeFair": {
+          "kept": 102,
+          "missed": 98
+        },
+        "ilya.meeting": {
+          "missed": 110,
+          "talked": 90
+        },
+        "body.pace": {
+          "alone": 67,
+          "unknown": 75,
+          "shared": 58
+        },
+        "inner.pause": {
+          "kept": 95,
+          "unknown": 91,
+          "carried": 14
+        }
+      },
+      "opportunities": {
+        "marta_help": {
+          "taken": 62,
+          "expired": 138
+        },
+        "market_place": {
+          "expired": 129,
+          "taken": 71
+        },
+        "quiet_evening": {
+          "taken": 102,
+          "expired": 98
+        },
+        "ilya_talk": {
+          "expired": 110,
+          "taken": 90
+        }
+      },
+      "averageCrises": 1.86,
+      "optionalDropPct": 0,
+      "cardShowPct": {
+        "c1_alexey_broken_jug": 100,
+        "r_coins": 83,
+        "c1_neighbor_noise": 62.5,
+        "r_marta_hello": 76,
+        "c1_alexey_after_jug": 100,
+        "neutral.relationships.03": 82.5,
+        "c1_customer_hurry": 24,
+        "neutral.body.01": 85.5,
+        "c1_wounded_road": 100,
+        "c1_alexey_bad_work": 100,
+        "neutral.relationships.02": 85,
+        "c1_old_bowl": 54.50000000000001,
+        "c1_extra_change": 100,
+        "neutral.behavior.relationships.01": 82.5,
+        "neutral.inner.06": 86,
+        "neutral.work.01": 88,
+        "neutral.body.08": 88,
+        "c2_shadow_attention": 37.5,
+        "neutral.body.03": 88,
+        "neutral.inner.08": 83.5,
+        "c1_timon_returns": 100,
+        "c1_wanderer_returns": 67,
+        "c2_alexey_tools_result": 62.5,
+        "c2_marta_window_result": 54.50000000000001,
+        "neutral.behavior.work.01": 88,
+        "c2_timon_joint_order": 100,
+        "c2_bridge_repair": 24,
+        "neutral.inner.04": 83,
+        "c2_stones_bag": 100,
+        "cr_wealth_zero": 27,
+        "r_customer_wait": 74,
+        "neutral.relationships.01": 84.5,
+        "neutral.work.03": 84.5,
+        "c2_shadow_letgo": 39.5,
+        "neutral.relationships.05": 86,
+        "c2_liya_arrives": 100,
+        "c2_ilya_after_forgive": 53.5,
+        "c2_gaze_alexey_silence": 14.000000000000002,
+        "r_letter_stack": 75.5,
+        "c2_timon_order_result": 100,
+        "d11_0_apprentice": 100,
+        "enc_3_6": 43.5,
+        "neutral.work.04": 83.5,
+        "d11_3_apprentice": 100,
+        "d12_0_pace": 100,
+        "neutral.inner.07": 87.5,
+        "enc_3_4": 43.5,
+        "d12_3_pace": 100,
+        "d13_0_commitments": 100,
+        "r_market_price": 73.5,
+        "neutral.body.05": 88,
+        "d13_3_commitments": 100,
+        "d14_0_apprentice": 100,
+        "neutral.work.02": 86.5,
+        "r_evening_light": 77,
+        "d14_3_apprentice": 100,
+        "d15_0_pace": 100,
+        "neutral.relationships.04": 88.5,
+        "enc_3_2": 39.5,
+        "d15_3_pace": 100,
+        "d16_0_commitments": 100,
+        "enc_3_5": 44.5,
+        "neutral.inner.01": 80.5,
+        "d16_3_commitments": 100,
+        "d17_0_apprentice": 100,
+        "neutral.work.05": 84,
+        "d17_3_apprentice": 100,
+        "d18_0_pace": 100,
+        "cr_strength_zero": 99,
+        "neutral.behavior.inner.01": 80.5,
+        "d18_3_pace": 100,
+        "d19_0_commitments": 100,
+        "neutral.inner.03": 88,
+        "d19_3_commitments": 100,
+        "d20_0_apprentice": 100,
+        "r_kiln": 78.5,
+        "d20_3_apprentice": 100,
+        "d21_0_pace": 100,
+        "enc_4_0": 54,
+        "enc_4_4": 53.5,
+        "d21_3_pace": 100,
+        "d22_0_apprentice": 100,
+        "enc_4_7": 56.49999999999999,
+        "enc_4_9": 59,
+        "d22_3_apprentice": 100,
+        "d23_0_commitments": 100,
+        "neutral.inner.02": 84,
+        "enc_4_10": 53.5,
+        "d23_3_commitments": 100,
+        "d24_0_pace": 100,
+        "neutral.body.06": 83.5,
+        "d24_3_pace": 100,
+        "d25_0_apprentice": 100,
+        "r_river": 78.5,
+        "d25_3_apprentice": 100,
+        "d26_0_commitments": 100,
+        "d26_3_commitments": 100,
+        "d27_0_pace": 100,
+        "neutral.work.08": 82.5,
+        "neutral.work.06": 87,
+        "d27_3_pace": 100,
+        "d28_0_apprentice": 100,
+        "neutral.body.07": 80,
+        "d28_3_apprentice": 100,
+        "d29_0_commitments": 100,
+        "neutral.work.07": 82,
+        "enc_4_5": 54.50000000000001,
+        "d29_3_commitments": 100,
+        "d30_0_pace": 100,
+        "neutral.behavior.body.01": 80,
+        "enc_4_6": 60.5,
+        "d30_3_pace": 100,
+        "c1_rain_delivery": 39.5,
+        "neutral.body.02": 85,
+        "c1_last_clay": 31,
+        "c2_old_master_tools": 35.5,
+        "neutral.relationships.06": 85.5,
+        "c2_gaze_wanderer_bread": 18.5,
+        "c2_silence_marta_cup": 15,
+        "c2_ilya_leaves": 46.5,
+        "c2_silence_market_pause": 12.5,
+        "enc_3_7": 41.5,
+        "enc_3_11": 41,
+        "neutral.body.04": 88,
+        "neutral.relationships.07": 86.5,
+        "enc_3_10": 46,
+        "enc_3_8": 48.5,
+        "enc_4_2": 56.49999999999999,
+        "enc_4_11": 58.5,
+        "neutral.relationships.08": 89,
+        "c2_shadow_compassion": 27,
+        "c2_shadow_courage": 23,
+        "enc_3_1": 57.99999999999999,
+        "enc_3_3": 50.5,
+        "enc_3_0": 38,
+        "r_breakfast": 80,
+        "enc_4_8": 55.00000000000001,
+        "neutral.inner.05": 85,
+        "enc_4_1": 51.5,
+        "c1_liya_letter": 55.50000000000001,
+        "c1_liya_second_letter": 55.50000000000001,
+        "r_sweep": 74,
+        "enc_3_9": 44,
+        "enc_4_3": 54.50000000000001,
+        "c1_marta_firewood": 24,
+        "c1_wanderer_bridge": 33,
+        "c2_silence_alexey_hand": 15.5,
+        "cr_wealth_full": 9.5,
+        "c1_market_spot": 20,
+        "c2_gaze_marta_window": 15,
+        "c2_shadow_honesty": 22
+      },
+      "insightDays": {
+        "insight_silence": {
+          "min": 6,
+          "max": 8,
+          "count": 121
+        },
+        "insight_gaze": {
+          "min": 6,
+          "max": 8,
+          "count": 156
+        }
+      },
+      "shadows": {
+        "honesty": 5,
+        "courage": 4,
+        "compassion": 1
+      },
+      "facets": {
+        "work": 8603,
+        "relationships": 7132,
+        "body": 4884,
+        "inner": 4292
+      },
+      "intentionDivergenceCount": 143
+    }
+  ],
+  "facetScenarios": [
+    {
+      "facet": "work",
+      "endings": {
+        "to_fair": 100
+      }
+    },
+    {
+      "facet": "relationships",
+      "endings": {
+        "to_fair": 100
+      }
+    },
+    {
+      "facet": "body",
+      "endings": {
+        "after_fair": 70,
+        "to_fair": 30
+      }
+    },
+    {
+      "facet": "inner",
+      "endings": {
+        "after_fair": 70,
+        "to_fair": 30
+      }
+    }
+  ],
+  "failures": []
+}

@@ -48,6 +48,6 @@ const facetScenarios=FACETS.map(facet=>{
 });
 const shadowWitnesses=shadowScenarios();
 const report={shadowWitnesses,contentVersion:CONTENT_VERSION,runsPerPolicy:runs,summaries,facetScenarios,failures:[...new Set(failures)]};
-if(process.argv.includes('--write'))writeFileSync('reports/simulation.v2.4.json',JSON.stringify(report,null,2)+'\n');
+if(process.argv.includes('--write'))writeFileSync('reports/simulation.v2.5.json',JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify({runsPerPolicy:runs,summaries:summaries.map(s=>({policy:s.policy,endings:s.endings,averageCrises:s.averageCrises,opportunities:s.opportunities})),facetScenarios,failures:report.failures.slice(0,30)},null,2));
-if(failures.length)process.exitCode=1;else console.log('SIMULATION v2.4 TARGETS OK');
+if(failures.length)process.exitCode=1;else console.log('SIMULATION v2.5 TARGETS OK');

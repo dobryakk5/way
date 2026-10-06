@@ -33,29 +33,7 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.2,
-            "diplomat": 0,
-            "expert": 0.35,
-            "achiever": 0.45,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "мерит работу результатом",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "итог ярмарки",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       },
       {
         "id": "b",
@@ -77,29 +55,7 @@
           "line": "apprentice",
           "step": "perspective_accepted"
         },
-        "response": "Алексей показывает неровный край: впервые он исправил его без подсказки.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.3,
-            "expert": 0.0,
-            "achiever": 0,
-            "individualist": 0.35,
-            "strategist": 0,
-            "alchemist": 0,
-            "ironic": 0.35
-          },
-          "rationale": {
-            "SELF": "спрашивает о его собственном смысле",
-            "OTHERS": "ученик видит иначе",
-            "COMPLEXITY": "оттенок: Сводит к правилу, обычаю или принятому порядку",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "меняет угол вопроса",
-            "UNCERTAINTY": "оттенок: Действует, не настаивая на объяснении"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Алексей показывает неровный край: впервые он исправил его без подсказки."
       }
     ],
     "at": {
@@ -134,16 +90,7 @@
         },
         "text": "Обещанный заказ пришлось отложить. Алексей раскладывает оставшиеся после ярмарки чаши. Он спрашивает, чья работа на прилавке считалась удачной."
       }
-    ],
-    "diagnostic": {
-      "situationId": "fair-aftermath",
-      "contextId": "apprentice",
-      "facets": [
-        "work",
-        "relationships"
-      ],
-      "developmentWeight": 0.8
-    }
+    ]
   },
   {
     "id": "d11_3_apprentice",
@@ -175,29 +122,7 @@
           "line": "apprentice",
           "step": "perspective_kept"
         },
-        "response": "Алексей дополнил записи конкретными чашами.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0,
-            "expert": 0.4,
-            "achiever": 0.45,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.15
-          },
-          "rationale": {
-            "SELF": "обсуждает по итогам",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "результат ярмарки",
-            "PERSPECTIVE": "оттенок: Любая точка зрения временна и может быть отпущена",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Алексей дополнил записи конкретными чашами."
       },
       {
         "id": "b",
@@ -219,29 +144,7 @@
           "line": "apprentice",
           "step": "perspective_accepted"
         },
-        "response": "Записи остались у Алексея; он вернётся с вопросом при следующей партии.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.4,
-            "expert": 0.0,
-            "achiever": 0.2,
-            "individualist": 0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "откладывает разговор",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "оттенок: Сравнивает способы по результату, выбирает действующий",
-            "TIME": "до следующего заказа",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Записи остались у Алексея; он вернётся с вопросом при следующей партии."
       }
     ],
     "at": {
@@ -271,16 +174,7 @@
         },
         "text": "Алексей показывает неровный край: впервые он исправил его без подсказки. Алексей приносит записи о ярмарке. Рядом с выручкой он оставил место для того, чему научился."
       }
-    ],
-    "diagnostic": {
-      "situationId": "apprentice-notes",
-      "contextId": "apprentice",
-      "facets": [
-        "work",
-        "relationships"
-      ],
-      "developmentWeight": 0.7
-    }
+    ]
   },
   {
     "id": "d12_0_pace",
@@ -316,29 +210,7 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.25,
-            "expert": 0,
-            "achiever": 0.35,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "берёт заказ несмотря на руки",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "прежний срок",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       },
       {
         "id": "b",
@@ -360,44 +232,12 @@
           "line": "pace",
           "step": "limitation_accepted"
         },
-        "response": "Тимон согласен ждать. Одного быстрого покупателя мастерская потеряла.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.25,
-            "expert": 0.35,
-            "achiever": 0,
-            "individualist": 0,
-            "strategist": 0.4,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "закладывает отдых в срок",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "оттенок: Разбирает задачу по существу, ищет правильный способ",
-            "TIME": "восстановление как часть плана",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Тимон согласен ждать. Одного быстрого покупателя мастерская потеряла."
       }
     ],
     "at": {
       "day": 12,
       "slot": 0
-    },
-    "diagnostic": {
-      "situationId": "post-fair-order",
-      "contextId": "deadline",
-      "facets": [
-        "work",
-        "body"
-      ],
-      "developmentWeight": 0.9,
-      "pressure": true
     }
   },
   {
@@ -430,29 +270,7 @@
           "line": "pace",
           "step": "limitation_kept"
         },
-        "response": "Помощник начал работу; герой потратил время на объяснение.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.0,
-            "expert": 0,
-            "achiever": 0.45,
-            "individualist": 0.0,
-            "strategist": 0.15,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "передаёт тяжёлую часть",
-            "OTHERS": "помощник справится с объяснением",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Помощник начал работу; герой потратил время на объяснение."
       },
       {
         "id": "b",
@@ -474,29 +292,7 @@
           "line": "pace",
           "step": "limitation_accepted"
         },
-        "response": "Герой знает каждый этап, но вся нагрузка осталась на нём.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0,
-            "diplomat": 0.4,
-            "expert": 0.45,
-            "achiever": 0,
-            "individualist": 0.0,
-            "strategist": 0.15,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "делает сам, как умеет",
-            "OTHERS": "объяснять дольше, чем сделать",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Согласует разные интересы в одной конструкции",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Герой знает каждый этап, но вся нагрузка осталась на нём."
       }
     ],
     "at": {
@@ -526,16 +322,7 @@
         },
         "text": "Тимон согласен ждать. Одного быстрого покупателя мастерская потеряла. Принятый срок теперь висит над рабочим столом. Часть работы можно передать помощнику, но придётся объяснить задачу."
       }
-    ],
-    "diagnostic": {
-      "situationId": "delegate-heavy",
-      "contextId": "rest",
-      "facets": [
-        "work",
-        "body"
-      ],
-      "developmentWeight": 0.8
-    }
+    ]
   },
   {
     "id": "d13_0_commitments",
@@ -571,29 +358,7 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.0,
-            "expert": 0.4,
-            "achiever": 0,
-            "individualist": 0.2,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "сначала закончит подсчёт",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "обязательство по работе",
-            "PERSPECTIVE": "оттенок: Несколько личных точек зрения, включая неудобные",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       },
       {
         "id": "b",
@@ -615,43 +380,12 @@
           "line": "commitments",
           "step": "limitation_accepted"
         },
-        "response": "Подсчёт отложен. Марта накрывает на двоих в оговорённый час.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0,
-            "diplomat": 0.35,
-            "expert": 0,
-            "achiever": 0.35,
-            "individualist": 0.3,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "договаривается и приходит",
-            "OTHERS": "Марта ждала дважды",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Подсчёт отложен. Марта накрывает на двоих в оговорённый час."
       }
     ],
     "at": {
       "day": 13,
       "slot": 0
-    },
-    "diagnostic": {
-      "situationId": "marta-dinner",
-      "contextId": "neighbors",
-      "facets": [
-        "relationships",
-        "inner"
-      ],
-      "developmentWeight": 0.9
     }
   },
   {
@@ -684,29 +418,7 @@
           "line": "commitments",
           "step": "limitation_kept"
         },
-        "response": "Марта знает, когда ждать.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0,
-            "diplomat": 0.4,
-            "expert": 0.35,
-            "achiever": 0,
-            "individualist": 0.25,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "называет конкретное время",
-            "OTHERS": "Марте нужна предсказуемость",
-            "COMPLEXITY": "оттенок: Принимает внутренние противоречия, не сводит к схеме",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Марта знает, когда ждать."
       },
       {
         "id": "b",
@@ -728,29 +440,7 @@
           "line": "commitments",
           "step": "limitation_accepted"
         },
-        "response": "Марта строит свои планы. Встречу придётся предложить заново.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0.0,
-            "expert": 0.0,
-            "achiever": 0.25,
-            "individualist": 0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.4
-          },
-          "rationale": {
-            "SELF": "не берёт обязательств",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
-            "UNCERTAINTY": "оставляет вечер открытым"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Марта строит свои планы. Встречу придётся предложить заново."
       }
     ],
     "at": {
@@ -780,16 +470,7 @@
         },
         "text": "Подсчёт отложен. Марта накрывает на двоих в оговорённый час. Марта просит назвать один выполнимый час встречи, даже если он будет коротким."
       }
-    ],
-    "diagnostic": {
-      "situationId": "one-hour",
-      "contextId": "neighbors",
-      "facets": [
-        "relationships",
-        "inner"
-      ],
-      "developmentWeight": 0.8
-    }
+    ]
   },
   {
     "id": "d14_0_apprentice",
@@ -981,29 +662,7 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.0,
-            "expert": 0.45,
-            "achiever": 0.15,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "держится привычного темпа",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "устойчивый ритм вместо перемены",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       },
       {
         "id": "b",
@@ -1025,43 +684,12 @@
           "line": "pace",
           "step": "perspective_accepted"
         },
-        "response": "Лия показывает, как чередует тяжёлые и лёгкие операции. На разговор ушло рабочее время.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.3,
-            "expert": 0.0,
-            "achiever": 0,
-            "individualist": 0.35,
-            "strategist": 0,
-            "alchemist": 0.35,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "интересуется чужим способом",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "оттенок: Сводит к правилу, обычаю или принятому порядку",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "допускает иное представление о работе",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Лия показывает, как чередует тяжёлые и лёгкие операции. На разговор ушло рабочее время."
       }
     ],
     "at": {
       "day": 15,
       "slot": 0
-    },
-    "diagnostic": {
-      "situationId": "liya-rhythm",
-      "contextId": "rest",
-      "facets": [
-        "work",
-        "body"
-      ],
-      "developmentWeight": 0.8
     }
   },
   {
@@ -1094,29 +722,7 @@
           "line": "pace",
           "step": "perspective_kept"
         },
-        "response": "Пауза сократила вечерний выпуск; тонкая работа далась легче.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.0,
-            "expert": 0.35,
-            "achiever": 0,
-            "individualist": 0,
-            "strategist": 0,
-            "alchemist": 0.4,
-            "ironic": 0.25
-          },
-          "rationale": {
-            "SELF": "пробует одну перемену",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "оттенок: Снимает напряжение сменой рамки, не требуя итогового ответа",
-            "TIME": "проверит по результату",
-            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Пауза сократила вечерний выпуск; тонкая работа далась легче."
       },
       {
         "id": "b",
@@ -1138,29 +744,7 @@
           "line": "pace",
           "step": "perspective_accepted"
         },
-        "response": "Герой сохранил выпуск и заметил усталость к тонкой работе.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.2,
-            "diplomat": 0.35,
-            "expert": 0.45,
-            "achiever": 0.0,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "оставляет расписание",
-            "OTHERS": "привычка надёжнее схемы",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Герой сохранил выпуск и заметил усталость к тонкой работе."
       }
     ],
     "at": {
@@ -1190,16 +774,7 @@
         },
         "text": "Лия показывает, как чередует тяжёлые и лёгкие операции. На разговор ушло рабочее время. Лия оставила схему чередования операций. В расписании героя есть место лишь для одной небольшой перемены."
       }
-    ],
-    "diagnostic": {
-      "situationId": "one-pause",
-      "contextId": "rest",
-      "facets": [
-        "work",
-        "body"
-      ],
-      "developmentWeight": 0.7
-    }
+    ]
   },
   {
     "id": "d16_0_commitments",
@@ -1235,29 +810,7 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0.4,
-            "expert": 0,
-            "achiever": 0.25,
-            "individualist": 0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "напоминает о сказанном",
-            "OTHERS": "обещание нужно исполнять",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       },
       {
         "id": "b",
@@ -1279,43 +832,12 @@
           "line": "commitments",
           "step": "perspective_accepted"
         },
-        "response": "Илья предлагает конкретный день для первой части. Остальная сумма остаётся открытой.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0,
-            "expert": 0.35,
-            "achiever": 0.25,
-            "individualist": 0,
-            "strategist": 0.4,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "обсуждает посильную часть",
-            "OTHERS": "Илье легче малое с датой",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Илья предлагает конкретный день для первой части. Остальная сумма остаётся открытой."
       }
     ],
     "at": {
       "day": 16,
       "slot": 0
-    },
-    "diagnostic": {
-      "situationId": "ilya-small-promise",
-      "contextId": "old-debt",
-      "facets": [
-        "relationships",
-        "inner"
-      ],
-      "developmentWeight": 0.8
     }
   },
   {
@@ -1348,29 +870,7 @@
           "line": "commitments",
           "step": "perspective_kept"
         },
-        "response": "Илья понял срок ожидания, хотя долг ещё не закрыт.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.3,
-            "diplomat": 0.0,
-            "expert": 0.0,
-            "achiever": 0.35,
-            "individualist": 0,
-            "strategist": 0.35,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "называет свою границу",
-            "OTHERS": "Илье нужна ясность",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Илья понял срок ожидания, хотя долг ещё не закрыт."
       },
       {
         "id": "b",
@@ -1392,29 +892,7 @@
           "line": "commitments",
           "step": "perspective_accepted"
         },
-        "response": "Илья предложил меньшую часть и точную дату.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.35,
-            "expert": 0.0,
-            "achiever": 0.25,
-            "individualist": 0.4,
-            "strategist": 0.0,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "выслушивает встречное",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "оттенок: Сравнивает способы по результату, выбирает действующий",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "допускает другой взгляд",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Илья предложил меньшую часть и точную дату."
       }
     ],
     "at": {
@@ -1444,16 +922,7 @@
         },
         "text": "Илья предлагает конкретный день для первой части. Остальная сумма остаётся открытой. Илья ждёт ответа о дате. Даже отказ от новой договорённости требует сказать, чего герой ждёт дальше."
       }
-    ],
-    "diagnostic": {
-      "situationId": "date-answer",
-      "contextId": "old-debt",
-      "facets": [
-        "relationships",
-        "inner"
-      ],
-      "developmentWeight": 0.7
-    }
+    ]
   },
   {
     "id": "d17_0_apprentice",
@@ -1690,29 +1159,7 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.3,
-            "diplomat": 0.25,
-            "expert": 0.45,
-            "achiever": 0,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "продолжает привычным способом",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не рискует ритмом",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       },
       {
         "id": "b",
@@ -1735,43 +1182,12 @@
           "line": "pace",
           "step": "experiment_accepted"
         },
-        "response": "Две ручки остаются на утро. После остановки герой ещё способен спокойно убрать стол.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.0,
-            "expert": 0.25,
-            "achiever": 0.35,
-            "individualist": 0,
-            "strategist": 0,
-            "alchemist": 0.4,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "проверяет остановку по времени",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "вернётся утром",
-            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Две ручки остаются на утро. После остановки герой ещё способен спокойно убрать стол."
       }
     ],
     "at": {
       "day": 18,
       "slot": 0
-    },
-    "diagnostic": {
-      "situationId": "new-rhythm-test",
-      "contextId": "rest",
-      "facets": [
-        "work",
-        "body"
-      ],
-      "developmentWeight": 0.8
     }
   },
   {
@@ -1804,29 +1220,7 @@
           "line": "pace",
           "step": "experiment_kept"
         },
-        "response": "Ритм записан рядом со сроком; его ещё предстоит проверить на большом деле.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0.0,
-            "expert": 0,
-            "achiever": 0.4,
-            "individualist": 0.0,
-            "strategist": 0.25,
-            "alchemist": 0.0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "оставляет подход на ещё одну партию",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "проверит повторно",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Ритм записан рядом со сроком; его ещё предстоит проверить на большом деле."
       },
       {
         "id": "b",
@@ -1849,29 +1243,7 @@
           "line": "pace",
           "step": "experiment_accepted"
         },
-        "response": "Герой вернулся к знакомой работе, сохранив запись о цене попытки.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0,
-            "diplomat": 0.4,
-            "expert": 0.45,
-            "achiever": 0,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0.15,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "возвращается к привычному ритму",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Меняет рамку понимания и проверяет её действием",
-            "UNCERTAINTY": "проверенное надёжнее пробы"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Герой вернулся к знакомой работе, сохранив запись о цене попытки."
       }
     ],
     "at": {
@@ -1901,16 +1273,7 @@
         },
         "text": "Две ручки остаются на утро. После остановки герой ещё способен спокойно убрать стол. Утром виден результат выбранного темпа. Герой решает, станет ли это правилом или останется единичной попыткой."
       }
-    ],
-    "diagnostic": {
-      "situationId": "rhythm-rule",
-      "contextId": "rest",
-      "facets": [
-        "work",
-        "body"
-      ],
-      "developmentWeight": 0.7
-    }
+    ]
   },
   {
     "id": "d19_0_commitments",
@@ -1946,29 +1309,7 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0,
-            "expert": 0.35,
-            "achiever": 0.3,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "обещает, когда закончит работу",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "срок зависит от дела",
-            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       },
       {
         "id": "b",
@@ -1991,43 +1332,12 @@
           "line": "commitments",
           "step": "experiment_accepted"
         },
-        "response": "Они договорились о коротком вечере. Большого обещания больше нет.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.4,
-            "expert": 0.15,
-            "achiever": 0,
-            "individualist": 0,
-            "strategist": 0.45,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "называет время и условие переноса",
-            "OTHERS": "Марта хочет заранее знать",
-            "COMPLEXITY": "оттенок: Разбирает задачу по существу, ищет правильный способ",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Они договорились о коротком вечере. Большого обещания больше нет."
       }
     ],
     "at": {
       "day": 19,
       "slot": 0
-    },
-    "diagnostic": {
-      "situationId": "shared-evening",
-      "contextId": "neighbors",
-      "facets": [
-        "relationships",
-        "inner"
-      ],
-      "developmentWeight": 0.8
     }
   },
   {
@@ -2060,29 +1370,7 @@
           "line": "commitments",
           "step": "experiment_kept"
         },
-        "response": "Они согласовали простой способ предупредить друг друга.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0,
-            "diplomat": 0.35,
-            "expert": 0.35,
-            "achiever": 0.3,
-            "individualist": 0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "учитывает, что нужно Марте",
-            "OTHERS": "для неё ценна предсказуемость",
-            "COMPLEXITY": "оттенок: Сравнивает способы по результату, выбирает действующий",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Они согласовали простой способ предупредить друг друга."
       },
       {
         "id": "b",
@@ -2105,29 +1393,7 @@
           "line": "commitments",
           "step": "experiment_accepted"
         },
-        "response": "Марта согласна встречаться при возможности, но ждать весь вечер больше не будет.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0.0,
-            "expert": 0.0,
-            "achiever": 0,
-            "individualist": 0.25,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.4
-          },
-          "rationale": {
-            "SELF": "сохраняет спонтанность",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "оставляет открытым"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Марта согласна встречаться при возможности, но ждать весь вечер больше не будет."
       }
     ],
     "at": {
@@ -2157,16 +1423,7 @@
         },
         "text": "Они договорились о коротком вечере. Большого обещания больше нет. Марта уточняет: договорённость для неё ценна возможностью планировать день, а не длиной ужина."
       }
-    ],
-    "diagnostic": {
-      "situationId": "plan-the-day",
-      "contextId": "neighbors",
-      "facets": [
-        "relationships",
-        "inner"
-      ],
-      "developmentWeight": 0.7
-    }
+    ]
   },
   {
     "id": "d20_0_apprentice",
@@ -2388,114 +1645,7 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.2,
-            "expert": 0.4,
-            "achiever": 0,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "принимает быстрый срок",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "срок и крупный заказ",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        },
-        "diagnosticMotive": {
-          "promptId": "kitchen-fast",
-          "text": "Что здесь было главным для героя?",
-          "optional": true,
-          "options": [
-            {
-              "id": "big",
-              "label": "Заказ крупный — упускать нельзя",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.25,
-                  "diplomat": 0.0,
-                  "expert": 0.2,
-                  "achiever": 0.55,
-                  "individualist": 0.0,
-                  "strategist": 0.0,
-                  "alchemist": 0.0,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "не наблюдается",
-                  "OTHERS": "не наблюдается",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "крупный заказ",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            },
-            {
-              "id": "usual",
-              "label": "Справлюсь, как всегда",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.2,
-                  "diplomat": 0.0,
-                  "expert": 0.5,
-                  "achiever": 0.3,
-                  "individualist": 0.0,
-                  "strategist": 0.0,
-                  "alchemist": 0.0,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "опирается на опыт",
-                  "OTHERS": "не наблюдается",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "не наблюдается",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            },
-            {
-              "id": "cook",
-              "label": "Не хочу подвести повара",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.0,
-                  "diplomat": 0.45,
-                  "expert": 0.25,
-                  "achiever": 0.3,
-                  "individualist": 0.0,
-                  "strategist": 0.0,
-                  "alchemist": 0.0,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "не наблюдается",
-                  "OTHERS": "повар ждёт",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "не наблюдается",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            }
-          ]
-        }
+        ]
       },
       {
         "id": "b",
@@ -2518,114 +1668,7 @@
           "line": "pace",
           "step": "return_accepted"
         },
-        "response": "Кухня получает изделия позже. В плане появилась пауза после тяжёлого обжига.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.4,
-            "expert": 0.0,
-            "achiever": 0.15,
-            "individualist": 0,
-            "strategist": 0.45,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "закладывает восстановление в срок",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "срок обсуждается заранее",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        },
-        "diagnosticMotive": {
-          "promptId": "kitchen-rest",
-          "text": "Что здесь было главным для героя?",
-          "optional": true,
-          "options": [
-            {
-              "id": "midway",
-              "label": "Чтобы работа не рухнула в середине",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.0,
-                  "diplomat": 0.0,
-                  "expert": 0.2,
-                  "achiever": 0.3,
-                  "individualist": 0.0,
-                  "strategist": 0.5,
-                  "alchemist": 0.0,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "не наблюдается",
-                  "OTHERS": "не наблюдается",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "весь срок",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            },
-            {
-              "id": "save",
-              "label": "Нужно беречь силы",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.35,
-                  "diplomat": 0.0,
-                  "expert": 0.0,
-                  "achiever": 0.0,
-                  "individualist": 0.4,
-                  "strategist": 0.0,
-                  "alchemist": 0.0,
-                  "ironic": 0.25
-                },
-                "rationale": {
-                  "SELF": "бережёт себя",
-                  "OTHERS": "не наблюдается",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "не наблюдается",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            },
-            {
-              "id": "rhythm",
-              "label": "Хочу попробовать другой ритм",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.0,
-                  "diplomat": 0.0,
-                  "expert": 0.0,
-                  "achiever": 0.0,
-                  "individualist": 0.25,
-                  "strategist": 0.35,
-                  "alchemist": 0.4,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "не наблюдается",
-                  "OTHERS": "не наблюдается",
-                  "COMPLEXITY": "пересматривает способ работы",
-                  "TIME": "не наблюдается",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            }
-          ]
-        }
+        "response": "Кухня получает изделия позже. В плане появилась пауза после тяжёлого обжига."
       }
     ],
     "at": {
@@ -2655,17 +1698,7 @@
         },
         "text": "Прошлую пробу герой уже пережил. Новый заказ для общей кухни больше ярмарочной партии. Срок обсуждается до начала работы, а не после обещания."
       }
-    ],
-    "diagnostic": {
-      "situationId": "kitchen-order",
-      "contextId": "deadline",
-      "facets": [
-        "work",
-        "body"
-      ],
-      "developmentWeight": 0.9,
-      "pressure": true
-    }
+    ]
   },
   {
     "id": "d21_3_pace",
@@ -2697,29 +1730,7 @@
           "line": "pace",
           "step": "return_kept"
         },
-        "response": "В плане появился промежуток без тяжёлой работы.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.35,
-            "expert": 0.0,
-            "achiever": 0.25,
-            "individualist": 0,
-            "strategist": 0.4,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "оставляет время на восстановление",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "распределяет тяжёлое и лёгкое",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "В плане появился промежуток без тяжёлой работы."
       },
       {
         "id": "b",
@@ -2742,29 +1753,7 @@
           "line": "pace",
           "step": "return_accepted"
         },
-        "response": "Выпуск запланирован целиком; восстановление пока не получило времени.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.3,
-            "diplomat": 0.0,
-            "expert": 0.25,
-            "achiever": 0.45,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "сосредоточен на выпуске",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "главное — партия",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Выпуск запланирован целиком; восстановление пока не получило времени."
       }
     ],
     "at": {
@@ -2794,16 +1783,7 @@
         },
         "text": "Кухня получает изделия позже. В плане появилась пауза после тяжёлого обжига. Срок кухни записан. Лия спрашивает, где в нём окажется тяжёлый обжиг, а где восстановление."
       }
-    ],
-    "diagnostic": {
-      "situationId": "heavy-firing",
-      "contextId": "rest",
-      "facets": [
-        "work",
-        "body"
-      ],
-      "developmentWeight": 0.7
-    }
+    ]
   },
   {
     "id": "d22_0_apprentice",
@@ -3070,114 +2050,7 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0.4,
-            "expert": 0.0,
-            "achiever": 0.25,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "переносит ужин заранее",
-            "OTHERS": "Марте скажут вовремя",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        },
-        "diagnosticMotive": {
-          "promptId": "two-move",
-          "text": "Что здесь было главным для героя?",
-          "optional": true,
-          "options": [
-            {
-              "id": "told",
-              "label": "Предупредил — значит честно",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.0,
-                  "diplomat": 0.4,
-                  "expert": 0.0,
-                  "achiever": 0.3,
-                  "individualist": 0.0,
-                  "strategist": 0.3,
-                  "alchemist": 0.0,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "не наблюдается",
-                  "OTHERS": "Марта узнает заранее",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "не наблюдается",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            },
-            {
-              "id": "cook",
-              "label": "Заказ повара важнее одного ужина",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.25,
-                  "diplomat": 0.0,
-                  "expert": 0.25,
-                  "achiever": 0.5,
-                  "individualist": 0.0,
-                  "strategist": 0.0,
-                  "alchemist": 0.0,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "не наблюдается",
-                  "OTHERS": "не наблюдается",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "результат заказа",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            },
-            {
-              "id": "both",
-              "label": "Хочу не терять ни одного из обязательств",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.0,
-                  "diplomat": 0.25,
-                  "expert": 0.0,
-                  "achiever": 0.3,
-                  "individualist": 0.0,
-                  "strategist": 0.45,
-                  "alchemist": 0.0,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "не наблюдается",
-                  "OTHERS": "не наблюдается",
-                  "COMPLEXITY": "держит оба обязательства",
-                  "TIME": "не наблюдается",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            }
-          ]
-        }
+        ]
       },
       {
         "id": "b",
@@ -3200,114 +2073,7 @@
           "line": "commitments",
           "step": "return_accepted"
         },
-        "response": "Повар принимает часть мисок позже. Герой приходит в оговорённое время.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0,
-            "diplomat": 0.35,
-            "expert": 0.35,
-            "achiever": 0.3,
-            "individualist": 0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "сохраняет встречу ценой добавки",
-            "OTHERS": "Марта ждёт",
-            "COMPLEXITY": "оттенок: Сравнивает способы по результату, выбирает действующий",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        },
-        "diagnosticMotive": {
-          "promptId": "two-keep",
-          "text": "Что здесь было главным для героя?",
-          "optional": true,
-          "options": [
-            {
-              "id": "marta",
-              "label": "Встречу с Мартой пропускать нельзя",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.0,
-                  "diplomat": 0.5,
-                  "expert": 0.0,
-                  "achiever": 0.0,
-                  "individualist": 0.3,
-                  "strategist": 0.2,
-                  "alchemist": 0.0,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "не наблюдается",
-                  "OTHERS": "Марта ждёт",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "не наблюдается",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            },
-            {
-              "id": "words",
-              "label": "Договорённости — не пустые слова",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.0,
-                  "diplomat": 0.4,
-                  "expert": 0.0,
-                  "achiever": 0.0,
-                  "individualist": 0.3,
-                  "strategist": 0.3,
-                  "alchemist": 0.0,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "не наблюдается",
-                  "OTHERS": "не наблюдается",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "не наблюдается",
-                  "PERSPECTIVE": "слово связывает людей",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            },
-            {
-              "id": "smaller",
-              "label": "Заказ можно сделать меньше без ущерба",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.0,
-                  "diplomat": 0.0,
-                  "expert": 0.0,
-                  "achiever": 0.3,
-                  "individualist": 0.25,
-                  "strategist": 0.45,
-                  "alchemist": 0.0,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "не наблюдается",
-                  "OTHERS": "не наблюдается",
-                  "COMPLEXITY": "ищет вариант без потерь",
-                  "TIME": "не наблюдается",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            }
-          ]
-        }
+        "response": "Повар принимает часть мисок позже. Герой приходит в оговорённое время."
       }
     ],
     "at": {
@@ -3337,17 +2103,7 @@
         },
         "text": "Прошлую пробу герой уже пережил. В день обещанного ужина повар просит дополнительные миски. Оба обязательства теперь нельзя выполнить целиком."
       }
-    ],
-    "diagnostic": {
-      "situationId": "two-obligations",
-      "contextId": "deadline",
-      "facets": [
-        "relationships",
-        "inner"
-      ],
-      "developmentWeight": 1.0,
-      "pressure": true
-    }
+    ]
   },
   {
     "id": "d23_3_commitments",
@@ -3379,29 +2135,7 @@
           "line": "commitments",
           "step": "return_kept"
         },
-        "response": "Марта смогла спланировать свой день.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.0,
-            "expert": 0.3,
-            "achiever": 0.35,
-            "individualist": 0.0,
-            "strategist": 0.35,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "обещает малое и точное",
-            "OTHERS": "Марте нужна ясность",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Марта смогла спланировать свой день."
       },
       {
         "id": "b",
@@ -3424,29 +2158,7 @@
           "line": "commitments",
           "step": "return_accepted"
         },
-        "response": "Марта не ждёт; герой сохраняет возможность предложить встречу позже.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0.25,
-            "expert": 0.0,
-            "achiever": 0,
-            "individualist": 0.4,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "не даёт нового обещания",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не обещает того, чего не знает"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Марта не ждёт; герой сохраняет возможность предложить встречу позже."
       }
     ],
     "at": {
@@ -3476,16 +2188,7 @@
         },
         "text": "Повар принимает часть мисок позже. Герой приходит в оговорённое время. Марта прочла сообщение о сроке. Она спрашивает, что герой действительно может обещать на следующей неделе."
       }
-    ],
-    "diagnostic": {
-      "situationId": "what-to-promise",
-      "contextId": "neighbors",
-      "facets": [
-        "relationships",
-        "inner"
-      ],
-      "developmentWeight": 0.8
-    }
+    ]
   },
   {
     "id": "d24_0_pace",
@@ -3521,29 +2224,7 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0,
-            "diplomat": 0.35,
-            "expert": 0.4,
-            "achiever": 0.25,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "заканчивает сразу, сам",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "закрывает работу целиком",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       },
       {
         "id": "b",
@@ -3566,29 +2247,7 @@
           "line": "pace",
           "step": "return_accepted"
         },
-        "response": "Помощнику нужна оплата и объяснение. Тяжёлую часть закончили вдвоём.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0.0,
-            "expert": 0,
-            "achiever": 0.4,
-            "individualist": 0.25,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "делит работу с помощником",
-            "OTHERS": "помощь можно брать",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Помощнику нужна оплата и объяснение. Тяжёлую часть закончили вдвоём."
       }
     ],
     "at": {
@@ -3618,16 +2277,7 @@
         },
         "text": "Прошлую пробу герой уже пережил. После первой части нового заказа спина снова болит. Похожие ощущения теперь появились до последнего дня."
       }
-    ],
-    "diagnostic": {
-      "situationId": "aching-back",
-      "contextId": "rest",
-      "facets": [
-        "work",
-        "body"
-      ],
-      "developmentWeight": 0.8
-    }
+    ]
   },
   {
     "id": "d24_3_pace",
@@ -3659,29 +2309,7 @@
           "line": "pace",
           "step": "return_kept"
         },
-        "response": "Сил осталось больше, а денег на материалы меньше.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.35,
-            "expert": 0.0,
-            "achiever": 0,
-            "individualist": 0,
-            "strategist": 0.4,
-            "alchemist": 0.25,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "продолжает платить за разгрузку",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "оттенок: Держит противоположности вместе, меняя саму постановку вопроса",
-            "TIME": "сохраняет силы надолго",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Сил осталось больше, а денег на материалы меньше."
       },
       {
         "id": "b",
@@ -3704,29 +2332,7 @@
           "line": "pace",
           "step": "return_accepted"
         },
-        "response": "Деньги сбережены. Герой снова несёт тяжёлую часть сам.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0,
-            "diplomat": 0.2,
-            "expert": 0.4,
-            "achiever": 0.4,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "продолжает один",
-            "OTHERS": "помощь — лишние траты",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Деньги сбережены. Герой снова несёт тяжёлую часть сам."
       }
     ],
     "at": {
@@ -3756,16 +2362,7 @@
         },
         "text": "Помощнику нужна оплата и объяснение. Тяжёлую часть закончили вдвоём. Помощник готов вернуться завтра. Герой решает, стоит ли платить за разгрузку снова."
       }
-    ],
-    "diagnostic": {
-      "situationId": "pay-for-relief",
-      "contextId": "money",
-      "facets": [
-        "work",
-        "body"
-      ],
-      "developmentWeight": 0.7
-    }
+    ]
   },
   {
     "id": "d25_0_apprentice",
@@ -4002,29 +2599,7 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.35,
-            "expert": 0.0,
-            "achiever": 0.25,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "требует всю сумму",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "деньги нужны сейчас",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       },
       {
         "id": "b",
@@ -4047,29 +2622,7 @@
           "line": "commitments",
           "step": "return_accepted"
         },
-        "response": "На топливо пока не хватает. Зато оба знают, какое обязательство осталось.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0,
-            "expert": 0.4,
-            "achiever": 0,
-            "individualist": 0.15,
-            "strategist": 0.45,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "фиксирует часть и дату",
-            "OTHERS": "Илья вернёт по плану",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "На топливо пока не хватает. Зато оба знают, какое обязательство осталось."
       }
     ],
     "at": {
@@ -4099,17 +2652,7 @@
         },
         "text": "Прошлую пробу герой уже пережил. Илья принёс часть долга в день, когда мастерской нужны деньги на топливо. Раньше разговор заканчивался общим обещанием."
       }
-    ],
-    "diagnostic": {
-      "situationId": "debt-part",
-      "contextId": "old-debt",
-      "facets": [
-        "relationships",
-        "inner"
-      ],
-      "developmentWeight": 0.9,
-      "pressure": true
-    }
+    ]
   },
   {
     "id": "d26_3_commitments",
@@ -4141,29 +2684,7 @@
           "line": "commitments",
           "step": "return_kept"
         },
-        "response": "Они записали, какую сумму заменит доставка.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.25,
-            "expert": 0,
-            "achiever": 0.35,
-            "individualist": 0.0,
-            "strategist": 0.4,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "обсуждает точный объём помощи",
-            "OTHERS": "помощь заменяет часть долга",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Они записали, какую сумму заменит доставка."
       },
       {
         "id": "b",
@@ -4186,29 +2707,7 @@
           "line": "commitments",
           "step": "return_accepted"
         },
-        "response": "Граница ясна. Помощь не меняет денежного обязательства.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.3,
-            "diplomat": 0.35,
-            "expert": 0.35,
-            "achiever": 0.0,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "оставляет долг денежным",
-            "OTHERS": "долг остаётся долгом",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Граница ясна. Помощь не меняет денежного обязательства."
       }
     ],
     "at": {
@@ -4238,16 +2737,7 @@
         },
         "text": "На топливо пока не хватает. Зато оба знают, какое обязательство осталось. Запись долга теперь отделена от ожиданий о дружбе. Илья предлагает помочь с доставкой вместо части денег."
       }
-    ],
-    "diagnostic": {
-      "situationId": "help-instead",
-      "contextId": "old-debt",
-      "facets": [
-        "relationships",
-        "inner"
-      ],
-      "developmentWeight": 0.7
-    }
+    ]
   },
   {
     "id": "d27_0_pace",
@@ -4283,29 +2773,7 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.45,
-            "diplomat": 0,
-            "expert": 0.15,
-            "achiever": 0.4,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "сохраняет дату",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "срок важнее эксперимента",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       },
       {
         "id": "b",
@@ -4328,29 +2796,7 @@
           "line": "pace",
           "step": "return_accepted"
         },
-        "response": "Одна новая форма выдержала проверку. Кухня перестроила свой день под позднюю поставку.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.3,
-            "expert": 0.0,
-            "achiever": 0,
-            "individualist": 0,
-            "strategist": 0.35,
-            "alchemist": 0.35,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "использует день на пробу и отдых",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "оттенок: Сводит к правилу, обычаю или принятому порядку",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "скорость — не единственный результат",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Одна новая форма выдержала проверку. Кухня перестроила свой день под позднюю поставку."
       }
     ],
     "at": {
@@ -4380,16 +2826,7 @@
         },
         "text": "Прошлую пробу герой уже пережил. Повар готов ждать ещё день, если кружки будут крепкими. Герою непросто принять, что скорость здесь не главный результат."
       }
-    ],
-    "diagnostic": {
-      "situationId": "wait-a-day",
-      "contextId": "craft",
-      "facets": [
-        "work",
-        "body"
-      ],
-      "developmentWeight": 0.9
-    }
+    ]
   },
   {
     "id": "d27_3_pace",
@@ -4421,29 +2858,7 @@
           "line": "pace",
           "step": "return_kept"
         },
-        "response": "Повар увидел, чем оплачены скорость и проба.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.0,
-            "expert": 0.25,
-            "achiever": 0.35,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0.4,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "обсуждает цену обоих способов",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "оттенок: Разбирает задачу по существу, ищет правильный способ",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "сравнивает разные способы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Повар увидел, чем оплачены скорость и проба."
       },
       {
         "id": "b",
@@ -4466,29 +2881,7 @@
           "line": "pace",
           "step": "return_accepted"
         },
-        "response": "Следующая партия получит знакомый порядок; разговор о другом способе остаётся возможным.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.15,
-            "expert": 0.45,
-            "achiever": 0.0,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "оставляет проверенный порядок",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не рискует результатом"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Следующая партия получит знакомый порядок; разговор о другом способе остаётся возможным."
       }
     ],
     "at": {
@@ -4518,16 +2911,7 @@
         },
         "text": "Одна новая форма выдержала проверку. Кухня перестроила свой день под позднюю поставку. Новая форма или сохранённый срок дали свой результат. Повар спрашивает, какой подход повторить для следующей партии."
       }
-    ],
-    "diagnostic": {
-      "situationId": "repeat-which",
-      "contextId": "craft",
-      "facets": [
-        "work",
-        "body"
-      ],
-      "developmentWeight": 0.8
-    }
+    ]
   },
   {
     "id": "d28_0_apprentice",
@@ -4800,29 +3184,7 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0.0,
-            "expert": 0.0,
-            "achiever": 0.4,
-            "individualist": 0.0,
-            "strategist": 0.25,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "находит другого помощника Марте",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "приёмка остаётся в срок",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       },
       {
         "id": "b",
@@ -4845,29 +3207,7 @@
           "line": "commitments",
           "step": "return_accepted"
         },
-        "response": "Повар освобождает другой час. Герой успевает к крыше, но вечер в мастерской становится длиннее.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.35,
-            "expert": 0.35,
-            "achiever": 0.3,
-            "individualist": 0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "переносит приёмку по согласованию",
-            "OTHERS": "Марта ждёт помощи",
-            "COMPLEXITY": "оттенок: Сравнивает способы по результату, выбирает действующий",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Повар освобождает другой час. Герой успевает к крыше, но вечер в мастерской становится длиннее."
       }
     ],
     "at": {
@@ -4897,17 +3237,7 @@
         },
         "text": "Прошлую пробу герой уже пережил. Партия для кухни почти готова. Марта просит помочь с крышей в тот же час, когда назначена приёмка."
       }
-    ],
-    "diagnostic": {
-      "situationId": "roof-vs-acceptance",
-      "contextId": "deadline",
-      "facets": [
-        "relationships",
-        "inner"
-      ],
-      "developmentWeight": 1.0,
-      "pressure": true
-    }
+    ]
   },
   {
     "id": "d29_3_commitments",
@@ -4939,29 +3269,7 @@
           "line": "commitments",
           "step": "return_kept"
         },
-        "response": "Одно изделие отложено; после встреч осталось время на восстановление.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.25,
-            "expert": 0.0,
-            "achiever": 0.35,
-            "individualist": 0.4,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "сокращает вечернюю работу",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "ценит договорённости",
-            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Одно изделие отложено; после встреч осталось время на восстановление."
       },
       {
         "id": "b",
@@ -4984,29 +3292,7 @@
           "line": "commitments",
           "step": "return_accepted"
         },
-        "response": "Изделия готовы. Герой замечает усталость и оставляет запись перед ночью.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.35,
-            "expert": 0.25,
-            "achiever": 0,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "заканчивает оставшееся сегодня",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "закрывает день",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Изделия готовы. Герой замечает усталость и оставляет запись перед ночью."
       }
     ],
     "at": {
@@ -5036,16 +3322,7 @@
         },
         "text": "Повар освобождает другой час. Герой успевает к крыше, но вечер в мастерской становится длиннее. Две встречи удалось согласовать, но день оказался плотным. Герой видит цену договорённостей в собственном расписании."
       }
-    ],
-    "diagnostic": {
-      "situationId": "dense-day",
-      "contextId": "neighbors",
-      "facets": [
-        "relationships",
-        "inner"
-      ],
-      "developmentWeight": 0.7
-    }
+    ]
   },
   {
     "id": "d30_0_pace",
@@ -5271,29 +3548,7 @@
           "line": "pace",
           "step": "encounter"
         },
-        "response": "После паузы плечи расслабились; одна заготовка осталась на потом.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.25,
-            "expert": 0.0,
-            "achiever": 0.35,
-            "individualist": 0.4,
-            "strategist": 0.0,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "останавливается ради себя вместе с Лией",
-            "OTHERS": "Лия видит то, что он не замечает",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "После паузы плечи расслабились; одна заготовка осталась на потом."
       },
       {
         "id": "b",
@@ -5318,42 +3573,11 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.15,
-            "expert": 0.45,
-            "achiever": 0,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "доделывает заготовку",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "сейчас важнее дело",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-shoulders",
-      "contextId": "rest",
-      "facets": [
-        "body",
-        "inner"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_3_1",
@@ -5385,29 +3609,7 @@
           "line": "apprentice",
           "step": "encounter"
         },
-        "response": "Ученик назвал прочность и удобство; мастер услышал новый довод.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0,
-            "expert": 0.0,
-            "achiever": 0.3,
-            "individualist": 0.35,
-            "strategist": 0,
-            "alchemist": 0,
-            "ironic": 0.35
-          },
-          "rationale": {
-            "SELF": "спрашивает о критерии",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "оттенок: Сравнивает способы по результату, выбирает действующий",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "допускает иной взгляд ученика",
-            "UNCERTAINTY": "оттенок: Действует, не настаивая на объяснении"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Ученик назвал прочность и удобство; мастер услышал новый довод."
       },
       {
         "id": "b",
@@ -5431,42 +3633,11 @@
         "response": "Партия получила знакомую форму. Алексей сохранил второй образец.",
         "pursuesGoals": [
           "alexey"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.15,
-            "expert": 0.45,
-            "achiever": 0.0,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "выбирает привычную ручку",
-            "OTHERS": "знакомая форма надёжнее",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-two-handles",
-      "contextId": "apprentice",
-      "facets": [
-        "work",
-        "relationships"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_3_2",
@@ -5498,29 +3669,7 @@
           "line": "commitments",
           "step": "encounter"
         },
-        "response": "Разговор получился коротким и законченным; работу пришлось отложить.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0,
-            "diplomat": 0.4,
-            "expert": 0.4,
-            "achiever": 0,
-            "individualist": 0.2,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "остаётся поговорить",
-            "OTHERS": "Марта важнее часа",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Разговор получился коротким и законченным; работу пришлось отложить."
       },
       {
         "id": "b",
@@ -5545,42 +3694,11 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.3,
-            "diplomat": 0.0,
-            "expert": 0.0,
-            "achiever": 0.35,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.35
-          },
-          "rationale": {
-            "SELF": "договаривается о другом часе",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "планирует встречу",
-            "PERSPECTIVE": "оттенок: Любая точка зрения временна и может быть отпущена",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-well-hour",
-      "contextId": "neighbors",
-      "facets": [
-        "relationships",
-        "work"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_3_3",
@@ -5612,29 +3730,7 @@
           "line": "pace",
           "step": "encounter"
         },
-        "response": "Вода у двери. Герой сможет потратить силы на обжиг.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.2,
-            "diplomat": 0.4,
-            "expert": 0,
-            "achiever": 0.4,
-            "individualist": 0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "принимает помощь",
-            "OTHERS": "повар может помочь",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Вода у двери. Герой сможет потратить силы на обжиг."
       },
       {
         "id": "b",
@@ -5659,42 +3755,11 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0.25,
-            "expert": 0.4,
-            "achiever": 0.0,
-            "individualist": 0,
-            "strategist": 0.0,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "делает сам",
-            "OTHERS": "помощь — лишнее",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-water-help",
-      "contextId": "rest",
-      "facets": [
-        "body",
-        "inner"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_3_4",
@@ -5726,29 +3791,7 @@
           "line": "apprentice",
           "step": "encounter"
         },
-        "response": "Покупатель расспросил ученика о форме.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.3,
-            "expert": 0.0,
-            "achiever": 0.0,
-            "individualist": 0.35,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.35
-          },
-          "rationale": {
-            "SELF": "называет ученика",
-            "OTHERS": "Алексей заслужил признание",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Любая точка зрения временна и может быть отпущена",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Покупатель расспросил ученика о форме."
       },
       {
         "id": "b",
@@ -5772,42 +3815,11 @@
         "response": "Покупатель услышал про мастерскую; ученик остался за столом.",
         "pursuesGoals": [
           "alexey"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.2,
-            "expert": 0.4,
-            "achiever": 0,
-            "individualist": 0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "говорит о мастерской",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "репутация мастерской",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-unsigned-cup",
-      "contextId": "apprentice",
-      "facets": [
-        "work",
-        "relationships"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_3_5",
@@ -5839,29 +3851,7 @@
           "line": "commitments",
           "step": "encounter"
         },
-        "response": "Они договорились о границе дня.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.0,
-            "expert": 0.3,
-            "achiever": 0.35,
-            "individualist": 0.0,
-            "strategist": 0.35,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "уточняет время до согласия",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "ясные условия",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Они договорились о границе дня."
       },
       {
         "id": "b",
@@ -5886,42 +3876,11 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.4,
-            "expert": 0,
-            "achiever": 0,
-            "individualist": 0.2,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "соглашается на гибкое время",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Несколько личных точек зрения, включая неудобные",
-            "UNCERTAINTY": "не требует определённости"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-open-delivery",
-      "contextId": "money",
-      "facets": [
-        "relationships",
-        "work"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_3_6",
@@ -5953,29 +3912,7 @@
           "line": "pace",
           "step": "encounter"
         },
-        "response": "Тишина дала передышку; герой вернулся к столу позже.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0.25,
-            "expert": 0.0,
-            "achiever": 0.0,
-            "individualist": 0.4,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "останавливается на несколько минут",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "даёт себе перерыв",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Тишина дала передышку; герой вернулся к столу позже."
       },
       {
         "id": "b",
@@ -6000,42 +3937,11 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.2,
-            "diplomat": 0,
-            "expert": 0.4,
-            "achiever": 0.4,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "возвращается к делу",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не прерывает работу",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-quiet-door",
-      "contextId": "rest",
-      "facets": [
-        "body",
-        "inner"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_3_7",
@@ -6067,29 +3973,7 @@
           "line": "apprentice",
           "step": "encounter"
         },
-        "response": "На полке появился пример ошибки с пояснением ученика.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0,
-            "diplomat": 0.3,
-            "expert": 0.35,
-            "achiever": 0.35,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "хранит неудачу для сравнения",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "неудача — тоже материал",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "оттенок: Ставит цель, пробует, корректирует по результату"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "На полке появился пример ошибки с пояснением ученика."
       },
       {
         "id": "b",
@@ -6113,42 +3997,11 @@
         "response": "Места стало больше; причину ошибки записали отдельно.",
         "pursuesGoals": [
           "alexey"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.45,
-            "diplomat": 0.4,
-            "expert": 0.0,
-            "achiever": 0.15,
-            "individualist": 0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "освобождает место для удачных",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "порядок и результат",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-failed-sample",
-      "contextId": "craft",
-      "facets": [
-        "work",
-        "relationships"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_3_8",
@@ -6180,29 +4033,7 @@
           "line": "commitments",
           "step": "encounter"
         },
-        "response": "Илья рассказал о своей работе. Долг от этого не изменился.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.4,
-            "expert": 0.0,
-            "achiever": 0.15,
-            "individualist": 0.45,
-            "strategist": 0,
-            "alchemist": 0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "идёт и слушает",
-            "OTHERS": "Илья хочет быть рядом",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Илья рассказал о своей работе. Долг от этого не изменился."
       },
       {
         "id": "b",
@@ -6227,42 +4058,11 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0,
-            "expert": 0.4,
-            "achiever": 0,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.2
-          },
-          "rationale": {
-            "SELF": "называет другой день",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не сейчас",
-            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-road-with-ilya",
-      "contextId": "old-debt",
-      "facets": [
-        "relationships",
-        "work"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_3_9",
@@ -6294,29 +4094,7 @@
           "line": "pace",
           "step": "encounter"
         },
-        "response": "Чаша возвращена хозяину; рабочий день стал длиннее.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.15,
-            "diplomat": 0.4,
-            "expert": 0.45,
-            "achiever": 0,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "чинит сразу",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "сегодня, не откладывая",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Чаша возвращена хозяину; рабочий день стал длиннее."
       },
       {
         "id": "b",
@@ -6341,42 +4119,11 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0.0,
-            "expert": 0.0,
-            "achiever": 0.25,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.4
-          },
-          "rationale": {
-            "SELF": "включает ремонт в план",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "завтрашняя работа",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-cracked-handle",
-      "contextId": "craft",
-      "facets": [
-        "body",
-        "inner"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_3_10",
@@ -6408,29 +4155,7 @@
           "line": "apprentice",
           "step": "encounter"
         },
-        "response": "Алексей ошибся в расходе топлива и исправил расчёт после вопроса.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0,
-            "expert": 0.0,
-            "achiever": 0.4,
-            "individualist": 0.25,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "даёт ученику назвать расчёт",
-            "OTHERS": "Алексей считает сам",
-            "COMPLEXITY": "оттенок: Принимает внутренние противоречия, не сводит к схеме",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Алексей ошибся в расходе топлива и исправил расчёт после вопроса."
       },
       {
         "id": "b",
@@ -6454,42 +4179,11 @@
         "response": "Тимон получил точную цену; расчёт остался задачей мастера.",
         "pursuesGoals": [
           "alexey"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0,
-            "diplomat": 0.35,
-            "expert": 0.4,
-            "achiever": 0.25,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "называет цену сам",
-            "OTHERS": "ученику ещё рано",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-small-batch-price",
-      "contextId": "apprentice",
-      "facets": [
-        "work",
-        "relationships"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_3_11",
@@ -6521,29 +4215,7 @@
           "line": "commitments",
           "step": "encounter"
         },
-        "response": "Марта рассказала о ремонте. Доставка началась позже.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0.4,
-            "expert": 0.0,
-            "achiever": 0,
-            "individualist": 0,
-            "strategist": 0.25,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "спрашивает о её дне",
-            "OTHERS": "Марта вернулась с делом",
-            "COMPLEXITY": "оттенок: Ищет структуру, которая снимает повторяющуюся проблему",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Марта рассказала о ремонте. Доставка началась позже."
       },
       {
         "id": "b",
@@ -6568,42 +4240,11 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0,
-            "diplomat": 0.0,
-            "expert": 0.4,
-            "achiever": 0.45,
-            "individualist": 0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.15
-          },
-          "rationale": {
-            "SELF": "берёт корзину для заказа",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "дело ждёт",
-            "PERSPECTIVE": "оттенок: Любая точка зрения временна и может быть отпущена",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-empty-basket",
-      "contextId": "neighbors",
-      "facets": [
-        "relationships",
-        "work"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_4_0",
@@ -6635,29 +4276,7 @@
           "line": "pace",
           "step": "encounter"
         },
-        "response": "После паузы плечи расслабились; одна заготовка осталась на потом.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.25,
-            "expert": 0.0,
-            "achiever": 0.35,
-            "individualist": 0.4,
-            "strategist": 0.0,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "останавливается ради себя вместе с Лией",
-            "OTHERS": "Лия видит то, что он не замечает",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "После паузы плечи расслабились; одна заготовка осталась на потом."
       },
       {
         "id": "b",
@@ -6682,42 +4301,11 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.15,
-            "expert": 0.45,
-            "achiever": 0,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "доделывает заготовку",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "сейчас важнее дело",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-shoulders",
-      "contextId": "rest",
-      "facets": [
-        "body",
-        "inner"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_4_1",
@@ -6749,29 +4337,7 @@
           "line": "apprentice",
           "step": "encounter"
         },
-        "response": "Ученик назвал прочность и удобство; мастер услышал новый довод.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0,
-            "expert": 0.0,
-            "achiever": 0.3,
-            "individualist": 0.35,
-            "strategist": 0,
-            "alchemist": 0,
-            "ironic": 0.35
-          },
-          "rationale": {
-            "SELF": "спрашивает о критерии",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "оттенок: Сравнивает способы по результату, выбирает действующий",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "допускает иной взгляд ученика",
-            "UNCERTAINTY": "оттенок: Действует, не настаивая на объяснении"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Ученик назвал прочность и удобство; мастер услышал новый довод."
       },
       {
         "id": "b",
@@ -6795,42 +4361,11 @@
         "response": "Партия получила знакомую форму. Алексей сохранил второй образец.",
         "pursuesGoals": [
           "alexey"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.15,
-            "expert": 0.45,
-            "achiever": 0.0,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "выбирает привычную ручку",
-            "OTHERS": "знакомая форма надёжнее",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-two-handles",
-      "contextId": "apprentice",
-      "facets": [
-        "work",
-        "relationships"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_4_2",
@@ -6862,29 +4397,7 @@
           "line": "commitments",
           "step": "encounter"
         },
-        "response": "Разговор получился коротким и законченным; работу пришлось отложить.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0,
-            "diplomat": 0.4,
-            "expert": 0.4,
-            "achiever": 0,
-            "individualist": 0.2,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "остаётся поговорить",
-            "OTHERS": "Марта важнее часа",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Разговор получился коротким и законченным; работу пришлось отложить."
       },
       {
         "id": "b",
@@ -6909,42 +4422,11 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.3,
-            "diplomat": 0.0,
-            "expert": 0.0,
-            "achiever": 0.35,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.35
-          },
-          "rationale": {
-            "SELF": "договаривается о другом часе",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "планирует встречу",
-            "PERSPECTIVE": "оттенок: Любая точка зрения временна и может быть отпущена",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-well-hour",
-      "contextId": "neighbors",
-      "facets": [
-        "relationships",
-        "work"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_4_3",
@@ -6976,29 +4458,7 @@
           "line": "pace",
           "step": "encounter"
         },
-        "response": "Вода у двери. Герой сможет потратить силы на обжиг.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.2,
-            "diplomat": 0.4,
-            "expert": 0,
-            "achiever": 0.4,
-            "individualist": 0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "принимает помощь",
-            "OTHERS": "повар может помочь",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Вода у двери. Герой сможет потратить силы на обжиг."
       },
       {
         "id": "b",
@@ -7023,42 +4483,11 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0.25,
-            "expert": 0.4,
-            "achiever": 0.0,
-            "individualist": 0,
-            "strategist": 0.0,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "делает сам",
-            "OTHERS": "помощь — лишнее",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-water-help",
-      "contextId": "rest",
-      "facets": [
-        "body",
-        "inner"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_4_4",
@@ -7090,29 +4519,7 @@
           "line": "apprentice",
           "step": "encounter"
         },
-        "response": "Покупатель расспросил ученика о форме.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.3,
-            "expert": 0.0,
-            "achiever": 0.0,
-            "individualist": 0.35,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.35
-          },
-          "rationale": {
-            "SELF": "называет ученика",
-            "OTHERS": "Алексей заслужил признание",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Любая точка зрения временна и может быть отпущена",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Покупатель расспросил ученика о форме."
       },
       {
         "id": "b",
@@ -7136,42 +4543,11 @@
         "response": "Покупатель услышал про мастерскую; ученик остался за столом.",
         "pursuesGoals": [
           "alexey"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.2,
-            "expert": 0.4,
-            "achiever": 0,
-            "individualist": 0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "говорит о мастерской",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "репутация мастерской",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-unsigned-cup",
-      "contextId": "apprentice",
-      "facets": [
-        "work",
-        "relationships"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_4_5",
@@ -7203,29 +4579,7 @@
           "line": "commitments",
           "step": "encounter"
         },
-        "response": "Они договорились о границе дня.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.0,
-            "expert": 0.3,
-            "achiever": 0.35,
-            "individualist": 0.0,
-            "strategist": 0.35,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "уточняет время до согласия",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "ясные условия",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Они договорились о границе дня."
       },
       {
         "id": "b",
@@ -7250,42 +4604,11 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.4,
-            "expert": 0,
-            "achiever": 0,
-            "individualist": 0.2,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "соглашается на гибкое время",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Несколько личных точек зрения, включая неудобные",
-            "UNCERTAINTY": "не требует определённости"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-open-delivery",
-      "contextId": "money",
-      "facets": [
-        "relationships",
-        "work"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_4_6",
@@ -7317,29 +4640,7 @@
           "line": "pace",
           "step": "encounter"
         },
-        "response": "Тишина дала передышку; герой вернулся к столу позже.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0.25,
-            "expert": 0.0,
-            "achiever": 0.0,
-            "individualist": 0.4,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "останавливается на несколько минут",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "даёт себе перерыв",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Тишина дала передышку; герой вернулся к столу позже."
       },
       {
         "id": "b",
@@ -7364,42 +4665,11 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.2,
-            "diplomat": 0,
-            "expert": 0.4,
-            "achiever": 0.4,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "возвращается к делу",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не прерывает работу",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-quiet-door",
-      "contextId": "rest",
-      "facets": [
-        "body",
-        "inner"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_4_7",
@@ -7431,29 +4701,7 @@
           "line": "apprentice",
           "step": "encounter"
         },
-        "response": "На полке появился пример ошибки с пояснением ученика.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0,
-            "diplomat": 0.3,
-            "expert": 0.35,
-            "achiever": 0.35,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "хранит неудачу для сравнения",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "неудача — тоже материал",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "оттенок: Ставит цель, пробует, корректирует по результату"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "На полке появился пример ошибки с пояснением ученика."
       },
       {
         "id": "b",
@@ -7477,42 +4725,11 @@
         "response": "Места стало больше; причину ошибки записали отдельно.",
         "pursuesGoals": [
           "alexey"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.45,
-            "diplomat": 0.4,
-            "expert": 0.0,
-            "achiever": 0.15,
-            "individualist": 0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "освобождает место для удачных",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "порядок и результат",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-failed-sample",
-      "contextId": "craft",
-      "facets": [
-        "work",
-        "relationships"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_4_8",
@@ -7544,29 +4761,7 @@
           "line": "commitments",
           "step": "encounter"
         },
-        "response": "Илья рассказал о своей работе. Долг от этого не изменился.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.4,
-            "expert": 0.0,
-            "achiever": 0.15,
-            "individualist": 0.45,
-            "strategist": 0,
-            "alchemist": 0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "идёт и слушает",
-            "OTHERS": "Илья хочет быть рядом",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Илья рассказал о своей работе. Долг от этого не изменился."
       },
       {
         "id": "b",
@@ -7591,42 +4786,11 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0,
-            "expert": 0.4,
-            "achiever": 0,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.2
-          },
-          "rationale": {
-            "SELF": "называет другой день",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не сейчас",
-            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-road-with-ilya",
-      "contextId": "old-debt",
-      "facets": [
-        "relationships",
-        "work"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_4_9",
@@ -7658,29 +4822,7 @@
           "line": "pace",
           "step": "encounter"
         },
-        "response": "Чаша возвращена хозяину; рабочий день стал длиннее.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.15,
-            "diplomat": 0.4,
-            "expert": 0.45,
-            "achiever": 0,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "чинит сразу",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "сегодня, не откладывая",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Чаша возвращена хозяину; рабочий день стал длиннее."
       },
       {
         "id": "b",
@@ -7705,42 +4847,11 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0.0,
-            "expert": 0.0,
-            "achiever": 0.25,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.4
-          },
-          "rationale": {
-            "SELF": "включает ремонт в план",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "завтрашняя работа",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-cracked-handle",
-      "contextId": "craft",
-      "facets": [
-        "body",
-        "inner"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_4_10",
@@ -7772,29 +4883,7 @@
           "line": "apprentice",
           "step": "encounter"
         },
-        "response": "Алексей ошибся в расходе топлива и исправил расчёт после вопроса.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0,
-            "expert": 0.0,
-            "achiever": 0.4,
-            "individualist": 0.25,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "даёт ученику назвать расчёт",
-            "OTHERS": "Алексей считает сам",
-            "COMPLEXITY": "оттенок: Принимает внутренние противоречия, не сводит к схеме",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Алексей ошибся в расходе топлива и исправил расчёт после вопроса."
       },
       {
         "id": "b",
@@ -7818,42 +4907,11 @@
         "response": "Тимон получил точную цену; расчёт остался задачей мастера.",
         "pursuesGoals": [
           "alexey"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0,
-            "diplomat": 0.35,
-            "expert": 0.4,
-            "achiever": 0.25,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "называет цену сам",
-            "OTHERS": "ученику ещё рано",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-small-batch-price",
-      "contextId": "apprentice",
-      "facets": [
-        "work",
-        "relationships"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   },
   {
     "id": "enc_4_11",
@@ -7885,29 +4943,7 @@
           "line": "commitments",
           "step": "encounter"
         },
-        "response": "Марта рассказала о ремонте. Доставка началась позже.",
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0.4,
-            "expert": 0.0,
-            "achiever": 0,
-            "individualist": 0,
-            "strategist": 0.25,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "спрашивает о её дне",
-            "OTHERS": "Марта вернулась с делом",
-            "COMPLEXITY": "оттенок: Ищет структуру, которая снимает повторяющуюся проблему",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        "response": "Марта рассказала о ремонте. Доставка началась позже."
       },
       {
         "id": "b",
@@ -7932,41 +4968,10 @@
         "pursuesGoals": [
           "order",
           "workshop"
-        ],
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0,
-            "diplomat": 0.0,
-            "expert": 0.4,
-            "achiever": 0.45,
-            "individualist": 0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.15
-          },
-          "rationale": {
-            "SELF": "берёт корзину для заказа",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "дело ждёт",
-            "PERSPECTIVE": "оттенок: Любая точка зрения временна и может быть отпущена",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        }
+        ]
       }
     ],
     "once": false,
-    "cooldownDays": 3,
-    "diagnostic": {
-      "situationId": "enc-empty-basket",
-      "contextId": "neighbors",
-      "facets": [
-        "relationships",
-        "work"
-      ],
-      "developmentWeight": 0.6
-    }
+    "cooldownDays": 3
   }
 ]

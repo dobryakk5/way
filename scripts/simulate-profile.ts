@@ -28,7 +28,7 @@ function trajectory(spec: Spec) {
       let origin: Ev['selectionOrigin'] = spec.origin?.(n, r) ?? 'neutral';
       if (origin === 'probe' && !probeAllowed({ independentCases: independent, probeCases: probes }, config)) origin = 'neutral';
       const id = `s${spec.seed}-${n++}`; const ctx = ctxs[Math.floor(r() * ctxs.length)]!; const vec = vector(top, r);
-      const base = { caseId: id, situationId: id, day, slot, cardId: id, choiceId: 'a', contextId: ctx, facets: ['work'] as Ev['facets'], pressure: false, selectionOrigin: origin, developmentWeight: .6 + .4 * r(),
+      const base = { caseId: id, situationId: id, day, slot, cardId: id, choiceId: 'a', contextId: ctx, facets: [(['work', 'relationships', 'body', 'inner'] as const)[Math.floor(r() * 4)]!] as Ev['facets'], pressure: false, selectionOrigin: origin, developmentWeight: .6 + .4 * r(),
         algorithmVersion: '1', scoringVersion: '1', rubricVersion: '1', contentVersion: 'sim' };
       evidence.push({ ...base, id: id + '#action', source: 'action', vector: vec });
       if (origin !== 'adaptive') { independent++; if (origin === 'probe') probes++; if (independent >= 3) maxProbeShare = Math.max(maxProbeShare, probes / independent); }

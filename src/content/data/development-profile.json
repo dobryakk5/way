@@ -1,5 +1,5 @@
 {
-  "currentAlgorithmVersion": "1",
+  "currentAlgorithmVersion": "2",
   "rollout": {
     "adaptiveSelection": false,
     "developmentArcs": false

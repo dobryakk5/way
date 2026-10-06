@@ -18,9 +18,19 @@ export const DEFAULT_SPACING: Record<DevelopmentBeat, [number, number]> = { tria
 export const RETRY_COOLDOWN: [number, number] = [2, 1];
 export const BEAT_ORDER: readonly DevelopmentBeat[] = ['trial', 'consequence', 'review', 'transfer', 'pressure'];
 /** Days between an owner scene and its behavior continuation; must stay inside the case window (3 days by default). */
+/** Draw weight of a neutral scene in the free pool (an ordinary situation weighs 3): how much of the early days diagnostics may take from the story. */
+export const NEUTRAL_WEIGHT = Number(process.env.V25_NEUTRAL_WEIGHT ?? 3);
 export const BEHAVIOR_DELAY_DAYS = 2;
 /** The last day an owner of a behavior continuation can be shown: its follow-up must still fit in the calendar. */
 export const lastOwnerDay = (episodeDays: number) => episodeDays - BEHAVIOR_DELAY_DAYS;
+/**
+ * Neutral scenes wait for day 2: measured on the real calendar, letting them fill day 1 as well pushes the chapter-1 story scenes below half of the plays
+ * (the "ordinary scenes" rule of `npm run simulate`) while the first center stays at median day 10 (P90 13). Calendar only, never the profile.
+ */
+export const NEUTRAL_FROM_DAY = 2;
+export function neutralRequires(hasContinuation: boolean, episodeDays: number): Condition {
+  return hasContinuation ? { all: [{ dayGte: NEUTRAL_FROM_DAY }, { dayLte: lastOwnerDay(episodeDays) }] } : { dayGte: NEUTRAL_FROM_DAY };
+}
 
 const beatIs = (arc: string, beat: DevelopmentBeat, is: 'done' | 'open' | 'withdrawn'): Condition => ({ developmentBeat: { arc, beat, is } });
 const since = (arc: string, beat: DevelopmentBeat, of: 'done' | 'withdrawal', [decisions, evenings]: [number, number]): Condition => ({ developmentSince: { arc, beat, of, decisions, evenings } });
@@ -48,9 +58,9 @@ export function buildRuntime(src: ParsedPackage, skin: Skin, episodeDays = 30, s
   for (const s of sections.includes('neutral') ? src.neutral : []) {
     const sk = need(skin.neutral, s.id, 'neutral scene'); const facets = s.facets as LifeFacet[];
     const motive = src.motives.find(m => m.situationId === s.id); const follow = src.behaviors.find(b => b.continuesSituationId === s.situationId);
-    neutral.push({ id: s.id, chapter: 'any', type: 'situation', facets, ...(sk.character ? { character: sk.character } : {}), text: sk.text,
-      // Calendar only, never the hero's profile: an owner is shown early enough for its continuation to arrive.
-      ...(follow ? { requires: { dayLte: lastOwnerDay(episodeDays) } as Condition } : {}),
+    neutral.push({ id: s.id, chapter: 'any', type: 'situation', facets, ...(NEUTRAL_WEIGHT !== 3 ? { weight: NEUTRAL_WEIGHT } : {}), ...(sk.character ? { character: sk.character } : {}), text: sk.text,
+      // Calendar only, never the hero's profile: not on the very first day, and an owner is shown early enough for its continuation to arrive.
+      requires: neutralRequires(!!follow, episodeDays),
       choices: s.choices.map(c => {
         const cs = need(sk.choices, c.id, `choice ${s.id}/`);
         trace(s.id, c.id, cs.response);

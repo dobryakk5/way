@@ -11,7 +11,10 @@ import { content } from '.';
 
 // The v2.5 package, structurally complete with placeholder world text: proves the machine guards before a single sentence is rewritten.
 const src = loadSourceJson();
-const rt = buildRuntime(src, placeholderSkin(src));
+// Sections already merged into the game are checked as they are; the rest are filled with placeholder text so the machine guards see the whole package.
+const merged = (prefix: string) => content.cards.some(c => c.id.startsWith(prefix));
+const missing = (['neutral', 'probes', 'development'] as const).filter(s => !merged({ neutral: 'neutral.', probes: 'probe.', development: 'dev.' }[s]));
+const rt = buildRuntime(src, placeholderSkin(src), 30, missing);
 const full = {
   ...content, cards: [...content.cards, ...rt.neutral, ...rt.probes, ...rt.development], traces: [...content.traces, ...rt.traces],
   development: { ...content.development, arcs: [...content.development.arcs, ...rt.arcs] },
@@ -117,9 +120,11 @@ describe.each(arcIds)('arc %s on the real contract', arcId => {
     const r = runArc(arcId, {});
     expect(r.shown.map(s => s.id)).toEqual(['trial', 'consequence', 'review', 'transfer', 'pressure'].map(b => primary(b).id));
     expect(r.pending.filter(Boolean)).toHaveLength(1);
-    expect(r.state.development.transitions).toHaveLength(1);
-    expect(r.state.development.developmentCurrent).toBe(r.to); expect(r.state.development.available).toContain(r.to);
-    expect(r.state.development.transitions[0]!.day).toBe(r.shown.at(-1)!.day);
+    // The next arc may start and even finish inside the same thirty days; this arc is promoted exactly once.
+    const own = r.state.development.transitions.filter(t => t.arcId === arcId);
+    expect(own).toHaveLength(1);
+    expect(r.state.development.available).toContain(r.to);
+    expect(own[0]!.day).toBe(r.shown.at(-1)!.day);
     expect(validateDevelopmentEvidence(r.state, full)).toBe(true);
   });
 
@@ -135,8 +140,8 @@ describe.each(arcIds)('arc %s on the real contract', arcId => {
       expect(order.slice(i + 1, j).every(id => !cards.some(c => c.id === id) || id === retryOf(b)!.id)).toBe(true);
       expect(gapOk(r.state, r.shown[i]!, r.shown[j]!, new Set(cards.map(c => c.id)))).toBe(true);
     }
-    expect(r.state.development.transitions).toHaveLength(1);
-    expect(r.state.development.developmentCurrent).toBe(r.to);
+    expect(r.state.development.transitions.filter(t => t.arcId === arcId)).toHaveLength(1);
+    expect(r.state.development.available).toContain(r.to);
     expect(validateDevelopmentEvidence(r.state, full)).toBe(true);
     // The same run reloaded from JSON at every step is the same run.
     const again = play(11, { content: full, start: s => ({ ...s, development: legacyAuthoredDevelopment(full, r.from, [r.from]) }), beforeStep: s => JSON.parse(JSON.stringify(s)) as GameState,

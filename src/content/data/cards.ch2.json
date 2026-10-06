@@ -37,113 +37,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0,
-            "expert": 0.3,
-            "achiever": 0.35,
-            "individualist": 0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "защищает своё право на возврат",
-            "OTHERS": "долг — договорённость",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "сейчас",
-            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        },
-        "diagnosticMotive": {
-          "promptId": "stones-insist",
-          "text": "Что здесь было главным для героя?",
-          "optional": true,
-          "options": [
-            {
-              "id": "owed",
-              "label": "Долги должны возвращаться",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.3,
-                  "diplomat": 0.45,
-                  "expert": 0.25,
-                  "achiever": 0.0,
-                  "individualist": 0.0,
-                  "strategist": 0.0,
-                  "alchemist": 0.0,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "не наблюдается",
-                  "OTHERS": "порядок договорённостей",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "не наблюдается",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            },
-            {
-              "id": "money",
-              "label": "Мне нужны эти деньги",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.55,
-                  "diplomat": 0.0,
-                  "expert": 0.2,
-                  "achiever": 0.25,
-                  "individualist": 0.0,
-                  "strategist": 0.0,
-                  "alchemist": 0.0,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "нужда",
-                  "OTHERS": "не наблюдается",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "не наблюдается",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            },
-            {
-              "id": "change",
-              "label": "Иначе он не изменится",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.0,
-                  "diplomat": 0.3,
-                  "expert": 0.0,
-                  "achiever": 0.3,
-                  "individualist": 0.0,
-                  "strategist": 0.4,
-                  "alchemist": 0.0,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "не наблюдается",
-                  "OTHERS": "не наблюдается",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "думает о следующем разе",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            }
-          ]
         }
       },
       {
@@ -177,113 +70,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.3,
-            "expert": 0.0,
-            "achiever": 0.15,
-            "individualist": 0.4,
-            "strategist": 0,
-            "alchemist": 0.15,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "ценит примирение выше суммы",
-            "OTHERS": "Илья важнее долга",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
-            "UNCERTAINTY": "принимает потерю"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        },
-        "diagnosticMotive": {
-          "promptId": "stones-forgive",
-          "text": "Что здесь было главным для героя?",
-          "optional": true,
-          "options": [
-            {
-              "id": "friend",
-              "label": "Дружба дороже суммы",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.0,
-                  "diplomat": 0.35,
-                  "expert": 0.0,
-                  "achiever": 0.0,
-                  "individualist": 0.45,
-                  "strategist": 0.0,
-                  "alchemist": 0.0,
-                  "ironic": 0.2
-                },
-                "rationale": {
-                  "SELF": "не наблюдается",
-                  "OTHERS": "Илья важнее",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "не наблюдается",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            },
-            {
-              "id": "close",
-              "label": "Хочется закончить это тянущееся дело",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.0,
-                  "diplomat": 0.0,
-                  "expert": 0.0,
-                  "achiever": 0.0,
-                  "individualist": 0.3,
-                  "strategist": 0.45,
-                  "alchemist": 0.25,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "не наблюдается",
-                  "OTHERS": "не наблюдается",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "закрывает цикл",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            },
-            {
-              "id": "humane",
-              "label": "Прощать — по-человечески принято",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.0,
-                  "diplomat": 0.55,
-                  "expert": 0.0,
-                  "achiever": 0.0,
-                  "individualist": 0.25,
-                  "strategist": 0.2,
-                  "alchemist": 0.0,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "не наблюдается",
-                  "OTHERS": "общее представление о достойном",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "не наблюдается",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            }
-          ]
         }
       }
     ],
@@ -298,16 +84,7 @@
     "key": true,
     "tags": [
       "parable"
-    ],
-    "diagnostic": {
-      "situationId": "stones-bag",
-      "contextId": "old-debt",
-      "facets": [
-        "inner",
-        "relationships"
-      ],
-      "developmentWeight": 1.0
-    }
+    ]
   },
   {
     "id": "c2_timon_joint_order",
@@ -349,28 +126,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.35,
-            "expert": 0.0,
-            "achiever": 0.25,
-            "individualist": 0.0,
-            "strategist": 0.4,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "делит расходы и решения",
-            "OTHERS": "Тимон — партнёр",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "общая выгода",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       },
       {
@@ -402,28 +157,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.25,
-            "diplomat": 0.0,
-            "expert": 0.35,
-            "achiever": 0.4,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "опирается на себя и свой прилавок",
-            "OTHERS": "независимость важнее удобства",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       }
     ],
@@ -458,29 +191,7 @@
             "servesFacets": [
               "work"
             ],
-            "obligation": "Взять отдельное место у ворот",
-            "diagnosticAction": {
-              "vector": {
-                "opportunist": 0.4,
-                "diplomat": 0.0,
-                "expert": 0.25,
-                "achiever": 0.35,
-                "individualist": 0.0,
-                "strategist": 0.0,
-                "alchemist": 0.0,
-                "ironic": 0.0
-              },
-              "rationale": {
-                "SELF": "берёт, что осталось, чтобы не остаться без места",
-                "OTHERS": "не наблюдается",
-                "COMPLEXITY": "не наблюдается",
-                "TIME": "сегодняшняя необходимость",
-                "PERSPECTIVE": "не наблюдается",
-                "UNCERTAINTY": "не наблюдается"
-              },
-              "scoringVersion": "1",
-              "rubricVersion": "1"
-            }
+            "obligation": "Взять отдельное место у ворот"
           },
           {
             "id": "absent",
@@ -501,42 +212,11 @@
               "body",
               "inner"
             ],
-            "obligation": "Привезти заказ без своего прилавка",
-            "diagnosticAction": {
-              "vector": {
-                "opportunist": 0.3,
-                "diplomat": 0.0,
-                "expert": 0.0,
-                "achiever": 0.0,
-                "individualist": 0.4,
-                "strategist": 0.0,
-                "alchemist": 0.0,
-                "ironic": 0.3
-              },
-              "rationale": {
-                "SELF": "не гонится за прилавком",
-                "OTHERS": "не наблюдается",
-                "COMPLEXITY": "не наблюдается",
-                "TIME": "не наблюдается",
-                "PERSPECTIVE": "не наблюдается",
-                "UNCERTAINTY": "принимает отсутствие места"
-              },
-              "scoringVersion": "1",
-              "rubricVersion": "1"
-            }
+            "obligation": "Привезти заказ без своего прилавка"
           }
         ]
       }
-    ],
-    "diagnostic": {
-      "situationId": "joint-order",
-      "contextId": "money",
-      "facets": [
-        "work",
-        "relationships"
-      ],
-      "developmentWeight": 1.0
-    }
+    ]
   },
   {
     "id": "c2_liya_arrives",
@@ -584,113 +264,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.2,
-            "expert": 0.4,
-            "achiever": 0.4,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "выполняет обещанное во что бы то ни стало",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "завтрашний срок",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        },
-        "diagnosticMotive": {
-          "promptId": "contract-keep",
-          "text": "Что здесь было главным для героя?",
-          "optional": true,
-          "options": [
-            {
-              "id": "word",
-              "label": "Обещание нельзя нарушать",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.0,
-                  "diplomat": 0.4,
-                  "expert": 0.35,
-                  "achiever": 0.25,
-                  "individualist": 0.0,
-                  "strategist": 0.0,
-                  "alchemist": 0.0,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "не наблюдается",
-                  "OTHERS": "слово перед людьми",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "не наблюдается",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            },
-            {
-              "id": "result",
-              "label": "Хочу ярмарку с полным результатом",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.2,
-                  "diplomat": 0.0,
-                  "expert": 0.25,
-                  "achiever": 0.55,
-                  "individualist": 0.0,
-                  "strategist": 0.0,
-                  "alchemist": 0.0,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "не наблюдается",
-                  "OTHERS": "не наблюдается",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "итог ярмарки",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            },
-            {
-              "id": "trust",
-              "label": "Не хочу терять доверие заказчика",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.0,
-                  "diplomat": 0.3,
-                  "expert": 0.0,
-                  "achiever": 0.3,
-                  "individualist": 0.0,
-                  "strategist": 0.4,
-                  "alchemist": 0.0,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "не наблюдается",
-                  "OTHERS": "не наблюдается",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "отношения на будущее",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            }
-          ]
         }
       },
       {
@@ -726,113 +299,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0.25,
-            "expert": 0,
-            "achiever": 0,
-            "individualist": 0,
-            "strategist": 0.4,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "меняет объём заранее",
-            "OTHERS": "заказчик может принять меньшее",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "бережёт ресурс на потом",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
-        },
-        "diagnosticMotive": {
-          "promptId": "contract-revise",
-          "text": "Что здесь было главным для героя?",
-          "optional": true,
-          "options": [
-            {
-              "id": "rest",
-              "label": "Не надорваться перед ярмаркой",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.45,
-                  "diplomat": 0.0,
-                  "expert": 0.0,
-                  "achiever": 0.0,
-                  "individualist": 0.3,
-                  "strategist": 0.0,
-                  "alchemist": 0.0,
-                  "ironic": 0.25
-                },
-                "rationale": {
-                  "SELF": "бережёт силы",
-                  "OTHERS": "не наблюдается",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "не наблюдается",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            },
-            {
-              "id": "sure",
-              "label": "Так заказчик получит то, что точно будет",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.0,
-                  "diplomat": 0.0,
-                  "expert": 0.2,
-                  "achiever": 0.35,
-                  "individualist": 0.0,
-                  "strategist": 0.45,
-                  "alchemist": 0.0,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "не наблюдается",
-                  "OTHERS": "не наблюдается",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "надёжный результат",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            },
-            {
-              "id": "honest",
-              "label": "Лучше честно сказать, что не успеваю",
-              "signal": {
-                "vector": {
-                  "opportunist": 0.0,
-                  "diplomat": 0.3,
-                  "expert": 0.0,
-                  "achiever": 0.0,
-                  "individualist": 0.45,
-                  "strategist": 0.25,
-                  "alchemist": 0.0,
-                  "ironic": 0.0
-                },
-                "rationale": {
-                  "SELF": "честность о пределе",
-                  "OTHERS": "не наблюдается",
-                  "COMPLEXITY": "не наблюдается",
-                  "TIME": "не наблюдается",
-                  "PERSPECTIVE": "не наблюдается",
-                  "UNCERTAINTY": "не наблюдается"
-                },
-                "scoringVersion": "1",
-                "rubricVersion": "1"
-              }
-            }
-          ]
         }
       }
     ],
@@ -883,29 +349,7 @@
               "work",
               "relationships"
             ],
-            "obligation": "Сдать готовое, изменить объём",
-            "diagnosticAction": {
-              "vector": {
-                "opportunist": 0.0,
-                "diplomat": 0.0,
-                "expert": 0.25,
-                "achiever": 0.4,
-                "individualist": 0.0,
-                "strategist": 0.35,
-                "alchemist": 0.0,
-                "ironic": 0.0
-              },
-              "rationale": {
-                "SELF": "сдаёт готовое и меняет остальное",
-                "OTHERS": "договорённость пересматривается честно",
-                "COMPLEXITY": "не наблюдается",
-                "TIME": "итог к утру",
-                "PERSPECTIVE": "не наблюдается",
-                "UNCERTAINTY": "не наблюдается"
-              },
-              "scoringVersion": "1",
-              "rubricVersion": "1"
-            }
+            "obligation": "Сдать готовое, изменить объём"
           },
           {
             "id": "deferred",
@@ -933,43 +377,11 @@
               "body",
               "inner"
             ],
-            "obligation": "Назвать новый срок всей партии",
-            "diagnosticAction": {
-              "vector": {
-                "opportunist": 0.3,
-                "diplomat": 0.0,
-                "expert": 0.0,
-                "achiever": 0.0,
-                "individualist": 0.4,
-                "strategist": 0.3,
-                "alchemist": 0.0,
-                "ironic": 0.0
-              },
-              "rationale": {
-                "SELF": "честно называет свой предел",
-                "OTHERS": "заказчику нужен новый срок",
-                "COMPLEXITY": "не наблюдается",
-                "TIME": "растягивает срок",
-                "PERSPECTIVE": "не наблюдается",
-                "UNCERTAINTY": "не наблюдается"
-              },
-              "scoringVersion": "1",
-              "rubricVersion": "1"
-            }
+            "obligation": "Назвать новый срок всей партии"
           }
         ]
       }
-    ],
-    "diagnostic": {
-      "situationId": "contract-eve",
-      "contextId": "deadline",
-      "facets": [
-        "work",
-        "relationships"
-      ],
-      "developmentWeight": 1.0,
-      "pressure": true
-    }
+    ]
   },
   {
     "id": "c2_bridge_repair",
@@ -1006,28 +418,6 @@
         "lineStep": {
           "line": "pace",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.4,
-            "expert": 0.0,
-            "achiever": 0,
-            "individualist": 0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.2
-          },
-          "rationale": {
-            "SELF": "бережёт себя",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "остаток дня для себя",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       },
       {
@@ -1057,28 +447,6 @@
         "lineStep": {
           "line": "pace",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.3,
-            "expert": 0.35,
-            "achiever": 0.35,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "сочетает отдых и дело",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "и прогулка, и упаковка",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       }
     ],
@@ -1088,16 +456,7 @@
     },
     "tags": [
       "route-only"
-    ],
-    "diagnostic": {
-      "situationId": "half-day",
-      "contextId": "rest",
-      "facets": [
-        "body",
-        "relationships"
-      ],
-      "developmentWeight": 0.7
-    }
+    ]
   },
   {
     "id": "c2_old_master_tools",
@@ -1136,28 +495,6 @@
         "lineStep": {
           "line": "apprentice",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0,
-            "diplomat": 0.35,
-            "expert": 0.35,
-            "achiever": 0.3,
-            "individualist": 0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "остаётся показать, как правильно",
-            "OTHERS": "ученик учится рядом",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       },
       {
@@ -1187,28 +524,6 @@
         "lineStep": {
           "line": "apprentice",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.0,
-            "expert": 0,
-            "achiever": 0.45,
-            "individualist": 0.15,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "передаёт ответственность",
-            "OTHERS": "ученик справится сам",
-            "COMPLEXITY": "оттенок: Принимает внутренние противоречия, не сводит к схеме",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       }
     ],
@@ -1219,16 +534,7 @@
     },
     "tags": [
       "route-only"
-    ],
-    "diagnostic": {
-      "situationId": "packing-box",
-      "contextId": "apprentice",
-      "facets": [
-        "relationships",
-        "work"
-      ],
-      "developmentWeight": 0.8
-    }
+    ]
   },
   {
     "id": "c2_shadow_attention",
@@ -1259,28 +565,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.3,
-            "diplomat": 0.0,
-            "expert": 0.0,
-            "achiever": 0.0,
-            "individualist": 0.35,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.35
-          },
-          "rationale": {
-            "SELF": "даёт рукам покой",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "сейчас",
-            "PERSPECTIVE": "не наблюдается",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       },
       {
@@ -1304,28 +588,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.35,
-            "expert": 0,
-            "achiever": 0.25,
-            "individualist": 0.4,
-            "strategist": 0.0,
-            "alchemist": 0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "возвращается к своему обещанию",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "оттенок: Сравнивает способы по результату, выбирает действующий",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "обдумывает без спешки"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       }
     ],
@@ -1368,16 +630,7 @@
     },
     "tags": [
       "route-only"
-    ],
-    "diagnostic": {
-      "situationId": "river-net",
-      "contextId": "inner",
-      "facets": [
-        "inner",
-        "work"
-      ],
-      "developmentWeight": 0.7
-    }
+    ]
   },
   {
     "id": "c2_shadow_honesty",
@@ -1416,28 +669,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.15,
-            "expert": 0.0,
-            "achiever": 0.4,
-            "individualist": 0.45,
-            "strategist": 0.0,
-            "alchemist": 0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "выбирает честный разговор",
-            "OTHERS": "Илья остаётся важным",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
-            "UNCERTAINTY": "выдерживает неловкость"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       },
       {
@@ -1470,28 +701,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0.4,
-            "expert": 0.25,
-            "achiever": 0,
-            "individualist": 0.0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "помогает делом",
-            "OTHERS": "практическая забота",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       }
     ],
@@ -1532,16 +741,7 @@
         },
         "text": "После возвращённых монет он привык говорить прямо. Илья просит сначала выслушать причину отъезда, а уже потом обсуждать долг."
       }
-    ],
-    "diagnostic": {
-      "situationId": "ilya-goodbye",
-      "contextId": "old-debt",
-      "facets": [
-        "relationships",
-        "inner"
-      ],
-      "developmentWeight": 0.8
-    }
+    ]
   },
   {
     "id": "c2_shadow_compassion",
@@ -1703,28 +903,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0,
-            "expert": 0.4,
-            "achiever": 0.4,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0.2,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "держит слово по объёму",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "обещанная партия",
-            "PERSPECTIVE": "оттенок: Меняет рамку понимания и проверяет её действием",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       },
       {
@@ -1752,28 +930,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0.35,
-            "expert": 0,
-            "achiever": 0.3,
-            "individualist": 0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "сокращает объём, чтобы не сорваться",
-            "OTHERS": "заказчик услышит заранее",
-            "COMPLEXITY": "оттенок: Сравнивает способы по результату, выбирает действующий",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       }
     ],
@@ -1837,15 +993,6 @@
     "requires": {
       "dayGte": 9,
       "dayLte": 9
-    },
-    "diagnostic": {
-      "situationId": "confirm-batch",
-      "contextId": "deadline",
-      "facets": [
-        "inner",
-        "work"
-      ],
-      "developmentWeight": 0.7
     }
   },
   {
@@ -2016,28 +1163,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0,
-            "expert": 0.0,
-            "achiever": 0.25,
-            "individualist": 0.4,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.35
-          },
-          "rationale": {
-            "SELF": "уважает чужую границу",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
-            "UNCERTAINTY": "не давит"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       },
       {
@@ -2064,28 +1189,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.3,
-            "diplomat": 0.35,
-            "expert": 0.35,
-            "achiever": 0.0,
-            "individualist": 0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "не может пройти мимо",
-            "OTHERS": "Марте может быть нужно сказать",
-            "COMPLEXITY": "оттенок: Разбирает задачу по существу, ищет правильный способ",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       }
     ],
@@ -2126,16 +1229,7 @@
         "text": "Марта снова держит чашку у стола. Прежде она ставила её сразу; сегодня обхватила обеими ладонями и ждёт, пока ты сядешь.",
         "familiarCardId": "c1_marta_firewood"
       }
-    ],
-    "diagnostic": {
-      "situationId": "marta-cup",
-      "contextId": "neighbors",
-      "facets": [
-        "inner",
-        "relationships"
-      ],
-      "developmentWeight": 0.8
-    }
+    ]
   },
   {
     "id": "c2_silence_alexey_hand",
@@ -2166,28 +1260,6 @@
         "lineStep": {
           "line": "apprentice",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.15,
-            "diplomat": 0.2,
-            "expert": 0.0,
-            "achiever": 0.3,
-            "individualist": 0.0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.35
-          },
-          "rationale": {
-            "SELF": "не берёт на себя заботу",
-            "OTHERS": "Алексей сам решит, показывать ли",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       },
       {
@@ -2217,28 +1289,6 @@
         "lineStep": {
           "line": "apprentice",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0.4,
-            "expert": 0.25,
-            "achiever": 0,
-            "individualist": 0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "заботится открыто",
-            "OTHERS": "ученик может быть ранен",
-            "COMPLEXITY": "оттенок: Разбирает задачу по существу, ищет правильный способ",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       }
     ],
@@ -2279,16 +1329,7 @@
         "text": "Алексей вновь поворачивает чашку к свету. Теперь заметно, как он меняет хват, оберегая большой палец.",
         "familiarCardId": "c1_alexey_broken_jug"
       }
-    ],
-    "diagnostic": {
-      "situationId": "alexey-hand",
-      "contextId": "apprentice",
-      "facets": [
-        "body",
-        "relationships"
-      ],
-      "developmentWeight": 0.8
-    }
+    ]
   },
   {
     "id": "c2_silence_market_pause",
@@ -2319,28 +1360,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.3,
-            "expert": 0.3,
-            "achiever": 0,
-            "individualist": 0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "держится сделки",
-            "OTHERS": "Тимон — контрагент",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       },
       {
@@ -2370,28 +1389,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.0,
-            "expert": 0.0,
-            "achiever": 0.3,
-            "individualist": 0,
-            "strategist": 0.35,
-            "alchemist": 0.35,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "замечает то, что вне сделки",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "смотрит на рамку разговора",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Цель и ожидания заказчика, команды, рынка",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       }
     ],
@@ -2432,16 +1429,7 @@
         "text": "Тимон, как тогда со сдачей, отсчитывает монеты. Перед последней задерживает руку и смотрит на пустую лавку напротив.",
         "familiarCardId": "c1_extra_change"
       }
-    ],
-    "diagnostic": {
-      "situationId": "timon-glance",
-      "contextId": "money",
-      "facets": [
-        "inner",
-        "work"
-      ],
-      "developmentWeight": 0.9
-    }
+    ]
   },
   {
     "id": "c2_gaze_wanderer_bread",
@@ -2472,28 +1460,6 @@
         "lineStep": {
           "line": "pace",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.35,
-            "diplomat": 0,
-            "expert": 0.35,
-            "achiever": 0,
-            "individualist": 0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0.3
-          },
-          "rationale": {
-            "SELF": "не навязывается",
-            "OTHERS": "чужое дело остаётся чужим",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       },
       {
@@ -2519,28 +1485,6 @@
         "lineStep": {
           "line": "pace",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.2,
-            "diplomat": 0.4,
-            "expert": 0,
-            "achiever": 0.4,
-            "individualist": 0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "разделяет заботу",
-            "OTHERS": "мальчик и Странник — не чужие",
-            "COMPLEXITY": "оттенок: Сравнивает способы по результату, выбирает действующий",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       }
     ],
@@ -2581,16 +1525,7 @@
         "text": "Путник снова делит хлеб. Теперь он оставляет ломоть рядом с собой, прежде чем протянуть другой.",
         "familiarCardId": "c1_wounded_road"
       }
-    ],
-    "diagnostic": {
-      "situationId": "bread-shared",
-      "contextId": "strangers",
-      "facets": [
-        "body",
-        "relationships"
-      ],
-      "developmentWeight": 0.8
-    }
+    ]
   },
   {
     "id": "c2_gaze_marta_window",
@@ -2622,28 +1557,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.4,
-            "diplomat": 0.2,
-            "expert": 0,
-            "achiever": 0.4,
-            "individualist": 0,
-            "strategist": 0.0,
-            "alchemist": 0.0,
-            "ironic": 0
-          },
-          "rationale": {
-            "SELF": "бережёт свои силы",
-            "OTHERS": "не наблюдается",
-            "COMPLEXITY": "оттенок: Сравнивает способы по результату, выбирает действующий",
-            "TIME": "вечер для себя",
-            "PERSPECTIVE": "оттенок: Своя группа и её нормы",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       },
       {
@@ -2670,28 +1583,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.4,
-            "expert": 0.4,
-            "achiever": 0.2,
-            "individualist": 0,
-            "strategist": 0,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "идёт на тревогу",
-            "OTHERS": "соседке может быть плохо",
-            "COMPLEXITY": "оттенок: Сравнивает способы по результату, выбирает действующий",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       }
     ],
@@ -2732,16 +1623,7 @@
         "text": "У Марты снова горит окно. Рядом с её чашкой стоит вторая; она переставляет её ближе к свободному стулу.",
         "familiarCardId": "c1_marta_firewood"
       }
-    ],
-    "diagnostic": {
-      "situationId": "dark-window",
-      "contextId": "neighbors",
-      "facets": [
-        "inner",
-        "relationships"
-      ],
-      "developmentWeight": 0.8
-    }
+    ]
   },
   {
     "id": "c2_gaze_alexey_silence",
@@ -2778,28 +1660,6 @@
         "lineStep": {
           "line": "apprentice",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.0,
-            "diplomat": 0.35,
-            "expert": 0.35,
-            "achiever": 0.0,
-            "individualist": 0,
-            "strategist": 0.3,
-            "alchemist": 0.0,
-            "ironic": 0.0
-          },
-          "rationale": {
-            "SELF": "не оставляет молчание без внимания",
-            "OTHERS": "ученик меняется",
-            "COMPLEXITY": "не наблюдается",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Профессиональная правота своего способа",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       },
       {
@@ -2829,28 +1689,6 @@
         "lineStep": {
           "line": "apprentice",
           "step": "limitation"
-        },
-        "diagnosticAction": {
-          "vector": {
-            "opportunist": 0.25,
-            "diplomat": 0.0,
-            "expert": 0,
-            "achiever": 0.25,
-            "individualist": 0,
-            "strategist": 0,
-            "alchemist": 0.15,
-            "ironic": 0.35
-          },
-          "rationale": {
-            "SELF": "не вмешивается без нужды",
-            "OTHERS": "ученик справляется сам",
-            "COMPLEXITY": "оттенок: Держит противоположности вместе, меняя саму постановку вопроса",
-            "TIME": "не наблюдается",
-            "PERSPECTIVE": "оттенок: Одна точка зрения — своя",
-            "UNCERTAINTY": "не наблюдается"
-          },
-          "scoringVersion": "1",
-          "rubricVersion": "1"
         }
       }
     ],
@@ -2891,16 +1729,7 @@
         "text": "Чашка Алексея снова на краю стола. Ученик уже не прячет дно с неровной подписью, а поворачивает его к свету.",
         "familiarCardId": "c1_alexey_broken_jug"
       }
-    ],
-    "diagnostic": {
-      "situationId": "alexey-silent-day",
-      "contextId": "apprentice",
-      "facets": [
-        "relationships",
-        "work"
-      ],
-      "developmentWeight": 0.8
-    }
+    ]
   },
   {
     "id": "c2_ilya_after_forgive",
@@ -2931,31 +1760,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticBehavior": {
-          "continuesSituationId": "stones-bag",
-          "signal": {
-            "vector": {
-              "opportunist": 0.0,
-              "diplomat": 0.35,
-              "expert": 0.0,
-              "achiever": 0.0,
-              "individualist": 0.4,
-              "strategist": 0.0,
-              "alchemist": 0.0,
-              "ironic": 0.25
-            },
-            "rationale": {
-              "SELF": "принимает резец",
-              "OTHERS": "Илья принёс знак примирения",
-              "COMPLEXITY": "не наблюдается",
-              "TIME": "не наблюдается",
-              "PERSPECTIVE": "не наблюдается",
-              "UNCERTAINTY": "не наблюдается"
-            },
-            "scoringVersion": "1",
-            "rubricVersion": "1"
-          }
         }
       },
       {
@@ -2981,31 +1785,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticBehavior": {
-          "continuesSituationId": "stones-bag",
-          "signal": {
-            "vector": {
-              "opportunist": 0.0,
-              "diplomat": 0.0,
-              "expert": 0.0,
-              "achiever": 0.0,
-              "individualist": 0.4,
-              "strategist": 0.3,
-              "alchemist": 0.3,
-              "ironic": 0.0
-            },
-            "rationale": {
-              "SELF": "говорит, что дело не в вещи",
-              "OTHERS": "не наблюдается",
-              "COMPLEXITY": "видит глубже предмета",
-              "TIME": "не наблюдается",
-              "PERSPECTIVE": "не наблюдается",
-              "UNCERTAINTY": "не наблюдается"
-            },
-            "scoringVersion": "1",
-            "rubricVersion": "1"
-          }
         }
       }
     ],
@@ -3046,31 +1825,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticBehavior": {
-          "continuesSituationId": "stones-bag",
-          "signal": {
-            "vector": {
-              "opportunist": 0.0,
-              "diplomat": 0.4,
-              "expert": 0.0,
-              "achiever": 0.0,
-              "individualist": 0.35,
-              "strategist": 0.25,
-              "alchemist": 0.0,
-              "ironic": 0.0
-            },
-            "rationale": {
-              "SELF": "догоняет",
-              "OTHERS": "Илья уезжает, а связь важна",
-              "COMPLEXITY": "не наблюдается",
-              "TIME": "не наблюдается",
-              "PERSPECTIVE": "не наблюдается",
-              "UNCERTAINTY": "не наблюдается"
-            },
-            "scoringVersion": "1",
-            "rubricVersion": "1"
-          }
         }
       },
       {
@@ -3096,31 +1850,6 @@
         "lineStep": {
           "line": "commitments",
           "step": "limitation"
-        },
-        "diagnosticBehavior": {
-          "continuesSituationId": "stones-bag",
-          "signal": {
-            "vector": {
-              "opportunist": 0.4,
-              "diplomat": 0.0,
-              "expert": 0.0,
-              "achiever": 0.3,
-              "individualist": 0.0,
-              "strategist": 0.0,
-              "alchemist": 0.0,
-              "ironic": 0.3
-            },
-            "rationale": {
-              "SELF": "оставляет как есть",
-              "OTHERS": "не наблюдается",
-              "COMPLEXITY": "не наблюдается",
-              "TIME": "не тратит время",
-              "PERSPECTIVE": "не наблюдается",
-              "UNCERTAINTY": "не наблюдается"
-            },
-            "scoringVersion": "1",
-            "rubricVersion": "1"
-          }
         }
       }
     ],

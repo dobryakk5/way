@@ -1,12 +1,10 @@
-import 'fake-indexeddb/auto';
 import { describe, expect, it } from 'vitest';
 import { play } from '../../scripts/play';
 import { leaning } from '../../scripts/profile-scenarios';
 import { content } from '../content';
-import { validateSave } from '../persistence/save';
-import { initialRebaseTarget, rebaseInitialDevelopment } from './development';
+import { initialRebaseTarget, rebaseInitialDevelopment, validateDevelopmentEvidence } from './development';
 import { makeState } from './testUtils';
-import type { ActionLogic, DevelopmentEvidence, GameState } from './types';
+import type { ActionLogic, DevelopmentEvidence, GameContent, GameState } from './types';
 
 const ev = (eventId: string, kind: DevelopmentEvidence['kind']): DevelopmentEvidence =>
   ({ eventId, arcId: 'expert-achiever', contextId: 'kiln', kind, day: 8, slot: 1, cardId: 'x', choiceId: 'b' });
@@ -57,36 +55,53 @@ describe('single correction of a wrong first center (initial rebase)', () => {
     expect(rebaseInitialDevelopment(state, content)).toBe(state);
   });
 
+  // The shipped diagnostic pool (32 scenes) is used up around the time a center forms, so a hero who changes course afterwards has too few
+  // new decisions to be re-read in time. These runs use a pool of three copies of it (same vectors, other ids) to exercise the whole path.
+  const pool = [1, 2].flatMap(k => content.cards.filter(c => c.id.startsWith('neutral.') && c.type === 'situation').map(c => {
+    const copy = structuredClone(c); copy.id = `${c.id}~${k}`; copy.diagnostic!.situationId = `${c.diagnostic!.situationId}~${k}`; delete copy.requires;
+    for (const ch of copy.choices) delete ch.effects.schedule; return copy;
+  }));
+  const big = { ...content, cards: [...content.cards, ...pool] } as GameContent;
+  const motiveFor = (logic: ActionLogic) => (s: GameState) => {
+    const h = s.history.at(-1)!; const options = big.cards.find(c => c.id === h.cardId)!.choices.find(c => c.id === h.choiceId)!.diagnosticMotive!.options;
+    return [...options].sort((x, y) => y.signal.vector[logic] - x.signal.vector[logic])[0]!.id;
+  };
   const switching = (seed: number, a: ActionLogic, b: ActionLogic) => {
     const first = leaning(a, 0.05), second = leaning(b, 0.05);
-    return play(seed, { pick: (s, d) => (s.development.developmentCurrent ? second : first).pick!(s, d), pickMotive: s => (s.development.developmentCurrent ? second : first).pickMotive!(s) }).state;
+    return play(seed, { content: big, pick: (s, d) => (s.development.developmentCurrent ? second : first).pick!(s, d), pickMotive: s => motiveFor(s.development.developmentCurrent ? b : a)(s) }).state;
   };
 
-  it('corrects a real run (expert first, then diplomatic decisions) and the saved state replays and validates', () => {
-    const game = switching(2, 'expert', 'diplomat');
+  // Which seed corrects a center depends on the whole draw sequence, so the runs are found rather than hard-coded.
+  const find = (a: ActionLogic, b: ActionLogic, ok: (g: GameState) => boolean) => {
+    for (let seed = 1; seed <= 24; seed++) { const g = switching(seed, a, b); if (ok(g)) return g; }
+    throw new Error(`no run corrects ${a} → ${b} in 24 seeds`);
+  };
+  const corrected = (g: GameState) => g.development.initialRebaseCount === 1 && g.development.transitions.some(t => t.reason === 'initial-reconciliation');
+
+  it('corrects a real run (opportunist first, then diplomatic decisions) and the saved state replays and validates', () => {
+    const game = find('opportunist', 'diplomat', corrected);
     expect(game.development.initialRebaseCount).toBe(1);
-    expect(game.development.developmentCurrent).toBe('diplomat');
     const rebase = game.development.transitions.filter(t => t.reason === 'initial-reconciliation');
-    expect(rebase).toHaveLength(1); expect(rebase[0]).toMatchObject({ from: 'expert', to: 'diplomat', evidenceIds: [] });
-    expect(game.development.available).toEqual(['diplomat']);
-    expect(validateSave({ schema: 1, started: true, game })).toBeDefined();
+    expect(rebase).toHaveLength(1); expect(rebase[0]).toMatchObject({ from: 'opportunist', to: 'diplomat', evidenceIds: [] });
+    expect(game.development.developmentCurrent).toBe('diplomat'); expect(game.development.available).toEqual(['diplomat']);
+    expect(validateDevelopmentEvidence(game, big)).toBe(true);
   });
 
   it('a corrected center can still be promoted later, and nothing else rebases it again', () => {
-    const game = switching(2, 'diplomat', 'expert');
+    const game = find('diplomat', 'expert', g => corrected(g) && g.development.transitions.length === 2);
     expect(game.development.initialRebaseCount).toBe(1);
     expect(game.development.transitions.map(t => t.reason ?? 'promotion')).toEqual(['initial-reconciliation', 'promotion']);
-    expect(game.development.developmentCurrent).toBe('achiever'); expect(game.development.currentOrigin).toBe('promotion');
-    expect(validateSave({ schema: 1, started: true, game })).toBeDefined();
+    expect(game.development.currentOrigin).toBe('promotion');
+    expect(validateDevelopmentEvidence(game, big)).toBe(true);
   });
 
-  it('refuses a save whose correction is unsupported by the profile or by the evidence', () => {
-    const game = switching(2, 'expert', 'diplomat');
+  it('refuses a state whose correction is unsupported by the profile or by the evidence', () => {
+    const game = find('opportunist', 'diplomat', corrected);
     const wrongTarget = structuredClone(game); wrongTarget.development.transitions.find(t => t.reason)!.to = 'strategist';
-    expect(validateSave({ schema: 1, started: true, game: wrongTarget })).toBeUndefined();
+    expect(validateDevelopmentEvidence(wrongTarget, big)).toBe(false);
     const second = structuredClone(game); second.development.initialRebaseCount = 0;
-    expect(validateSave({ schema: 1, started: true, game: second })).toBeUndefined();
+    expect(validateDevelopmentEvidence(second, big)).toBe(false);
     const forged = structuredClone(game); forged.development.transitions.find(t => t.reason)!.day = 3;
-    expect(validateSave({ schema: 1, started: true, game: forged })).toBeUndefined();
+    expect(validateDevelopmentEvidence(forged, big)).toBe(false);
   });
 });

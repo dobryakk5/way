@@ -95,7 +95,7 @@ describe('saves under the strict v5 validation, on real play', () => {
     const mutations: ((g: GameState) => void)[] = [
       g => { g.heroDevelopmentProfile.currentDistribution!.expert = 0.99; },
       g => { g.heroDevelopmentProfile.lifetimeDistribution!.expert = 0.99; },
-      g => { g.heroDevelopmentProfile.confidence = 1; },
+      g => { g.heroDevelopmentProfile.confidence = g.heroDevelopmentProfile.confidence > 0.5 ? 0.123 : 1; },
       g => { g.heroDevelopmentProfile.evidence[0]!.vector = { ...g.heroDevelopmentProfile.evidence[0]!.vector, expert: 0.7, achiever: 0.3, diplomat: 0 }; },
       g => { g.heroDevelopmentProfile.evidence[0]!.developmentWeight = 0.1; },
       g => { g.heroDevelopmentProfile.evidence.pop(); },

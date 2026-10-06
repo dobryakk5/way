@@ -1,5 +1,5 @@
 import { LOGICS, type ParsedPackage, type SourceChoice } from './parse-package';
-import { developmentRequires, DEFAULT_SPACING, RETRY_COOLDOWN, BEAT_ORDER, lastOwnerDay } from './runtime';
+import { developmentRequires, DEFAULT_SPACING, RETRY_COOLDOWN, BEAT_ORDER, neutralRequires } from './runtime';
 import type { Card, Choice, Condition, DevelopmentBeat, GameContent } from '../../src/engine/types';
 
 // Structural parity between the committed package extraction (content-src/v2.5/*.json) and the runtime cards.
@@ -41,7 +41,7 @@ export function checkParity(src: ParsedPackage, c: GameContent): string[] {
       const d = card.diagnostic;
       const follow0 = src.behaviors.find(b => b.continuesSituationId === s.situationId);
       // A day window is calendar, not profile: an owner must be shown early enough for its continuation. Nothing else may gate a neutral scene.
-      if (card.type !== 'situation' || card.development || card.at || card.tags?.length || !same(card.requires ?? null, follow0 ? { dayLte: lastOwnerDay(c.episode.days) } : null)) fail(`${s.id}: a neutral scene must be a free situation, gated by nothing but the calendar window of its continuation`);
+      if (card.type !== 'situation' || card.development || card.at || card.tags?.length || !same(card.requires ?? null, neutralRequires(!!follow0, c.episode.days))) fail(`${s.id}: a neutral scene must be a free situation, gated by nothing but the calendar (from day 2; early enough for its continuation)`);
       if (!d || d.situationId !== s.situationId || d.contextId !== s.contextId || !same(d.facets, s.facets) || d.developmentWeight !== s.developmentWeight || (d.pressure ?? false) !== s.pressure || d.distinguishes)
         fail(`${s.id}: diagnostic block differs from source`);
       if (card.textVariants?.length || card.choiceVariants?.length) fail(`${s.id}: a neutral scene has one text and one choice set, independent of the hero's stage`);

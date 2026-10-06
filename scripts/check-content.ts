@@ -229,12 +229,14 @@ export function validateDiagnostics(c: GameContent, fail:(s:string)=>void) {
   }
  }
  // Every logic, and the state without a center, needs independent content where it is the dominant reading.
- const neutralOptions=c.cards.filter(card=>card.diagnostic&&!card.tags?.includes('probe-only')&&!card.development&&!card.requires).flatMap(card=>allChoices(card).map(ch=>({card,v:ch.diagnosticAction!.vector})));
+ // A day window is calendar, not a hypothesis about the hero: it does not make a scene dependent.
+ const calendarOnly=(x:Condition|undefined):boolean=>!x||('all'in x?x.all.every(calendarOnly):('dayGte'in x||'dayLte'in x));
+ const neutralOptions=c.cards.filter(card=>card.diagnostic&&!card.tags?.includes('probe-only')&&!card.development&&calendarOnly(card.requires)).flatMap(card=>allChoices(card).map(ch=>({card,v:ch.diagnosticAction!.vector})));
  for(const l of ACTION_LOGICS){const own=neutralOptions.filter(o=>ACTION_LOGICS.every(x=>o.v[x]<=o.v[l]));if(own.length<3||new Set(own.map(o=>o.card.diagnostic!.situationId)).size<2)fail(`Too little independent content dominated by ${l}`);}
  // A diagnostic scene must not depend on an undefined stage, and a required scene cannot be gated.
  for(const card of diagnostic)if(card.development?.stages&&(card.at||card.required||card.mustShowBy))fail(`Gated diagnostic scene cannot be required ${card.id}`);
  void evidenceOf;
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
- const errors=validateContent(content);if(errors.length){console.error(errors.join('\n'));process.exitCode=1;}else console.log(`CONTENT v2.4 OK: ${content.cards.length} cards, ${content.episode.days} days`);
+ const errors=validateContent(content);if(errors.length){console.error(errors.join('\n'));process.exitCode=1;}else console.log(`CONTENT v2.5 OK: ${content.cards.length} cards, ${content.episode.days} days`);
 }
