@@ -1,12 +1,20 @@
 import { create } from 'zustand';
 import { content } from '../content';
+import {
+ choiceId as persistenceChoiceId,
+ motiveOptionId,
+ motivePromptId,
+ sceneInstanceId
+} from '../content/persistenceIds';
 import { answerMotive, skipMotive, applyChoice, beginSlots, chooseIntention, chooseRoute, drawCard, persistDraw, leaveEvening, nextChapter, prepareEvening, startEpisode, chooseGoal, prepareEncounter, rollEncounter, openEncounter, fairDieFace } from '../engine';
 import type { GameState, GoalId, LifeFacet } from '../engine/types';
 import { acquireProfileLock, loadSave, writeSave, restoreBackup, preserveAndRestart } from '../persistence/save';
 import { attachPresentedScenePersistence, presentedScenePayload } from '../persistence/presentedScene';
 import { enqueueSceneInstance } from '../persistence/sceneInstanceOutbox';
 import { enqueueChoiceEvent, markChoiceEventPending } from '../persistence/eventOutbox';
+import { enqueueMotiveResolution, markMotiveResolutionPending } from '../persistence/motiveOutbox';
 import { reconcileHeldChoiceEvents } from '../persistence/outboxRecovery';
+import { reconcileHeldMotiveResolutions } from '../persistence/motiveRecovery';
 import { syncGamePersistence } from '../sync/gamePersistenceSync';
 import { completeCharacterDay, type CompleteDayResponse } from '../sync/dayComplete';
 interface GameStore {
@@ -59,6 +67,10 @@ export const useGameStore = create<GameStore>((set,get) => {
  const queuePresentedScene = async (game: GameState) => {
   const payload=presentedScenePayload(game);
   if(payload)await enqueueSceneInstance(payload);
+ };
+ const reconcileHeldPersistence = async (game: GameState) => {
+  await reconcileHeldPersistence(game);
+  await reconcileHeldMotiveResolutions(game);
  };
  const applyCanonicalDevelopment = (game: GameState, result: CompleteDayResponse): GameState => {
   if(!game.serverPersistence?.enabled)return game;
@@ -114,15 +126,15 @@ export const useGameStore = create<GameStore>((set,get) => {
      if(!saved.record){set({ready:true,saveStatus:'idle'});return;}
      const game=attachPresentedScenePersistence(saved.record.game);
      set({ready:true,saveStatus:'saved',game,started:saved.record.started});
-     void reconcileHeldChoiceEvents(game).then(()=>queuePresentedScene(game)).then(()=>scheduleRemoteSync(game)).catch(e=>{
+     void reconcileHeldPersistence(game).then(()=>queuePresentedScene(game)).then(()=>scheduleRemoteSync(game)).catch(e=>{
       set({error:e instanceof Error?e.message:String(e)});
      });
     }).catch(e=>set({ready:true,recovery:true,saveStatus:'failed',saveError:`Не удалось прочитать сохранение: ${String(e)}. Исходный профиль не заменён.`}));
    },()=>set({ready:true,readOnly:true,saveStatus:'readonly',saveError:'Прохождение открыто в другой вкладке или браузер не поддерживает защиту профиля. Закройте другую вкладку и обновите эту.'}));
   },
-  recover:async()=>{if(get().readOnly)return;try{await queue;const record=await restoreBackup();const game=attachPresentedScenePersistence(record.game);set({game,started:record.started,recovery:false,saveStatus:'saved',saveError:undefined,error:undefined});await reconcileHeldChoiceEvents(game);await queuePresentedScene(game);scheduleRemoteSync(game);}catch(e){set({saveStatus:'failed',saveError:String(e)});}},
+  recover:async()=>{if(get().readOnly)return;try{await queue;const record=await restoreBackup();const game=attachPresentedScenePersistence(record.game);set({game,started:record.started,recovery:false,saveStatus:'saved',saveError:undefined,error:undefined});await reconcileHeldPersistence(game);await queuePresentedScene(game);scheduleRemoteSync(game);}catch(e){set({saveStatus:'failed',saveError:String(e)});}},
   restart:async()=>{if(get().readOnly)return;try{await queue;await preserveAndRestart();set({game:newState(),started:false,recovery:false,paused:false,choiceWritePending:false,error:undefined});void persist();}catch(e){set({saveStatus:'failed',saveError:String(e)});}},
-  retrySave:()=>{void persist().then(async saved=>{if(!saved)return;const game=get().game;await reconcileHeldChoiceEvents(game);await queuePresentedScene(game);scheduleRemoteSync(game);});},
+  retrySave:()=>{void persist().then(async saved=>{if(!saved)return;const game=get().game;await reconcileHeldPersistence(game);await queuePresentedScene(game);scheduleRemoteSync(game);});},
   start:(seed,goal='order')=>{if(get().readOnly||get().recovery)return;const game=chooseGoal(newState(seed),content,goal,'select');set({game,started:true,error:undefined,paused:false,choiceWritePending:false});void persist().then(saved=>afterLocalSave(game,saved));},
   reset:(seed)=>{if(get().readOnly)return;const game=newState(seed);set({game,started:false,error:undefined,choiceWritePending:false});void persist();},
   beginDay:()=>transition(s=>beginSlots(s,content)),
@@ -180,10 +192,10 @@ export const useGameStore = create<GameStore>((set,get) => {
    set({choiceWritePending:true,error:undefined});
    void (async()=>{
     await queue;
-    await reconcileHeldChoiceEvents(source);
+    await reconcileHeldPersistence(source);
     await queuePresentedScene(source);
     let synced=await syncGamePersistence({characterId:source.runId,apiBaseUrl:persistenceApiBase});
-    if(synced.status!=='events'||!['ok','idle'].includes(synced.result.status)){
+    if(synced.status!=='done'){
      throw new Error(`Не удалось синхронизировать день: ${synced.status}`);
     }
 
@@ -195,7 +207,7 @@ export const useGameStore = create<GameStore>((set,get) => {
     });
     if(completed.status==='incomplete'){
      synced=await syncGamePersistence({characterId:source.runId,apiBaseUrl:persistenceApiBase});
-     if(synced.status!=='events'||!['ok','idle'].includes(synced.result.status)){
+     if(synced.status!=='done'){
       throw new Error('Не удалось досинхронизировать события дня');
      }
      completed=await completeCharacterDay({
@@ -209,6 +221,7 @@ export const useGameStore = create<GameStore>((set,get) => {
      if(completed.status==='paused-auth')throw new Error('Для завершения дня нужно снова войти в систему');
      if(completed.status==='retry')throw new Error('Сервер временно недоступен. Завершение дня можно повторить');
      if(completed.status==='incomplete')throw new Error(`Не все события дня доставлены: ${completed.missingSeq.join(', ')}`);
+     if(completed.status==='slots-incomplete')throw new Error(`Не завершены игровые слоты: ${completed.missingSlots.join(', ')}`);
      throw new Error(`Сервер отклонил завершение дня: ${completed.code}`);
     }
 
@@ -228,7 +241,78 @@ export const useGameStore = create<GameStore>((set,get) => {
   pause:()=>set({paused:true}),resume:()=>set({paused:false}),
   roll:()=>transition(s=>rollEncounter(s,content,fairDieFace(()=>crypto.getRandomValues(new Uint32Array(1))[0]!))),
   openEncounter:()=>transition(openEncounter),
-  answerMotive:(optionId)=>transition(s=>answerMotive(s,content,optionId)),
-  skipMotive:()=>transition(s=>skipMotive(s,content))
+  answerMotive:(optionId)=>{
+   const store=get();if(store.readOnly||store.recovery||store.choiceWritePending)return;
+   const source=store.game;
+   if(source.phase!=='motive'||!source.pendingMotive)return;
+   if(!source.serverPersistence?.enabled){
+    transition(s=>answerMotive(s,content,optionId));
+    return;
+   }
+   try{
+    const diagnosticCase=source.heroDevelopmentProfile.cases.find(c=>c.id===source.pendingMotive!.caseId);
+    if(!diagnosticCase)throw new Error('Не найден диагностический case для мотива');
+    const event={
+     eventId:crypto.randomUUID(),
+     characterId:source.runId,
+     gameSessionId,
+     gameDay:diagnosticCase.openedDay,
+     sceneInstanceId:sceneInstanceId(source.runId,diagnosticCase.openedDay,diagnosticCase.openedSlot,diagnosticCase.cardId),
+     choiceId:persistenceChoiceId(diagnosticCase.cardId,diagnosticCase.choiceId),
+     promptId:motivePromptId(diagnosticCase.cardId,diagnosticCase.choiceId,source.pendingMotive.promptId),
+     resolutionType:'answered' as const,
+     motiveOptionId:motiveOptionId(diagnosticCase.cardId,diagnosticCase.choiceId,source.pendingMotive.promptId,optionId),
+     occurredAt:new Date().toISOString()
+    };
+    const shown=present(answerMotive(source,content,optionId));
+    set({choiceWritePending:true,error:undefined});
+    void (async()=>{
+     await enqueueMotiveResolution(event,'held');
+     set({game:shown,error:undefined});
+     const saved=await persist();
+     if(!saved){set({choiceWritePending:false});return;}
+     await markMotiveResolutionPending(event.eventId,false);
+     await queuePresentedScene(shown);
+     set({choiceWritePending:false});
+     scheduleRemoteSync(shown);
+    })().catch(e=>set({choiceWritePending:false,error:e instanceof Error?e.message:String(e)}));
+   }catch(e){set({choiceWritePending:false,error:e instanceof Error?e.message:String(e)});}
+  },
+  skipMotive:()=>{
+   const store=get();if(store.readOnly||store.recovery||store.choiceWritePending)return;
+   const source=store.game;
+   if(source.phase!=='motive'||!source.pendingMotive)return;
+   if(!source.serverPersistence?.enabled){
+    transition(s=>skipMotive(s,content));
+    return;
+   }
+   try{
+    const diagnosticCase=source.heroDevelopmentProfile.cases.find(c=>c.id===source.pendingMotive!.caseId);
+    if(!diagnosticCase)throw new Error('Не найден диагностический case для мотива');
+    const event={
+     eventId:crypto.randomUUID(),
+     characterId:source.runId,
+     gameSessionId,
+     gameDay:diagnosticCase.openedDay,
+     sceneInstanceId:sceneInstanceId(source.runId,diagnosticCase.openedDay,diagnosticCase.openedSlot,diagnosticCase.cardId),
+     choiceId:persistenceChoiceId(diagnosticCase.cardId,diagnosticCase.choiceId),
+     promptId:motivePromptId(diagnosticCase.cardId,diagnosticCase.choiceId,source.pendingMotive.promptId),
+     resolutionType:'skipped' as const,
+     occurredAt:new Date().toISOString()
+    };
+    const shown=present(skipMotive(source,content));
+    set({choiceWritePending:true,error:undefined});
+    void (async()=>{
+     await enqueueMotiveResolution(event,'held');
+     set({game:shown,error:undefined});
+     const saved=await persist();
+     if(!saved){set({choiceWritePending:false});return;}
+     await markMotiveResolutionPending(event.eventId,false);
+     await queuePresentedScene(shown);
+     set({choiceWritePending:false});
+     scheduleRemoteSync(shown);
+    })().catch(e=>set({choiceWritePending:false,error:e instanceof Error?e.message:String(e)}));
+   }catch(e){set({choiceWritePending:false,error:e instanceof Error?e.message:String(e)});}
+  }
  };
 });
