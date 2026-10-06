@@ -14,9 +14,9 @@ import {
   scenePresentationKey
 } from '../../src/content/persistenceIds';
 import {
-  PERSISTENCE_PERSISTENCE_CALCULATION_VERSION,
-  PERSISTENCE_PERSISTENCE_EVIDENCE_MODEL_VERSION,
-  PERSISTENCE_PERSISTENCE_TAXONOMY_VERSION
+  PERSISTENCE_CALCULATION_VERSION,
+  PERSISTENCE_EVIDENCE_MODEL_VERSION,
+  PERSISTENCE_TAXONOMY_VERSION
 } from '../../src/persistence/versions';
 
 type Evidence = Record<string, number>;
