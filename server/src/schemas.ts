@@ -16,6 +16,8 @@ export const sceneInstanceSchema = z.object({
   gameDay: z.number().int().positive(),
   sceneId: positiveId,
   scenePresentationId: positiveId,
+  gameSlot: z.number().int().min(0).max(3),
+  selectionOrigin: z.enum(['neutral', 'probe', 'adaptive']),
   choices: z.array(z.object({
     choiceId: positiveId,
     presentationId: positiveId,
