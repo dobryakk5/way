@@ -171,6 +171,13 @@ BEGIN
         position SMALLINT
     );
 
+    UPDATE character_game_state
+    SET current_game_day = p_game_day,
+        current_scene_id = p_scene_id,
+        current_scene_instance_id = p_scene_instance_id,
+        updated_at = now()
+    WHERE character_id = p_character_id;
+
     RETURN 'accepted';
 EXCEPTION
     WHEN unique_violation THEN
@@ -255,6 +262,13 @@ BEGIN
         p_event_id, p_payload_hash, p_character_id, p_game_session_id, p_seq, p_game_day,
         'CHOICE_MADE', p_scene_instance_id, p_choice_id, p_occurred_at
     );
+
+    UPDATE character_game_state
+    SET last_seq = GREATEST(last_seq, p_seq),
+        current_scene_id = CASE WHEN current_scene_instance_id = p_scene_instance_id THEN NULL ELSE current_scene_id END,
+        current_scene_instance_id = CASE WHEN current_scene_instance_id = p_scene_instance_id THEN NULL ELSE current_scene_instance_id END,
+        updated_at = now()
+    WHERE character_id = p_character_id;
 
     RETURN 'accepted';
 EXCEPTION
