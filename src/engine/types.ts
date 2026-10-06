@@ -153,9 +153,21 @@ export type Phase = 'morning' | 'intention' | 'route' | 'slot' | 'evening' | 'in
 export interface GameState {
   version: number; contentVersion: string; episodeId: string; runId: string; seed: number;
   chapter: number; day: number; slot: number; phase: Phase;
-  current?: { cardId: string; /** Legacy side of a two-choice card only. */ leftChoiceId?: string; /** The shown order; semantics always follow choiceId, never the index. */ choiceIds: string[]; text: string; variantId?: string; choices?: Choice[];
+  current?: { cardId: string; /** Legacy side of a two-choice card only. */ leftChoiceId?: string; /** Authored semantic ids; semantics always follow choiceId, never the index. */ choiceIds: string[]; text: string; variantId?: string; choices?: Choice[];
     // Frozen at first presentation; never recomputed after a reload or a profile update.
-    selectionOrigin?: DiagnosticSelectionOrigin };
+    selectionOrigin?: DiagnosticSelectionOrigin;
+    // Stable server-persistence identity for this exact presentation. Numeric ids are derived from author keys.
+    persistence?: {
+      sceneInstanceId: string;
+      sceneId: number;
+      scenePresentationId: number;
+      choices: {
+        authorChoiceId: string;
+        choiceId: number;
+        presentationId: number;
+        position: number;
+      }[];
+    } };
   resources: Record<Resource, number>; qualities: Record<Quality, number>;
   declaredIntention?: LifeFacet; intentionHistory: { day: number; facet: LifeFacet }[];
   activeRoute?: { day: number; slot: number; optionId: string; facets: LifeFacet[] };
