@@ -100,10 +100,12 @@ export async function flushSceneInstances(options: {
   }
 
   const results = new Map(parsed.data.results.map(result => [result.sceneInstanceId, result]));
+  let missingResult = false;
   const rejected: { sceneInstanceId: string; code: string }[] = [];
   await Promise.all(pending.map(async scene => {
     const result = results.get(scene.sceneInstanceId);
     if (!result) {
+      missingResult = true;
       await markSceneInstancePending(scene.sceneInstanceId, true);
       return;
     }
@@ -116,6 +118,9 @@ export async function flushSceneInstances(options: {
     await markSceneInstanceRejected(scene.sceneInstanceId, code);
   }));
 
+  if (missingResult) {
+    return { status: 'retry', sent: pending.length, reason: 'invalid-response' };
+  }
   return rejected.length
     ? { status: 'rejected', sent: pending.length, items: rejected }
     : { status: 'ok', sent: pending.length };
