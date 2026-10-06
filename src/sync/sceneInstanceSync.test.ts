@@ -20,6 +20,8 @@ function payload(): SceneInstancePayload {
     gameDay: 1,
     sceneId: 101,
     scenePresentationId: 201,
+    gameSlot: 0,
+    selectionOrigin: 'neutral',
     choices: [
       { choiceId: 301, presentationId: 401, position: 1 },
       { choiceId: 302, presentationId: 402, position: 2 }
