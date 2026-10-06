@@ -309,6 +309,26 @@
     .signup input:focus{border-color:rgba(240,210,154,.4)}
     .success{display:none;margin-top:14px;color:var(--gold2);font-size:.9rem}
 
+
+    /* PLAY DIALOG */
+    .play-dialog{
+      width:min(100% - 28px,460px);padding:34px 30px;border-radius:var(--r);color:var(--text);
+      border:1px solid rgba(240,210,154,.22);background:#1a1117;box-shadow:var(--shadow);overflow:visible
+    }
+    .play-dialog::backdrop{background:rgba(8,6,8,.72);backdrop-filter:blur(4px)}
+    .play-dialog h2{margin:0 0 10px;font-size:1.6rem}
+    .play-dialog p{margin:0 0 20px;color:#c9bdc3}
+    .play-dialog form{display:grid;gap:12px}
+    .play-dialog input[hidden]{display:none}
+    .play-dialog input{
+      border-radius:999px;padding:15px 18px;border:1px solid rgba(255,255,255,.1);
+      background:rgba(8,6,8,.38);color:white;outline:none;font:inherit
+    }
+    .play-dialog input:focus{border-color:rgba(240,210,154,.4)}
+    .play-dialog .btn{width:100%}
+    .play-dialog .play-cancel{background:none;border:0;color:#a99da4;font:inherit;cursor:pointer;justify-self:center}
+    .play-error{min-height:1.2em;margin:0;color:#e9a08a;font-size:.88rem}
+
     footer{padding:28px 0 44px;color:#81767d;font-size:.82rem}
     .foot{display:flex;justify-content:space-between;gap:18px;border-top:1px solid rgba(255,255,255,.06);padding-top:22px}
 
@@ -369,7 +389,7 @@
       <a href="#scene">Сцена</a>
       <a href="#growth">Рост</a>
     </div>
-    <a class="pill" href="/app/">Играть →</a>
+    <a class="pill" href="/app/" data-play>Играть →</a>
   </div>
 </nav>
 
@@ -385,7 +405,7 @@
         Из этих решений складывается история героя. И твоя собственная.
       </p>
       <div class="hero-actions">
-        <a class="btn primary" href="/app/">Играть →</a>
+        <a class="btn primary" href="/app/" data-play>Играть →</a>
         <a class="btn" href="#scene">Попробовать сцену</a>
         <a class="btn" href="#mechanics">Как устроена игра ↓</a>
       </div>
@@ -608,6 +628,18 @@
   </div>
 </footer>
 
+<dialog class="play-dialog" id="playDialog" aria-labelledby="playTitle">
+  <form id="playForm" method="dialog">
+    <h2 id="playTitle">Начнём путь</h2>
+    <p id="playLead">Укажите почту: мы напишем, когда выйдут новые главы. Если её ещё не было, игра начнётся сразу.</p>
+    <input id="playEmail" type="email" name="email" autocomplete="email" placeholder="your@email.com" required aria-label="Email">
+    <input id="playCode" type="text" name="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" placeholder="Код из письма" aria-label="Код из письма" hidden>
+    <p class="play-error" id="playError" role="alert"></p>
+    <button class="btn primary" type="submit" id="playSubmit">Играть →</button>
+    <button class="play-cancel" type="button" id="playCancel">Не сейчас</button>
+  </form>
+</dialog>
+
 <script>
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
@@ -633,6 +665,83 @@
     document.getElementById('success').style.display='block';
     e.currentTarget.reset();
   });
+
+  // "Играть": ask for an e-mail once. A never-seen address starts the game at once; one that is already
+  // taken needs the code from its mailbox. A server outage never blocks the game.
+  (function(){
+    const GAME_URL='/app/';
+    const dialog=document.getElementById('playDialog');
+    const form=document.getElementById('playForm');
+    const email=document.getElementById('playEmail');
+    const code=document.getElementById('playCode');
+    const lead=document.getElementById('playLead');
+    const error=document.getElementById('playError');
+    const submit=document.getElementById('playSubmit');
+    let step='email';
+    const KEY='put:email';
+    const remembered=()=>{try{return localStorage.getItem(KEY)||''}catch(_){return ''}};
+    const remember=value=>{try{localStorage.setItem(KEY,value)}catch(_){}};
+    email.value=remembered();
+    // Resolves true when this browser already belongs to an e-mail; never rejects and never waits long.
+    const known=Promise.race([
+      fetch('/auth/me',{credentials:'include'}).then(r=>r.ok?r.json():null).then(a=>Boolean(a&&a.hasContact)),
+      new Promise(done=>setTimeout(done,2500,false))
+    ]).catch(()=>false);
+
+    const post=(path,body)=>fetch(path,{
+      method:'POST',credentials:'include',
+      headers:{'content-type':'application/json'},body:JSON.stringify(body)
+    });
+    const fail=(text,field)=>{error.textContent=text;submit.disabled=false;field.focus()};
+
+    document.querySelectorAll('[data-play]').forEach(link=>{
+      link.addEventListener('click',async e=>{
+        if(typeof dialog.showModal!=='function')return;
+        e.preventDefault();
+        if(await known){location.href=GAME_URL;return}
+        dialog.showModal();
+        email.focus();
+      });
+    });
+    document.getElementById('playCancel').addEventListener('click',()=>dialog.close());
+    code.addEventListener('input',()=>{code.value=code.value.replace(/\D/g,'')});
+
+    function askCode(){
+      step='code';
+      email.readOnly=true;
+      code.hidden=false;
+      code.required=true;
+      lead.textContent='Эта почта уже есть в игре. Мы отправили код на неё, введите его, чтобы продолжить.';
+      submit.textContent='Войти →';
+      submit.disabled=false;
+      code.focus();
+    }
+
+    form.addEventListener('submit',async e=>{
+      e.preventDefault();
+      error.textContent='';
+      submit.disabled=true;
+      try{
+        if(step==='email'){
+          const r=await post('/auth/email/start',{email:email.value});
+          if(r.status===422)return fail('Проверьте адрес почты.',email);
+          if(r.status===429)return fail('Слишком много попыток. Попробуйте позже.',email);
+          if(r.status===503&&(await r.json().catch(()=>({}))).code==='EMAIL_LOGIN_DISABLED'){
+            return fail('Эта почта уже есть в игре, а вход по коду пока недоступен. Укажите другую.',email);
+          }
+          if(r.status===202)return askCode();
+          remember(email.value.trim());
+        }else{
+          const r=await post('/auth/email/verify',{email:email.value,code:code.value});
+          if(r.status===401)return fail('Код не подошёл или устарел. Закройте окно и запросите новый.',code);
+          if(r.status===422)return fail('Введите шесть цифр из письма.',code);
+          if(r.status===429)return fail('Слишком много попыток. Попробуйте позже.',code);
+          remember(email.value.trim());
+        }
+      }catch(_){}
+      location.href=GAME_URL;
+    });
+  })();
 </script>
 
 </body>

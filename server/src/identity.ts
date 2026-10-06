@@ -1,7 +1,7 @@
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import nodemailer from 'nodemailer';
 import { Pool } from 'pg';
-import { RateLimiter, requestLoginCode, verifyLoginCode, type EmailLoginDeps, type Mailer } from './emailLogin.js';
+import { RateLimiter, normalizeEmail, requestLoginCode, verifyLoginCode, type EmailLoginDeps, type Mailer } from './emailLogin.js';
 import { createPgStore } from './emailLoginStore.js';
 import {
   cookieValue,
@@ -46,6 +46,7 @@ const emailLogin: EmailLoginDeps | undefined = mailer
 
 const requestsPerIp = new RateLimiter(20, 60 * 60 * 1000);
 const verifiesPerIp = new RateLimiter(60, 60 * 60 * 1000);
+const startsPerIp = new RateLimiter(30, 60 * 60 * 1000);
 
 function json(res: ServerResponse, status: number, body: unknown, extra: Record<string, string> = {}): void {
   res.writeHead(status, { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store', ...extra });
@@ -96,18 +97,61 @@ async function handle(req: IncomingMessage, res: ServerResponse): Promise<void> 
     res.setHeader('cache-control', 'no-store');
     res.setHeader('x-user-id', effective);
     res.setHeader('x-user-signature', headerSignature(secrets, effective));
-    const setCookie = effective === identity.userId
-      ? identity.setCookie
-      : serializeCookie(cookieValue(secrets, effective));
-    if (setCookie) res.setHeader('set-cookie', setCookie);
+    // Every API call renews the cookie, so a player who keeps coming back is remembered indefinitely.
+    res.setHeader('set-cookie', serializeCookie(cookieValue(secrets, effective)));
     res.writeHead(200).end();
     return;
   }
 
   if (req.method === 'GET' && path === '/auth/me') {
     const raw = verifyCookie(secrets, cookieHeader(req));
-    const email = raw ? await store.emailOf(await store.resolveUser(raw)) : undefined;
-    json(res, 200, { emailLogin: Boolean(emailLogin), email: email ?? null });
+    const user = raw ? await store.resolveUser(raw) : undefined;
+    const email = user ? await store.emailOf(user) : undefined;
+    const hasContact = user ? await store.hasContact(user) : false;
+    json(res, 200, { emailLogin: Boolean(emailLogin), email: email ?? null, hasContact: hasContact || Boolean(email) });
+    return;
+  }
+
+  // "Play" on the landing page: a never-seen e-mail starts the game at once, no code. An address that is
+  // already known is never accepted on its word: it needs the code from its mailbox (/auth/email/verify).
+  if (req.method === 'POST' && path === '/auth/email/start') {
+    if (!sameOrigin(req)) {
+      json(res, 403, { code: 'FORBIDDEN_ORIGIN' });
+      return;
+    }
+    if (!startsPerIp.take(clientIp(req))) {
+      json(res, 429, { code: 'RATE_LIMITED' });
+      return;
+    }
+    let body: unknown;
+    try {
+      body = await readJson(req);
+    } catch (error) {
+      const code = error instanceof Error ? error.message : 'BAD_REQUEST';
+      json(res, code === 'UNSUPPORTED_MEDIA_TYPE' ? 415 : code === 'BODY_TOO_LARGE' ? 413 : 400, { code });
+      return;
+    }
+    const input = (body && typeof body === 'object' ? body : {}) as Record<string, unknown>;
+    const email = normalizeEmail(input.email);
+    if (!email) {
+      json(res, 422, { code: 'INVALID_EMAIL' });
+      return;
+    }
+    const identity = resolveIdentity(secrets, cookieHeader(req));
+    const mintedCookie = identity.setCookie ? { 'set-cookie': identity.setCookie } : {};
+    const claim = await store.claimEmail(identity.userId, email);
+    if (claim !== 'taken') {
+      json(res, 200, { status: 'started' }, mintedCookie);
+      return;
+    }
+    // The address already belongs to someone: only its mailbox can open it. The code is verified by
+    // /auth/email/verify, which signs this browser in to that account.
+    if (!emailLogin) {
+      json(res, 503, { code: 'EMAIL_LOGIN_DISABLED' }, mintedCookie);
+      return;
+    }
+    await requestLoginCode(emailLogin, { email, anonUserId: identity.userId });
+    json(res, 202, { status: 'code' }, mintedCookie);
     return;
   }
 

@@ -20,6 +20,13 @@ export interface IdentityStore extends LoginStore {
   /** The account a browser identity currently belongs to (follows merges). */
   resolveUser(userId: string): Promise<string>;
   emailOf(userId: string): Promise<string | undefined>;
+  /**
+   * "Play" with an e-mail: a never-seen address is remembered as an unverified contact of the account
+   * ('claimed'); an address this account already holds is 'own'; one held by any other account is
+   * 'taken' and nothing is stored, so the caller must prove the address with a code first.
+   */
+  claimEmail(userId: string, email: string): Promise<'claimed' | 'own' | 'taken'>;
+  hasContact(userId: string): Promise<boolean>;
 }
 
 export function createPgStore(pool: Pool): IdentityStore {
@@ -32,6 +39,48 @@ export function createPgStore(pool: Pool): IdentityStore {
         [userId]
       );
       return rows[0]?.email;
+    },
+
+    async claimEmail(userId, email) {
+      const client = await pool.connect();
+      try {
+        await client.query('BEGIN');
+        await client.query('SELECT pg_advisory_xact_lock(hashtext($1))', [`put-email-login:${email}`]);
+        const caller = await rootUser(client, userId);
+        // Verified owners and unverified contacts alike, each followed to its current account.
+        const { rows } = await client.query<{ user_id: string }>(
+          `SELECT COALESCE(a.user_id, e.user_id) AS user_id
+             FROM user_emails e LEFT JOIN user_aliases a ON a.alias_user_id = e.user_id
+            WHERE e.email = $1
+           UNION
+           SELECT COALESCE(a.user_id, c.user_id)
+             FROM user_contact_emails c LEFT JOIN user_aliases a ON a.alias_user_id = c.user_id
+            WHERE c.email = $1`,
+          [email]
+        );
+        let result: 'claimed' | 'own' | 'taken';
+        if (rows.some(row => row.user_id !== caller)) result = 'taken';
+        else if (rows.length > 0) result = 'own';
+        else {
+          await client.query('INSERT INTO user_contact_emails (user_id, email) VALUES ($1, $2)', [caller, email]);
+          result = 'claimed';
+        }
+        await client.query('COMMIT');
+        return result;
+      } catch (error) {
+        await client.query('ROLLBACK').catch(() => undefined);
+        throw error;
+      } finally {
+        client.release();
+      }
+    },
+
+    async hasContact(userId) {
+      const { rows } = await pool.query(
+        'SELECT 1 FROM user_contact_emails WHERE user_id = $1 LIMIT 1',
+        [await rootUser(pool, userId)]
+      );
+      return rows.length > 0;
     },
 
     async countRecentCodes(email, since) {

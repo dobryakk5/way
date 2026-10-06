@@ -1,4 +1,4 @@
-// Runs against a real Postgres with migrations 001-007 applied:
+// Runs against a real Postgres with migrations 001-008 applied:
 //   TEST_DATABASE_URL=postgres://... npx vitest run server/src/emailLoginStore.test.ts
 // Skipped when TEST_DATABASE_URL is not set.
 import { randomUUID } from 'node:crypto';
@@ -54,6 +54,7 @@ suite('pg login store', () => {
     await pool.query('DELETE FROM characters WHERE user_id = ANY($1::uuid[]) OR user_id IN (SELECT user_id FROM user_aliases WHERE alias_user_id = ANY($1::uuid[]))', [users]);
     await pool.query('DELETE FROM user_aliases WHERE alias_user_id = ANY($1::uuid[]) OR user_id = ANY($1::uuid[])', [users]);
     await pool.query('DELETE FROM user_emails WHERE email = ANY($1::text[])', [created.emails]);
+    await pool.query('DELETE FROM user_contact_emails WHERE email = ANY($1::text[])', [created.emails]);
     await pool.query('DELETE FROM email_login_codes WHERE email = ANY($1::text[])', [created.emails]);
     await pool.end();
   });
@@ -144,5 +145,59 @@ suite('pg login store', () => {
     await store.createCode({ email, anonUserId: user, codeHash: hash(2), expiresAt: future() });
     expect(await store.countRecentCodes(email, new Date(Date.now() - 60_000))).toBe(2);
     expect(await store.countRecentCodes(email, new Date(Date.now() + 60_000))).toBe(0);
+  });
+
+  describe('claimEmail', () => {
+    it('claims a never-seen address and treats it as own on repeat', async () => {
+      const { user, email } = fresh();
+      expect(await store.claimEmail(user, email)).toBe('claimed');
+      expect(await store.claimEmail(user, email)).toBe('own');
+      expect(await store.hasContact(user)).toBe(true);
+    });
+
+    it('refuses an address that another account claimed or verified', async () => {
+      const first = fresh();
+      const second = fresh();
+      expect(await store.claimEmail(first.user, first.email)).toBe('claimed');
+      expect(await store.claimEmail(second.user, first.email)).toBe('taken');
+      expect(await store.hasContact(second.user)).toBe(false);
+
+      const verified = fresh();
+      await login(verified.email, verified.user);
+      expect(await store.claimEmail(second.user, verified.email)).toBe('taken');
+      expect(await store.claimEmail(verified.user, verified.email)).toBe('own');
+    });
+
+    it('lets the mailbox owner take over an address that was only claimed, without merging', async () => {
+      const squatter = fresh();
+      const owner = fresh();
+      const squatterCharacter = await addCharacter(squatter.user);
+      await store.claimEmail(squatter.user, squatter.email);
+      expect(await store.claimEmail(owner.user, squatter.email)).toBe('taken');
+
+      expect(await login(squatter.email, owner.user)).toEqual({ ok: true, userId: owner.user });
+      expect(await store.emailOf(owner.user)).toBe(squatter.email);
+      expect(await ownerOf(squatterCharacter)).toBe(squatter.user);
+    });
+
+    it('follows an account merge', async () => {
+      const account = fresh();
+      const visitor = fresh();
+      await login(account.email, account.user);
+      await store.claimEmail(visitor.user, visitor.email);
+      expect(await login(account.email, visitor.user)).toEqual({ ok: true, userId: account.user });
+      // the visitor's contact now lives on the merged account, so asking again from the old id is 'own'
+      expect(await store.claimEmail(visitor.user, visitor.email)).toBe('own');
+      expect(await store.claimEmail(account.user, visitor.email)).toBe('own');
+    });
+
+    it('lets only one of two simultaneous claims win', async () => {
+      const a = fresh();
+      const b = fresh();
+      const email = `race-${a.email}`;
+      created.emails.push(email);
+      const results = await Promise.all([store.claimEmail(a.user, email), store.claimEmail(b.user, email)]);
+      expect([...results].sort()).toEqual(['claimed', 'taken']);
+    });
   });
 });
