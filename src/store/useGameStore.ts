@@ -20,9 +20,13 @@ interface GameStore {
  roll: () => void; openEncounter: () => void;
  answerMotive: (optionId: string) => void; skipMotive: () => void;
 }
-const newState = (seed = Date.now() >>> 0) => startEpisode(content, seed, crypto.randomUUID());
-const gameSessionId = crypto.randomUUID();
 const persistenceApiBase = import.meta.env.VITE_GAME_API_BASE_URL?.trim().replace(/\/$/, '');
+const newState = (seed = Date.now() >>> 0) => {
+ const game=startEpisode(content,seed,crypto.randomUUID());
+ if(persistenceApiBase)return game;
+ const local={...game};delete local.serverPersistence;return local;
+};
+const gameSessionId = crypto.randomUUID();
 export function present(state: GameState): GameState {
  if (state.phase === 'chapter') return nextChapter(state, content);
  if (state.phase === 'evening') return prepareEvening(state, content);
