@@ -6,7 +6,7 @@ import { ProfileSection } from './ProfileSection';
 import type { GameState, LifeFacet } from '../../engine/types';
 import { FacetIcon, type FacetIconId } from '../components/FacetIcon';
 const names:Record<LifeFacet,string>={work:'Дело и деньги',relationships:'Отношения',body:'Тело и здоровье',inner:'Внутренний мир'};
-const facetIcons:Record<LifeFacet,FacetIconId>={work:'work',relationships:'relationships',body:'health',inner:'meaning'};
+const facetIcons:Record<LifeFacet,FacetIconId>={work:'work',relationships:'relationships',body:'body',inner:'inner'};
 function Evidence({items}:{items:GameState['history']}) {
  return <div className="evidence">{items.map(h=><article key={`${h.day}/${h.slot}`}><p className="eyebrow">День {h.day} · Событие {h.slot+1}</p><p>{h.text}</p><p><strong>{h.label}</strong></p>{h.response&&<p>{h.response}</p>}</article>)}</div>;
 }
