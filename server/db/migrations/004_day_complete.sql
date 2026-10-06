@@ -18,6 +18,7 @@ DECLARE
     v_expected_slots SMALLINT;
     v_missing_slots SMALLINT[];
     v_server_last_seq BIGINT;
+    v_expected_motive_scene UUID;
     v_profile_status TEXT;
     v_current_center TEXT;
     v_current_center_confidence NUMERIC;
@@ -148,6 +149,25 @@ BEGIN
 
     IF v_server_last_seq IS DISTINCT FROM p_last_seq THEN
         RAISE EXCEPTION 'DAY_COMPLETE_LAST_SEQ_MISMATCH' USING ERRCODE = 'P0001';
+    END IF;
+
+    SELECT e.scene_instance_id
+    INTO v_expected_motive_scene
+    FROM character_events e
+    JOIN choice_motive_prompts mp ON mp.choice_id = e.choice_id
+    WHERE e.character_id = p_character_id
+      AND e.game_day = p_game_day
+    ORDER BY e.seq
+    LIMIT 1;
+
+    IF v_expected_motive_scene IS NOT NULL AND NOT EXISTS (
+        SELECT 1
+        FROM character_motive_resolutions mr
+        WHERE mr.character_id = p_character_id
+          AND mr.game_day = p_game_day
+          AND mr.scene_instance_id = v_expected_motive_scene
+    ) THEN
+        RAISE EXCEPTION 'DAY_MOTIVE_INCOMPLETE' USING ERRCODE = 'P0001';
     END IF;
 
     SELECT array_agg(expected.seq ORDER BY expected.seq)
