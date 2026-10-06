@@ -197,7 +197,6 @@ DECLARE
     v_character UUID := '00000000-0000-4000-8000-000000000022';
     v_scene RECORD;
     v_scene_instance UUID;
-    seqs INTEGER[] := ARRAY[1,2,4,5];
     i INTEGER;
 BEGIN
     SELECT * INTO STRICT v_scene FROM pg_temp.test_scene();
@@ -210,8 +209,8 @@ BEGIN
         'development-v1'
     );
 
-    FOR i IN 0..3 LOOP
-        v_scene_instance := md5('gap-scene-' || i)::uuid;
+    FOR i IN 0..1 LOOP
+        v_scene_instance := md5('seq-scene-' || i)::uuid;
         PERFORM register_scene_instance_v1(
             v_user, v_character, v_scene_instance, 1,
             v_scene.scene_id, v_scene.scene_presentation_id, i::smallint, 'neutral',
@@ -222,11 +221,11 @@ BEGIN
         );
         PERFORM accept_choice_event_v1(
             v_user,
-            md5('gap-event-' || i)::uuid,
+            md5('seq-event-' || i)::uuid,
             repeat('f', 64),
             v_character,
             '00000000-0000-4000-8000-000000000025',
-            seqs[i + 1],
+            i + 1,
             1,
             v_scene_instance,
             v_scene.choice_id,
@@ -234,12 +233,33 @@ BEGIN
         );
     END LOOP;
 
+    v_scene_instance := md5('seq-scene-2')::uuid;
+    PERFORM register_scene_instance_v1(
+        v_user, v_character, v_scene_instance, 1,
+        v_scene.scene_id, v_scene.scene_presentation_id, 2::smallint, 'neutral',
+        jsonb_build_array(
+            jsonb_build_object('choiceId', v_scene.choice_id, 'presentationId', v_scene.choice_presentation_id, 'position', 1),
+            jsonb_build_object('choiceId', v_scene.second_choice_id, 'presentationId', v_scene.second_presentation_id, 'position', 2)
+        )
+    );
+
     BEGIN
-        PERFORM complete_character_day_v1(v_user, v_character, 1, 5);
-        RAISE EXCEPTION 'expected DAY_EVENTS_INCOMPLETE';
+        PERFORM accept_choice_event_v1(
+            v_user,
+            md5('seq-event-2')::uuid,
+            repeat('f', 64),
+            v_character,
+            '00000000-0000-4000-8000-000000000025',
+            4,
+            1,
+            v_scene_instance,
+            v_scene.choice_id,
+            now()
+        );
+        RAISE EXCEPTION 'expected EVENT_SEQ_SLOT_MISMATCH';
     EXCEPTION
         WHEN OTHERS THEN
-            IF SQLERRM <> 'DAY_EVENTS_INCOMPLETE:3' THEN
+            IF SQLERRM <> 'EVENT_SEQ_SLOT_MISMATCH' THEN
                 RAISE;
             END IF;
     END;
