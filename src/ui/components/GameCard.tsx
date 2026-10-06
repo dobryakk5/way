@@ -13,20 +13,21 @@ interface GameCardProps {
 type Side = 'left' | 'right';
 
 const KEY_CARD_ART: Record<string, string> = {
-  c1_alexey_broken_jug: 'key-art-c0-r0',
-  c1_wounded_road: 'key-art-c1-r0',
-  c1_extra_change: 'key-art-c2-r0',
-  c2_stones_bag: 'key-art-c0-r1',
-  c2_liya_arrives: 'key-art-c1-r1',
-  c2_timon_order_result: 'key-art-c2-r1'
+  c1_alexey_broken_jug: 'c1_alexey_broken_jug.webp',
+  c1_wounded_road: 'c1_wounded_road.webp',
+  c1_extra_change: 'c1_extra_change.webp',
+  c2_stones_bag: 'c2_stones_bag.webp',
+  c2_liya_arrives: 'c2_liya_arrives.webp',
+  c2_timon_order_result: 'c2_timon_order_result.webp'
 };
 
 function CardArt({ draw }: { draw: DrawResult }) {
-  const keyArtClass = KEY_CARD_ART[draw.card.id];
+  const keyArt = KEY_CARD_ART[draw.card.id];
 
-  if (keyArtClass) {
+  if (keyArt) {
     return <div
-      className={`card-art card-art-key ${keyArtClass}`}
+      className="card-art card-art-key"
+      style={{ backgroundImage: `url(${import.meta.env.BASE_URL}art/cards/${keyArt})` }}
       data-character={draw.card.character ?? 'city'}
       aria-hidden="true"
     />;

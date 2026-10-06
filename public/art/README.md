@@ -1,44 +1,36 @@
-# Key art atlas
+# Key illustrations
 
-Generated visual layer for **Путь: Становление**.
+Visual layer for **Путь: Становление**.
 
-The images are atmospheric illustrations only. They do not change card logic, effects,
-diagnostic vectors, scheduling, saves, or development mechanics.
+These assets do not change engine logic, card effects, diagnostic vectors,
+scheduling, saves, or development mechanics.
 
-## `chapters-atlas.webp`
+## Chapter illustrations
 
-Size: 800 × 450. Grid: 2 × 2, each cell 400 × 225.
+Ready for the chapter-transition UI:
 
-| Cell | Canonical chapter |
-|---|---|
-| 0,0 | Chapter 1 — Подготовка |
-| 1,0 | Chapter 2 — К ярмарке |
-| 0,1 | Chapter 3 — Цена результата |
-| 1,1 | Chapter 4 — Новое дело |
+- `chapters/chapter-1-preparation.webp` — Глава 1 «Подготовка»
+- `chapters/chapter-2-to-fair.webp` — Глава 2 «К ярмарке»
+- `chapters/chapter-3-price-of-result.webp` — Глава 3 «Цена результата»
+- `chapters/chapter-4-new-venture.webp` — Глава 4 «Новое дело»
 
-This atlas is intentionally added before a dedicated chapter-transition visual is wired.
-It is ready for that screen without touching the engine.
+## Key card illustrations
 
-## `key-cards-atlas.webp`
+Already wired into `src/ui/components/GameCard.tsx`:
 
-Size: 1200 × 450. Grid: 3 × 2, each cell 400 × 225.
+- `cards/c1_alexey_broken_jug.webp`
+- `cards/c1_wounded_road.webp`
+- `cards/c1_extra_change.webp`
+- `cards/c2_stones_bag.webp`
+- `cards/c2_liya_arrives.webp`
+- `cards/c2_timon_order_result.webp`
 
-| Cell | Card id | Visual |
-|---|---|---|
-| 0,0 | `c1_alexey_broken_jug` | forming vessel / Alexey line |
-| 1,0 | `c1_wounded_road` | road and difficult choice |
-| 2,0 | `c1_extra_change` | money / scales / extra change |
-| 0,1 | `c2_stones_bag` | burden / debt |
-| 1,1 | `c2_liya_arrives` | arrival / new possibility |
-| 2,1 | `c2_timon_order_result` | fair / result of work |
-
-These six cards are wired in `GameCard.tsx`.
-All other cards keep the lightweight procedural pottery illustration.
+All other cards keep the lightweight procedural pottery visual.
 
 ## Art direction
 
 - warm clay, wood and fire;
 - wine-brown shadows with restrained gold light;
 - painterly cinematic realism;
-- image supports the situation and never explains the “correct” answer;
-- no diagnostic labels or stage names on card art.
+- the image supports the situation but never explains the “correct” answer;
+- no diagnostic labels, stage names, percentages, or moral judgement in art.

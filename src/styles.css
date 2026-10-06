@@ -647,11 +647,11 @@ p { line-height: 1.6; }
 .card-art[data-character="fekla"] { background: radial-gradient(circle at 50% 20%, rgba(206,180,125,.13), transparent 28%), linear-gradient(180deg,#3a3034,#20231f 52%,#121313); }
 .card-art[data-character="radim"] { background: radial-gradient(circle at 54% 20%, rgba(223,152,102,.14), transparent 28%), linear-gradient(180deg,#452a25,#281b19 52%,#15100f); }
 
-/* Key story illustrations: one compact atlas, six authored story nodes. */
+/* Key story illustrations for authored narrative nodes. */
 .card-art-key {
-  background-image: url('/app/art/key-cards-atlas.webp');
   background-repeat: no-repeat;
-  background-size: 300% 200%;
+  background-position: center;
+  background-size: cover;
   background-color: #21151d;
 }
 .card-art-key::after {
@@ -663,12 +663,6 @@ p { line-height: 1.6; }
     linear-gradient(180deg, rgba(12,8,11,.02) 42%, rgba(13,9,12,.34) 100%),
     radial-gradient(circle at 50% 38%, transparent 45%, rgba(10,7,10,.12) 100%);
 }
-.key-art-c0-r0 { background-position: 0% 0%; }
-.key-art-c1-r0 { background-position: 50% 0%; }
-.key-art-c2-r0 { background-position: 100% 0%; }
-.key-art-c0-r1 { background-position: 0% 100%; }
-.key-art-c1-r1 { background-position: 50% 100%; }
-.key-art-c2-r1 { background-position: 100% 100%; }
 
 .art-halo {
   position: absolute;
