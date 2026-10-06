@@ -5,7 +5,14 @@ import {
 
 export type MotiveOutboxStatus = 'held' | 'pending' | 'sending' | 'synced' | 'rejected';
 
+export interface MotiveRecoveryKey {
+  caseId: string;
+  promptId: string;
+  optionId?: string;
+}
+
 export type LocalMotiveResolution = MotiveResolutionEvent & {
+  recovery: MotiveRecoveryKey;
   syncStatus: MotiveOutboxStatus;
   retryCount: number;
   rejectCode?: string;
@@ -60,6 +67,7 @@ function samePayload(a: MotiveResolutionEvent, b: MotiveResolutionEvent): boolea
 
 export async function enqueueMotiveResolution(
   raw: MotiveResolutionEvent,
+  recovery: MotiveRecoveryKey,
   initialStatus: 'held' | 'pending' = 'pending'
 ): Promise<LocalMotiveResolution> {
   const event = motiveResolutionSchema.parse(raw);
@@ -80,6 +88,7 @@ export async function enqueueMotiveResolution(
 
   const local: LocalMotiveResolution = {
     ...event,
+    recovery: { ...recovery },
     syncStatus: initialStatus,
     retryCount: 0,
     updatedAt: new Date().toISOString()
