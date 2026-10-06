@@ -23,7 +23,9 @@
     "v25:simulate": "node --import tsx scripts/v25/simulate-package.ts",
     "v25:build": "node --import tsx scripts/v25/build-cards.ts",
     "facets:simulate": "node --import tsx scripts/simulate-facets.ts",
-    "cards:lint": "node --import tsx scripts/cards-lint.ts"
+    "cards:lint": "node --import tsx scripts/cards-lint.ts",
+    "persistence:catalog": "node --import tsx scripts/persistence/build-content-catalog.ts --write",
+    "persistence:catalog:check": "node --import tsx scripts/persistence/build-content-catalog.ts"
   },
   "dependencies": {
     "framer-motion": "^12.4.7",
