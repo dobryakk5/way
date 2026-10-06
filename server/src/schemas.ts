@@ -34,6 +34,10 @@ export const sceneInstanceSchema = z.object({
   }
 });
 
+export const completeDaySchema = z.object({
+  lastSeq: z.number().int().min(0)
+}).strict();
+
 export const choiceMadeEventSchema = z.object({
   eventId: uuid,
   characterId: uuid,
@@ -57,3 +61,4 @@ export const rawEventBatchSchema = z.object({
 export type CreateCharacterInput = z.infer<typeof createCharacterSchema>;
 export type SceneInstanceInput = z.infer<typeof sceneInstanceSchema>;
 export type ChoiceMadeEventInput = z.infer<typeof choiceMadeEventSchema>;
+export type CompleteDayInput = z.infer<typeof completeDaySchema>;
