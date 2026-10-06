@@ -21,7 +21,10 @@ Implemented the persistence foundation without changing the existing game flow y
 - stranded `sending` events can be returned to `pending`;
 - retry counter is not incremented for 401;
 - batch sync supports accepted/alreadyAccepted/rejected per event;
-- sync is guarded with Web Locks when invoked through `syncChoiceEventsWithLock`.
+- sync is guarded with Web Locks when invoked through `syncChoiceEventsWithLock`;
+- under the lock, events stranded in `sending` by an interrupted run are returned to `pending` before each flush;
+- without Web Locks the sync still runs (serialized per character within the tab; duplicates across tabs are safe because the server is idempotent);
+- HTTP 408/425/429 are transient retries, other 4xx reject the batch terminally.
 
 ### PostgreSQL schema
 
