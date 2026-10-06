@@ -1,0 +1,71 @@
+name: Persistence v2.1
+
+on:
+  push:
+    branches:
+      - feature/character-state-persistence-v2-1
+  pull_request:
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run persistence:catalog:check
+      - run: npm run typecheck
+      - run: npm test
+
+  server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+        working-directory: server
+      - run: npm run typecheck
+        working-directory: server
+
+  postgres:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: way
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d way"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      PGPASSWORD: postgres
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run persistence:catalog
+      - name: Apply schema
+        run: |
+          psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -f server/db/migrations/001_character_state_persistence.sql
+          psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -f server/db/migrations/002_scene_presentations.sql
+          psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -f server/db/migrations/003_persistence_commands.sql
+          psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -f server/generated/content-catalog.v1.sql
+      - name: Verify catalog
+        run: |
+          psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -c "SELECT count(*) AS scenes FROM game_scenes;"
+          psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -c "SELECT count(*) AS choices FROM game_choices;"
+          psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -c "SELECT count(*) AS evidence FROM choice_evidence;"
