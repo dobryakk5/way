@@ -143,12 +143,15 @@ export function markChoiceEventSending(eventId: string): Promise<LocalChoiceEven
 }
 
 export function markChoiceEventSynced(eventId: string): Promise<LocalChoiceEvent | undefined> {
-  return updateEvent(eventId, event => ({
-    ...event,
-    syncStatus: 'synced',
-    rejectCode: undefined,
-    updatedAt: new Date().toISOString()
-  }));
+  return updateEvent(eventId, event => {
+    const next: LocalChoiceEvent = {
+      ...event,
+      syncStatus: 'synced',
+      updatedAt: new Date().toISOString()
+    };
+    delete next.rejectCode;
+    return next;
+  });
 }
 
 export function markChoiceEventRejected(eventId: string, code: string): Promise<LocalChoiceEvent | undefined> {
