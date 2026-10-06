@@ -5,6 +5,9 @@ import {
   acceptChoiceEvent,
   completeCharacterDay,
   createCharacter,
+  getCharacterResume,
+  getDevelopmentHistory,
+  getDevelopmentState,
   persistenceBusinessCode,
   pool,
   registerSceneInstance
@@ -103,6 +106,62 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
   if (!uid) {
     send(req, res, 401, { code: 'UNAUTHENTICATED' });
     return;
+  }
+
+  if (req.method === 'GET' && req.url) {
+    const parsedUrl = new URL(req.url, 'http://localhost');
+    const developmentMatch = parsedUrl.pathname.match(/^\/api\/v1\/characters\/([0-9a-fA-F-]{36})\/development$/);
+    if (developmentMatch) {
+      const characterId = developmentMatch[1]!;
+      if (!uuidSchema.safeParse(characterId).success) {
+        send(req, res, 422, { code: 'VALIDATION_ERROR' });
+        return;
+      }
+      const state = await getDevelopmentState(uid, characterId);
+      if (!state) {
+        send(req, res, 404, { code: 'CHARACTER_NOT_FOUND' });
+        return;
+      }
+      send(req, res, 200, state);
+      return;
+    }
+
+    const historyMatch = parsedUrl.pathname.match(/^\/api\/v1\/characters\/([0-9a-fA-F-]{36})\/development\/history$/);
+    if (historyMatch) {
+      const characterId = historyMatch[1]!;
+      if (!uuidSchema.safeParse(characterId).success) {
+        send(req, res, 422, { code: 'VALIDATION_ERROR' });
+        return;
+      }
+      const owner = await getDevelopmentState(uid, characterId);
+      if (!owner) {
+        send(req, res, 404, { code: 'CHARACTER_NOT_FOUND' });
+        return;
+      }
+      const history = await getDevelopmentHistory(uid, characterId, {
+        ...(parsedUrl.searchParams.get('taxonomyVersion') ? { taxonomyVersion: parsedUrl.searchParams.get('taxonomyVersion')! } : {}),
+        ...(parsedUrl.searchParams.get('evidenceModelVersion') ? { evidenceModelVersion: parsedUrl.searchParams.get('evidenceModelVersion')! } : {}),
+        ...(parsedUrl.searchParams.get('calculationVersion') ? { calculationVersion: parsedUrl.searchParams.get('calculationVersion')! } : {})
+      });
+      send(req, res, 200, { history });
+      return;
+    }
+
+    const stateMatch = parsedUrl.pathname.match(/^\/api\/v1\/characters\/([0-9a-fA-F-]{36})\/state$/);
+    if (stateMatch) {
+      const characterId = stateMatch[1]!;
+      if (!uuidSchema.safeParse(characterId).success) {
+        send(req, res, 422, { code: 'VALIDATION_ERROR' });
+        return;
+      }
+      const state = await getCharacterResume(uid, characterId);
+      if (!state) {
+        send(req, res, 404, { code: 'CHARACTER_NOT_FOUND' });
+        return;
+      }
+      send(req, res, 200, state);
+      return;
+    }
   }
 
   if (req.method === 'POST' && req.url === '/api/v1/characters') {
