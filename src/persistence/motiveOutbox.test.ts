@@ -72,11 +72,19 @@ describe('motive outbox', () => {
       { caseId: 'case-1', promptId: 'why', optionId: 'purpose' }
     );
 
+    const skipped: MotiveResolutionEvent = {
+      eventId: EVENT_2,
+      characterId: CHARACTER,
+      gameSessionId: SESSION,
+      gameDay: 1,
+      sceneInstanceId: SCENE,
+      choiceId: 101,
+      promptId: 201,
+      resolutionType: 'skipped',
+      occurredAt: '2026-10-06T13:32:12.000Z'
+    };
     await expect(enqueueMotiveResolution(
-      event({
-        eventId: EVENT_2,
-        resolutionType: 'skipped'
-      }),
+      skipped,
       { caseId: 'case-1', promptId: 'why' }
     )).rejects.toThrow('MOTIVE_ALREADY_RECORDED');
   });
