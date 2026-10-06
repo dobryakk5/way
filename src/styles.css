@@ -1422,3 +1422,26 @@ p { line-height: 1.6; }
   background: rgba(15,10,15,.50);
   box-shadow: 0 5px 18px rgba(0,0,0,.22);
 }
+.dev-scale { margin: 14px 0 18px; }
+.dev-scale-track {
+  position: relative;
+  height: 10px;
+  margin: 18px 8px 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg,#c8463a 0%,#d8703a 14%,#d9a441 29%,#c4b54c 43%,#7fae5a 57%,#3f9e7e 71%,#2fa39e 86%,#3cc8c8 100%);
+}
+.dev-scale-tick { position: absolute; top: 2px; width: 1px; height: 6px; background: rgba(16,11,16,.45); }
+.dev-scale-marker,
+.dev-scale-ghost,
+.dev-scale-pin { position: absolute; top: 50%; transform: translate(-50%,-50%); border-radius: 50%; }
+.dev-scale-marker { width: 18px; height: 18px; border: 3px solid #fff; background: #100b10; box-shadow: 0 0 0 3px rgba(16,11,16,.5); transition: left .5s ease; }
+.dev-scale-ghost { width: 12px; height: 12px; border: 2px dashed rgba(255,255,255,.55); }
+.dev-scale-pin { top: -9px; width: 0; height: 0; border-radius: 0; transform: translateX(-50%); border: 6px solid transparent; border-top: 8px solid var(--gold-2); }
+.dev-scale-pin.unsettled { opacity: .5; }
+.dev-scale-numbers { position: relative; height: 1.2em; margin: 0 8px 2px; color: var(--muted); font-size: .74rem; font-variant-numeric: tabular-nums; }
+.dev-scale-numbers span { position: absolute; transform: translateX(-50%); }
+.dev-scale-caption strong { color: var(--gold-2); font-weight: 600; font-variant-numeric: tabular-nums; }
+.dev-scale-ends { display: flex; justify-content: space-between; color: var(--muted-2); font-size: .74rem; }
+.dev-scale-caption { margin: 10px 0 4px; }
+.dev-scale-center { margin: 0; color: var(--muted); font-size: .9rem; }
+.dev-scale-center strong { color: var(--gold-2); font-weight: 500; }

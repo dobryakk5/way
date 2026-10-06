@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { content } from '../../content';
-import { ACTION_LOGICS, calculateProfileSlice, facetSufficient, largestRemainderPercent, leaders } from '../../engine';
+import { ACTION_LOGICS, calculateProfileSlice, developmentScale, facetSufficient, largestRemainderPercent, leaders } from '../../engine';
 import type { ActionLogic, GameState, LifeFacet } from '../../engine/types';
 const facetNames: Record<LifeFacet, string> = { work: 'Дело и деньги', relationships: 'Отношения', body: 'Тело и здоровье', inner: 'Внутренний мир' };
 const stage = (id: ActionLogic) => content.development.stages.find(s => s.id === id)!;
@@ -39,6 +39,30 @@ function Details({ game }: { game: GameState }) {
       return s?.distribution ? <section key={f}><h4>{facetNames[f]}</h4><Bars distribution={s.distribution} /></section> : null; })}
   </details>;
 }
+const pct = (x: number) => `${Math.min(100, Math.max(0, x * 100))}%`;
+const LAST = ACTION_LOGICS.length - 1;
+/** Moves after every decision; the center (the label) below it changes only through the evenings. */
+function Scale({ game }: { game: GameState }) {
+  const s = developmentScale(game, content); const p = game.heroDevelopmentProfile;
+  if (!s) return null;
+  const nearest = ACTION_LOGICS[Math.round(s.position * LAST)]!;
+  const shift = s.previousPosition === undefined ? undefined : (s.position - s.previousPosition) * LAST;
+  const center = p.observedPrimary;
+  return <div className="dev-scale">
+    <div className="dev-scale-track" role="img" aria-label={`Последние решения ближе всего к способу «${stage(nearest).name}»`}>
+      {ACTION_LOGICS.map((l, i) => <span key={l} className="dev-scale-tick" style={{ left: pct(i / LAST) }} title={stage(l).name} />)}
+      {center && <span className={`dev-scale-pin${p.status === 'stable' ? '' : ' unsettled'}`} style={{ left: pct(ACTION_LOGICS.indexOf(center) / LAST) }} title={`Центр: ${stage(center).name}`} />}
+      {s.previousPosition !== undefined && <span className="dev-scale-ghost" style={{ left: pct(s.previousPosition) }} />}
+      <span className="dev-scale-marker" style={{ left: pct(s.position) }} />
+    </div>
+    <div className="dev-scale-numbers" aria-hidden="true">{ACTION_LOGICS.map((l, i) => <span key={l} style={{ left: pct(i / LAST) }}>{i}</span>)}</div>
+    <div className="dev-scale-ends"><span>{stage(ACTION_LOGICS[0]!).name}</span><span>{stage(ACTION_LOGICS[LAST]!).name}</span></div>
+    <p className="dev-scale-caption">Сейчас на шкале <strong>{(s.position * LAST).toLocaleString('ru-RU', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</strong>: последние решения ближе всего к способу «{stage(nearest).name}» ({ACTION_LOGICS.indexOf(nearest)}).
+      {shift !== undefined && (Math.abs(shift) < 0.15 ? ' С прошлого вечера шкала почти не сдвинулась.' : ` С прошлого вечера она сдвинулась ${shift > 0 ? 'вправо' : 'влево'}.`)}</p>
+    <p className="dev-scale-center">{center ? <>Центр героя: <strong>{stage(center).name}</strong>{p.status === 'stable' ? '' : ' — уточняется'}</> :
+      <>Центр героя пока не определён. Шкала двигается после каждого решения, а центр закрепляется, только когда способ устойчиво повторяется и вечер это подтверждает.</>}</p>
+  </div>;
+}
 const FACET_ORDER: LifeFacet[] = ['work', 'relationships', 'body', 'inner'];
 export function ProfileSection({ game }: { game: GameState }) {
   const p = game.heroDevelopmentProfile;
@@ -56,5 +80,5 @@ export function ProfileSection({ game }: { game: GameState }) {
     body = <><p>Сейчас герой чаще смотрит на ситуации через {main.lens}.</p>
       {p.leadingEdge && <p>В некоторых решениях появляется вопрос: {stage(p.leadingEdge).wonder}.</p>}</>;
   }
-  return <section aria-label="Как герой решает"><h3>Как герой принимает решения</h3>{body}{p.status === 'stable' && <Details game={game} />}</section>;
+  return <section aria-label="Как герой решает"><h3>Как герой принимает решения</h3><Scale game={game} />{body}{p.status === 'stable' && <Details game={game} />}</section>;
 }

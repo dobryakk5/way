@@ -463,6 +463,44 @@ export function establishInitialDevelopmentCurrent(state: GameState, content: Ga
     initialStage: { logic, origin: 'observed-initial', day: state.day, available: [logic] }, available: [logic],
     ...(arc ? { activeArcId: arc.id, transitionTarget: arc.to } : {}) } };
 }
+/** Half-life of the scale in independent decisions: the last three weigh as much as everything before them. */
+export const SCALE_HALF_LIFE_CASES = 3;
+/**
+ * Decision vectors spread over neighbouring logics, so a plain centre of mass drags every hero to the middle.
+ * Raising the shares to this power keeps the scale on the dominant logic and still moves it smoothly between neighbours.
+ */
+export const SCALE_SHARPNESS = 6;
+export interface DevelopmentScale { position: number; cases: number; previousPosition?: number }
+function scalePosition(evidence: readonly Ev[], config: ProfileAlgorithmConfig): Omit<DevelopmentScale, 'previousPosition'> | undefined {
+  const views = caseViews(evidence).filter(v => independent(v.action));
+  const mass = zeroVector();
+  views.forEach((v, i) => {
+    const recency = 0.5 ** ((views.length - 1 - i) / SCALE_HALF_LIFE_CASES);
+    for (const e of [v.action, v.motive, v.behavior]) {
+      if (!e || !independent(e)) continue;
+      const w = recency * e.developmentWeight * config.sourceWeights[e.source];
+      for (const l of ACTION_LOGICS) mass[l] += w * e.vector[l];
+    }
+  });
+  const peak = Math.max(...ACTION_LOGICS.map(l => mass[l]));
+  if (!(peak > 0)) return undefined;
+  let total = 0, sum = 0;
+  ACTION_LOGICS.forEach((l, idx) => { const m = (Math.max(0, mass[l]) / peak) ** SCALE_SHARPNESS; total += m; sum += m * idx; });
+  return { position: sum / total / (ACTION_LOGICS.length - 1), cases: views.length };
+}
+/**
+ * A quick, explanatory position of recent decisions on the scale from the first logic (0) to the last (1).
+ * Recent decisions dominate, so it moves after every decision; it never sets the observed center, which the evenings decide.
+ * `previousPosition` is the position as of the last evening that saw fewer decisions, to show the latest movement.
+ */
+export function developmentScale(state: Pick<GameState, 'heroDevelopmentProfile'>, content: GameContent): DevelopmentScale | undefined {
+  const p = state.heroDevelopmentProfile; const config = profileConfig(state, content);
+  const now = scalePosition(p.evidence, config);
+  if (!now) return undefined;
+  const asOf = p.eveningSnapshots.findLast(s => s.asOfEvidenceCount < p.evidence.length)?.asOfEvidenceCount;
+  const before = asOf !== undefined ? scalePosition(p.evidence.slice(0, asOf), config) : undefined;
+  return { ...now, ...(before ? { previousPosition: before.position } : {}) };
+}
 export interface FirstStageReadiness {
   decisions: number; neededDecisions: number; enoughDecisions: boolean;
   contexts: number; neededContexts: number; facets: number; neededFacets: number;

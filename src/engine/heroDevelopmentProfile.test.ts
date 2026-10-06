@@ -5,7 +5,7 @@ import { applyChoice } from './apply';
 import { prepareEvening, leaveEvening } from './day';
 import { drawCard, persistDraw } from './draw';
 import {
-  calculateSlice, derivedProfile, developmentCurrentBefore, evaluateEvening, facetSufficient, firstStageReadiness, largestRemainderPercent, probeAllowed, zeroVector,
+  calculateSlice, derivedProfile, developmentCurrentBefore, evaluateEvening, facetSufficient, firstStageReadiness, developmentScale, largestRemainderPercent, probeAllowed, zeroVector,
   independenceStats, openDiagnosticCase, recordDiagnosticBehavior
 } from './heroDevelopmentProfile';
 import { answerMotive, skipMotive } from './navigation';
@@ -207,6 +207,30 @@ describe('readiness for the first center', () => {
     expect(ready(mixed).leader).toBeUndefined();
     expect(evaluateEvening(undefined, mixed, 4, undefined, v2).candidatePrimary).toBeUndefined();
     expect(ready(evidence, 'expert').candidate).toBe('expert');
+  });
+});
+
+describe('development scale', () => {
+  const scale = (evidence: Ev[], snapshotAt?: number) => developmentScale({ heroDevelopmentProfile: { algorithmVersion: '2', evidence,
+    eveningSnapshots: snapshotAt === undefined ? [] : [{ asOfEvidenceCount: snapshotAt }] } as unknown as GameState['heroDevelopmentProfile'] }, content);
+  const pure = (l: ActionLogic) => { const v = zeroVector(); v[l] = 1; return v; };
+  it('runs from 0 at the first logic to 1 at the last and has nothing to show without decisions', () => {
+    expect(scale([])).toBeUndefined();
+    closeTo(scale(journal(3, 'opportunist', 'diplomat', 4, { vector: pure('opportunist') }))!.position, 0);
+    closeTo(scale(journal(3, 'ironic', 'alchemist', 4, { vector: pure('ironic') }))!.position, 1);
+  });
+  it('follows recent decisions much faster than the window average, and remembers the last evening', () => {
+    const old = journal(12, 'expert', 'achiever', 4, { vector: pure('expert') });
+    const recent = journal(3, 'strategist', 'alchemist', 4, { vector: pure('strategist') }, 12);
+    const s = scale([...old, ...recent], old.length)!;
+    const average = (12 * 2 + 3 * 5) / 15 / 7;
+    expect(s.position).toBeGreaterThan(average + 0.1);
+    closeTo(s.previousPosition!, 2 / 7);
+  });
+  it('ignores adaptive decisions', () => {
+    const own = journal(4, 'expert', 'achiever', 4, { vector: pure('expert') });
+    const adaptive = journal(4, 'ironic', 'alchemist', 4, { vector: pure('ironic'), origin: 'adaptive' }, 4);
+    closeTo(scale([...own, ...adaptive])!.position, 2 / 7);
   });
 });
 
