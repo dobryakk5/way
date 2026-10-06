@@ -262,18 +262,28 @@ const CARD_SCENE_ART: Partial<Record<string, SceneArt>> = {
 
   // Repeated encounter beats
   enc_3_0: 'night-room',
+  enc_3_1: 'workshop-dawn',
   enc_3_2: 'courtyard',
   enc_3_3: 'workshop-dawn',
+  enc_3_4: 'market-fair',
   enc_3_5: 'country-road',
   enc_3_6: 'night-room',
+  enc_3_7: 'workshop-dawn',
   enc_3_8: 'country-road',
+  enc_3_9: 'workshop-dawn',
+  enc_3_10: 'market-fair',
   enc_3_11: 'courtyard',
   enc_4_0: 'night-room',
+  enc_4_1: 'workshop-dawn',
   enc_4_2: 'courtyard',
   enc_4_3: 'workshop-dawn',
+  enc_4_4: 'market-fair',
   enc_4_5: 'country-road',
   enc_4_6: 'night-room',
+  enc_4_7: 'workshop-dawn',
   enc_4_8: 'country-road',
+  enc_4_9: 'workshop-dawn',
+  enc_4_10: 'market-fair',
   enc_4_11: 'courtyard'
 };
 
