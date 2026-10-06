@@ -13,13 +13,38 @@ interface GameCardProps {
 
 type Side = 'left' | 'right';
 
+type SceneArt =
+  | 'workshop-dawn'
+  | 'workshop-dusk'
+  | 'kiln-firing'
+  | 'market-fair'
+  | 'country-road'
+  | 'river-bridge';
+
+function sceneArtForCard(draw: DrawResult): SceneArt {
+  const text = draw.text.toLocaleLowerCase('ru-RU');
+
+  if (/(печь|обжиг|горн|жар|угл|раскал|огонь)/u.test(text)) return 'kiln-firing';
+  if (/(ярмарк|рынок|торг|покупател|прилав|продав|заказчик)/u.test(text)) return 'market-fair';
+  if (/(река|берег|мост|вод[аыуе]|переправ)/u.test(text)) return 'river-bridge';
+  if (/(дорог|за город|тракт|путник|повозк|телег)/u.test(text)) return 'country-road';
+  if (/(вечер|ноч|свеч|поздн|сумерк)/u.test(text)) return 'workshop-dusk';
+
+  if (draw.card.facets.includes('inner')) return 'workshop-dusk';
+  if (draw.card.facets.includes('body')) return 'country-road';
+  if (draw.card.facets.includes('relationships')) return 'river-bridge';
+  return 'workshop-dawn';
+}
+
 function CardArt({ draw }: { draw: DrawResult }) {
-  return <div className="card-art" data-character={draw.card.character ?? 'city'} aria-hidden="true">
-    <span className="art-halo" />
-    <span className="art-window" />
-    <span className="art-thread" />
-    <span className="art-table" />
-    <span className="art-vessel" />
+  const scene = sceneArtForCard(draw);
+  return <div
+    className="card-art card-art-scene"
+    data-character={draw.card.character ?? 'city'}
+    data-scene={scene}
+    style={{ backgroundImage: `url(${import.meta.env.BASE_URL}art/backgrounds/${scene}.webp)` }}
+    aria-hidden="true"
+  >
     <span className="character-monogram">{characterName(draw.card.character).slice(0, 1)}</span>
   </div>;
 }

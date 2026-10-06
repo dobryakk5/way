@@ -15,8 +15,7 @@ The game uses exactly four key chapter illustrations, all without people:
 - `chapters/chapter-4-new-venture.webp` — Глава 4 «Новое дело»
 
 They are shown by `src/ui/screens/MorningScreen.tsx` only on the first morning
-of a chapter: days 1, 6, 11 and 21. Ordinary game cards keep the lightweight
-procedural pottery visual.
+of a chapter: days 1, 6, 11 and 21.
 
 ## Art direction
 
@@ -58,3 +57,23 @@ The resource strip also reuses semantically matching symbols:
 
 Family, freedom and responsibility stay in the asset set for later expansion;
 they are not introduced as new engine facets by this visual change.
+
+
+## Atmospheric card scenes
+
+The first reusable environment set lives in `backgrounds/`:
+
+- `workshop-dawn.webp` — pottery workshop at dawn;
+- `workshop-dusk.webp` — pottery workshop at dusk;
+- `kiln-firing.webp` — firing kiln and workshop heat;
+- `market-fair.webp` — pottery market / fair;
+- `country-road.webp` — road outside the town;
+- `river-bridge.webp` — river and stone bridge.
+
+`src/ui/components/GameCard.tsx` chooses an environment from the authored
+situation text first (kiln, market, river/bridge, road, evening/night), then
+falls back to the card life facet. This is presentation only: it does not add
+tags to content, change choices, effects, diagnostics, saves or scheduling.
+
+The images are intentionally people-free so they can be reused across many
+situations without implying a specific face, pose, age or action.
