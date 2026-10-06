@@ -18,117 +18,138 @@ type SceneArt =
   | 'workshop-dusk'
   | 'kiln-firing'
   | 'market-fair'
+  | 'market-empty'
   | 'country-road'
-  | 'river-bridge';
+  | 'river-bridge'
+  | 'courtyard'
+  | 'kitchen-home'
+  | 'storage'
+  | 'village-street'
+  | 'night-room';
 
 /**
- * Authored cards get an explicit art direction first. This keeps recurring scenes
- * visually stable even when the text is edited later. Semantic rules below are
- * only a fallback for neutral/probe/development cards and future content.
+ * Important authored scenes are mapped by stable card id.
+ * This is intentionally more specific than keyword matching: the same words
+ * can appear in different dramatic contexts, while a card id keeps its visual
+ * setting stable across copy edits.
  */
 const CARD_SCENE_ART: Partial<Record<string, SceneArt>> = {
   // Chapter 1
   c1_alexey_broken_jug: 'workshop-dawn',
   c1_wounded_road: 'country-road',
   c1_extra_change: 'market-fair',
-  c1_marta_firewood: 'workshop-dusk',
+  c1_marta_firewood: 'courtyard',
   c1_alexey_bad_work: 'kiln-firing',
-  c1_liya_letter: 'workshop-dusk',
+  c1_liya_letter: 'night-room',
   c1_market_spot: 'market-fair',
   c1_rain_delivery: 'workshop-dusk',
   c1_old_bowl: 'river-bridge',
-  c1_customer_hurry: 'workshop-dusk',
+  c1_customer_hurry: 'courtyard',
   c1_neighbor_noise: 'workshop-dawn',
   c1_last_clay: 'market-fair',
   c1_alexey_after_jug: 'kiln-firing',
   c1_wanderer_returns: 'workshop-dawn',
   c1_wanderer_bridge: 'river-bridge',
   c1_timon_returns: 'market-fair',
-  c1_liya_second_letter: 'workshop-dusk',
+  c1_liya_second_letter: 'night-room',
 
   // Chapter 2
-  c2_stones_bag: 'workshop-dusk',
+  c2_stones_bag: 'courtyard',
   c2_timon_joint_order: 'market-fair',
   c2_liya_arrives: 'workshop-dawn',
   c2_bridge_repair: 'workshop-dusk',
-  c2_old_master_tools: 'workshop-dawn',
+  c2_old_master_tools: 'storage',
   c2_shadow_attention: 'river-bridge',
-  c2_shadow_honesty: 'country-road',
-  c2_shadow_compassion: 'workshop-dusk',
+  c2_shadow_honesty: 'storage',
+  c2_shadow_compassion: 'kitchen-home',
   c2_shadow_letgo: 'workshop-dawn',
   c2_shadow_courage: 'country-road',
-  c2_silence_marta_cup: 'workshop-dusk',
+  c2_silence_marta_cup: 'kitchen-home',
   c2_silence_alexey_hand: 'workshop-dusk',
-  c2_silence_market_pause: 'market-fair',
-  c2_gaze_wanderer_bread: 'market-fair',
-  c2_gaze_marta_window: 'workshop-dusk',
+  c2_silence_market_pause: 'market-empty',
+  c2_gaze_wanderer_bread: 'village-street',
+  c2_gaze_marta_window: 'village-street',
   c2_gaze_alexey_silence: 'workshop-dusk',
-  c2_ilya_after_forgive: 'workshop-dusk',
+  c2_ilya_after_forgive: 'courtyard',
   c2_ilya_leaves: 'country-road',
   c2_timon_order_result: 'market-fair',
   c2_alexey_tools_result: 'workshop-dawn',
-  c2_marta_window_result: 'workshop-dusk',
+  c2_marta_window_result: 'night-room',
 
-  // Recurring cards
+  // Recurring situations and crisis cards
   r_sweep: 'workshop-dawn',
-  r_breakfast: 'kiln-firing',
+  r_breakfast: 'kitchen-home',
   r_market_price: 'market-fair',
-  r_marta_hello: 'workshop-dusk',
+  r_marta_hello: 'courtyard',
   r_kiln: 'kiln-firing',
-  r_coins: 'workshop-dawn',
+  r_coins: 'storage',
   r_river: 'river-bridge',
-  r_letter_stack: 'workshop-dusk',
+  r_letter_stack: 'night-room',
   r_customer_wait: 'workshop-dusk',
-  r_evening_light: 'workshop-dusk',
-  cr_wealth_zero: 'market-fair',
+  r_evening_light: 'courtyard',
+  cr_wealth_zero: 'storage',
   cr_wealth_full: 'workshop-dusk',
   cr_strength_zero: 'workshop-dusk',
-  cr_peace_zero: 'workshop-dusk',
+  cr_peace_zero: 'night-room',
   cr_bonds_zero: 'workshop-dusk',
 
-  // Continuation: stable story beats
-  d11_0_apprentice: 'market-fair',
-  d11_3_apprentice: 'market-fair',
+  // Continuation / development arc
+  d11_0_apprentice: 'market-empty',
+  d11_3_apprentice: 'market-empty',
   d12_0_pace: 'workshop-dawn',
   d12_3_pace: 'workshop-dawn',
-  d13_0_commitments: 'workshop-dusk',
-  d13_3_commitments: 'workshop-dusk',
+  d13_0_commitments: 'kitchen-home',
+  d13_3_commitments: 'kitchen-home',
   d14_0_apprentice: 'workshop-dawn',
   d14_3_apprentice: 'workshop-dawn',
-  d15_0_pace: 'workshop-dawn',
-  d15_3_pace: 'workshop-dawn',
-  d16_0_commitments: 'workshop-dusk',
-  d16_3_commitments: 'workshop-dusk',
+  d15_0_pace: 'kitchen-home',
+  d15_3_pace: 'kitchen-home',
+  d16_0_commitments: 'courtyard',
+  d16_3_commitments: 'courtyard',
   d17_0_apprentice: 'kiln-firing',
   d17_3_apprentice: 'kiln-firing',
   d18_0_pace: 'workshop-dusk',
   d18_3_pace: 'workshop-dawn',
-  d19_0_commitments: 'workshop-dusk',
-  d19_3_commitments: 'workshop-dusk',
+  d19_0_commitments: 'kitchen-home',
+  d19_3_commitments: 'kitchen-home',
   d20_0_apprentice: 'workshop-dawn',
   d20_3_apprentice: 'workshop-dawn',
-  d21_0_pace: 'workshop-dawn',
+  d21_0_pace: 'kitchen-home',
   d21_3_pace: 'kiln-firing',
   d22_0_apprentice: 'workshop-dawn',
   d22_3_apprentice: 'workshop-dawn',
-  d23_0_commitments: 'workshop-dusk',
-  d23_3_commitments: 'workshop-dusk',
+  d23_0_commitments: 'kitchen-home',
+  d23_3_commitments: 'kitchen-home',
   d24_0_pace: 'workshop-dusk',
   d24_3_pace: 'workshop-dawn',
   d25_0_apprentice: 'workshop-dawn',
   d25_3_apprentice: 'workshop-dawn',
-  d26_0_commitments: 'market-fair',
+  d26_0_commitments: 'storage',
   d26_3_commitments: 'country-road',
-  d27_0_pace: 'workshop-dawn',
-  d27_3_pace: 'workshop-dawn',
+  d27_0_pace: 'kitchen-home',
+  d27_3_pace: 'kitchen-home',
   d28_0_apprentice: 'workshop-dawn',
   d28_3_apprentice: 'workshop-dawn',
-  d29_0_commitments: 'workshop-dusk',
-  d29_3_commitments: 'workshop-dusk',
-  d30_0_pace: 'market-fair',
-  d30_3_pace: 'workshop-dawn',
+  d29_0_commitments: 'courtyard',
+  d29_3_commitments: 'night-room',
+  d30_0_pace: 'kitchen-home',
+  d30_3_pace: 'market-empty',
+
+  // Repeated encounter beats
+  enc_3_0: 'night-room',
+  enc_3_2: 'courtyard',
+  enc_3_3: 'workshop-dawn',
+  enc_3_5: 'country-road',
+  enc_3_6: 'night-room',
   enc_3_8: 'country-road',
-  enc_4_8: 'country-road'
+  enc_3_11: 'courtyard',
+  enc_4_0: 'night-room',
+  enc_4_2: 'courtyard',
+  enc_4_3: 'workshop-dawn',
+  enc_4_5: 'country-road',
+  enc_4_6: 'night-room',
+  enc_4_8: 'country-road',
+  enc_4_11: 'courtyard'
 };
 
 function sceneArtForCard(draw: DrawResult): SceneArt {
@@ -139,15 +160,24 @@ function sceneArtForCard(draw: DrawResult): SceneArt {
     .join(' ')
     .toLocaleLowerCase('ru-RU');
 
-  if (/(печь|обжиг|горн|жар|угл|раскал|огонь|топить печь)/u.test(text)) return 'kiln-firing';
+  // More specific places first; generic time-of-day words come last.
+  if (/(пуст(ая|ой|о)?\s+(лавк|рын)|после\s+ярмарк|ярмарка\s+(законч|закрыл))/u.test(text)) return 'market-empty';
+  if (/(склад|запас|хранил|ящик|мешок|мешк|коробк|топлив|сырь|глин[аыуеой])/u.test(text)) return 'storage';
+  if (/(печь|обжиг|горн|жар|угл|раскал|огонь|топить\s+печь)/u.test(text)) return 'kiln-firing';
   if (/(ярмарк|рынок|торг|покупател|прилав|продав|заказчик|выручк|монет|цена)/u.test(text)) return 'market-fair';
   if (/(река|берег|мост|вод[аыуе]|переправ|лодоч)/u.test(text)) return 'river-bridge';
-  if (/(дорог|за город|тракт|путник|повозк|телег|отъезд|доставк|ехать|уехать)/u.test(text)) return 'country-road';
-  if (/(вечер|ноч|свеч|поздн|сумерк|письм|тишин|окн[ое]|ужин)/u.test(text)) return 'workshop-dusk';
+  if (/(дорог|за\s+город|тракт|путник|повозк|телег|отъезд|доставк|ехать|уехать|путь)/u.test(text)) return 'country-road';
+  if (/(двор|сосед|крыша|калит|ворот|колодец)/u.test(text)) return 'courtyard';
+  if (/(кухн|ужин|обед|завтрак|хлеб|еда|за\s+стол|столом|повар)/u.test(text)) return 'kitchen-home';
+  if (/(улиц|город|фонар|у\s+стены|лавк|окно\s+марты)/u.test(text)) return 'village-street';
+  if (/(ноч|лун|свеч|письм|дневник|записк|тишин|размышл)/u.test(text)) return 'night-room';
+  if (/(вечер|поздн|сумерк|закат)/u.test(text)) return 'workshop-dusk';
+  if (/(утро|рассвет)/u.test(text)) return 'workshop-dawn';
 
-  if (draw.card.facets?.includes('inner')) return 'workshop-dusk';
+  // Facets are only the last fallback, never the primary art direction.
+  if (draw.card.facets?.includes('inner')) return 'night-room';
+  if (draw.card.facets?.includes('relationships')) return 'courtyard';
   if (draw.card.facets?.includes('body')) return 'workshop-dawn';
-  if (draw.card.facets?.includes('relationships')) return 'workshop-dusk';
   return 'workshop-dawn';
 }
 
