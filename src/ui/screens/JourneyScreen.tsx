@@ -3,8 +3,10 @@ import { content } from '../../content';
 import { developmentProgress } from '../../engine/development';
 import { journeyPeriod } from '../../engine/journey';
 import { ProfileSection } from './ProfileSection';
-import type { GameState } from '../../engine/types';
-const names={work:'Дело и деньги',relationships:'Отношения',body:'Тело и здоровье',inner:'Внутренний мир'};
+import type { GameState, LifeFacet } from '../../engine/types';
+import { FacetIcon, type FacetIconId } from '../components/FacetIcon';
+const names:Record<LifeFacet,string>={work:'Дело и деньги',relationships:'Отношения',body:'Тело и здоровье',inner:'Внутренний мир'};
+const facetIcons:Record<LifeFacet,FacetIconId>={work:'work',relationships:'relationships',body:'health',inner:'meaning'};
 function Evidence({items}:{items:GameState['history']}) {
  return <div className="evidence">{items.map(h=><article key={`${h.day}/${h.slot}`}><p className="eyebrow">День {h.day} · Событие {h.slot+1}</p><p>{h.text}</p><p><strong>{h.label}</strong></p>{h.response&&<p>{h.response}</p>}</article>)}</div>;
 }
@@ -33,7 +35,7 @@ export function JourneyScreen({game,onClose}:{game:GameState;onClose:()=>void}) 
   <section className="journey-history" aria-label="История решений"><div className="history-heading"><div><p className="section-kicker">История решений</p><h3>Последние дни</h3></div><div className="periods compact" role="group" aria-label="Период">{([1,7,30] as const).map(n=><button className="choice-button" aria-pressed={period===n} key={n} onClick={()=>setPeriod(n)}>{n===1?'День':`${n} дн.`}</button>)}</div></div>
   <p className="period-copy">{report.available?`Дни ${report.from}–${report.through}. Доступно ${report.available} из ${period} завершённых дней.`:'Пока нет завершённых дней. Записи появятся после первой ночи.'}</p>
   <h4>Куда уходило время</h4><p className="section-note">Одно решение может касаться двух граней.</p>
-  {report.facets.map(f=><details className="journal" key={f.facet}><summary>{names[f.facet]} <span>{f.evidence.length}</span></summary><Evidence items={f.evidence}/></details>)}
+  {report.facets.map(f=><details className="journal" key={f.facet}><summary><FacetIcon id={facetIcons[f.facet]} className="journal-facet-icon"/><b className="journal-facet-label">{names[f.facet]}</b><span>{f.evidence.length}</span></summary><Evidence items={f.evidence}/></details>)}
   <h4>Как принимались решения</h4>
   {report.decisions.map(d=><details className="journal" key={d.kind}><summary>{d.label} <span>{d.evidence.length+d.reviews.length}</span></summary><p>{d.recurring?'Этот способ выбора повторялся в нескольких сценах выбранного периода.':'Пока показываем отдельные поступки без вывода о повторяющемся способе выбора.'}</p><Evidence items={d.evidence}/>{d.reviews.map(g=><article key={g.day}><p>День {g.day}: {({select:'Выбрал',keep:'Сохранил',clarify:'Уточнил',change:'Изменил'})[g.action]} цель — {g.wording}</p><details><summary>Сцены перед пересмотром</summary><Evidence items={game.history.filter(h=>h.day===g.day-1)}/></details></article>)}</details>)}
   <h4>Цель героя</h4>{report.goals.length?report.goals.map(g=><article className="goal-history" key={g.day}><p>День {g.day}: {({select:'Выбрал',keep:'Сохранил',clarify:'Уточнил',change:'Изменил'})[g.action]} — <strong>{g.wording}</strong></p><Evidence items={game.history.filter(h=>h.day===g.day&&h.slot===0)}/></article>):<p className="section-note">Запись появится после первой выбранной цели.</p>}
