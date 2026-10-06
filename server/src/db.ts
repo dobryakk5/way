@@ -1,5 +1,11 @@
 import { Pool } from 'pg';
-import type { ChoiceMadeEventInput, CompleteDayInput, CreateCharacterInput, SceneInstanceInput } from './schemas.js';
+import type {
+  ChoiceMadeEventInput,
+  CompleteDayInput,
+  CreateCharacterInput,
+  MotiveResolutionInput,
+  SceneInstanceInput
+} from './schemas.js';
 
 export const pool = new Pool({
   connectionString: process.env.DATABASE_URL
@@ -87,6 +93,32 @@ export async function acceptChoiceEvent(
   return result.rows[0]!.status;
 }
 
+
+
+export async function acceptMotiveResolution(
+  userId: string,
+  input: MotiveResolutionInput,
+  payloadHash: string
+): Promise<AcceptedStatus> {
+  const result = await pool.query<{ status: AcceptedStatus }>(
+    'SELECT accept_motive_resolution_v1($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) AS status',
+    [
+      userId,
+      input.eventId,
+      payloadHash,
+      input.characterId,
+      input.gameSessionId,
+      input.gameDay,
+      input.sceneInstanceId,
+      input.choiceId,
+      input.promptId,
+      input.resolutionType,
+      input.resolutionType === 'answered' ? input.motiveOptionId : null,
+      input.occurredAt
+    ]
+  );
+  return result.rows[0]!.status;
+}
 
 export interface DevelopmentStateView {
   processedThroughDay: number;
@@ -250,7 +282,10 @@ const BUSINESS_CODES = new Set([
   'INVALID_EVENT',
   'DAY_COMPLETE_PAYLOAD_MISMATCH',
   'DAY_COMPLETE_INVALID_LAST_SEQ',
-  'DAY_COMPLETE_LAST_SEQ_TOO_LOW'
+  'DAY_COMPLETE_LAST_SEQ_TOO_LOW',
+  'DAY_COMPLETE_LAST_SEQ_MISMATCH',
+  'MOTIVE_ALREADY_RECORDED',
+  'INVALID_MOTIVE_RESOLUTION'
 ]);
 
 export function persistenceBusinessCode(error: unknown): string | undefined {
@@ -258,5 +293,6 @@ export function persistenceBusinessCode(error: unknown): string | undefined {
   const message = String((error as { message: unknown }).message);
   if (BUSINESS_CODES.has(message)) return message;
   if (message.startsWith('DAY_EVENTS_INCOMPLETE:')) return message;
+  if (message.startsWith('DAY_SLOTS_INCOMPLETE:')) return message;
   return undefined;
 }
