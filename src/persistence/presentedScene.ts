@@ -6,6 +6,7 @@ import {
   scenePresentationId
 } from '../content/persistenceIds';
 import type { GameState } from '../engine/types';
+import { sceneInstanceSchema, type SceneInstancePayload } from '../sync/sceneInstance';
 
 /**
  * Freezes the persistence identity of the exact card presentation.
@@ -39,4 +40,22 @@ export function attachPresentedScenePersistence(state: GameState): GameState {
       }
     }
   };
+}
+
+export function presentedScenePayload(state: GameState): SceneInstancePayload | undefined {
+  const persistence = state.current?.persistence;
+  if (!state.serverPersistence?.enabled || !persistence) return undefined;
+  const parsed = sceneInstanceSchema.safeParse({
+    sceneInstanceId: persistence.sceneInstanceId,
+    characterId: state.runId,
+    gameDay: state.day,
+    sceneId: persistence.sceneId,
+    scenePresentationId: persistence.scenePresentationId,
+    choices: persistence.choices.map(choice => ({
+      choiceId: choice.choiceId,
+      presentationId: choice.presentationId,
+      position: choice.position
+    }))
+  });
+  return parsed.success ? parsed.data : undefined;
 }
