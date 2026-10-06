@@ -29,6 +29,9 @@ echo "== publish to $WEB_ROOT"
 mkdir -p "$WEB_ROOT/app"
 rsync -rlt --delete --chmod=D755,F644 "$BUILD_DIR"/ "$WEB_ROOT/app/"
 install -m 644 landing.html "$WEB_ROOT/index.html"
+# The landing page references art/landing/* relative to the site root.
+mkdir -p "$WEB_ROOT/art/landing"
+rsync -rlt --delete --chmod=D755,F644 public/art/landing/ "$WEB_ROOT/art/landing/"
 for file in favicon.svg favicon-32x32.png apple-touch-icon.png og-image.png robots.txt sitemap.xml; do
   install -m 644 "$file" "$WEB_ROOT/$file"
 done
