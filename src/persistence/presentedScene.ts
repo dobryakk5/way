@@ -31,6 +31,8 @@ export function attachPresentedScenePersistence(state: GameState): GameState {
         sceneInstanceId: sceneInstanceId(state.runId, state.day, state.slot, current.cardId),
         sceneId: sceneId(current.cardId),
         scenePresentationId: scenePresentationId(current.cardId, current.variantId),
+        gameSlot: state.slot,
+        selectionOrigin: current.selectionOrigin ?? 'neutral',
         choices: shownOrder.map((authorChoiceId, index) => ({
           authorChoiceId,
           choiceId: choiceId(current.cardId, authorChoiceId),
@@ -51,6 +53,8 @@ export function presentedScenePayload(state: GameState): SceneInstancePayload | 
     gameDay: state.day,
     sceneId: persistence.sceneId,
     scenePresentationId: persistence.scenePresentationId,
+    gameSlot: persistence.gameSlot,
+    selectionOrigin: persistence.selectionOrigin,
     choices: persistence.choices.map(choice => ({
       choiceId: choice.choiceId,
       presentationId: choice.presentationId,
