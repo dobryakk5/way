@@ -18,7 +18,8 @@ export type FlushSceneInstancesResult =
   | { status: 'ok'; sent: number }
   | { status: 'paused-auth'; sent: number }
   | { status: 'retry'; sent: number; reason: 'network' | 'server' | 'throttled' | 'invalid-response' }
-  | { status: 'rejected'; sent: number; httpStatus: number };
+  | { status: 'rejected'; sent: number; httpStatus: number }
+  | { status: 'rejected'; sent: number; items: { sceneInstanceId: string; code: string }[] };
 
 function apiScene(local: LocalSceneInstance): SceneInstancePayload {
   return sceneInstanceSchema.parse({
@@ -99,6 +100,7 @@ export async function flushSceneInstances(options: {
   }
 
   const results = new Map(parsed.data.results.map(result => [result.sceneInstanceId, result]));
+  const rejected: { sceneInstanceId: string; code: string }[] = [];
   await Promise.all(pending.map(async scene => {
     const result = results.get(scene.sceneInstanceId);
     if (!result) {
@@ -109,10 +111,14 @@ export async function flushSceneInstances(options: {
       await markSceneInstanceSynced(scene.sceneInstanceId);
       return;
     }
-    await markSceneInstanceRejected(scene.sceneInstanceId, result.code ?? 'REJECTED');
+    const code = result.code ?? 'REJECTED';
+    rejected.push({ sceneInstanceId: scene.sceneInstanceId, code });
+    await markSceneInstanceRejected(scene.sceneInstanceId, code);
   }));
 
-  return { status: 'ok', sent: pending.length };
+  return rejected.length
+    ? { status: 'rejected', sent: pending.length, items: rejected }
+    : { status: 'ok', sent: pending.length };
 }
 
 
