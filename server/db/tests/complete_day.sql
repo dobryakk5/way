@@ -13,7 +13,6 @@ DECLARE
     v_second_choice BIGINT;
     v_second_presentation BIGINT;
     v_result JSONB;
-    v_status TEXT;
 BEGIN
     SELECT gs.id
     INTO v_scene
@@ -93,16 +92,8 @@ BEGIN
     IF (v_result->>'gameDay')::integer <> 1 OR (v_result->>'lastSeq')::bigint <> 1 THEN
         RAISE EXCEPTION 'unexpected day/seq result %', v_result;
     END IF;
-
-    SELECT processed_through_day, last_processed_seq
-    INTO STRICT v_status, v_status
-    FROM character_development_state
-    WHERE character_id = v_character;
-EXCEPTION
-    WHEN datatype_mismatch THEN
-        NULL;
 END;
-$$;
+$;
 
 DO $$
 DECLARE
