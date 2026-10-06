@@ -52,6 +52,8 @@ function samePayload(a: SceneInstancePayload, b: SceneInstancePayload): boolean 
     a.gameDay === b.gameDay &&
     a.sceneId === b.sceneId &&
     a.scenePresentationId === b.scenePresentationId &&
+    a.gameSlot === b.gameSlot &&
+    a.selectionOrigin === b.selectionOrigin &&
     JSON.stringify(a.choices) === JSON.stringify(b.choices);
 }
 
