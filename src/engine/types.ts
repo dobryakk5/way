@@ -153,7 +153,24 @@ export type Phase = 'morning' | 'intention' | 'route' | 'slot' | 'evening' | 'in
 export interface GameState {
   version: number; contentVersion: string; episodeId: string; runId: string; seed: number;
   // Present only for runs created after server persistence was introduced. Legacy runs remain local-only.
-  serverPersistence?: { enabled: true; schema: 1 };
+  serverPersistence?: {
+    enabled: true;
+    schema: 1;
+    processedThroughDay?: number;
+    lastProcessedSeq?: number;
+    canonicalDevelopment?: {
+      taxonomyVersion: string;
+      evidenceModelVersion: string;
+      calculationVersion: string;
+      profileStatus: 'insufficient_data' | 'provisional' | 'stable' | 'transition';
+      centerScores: Record<string, number>;
+      currentCenter: string | null;
+      currentCenterConfidence: number | null;
+      emergingCenter: string | null;
+      emergingCenterConfidence: number | null;
+      evidenceCount: number;
+    };
+  };
   chapter: number; day: number; slot: number; phase: Phase;
   current?: { cardId: string; /** Legacy side of a two-choice card only. */ leftChoiceId?: string; /** Authored semantic ids; semantics always follow choiceId, never the index. */ choiceIds: string[]; text: string; variantId?: string; choices?: Choice[];
     // Frozen at first presentation; never recomputed after a reload or a profile update.
