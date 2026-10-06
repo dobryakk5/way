@@ -10,7 +10,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc -b --pretty false",
-    "check": "npm run content:check && npm run typecheck && npm test",
+    "check": "npm run content:check && npm run cards:lint -- --strict --quiet && npm run typecheck && npm test",
     "content:check": "node --import tsx scripts/check-content.ts",
     "simulate": "node --import tsx scripts/simulate.ts",
     "smoke:phase4": "node --import tsx scripts/smoke-phase4.ts",
@@ -22,7 +22,8 @@
     "v25:source": "node --import tsx scripts/v25/source-checks.ts",
     "v25:simulate": "node --import tsx scripts/v25/simulate-package.ts",
     "v25:build": "node --import tsx scripts/v25/build-cards.ts",
-    "facets:simulate": "node --import tsx scripts/simulate-facets.ts"
+    "facets:simulate": "node --import tsx scripts/simulate-facets.ts",
+    "cards:lint": "node --import tsx scripts/cards-lint.ts"
   },
   "dependencies": {
     "framer-motion": "^12.4.7",

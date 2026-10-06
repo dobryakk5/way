@@ -1,8 +1,8 @@
 {
   "currentAlgorithmVersion": "2",
   "rollout": {
-    "adaptiveSelection": false,
-    "developmentArcs": false,
+    "adaptiveSelection": true,
+    "developmentArcs": true,
     "facetAttention": false
   },
   "facetAttention": {

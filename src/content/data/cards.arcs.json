@@ -1,0 +1,5135 @@
+[
+  {
+    "id": "dev.od.trial.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work"
+    ],
+    "character": "timon",
+    "text": "Чаши в печи полопались: ты пропустил осмотр, а Алексей потом переставил кувшины. Тимон спрашивает прямо: «Кто отвечал за эту печь?»",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "opportunist-diplomat",
+            "beat": "trial",
+            "is": "open"
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "opportunist"
+      ],
+      "arcId": "opportunist-diplomat"
+    },
+    "choices": [
+      {
+        "id": "share_responsibility",
+        "label": "Скажу: ошибка общая, и моя часть тоже",
+        "effects": {
+          "resources": {
+            "wealth": -4,
+            "peace": 1,
+            "bonds": 3
+          },
+          "qualities": {
+            "honesty": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.od.trial.01:share_responsibility",
+            "arcId": "opportunist-diplomat",
+            "contextId": "shared-responsibility",
+            "kind": "trial"
+          }
+        ]
+      },
+      {
+        "id": "protect_self",
+        "label": "«После меня всё было целым — дальше без меня»",
+        "effects": {
+          "resources": {
+            "wealth": 2,
+            "peace": -1,
+            "bonds": -3
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.od.trial.01:protect_self",
+            "arcId": "opportunist-diplomat",
+            "contextId": "shared-responsibility",
+            "kind": "withdrawal",
+            "beat": "trial"
+          }
+        ]
+      },
+      {
+        "id": "coordinate_facts",
+        "label": "Сперва вместе восстановим, как всё шло",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "bonds": 1
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.od.consequence.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work"
+    ],
+    "character": "alexey",
+    "text": "Ты платишь: Тимон снял часть платы за недосмотр. Через неделю Алексей без просьбы предупредил тебя о трещине в днище и сам объяснился с покупателем. Он тебе ничего не должен.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "opportunist-diplomat",
+            "beat": "trial",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "opportunist-diplomat",
+            "beat": "consequence",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "opportunist-diplomat",
+            "beat": "trial",
+            "of": "done",
+            "decisions": 1,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "opportunist"
+      ],
+      "arcId": "opportunist-diplomat"
+    },
+    "choices": [
+      {
+        "id": "ledger",
+        "label": "«Что ж, теперь он мне должен»",
+        "effects": {
+          "resources": {
+            "wealth": 1,
+            "peace": -1,
+            "bonds": -2
+          }
+        },
+        "servesFacets": [
+          "work"
+        ]
+      },
+      {
+        "id": "trust_has_value",
+        "label": "Приму помощь без счёта, доверие дороже",
+        "effects": {
+          "resources": {
+            "peace": 2,
+            "bonds": 3
+          },
+          "qualities": {
+            "compassion": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.od.consequence.01:trust_has_value",
+            "arcId": "opportunist-diplomat",
+            "contextId": "shared-responsibility-consequence",
+            "kind": "consequence"
+          }
+        ]
+      },
+      {
+        "id": "chance",
+        "label": "«Это просто совпадение, не больше»",
+        "effects": {
+          "resources": {
+            "bonds": -1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.od.review.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "inner"
+    ],
+    "text": "Вечером ты возвращаешься к тому разговору. Деньги потеряны по-настоящему, но и помощь Алексея была настоящей. Надо понять, что в твоём поступке было важным.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "opportunist-diplomat",
+            "beat": "consequence",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "opportunist-diplomat",
+            "beat": "review",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "opportunist-diplomat",
+            "beat": "consequence",
+            "of": "done",
+            "decisions": 1,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "opportunist"
+      ],
+      "arcId": "opportunist-diplomat"
+    },
+    "choices": [
+      {
+        "id": "future_debt",
+        "label": "«Окупится: пусть люди будут должны»",
+        "effects": {
+          "resources": {
+            "peace": -1,
+            "bonds": -1
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ]
+      },
+      {
+        "id": "never_again",
+        "label": "«Слишком дорого. Впредь застрахуюсь»",
+        "effects": {
+          "resources": {
+            "wealth": 1,
+            "peace": -1,
+            "bonds": -2
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.od.review.01:never_again",
+            "arcId": "opportunist-diplomat",
+            "contextId": "reciprocity-meaning",
+            "kind": "withdrawal",
+            "beat": "review"
+          }
+        ]
+      },
+      {
+        "id": "relationship_value",
+        "label": "Я не спасал себя им — между нами осталось живое",
+        "effects": {
+          "resources": {
+            "peace": 3,
+            "bonds": 2
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.od.review.01:relationship_value",
+            "arcId": "opportunist-diplomat",
+            "contextId": "reciprocity-meaning",
+            "kind": "review"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.od.transfer.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships"
+    ],
+    "character": "liya",
+    "text": "Лия просила помочь вечером и рассчитывает на тебя. За час до встречи Тимон зовёт на выгодный торг — только сегодня. Отмену легко объяснить делами.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "opportunist-diplomat",
+            "beat": "review",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "opportunist-diplomat",
+            "beat": "transfer",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "opportunist-diplomat",
+            "beat": "review",
+            "of": "done",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "opportunist"
+      ],
+      "arcId": "opportunist-diplomat"
+    },
+    "choices": [
+      {
+        "id": "take_opportunity",
+        "label": "Отменю встречу и поеду на торг",
+        "effects": {
+          "resources": {
+            "wealth": 4,
+            "strength": -1,
+            "peace": -1,
+            "bonds": -4
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.od.transfer.01:take_opportunity",
+            "arcId": "opportunist-diplomat",
+            "contextId": "promise-to-close-person",
+            "kind": "withdrawal",
+            "beat": "transfer"
+          }
+        ]
+      },
+      {
+        "id": "keep_promise",
+        "label": "Сдержу слово, пусть торг уйдёт",
+        "effects": {
+          "resources": {
+            "wealth": -4,
+            "strength": -2,
+            "peace": 1,
+            "bonds": 4
+          },
+          "qualities": {
+            "compassion": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.od.transfer.01:keep_promise",
+            "arcId": "opportunist-diplomat",
+            "contextId": "promise-to-close-person",
+            "kind": "transfer"
+          }
+        ]
+      },
+      {
+        "id": "open_renegotiation",
+        "label": "Скажу про торг честно, спрошу о переносе",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "bonds": 1
+          },
+          "qualities": {
+            "honesty": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.od.pressure.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work"
+    ],
+    "character": "timon",
+    "text": "Ты обещал Тимону партию на согласованных условиях. Теперь другой покупатель даёт заметно больше, если нарушить уговор сегодня. Лазейка есть, а удержать тебя Тимон не сможет.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "opportunist-diplomat",
+            "beat": "transfer",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "opportunist-diplomat",
+            "beat": "pressure",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "opportunist-diplomat",
+            "beat": "transfer",
+            "of": "done",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "opportunist"
+      ],
+      "arcId": "opportunist-diplomat"
+    },
+    "choices": [
+      {
+        "id": "take_better_deal",
+        "label": "Воспользуюсь лазейкой и продам дороже",
+        "effects": {
+          "resources": {
+            "wealth": 6,
+            "peace": -2,
+            "bonds": -4
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.od.pressure.01:take_better_deal",
+            "arcId": "opportunist-diplomat",
+            "contextId": "promise-under-pressure",
+            "kind": "withdrawal",
+            "beat": "pressure"
+          }
+        ]
+      },
+      {
+        "id": "renegotiate",
+        "label": "Скажу Тимону заранее: давай пересмотрим условия",
+        "effects": {
+          "resources": {
+            "wealth": 1,
+            "strength": -1,
+            "bonds": 1
+          },
+          "qualities": {
+            "honesty": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ]
+      },
+      {
+        "id": "honor_terms",
+        "label": "Сдержу уговор, хоть и потеряю выгоду",
+        "effects": {
+          "resources": {
+            "wealth": -5,
+            "peace": 1,
+            "bonds": 4
+          },
+          "qualities": {
+            "courage": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.od.pressure.01:honor_terms",
+            "arcId": "opportunist-diplomat",
+            "contextId": "promise-under-pressure",
+            "kind": "pressure"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.od.retry.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships"
+    ],
+    "character": "ilya",
+    "text": "Егор доверил тебе то, чем можно выиграть спор с Тимоном. Откуда это — никто не узнает. Преимущество сильное.",
+    "once": false,
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "opportunist-diplomat",
+            "beat": "pressure",
+            "is": "withdrawn"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "opportunist-diplomat",
+            "beat": "pressure",
+            "of": "withdrawal",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "opportunist"
+      ],
+      "arcId": "opportunist-diplomat"
+    },
+    "choices": [
+      {
+        "id": "keep_confidence",
+        "label": "Не использую и поищу другой ход",
+        "effects": {
+          "resources": {
+            "wealth": -3,
+            "strength": -1,
+            "peace": 2,
+            "bonds": 2
+          },
+          "qualities": {
+            "honesty": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.od.retry.01:keep_confidence",
+            "arcId": "opportunist-diplomat",
+            "contextId": "trusted-information",
+            "kind": "pressure"
+          }
+        ]
+      },
+      {
+        "id": "use_info",
+        "label": "Использую: шанс слишком хорош",
+        "effects": {
+          "resources": {
+            "wealth": 4,
+            "peace": -2,
+            "bonds": -3
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.od.retry.01:use_info",
+            "arcId": "opportunist-diplomat",
+            "contextId": "trusted-information",
+            "kind": "withdrawal",
+            "beat": "pressure"
+          }
+        ]
+      },
+      {
+        "id": "hint_without_source",
+        "label": "Вверну намёк, не назвав источника",
+        "effects": {
+          "resources": {
+            "wealth": 2,
+            "peace": -2,
+            "bonds": -2
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.od.retry-trial.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work"
+    ],
+    "character": "alexey",
+    "text": "В мастерской один круг для обжига. Записался первым ты, но без круга Алексей не сделает свою часть, и общий срок уйдёт.",
+    "once": false,
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "opportunist-diplomat",
+            "beat": "trial",
+            "is": "withdrawn"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "opportunist-diplomat",
+            "beat": "trial",
+            "of": "withdrawal",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "opportunist"
+      ],
+      "arcId": "opportunist-diplomat"
+    },
+    "choices": [
+      {
+        "id": "share",
+        "label": "Поделю круг и потерплю неудобство",
+        "effects": {
+          "resources": {
+            "wealth": -2,
+            "strength": -2,
+            "bonds": 3
+          },
+          "qualities": {
+            "compassion": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.od.retry-trial.01:share",
+            "arcId": "opportunist-diplomat",
+            "contextId": "scarce-resource-sharing",
+            "kind": "trial"
+          }
+        ]
+      },
+      {
+        "id": "claim",
+        "label": "Заберу круг себе: я записан первым",
+        "effects": {
+          "resources": {
+            "wealth": 3,
+            "strength": -1,
+            "peace": -1,
+            "bonds": -3
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.od.retry-trial.01:claim",
+            "arcId": "opportunist-diplomat",
+            "contextId": "scarce-resource-sharing",
+            "kind": "withdrawal",
+            "beat": "trial"
+          }
+        ]
+      },
+      {
+        "id": "optimize",
+        "label": "Перепишу очередь всем по выгоде",
+        "effects": {
+          "resources": {
+            "wealth": 1,
+            "strength": -2,
+            "bonds": -1
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.od.retry-review.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "inner"
+    ],
+    "character": "alexey",
+    "text": "После ещё одного дня взаимной помощи ты замечаешь: Алексей поддержал тебя без просьбы и без видимой выгоды.",
+    "once": false,
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "opportunist-diplomat",
+            "beat": "review",
+            "is": "withdrawn"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "opportunist-diplomat",
+            "beat": "review",
+            "of": "withdrawal",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "opportunist"
+      ],
+      "arcId": "opportunist-diplomat"
+    },
+    "choices": [
+      {
+        "id": "ledger",
+        "label": "Запишу как услугу и обменяю потом",
+        "effects": {
+          "resources": {
+            "peace": -1,
+            "bonds": -1
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ]
+      },
+      {
+        "id": "recognize",
+        "label": "Признаю: доверие не сведёшь к обмену",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "peace": 2,
+            "bonds": 3
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.od.retry-review.01:recognize",
+            "arcId": "opportunist-diplomat",
+            "contextId": "reciprocity-review-retry",
+            "kind": "review"
+          }
+        ]
+      },
+      {
+        "id": "dismiss",
+        "label": "Не придам значения: помогают случайно",
+        "effects": {
+          "resources": {
+            "bonds": -1
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.od.retry-transfer.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships"
+    ],
+    "character": "ilya",
+    "text": "Ты обещал Егору помочь с важным делом. Тем временем подворачивается редкая выгода — именно сегодня.",
+    "once": false,
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "opportunist-diplomat",
+            "beat": "transfer",
+            "is": "withdrawn"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "opportunist-diplomat",
+            "beat": "transfer",
+            "of": "withdrawal",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "opportunist"
+      ],
+      "arcId": "opportunist-diplomat"
+    },
+    "choices": [
+      {
+        "id": "take",
+        "label": "Откажусь от помощи и возьму выгоду",
+        "effects": {
+          "resources": {
+            "wealth": 4,
+            "peace": -1,
+            "bonds": -4
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.od.retry-transfer.01:take",
+            "arcId": "opportunist-diplomat",
+            "contextId": "promise-retry",
+            "kind": "withdrawal",
+            "beat": "transfer"
+          }
+        ]
+      },
+      {
+        "id": "excuse",
+        "label": "Придумаю уважительную причину отмены",
+        "effects": {
+          "resources": {
+            "wealth": 2,
+            "peace": -2,
+            "bonds": -1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ]
+      },
+      {
+        "id": "keep",
+        "label": "Сдержу слово, пусть выгода уходит",
+        "effects": {
+          "resources": {
+            "wealth": -4,
+            "strength": -2,
+            "peace": 1,
+            "bonds": 4
+          },
+          "qualities": {
+            "compassion": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.od.retry-transfer.01:keep",
+            "arcId": "opportunist-diplomat",
+            "contextId": "promise-retry",
+            "kind": "transfer"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.de.trial.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work"
+    ],
+    "character": "savva",
+    "text": "Мастерская готовит важный заказ как привыкли. Савва: «Не усложняй, так делаем годами». Ты видишь: одна мера глазури стоит на старом допущении и может дать брак. Проверка обидит старших.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "diplomat-expert",
+            "beat": "trial",
+            "is": "open"
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "diplomat"
+      ],
+      "arcId": "diplomat-expert"
+    },
+    "choices": [
+      {
+        "id": "follow_norm",
+        "label": "Сделаю как принято: не раскачивать лодку",
+        "effects": {
+          "resources": {
+            "wealth": 1,
+            "peace": -1,
+            "bonds": 2
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.de.trial.01:follow_norm",
+            "arcId": "diplomat-expert",
+            "contextId": "group-norm-vs-quality",
+            "kind": "withdrawal",
+            "beat": "trial"
+          }
+        ]
+      },
+      {
+        "id": "verify_and_show",
+        "label": "Проверю меру и спокойно покажу расхождение",
+        "effects": {
+          "resources": {
+            "wealth": -2,
+            "strength": -2,
+            "bonds": -1
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.de.trial.01:verify_and_show",
+            "arcId": "diplomat-expert",
+            "contextId": "group-norm-vs-quality",
+            "kind": "trial"
+          }
+        ]
+      },
+      {
+        "id": "escalate_unchecked",
+        "label": "Сразу скажу Мирону: старый способ неверен",
+        "effects": {
+          "resources": {
+            "peace": -2,
+            "bonds": -3
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.de.consequence.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships"
+    ],
+    "character": "savva",
+    "text": "Проверка подтвердила брак, но нашлось и другое: старая мера когда-то решала настоящую беду — глина была другой. Савва раздражён: «Думаешь, мы тут ничего не понимаем?»",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "diplomat-expert",
+            "beat": "trial",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "diplomat-expert",
+            "beat": "consequence",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "diplomat-expert",
+            "beat": "trial",
+            "of": "done",
+            "decisions": 1,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "diplomat"
+      ],
+      "arcId": "diplomat-expert"
+    },
+    "choices": [
+      {
+        "id": "victory",
+        "label": "«Факт есть факт: прав оказался я»",
+        "effects": {
+          "resources": {
+            "bonds": -3
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ]
+      },
+      {
+        "id": "back_down",
+        "label": "Извинюсь и откажусь от вывода ради лада",
+        "effects": {
+          "resources": {
+            "peace": -1,
+            "bonds": 2
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.de.consequence.01:back_down",
+            "arcId": "diplomat-expert",
+            "contextId": "disagreement-cost",
+            "kind": "withdrawal",
+            "beat": "consequence"
+          }
+        ]
+      },
+      {
+        "id": "separate_people_from_solution",
+        "label": "Признаю, откуда мера, проверим новую вместе",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "strength": -2,
+            "peace": 1,
+            "bonds": 2
+          },
+          "qualities": {
+            "compassion": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.de.consequence.01:separate_people_from_solution",
+            "arcId": "diplomat-expert",
+            "contextId": "disagreement-cost",
+            "kind": "consequence"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.de.review.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "inner"
+    ],
+    "text": "После ссоры ты замечаешь: больше брака тебя пугало, что мастера перестанут считать тебя своим. Но проверка была нужна.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "diplomat-expert",
+            "beat": "consequence",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "diplomat-expert",
+            "beat": "review",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "diplomat-expert",
+            "beat": "consequence",
+            "of": "done",
+            "decisions": 1,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "diplomat"
+      ],
+      "arcId": "diplomat-expert"
+    },
+    "choices": [
+      {
+        "id": "respect_and_check",
+        "label": "Уважать и проверять можно вместе — не отвержение",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "peace": 3,
+            "bonds": 1
+          },
+          "qualities": {
+            "honesty": 1
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.de.review.01:respect_and_check",
+            "arcId": "diplomat-expert",
+            "contextId": "independent-judgment",
+            "kind": "review"
+          }
+        ]
+      },
+      {
+        "id": "peace_first",
+        "label": "Лучше промолчать, чем портить отношения",
+        "effects": {
+          "resources": {
+            "bonds": 1
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ]
+      },
+      {
+        "id": "trust_no_one",
+        "label": "Никому не верить, всё проверять самому",
+        "effects": {
+          "resources": {
+            "strength": -2,
+            "peace": -2,
+            "bonds": -2
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.de.transfer.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "body"
+    ],
+    "character": "fekla",
+    "text": "Ты меняешь, как работаешь после ярмарки. Фёкла советует строгий покой, а Радим и собственная спина говорят о риске перегрузки. Оба убедительны.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "diplomat-expert",
+            "beat": "review",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "diplomat-expert",
+            "beat": "transfer",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "diplomat-expert",
+            "beat": "review",
+            "of": "done",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "diplomat"
+      ],
+      "arcId": "diplomat-expert"
+    },
+    "choices": [
+      {
+        "id": "follow_authority",
+        "label": "Послушаюсь Фёклу: у неё имя, ей виднее",
+        "effects": {
+          "resources": {
+            "wealth": -3,
+            "strength": 2,
+            "peace": 1,
+            "bonds": 1
+          }
+        },
+        "servesFacets": [
+          "body"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.de.transfer.01:follow_authority",
+            "arcId": "diplomat-expert",
+            "contextId": "authority-vs-evidence",
+            "kind": "withdrawal",
+            "beat": "transfer"
+          }
+        ]
+      },
+      {
+        "id": "ignore_experts",
+        "label": "Не послушаю обоих: я сам себя знаю",
+        "effects": {
+          "resources": {
+            "wealth": 1,
+            "strength": -3,
+            "peace": -1,
+            "bonds": -1
+          }
+        },
+        "servesFacets": [
+          "body"
+        ],
+        "decisionKinds": [
+          "cost"
+        ]
+      },
+      {
+        "id": "check_basis",
+        "label": "Спрошу, на чём стоят советы, сверю со спиной",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "strength": 1,
+            "peace": 2,
+            "bonds": 1
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "body"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.de.transfer.01:check_basis",
+            "arcId": "diplomat-expert",
+            "contextId": "authority-vs-evidence",
+            "kind": "transfer"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.de.pressure.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work"
+    ],
+    "character": "miron",
+    "text": "Перед сходом ты видишь ошибку в решении Мирона. Скажешь сейчас — сход задержится, а он может принять это за подрыв. Промолчишь — всё пройдёт тихо, но решение останется непроверенным.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "diplomat-expert",
+            "beat": "transfer",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "diplomat-expert",
+            "beat": "pressure",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "diplomat-expert",
+            "beat": "transfer",
+            "of": "done",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "diplomat"
+      ],
+      "arcId": "diplomat-expert"
+    },
+    "choices": [
+      {
+        "id": "present_checkable_basis",
+        "label": "Скажу спокойно, покажу основание, предложу проверку",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "strength": -1,
+            "peace": 1,
+            "bonds": 1
+          },
+          "qualities": {
+            "courage": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.de.pressure.01:present_checkable_basis",
+            "arcId": "diplomat-expert",
+            "contextId": "evidence-against-group",
+            "kind": "pressure"
+          }
+        ]
+      },
+      {
+        "id": "stay_silent",
+        "label": "Промолчу: не время ставить его в неловкое положение",
+        "effects": {
+          "resources": {
+            "peace": -2,
+            "bonds": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.de.pressure.01:stay_silent",
+            "arcId": "diplomat-expert",
+            "contextId": "evidence-against-group",
+            "kind": "withdrawal",
+            "beat": "pressure"
+          }
+        ]
+      },
+      {
+        "id": "public_proof",
+        "label": "На сходе разберу ошибку при всех, пусть видят",
+        "effects": {
+          "resources": {
+            "peace": -1,
+            "bonds": -4
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.de.retry.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work"
+    ],
+    "character": "daria",
+    "text": "Родные единодушно советуют взять дело, которое им понятно. Они искренне желают добра. Ты находишь несколько фактов, которые с их уверенностью не сходятся.",
+    "once": false,
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "diplomat-expert",
+            "beat": "pressure",
+            "is": "withdrawn"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "diplomat-expert",
+            "beat": "pressure",
+            "of": "withdrawal",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "diplomat"
+      ],
+      "arcId": "diplomat-expert"
+    },
+    "choices": [
+      {
+        "id": "follow_family",
+        "label": "Соглашусь: когда все твердят одно, не спорю",
+        "effects": {
+          "resources": {
+            "wealth": 1,
+            "peace": -1,
+            "bonds": 3
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.de.retry.01:follow_family",
+            "arcId": "diplomat-expert",
+            "contextId": "family-advice-vs-check",
+            "kind": "withdrawal",
+            "beat": "pressure"
+          }
+        ]
+      },
+      {
+        "id": "verify_independently",
+        "label": "Не спорю о вкусах, проверю факты сам",
+        "effects": {
+          "resources": {
+            "wealth": -2,
+            "strength": -2,
+            "peace": 1
+          },
+          "qualities": {
+            "courage": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.de.retry.01:verify_independently",
+            "arcId": "diplomat-expert",
+            "contextId": "family-advice-vs-check",
+            "kind": "pressure"
+          }
+        ]
+      },
+      {
+        "id": "reject_to_prove_independence",
+        "label": "Откажусь именно потому, что советует семья",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "peace": -2,
+            "bonds": -3
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.de.retry-trial.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work"
+    ],
+    "character": "savva",
+    "text": "В порядке мастерской есть правило, которое выполняют по привычке. Ты находишь более раннюю запись самого Саввы: там сказано иначе.",
+    "once": false,
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "diplomat-expert",
+            "beat": "trial",
+            "is": "withdrawn"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "diplomat-expert",
+            "beat": "trial",
+            "of": "withdrawal",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "diplomat"
+      ],
+      "arcId": "diplomat-expert"
+    },
+    "choices": [
+      {
+        "id": "verify",
+        "label": "Проверю по записи и покажу расхождение",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "strength": -1
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.de.retry-trial.01:verify",
+            "arcId": "diplomat-expert",
+            "contextId": "procedure-vs-source",
+            "kind": "trial"
+          }
+        ]
+      },
+      {
+        "id": "follow",
+        "label": "Оставлю как принято, чтобы не спорить",
+        "effects": {
+          "resources": {
+            "peace": -1,
+            "bonds": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.de.retry-trial.01:follow",
+            "arcId": "diplomat-expert",
+            "contextId": "procedure-vs-source",
+            "kind": "withdrawal",
+            "beat": "trial"
+          }
+        ]
+      },
+      {
+        "id": "escalate",
+        "label": "Потребую отменить старое: источник ясен",
+        "effects": {
+          "resources": {
+            "peace": -1,
+            "bonds": -3
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.de.retry-consequence.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work"
+    ],
+    "character": "savva",
+    "text": "Позже то же допущение снова даёт брак. Савва признаёт: у старой меры были свои причины, но их больше нет.",
+    "once": false,
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "diplomat-expert",
+            "beat": "consequence",
+            "is": "withdrawn"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "diplomat-expert",
+            "beat": "consequence",
+            "of": "withdrawal",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "diplomat"
+      ],
+      "arcId": "diplomat-expert"
+    },
+    "choices": [
+      {
+        "id": "prove",
+        "label": "Скажу: я был прав с самого начала",
+        "effects": {
+          "resources": {
+            "bonds": -3
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ]
+      },
+      {
+        "id": "separate",
+        "label": "Отделю Савву от метода, проверим вместе",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "peace": 1,
+            "bonds": 3
+          },
+          "qualities": {
+            "compassion": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.de.retry-consequence.01:separate",
+            "arcId": "diplomat-expert",
+            "contextId": "independent-check-consequence",
+            "kind": "consequence"
+          }
+        ]
+      },
+      {
+        "id": "back",
+        "label": "Промолчу, чтобы не портить дело",
+        "effects": {
+          "resources": {
+            "wealth": -2,
+            "peace": -1,
+            "bonds": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.de.retry-consequence.01:back",
+            "arcId": "diplomat-expert",
+            "contextId": "independent-check-consequence",
+            "kind": "withdrawal",
+            "beat": "consequence"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.de.retry-transfer.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships"
+    ],
+    "character": "ilya",
+    "text": "Егор советует мастера, которому давно верит. В смете несколько непонятных пунктов, но проверка может выглядеть как недоверие к его совету.",
+    "once": false,
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "diplomat-expert",
+            "beat": "transfer",
+            "is": "withdrawn"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "diplomat-expert",
+            "beat": "transfer",
+            "of": "withdrawal",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "diplomat"
+      ],
+      "arcId": "diplomat-expert"
+    },
+    "choices": [
+      {
+        "id": "accept",
+        "label": "Соглашусь: надо верить тому, кто ручается",
+        "effects": {
+          "resources": {
+            "wealth": -3,
+            "peace": -1,
+            "bonds": 2
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.de.retry-transfer.01:accept",
+            "arcId": "diplomat-expert",
+            "contextId": "trusted-advice-vs-check",
+            "kind": "withdrawal",
+            "beat": "transfer"
+          }
+        ]
+      },
+      {
+        "id": "reject",
+        "label": "Откажусь: рекомендация слишком настойчивая",
+        "effects": {
+          "resources": {
+            "wealth": -2,
+            "peace": -1,
+            "bonds": -2
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ]
+      },
+      {
+        "id": "check",
+        "label": "Уточню смету и сверю качество без обид",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "strength": -1,
+            "peace": 1,
+            "bonds": 2
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.de.retry-transfer.01:check",
+            "arcId": "diplomat-expert",
+            "contextId": "trusted-advice-vs-check",
+            "kind": "transfer"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.ai.trial.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work"
+    ],
+    "character": "miron",
+    "text": "Мирон предлагает тебе место старшины круга: больше платы и почёта, круг сильнее, звание красивее. Но ремесло, которым ты давно хотел заняться по-своему, уйдёт почти целиком, и жизнь изменится.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "achiever-individualist",
+            "beat": "trial",
+            "is": "open"
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "achiever"
+      ],
+      "arcId": "achiever-individualist"
+    },
+    "choices": [
+      {
+        "id": "accept_and_optimize",
+        "label": "Соглашусь и рассчитаю силы: такое не упускают",
+        "effects": {
+          "resources": {
+            "wealth": 4,
+            "strength": -3,
+            "peace": -1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.ai.trial.01:accept_and_optimize",
+            "arcId": "achiever-individualist",
+            "contextId": "attractive-goal",
+            "kind": "withdrawal",
+            "beat": "trial"
+          }
+        ]
+      },
+      {
+        "id": "reject_system",
+        "label": "Откажусь: не хочу в гонку за почётом",
+        "effects": {
+          "resources": {
+            "wealth": -2,
+            "peace": 1,
+            "bonds": -1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ]
+      },
+      {
+        "id": "pause_and_examine",
+        "label": "Попрошу время: зачем мне это, кроме платы и почёта?",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "peace": 2
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.ai.trial.01:pause_and_examine",
+            "arcId": "achiever-individualist",
+            "contextId": "attractive-goal",
+            "kind": "trial"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.ai.consequence.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships"
+    ],
+    "character": "liya",
+    "text": "Ты получил полную картину: место даст плату и влияние. Лия не просит отказываться, но честно говорит: жизнь изменится — меньше времени, больше дорог, ты всегда нужен.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "achiever-individualist",
+            "beat": "trial",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "achiever-individualist",
+            "beat": "consequence",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "achiever-individualist",
+            "beat": "trial",
+            "of": "done",
+            "decisions": 1,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "achiever"
+      ],
+      "arcId": "achiever-individualist"
+    },
+    "choices": [
+      {
+        "id": "recognize_values_conflict",
+        "label": "Признаю: тут две ценности, расписанием не склеить",
+        "effects": {
+          "resources": {
+            "peace": 2,
+            "bonds": 2
+          },
+          "qualities": {
+            "honesty": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.ai.consequence.01:recognize_values_conflict",
+            "arcId": "achiever-individualist",
+            "contextId": "goal-side-effects",
+            "kind": "consequence"
+          }
+        ]
+      },
+      {
+        "id": "optimize_schedule",
+        "label": "«Распишу неделю по часам — всё поместится»",
+        "effects": {
+          "resources": {
+            "wealth": 1,
+            "strength": -2,
+            "peace": -1,
+            "bonds": -1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ]
+      },
+      {
+        "id": "blame_close",
+        "label": "Решу: она просто боится моего роста",
+        "effects": {
+          "resources": {
+            "peace": -2,
+            "bonds": -4
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.ai.review.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "inner"
+    ],
+    "text": "Ты замечаешь неприятное: часть привлекательности предложения в том, что его легко показать другим как успех. Убери чужое восхищение — выбор уже не такой очевидный.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "achiever-individualist",
+            "beat": "consequence",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "achiever-individualist",
+            "beat": "review",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "achiever-individualist",
+            "beat": "consequence",
+            "of": "done",
+            "decisions": 1,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "achiever"
+      ],
+      "arcId": "achiever-individualist"
+    },
+    "choices": [
+      {
+        "id": "recognized_goal",
+        "label": "«Цель, что признают сильные, — хороший ориентир»",
+        "effects": {
+          "resources": {
+            "wealth": 1,
+            "peace": -1
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ]
+      },
+      {
+        "id": "live_with_result",
+        "label": "Достичь цели — не значит хотеть её последствий",
+        "effects": {
+          "resources": {
+            "peace": 3
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.ai.review.01:live_with_result",
+            "arcId": "achiever-individualist",
+            "contextId": "borrowed-goal",
+            "kind": "review"
+          }
+        ]
+      },
+      {
+        "id": "all_goals_fake",
+        "label": "«Все цели придуманы — ни к чему привязываться»",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "peace": -2,
+            "bonds": -2
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.ai.transfer.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "body"
+    ],
+    "character": "radim",
+    "text": "Ты выстроил работу и отдых вокруг понятной меры. Успех есть, но распорядок вытесняет встречи, отдых и то, ради чего ты хотел быть крепким.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "achiever-individualist",
+            "beat": "review",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "achiever-individualist",
+            "beat": "transfer",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "achiever-individualist",
+            "beat": "review",
+            "of": "done",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "achiever"
+      ],
+      "arcId": "achiever-individualist"
+    },
+    "choices": [
+      {
+        "id": "redefine_goal",
+        "label": "Меры оставлю, но пусть служат жизни, а не наоборот",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "peace": 2,
+            "bonds": 3
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "body"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.ai.transfer.01:redefine_goal",
+            "arcId": "achiever-individualist",
+            "contextId": "optimization-vs-lived-value",
+            "kind": "transfer"
+          }
+        ]
+      },
+      {
+        "id": "tighten_plan",
+        "label": "Ужесточу порядок: идёт — значит, не сбавлять",
+        "effects": {
+          "resources": {
+            "wealth": 1,
+            "strength": -3,
+            "peace": -2,
+            "bonds": -2
+          }
+        },
+        "servesFacets": [
+          "body"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.ai.transfer.01:tighten_plan",
+            "arcId": "achiever-individualist",
+            "contextId": "optimization-vs-lived-value",
+            "kind": "withdrawal",
+            "beat": "transfer"
+          }
+        ]
+      },
+      {
+        "id": "quit_tracking",
+        "label": "Брошу меры совсем: хочу просто жить",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "strength": 1,
+            "peace": 1
+          }
+        },
+        "servesFacets": [
+          "body"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.ai.pressure.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work"
+    ],
+    "character": "timon",
+    "text": "В последний миг тебе подворачивается заметный успех: нужно принять условия, что идут против границы, которую ты сам провёл после прежних дел. Вокруг считают предложение прекрасным.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "achiever-individualist",
+            "beat": "transfer",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "achiever-individualist",
+            "beat": "pressure",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "achiever-individualist",
+            "beat": "transfer",
+            "of": "done",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "achiever"
+      ],
+      "arcId": "achiever-individualist"
+    },
+    "choices": [
+      {
+        "id": "take_status",
+        "label": "Соглашусь: потом пересоберу условия, шанс редкий",
+        "effects": {
+          "resources": {
+            "wealth": 5,
+            "strength": -2,
+            "peace": -2,
+            "bonds": -1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.ai.pressure.01:take_status",
+            "arcId": "achiever-individualist",
+            "contextId": "status-under-pressure",
+            "kind": "withdrawal",
+            "beat": "pressure"
+          }
+        ]
+      },
+      {
+        "id": "honor_own_frame",
+        "label": "Поменяю сделку: границу не предам, пусть скромнее",
+        "effects": {
+          "resources": {
+            "wealth": -3,
+            "peace": 2,
+            "bonds": 1
+          },
+          "qualities": {
+            "courage": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.ai.pressure.01:honor_own_frame",
+            "arcId": "achiever-individualist",
+            "contextId": "status-under-pressure",
+            "kind": "pressure"
+          }
+        ]
+      },
+      {
+        "id": "reject_to_be_different",
+        "label": "Откажусь демонстративно: я не как все",
+        "effects": {
+          "resources": {
+            "wealth": -2,
+            "bonds": -3
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.ai.retry.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships"
+    ],
+    "character": "daria",
+    "text": "Все вокруг объясняют тебе, какое решение в близких делах «нормально для взрослого». Совет складный, но ты замечаешь: часть этих ценностей не твоя.",
+    "once": false,
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "achiever-individualist",
+            "beat": "pressure",
+            "is": "withdrawn"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "achiever-individualist",
+            "beat": "pressure",
+            "of": "withdrawal",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "achiever"
+      ],
+      "arcId": "achiever-individualist"
+    },
+    "choices": [
+      {
+        "id": "follow_script",
+        "label": "Сделаю, как советуют: общий опыт надёжнее",
+        "effects": {
+          "resources": {
+            "peace": -1,
+            "bonds": 3
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.ai.retry.01:follow_script",
+            "arcId": "achiever-individualist",
+            "contextId": "social-script",
+            "kind": "withdrawal",
+            "beat": "pressure"
+          }
+        ]
+      },
+      {
+        "id": "oppose_everyone",
+        "label": "Сделаю наоборот: раз все твердят одно",
+        "effects": {
+          "resources": {
+            "peace": -1,
+            "bonds": -2
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ]
+      },
+      {
+        "id": "own_choice",
+        "label": "Назову свои ценности и приму решение с ценой",
+        "effects": {
+          "resources": {
+            "wealth": -2,
+            "peace": 2
+          },
+          "qualities": {
+            "courage": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.ai.retry.01:own_choice",
+            "arcId": "achiever-individualist",
+            "contextId": "social-script",
+            "kind": "pressure"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.ai.retry-trial.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work"
+    ],
+    "character": "timon",
+    "text": "Тимон предлагает выгодный двухлетний заказ с понятной мерой успеха. Доход почти обеспечен, но свободы для других дел станет намного меньше.",
+    "once": false,
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "achiever-individualist",
+            "beat": "trial",
+            "is": "withdrawn"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "achiever-individualist",
+            "beat": "trial",
+            "of": "withdrawal",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "achiever"
+      ],
+      "arcId": "achiever-individualist"
+    },
+    "choices": [
+      {
+        "id": "examine",
+        "label": "Сперва проверю, хочу ли такой жизни два года",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "peace": 2
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.ai.retry-trial.01:examine",
+            "arcId": "achiever-individualist",
+            "contextId": "long-contract-goal",
+            "kind": "trial"
+          }
+        ]
+      },
+      {
+        "id": "accept",
+        "label": "Возьму заказ и распишу работу: выгода ясна",
+        "effects": {
+          "resources": {
+            "wealth": 5,
+            "strength": -3,
+            "peace": -1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.ai.retry-trial.01:accept",
+            "arcId": "achiever-individualist",
+            "contextId": "long-contract-goal",
+            "kind": "withdrawal",
+            "beat": "trial"
+          }
+        ]
+      },
+      {
+        "id": "reject",
+        "label": "Откажусь: долгие обязательства связывают",
+        "effects": {
+          "resources": {
+            "wealth": -2,
+            "peace": 1,
+            "bonds": -1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.ai.retry-transfer.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships"
+    ],
+    "character": "liya",
+    "text": "Все считают, что вам с Лией пора на положенный следующий шаг. Снаружи всё складывается, но ты не уверен, что хочешь именно такой формы сейчас.",
+    "once": false,
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "achiever-individualist",
+            "beat": "transfer",
+            "is": "withdrawn"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "achiever-individualist",
+            "beat": "transfer",
+            "of": "withdrawal",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "achiever"
+      ],
+      "arcId": "achiever-individualist"
+    },
+    "choices": [
+      {
+        "id": "follow",
+        "label": "Сделаю следующий шаг: так и положено",
+        "effects": {
+          "resources": {
+            "peace": -2,
+            "bonds": 2
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.ai.retry-transfer.01:follow",
+            "arcId": "achiever-individualist",
+            "contextId": "relationship-success-script",
+            "kind": "withdrawal",
+            "beat": "transfer"
+          }
+        ]
+      },
+      {
+        "id": "ownframe",
+        "label": "Поговорим, что шаг значит, и выберем свою форму",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "strength": -1,
+            "peace": 2,
+            "bonds": 3
+          },
+          "qualities": {
+            "honesty": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.ai.retry-transfer.01:ownframe",
+            "arcId": "achiever-individualist",
+            "contextId": "relationship-success-script",
+            "kind": "transfer"
+          }
+        ]
+      },
+      {
+        "id": "avoid",
+        "label": "Ни к чему не обязываюсь без полной уверенности",
+        "effects": {
+          "resources": {
+            "bonds": -2
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.is.trial.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships"
+    ],
+    "character": "ilya",
+    "text": "Между Егором и Мартой снова тот же спор. Ты хорошо понимаешь обоих и не раз помогал им выговориться. Каждый раз легче, а через пару недель всё сначала.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "individualist-strategist",
+            "beat": "trial",
+            "is": "open"
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "individualist"
+      ],
+      "arcId": "individualist-strategist"
+    },
+    "choices": [
+      {
+        "id": "change_mechanism",
+        "label": "Предложу новый порядок: кто решает, когда стоп",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "strength": -2,
+            "peace": 1,
+            "bonds": 1
+          },
+          "qualities": {
+            "courage": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.is.trial.01:change_mechanism",
+            "arcId": "individualist-strategist",
+            "contextId": "recurring-pattern",
+            "kind": "trial"
+          }
+        ]
+      },
+      {
+        "id": "mediate_again",
+        "label": "Снова поговорю с каждым: им надо быть услышанными",
+        "effects": {
+          "resources": {
+            "strength": -3,
+            "bonds": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.is.trial.01:mediate_again",
+            "arcId": "individualist-strategist",
+            "contextId": "recurring-pattern",
+            "kind": "withdrawal",
+            "beat": "trial"
+          }
+        ]
+      },
+      {
+        "id": "step_out",
+        "label": "Отойду: это их дело, не мне строить порядки",
+        "effects": {
+          "resources": {
+            "strength": 1,
+            "peace": 1,
+            "bonds": -2
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.is.consequence.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships"
+    ],
+    "character": "ilya",
+    "text": "Новый порядок уменьшил ссоры, но один из вас чувствует, что потерял привычную волю. Его упрёк не выдуман: правило удобнее одним, чем другим.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "individualist-strategist",
+            "beat": "trial",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "individualist-strategist",
+            "beat": "consequence",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "individualist-strategist",
+            "beat": "trial",
+            "of": "done",
+            "decisions": 1,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "individualist"
+      ],
+      "arcId": "individualist-strategist"
+    },
+    "choices": [
+      {
+        "id": "remove_rule",
+        "label": "Отменю правило: порядок не выше человека",
+        "effects": {
+          "resources": {
+            "peace": -1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ]
+      },
+      {
+        "id": "enforce_rule",
+        "label": "Оставлю как есть: иначе порядок не заработает",
+        "effects": {
+          "resources": {
+            "peace": -1,
+            "bonds": -3
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ]
+      },
+      {
+        "id": "adjust_feedback",
+        "label": "Сохраню смысл правила, спрошу, кому тесно",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "strength": -2,
+            "peace": 1,
+            "bonds": 3
+          },
+          "qualities": {
+            "compassion": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.is.consequence.01:adjust_feedback",
+            "arcId": "individualist-strategist",
+            "contextId": "system-rule-cost",
+            "kind": "consequence"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.is.review.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "inner"
+    ],
+    "text": "Ты видишь: прежние разговоры не были напрасны, без них ты бы не понял людей. Но одного понимания было мало: в плохой день все возвращались к привычным ответам.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "individualist-strategist",
+            "beat": "consequence",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "individualist-strategist",
+            "beat": "review",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "individualist-strategist",
+            "beat": "consequence",
+            "of": "done",
+            "decisions": 1,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "individualist"
+      ],
+      "arcId": "individualist-strategist"
+    },
+    "choices": [
+      {
+        "id": "understanding_enough",
+        "label": "«Главное — чтобы люди глубже поняли друг друга»",
+        "effects": {
+          "resources": {
+            "peace": 1,
+            "bonds": 1
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ]
+      },
+      {
+        "id": "structure_for_bad_day",
+        "label": "Порядок должен держать и когда мы устали",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "peace": 2,
+            "bonds": 1
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.is.review.01:structure_for_bad_day",
+            "arcId": "individualist-strategist",
+            "contextId": "architecture-responsibility",
+            "kind": "review"
+          }
+        ]
+      },
+      {
+        "id": "control_people",
+        "label": "Надо просто жёстче следить за соблюдением",
+        "effects": {
+          "resources": {
+            "peace": -2,
+            "bonds": -3
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "decisionKinds": [
+          "cost"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.is.transfer.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work"
+    ],
+    "text": "В делах одно и то же: мелкие обязательные платежи — за глину, дрова, перевоз — вспоминаешь поздно и героически закрываешь дыру руками. Сегодня снова можно «просто разрулить».",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "individualist-strategist",
+            "beat": "review",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "individualist-strategist",
+            "beat": "transfer",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "individualist-strategist",
+            "beat": "review",
+            "of": "done",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "individualist"
+      ],
+      "arcId": "individualist-strategist"
+    },
+    "choices": [
+      {
+        "id": "heroic_fix",
+        "label": "Закрою дыру сам и пообещаю быть внимательнее",
+        "effects": {
+          "resources": {
+            "wealth": -3,
+            "strength": -2,
+            "peace": -1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.is.transfer.01:heroic_fix",
+            "arcId": "individualist-strategist",
+            "contextId": "recurring-financial-system",
+            "kind": "withdrawal",
+            "beat": "transfer"
+          }
+        ]
+      },
+      {
+        "id": "complex_dashboard",
+        "label": "Сперва выстрою сложные счёты, потом дыру",
+        "effects": {
+          "resources": {
+            "wealth": -2,
+            "strength": -2
+          }
+        },
+        "servesFacets": [
+          "work"
+        ]
+      },
+      {
+        "id": "build_mechanism",
+        "label": "Заведу запас, знак у двери и очередь платежей",
+        "effects": {
+          "resources": {
+            "wealth": -3,
+            "strength": -1,
+            "peace": 2
+          },
+          "qualities": {
+            "courage": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.is.transfer.01:build_mechanism",
+            "arcId": "individualist-strategist",
+            "contextId": "recurring-financial-system",
+            "kind": "transfer"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.is.pressure.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work"
+    ],
+    "character": "ulyana",
+    "text": "В кризис часть нового порядка не работает. Быстрее всего — забрать все решения себе и до ночи закрывать дела руками. Все привыкли, что ты умеешь спасать.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "individualist-strategist",
+            "beat": "transfer",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "individualist-strategist",
+            "beat": "pressure",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "individualist-strategist",
+            "beat": "transfer",
+            "of": "done",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "individualist"
+      ],
+      "arcId": "individualist-strategist"
+    },
+    "choices": [
+      {
+        "id": "take_over",
+        "label": "Заберу всё себе и закрою до конца кризиса",
+        "effects": {
+          "resources": {
+            "wealth": 3,
+            "strength": -5,
+            "peace": -2,
+            "bonds": -2
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.is.pressure.01:take_over",
+            "arcId": "individualist-strategist",
+            "contextId": "system-under-crisis",
+            "kind": "withdrawal",
+            "beat": "pressure"
+          }
+        ]
+      },
+      {
+        "id": "simplify_system",
+        "label": "Сведу порядок к минимуму и раздам роли",
+        "effects": {
+          "resources": {
+            "wealth": 1,
+            "strength": -2,
+            "peace": 1,
+            "bonds": 2
+          },
+          "qualities": {
+            "courage": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.is.pressure.01:simplify_system",
+            "arcId": "individualist-strategist",
+            "contextId": "system-under-crisis",
+            "kind": "pressure"
+          }
+        ]
+      },
+      {
+        "id": "follow_process_blindly",
+        "label": "Потребую соблюдать порядок целиком",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "peace": -1,
+            "bonds": -2
+          }
+        },
+        "servesFacets": [
+          "work"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.is.retry.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "body"
+    ],
+    "character": "fekla",
+    "text": "После неудачи ты снова срываешься с порядка: в тяжёлый день идеальный план здоровья рассыпается. Можно ждать «нормальной недели» или менять сам порядок.",
+    "once": false,
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "individualist-strategist",
+            "beat": "pressure",
+            "is": "withdrawn"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "individualist-strategist",
+            "beat": "pressure",
+            "of": "withdrawal",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "individualist"
+      ],
+      "arcId": "individualist-strategist"
+    },
+    "choices": [
+      {
+        "id": "minimum_viable_routine",
+        "label": "Заведу малый порядок на плохой день",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "strength": 1,
+            "peace": 2
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "body"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.is.retry.01:minimum_viable_routine",
+            "arcId": "individualist-strategist",
+            "contextId": "resilient-routine",
+            "kind": "pressure"
+          }
+        ]
+      },
+      {
+        "id": "restart_monday",
+        "label": "Сочту день потерянным, начну с понедельника",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "strength": -1,
+            "peace": -1
+          }
+        },
+        "servesFacets": [
+          "body"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.is.retry.01:restart_monday",
+            "arcId": "individualist-strategist",
+            "contextId": "resilient-routine",
+            "kind": "withdrawal",
+            "beat": "pressure"
+          }
+        ]
+      },
+      {
+        "id": "track_everything",
+        "label": "Добавлю ещё меток, чтобы ничего не упускать",
+        "effects": {
+          "resources": {
+            "strength": -2,
+            "peace": -2
+          }
+        },
+        "servesFacets": [
+          "body"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.is.retry-trial.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work"
+    ],
+    "character": "miron",
+    "text": "Круг мастеров уже не раз обсуждал одну беду. Взгляды ясны, но после каждого схода решение растекается, и через неделю спор снова.",
+    "once": false,
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "individualist-strategist",
+            "beat": "trial",
+            "is": "withdrawn"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "individualist-strategist",
+            "beat": "trial",
+            "of": "withdrawal",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "individualist"
+      ],
+      "arcId": "individualist-strategist"
+    },
+    "choices": [
+      {
+        "id": "talk",
+        "label": "Дам всем сказать глубже, чем прежде",
+        "effects": {
+          "resources": {
+            "strength": -2,
+            "bonds": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.is.retry-trial.01:talk",
+            "arcId": "individualist-strategist",
+            "contextId": "recurring-meeting-loop",
+            "kind": "withdrawal",
+            "beat": "trial"
+          }
+        ]
+      },
+      {
+        "id": "decide",
+        "label": "Выберу вариант сам и закрою вопрос",
+        "effects": {
+          "resources": {
+            "wealth": 1,
+            "peace": -1,
+            "bonds": -3
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ]
+      },
+      {
+        "id": "mechanism",
+        "label": "Заведу порядок: кто ведёт, когда пересмотр",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "strength": -2,
+            "peace": 1,
+            "bonds": 1
+          },
+          "qualities": {
+            "courage": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.is.retry-trial.01:mechanism",
+            "arcId": "individualist-strategist",
+            "contextId": "recurring-meeting-loop",
+            "kind": "trial"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.is.retry-transfer.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "body"
+    ],
+    "character": "fekla",
+    "text": "После нескольких тяжёлых дней привычный порядок снова пропал. Ты понимаешь причины, но одного «слушать себя» раньше не хватало.",
+    "once": false,
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "individualist-strategist",
+            "beat": "transfer",
+            "is": "withdrawn"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "individualist-strategist",
+            "beat": "transfer",
+            "of": "withdrawal",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "individualist"
+      ],
+      "arcId": "individualist-strategist"
+    },
+    "choices": [
+      {
+        "id": "minimum",
+        "label": "Задам малые опоры и путь назад к полному",
+        "effects": {
+          "resources": {
+            "strength": 1,
+            "peace": 2
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "body"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.is.retry-transfer.01:minimum",
+            "arcId": "individualist-strategist",
+            "contextId": "resilient-health-system",
+            "kind": "transfer"
+          }
+        ]
+      },
+      {
+        "id": "feel",
+        "label": "Буду решать по самочувствию, без порядка",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "peace": 1
+          }
+        },
+        "servesFacets": [
+          "body"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.is.retry-transfer.01:feel",
+            "arcId": "individualist-strategist",
+            "contextId": "resilient-health-system",
+            "kind": "withdrawal",
+            "beat": "transfer"
+          }
+        ]
+      },
+      {
+        "id": "push",
+        "label": "Поставлю жёсткую цель и наверстаю",
+        "effects": {
+          "resources": {
+            "wealth": 1,
+            "strength": -4,
+            "peace": -1
+          }
+        },
+        "servesFacets": [
+          "body"
+        ],
+        "decisionKinds": [
+          "cost"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.sa.trial.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work"
+    ],
+    "character": "alexey",
+    "text": "Ты не раз менял порядок между двумя сторонами мастерской. Роли и правила делают работу яснее, но спор не уходит: они по-разному понимают, что считать хорошей чашей. Ещё один порядок почти готов.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "strategist-alchemist",
+            "beat": "trial",
+            "is": "open"
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "strategist"
+      ],
+      "arcId": "strategist-alchemist"
+    },
+    "choices": [
+      {
+        "id": "add_process",
+        "label": "Допишу порядок и жёстко проведу границы",
+        "effects": {
+          "resources": {
+            "wealth": 1,
+            "strength": -3,
+            "bonds": -1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.sa.trial.01:add_process",
+            "arcId": "strategist-alchemist",
+            "contextId": "unsolved-system-conflict",
+            "kind": "withdrawal",
+            "beat": "trial"
+          }
+        ]
+      },
+      {
+        "id": "reframe_together",
+        "label": "Соберу стороны: пусть заново назовут задачу",
+        "effects": {
+          "resources": {
+            "wealth": -2,
+            "strength": -2,
+            "bonds": 3
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.sa.trial.01:reframe_together",
+            "arcId": "strategist-alchemist",
+            "contextId": "unsolved-system-conflict",
+            "kind": "trial"
+          }
+        ]
+      },
+      {
+        "id": "let_them_decide",
+        "label": "Отойду: захотят — решат сами, без меня",
+        "effects": {
+          "resources": {
+            "strength": 1,
+            "bonds": -2
+          }
+        },
+        "servesFacets": [
+          "work"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.sa.consequence.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work"
+    ],
+    "character": "alexey",
+    "text": "В общем разговоре возникает вариант, которого ты не предлагал: часть работ временно объединить, а одну из прежних меток убрать. Он ломает твой красивый порядок, но снимает сам источник спора.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "strategist-alchemist",
+            "beat": "trial",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "strategist-alchemist",
+            "beat": "consequence",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "strategist-alchemist",
+            "beat": "trial",
+            "of": "done",
+            "decisions": 1,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "strategist"
+      ],
+      "arcId": "strategist-alchemist"
+    },
+    "choices": [
+      {
+        "id": "integrate_emergent",
+        "label": "Приму новое как догадку и перестрою порядок",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "strength": -2,
+            "peace": 1,
+            "bonds": 3
+          },
+          "qualities": {
+            "letgo": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.sa.consequence.01:integrate_emergent",
+            "arcId": "strategist-alchemist",
+            "contextId": "emergent-option",
+            "kind": "consequence"
+          }
+        ]
+      },
+      {
+        "id": "return_to_plan",
+        "label": "Верну разговор к моему порядку: он надёжнее",
+        "effects": {
+          "resources": {
+            "wealth": 1,
+            "peace": -1,
+            "bonds": -2
+          }
+        },
+        "servesFacets": [
+          "work"
+        ]
+      },
+      {
+        "id": "accept_anything",
+        "label": "Поддержу всё, что родилось снизу",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "peace": -1,
+            "bonds": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.sa.review.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "inner"
+    ],
+    "text": "Разбирая всё, ты замечаешь: твоя первая схема не только описывала спор, она задавала язык, на котором люди пытались его решать. Твоя роль строителя тоже была частью дела.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "strategist-alchemist",
+            "beat": "consequence",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "strategist-alchemist",
+            "beat": "review",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "strategist-alchemist",
+            "beat": "consequence",
+            "of": "done",
+            "decisions": 1,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "strategist"
+      ],
+      "arcId": "strategist-alchemist"
+    },
+    "choices": [
+      {
+        "id": "better_requirements",
+        "label": "«В следующий раз соберу условия заранее»",
+        "effects": {
+          "resources": {
+            "strength": -1
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ]
+      },
+      {
+        "id": "planning_useless",
+        "label": "«Значит, любые планы мешают живому»",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "peace": -1,
+            "bonds": -1
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ]
+      },
+      {
+        "id": "own_frame_limits",
+        "label": "Моя постановка сама ограничила решения",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "peace": 3,
+            "bonds": 1
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.sa.review.01:own_frame_limits",
+            "arcId": "strategist-alchemist",
+            "contextId": "observer-in-system",
+            "kind": "review"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.sa.transfer.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships"
+    ],
+    "character": "liya",
+    "text": "В близком деле снова та же ссора. Ты уже видишь порядок: кто уступает, кто давит, какие уговоры нужны. Можешь предложить готовый, и он толковый.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "strategist-alchemist",
+            "beat": "review",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "strategist-alchemist",
+            "beat": "transfer",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "strategist-alchemist",
+            "beat": "review",
+            "of": "done",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "strategist"
+      ],
+      "arcId": "strategist-alchemist"
+    },
+    "choices": [
+      {
+        "id": "explore_conflict_function",
+        "label": "Исследую вместе, что каждый защищает ссорой",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "strength": -2,
+            "peace": 1,
+            "bonds": 4
+          },
+          "qualities": {
+            "letgo": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.sa.transfer.01:explore_conflict_function",
+            "arcId": "strategist-alchemist",
+            "contextId": "relationship-transformation",
+            "kind": "transfer"
+          }
+        ]
+      },
+      {
+        "id": "present_solution",
+        "label": "Предложу готовую схему, объясню, чем она ладна",
+        "effects": {
+          "resources": {
+            "strength": -2,
+            "bonds": -1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.sa.transfer.01:present_solution",
+            "arcId": "strategist-alchemist",
+            "contextId": "relationship-transformation",
+            "kind": "withdrawal",
+            "beat": "transfer"
+          }
+        ]
+      },
+      {
+        "id": "wait_for_emergence",
+        "label": "Ничего не предложу: само сложится",
+        "effects": {
+          "resources": {
+            "peace": -1,
+            "bonds": -1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.sa.pressure.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work"
+    ],
+    "character": "timon",
+    "text": "Новый общий порядок ещё не крепок, а тут риск по сроку и деньгам. Тимон требует «навести порядок» и дать один окончательный план сегодня.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "strategist-alchemist",
+            "beat": "transfer",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "strategist-alchemist",
+            "beat": "pressure",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "strategist-alchemist",
+            "beat": "transfer",
+            "of": "done",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "strategist"
+      ],
+      "arcId": "strategist-alchemist"
+    },
+    "choices": [
+      {
+        "id": "centralize",
+        "label": "Закрою разговор и сам решу окончательно",
+        "effects": {
+          "resources": {
+            "wealth": 3,
+            "strength": -2,
+            "peace": -1,
+            "bonds": -3
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.sa.pressure.01:centralize",
+            "arcId": "strategist-alchemist",
+            "contextId": "emergence-under-risk",
+            "kind": "withdrawal",
+            "beat": "pressure"
+          }
+        ]
+      },
+      {
+        "id": "remove_constraints",
+        "label": "Никаких границ: давление убьёт новое",
+        "effects": {
+          "resources": {
+            "wealth": -3,
+            "peace": -1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ]
+      },
+      {
+        "id": "boundaries_not_outcome",
+        "label": "Назову срок и деньги, внутри дам доформироваться",
+        "effects": {
+          "resources": {
+            "strength": -2,
+            "peace": 1,
+            "bonds": 2
+          },
+          "qualities": {
+            "courage": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.sa.pressure.01:boundaries_not_outcome",
+            "arcId": "strategist-alchemist",
+            "contextId": "emergence-under-risk",
+            "kind": "pressure"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.sa.retry.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships"
+    ],
+    "character": "daria",
+    "text": "Тщательно собранный семейный план рушится из-за неожиданного случая. Старый уже невозможен, а времени строить новый идеальный нет.",
+    "once": false,
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "strategist-alchemist",
+            "beat": "pressure",
+            "is": "withdrawn"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "strategist-alchemist",
+            "beat": "pressure",
+            "of": "withdrawal",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "strategist"
+      ],
+      "arcId": "strategist-alchemist"
+    },
+    "choices": [
+      {
+        "id": "restore_original",
+        "label": "Верну прежний план как можно быстрее",
+        "effects": {
+          "resources": {
+            "wealth": -2,
+            "strength": -3,
+            "peace": -1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.sa.retry.01:restore_original",
+            "arcId": "strategist-alchemist",
+            "contextId": "plan-disrupted",
+            "kind": "withdrawal",
+            "beat": "pressure"
+          }
+        ]
+      },
+      {
+        "id": "hold_direction_change_form",
+        "label": "Сохраню главное, дам случаю сменить способ",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "strength": -1,
+            "peace": 1,
+            "bonds": 3
+          },
+          "qualities": {
+            "letgo": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.sa.retry.01:hold_direction_change_form",
+            "arcId": "strategist-alchemist",
+            "contextId": "plan-disrupted",
+            "kind": "pressure"
+          }
+        ]
+      },
+      {
+        "id": "abandon_direction",
+        "label": "Откажусь от ориентиров: куда выведет",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "peace": -2,
+            "bonds": -1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.sa.retry-trial.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships"
+    ],
+    "character": "marta",
+    "text": "Две группы соседей спорят о пустыре у колодца. Ты уже можешь предложить толковое согласие и правила, но стороны по-разному понимают, для чего это место.",
+    "once": false,
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "strategist-alchemist",
+            "beat": "trial",
+            "is": "withdrawn"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "strategist-alchemist",
+            "beat": "trial",
+            "of": "withdrawal",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "strategist"
+      ],
+      "arcId": "strategist-alchemist"
+    },
+    "choices": [
+      {
+        "id": "design",
+        "label": "Составлю самый ровный порядок для всех",
+        "effects": {
+          "resources": {
+            "strength": -3,
+            "bonds": -1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.sa.retry-trial.01:design",
+            "arcId": "strategist-alchemist",
+            "contextId": "community-frame-conflict",
+            "kind": "withdrawal",
+            "beat": "trial"
+          }
+        ]
+      },
+      {
+        "id": "reframe",
+        "label": "Малыми пробами пусть решат, зачем пустырь",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "strength": -2,
+            "peace": 1,
+            "bonds": 3
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.sa.retry-trial.01:reframe",
+            "arcId": "strategist-alchemist",
+            "contextId": "community-frame-conflict",
+            "kind": "trial"
+          }
+        ]
+      },
+      {
+        "id": "leave",
+        "label": "Не вмешаюсь: пусть придумают сами",
+        "effects": {
+          "resources": {
+            "peace": -1,
+            "bonds": -2
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.sa.retry-transfer.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships"
+    ],
+    "character": "ilya",
+    "text": "Близкий человек приходит с повторяющейся бедой. Ты видишь, как её решить, и почти готов предложить схему, но Егор говорит, что сам сейчас не понимает, чего хочет.",
+    "once": false,
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "strategist-alchemist",
+            "beat": "transfer",
+            "is": "withdrawn"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "strategist-alchemist",
+            "beat": "transfer",
+            "of": "withdrawal",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "strategist"
+      ],
+      "arcId": "strategist-alchemist"
+    },
+    "choices": [
+      {
+        "id": "plan",
+        "label": "Предложу проверенную схему: выведет из круга",
+        "effects": {
+          "resources": {
+            "strength": -2,
+            "bonds": -1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.sa.retry-transfer.01:plan",
+            "arcId": "strategist-alchemist",
+            "contextId": "close-role-reframe",
+            "kind": "withdrawal",
+            "beat": "transfer"
+          }
+        ]
+      },
+      {
+        "id": "withdraw",
+        "label": "Полностью отойду: любое влияние помешает",
+        "effects": {
+          "resources": {
+            "peace": -1,
+            "bonds": -3
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ]
+      },
+      {
+        "id": "hold",
+        "label": "Сохраню границы, но дам изменить сам вопрос",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "peace": 1,
+            "bonds": 3
+          },
+          "qualities": {
+            "letgo": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.sa.retry-transfer.01:hold",
+            "arcId": "strategist-alchemist",
+            "contextId": "close-role-reframe",
+            "kind": "transfer"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.alir.trial.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships"
+    ],
+    "character": "marta",
+    "text": "Марта регулярно нарушает простую границу: приходит позже, переносит уговор в последний миг и ждёт, что ты подстроишься. Ты понимаешь, откуда это, и мог бы долго разбирать, что у вас между собой.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "alchemist-ironic",
+            "beat": "trial",
+            "is": "open"
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "alchemist"
+      ],
+      "arcId": "alchemist-ironic"
+    },
+    "choices": [
+      {
+        "id": "explore_deeper",
+        "label": "Предложу ещё раз разобрать, что за этим стоит",
+        "effects": {
+          "resources": {
+            "strength": -2,
+            "peace": -1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.alir.trial.01:explore_deeper",
+            "arcId": "alchemist-ironic",
+            "contextId": "simple-boundary",
+            "kind": "withdrawal",
+            "beat": "trial"
+          }
+        ]
+      },
+      {
+        "id": "punish",
+        "label": "Жёстко оборву связь: пусть наконец поймёт",
+        "effects": {
+          "resources": {
+            "peace": -2,
+            "bonds": -4
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ]
+      },
+      {
+        "id": "state_boundary",
+        "label": "Скажу «нет» этому нарушению и назову следствие",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "peace": 3
+          },
+          "qualities": {
+            "honesty": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.alir.trial.01:state_boundary",
+            "arcId": "alchemist-ironic",
+            "contextId": "simple-boundary",
+            "kind": "trial"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.alir.consequence.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships"
+    ],
+    "text": "После прямого «нет» Марта недовольна, но стало яснее. Отношения не исчезли и не стали «мельче». Ты замечаешь: простой шаг не отменил всей сложности, что ты видел раньше.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "alchemist-ironic",
+            "beat": "trial",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "alchemist-ironic",
+            "beat": "consequence",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "alchemist-ironic",
+            "beat": "trial",
+            "of": "done",
+            "decisions": 1,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "alchemist"
+      ],
+      "arcId": "alchemist-ironic"
+    },
+    "choices": [
+      {
+        "id": "simple_always",
+        "label": "Сложные разговоры были лишними: резать прямо",
+        "effects": {
+          "resources": {
+            "wealth": 1,
+            "peace": -1,
+            "bonds": -3
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ]
+      },
+      {
+        "id": "complexity_is_tool",
+        "label": "Сложность — инструмент, а иногда хватает «нет»",
+        "effects": {
+          "resources": {
+            "peace": 3,
+            "bonds": 1
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.alir.consequence.01:complexity_is_tool",
+            "arcId": "alchemist-ironic",
+            "contextId": "simplicity-works",
+            "kind": "consequence"
+          }
+        ]
+      },
+      {
+        "id": "nothing_matters",
+        "label": "Отнесусь с иронией: «Всё не так уж важно»",
+        "effects": {
+          "resources": {
+            "bonds": -2
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.alir.review.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "inner"
+    ],
+    "text": "Ты замечаешь: иногда выбирал сложные способы не потому, что они были нужны, а чтобы не казаться «простым» — даже самому себе.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "alchemist-ironic",
+            "beat": "consequence",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "alchemist-ironic",
+            "beat": "review",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "alchemist-ironic",
+            "beat": "consequence",
+            "of": "done",
+            "decisions": 1,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "alchemist"
+      ],
+      "arcId": "alchemist-ironic"
+    },
+    "choices": [
+      {
+        "id": "use_without_being",
+        "label": "Могу видеть сложность и выбрать простое",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "peace": 3
+          },
+          "qualities": {
+            "letgo": 1
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.alir.review.01:use_without_being",
+            "arcId": "alchemist-ironic",
+            "contextId": "identity-as-stage",
+            "kind": "review"
+          }
+        ]
+      },
+      {
+        "id": "act_advanced",
+        "label": "Раз вижу больше, странно делать вид, что нет",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "peace": -1,
+            "bonds": -1
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ]
+      },
+      {
+        "id": "all_relative",
+        "label": "Любая позиция условна: незачем выбирать",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "peace": -1,
+            "bonds": -1
+          }
+        },
+        "servesFacets": [
+          "inner"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.alir.transfer.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work"
+    ],
+    "character": "ulyana",
+    "text": "В мастерской неполадка: печь плохо тянет, надёжное средство известно. Все привыкли ждать от тебя большого «взгляда» и спрашивают, нет ли тут чего-то глубокого.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "alchemist-ironic",
+            "beat": "review",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "alchemist-ironic",
+            "beat": "transfer",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "alchemist-ironic",
+            "beat": "review",
+            "of": "done",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "alchemist"
+      ],
+      "arcId": "alchemist-ironic"
+    },
+    "choices": [
+      {
+        "id": "transform_program",
+        "label": "Пересмотрю всё дело: неполадка — признак большего",
+        "effects": {
+          "resources": {
+            "wealth": -2,
+            "strength": -3,
+            "peace": -1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.alir.transfer.01:transform_program",
+            "arcId": "alchemist-ironic",
+            "contextId": "simple-expertise",
+            "kind": "withdrawal",
+            "beat": "transfer"
+          }
+        ]
+      },
+      {
+        "id": "use_expert_mode",
+        "label": "Проверю факты, применю обычное средство, закрою",
+        "effects": {
+          "resources": {
+            "wealth": 1,
+            "strength": -1,
+            "peace": 2,
+            "bonds": 1
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.alir.transfer.01:use_expert_mode",
+            "arcId": "alchemist-ironic",
+            "contextId": "simple-expertise",
+            "kind": "transfer"
+          }
+        ]
+      },
+      {
+        "id": "delegate_below_me",
+        "label": "Передам другому: мне не к лицу такой уровень",
+        "effects": {
+          "resources": {
+            "peace": -1,
+            "bonds": -3
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.alir.pressure.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work"
+    ],
+    "character": "miron",
+    "text": "На сходе уважаемый человек обесценивает твой подход: «Ты всё усложняешь, здесь нет ничего глубокого». Ты мог бы показать превосходство своей картины. Но задаче нужно короткое решение.",
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "alchemist-ironic",
+            "beat": "transfer",
+            "is": "done"
+          }
+        },
+        {
+          "developmentBeat": {
+            "arc": "alchemist-ironic",
+            "beat": "pressure",
+            "is": "open"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "alchemist-ironic",
+            "beat": "transfer",
+            "of": "done",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "alchemist"
+      ],
+      "arcId": "alchemist-ironic"
+    },
+    "choices": [
+      {
+        "id": "do_needed",
+        "label": "Уточню факты, сделаю нужное, не споря о глубине",
+        "effects": {
+          "resources": {
+            "wealth": 1,
+            "strength": -1,
+            "peace": 2
+          },
+          "qualities": {
+            "courage": 1
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.alir.pressure.01:do_needed",
+            "arcId": "alchemist-ironic",
+            "contextId": "identity-under-status-pressure",
+            "kind": "pressure"
+          }
+        ]
+      },
+      {
+        "id": "demonstrate_depth",
+        "label": "Разверну довод и покажу, сколько он не видит",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "peace": -1,
+            "bonds": -3
+          }
+        },
+        "servesFacets": [
+          "work"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.alir.pressure.01:demonstrate_depth",
+            "arcId": "alchemist-ironic",
+            "contextId": "identity-under-status-pressure",
+            "kind": "withdrawal",
+            "beat": "pressure"
+          }
+        ]
+      },
+      {
+        "id": "joke_and_withdraw",
+        "label": "Отшучусь: «Раз так просто — разбирайтесь сами»",
+        "effects": {
+          "resources": {
+            "bonds": -2
+          }
+        },
+        "servesFacets": [
+          "work"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.alir.retry.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships"
+    ],
+    "character": "liya",
+    "text": "Лия приходит к тебе после тяжёлого дня. Причины понятны, связи видны. Но ей не нужен разбор: нужно, чтобы ты просто пришёл, помог с обычным делом и побыл рядом.",
+    "once": false,
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "alchemist-ironic",
+            "beat": "pressure",
+            "is": "withdrawn"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "alchemist-ironic",
+            "beat": "pressure",
+            "of": "withdrawal",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "alchemist"
+      ],
+      "arcId": "alchemist-ironic"
+    },
+    "choices": [
+      {
+        "id": "analyze",
+        "label": "Начну разбирать, что этот день говорит о ней",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "peace": -1,
+            "bonds": -3
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.alir.retry.01:analyze",
+            "arcId": "alchemist-ironic",
+            "contextId": "ordinary-help",
+            "kind": "withdrawal",
+            "beat": "pressure"
+          }
+        ]
+      },
+      {
+        "id": "detach",
+        "label": "Скажу, что ей надо самой прожить это",
+        "effects": {
+          "resources": {
+            "bonds": -3
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "decisionKinds": [
+          "cost"
+        ]
+      },
+      {
+        "id": "show_up",
+        "label": "Приду и помогу, как просят, без разбора",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "peace": 2,
+            "bonds": 3
+          },
+          "qualities": {
+            "compassion": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.alir.retry.01:show_up",
+            "arcId": "alchemist-ironic",
+            "contextId": "ordinary-help",
+            "kind": "pressure"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.alir.retry-trial.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships"
+    ],
+    "character": "alexey",
+    "text": "Мелкий вопрос обсуждают слишком долго. Все причины и отношения понятны, а решить надо одно: кто сегодня забирает заказ у Тимона.",
+    "once": false,
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "alchemist-ironic",
+            "beat": "trial",
+            "is": "withdrawn"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "alchemist-ironic",
+            "beat": "trial",
+            "of": "withdrawal",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "alchemist"
+      ],
+      "arcId": "alchemist-ironic"
+    },
+    "choices": [
+      {
+        "id": "simple",
+        "label": "Выберу, кому удобнее сегодня, и закрою вопрос",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "peace": 3,
+            "bonds": 1
+          },
+          "qualities": {
+            "letgo": 1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.alir.retry-trial.01:simple",
+            "arcId": "alchemist-ironic",
+            "contextId": "simple-decision-after-analysis",
+            "kind": "trial"
+          }
+        ]
+      },
+      {
+        "id": "deepen",
+        "label": "Ещё поговорю, отчего просьба так напрягает",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "strength": -1,
+            "peace": -1
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.alir.retry-trial.01:deepen",
+            "arcId": "alchemist-ironic",
+            "contextId": "simple-decision-after-analysis",
+            "kind": "withdrawal",
+            "beat": "trial"
+          }
+        ]
+      },
+      {
+        "id": "force",
+        "label": "Назначу другого: устал обсуждать",
+        "effects": {
+          "resources": {
+            "bonds": -2
+          }
+        },
+        "servesFacets": [
+          "relationships"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev.alir.retry-transfer.01",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "body"
+    ],
+    "character": "fekla",
+    "text": "После нескольких поздних вечеров обычная усталость. У тебя уже есть простой порядок сна и отдыха, и раньше он работал.",
+    "once": false,
+    "requires": {
+      "all": [
+        {
+          "developmentBeat": {
+            "arc": "alchemist-ironic",
+            "beat": "transfer",
+            "is": "withdrawn"
+          }
+        },
+        {
+          "developmentSince": {
+            "arc": "alchemist-ironic",
+            "beat": "transfer",
+            "of": "withdrawal",
+            "decisions": 2,
+            "evenings": 1
+          }
+        }
+      ]
+    },
+    "development": {
+      "stages": [
+        "alchemist"
+      ],
+      "arcId": "alchemist-ironic"
+    },
+    "choices": [
+      {
+        "id": "reframe",
+        "label": "Пересмотрю через усталость, как живу с работой",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "strength": -2,
+            "peace": -1
+          }
+        },
+        "servesFacets": [
+          "body"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.alir.retry-transfer.01:reframe",
+            "arcId": "alchemist-ironic",
+            "contextId": "simple-recovery-method",
+            "kind": "withdrawal",
+            "beat": "transfer"
+          }
+        ]
+      },
+      {
+        "id": "useknown",
+        "label": "Вернусь к известному порядку на несколько дней",
+        "effects": {
+          "resources": {
+            "wealth": -1,
+            "strength": 2,
+            "peace": 2
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "servesFacets": [
+          "body"
+        ],
+        "developmentEvents": [
+          {
+            "eventId": "dev.alir.retry-transfer.01:useknown",
+            "arcId": "alchemist-ironic",
+            "contextId": "simple-recovery-method",
+            "kind": "transfer"
+          }
+        ]
+      },
+      {
+        "id": "ignore",
+        "label": "Ничего не менять: вмешательство — новая история",
+        "effects": {
+          "resources": {
+            "strength": -1,
+            "peace": -1
+          }
+        },
+        "servesFacets": [
+          "body"
+        ]
+      }
+    ]
+  }
+]

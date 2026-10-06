@@ -166,7 +166,7 @@
             "bonds": 3
           },
           "qualities": {
-            "compassion": 1
+            "honesty": 1
           },
           "schedule": [
             {
@@ -272,8 +272,8 @@
         "label": "Деньги поделим по простому правилу. Остальное — потом",
         "effects": {
           "resources": {
-            "wealth": 2,
-            "peace": 2,
+            "wealth": 1,
+            "peace": 1,
             "bonds": -1
           },
           "qualities": {
@@ -1015,7 +1015,7 @@
       },
       {
         "id": "C",
-        "label": "Очередь есть очередь. Порядок не ломаю",
+        "label": "Очередь есть очередь: исключение всех подведёт",
         "effects": {
           "resources": {
             "wealth": -2,
@@ -1023,7 +1023,7 @@
             "bonds": 1
           },
           "qualities": {
-            "honesty": 1
+            "courage": 1
           }
         },
         "servesFacets": [
@@ -1054,7 +1054,7 @@
       },
       {
         "id": "D",
-        "label": "Не раздувать: сделаю, как честнее всего сегодня",
+        "label": "Сделаю, как честнее всего сегодня, — без раздувания",
         "effects": {
           "resources": {
             "wealth": 1,
@@ -1062,7 +1062,7 @@
             "peace": 1
           },
           "qualities": {
-            "letgo": 1
+            "honesty": 1
           }
         },
         "servesFacets": [
@@ -1116,11 +1116,12 @@
     "choices": [
       {
         "id": "A",
-        "label": "Спрошу себя: почему меня так тянет? Чего я хочу?",
+        "label": "Сперва разберусь: почему меня так тянет? Чего я хочу?",
         "effects": {
           "resources": {
-            "peace": 3,
-            "bonds": 1
+            "wealth": -1,
+            "peace": 2,
+            "bonds": -1
           },
           "qualities": {
             "attention": 1
@@ -1302,7 +1303,7 @@
             "peace": 2
           },
           "qualities": {
-            "attention": 1
+            "honesty": 1
           }
         },
         "servesFacets": [
@@ -1425,7 +1426,7 @@
             "bonds": 3
           },
           "qualities": {
-            "compassion": 1
+            "attention": 1
           }
         },
         "servesFacets": [
@@ -1544,8 +1545,9 @@
         "label": "Не буду делать из этого судьбу: взвешу и отвечу",
         "effects": {
           "resources": {
-            "wealth": 2,
-            "peace": 2
+            "wealth": 1,
+            "peace": 1,
+            "bonds": -1
           },
           "qualities": {
             "letgo": 1
@@ -1932,7 +1934,7 @@
       },
       {
         "id": "D",
-        "label": "Заберу важное у неё сразу — пусть обидится",
+        "label": "Заберу у неё важное сразу, даже если обидится",
         "effects": {
           "resources": {
             "wealth": 3,
@@ -1997,8 +1999,9 @@
         "label": "Постою минуту: не спасаем ли мы то, что уже не нужно?",
         "effects": {
           "resources": {
-            "wealth": -1,
-            "peace": 3,
+            "wealth": -2,
+            "strength": -1,
+            "peace": 2,
             "bonds": 1
           },
           "qualities": {
@@ -2075,7 +2078,7 @@
       },
       {
         "id": "C",
-        "label": "Не буду доказывать сложность: чиню, режу лишнее, разбор — потом",
+        "label": "Не усложняю: где почину, где срежу, разбор — потом",
         "effects": {
           "resources": {
             "wealth": 1,
@@ -2174,7 +2177,7 @@
       "relationships"
     ],
     "character": "ilya",
-    "text": "Илья в третий раз опаздывает почти на час. Присылает мальчишку: «Уже иду». Ты устал ждать.",
+    "text": "Егор в третий раз опаздывает почти на час. Присылает мальчишку: «Уже иду». Ты устал ждать.",
     "requires": {
       "dayGte": 2
     },
@@ -2304,7 +2307,7 @@
             "bonds": 3
           },
           "qualities": {
-            "compassion": 1
+            "letgo": 1
           }
         },
         "servesFacets": [
@@ -2358,13 +2361,14 @@
     "choices": [
       {
         "id": "A",
-        "label": "В этом году выберу простое и не стану делать из этого судьбу",
+        "label": "Выберу простое на этот год, не делая из этого судьбу",
         "effects": {
           "resources": {
-            "peace": 3
+            "peace": 2,
+            "bonds": -2
           },
           "qualities": {
-            "letgo": 1
+            "courage": 1
           }
         },
         "servesFacets": [
@@ -2395,7 +2399,7 @@
       },
       {
         "id": "B",
-        "label": "Придумаю новый общий обычай — не уступку ни той, ни другой",
+        "label": "Придумаю общий обычай — не уступку ни той, ни другой",
         "effects": {
           "resources": {
             "wealth": -2,
@@ -2437,9 +2441,9 @@
         "label": "Спрошу, что этот праздник значит каждой стороне",
         "effects": {
           "resources": {
-            "wealth": -1,
-            "peace": 2,
-            "bonds": 2
+            "strength": -1,
+            "peace": 1,
+            "bonds": 1
           },
           "qualities": {
             "attention": 1
@@ -2584,11 +2588,10 @@
       },
       {
         "id": "B",
-        "label": "Отвечу сразу и жёстко: пусть не думают, что со мной можно так",
+        "label": "Отвечу сразу и жёстко — при всех себя в обиду не дам",
         "effects": {
           "resources": {
-            "wealth": 1,
-            "peace": -3,
+            "peace": 1,
             "bonds": -3
           },
           "schedule": [
@@ -2677,7 +2680,8 @@
         "label": "Скажу, что задело, и спрошу, что она слышит в «положиться»",
         "effects": {
           "resources": {
-            "peace": 2,
+            "strength": -1,
+            "peace": -1,
             "bonds": 2
           },
           "qualities": {
@@ -2751,7 +2755,7 @@
             "bonds": 1
           },
           "qualities": {
-            "honesty": 1
+            "courage": 1
           }
         },
         "servesFacets": [
@@ -2993,7 +2997,7 @@
       },
       {
         "id": "C",
-        "label": "Дам только ясную сумму, срок и условие",
+        "label": "Дам ясную сумму, срок и условие — под конкретное дело",
         "effects": {
           "resources": {
             "wealth": -2,
@@ -3116,14 +3120,14 @@
       },
       {
         "id": "D",
-        "label": "Не буду делать философию: проверю возможности и отвечу просто",
+        "label": "Без философии: проверю, что могу, и отвечу просто",
         "effects": {
           "resources": {
             "wealth": -3,
             "peace": 2
           },
           "qualities": {
-            "letgo": 1
+            "honesty": 1
           }
         },
         "servesFacets": [
@@ -3258,7 +3262,7 @@
       "relationships"
     ],
     "character": "ilya",
-    "text": "Илья доверил тебе тайну и просил молчать. Потом оказалось, что она важна для решения Лии.",
+    "text": "Егор доверил тебе тайну и просил молчать. Потом оказалось, что она важна для решения Лии.",
     "requires": {
       "dayGte": 2
     },
@@ -3268,15 +3272,12 @@
         "label": "Не полезу: вдруг крайним окажусь я",
         "effects": {
           "resources": {
-            "peace": -3,
-            "bonds": -1
+            "peace": 1,
+            "bonds": -2
           }
         },
         "servesFacets": [
           "relationships"
-        ],
-        "decisionKinds": [
-          "cost"
         ],
         "diagnosticAction": {
           "vector": {
@@ -3387,7 +3388,7 @@
             "bonds": 3
           },
           "qualities": {
-            "courage": 1
+            "compassion": 1
           }
         },
         "servesFacets": [
@@ -3449,7 +3450,7 @@
             "bonds": 1
           },
           "qualities": {
-            "letgo": 1
+            "attention": 1
           }
         },
         "servesFacets": [
@@ -3523,7 +3524,7 @@
             "bonds": 1
           },
           "qualities": {
-            "attention": 1
+            "honesty": 1
           }
         },
         "servesFacets": [
@@ -3554,7 +3555,7 @@
       },
       {
         "id": "D",
-        "label": "Спрошу, что для каждого забота, и сменю способ договариваться",
+        "label": "Спрошу, что для каждого забота, и иначе договоримся",
         "effects": {
           "resources": {
             "wealth": -1,
@@ -3625,7 +3626,7 @@
             "bonds": 3
           },
           "qualities": {
-            "courage": 1
+            "compassion": 1
           }
         },
         "servesFacets": [
@@ -4002,7 +4003,7 @@
             "bonds": 4
           },
           "qualities": {
-            "compassion": 1
+            "letgo": 1
           }
         },
         "servesFacets": [
@@ -4256,10 +4257,11 @@
       },
       {
         "id": "D",
-        "label": "Пойму, почему граница мне так важна и что он считает допустимым",
+        "label": "Выясню, чем мне важна граница и что для него допустимо",
         "effects": {
           "resources": {
-            "peace": 3
+            "strength": -1,
+            "peace": 1
           },
           "qualities": {
             "attention": 1
@@ -4400,7 +4402,7 @@
             "bonds": 2
           },
           "qualities": {
-            "compassion": 1
+            "honesty": 1
           }
         },
         "servesFacets": [
@@ -4623,15 +4625,15 @@
       },
       {
         "id": "B",
-        "label": "Выберу простое и безопасное на срок — и не стану требовать истины",
+        "label": "Выберу простое и безопасное на срок, истины не требую",
         "effects": {
           "resources": {
-            "strength": 2,
-            "peace": 2,
+            "strength": 1,
+            "peace": 1,
             "bonds": -1
           },
           "qualities": {
-            "letgo": 1
+            "attention": 1
           }
         },
         "servesFacets": [
@@ -4750,7 +4752,8 @@
         "label": "Спрошу, что подходит моей спине и моей жизни",
         "effects": {
           "resources": {
-            "strength": 2,
+            "wealth": -1,
+            "strength": 1,
             "peace": 1
           },
           "qualities": {
@@ -5018,9 +5021,8 @@
         "label": "Пойду, что бы ни было: слишком много вложено",
         "effects": {
           "resources": {
-            "wealth": 2,
-            "strength": -5,
-            "peace": -2
+            "wealth": 3,
+            "strength": -4
           },
           "qualities": {
             "courage": 1
@@ -5496,7 +5498,7 @@
       },
       {
         "id": "B",
-        "label": "Спрошу себя: зачем мне вообще эта тетрадь",
+        "label": "Задумаюсь: зачем мне вообще эта тетрадь",
         "effects": {
           "resources": {
             "wealth": -2,
@@ -5931,8 +5933,8 @@
         "effects": {
           "resources": {
             "strength": 1,
-            "peace": 3,
-            "bonds": -1
+            "peace": 1,
+            "bonds": -2
           },
           "qualities": {
             "letgo": 1
@@ -6003,7 +6005,7 @@
       },
       {
         "id": "D",
-        "label": "Спрошу, что значит общий стол, и вместе заведём новый обычай",
+        "label": "Спрошу, что значит общий стол, и вместе заведём обычай",
         "effects": {
           "resources": {
             "wealth": -2,
@@ -6280,8 +6282,9 @@
         "label": "Пойму, чего мне в жизни не хватает, и выберу под это",
         "effects": {
           "resources": {
+            "wealth": -1,
             "strength": 1,
-            "peace": 3
+            "peace": 1
           },
           "qualities": {
             "honesty": 1
@@ -6357,8 +6360,9 @@
         "label": "Начну с самого простого — и не стану делать из этого судьбу",
         "effects": {
           "resources": {
+            "wealth": -1,
             "strength": 1,
-            "peace": 2
+            "peace": 1
           },
           "qualities": {
             "letgo": 1
@@ -6549,10 +6553,11 @@
       },
       {
         "id": "C",
-        "label": "Отвечу сразу: пусть не думают, что со мной можно так",
+        "label": "Отвечу сразу, чтобы не решили, что со мной так можно",
         "effects": {
           "resources": {
-            "peace": -3,
+            "wealth": 1,
+            "peace": 1,
             "bonds": -2
           },
           "schedule": [
@@ -6564,9 +6569,6 @@
         },
         "servesFacets": [
           "inner"
-        ],
-        "decisionKinds": [
-          "cost"
         ],
         "diagnosticAction": {
           "vector": {
@@ -6699,7 +6701,7 @@
       },
       {
         "id": "B",
-        "label": "Узнаю, как достижение меняет мой образ, и не вернусь к старой истории",
+        "label": "Пойму, как успех меняет меня, и не вернусь в старую колею",
         "effects": {
           "resources": {
             "strength": -1,
@@ -6746,7 +6748,7 @@
             "peace": 2
           },
           "qualities": {
-            "courage": 1
+            "letgo": 1
           }
         },
         "servesFacets": [
@@ -6783,7 +6785,8 @@
         "label": "Дам пустоте быть и вернусь к обычному — что останется важным",
         "effects": {
           "resources": {
-            "peace": 3
+            "wealth": -1,
+            "peace": 2
           },
           "qualities": {
             "letgo": 1
@@ -6839,7 +6842,7 @@
     "choices": [
       {
         "id": "A",
-        "label": "Пойму, зачем мне вообще дело — даже необычное, не «как у людей»",
+        "label": "Пересмотрю, зачем мне дело, — пусть и не «как у людей»",
         "effects": {
           "resources": {
             "peace": 3
@@ -7208,8 +7211,9 @@
         "label": "Пойму, какую жизнь хочу и какое место отдать делу",
         "effects": {
           "resources": {
-            "peace": 3,
-            "bonds": 1
+            "wealth": -1,
+            "peace": 2,
+            "bonds": -1
           },
           "qualities": {
             "honesty": 1
@@ -7344,7 +7348,7 @@
       "inner"
     ],
     "character": "ilya",
-    "text": "Илья рассказывает о большой удаче. Ты искренне рад за него — и одновременно жжёт зависть.",
+    "text": "Егор рассказывает о большой удаче. Ты искренне рад за него — и одновременно жжёт зависть.",
     "requires": {
       "dayGte": 2
     },
@@ -7600,7 +7604,8 @@
         "label": "Замечу зависть, поздравлю друга — и не сделаю из неё приговор",
         "effects": {
           "resources": {
-            "peace": 3,
+            "strength": -1,
+            "peace": 1,
             "bonds": 1
           },
           "qualities": {
@@ -7866,7 +7871,7 @@
     "choices": [
       {
         "id": "A",
-        "label": "Разберу причины, поставлю новые меры и решу, стоит ли пробовать снова",
+        "label": "Разберу причины и решу, стоит ли пробовать снова",
         "effects": {
           "resources": {
             "wealth": -2,
@@ -7990,6 +7995,9 @@
             "strength": -1,
             "peace": -1,
             "bonds": -1
+          },
+          "qualities": {
+            "letgo": 1
           }
         },
         "servesFacets": [
@@ -8042,11 +8050,11 @@
     "choices": [
       {
         "id": "A",
-        "label": "Не буду строить теорию: вовремя скажу о границе и увижу дело",
+        "label": "Без теорий: вовремя скажу о границе и увижу дело",
         "effects": {
           "resources": {
-            "peace": 3,
-            "bonds": 1
+            "peace": 2,
+            "bonds": -1
           },
           "qualities": {
             "courage": 1
@@ -8226,7 +8234,7 @@
             "bonds": 3
           },
           "qualities": {
-            "compassion": 1
+            "attention": 1
           }
         },
         "servesFacets": [
@@ -8260,10 +8268,9 @@
         "label": "Действую сразу, пока есть жар: такое бывает редко",
         "effects": {
           "resources": {
-            "wealth": -1,
+            "wealth": 2,
             "strength": -3,
-            "peace": -1,
-            "bonds": -1
+            "peace": 1
           },
           "qualities": {
             "courage": 1
@@ -8447,7 +8454,7 @@
             "bonds": -1
           },
           "qualities": {
-            "courage": 1
+            "honesty": 1
           }
         },
         "servesFacets": [
@@ -8522,7 +8529,7 @@
             "peace": 3
           },
           "qualities": {
-            "letgo": 1
+            "courage": 1
           }
         },
         "servesFacets": [
@@ -8932,7 +8939,7 @@
     "choices": [
       {
         "id": "A",
-        "label": "Выберу одно простое для тела — без нового проекта «починить себя»",
+        "label": "Выберу одно простое для тела — без затеи «починить себя»",
         "effects": {
           "resources": {
             "strength": 1,

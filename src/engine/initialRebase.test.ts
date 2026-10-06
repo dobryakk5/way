@@ -29,14 +29,20 @@ describe('single correction of a wrong first center (initial rebase)', () => {
     expect(r.developmentCurrent).toBe('diplomat'); expect(r.currentOrigin).toBe('observed-initial'); expect(r.initialRebaseCount).toBe(1);
     expect(r.available).toEqual(['diplomat']); expect(r.pendingPromotion).toBeUndefined();
     expect(r.transitions).toEqual([{ arcId: 'expert-achiever', from: 'expert', to: 'diplomat', day: 14, evidenceIds: [], reason: 'initial-reconciliation' }]);
-    // The old arc's evidence stays in the history but belongs to a closed arc; the diplomat has no written arc yet.
-    expect(r.evidence).toHaveLength(1); expect(r.activeArcId).toBeUndefined(); expect(r.transitionTarget).toBeUndefined();
+    // The old arc's evidence stays in the history but belongs to a closed arc; the corrected center starts its own arc.
+    expect(r.evidence).toHaveLength(1); expect(r.activeArcId).toBe('diplomat-expert'); expect(r.transitionTarget).toBe('expert');
   });
 
   it('starts the adjacent arc of the corrected center when one exists', () => {
     const r = rebaseInitialDevelopment(standing({ current: 'diplomat', observed: 'expert' }), content).development;
     expect(r.developmentCurrent).toBe('expert'); expect(r.activeArcId).toBe('expert-achiever'); expect(r.transitionTarget).toBe('achiever');
-    expect(r.transitions[0]).toMatchObject({ arcId: 'initial:diplomat', from: 'diplomat', to: 'expert', reason: 'initial-reconciliation' });
+    expect(r.transitions[0]).toMatchObject({ arcId: 'diplomat-expert', from: 'diplomat', to: 'expert', reason: 'initial-reconciliation' });
+  });
+
+  it('closes a center that had no arc under a placeholder id', () => {
+    const r = rebaseInitialDevelopment(standing({ current: 'ironic', observed: 'alchemist' }), content).development;
+    expect(r.transitions[0]).toMatchObject({ arcId: 'initial:ironic', from: 'ironic', to: 'alchemist', reason: 'initial-reconciliation' });
+    expect(r.activeArcId).toBe('alchemist-ironic');
   });
 
   it.each([

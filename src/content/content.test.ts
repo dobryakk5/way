@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { content, contentMeta } from '.';
 
-const expectedCharacters = ['Марта', 'Тимон', 'Алексей', 'Илья', 'Лия', 'Странник'];
+const expectedCharacters = ['Марта', 'Тимон', 'Алексей', 'Егор', 'Лия', 'Странник'];
 // Added for v2.5, where roles of the diagnostic and development packages (healers, elder, old master, family, helper) need their own people.
 const addedCharacters = ['Фёкла', 'Радим', 'Мирон', 'Савва', 'Дарья', 'Ульяна'];
 

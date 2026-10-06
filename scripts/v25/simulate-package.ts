@@ -16,7 +16,7 @@ const config = process.env.SIM_SHARE ? { ...baseConfig, stableCandidate: { ...ba
   minDelta: Number(process.env.SIM_DELTA ?? baseConfig.stableCandidate.minDelta), minConfidence: Number(process.env.SIM_CONF ?? baseConfig.stableCandidate.minConfidence) } } : baseConfig;
 const RUNS = Number(process.env.SIM_RUNS ?? 100);
 const BASELINES = Number(process.env.SIM_BASELINES ?? 40);
-const SCORING = (process.env.SIM_SCORING ?? 'full') as 'full' | 'contrast'; // 'contrast' is an OFFLINE experiment only: chosen minus mean of rejected
+const SCORING = (process.env.SIM_SCORING ?? 'full') as 'full' | 'contrast'; // 'contrast' = algorithm branch 2, the live scoring for new runs (chosen minus mean of rejected); 'full' = branch 1. Thresholds always come from currentAlgorithmVersion.
 const NEUTRAL_WEIGHT = 3; // 'situation' default in draw.ts weighted()
 const parsed = parsePackage();
 const adjacent = (a: Logic, b: Logic) => Math.abs(LOGICS.indexOf(a) - LOGICS.indexOf(b)) === 1;

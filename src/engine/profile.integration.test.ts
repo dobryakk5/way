@@ -141,7 +141,7 @@ describe('legacy runs keep their authored stage', () => {
 });
 
 describe('adaptive selection (rollout flag)', () => {
-  it('is off in the shipped content', () => { expect(content.profile.rollout.adaptiveSelection).toBe(false); });
+  it('is on in the shipped content, together with the development arcs', () => { expect(content.profile.rollout.adaptiveSelection).toBe(true); expect(content.profile.rollout.developmentArcs).toBe(true); });
   it('keeps probes within a third of the independent window, and probe scenes only ever come from the selector', () => {
     for (const seed of [1, 2, 3]) {
       const { state, draws } = play(seed, { content: adaptiveContent, policy: 'mixed' });

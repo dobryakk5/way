@@ -154,7 +154,7 @@
       "relationships"
     ],
     "character": "ilya",
-    "text": "Илья по секрету сказал, что завтра Мирон снизит цену на глину. Узнай ты это — выторгуешь у Тимона больше, и никто не докажет.",
+    "text": "Егор по секрету сказал, что завтра Мирон снизит цену на глину. Узнай ты это — выторгуешь у Тимона больше, и никто не докажет.",
     "tags": [
       "probe-only"
     ],
@@ -238,7 +238,7 @@
       },
       {
         "id": "use-information",
-        "label": "Использую втихую — выгода моя",
+        "label": "Обращу знание себе в выгоду, источник не выдам",
         "effects": {
           "resources": {
             "wealth": 5,
@@ -342,7 +342,7 @@
       },
       {
         "id": "keep-seat",
-        "label": "Останусь на своём: я занял первым",
+        "label": "Останусь: я занял первым, и чужое не мне решать",
         "effects": {
           "resources": {
             "wealth": 1,
@@ -453,7 +453,7 @@
         "label": "Оставлю как есть: так делали мастера",
         "effects": {
           "resources": {
-            "peace": 1,
+            "peace": -1,
             "bonds": 2
           }
         },
@@ -485,10 +485,10 @@
       },
       {
         "id": "verify-formula",
-        "label": "Проверю меру по образцам, пусть и обидятся",
+        "label": "Проверю меру по образцам, даже если обидятся",
         "effects": {
           "resources": {
-            "wealth": -1,
+            "wealth": 2,
             "strength": -2,
             "bonds": -2
           },
@@ -592,8 +592,9 @@
         "label": "Составлю меру: тяга, жар, цена — выберу по ней",
         "effects": {
           "resources": {
-            "wealth": -3,
+            "wealth": -1,
             "strength": -1,
+            "peace": 1,
             "bonds": -1
           },
           "qualities": {
@@ -602,9 +603,6 @@
         },
         "servesFacets": [
           "work"
-        ],
-        "decisionKinds": [
-          "cost"
         ],
         "diagnosticAction": {
           "vector": {
@@ -634,8 +632,9 @@
         "label": "Сперва пойму, нужна ли печь и какой жизни она служит",
         "effects": {
           "resources": {
-            "wealth": 1,
-            "peace": 2
+            "wealth": -1,
+            "peace": 2,
+            "bonds": -1
           },
           "qualities": {
             "attention": 1
@@ -817,7 +816,7 @@
         "label": "Остановлюсь, спрошу Радима и проверю хватку",
         "effects": {
           "resources": {
-            "strength": -1,
+            "strength": 1,
             "peace": 1
           },
           "qualities": {
@@ -882,8 +881,8 @@
         "label": "Отложу на день: известный изъян не отдаю",
         "effects": {
           "resources": {
-            "wealth": -4,
-            "strength": -3,
+            "wealth": -2,
+            "strength": -2,
             "peace": 2,
             "bonds": -1
           },
@@ -893,9 +892,6 @@
         },
         "servesFacets": [
           "work"
-        ],
-        "decisionKinds": [
-          "cost"
         ],
         "diagnosticAction": {
           "vector": {
@@ -963,8 +959,8 @@
         "label": "Спрошу себя: зачем мне это место — моя ли это цель?",
         "effects": {
           "resources": {
-            "wealth": -1,
-            "peace": 3
+            "wealth": -2,
+            "peace": 2
           },
           "qualities": {
             "attention": 1
@@ -1025,7 +1021,7 @@
     "choices": [
       {
         "id": "decide-by-plan",
-        "label": "Решу по уговору с собой: срок, цена, польза — без полной картины",
+        "label": "Решу по уговору с собой: срок, цена, без полной картины",
         "effects": {
           "resources": {
             "wealth": -3,
@@ -1174,8 +1170,8 @@
         "label": "Спрошу себя: зачем мне эта гонка, чья это мерка?",
         "effects": {
           "resources": {
-            "strength": 1,
-            "peace": 3
+            "peace": 2,
+            "bonds": -2
           },
           "qualities": {
             "attention": 1
@@ -1212,8 +1208,8 @@
         "label": "Пройду всё до конца, как положено, отложив остальное",
         "effects": {
           "resources": {
-            "wealth": -1,
-            "strength": -4,
+            "strength": -3,
+            "peace": 1,
             "bonds": 1
           },
           "qualities": {
@@ -1363,7 +1359,8 @@
         "effects": {
           "resources": {
             "wealth": -1,
-            "peace": 3
+            "peace": 2,
+            "bonds": -1
           },
           "qualities": {
             "attention": 1
@@ -1501,13 +1498,16 @@
       },
       {
         "id": "protect-cash",
-        "label": "Откажусь: сберегу запас и свободу, чтобы укрыться при беде",
+        "label": "Откажусь: сберегу запас и свободу на случай беды",
         "effects": {
           "resources": {
             "wealth": 2,
             "strength": 1,
             "peace": 1,
             "bonds": -2
+          },
+          "qualities": {
+            "letgo": 1
           }
         },
         "servesFacets": [
@@ -1685,13 +1685,13 @@
       },
       {
         "id": "redefine-health",
-        "label": "Пересмотрю, что такое здоровая жизнь: с людьми, а не только с записями",
+        "label": "Пересмотрю, что значит здоровая жизнь — с людьми",
         "effects": {
           "resources": {
             "wealth": -1,
             "strength": -1,
-            "peace": 2,
-            "bonds": 3
+            "peace": 1,
+            "bonds": 2
           },
           "qualities": {
             "attention": 1
@@ -1835,6 +1835,9 @@
           "resources": {
             "peace": -1,
             "bonds": 1
+          },
+          "qualities": {
+            "letgo": 1
           }
         },
         "servesFacets": [
@@ -1892,7 +1895,7 @@
     "choices": [
       {
         "id": "redesign-flow",
-        "label": "Перестрою поток заказов: пределы, роли, раз в неделю сверка",
+        "label": "Перестрою заказы: пределы, роли, сверка раз в неделю",
         "effects": {
           "resources": {
             "strength": -3,
@@ -1900,7 +1903,7 @@
             "bonds": 1
           },
           "qualities": {
-            "courage": 1
+            "attention": 1
           }
         },
         "servesFacets": [
@@ -1974,13 +1977,13 @@
       },
       {
         "id": "individual-agreements",
-        "label": "Поговорю с каждым про его границы и как ему устойчивее работать",
+        "label": "Поговорю с каждым про его границы и устойчивый ритм",
         "effects": {
           "resources": {
-            "wealth": -1,
+            "wealth": -2,
             "strength": -1,
             "peace": 1,
-            "bonds": 3
+            "bonds": 2
           },
           "qualities": {
             "compassion": 1
@@ -2078,10 +2081,11 @@
       },
       {
         "id": "listen-context",
-        "label": "Каждую неделю буду выбирать по самочувствию, без одной схемы",
+        "label": "Буду выбирать по самочувствию каждую неделю, без схемы",
         "effects": {
           "resources": {
-            "peace": 3
+            "strength": -1,
+            "peace": 2
           },
           "qualities": {
             "attention": 1
@@ -2115,7 +2119,7 @@
       },
       {
         "id": "build-minimum",
-        "label": "Заведу малый порядок и знаки, что держатся и в плохую неделю",
+        "label": "Заведу малый порядок, что держится и в плохую неделю",
         "effects": {
           "resources": {
             "strength": 1,
@@ -2222,7 +2226,7 @@
       },
       {
         "id": "reframe-together",
-        "label": "Обозначу границы, но позволю им самим переназвать задачу",
+        "label": "Назову границы, но дам им самим переназвать задачу",
         "effects": {
           "resources": {
             "wealth": -2,
@@ -2325,7 +2329,7 @@
     "choices": [
       {
         "id": "explore-identity",
-        "label": "Сперва пойму, какую связь защищает каждый — правила потом",
+        "label": "Пойму, какую связь защищает каждый; правила — потом",
         "effects": {
           "resources": {
             "wealth": -1,
@@ -2334,7 +2338,7 @@
             "bonds": 4
           },
           "qualities": {
-            "letgo": 1
+            "attention": 1
           }
         },
         "servesFacets": [
@@ -2365,7 +2369,7 @@
       },
       {
         "id": "keep-together",
-        "label": "Сделаю всё, чтобы сберечь единство и не допустить разрыва",
+        "label": "Сделаю всё, чтобы сберечь единство и не дать разрыва",
         "effects": {
           "resources": {
             "strength": -2,
@@ -2404,7 +2408,7 @@
       },
       {
         "id": "set-rules",
-        "label": "Предложу прочный порядок: границы, роли, как пересматриваем уговор",
+        "label": "Предложу прочный порядок: границы, роли, пересмотр",
         "effects": {
           "resources": {
             "strength": -2,
@@ -2412,7 +2416,7 @@
             "bonds": 1
           },
           "qualities": {
-            "courage": 1
+            "honesty": 1
           }
         },
         "servesFacets": [
@@ -2470,10 +2474,11 @@
     "choices": [
       {
         "id": "question-role",
-        "label": "Сперва пойму, почему я считаю это своим делом и какую роль готов взять",
+        "label": "Сперва пойму, почему это моё дело и какую роль беру",
         "effects": {
           "resources": {
-            "peace": 2
+            "peace": 1,
+            "bonds": -1
           },
           "qualities": {
             "attention": 1
@@ -2507,7 +2512,7 @@
       },
       {
         "id": "integrated-plan",
-        "label": "Соберу нужды в одну доску и составлю план на годы, с поправками",
+        "label": "Соберу нужды в одну доску: план на годы, с поправками",
         "effects": {
           "resources": {
             "strength": -3,
@@ -2548,7 +2553,7 @@
       },
       {
         "id": "bounded-experiments",
-        "label": "Обозначу, чего нельзя ломать, и вместе пробую малые дела",
+        "label": "Назову, чего не ломать, и пробую малые дела вместе",
         "effects": {
           "resources": {
             "wealth": -1,
@@ -2615,7 +2620,7 @@
     "choices": [
       {
         "id": "transform-pattern",
-        "label": "Разберу, что этот спор строит между нами и какую связь он требует",
+        "label": "Разберу, что строит этот спор и какой связи требует",
         "effects": {
           "resources": {
             "strength": -1,
@@ -2654,13 +2659,14 @@
       },
       {
         "id": "simple-boundary",
-        "label": "Скажу прямо про границу и что будет. Историю не тащу сюда",
+        "label": "Скажу прямо про границу и что будет. Историю не тащу",
         "effects": {
           "resources": {
-            "peace": 3
+            "peace": 2,
+            "bonds": -2
           },
           "qualities": {
-            "honesty": 1
+            "letgo": 1
           }
         },
         "servesFacets": [
@@ -2691,7 +2697,7 @@
       },
       {
         "id": "preserve-relationship",
-        "label": "Смягчу слова и не стану настаивать, чтобы сберечь отношения",
+        "label": "Смягчу слова и не стану настаивать — сберегу отношения",
         "effects": {
           "resources": {
             "peace": -1,
@@ -2756,12 +2762,12 @@
     "choices": [
       {
         "id": "fix-now",
-        "label": "Просто исправлю известную причину по хорошему обычаю; смыслы — потом",
+        "label": "Починю известную причину по обычаю; смыслы — потом",
         "effects": {
           "resources": {
             "wealth": 1,
-            "strength": -1,
-            "peace": 2
+            "strength": -2,
+            "peace": 1
           },
           "qualities": {
             "attention": 1
@@ -2795,7 +2801,7 @@
       },
       {
         "id": "prevent-systemically",
-        "label": "Исправлю и заведу проверку сырости, чтобы не от меня зависело",
+        "label": "Починю и заведу проверку сырости — пусть держится без меня",
         "effects": {
           "resources": {
             "strength": -3,
@@ -2803,7 +2809,7 @@
             "bonds": 1
           },
           "qualities": {
-            "courage": 1
+            "attention": 1
           }
         },
         "servesFacets": [
@@ -2845,7 +2851,7 @@
             "bonds": 3
           },
           "qualities": {
-            "letgo": 1
+            "attention": 1
           }
         },
         "servesFacets": [
@@ -2912,7 +2918,7 @@
             "bonds": 1
           },
           "qualities": {
-            "courage": 1
+            "attention": 1
           }
         },
         "servesFacets": [
@@ -2946,7 +2952,7 @@
       },
       {
         "id": "hold-transformation",
-        "label": "Пока не выбираю картину: устрою разговор, где спор родит новую рамку",
+        "label": "Картину не выберу: устрою разговор, где спор даст рамку",
         "effects": {
           "resources": {
             "wealth": -2,
@@ -2985,12 +2991,12 @@
       },
       {
         "id": "temporary-frame",
-        "label": "Возьму на месяц рабочую рамку, скажу, где тесна, и назначу пересмотр",
+        "label": "Возьму рамку на месяц, скажу, где тесна, и пересмотрю",
         "effects": {
           "resources": {
-            "wealth": 1,
             "strength": -1,
-            "peace": 3
+            "peace": 2,
+            "bonds": -1
           },
           "qualities": {
             "honesty": 1

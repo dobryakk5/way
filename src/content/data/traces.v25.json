@@ -218,7 +218,7 @@
         "id": "choice:neutral.work.05/A"
       }
     ],
-    "response": "Ты просидел час у старой печи. Оказалось, тянет не скорость, а желание, чтобы признали."
+    "response": "Ты просидел час у старой печи: тянет не скорость, а желание, чтобы признали. Савва не дождался."
   },
   {
     "source": {
@@ -296,7 +296,7 @@
         "id": "choice:neutral.work.06/C"
       }
     ],
-    "response": "Ты взвесил условия и сказал «да» без лишних слов. Спал в ту ночь хорошо."
+    "response": "Ты взвесил и сказал «да» без лишних слов. Спал хорошо, а Мирон ждал разговора и надулся."
   },
   {
     "source": {
@@ -374,7 +374,7 @@
         "id": "choice:neutral.work.08/A"
       }
     ],
-    "response": "Ты замер у печи. Сказал вслух: «Заказ нужен ему не весь». Это оказалось правдой."
+    "response": "Ты замер у печи: «Заказ нужен ему не весь». Это правда, но час до вечера ушёл."
   },
   {
     "source": {
@@ -426,7 +426,7 @@
         "id": "choice:neutral.relationships.01/A"
       }
     ],
-    "response": "Сели у реки, договорились. Илья записал на дощечке и смутился."
+    "response": "Сели у реки, договорились. Егор записал на дощечке и смутился."
   },
   {
     "source": {
@@ -439,7 +439,7 @@
         "id": "choice:neutral.relationships.01/B"
       }
     ],
-    "response": "Илья посмеялся. В следующий раз пришёл раньше тебя."
+    "response": "Егор посмеялся. В следующий раз пришёл раньше тебя."
   },
   {
     "source": {
@@ -452,7 +452,7 @@
         "id": "choice:neutral.relationships.01/C"
       }
     ],
-    "response": "К вечеру Илья пришёл — и сделал вид, что ничего не было."
+    "response": "К вечеру Егор пришёл — и сделал вид, что ничего не было."
   },
   {
     "source": {
@@ -465,7 +465,7 @@
         "id": "choice:neutral.relationships.01/D"
       }
     ],
-    "response": "Илья принёс лепёшку. Ели молча, и ты так и не сказал, что замёрз."
+    "response": "Егор принёс лепёшку. Ели молча, и ты так и не сказал, что замёрз."
   },
   {
     "source": {
@@ -478,7 +478,7 @@
         "id": "choice:neutral.relationships.02/A"
       }
     ],
-    "response": "Праздновали у Дарьи, коротко. Кто-то ворчал, но к вечеру смеялись все."
+    "response": "Праздновали у Дарьи, коротко. Речная родня не пришла, но и спорить стало не о чем."
   },
   {
     "source": {
@@ -569,7 +569,7 @@
         "id": "choice:neutral.relationships.03/D"
       }
     ],
-    "response": "Лия сказала: «Приехать, когда обещал». Ты понял, что она не про дела, а про дорогу."
+    "response": "При гостях говорить было тяжело. Лия ответила: «Приехать, когда обещал». Она про дорогу."
   },
   {
     "source": {
@@ -634,7 +634,7 @@
         "id": "choice:neutral.relationships.05/A"
       }
     ],
-    "response": "Ты промолчал. Лия решила, не зная. Ты ходил по двору, не находя места."
+    "response": "Ты промолчал и остался в стороне. Лия решила, не зная, а потом узнала, что ты знал."
   },
   {
     "source": {
@@ -660,7 +660,7 @@
         "id": "choice:neutral.relationships.05/C"
       }
     ],
-    "response": "Ты решил, кто что вправе знать. Илья и Лия согласились, хотя им было неловко."
+    "response": "Ты решил, кто что вправе знать. Егор и Лия согласились, хотя им было неловко."
   },
   {
     "source": {
@@ -673,7 +673,7 @@
         "id": "choice:neutral.relationships.05/D"
       }
     ],
-    "response": "Ты попросил Илью самому сказать Лии. Он сказал. Вы втроём молчали до вечера."
+    "response": "Ты попросил Егора самому сказать Лии. Он сказал. Вы втроём молчали до вечера."
   },
   {
     "source": {
@@ -907,7 +907,7 @@
         "id": "choice:neutral.body.02/B"
       }
     ],
-    "response": "Ты взял грелку на десять дней. Спина отпустила, и ты не стал спорить с Радимом."
+    "response": "Ты взял грелку на десять дней. Спина отпустила, а Радим обиделся, что не послушали."
   },
   {
     "source": {
@@ -920,7 +920,7 @@
         "id": "choice:neutral.body.02/C"
       }
     ],
-    "response": "Ты вспомнил, как спина молчит у реки и ноет у круга. Выбрал то, что с рекой."
+    "response": "День без круга. Спина молчит у реки и ноет у печи — ты выбрал то, что с рекой."
   },
   {
     "source": {
@@ -946,7 +946,7 @@
         "id": "choice:neutral.body.03/A"
       }
     ],
-    "response": "Ты вышел к реке. Руки вели чашку, ноги подгибались. Вечером свалился без сил."
+    "response": "Ты вышел к реке на подгибающихся ногах. Взял второе место и деньги, а вечером свалился."
   },
   {
     "source": {
@@ -1115,7 +1115,7 @@
         "id": "choice:neutral.body.06/B"
       }
     ],
-    "response": "Ты ел свою кашу на краю стола. Никто не заметил — и ты тоже стал спокойнее."
+    "response": "Ты ел свою кашу на краю стола. Дарья поджала губы, а тебе стало спокойнее."
   },
   {
     "source": {
@@ -1206,7 +1206,7 @@
         "id": "choice:neutral.body.08/A"
       }
     ],
-    "response": "Ты понял: не хватает тишины. Выбрал вечернюю прогулку к реке."
+    "response": "Полдня ушло на раздумья. Не хватает тишины — ты выбрал вечернюю прогулку к реке."
   },
   {
     "source": {
@@ -1232,7 +1232,7 @@
         "id": "choice:neutral.body.08/C"
       }
     ],
-    "response": "Пил отвар по утрам. Не хуже, не лучше, но не мучился."
+    "response": "Брал у Фёклы отвар по утрам. Не хуже, не лучше, но не мучился."
   },
   {
     "source": {
@@ -1258,7 +1258,7 @@
         "id": "choice:neutral.inner.01/A"
       }
     ],
-    "response": "Ты промолчал и кивнул. Мирон потом сказал, что было непросто, но правильно."
+    "response": "Ты промолчал и кивнул. Савва договорил, сход разошёлся. Обида осталась при тебе."
   },
   {
     "source": {
@@ -1284,7 +1284,7 @@
         "id": "choice:neutral.inner.01/C"
       }
     ],
-    "response": "Ты ответил жёстко. Сход загудел, Савва усмехнулся. Дома сердце не успокаивалось."
+    "response": "Ты ответил жёстко. Сход загудел, Савва усмехнулся. Зато покупатели видели: тебя не сомнёшь."
   },
   {
     "source": {
@@ -1349,7 +1349,7 @@
         "id": "choice:neutral.inner.02/D"
       }
     ],
-    "response": "Ты замесил глину, как в первый год. Руки знали сами. Пустота стала тише."
+    "response": "Ты замесил глину, как в первый год. Заказов не искал. Пустота стала тише."
   },
   {
     "source": {
@@ -1401,7 +1401,7 @@
         "id": "choice:neutral.inner.03/D"
       }
     ],
-    "response": "Ты просидел вечер у реки. Дело оказалось не центром, а одним из берегов."
+    "response": "Вечер у реки: дело не центр, а один из берегов. Алексей заметил и насторожился."
   },
   {
     "source": {
@@ -1518,7 +1518,7 @@
         "id": "choice:neutral.inner.06/A"
       }
     ],
-    "response": "Ты сказал Илье прямо, на второй день. Он удивился и принял."
+    "response": "Ты сказал Егору прямо, на второй день. Он пару дней держался холодно — и принял."
   },
   {
     "source": {
@@ -1570,7 +1570,7 @@
         "id": "choice:neutral.inner.07/A"
       }
     ],
-    "response": "Марта и Илья слушали и сказали по-своему. Часть замысла отпала, часть окрепла."
+    "response": "Марта и Егор слушали и сказали по-своему. Часть замысла отпала, часть окрепла."
   },
   {
     "source": {
@@ -1583,7 +1583,7 @@
         "id": "choice:neutral.inner.07/B"
       }
     ],
-    "response": "Ты в одно утро перетряс мастерскую. К вечеру было и свежо, и страшно."
+    "response": "Ты в одно утро перетряс мастерскую и продал залежалое. К вечеру было свежо и чуть страшно."
   },
   {
     "source": {
@@ -1921,7 +1921,7 @@
         "id": "choice:probe.od.02/keep-confidence"
       }
     ],
-    "response": "Ты торговался как обычно. Илья потом обнял тебя и ничего не спросил."
+    "response": "Ты торговался как обычно. Егор потом обнял тебя и ничего не спросил."
   },
   {
     "source": {
@@ -1947,7 +1947,7 @@
         "id": "choice:probe.od.02/use-information"
       }
     ],
-    "response": "Тимон уступил. Ты вернулся с мешком монет и слушал, не идёт ли Илья."
+    "response": "Тимон уступил. Ты вернулся с мешком монет и слушал, не идёт ли Егор."
   },
   {
     "source": {
@@ -1999,7 +1999,7 @@
         "id": "choice:probe.de.01/follow-team"
       }
     ],
-    "response": "Глазурь легла как всегда. Савва одобрительно крякнул."
+    "response": "Глазурь легла как всегда. Савва одобрительно крякнул, а сомнение в мере осталось."
   },
   {
     "source": {
@@ -2012,7 +2012,7 @@
         "id": "choice:probe.de.01/verify-formula"
       }
     ],
-    "response": "Ты сварил три пробы. Одна мера оказалась лучше. Савва не разговаривал до вечера."
+    "response": "Ты сварил три пробы. Новая мера легла лучше и пошла дороже. Савва не разговаривал до вечера."
   },
   {
     "source": {
@@ -2051,7 +2051,7 @@
         "id": "choice:probe.de.02/reconsider-purchase"
       }
     ],
-    "response": "Ты не купил ничего. Зато понял, что мастерской нужна не печь, а второй стол."
+    "response": "Ты не купил ничего, и родные обиделись. Зато понял: мастерской нужна не печь, а второй стол."
   },
   {
     "source": {
@@ -2103,7 +2103,7 @@
         "id": "choice:probe.de.03/check-technique"
       }
     ],
-    "response": "Радим показал, как держать косу. Ты вернулся в ряд с новым хватом."
+    "response": "Радим показал, как держать косу. Ты вернулся в ряд с новым хватом, и спина отпустила."
   },
   {
     "source": {
@@ -2116,7 +2116,7 @@
         "id": "choice:probe.ea.01/polish"
       }
     ],
-    "response": "Чаши вышли гладкие. Тимон остался без лучшего места и надулся."
+    "response": "Чаши вышли гладкие и разошлись и без лучшего места. Тимон всё равно надулся."
   },
   {
     "source": {
@@ -2142,7 +2142,7 @@
         "id": "choice:probe.ea.01/question-goal"
       }
     ],
-    "response": "Ты просидел час над чашей. Оказалось, место нужно не тебе, а твоему отцу."
+    "response": "Ты просидел час над чашей, и место ушло. Оказалось, нужно оно не тебе, а твоему отцу."
   },
   {
     "source": {
@@ -2194,7 +2194,7 @@
         "id": "choice:probe.ea.03/rethink-running"
       }
     ],
-    "response": "Ты не пошёл. Сидел с ведром у колодца и думал, чего ты ждёшь от гонки."
+    "response": "Ты не пошёл. Сидел у колодца и думал, чего ждёшь от гонки. Радим прождал тебя зря."
   },
   {
     "source": {
@@ -2207,7 +2207,7 @@
         "id": "choice:probe.ea.03/full-protocol"
       }
     ],
-    "response": "Ты прошёл все круги. Руки дрожали, зато Радим кивнул."
+    "response": "Ты прошёл все круги. Руки дрожали, но на душе было ровно, и Радим кивнул."
   },
   {
     "source": {
@@ -2324,7 +2324,7 @@
         "id": "choice:probe.ai.03/keep-metrics"
       }
     ],
-    "response": "Ты придвинул ужин к печи. Марта похвалила записи. Илья перестал заходить."
+    "response": "Ты придвинул ужин к печи. Марта похвалила записи. Егор перестал заходить."
   },
   {
     "source": {
@@ -2337,7 +2337,7 @@
         "id": "choice:probe.ai.03/redefine-health"
       }
     ],
-    "response": "Ты оставил в тетради слова вместо цифр. Илья зашёл в среду без предупреждения."
+    "response": "Ты оставил в тетради слова вместо цифр. Егор зашёл в среду без предупреждения."
   },
   {
     "source": {
@@ -2415,7 +2415,7 @@
         "id": "choice:probe.is.02/individual-agreements"
       }
     ],
-    "response": "Ульяна сказала про сон. Алексей — про печь. Каждому нашёлся свой порядок."
+    "response": "Два дня ушло на разговоры. Ульяна сказала про сон, Алексей — про печь. Каждому нашёлся порядок."
   },
   {
     "source": {
@@ -2597,7 +2597,7 @@
         "id": "choice:probe.alir.01/simple-boundary"
       }
     ],
-    "response": "Ты сказал спокойно: «Через двор — нет». Марта кивнула. И пошла кругом."
+    "response": "Ты сказал спокойно: «Через двор — нет». Марта поджала губы и пошла кругом."
   },
   {
     "source": {
@@ -2623,7 +2623,7 @@
         "id": "choice:probe.alir.02/fix-now"
       }
     ],
-    "response": "Ты просушил черепки дольше. Печь выдала ровный обжиг."
+    "response": "Ты два дня просушивал черепки. Печь выдала ровный обжиг."
   },
   {
     "source": {
@@ -2688,6 +2688,1956 @@
         "id": "choice:probe.alir.03/temporary-frame"
       }
     ],
-    "response": "Ты назвал рамку, её тесное место и день пересмотра. Спорить стало легче."
+    "response": "Ты назвал рамку, её тесное место и день пересмотра. Спорить стало легче, Савва ворчал."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.trial.01",
+      "choiceId": "share_responsibility"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.trial.01/share_responsibility"
+      }
+    ],
+    "response": "Тимон снял плату с тебя, не с Алексея. Алексей отвёл глаза и принёс воды."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.trial.01",
+      "choiceId": "protect_self"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.trial.01/protect_self"
+      }
+    ],
+    "response": "Тимон кивнул и ушёл к Алексею. Тебе стало легче, ему — нет."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.trial.01",
+      "choiceId": "coordinate_facts"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.trial.01/coordinate_facts"
+      }
+    ],
+    "response": "Вы сели разбирать черепки. Тимон ждёт ответа до сих пор."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.consequence.01",
+      "choiceId": "ledger"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.consequence.01/ledger"
+      }
+    ],
+    "response": "Ты записал долг Алексея на доске. Он увидел и перестал приносить воду."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.consequence.01",
+      "choiceId": "trust_has_value"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.consequence.01/trust_has_value"
+      }
+    ],
+    "response": "Ты не стал считать. Назавтра Алексей принёс глины больше, чем просили."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.consequence.01",
+      "choiceId": "chance"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.consequence.01/chance"
+      }
+    ],
+    "response": "Ты пожал плечами. Алексей заметил, что ты даже не поблагодарил."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.review.01",
+      "choiceId": "future_debt"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.review.01/future_debt"
+      }
+    ],
+    "response": "Ты кивнул себе. Отчего-то стало душно."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.review.01",
+      "choiceId": "never_again"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.review.01/never_again"
+      }
+    ],
+    "response": "Ты решил: впредь осматривать самому и молчать."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.review.01",
+      "choiceId": "relationship_value"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.review.01/relationship_value"
+      }
+    ],
+    "response": "Ты записал это на глиняной дощечке и спрятал в печную нишу."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.transfer.01",
+      "choiceId": "take_opportunity"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.transfer.01/take_opportunity"
+      }
+    ],
+    "response": "Торг удался. Лия неделю не отвечала на твои записки."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.transfer.01",
+      "choiceId": "keep_promise"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.transfer.01/keep_promise"
+      }
+    ],
+    "response": "Ты помогал Лие до темноты. Торг ушёл к другому."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.transfer.01",
+      "choiceId": "open_renegotiation"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.transfer.01/open_renegotiation"
+      }
+    ],
+    "response": "Лия сказала: «Перенесём». Но голос был чужой."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.pressure.01",
+      "choiceId": "take_better_deal"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.pressure.01/take_better_deal"
+      }
+    ],
+    "response": "Покупатель увёз партию. Тимон больше не стучал в твои ворота."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.pressure.01",
+      "choiceId": "renegotiate"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.pressure.01/renegotiate"
+      }
+    ],
+    "response": "Тимон отказал, а через неделю всё равно пришёл."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.pressure.01",
+      "choiceId": "honor_terms"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.pressure.01/honor_terms"
+      }
+    ],
+    "response": "Ты отдал партию по старой цене. Тимон долго молчал, потом пожал руку."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.retry.01",
+      "choiceId": "keep_confidence"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.retry.01/keep_confidence"
+      }
+    ],
+    "response": "Ты спорил без этой карты и проиграл половину. Совесть была чиста."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.retry.01",
+      "choiceId": "use_info"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.retry.01/use_info"
+      }
+    ],
+    "response": "Спор выигран. Через неделю Тимон знал, чьё это слово."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.retry.01",
+      "choiceId": "hint_without_source"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.retry.01/hint_without_source"
+      }
+    ],
+    "response": "Намёк сработал. Егор побледнел: он понял, откуда."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.retry-trial.01",
+      "choiceId": "share"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.retry-trial.01/share"
+      }
+    ],
+    "response": "Вы делили круг по очереди. Ты ворчал, но срок не сдвинулся."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.retry-trial.01",
+      "choiceId": "claim"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.retry-trial.01/claim"
+      }
+    ],
+    "response": "Ты работал до ночи. Алексей смотрел с порога и не сказал ни слова."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.retry-trial.01",
+      "choiceId": "optimize"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.retry-trial.01/optimize"
+      }
+    ],
+    "response": "Очередь стала ровнее. Алексей спросил: «Почему решаешь ты?»"
+  },
+  {
+    "source": {
+      "cardId": "dev.od.retry-review.01",
+      "choiceId": "ledger"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.retry-review.01/ledger"
+      }
+    ],
+    "response": "Ты завёл в голове счёты. Тёплое ушло из этого дня."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.retry-review.01",
+      "choiceId": "recognize"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.retry-review.01/recognize"
+      }
+    ],
+    "response": "Ты сказал это вслух. Алексей смутился и подбросил дров."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.retry-review.01",
+      "choiceId": "dismiss"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.retry-review.01/dismiss"
+      }
+    ],
+    "response": "Ты отмахнулся. Вечер вышел сухим."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.retry-transfer.01",
+      "choiceId": "take"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.retry-transfer.01/take"
+      }
+    ],
+    "response": "Выгода была настоящей. Егор перестал просить."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.retry-transfer.01",
+      "choiceId": "excuse"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.retry-transfer.01/excuse"
+      }
+    ],
+    "response": "Егор поверил. Ты — нет."
+  },
+  {
+    "source": {
+      "cardId": "dev.od.retry-transfer.01",
+      "choiceId": "keep"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.od.retry-transfer.01/keep"
+      }
+    ],
+    "response": "Ты помогал Егору до заката. Выгода ушла, а он запомнил."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.trial.01",
+      "choiceId": "follow_norm"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.trial.01/follow_norm"
+      }
+    ],
+    "response": "Заказ ушёл как всегда. Савва кивнул. Мера осталась."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.trial.01",
+      "choiceId": "verify_and_show"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.trial.01/verify_and_show"
+      }
+    ],
+    "response": "Ты сварил пробу рядом со старой мерой и показал Савве два черепка."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.trial.01",
+      "choiceId": "escalate_unchecked"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.trial.01/escalate_unchecked"
+      }
+    ],
+    "response": "Мирон нахмурился: «Проверил?» Савва с тобой не говорил."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.consequence.01",
+      "choiceId": "victory"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.consequence.01/victory"
+      }
+    ],
+    "response": "Савва замолчал. Дальше ты работал один."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.consequence.01",
+      "choiceId": "back_down"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.consequence.01/back_down"
+      }
+    ],
+    "response": "Всё стало как прежде. Брак тоже."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.consequence.01",
+      "choiceId": "separate_people_from_solution"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.consequence.01/separate_people_from_solution"
+      }
+    ],
+    "response": "Вы сварили две пробы рядом. Савва долго смотрел и сказал: «Давай ещё раз»."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.review.01",
+      "choiceId": "respect_and_check"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.review.01/respect_and_check"
+      }
+    ],
+    "response": "Ты сказал это вслух у печи. Стало тише."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.review.01",
+      "choiceId": "peace_first"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.review.01/peace_first"
+      }
+    ],
+    "response": "Ты замолчал. Мера осталась на месте."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.review.01",
+      "choiceId": "trust_no_one"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.review.01/trust_no_one"
+      }
+    ],
+    "response": "Ты перепроверил даже чужие горшки. Руки гудели."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.transfer.01",
+      "choiceId": "follow_authority"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.transfer.01/follow_authority"
+      }
+    ],
+    "response": "Ты лежал неделю. Спина затихла, но дело встало."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.transfer.01",
+      "choiceId": "ignore_experts"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.transfer.01/ignore_experts"
+      }
+    ],
+    "response": "Ты поднял печную кладку и охнул на четвёртой."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.transfer.01",
+      "choiceId": "check_basis"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.transfer.01/check_basis"
+      }
+    ],
+    "response": "Фёкла объяснила про жар, Радим про мышцы. Ты выбрал середину."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.pressure.01",
+      "choiceId": "present_checkable_basis"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.pressure.01/present_checkable_basis"
+      }
+    ],
+    "response": "Мирон прочёл твои выкладки и перенёс сход на час. Не поблагодарил — кивнул."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.pressure.01",
+      "choiceId": "stay_silent"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.pressure.01/stay_silent"
+      }
+    ],
+    "response": "Сход прошёл гладко. Ошибка осталась в решении, ты — со своим знанием."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.pressure.01",
+      "choiceId": "public_proof"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.pressure.01/public_proof"
+      }
+    ],
+    "response": "Сход затих. Мирон встал и вышел."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.retry.01",
+      "choiceId": "follow_family"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.retry.01/follow_family"
+      }
+    ],
+    "response": "Ты кивнул. Дарья обрадовалась. Факты остались в кармане."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.retry.01",
+      "choiceId": "verify_independently"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.retry.01/verify_independently"
+      }
+    ],
+    "response": "Ты съездил, посмотрел, спросил. Решил по-своему и сказал Дарье спокойно."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.retry.01",
+      "choiceId": "reject_to_prove_independence"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.retry.01/reject_to_prove_independence"
+      }
+    ],
+    "response": "Дарья замолчала. Дело тебе всё равно не понравилось."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.retry-trial.01",
+      "choiceId": "verify"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.retry-trial.01/verify"
+      }
+    ],
+    "response": "Ты принёс запись к печи. Савва прочёл дважды."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.retry-trial.01",
+      "choiceId": "follow"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.retry-trial.01/follow"
+      }
+    ],
+    "response": "Правило осталось. Ты тоже."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.retry-trial.01",
+      "choiceId": "escalate"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.retry-trial.01/escalate"
+      }
+    ],
+    "response": "Мастера обиделись: «Отменять — не твоё дело»."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.retry-consequence.01",
+      "choiceId": "prove"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.retry-consequence.01/prove"
+      }
+    ],
+    "response": "Савва усмехнулся: «Был». Больше он тебе ничего не сказал."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.retry-consequence.01",
+      "choiceId": "separate"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.retry-consequence.01/separate"
+      }
+    ],
+    "response": "Вы записали новую меру на доске. Савва поправил твою запись."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.retry-consequence.01",
+      "choiceId": "back"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.retry-consequence.01/back"
+      }
+    ],
+    "response": "Ты промолчал. Брак повторился в третий раз."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.retry-transfer.01",
+      "choiceId": "accept"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.retry-transfer.01/accept"
+      }
+    ],
+    "response": "Мастер взял задаток. Три пункта оказались лишними."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.retry-transfer.01",
+      "choiceId": "reject"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.retry-transfer.01/reject"
+      }
+    ],
+    "response": "Егор обиделся. Мастера ты нашёл хуже."
+  },
+  {
+    "source": {
+      "cardId": "dev.de.retry-transfer.01",
+      "choiceId": "check"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.de.retry-transfer.01/check"
+      }
+    ],
+    "response": "Ты расспросил мастера и вычеркнул три пункта. Егор сказал: «Верно»."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.trial.01",
+      "choiceId": "accept_and_optimize"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.trial.01/accept_and_optimize"
+      }
+    ],
+    "response": "Ты принял место. Первую неделю ходил по сходам и к кругу не вернулся."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.trial.01",
+      "choiceId": "reject_system"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.trial.01/reject_system"
+      }
+    ],
+    "response": "Мирон удивился. Ты почувствовал себя правым и пустым."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.trial.01",
+      "choiceId": "pause_and_examine"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.trial.01/pause_and_examine"
+      }
+    ],
+    "response": "Мирон дал неделю. Ты просидел у реки три вечера."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.consequence.01",
+      "choiceId": "recognize_values_conflict"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.consequence.01/recognize_values_conflict"
+      }
+    ],
+    "response": "Ты сказал Лие: «Не знаю, как». Она кивнула, и стало легче."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.consequence.01",
+      "choiceId": "optimize_schedule"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.consequence.01/optimize_schedule"
+      }
+    ],
+    "response": "Ты расчертил неделю. Лия посмотрела и промолчала."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.consequence.01",
+      "choiceId": "blame_close"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.consequence.01/blame_close"
+      }
+    ],
+    "response": "Лия отвернулась. Ты понял, что сказал лишнее."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.review.01",
+      "choiceId": "recognized_goal"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.review.01/recognized_goal"
+      }
+    ],
+    "response": "Ты кивнул себе. Сомнение не ушло."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.review.01",
+      "choiceId": "live_with_result"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.review.01/live_with_result"
+      }
+    ],
+    "response": "Ты записал это на дощечке и положил под лавку."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.review.01",
+      "choiceId": "all_goals_fake"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.review.01/all_goals_fake"
+      }
+    ],
+    "response": "Ты отпустил всё и три дня не знал, зачем встаёшь."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.transfer.01",
+      "choiceId": "redefine_goal"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.transfer.01/redefine_goal"
+      }
+    ],
+    "response": "Ты вычеркнул одну меру и вернул воскресные встречи."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.transfer.01",
+      "choiceId": "tighten_plan"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.transfer.01/tighten_plan"
+      }
+    ],
+    "response": "Ты прибавил подъём пораньше. Радим покачал головой."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.transfer.01",
+      "choiceId": "quit_tracking"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.transfer.01/quit_tracking"
+      }
+    ],
+    "response": "Первую неделю было легко. Потом ты не знал, как понять, что идёшь."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.pressure.01",
+      "choiceId": "take_status"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.pressure.01/take_status"
+      }
+    ],
+    "response": "Ты подписал. Условия пересобрать не вышло."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.pressure.01",
+      "choiceId": "honor_own_frame"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.pressure.01/honor_own_frame"
+      }
+    ],
+    "response": "Ты изменил условия. Тимон поморщился, но принял. Выглядело скромнее."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.pressure.01",
+      "choiceId": "reject_to_be_different"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.pressure.01/reject_to_be_different"
+      }
+    ],
+    "response": "Ты хлопнул дверью. Все решили, что ты гордец."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.retry.01",
+      "choiceId": "follow_script"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.retry.01/follow_script"
+      }
+    ],
+    "response": "Ты сделал, как велели. Дарья обрадовалась. Тебе было странно."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.retry.01",
+      "choiceId": "oppose_everyone"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.retry.01/oppose_everyone"
+      }
+    ],
+    "response": "Ты сделал наоборот и понял, что решал не ты."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.retry.01",
+      "choiceId": "own_choice"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.retry.01/own_choice"
+      }
+    ],
+    "response": "Ты сказал Дарье, чего хочешь сам. Объяснить было труднее, чем решить."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.retry-trial.01",
+      "choiceId": "examine"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.retry-trial.01/examine"
+      }
+    ],
+    "response": "Ты взял ночь. К утру понял: две зимы без реки — многовато."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.retry-trial.01",
+      "choiceId": "accept"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.retry-trial.01/accept"
+      }
+    ],
+    "response": "Ты подписал. В первую зиму жалеть было некогда."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.retry-trial.01",
+      "choiceId": "reject"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.retry-trial.01/reject"
+      }
+    ],
+    "response": "Ты отказал сразу. Тимон пожал плечами: «Свободный человек»."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.retry-transfer.01",
+      "choiceId": "follow"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.retry-transfer.01/follow"
+      }
+    ],
+    "response": "Шаг сделан. Лия обрадовалась, а ты не понял чему."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.retry-transfer.01",
+      "choiceId": "ownframe"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.retry-transfer.01/ownframe"
+      }
+    ],
+    "response": "Вы говорили до утра. Шаг вышел другой — ваш."
+  },
+  {
+    "source": {
+      "cardId": "dev.ai.retry-transfer.01",
+      "choiceId": "avoid"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.ai.retry-transfer.01/avoid"
+      }
+    ],
+    "response": "Ты ждал уверенности. Лия не дождалась разговора."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.trial.01",
+      "choiceId": "change_mechanism"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.trial.01/change_mechanism"
+      }
+    ],
+    "response": "Вы вчетвером написали три строки на доске. Ворчали, но подписали."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.trial.01",
+      "choiceId": "mediate_again"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.trial.01/mediate_again"
+      }
+    ],
+    "response": "Ты слушал до ночи. Каждому стало легче. Через две недели всё повторилось."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.trial.01",
+      "choiceId": "step_out"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.trial.01/step_out"
+      }
+    ],
+    "response": "Ты отошёл. Спор не стих, но стал не твоим."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.consequence.01",
+      "choiceId": "remove_rule"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.consequence.01/remove_rule"
+      }
+    ],
+    "response": "Правило снято. Через неделю ссора вернулась."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.consequence.01",
+      "choiceId": "enforce_rule"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.consequence.01/enforce_rule"
+      }
+    ],
+    "response": "Правило осталось. Егор перестал приходить."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.consequence.01",
+      "choiceId": "adjust_feedback"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.consequence.01/adjust_feedback"
+      }
+    ],
+    "response": "Вы переписали одну строку. Егору стало просторнее, правилу — не хуже."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.review.01",
+      "choiceId": "understanding_enough"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.review.01/understanding_enough"
+      }
+    ],
+    "response": "Ты кивнул. Через неделю вы снова сидели у того же стола."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.review.01",
+      "choiceId": "structure_for_bad_day"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.review.01/structure_for_bad_day"
+      }
+    ],
+    "response": "Ты записал это на доске у печи. Читать будут все."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.review.01",
+      "choiceId": "control_people"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.review.01/control_people"
+      }
+    ],
+    "response": "Ты стал смотреть строже. Все стали смотреть в сторону."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.transfer.01",
+      "choiceId": "heroic_fix"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.transfer.01/heroic_fix"
+      }
+    ],
+    "response": "Дыра закрыта. Через месяц будет такая же."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.transfer.01",
+      "choiceId": "complex_dashboard"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.transfer.01/complex_dashboard"
+      }
+    ],
+    "response": "Ты расчертил десять столбцов. Дыра осталась открытой."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.transfer.01",
+      "choiceId": "build_mechanism"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.transfer.01/build_mechanism"
+      }
+    ],
+    "response": "Ты отложил мешок монет и воткнул колышек у ворот. В следующем месяце не вспоминал."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.pressure.01",
+      "choiceId": "take_over"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.pressure.01/take_over"
+      }
+    ],
+    "response": "К ночи всё было сделано. К утру ты не мог поднять руки."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.pressure.01",
+      "choiceId": "simplify_system"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.pressure.01/simplify_system"
+      }
+    ],
+    "response": "Ты свёл всё к трём делам. Ульяна и Алексей взяли по одному."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.pressure.01",
+      "choiceId": "follow_process_blindly"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.pressure.01/follow_process_blindly"
+      }
+    ],
+    "response": "Все соблюдали. Кризис шёл своим чередом."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.retry.01",
+      "choiceId": "minimum_viable_routine"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.retry.01/minimum_viable_routine"
+      }
+    ],
+    "response": "Ты записал: вода, горячее, час сна до полуночи. В плохой день держалось."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.retry.01",
+      "choiceId": "restart_monday"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.retry.01/restart_monday"
+      }
+    ],
+    "response": "Понедельник пришёл. Идеальный порядок продержался три дня."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.retry.01",
+      "choiceId": "track_everything"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.retry.01/track_everything"
+      }
+    ],
+    "response": "Ты завёл ещё пять столбцов. Забыл про сон."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.retry-trial.01",
+      "choiceId": "talk"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.retry-trial.01/talk"
+      }
+    ],
+    "response": "Говорили до ночи. Через неделю — снова."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.retry-trial.01",
+      "choiceId": "decide"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.retry-trial.01/decide"
+      }
+    ],
+    "response": "Вопрос закрыт. Двое молчали, один ушёл."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.retry-trial.01",
+      "choiceId": "mechanism"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.retry-trial.01/mechanism"
+      }
+    ],
+    "response": "Мирон записал три строки на доске. Спорить стало нечем."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.retry-transfer.01",
+      "choiceId": "minimum"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.retry-transfer.01/minimum"
+      }
+    ],
+    "response": "Три опоры у печи. На третий день одна выдержала, две нет."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.retry-transfer.01",
+      "choiceId": "feel"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.retry-transfer.01/feel"
+      }
+    ],
+    "response": "Ты слушал себя. Утро наступило поздно."
+  },
+  {
+    "source": {
+      "cardId": "dev.is.retry-transfer.01",
+      "choiceId": "push"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.is.retry-transfer.01/push"
+      }
+    ],
+    "response": "Ты наверстал. Спина вспомнила о тебе."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.trial.01",
+      "choiceId": "add_process"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.trial.01/add_process"
+      }
+    ],
+    "response": "Порядок вышел ладный. Спор ушёл в углы и стал тише."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.trial.01",
+      "choiceId": "reframe_together"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.trial.01/reframe_together"
+      }
+    ],
+    "response": "Сидели долго. Они назвали задачу так, как ты не думал."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.trial.01",
+      "choiceId": "let_them_decide"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.trial.01/let_them_decide"
+      }
+    ],
+    "response": "Ты вышел. Через день они пришли к тебе обе."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.consequence.01",
+      "choiceId": "integrate_emergent"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.consequence.01/integrate_emergent"
+      }
+    ],
+    "response": "Ты стёр метку с доски. Работа пошла ровнее."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.consequence.01",
+      "choiceId": "return_to_plan"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.consequence.01/return_to_plan"
+      }
+    ],
+    "response": "Алексей кивнул и замолчал. Новое тихо ушло."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.consequence.01",
+      "choiceId": "accept_anything"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.consequence.01/accept_anything"
+      }
+    ],
+    "response": "Все обрадовались. Через неделю держать было нечего."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.review.01",
+      "choiceId": "better_requirements"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.review.01/better_requirements"
+      }
+    ],
+    "response": "Ты кивнул. Вопрос остался прежним."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.review.01",
+      "choiceId": "planning_useless"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.review.01/planning_useless"
+      }
+    ],
+    "response": "Ты отложил доску и три дня ходил без плана."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.review.01",
+      "choiceId": "own_frame_limits"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.review.01/own_frame_limits"
+      }
+    ],
+    "response": "Ты стёр с доски своё имя и написал: «спросить». Ульяна улыбнулась."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.transfer.01",
+      "choiceId": "explore_conflict_function"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.transfer.01/explore_conflict_function"
+      }
+    ],
+    "response": "Вы говорили до утра. Уговор вышел не твой, но крепче."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.transfer.01",
+      "choiceId": "present_solution"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.transfer.01/present_solution"
+      }
+    ],
+    "response": "Лия выслушала и сказала: «Красиво». Всё осталось как было."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.transfer.01",
+      "choiceId": "wait_for_emergence"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.transfer.01/wait_for_emergence"
+      }
+    ],
+    "response": "Ничего не сложилось. Ты ждал, пока не стало хуже."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.pressure.01",
+      "choiceId": "centralize"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.pressure.01/centralize"
+      }
+    ],
+    "response": "План вышел твой. Мастерская смотрела молча."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.pressure.01",
+      "choiceId": "remove_constraints"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.pressure.01/remove_constraints"
+      }
+    ],
+    "response": "Все работали свободно — и никто не уложился."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.pressure.01",
+      "choiceId": "boundaries_not_outcome"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.pressure.01/boundaries_not_outcome"
+      }
+    ],
+    "response": "Ты начертил рамку на доске. Внутри мастера сами нашли выход."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.retry.01",
+      "choiceId": "restore_original"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.retry.01/restore_original"
+      }
+    ],
+    "response": "Ты чинил план до ночи. Он стоял, но криво."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.retry.01",
+      "choiceId": "hold_direction_change_form"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.retry.01/hold_direction_change_form"
+      }
+    ],
+    "response": "Ты оставил границы и отпустил форму. Дарья сказала: «Так живее»."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.retry.01",
+      "choiceId": "abandon_direction"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.retry.01/abandon_direction"
+      }
+    ],
+    "response": "Ты пошёл куда вели. К вечеру никто не знал, зачем."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.retry-trial.01",
+      "choiceId": "design"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.retry-trial.01/design"
+      }
+    ],
+    "response": "Порядок вышел ровный. Через месяц на пустыре стояли две ограды."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.retry-trial.01",
+      "choiceId": "reframe"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.retry-trial.01/reframe"
+      }
+    ],
+    "response": "Соседи посадили три грядки и поставили одну скамью. Назначение сменилось само."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.retry-trial.01",
+      "choiceId": "leave"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.retry-trial.01/leave"
+      }
+    ],
+    "response": "Не придумали. Пустырь зарос."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.retry-transfer.01",
+      "choiceId": "plan"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.retry-transfer.01/plan"
+      }
+    ],
+    "response": "Егор выслушал. «Спасибо». Ушёл и остался в круге."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.retry-transfer.01",
+      "choiceId": "withdraw"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.retry-transfer.01/withdraw"
+      }
+    ],
+    "response": "Ты отошёл. Егор не позвал."
+  },
+  {
+    "source": {
+      "cardId": "dev.sa.retry-transfer.01",
+      "choiceId": "hold"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.sa.retry-transfer.01/hold"
+      }
+    ],
+    "response": "Вы сидели молча, потом он назвал другой вопрос. Вы стали его искать."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.trial.01",
+      "choiceId": "explore_deeper"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.trial.01/explore_deeper"
+      }
+    ],
+    "response": "Вы говорили час. Граница осталась такой же."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.trial.01",
+      "choiceId": "punish"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.trial.01/punish"
+      }
+    ],
+    "response": "Марта ушла, не оглянувшись. Через неделю ты уже скучал."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.trial.01",
+      "choiceId": "state_boundary"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.trial.01/state_boundary"
+      }
+    ],
+    "response": "Ты сказал: «Позже срока — не жду». Марта кивнула."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.consequence.01",
+      "choiceId": "simple_always"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.consequence.01/simple_always"
+      }
+    ],
+    "response": "Ты стал резать прямо. Двое перестали спрашивать."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.consequence.01",
+      "choiceId": "complexity_is_tool"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.consequence.01/complexity_is_tool"
+      }
+    ],
+    "response": "Ты записал это рядом со словом «нет» и улыбнулся."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.consequence.01",
+      "choiceId": "nothing_matters"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.consequence.01/nothing_matters"
+      }
+    ],
+    "response": "Ты усмехнулся. Через день не мог вспомнить, о чём спорили."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.review.01",
+      "choiceId": "use_without_being"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.review.01/use_without_being"
+      }
+    ],
+    "response": "Ты сказал это вслух и усмехнулся. Дышать стало легче."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.review.01",
+      "choiceId": "act_advanced"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.review.01/act_advanced"
+      }
+    ],
+    "response": "Ты сложил ещё один узор. Он никому не помог."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.review.01",
+      "choiceId": "all_relative"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.review.01/all_relative"
+      }
+    ],
+    "response": "Ты не выбрал ничего. Ужин остыл."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.transfer.01",
+      "choiceId": "transform_program"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.transfer.01/transform_program"
+      }
+    ],
+    "response": "Ты рисовал схему печей до ночи. Тяга так и не наладилась."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.transfer.01",
+      "choiceId": "use_expert_mode"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.transfer.01/use_expert_mode"
+      }
+    ],
+    "response": "Ты прочистил дымоход. Печь потянула. Ульяна ждала продолжения."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.transfer.01",
+      "choiceId": "delegate_below_me"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.transfer.01/delegate_below_me"
+      }
+    ],
+    "response": "Алексей вздохнул и пошёл чистить. Ты остался с чувством превосходства."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.pressure.01",
+      "choiceId": "do_needed"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.pressure.01/do_needed"
+      }
+    ],
+    "response": "Ты спросил два вопроса и сделал. Мирон остался при своём. Дело сдвинулось."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.pressure.01",
+      "choiceId": "demonstrate_depth"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.pressure.01/demonstrate_depth"
+      }
+    ],
+    "response": "Ты говорил долго. Сход вздохнул. Дело не сдвинулось."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.pressure.01",
+      "choiceId": "joke_and_withdraw"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.pressure.01/joke_and_withdraw"
+      }
+    ],
+    "response": "Сход посмеялся. Дело осталось лежать."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.retry.01",
+      "choiceId": "analyze"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.retry.01/analyze"
+      }
+    ],
+    "response": "Лия слушала, потом тихо сказала: «Я не про это»."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.retry.01",
+      "choiceId": "detach"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.retry.01/detach"
+      }
+    ],
+    "response": "Ты остался дома. Лия ушла одна."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.retry.01",
+      "choiceId": "show_up"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.retry.01/show_up"
+      }
+    ],
+    "response": "Вы перемыли посуду. Лия впервые за день засмеялась."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.retry-trial.01",
+      "choiceId": "simple"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.retry-trial.01/simple"
+      }
+    ],
+    "response": "Ты сказал: «Ульяна». Она взяла корзину и пошла."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.retry-trial.01",
+      "choiceId": "deepen"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.retry-trial.01/deepen"
+      }
+    ],
+    "response": "Говорили четверть часа. Заказ забирали на закате."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.retry-trial.01",
+      "choiceId": "force"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.retry-trial.01/force"
+      }
+    ],
+    "response": "Алексей пошёл без слова. Ты вздохнул и почувствовал вину."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.retry-transfer.01",
+      "choiceId": "reframe"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.retry-transfer.01/reframe"
+      }
+    ],
+    "response": "Ты провёл вечер над вопросом. Выспаться забыл."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.retry-transfer.01",
+      "choiceId": "useknown"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.retry-transfer.01/useknown"
+      }
+    ],
+    "response": "Три ночи — и ты снова держался. Разбор не понадобился."
+  },
+  {
+    "source": {
+      "cardId": "dev.alir.retry-transfer.01",
+      "choiceId": "ignore"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:dev.alir.retry-transfer.01/ignore"
+      }
+    ],
+    "response": "Ты не менял ничего. Усталость не ушла."
   }
 ]

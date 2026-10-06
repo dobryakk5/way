@@ -39,7 +39,7 @@ const summaries=POLICIES.map(policy=>{
  const averageCrises=crises/runs;const dropPct=scheduled?dropped/scheduled*100:0;
  if(policy!=='always-costly'&&averageCrises>12)failures.push(`${policy}: average crises ${averageCrises}>12`);
  if(policy==='mixed'&&dropPct>5)failures.push('mixed: optional chain drop >5%');
- const ordinary=content.cards.filter(c=>c.chapter!==3&&c.chapter!==4&&c.type==='situation'&&!c.tags?.some(t=>t==='route-only'||t==='probe-only'||t.startsWith('insight:')));
+ const ordinary=content.cards.filter(c=>c.chapter!==3&&c.chapter!==4&&c.type==='situation'&&!c.development&&!c.tags?.some(t=>t==='route-only'||t==='probe-only'||t.startsWith('insight:')));
  if(policy==='mixed')for(const card of ordinary)if((seen[card.id]??0)/runs<.5)failures.push(`mixed: ordinary ${card.id}<50%`);
  return {policy,runs,endings,facts,opportunities,averageCrises,optionalDropPct:dropPct,cardShowPct:Object.fromEntries(Object.entries(seen).map(([k,n])=>[k,n/runs*100])),insightDays:Object.fromEntries(Object.entries(insights).map(([k,ds])=>[k,{min:Math.min(...ds),max:Math.max(...ds),count:ds.length}])),shadows,facets,intentionDivergenceCount:mismatches};
 });

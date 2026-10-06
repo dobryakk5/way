@@ -29,9 +29,9 @@ describe('v2.5 package extraction', () => {
     expect([src.neutral.length, src.motives.length, src.behaviors.length, src.probes.length, src.development.length]).toEqual([32, 8, 4, 21, 50]);
   });
 
-  it('builds runtime cards that are in exact parity with the source, and the only content rule left open is the terminal stage', () => {
+  it('builds runtime cards that are in exact parity with the source, and the whole content passes every rule', () => {
     expect(checkParity(src, full)).toEqual([]);
-    expect(validateContent(full)).toEqual(['No content for reachable stage ironic']);
+    expect(validateContent(full)).toEqual([]);
   });
 });
 
