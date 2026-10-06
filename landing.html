@@ -210,14 +210,10 @@
       background:
         radial-gradient(circle at center,rgba(240,210,154,.05) 0 24%,transparent 25%),
         conic-gradient(
-          rgba(217,173,104,.22) 0 12.5%,
-          rgba(183,109,80,.24) 12.5% 25%,
-          rgba(82,37,54,.42) 25% 37.5%,
-          rgba(217,173,104,.14) 37.5% 50%,
-          rgba(183,109,80,.18) 50% 62.5%,
-          rgba(82,37,54,.28) 62.5% 75%,
-          rgba(217,173,104,.18) 75% 87.5%,
-          rgba(183,109,80,.26) 87.5% 100%);
+          rgba(217,173,104,.22) 0 25%,
+          rgba(183,109,80,.24) 25% 50%,
+          rgba(82,37,54,.42) 50% 75%,
+          rgba(217,173,104,.16) 75% 100%);
       box-shadow:inset 0 0 90px rgba(0,0,0,.26),0 20px 70px rgba(0,0,0,.18)
     }
     .map:after{
@@ -232,8 +228,8 @@
       position:absolute;z-index:3;padding:8px 11px;border-radius:999px;
       background:rgba(16,11,16,.84);border:1px solid rgba(255,255,255,.08);font-size:.75rem
     }
-    .t1{left:39%;top:3%}.t2{right:0;top:22%}.t3{right:-2%;top:58%}.t4{right:21%;bottom:5%}
-    .t5{left:19%;bottom:4%}.t6{left:-1%;top:60%}.t7{left:-3%;top:27%}.t8{left:12%;top:11%}
+    .t1{left:50%;top:3%;transform:translateX(-50%)}.t2{right:-2%;top:46%}
+    .t3{left:50%;bottom:3%;transform:translateX(-50%)}.t4{left:-2%;top:46%}
 
     .bullets{display:grid;gap:15px;margin-top:28px}
     .bullet{display:flex;gap:13px;color:#d3c7cd}
@@ -338,7 +334,6 @@
       .arc>div{border-right:0}
       .scene{min-height:360px}
       .tag{padding:6px 9px;font-size:.68rem}
-      .t1{left:46%}.t8{left:6%;top:13%}
       .hero-transformation-art{width:min(100%,520px)}
       .story-left,.story-right{padding:21px}
       .signup{flex-direction:column}
@@ -473,29 +468,25 @@
     <div class="wrap world-grid">
       <div class="map reveal" aria-hidden="true">
         <div class="map-center">ТВОЯ<br>ИСТОРИЯ</div>
-        <span class="tag t1">Деньги</span>
+        <span class="tag t1">Дело и деньги</span>
         <span class="tag t2">Отношения</span>
-        <span class="tag t3">Работа</span>
-        <span class="tag t4">Здоровье</span>
-        <span class="tag t5">Смысл</span>
-        <span class="tag t6">Семья</span>
-        <span class="tag t7">Свобода</span>
-        <span class="tag t8">Ответственность</span>
+        <span class="tag t3">Тело и здоровье</span>
+        <span class="tag t4">Внутренний мир</span>
       </div>
 
       <div class="reveal">
         <div class="eyebrow">Грани жизни</div>
         <h2>Ты не одинаков<br>во всех сферах</h2>
         <p class="body-copy">
-          Можно быть смелым в работе и зависеть от чужого одобрения в отношениях.
-          Быть собранным в деньгах — и избегать ответственности в семье.
+          Можно быть смелым в деле и зависеть от чужого одобрения в отношениях.
+          Быть собранным в деньгах — и не слышать собственное тело.
           Поэтому игра не сводит человека к одной цифре.
         </p>
         <div class="bullets">
-          <div class="bullet"><i></i><span><strong>Деньги</strong> — риск, контроль, дальний горизонт, цена решений.</span></div>
+          <div class="bullet"><i></i><span><strong>Дело и деньги</strong> — риск, контроль, амбиция, цена решений, команда.</span></div>
           <div class="bullet"><i></i><span><strong>Отношения</strong> — границы, близость, конфликт, способность видеть другого.</span></div>
-          <div class="bullet"><i></i><span><strong>Работа</strong> — амбиция, компетентность, статус, команда, власть.</span></div>
-          <div class="bullet"><i></i><span><strong>Смысл</strong> — ценности, идентичность и вопрос «ради чего?».</span></div>
+          <div class="bullet"><i></i><span><strong>Тело и здоровье</strong> — силы, отдых, пределы и цена напряжения.</span></div>
+          <div class="bullet"><i></i><span><strong>Внутренний мир</strong> — ценности, идентичность и вопрос «ради чего?».</span></div>
         </div>
       </div>
     </div>
