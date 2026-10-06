@@ -8,6 +8,10 @@ import {
   choiceKey,
   choicePresentationId,
   choicePresentationKey,
+  motiveOptionId,
+  motiveOptionKey,
+  motivePromptId,
+  motivePromptKey,
   sceneId,
   sceneKey,
   scenePresentationId,
@@ -21,6 +25,18 @@ import {
 
 type Evidence = Record<string, unknown>;
 
+interface CatalogMotiveOption {
+  id: number;
+  optionKey: string;
+  evidence: Evidence;
+}
+
+interface CatalogMotivePrompt {
+  id: number;
+  promptKey: string;
+  options: CatalogMotiveOption[];
+}
+
 interface CatalogChoice {
   id: number;
   sceneId: number;
@@ -32,6 +48,7 @@ interface CatalogChoice {
     text: string;
   };
   evidence?: Evidence;
+  motive?: CatalogMotivePrompt;
 }
 
 interface CatalogScene {
@@ -93,11 +110,27 @@ function evidenceOf(card: Card, choice: Choice): Evidence | undefined {
   return undefined;
 }
 
-function assertNoCollision(
-  map: Map<number, string>,
-  id: number,
-  key: string
-): void {
+function motiveOf(card: Card, choice: Choice): CatalogMotivePrompt | undefined {
+  const motive = choice.diagnosticMotive;
+  if (!motive) return undefined;
+  const promptId = motivePromptId(card.id, choice.id, motive.promptId);
+  return {
+    id: promptId,
+    promptKey: motivePromptKey(card.id, choice.id, motive.promptId),
+    options: motive.options.map(option => ({
+      id: motiveOptionId(card.id, choice.id, motive.promptId, option.id),
+      optionKey: motiveOptionKey(card.id, choice.id, motive.promptId, option.id),
+      evidence: {
+        source: 'motive',
+        vector: option.signal.vector,
+        scoringVersion: option.signal.scoringVersion,
+        rubricVersion: option.signal.rubricVersion
+      }
+    }))
+  };
+}
+
+function assertNoCollision(map: Map<number, string>, id: number, key: string): void {
   const previous = map.get(id);
   if (previous && previous !== key) {
     throw new Error('Persistence id collision ' + id + ': ' + previous + ' vs ' + key);
@@ -142,6 +175,7 @@ export function buildPersistenceCatalog(): Catalog {
       const numericPresentationId = choicePresentationId(card.id, choice.id);
       const key = choiceKey(card.id, choice.id);
       const evidence = evidenceOf(card, choice);
+      const motive = motiveOf(card, choice);
       const candidate: CatalogChoice = {
         id: numericChoiceId,
         sceneId: sid,
@@ -152,16 +186,20 @@ export function buildPersistenceCatalog(): Catalog {
           revision: 1,
           text: choice.label
         },
-        ...(evidence ? { evidence } : {})
+        ...(evidence ? { evidence } : {}),
+        ...(motive ? { motive } : {})
       };
 
       const existing = byAuthorChoiceId.get(choice.id);
       if (existing) {
-        if (existing.presentation.text !== candidate.presentation.text ||
-            canonical(existing.evidence) !== canonical(candidate.evidence)) {
+        if (
+          existing.presentation.text !== candidate.presentation.text ||
+          canonical(existing.evidence) !== canonical(candidate.evidence) ||
+          canonical(existing.motive) !== canonical(candidate.motive)
+        ) {
           throw new Error(
-            'Choice ' + key + ' appears with different label/evidence. ' +
-            'Give the semantic variants different choice ids or add explicit presentation keys.'
+            'Choice ' + key + ' appears with different label/evidence/motive. ' +
+            'Give semantic variants different choice ids or explicit presentation keys.'
           );
         }
         continue;
@@ -169,6 +207,12 @@ export function buildPersistenceCatalog(): Catalog {
 
       assertNoCollision(ids, numericChoiceId, 'choice:' + key);
       assertNoCollision(ids, numericPresentationId, 'choice-presentation:' + key);
+      if (motive) {
+        assertNoCollision(ids, motive.id, 'motive-prompt:' + motive.promptKey);
+        for (const option of motive.options) {
+          assertNoCollision(ids, option.id, 'motive-option:' + option.optionKey);
+        }
+      }
       byAuthorChoiceId.set(choice.id, candidate);
     }
 
@@ -196,45 +240,141 @@ function jsonb(value: unknown): string {
   return sqlString(JSON.stringify(value)) + '::jsonb';
 }
 
+function assertSql(condition: string, label: string): string {
+  return 'SELECT pg_temp.assert_catalog(' + condition + ', ' + sqlString(label) + ');';
+}
+
 export function catalogSql(catalog: Catalog): string {
   const lines: string[] = [
     'BEGIN;',
     '',
+    'CREATE OR REPLACE FUNCTION pg_temp.assert_catalog(ok boolean, label text)',
+    'RETURNS void LANGUAGE plpgsql AS $$',
+    'BEGIN',
+    "  IF NOT ok THEN RAISE EXCEPTION 'CATALOG_DRIFT:%', label; END IF;",
+    'END;',
+    '$$;',
+    '',
     'INSERT INTO development_taxonomies(version) VALUES (' + sqlString(catalog.taxonomyVersion) + ') ON CONFLICT DO NOTHING;',
+    assertSql(
+      'EXISTS (SELECT 1 FROM development_taxonomies WHERE version = ' + sqlString(catalog.taxonomyVersion) + ')',
+      'taxonomy:' + catalog.taxonomyVersion
+    ),
     'INSERT INTO evidence_model_versions(version, taxonomy_version) VALUES (' +
       sqlString(catalog.evidenceModelVersion) + ', ' + sqlString(catalog.taxonomyVersion) + ') ON CONFLICT DO NOTHING;',
+    assertSql(
+      'EXISTS (SELECT 1 FROM evidence_model_versions WHERE version = ' + sqlString(catalog.evidenceModelVersion) +
+        ' AND taxonomy_version = ' + sqlString(catalog.taxonomyVersion) + ')',
+      'evidence-model:' + catalog.evidenceModelVersion
+    ),
     'INSERT INTO calculation_versions(version) VALUES (' + sqlString(catalog.calculationVersion) + ') ON CONFLICT DO NOTHING;',
+    assertSql(
+      'EXISTS (SELECT 1 FROM calculation_versions WHERE version = ' + sqlString(catalog.calculationVersion) + ')',
+      'calculation:' + catalog.calculationVersion
+    ),
     ''
   ];
 
   for (const scene of catalog.scenes) {
     lines.push(
       'INSERT INTO game_scenes(id, scene_key) OVERRIDING SYSTEM VALUE VALUES (' +
-      scene.id + ', ' + sqlString(scene.sceneKey) + ') ON CONFLICT DO NOTHING;'
+      scene.id + ', ' + sqlString(scene.sceneKey) + ') ON CONFLICT DO NOTHING;',
+      assertSql(
+        'EXISTS (SELECT 1 FROM game_scenes WHERE id = ' + scene.id +
+          ' AND scene_key = ' + sqlString(scene.sceneKey) + ')',
+        'scene:' + scene.sceneKey
+      )
     );
+
     for (const presentation of scene.presentations) {
       lines.push(
         'INSERT INTO scene_presentations(id, scene_id, presentation_key, revision, text) VALUES (' +
         presentation.id + ', ' + scene.id + ', ' + sqlString(presentation.presentationKey) + ', ' +
-        presentation.revision + ', ' + sqlString(presentation.text) + ') ON CONFLICT DO NOTHING;'
+        presentation.revision + ', ' + sqlString(presentation.text) + ') ON CONFLICT DO NOTHING;',
+        assertSql(
+          'EXISTS (SELECT 1 FROM scene_presentations WHERE id = ' + presentation.id +
+            ' AND scene_id = ' + scene.id +
+            ' AND presentation_key = ' + sqlString(presentation.presentationKey) +
+            ' AND revision = ' + presentation.revision +
+            ' AND text = ' + sqlString(presentation.text) + ')',
+          'scene-presentation:' + scene.sceneKey + ':' + presentation.presentationKey
+        )
       );
     }
+
     for (const choice of scene.choices) {
       lines.push(
         'INSERT INTO game_choices(id, scene_id, choice_key) OVERRIDING SYSTEM VALUE VALUES (' +
-        choice.id + ', ' + scene.id + ', ' + sqlString(choice.choiceKey) + ') ON CONFLICT DO NOTHING;'
-      );
-      lines.push(
+        choice.id + ', ' + scene.id + ', ' + sqlString(choice.choiceKey) + ') ON CONFLICT DO NOTHING;',
+        assertSql(
+          'EXISTS (SELECT 1 FROM game_choices WHERE id = ' + choice.id +
+            ' AND scene_id = ' + scene.id +
+            ' AND choice_key = ' + sqlString(choice.choiceKey) + ')',
+          'choice:' + choice.choiceKey
+        ),
         'INSERT INTO choice_presentations(id, choice_id, presentation_key, revision, style, text) OVERRIDING SYSTEM VALUE VALUES (' +
         choice.presentation.id + ', ' + choice.id + ', ' + sqlString(choice.presentation.presentationKey) + ', ' +
-        choice.presentation.revision + ", 'normal', " + sqlString(choice.presentation.text) + ') ON CONFLICT DO NOTHING;'
+        choice.presentation.revision + ", 'normal', " + sqlString(choice.presentation.text) + ') ON CONFLICT DO NOTHING;',
+        assertSql(
+          'EXISTS (SELECT 1 FROM choice_presentations WHERE id = ' + choice.presentation.id +
+            ' AND choice_id = ' + choice.id +
+            ' AND presentation_key = ' + sqlString(choice.presentation.presentationKey) +
+            ' AND revision = ' + choice.presentation.revision +
+            " AND style = 'normal' AND text = " + sqlString(choice.presentation.text) + ')',
+          'choice-presentation:' + choice.choiceKey
+        )
       );
+
       if (choice.evidence) {
         lines.push(
           'INSERT INTO choice_evidence(choice_id, evidence_model_version, taxonomy_version, evidence) VALUES (' +
           choice.id + ', ' + sqlString(catalog.evidenceModelVersion) + ', ' +
-          sqlString(catalog.taxonomyVersion) + ', ' + jsonb(choice.evidence) + ') ON CONFLICT DO NOTHING;'
+          sqlString(catalog.taxonomyVersion) + ', ' + jsonb(choice.evidence) + ') ON CONFLICT DO NOTHING;',
+          assertSql(
+            'EXISTS (SELECT 1 FROM choice_evidence WHERE choice_id = ' + choice.id +
+              ' AND evidence_model_version = ' + sqlString(catalog.evidenceModelVersion) +
+              ' AND taxonomy_version = ' + sqlString(catalog.taxonomyVersion) +
+              ' AND evidence = ' + jsonb(choice.evidence) + ')',
+            'choice-evidence:' + choice.choiceKey
+          )
         );
+      }
+
+      if (choice.motive) {
+        lines.push(
+          'INSERT INTO choice_motive_prompts(id, choice_id, prompt_key) VALUES (' +
+          choice.motive.id + ', ' + choice.id + ', ' + sqlString(choice.motive.promptKey) + ') ON CONFLICT DO NOTHING;',
+          assertSql(
+            'EXISTS (SELECT 1 FROM choice_motive_prompts WHERE id = ' + choice.motive.id +
+              ' AND choice_id = ' + choice.id +
+              ' AND prompt_key = ' + sqlString(choice.motive.promptKey) + ')',
+            'motive-prompt:' + choice.motive.promptKey
+          )
+        );
+        for (const option of choice.motive.options) {
+          lines.push(
+            'INSERT INTO choice_motive_options(id, choice_id, prompt_id, option_key) VALUES (' +
+            option.id + ', ' + choice.id + ', ' + choice.motive.id + ', ' + sqlString(option.optionKey) +
+            ') ON CONFLICT DO NOTHING;',
+            assertSql(
+              'EXISTS (SELECT 1 FROM choice_motive_options WHERE id = ' + option.id +
+                ' AND choice_id = ' + choice.id +
+                ' AND prompt_id = ' + choice.motive.id +
+                ' AND option_key = ' + sqlString(option.optionKey) + ')',
+              'motive-option:' + option.optionKey
+            ),
+            'INSERT INTO choice_motive_evidence(motive_option_id, evidence_model_version, taxonomy_version, evidence) VALUES (' +
+            option.id + ', ' + sqlString(catalog.evidenceModelVersion) + ', ' +
+            sqlString(catalog.taxonomyVersion) + ', ' + jsonb(option.evidence) + ') ON CONFLICT DO NOTHING;',
+            assertSql(
+              'EXISTS (SELECT 1 FROM choice_motive_evidence WHERE motive_option_id = ' + option.id +
+                ' AND evidence_model_version = ' + sqlString(catalog.evidenceModelVersion) +
+                ' AND taxonomy_version = ' + sqlString(catalog.taxonomyVersion) +
+                ' AND evidence = ' + jsonb(option.evidence) + ')',
+              'motive-evidence:' + option.optionKey
+            )
+          );
+        }
       }
     }
     lines.push('');
@@ -255,6 +395,13 @@ const evidenceCount = catalog.scenes.reduce(
   (sum, scene) => sum + scene.choices.filter(choice => choice.evidence).length,
   0
 );
+const motiveOptionCount = catalog.scenes.reduce(
+  (sum, scene) => sum + scene.choices.reduce(
+    (choiceSum, choice) => choiceSum + (choice.motive?.options.length ?? 0),
+    0
+  ),
+  0
+);
 
 if (process.argv.includes('--write')) {
   const jsonPath = resolve('server/generated/content-catalog.v1.json');
@@ -269,6 +416,7 @@ console.log(JSON.stringify({
   scenes: catalog.scenes.length,
   choices: choiceCount,
   evidence: evidenceCount,
+  motiveOptions: motiveOptionCount,
   taxonomyVersion: catalog.taxonomyVersion,
   evidenceModelVersion: catalog.evidenceModelVersion,
   calculationVersion: catalog.calculationVersion
