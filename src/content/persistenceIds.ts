@@ -83,3 +83,33 @@ export function sceneInstanceId(
   const hex = raw.join('');
   return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
 }
+
+
+export function motivePromptKey(cardId: string, authorChoiceId: string, promptId: string): string {
+  return `${choiceKey(cardId, authorChoiceId)}/motive/${promptId}`;
+}
+
+export function motivePromptId(cardId: string, authorChoiceId: string, promptId: string): number {
+  return stableContentId('motive-prompt', motivePromptKey(cardId, authorChoiceId, promptId));
+}
+
+export function motiveOptionKey(
+  cardId: string,
+  authorChoiceId: string,
+  promptId: string,
+  optionId: string
+): string {
+  return `${motivePromptKey(cardId, authorChoiceId, promptId)}/${optionId}`;
+}
+
+export function motiveOptionId(
+  cardId: string,
+  authorChoiceId: string,
+  promptId: string,
+  optionId: string
+): number {
+  return stableContentId(
+    'motive-option',
+    motiveOptionKey(cardId, authorChoiceId, promptId, optionId)
+  );
+}
