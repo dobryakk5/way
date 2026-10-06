@@ -2,7 +2,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { content } from '../../src/content';
 import { allChoices } from '../../src/engine/variants';
-import type { Choice } from '../../src/engine/types';
+import type { Card, Choice } from '../../src/engine/types';
 import {
   choiceId,
   choiceKey,
@@ -19,7 +19,7 @@ import {
   PERSISTENCE_TAXONOMY_VERSION
 } from '../../src/persistence/versions';
 
-type Evidence = Record<string, number>;
+type Evidence = Record<string, unknown>;
 
 interface CatalogChoice {
   id: number;
@@ -64,8 +64,33 @@ function canonical(value: unknown): string {
   return JSON.stringify(value);
 }
 
-function evidenceOf(choice: Choice): Evidence | undefined {
-  return choice.diagnosticAction?.vector ?? choice.diagnosticBehavior?.signal.vector;
+function evidenceOf(card: Card, choice: Choice): Evidence | undefined {
+  if (choice.diagnosticAction) {
+    if (!card.diagnostic) {
+      throw new Error('Diagnostic action without card diagnostic metadata: ' + card.id + '/' + choice.id);
+    }
+    return {
+      source: 'action',
+      situationId: card.diagnostic.situationId,
+      contextId: card.diagnostic.contextId,
+      facets: card.diagnostic.facets,
+      developmentWeight: card.diagnostic.developmentWeight,
+      pressure: card.diagnostic.pressure ?? false,
+      vector: choice.diagnosticAction.vector,
+      scoringVersion: choice.diagnosticAction.scoringVersion,
+      rubricVersion: choice.diagnosticAction.rubricVersion
+    };
+  }
+  if (choice.diagnosticBehavior) {
+    return {
+      source: 'behavior',
+      continuesSituationId: choice.diagnosticBehavior.continuesSituationId,
+      vector: choice.diagnosticBehavior.signal.vector,
+      scoringVersion: choice.diagnosticBehavior.signal.scoringVersion,
+      rubricVersion: choice.diagnosticBehavior.signal.rubricVersion
+    };
+  }
+  return undefined;
 }
 
 function assertNoCollision(
@@ -116,7 +141,7 @@ export function buildPersistenceCatalog(): Catalog {
       const numericChoiceId = choiceId(card.id, choice.id);
       const numericPresentationId = choicePresentationId(card.id, choice.id);
       const key = choiceKey(card.id, choice.id);
-      const evidence = evidenceOf(choice);
+      const evidence = evidenceOf(card, choice);
       const candidate: CatalogChoice = {
         id: numericChoiceId,
         sceneId: sid,
