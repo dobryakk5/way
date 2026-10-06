@@ -63,8 +63,8 @@ jobs:
           psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -f server/db/migrations/001_character_state_persistence.sql
           psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -f server/db/migrations/002_scene_presentations.sql
           psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -f server/db/migrations/003_persistence_commands.sql
-          psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -f server/db/migrations/004_day_complete.sql
-          psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -f server/db/migrations/005_motive_persistence.sql
+          psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -f server/db/migrations/004_motive_persistence.sql
+          psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -f server/db/migrations/005_day_complete.sql
           psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -f server/generated/content-catalog.v1.sql
           psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -f server/db/migrations/006_post_catalog_hardening.sql
       - name: Verify catalog
