@@ -4,7 +4,7 @@ import type { GameState, LifeFacet } from '../../engine';
 import { FacetIcon, type FacetIconId } from '../components/FacetIcon';
 
 const facetIcons: Record<LifeFacet, FacetIconId> = {
- work:'work', relationships:'relationships', body:'health', inner:'meaning'
+ work:'work', relationships:'relationships', body:'body', inner:'inner'
 };
 export function DirectionScreen({game,onIntention,onRoute}:{game:GameState;onIntention:(f:LifeFacet)=>void;onRoute:(id:string)=>void}) {
  const route=routeAt(game,content);
