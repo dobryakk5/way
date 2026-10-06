@@ -15,6 +15,9 @@ DECLARE
     v_calculation_version TEXT;
     v_processed_through_day INTEGER;
     v_last_processed_seq BIGINT;
+    v_expected_slots SMALLINT;
+    v_missing_slots SMALLINT[];
+    v_server_last_seq BIGINT;
     v_profile_status TEXT;
     v_current_center TEXT;
     v_current_center_confidence NUMERIC;
@@ -41,6 +44,7 @@ BEGIN
         ds.calculation_version,
         ds.processed_through_day,
         ds.last_processed_seq,
+        c.expected_slots_per_day,
         ds.profile_status,
         ds.current_center,
         ds.current_center_confidence,
@@ -54,6 +58,7 @@ BEGIN
         v_calculation_version,
         v_processed_through_day,
         v_last_processed_seq,
+        v_expected_slots,
         v_profile_status,
         v_current_center,
         v_current_center_confidence,
@@ -114,6 +119,35 @@ BEGIN
 
     IF p_last_seq < v_last_processed_seq THEN
         RAISE EXCEPTION 'DAY_COMPLETE_INVALID_LAST_SEQ' USING ERRCODE = 'P0001';
+    END IF;
+
+    SELECT array_agg(expected.slot ORDER BY expected.slot)
+    INTO v_missing_slots
+    FROM generate_series(0, v_expected_slots - 1) AS expected(slot)
+    LEFT JOIN scene_instances si
+      ON si.character_id = p_character_id
+     AND si.game_day = p_game_day
+     AND si.game_slot = expected.slot
+    LEFT JOIN character_events e
+      ON e.character_id = p_character_id
+     AND e.game_day = p_game_day
+     AND e.scene_instance_id = si.id
+     AND e.event_type = 'CHOICE_MADE'
+    WHERE e.id IS NULL;
+
+    IF v_missing_slots IS NOT NULL AND cardinality(v_missing_slots) > 0 THEN
+        RAISE EXCEPTION 'DAY_SLOTS_INCOMPLETE:%', array_to_string(v_missing_slots, ',')
+            USING ERRCODE = 'P0001';
+    END IF;
+
+    SELECT MAX(seq)
+    INTO v_server_last_seq
+    FROM character_events
+    WHERE character_id = p_character_id
+      AND game_day = p_game_day;
+
+    IF v_server_last_seq IS DISTINCT FROM p_last_seq THEN
+        RAISE EXCEPTION 'DAY_COMPLETE_LAST_SEQ_MISMATCH' USING ERRCODE = 'P0001';
     END IF;
 
     SELECT array_agg(expected.seq ORDER BY expected.seq)
