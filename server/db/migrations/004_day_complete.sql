@@ -116,7 +116,7 @@ BEGIN
         RAISE EXCEPTION 'DAY_COMPLETE_INVALID_LAST_SEQ' USING ERRCODE = 'P0001';
     END IF;
 
-    SELECT array_agg(seq ORDER BY seq)
+    SELECT array_agg(expected.seq ORDER BY expected.seq)
     INTO v_missing_seq
     FROM generate_series(v_last_processed_seq + 1, p_last_seq) AS expected(seq)
     LEFT JOIN character_events e
