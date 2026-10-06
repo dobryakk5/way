@@ -3,9 +3,11 @@ import { IDBKeyRange, indexedDB } from 'fake-indexeddb';
 import {
   __resetSceneInstanceOutboxForTests,
   enqueueSceneInstance,
-  getSceneInstance
+  getSceneInstance,
+  markSceneInstanceSending,
+  resetSendingSceneInstances
 } from '../persistence/sceneInstanceOutbox';
-import { flushSceneInstances } from './sceneInstanceSync';
+import { flushSceneInstances, recoverAndFlushSceneInstances } from './sceneInstanceSync';
 import type { SceneInstancePayload } from './sceneInstance';
 
 Object.assign(globalThis, { indexedDB, IDBKeyRange });
@@ -58,6 +60,32 @@ describe('scene instance sync', () => {
 
     expect(result).toEqual({ status: 'ok', sent: 1 });
     expect((await getSceneInstance(INSTANCE))?.syncStatus).toBe('synced');
+  });
+
+  it('recovers a stranded sending scene before flushing', async () => {
+    await enqueueSceneInstance(payload());
+    await markSceneInstanceSending(INSTANCE);
+    expect((await getSceneInstance(INSTANCE))?.syncStatus).toBe('sending');
+
+    const fetchImpl = vi.fn(async () => new Response(JSON.stringify({
+      results: [{ sceneInstanceId: INSTANCE, status: 'accepted' }]
+    }), { status: 200, headers: { 'content-type': 'application/json' } }));
+
+    const result = await recoverAndFlushSceneInstances({
+      characterId: CHARACTER,
+      endpoint: '/api/v1/game/scene-instances/batch',
+      fetchImpl: fetchImpl as typeof fetch
+    });
+
+    expect(result).toEqual({ status: 'ok', sent: 1 });
+    expect((await getSceneInstance(INSTANCE))?.syncStatus).toBe('synced');
+  });
+
+  it('can explicitly return stranded sending scenes to pending', async () => {
+    await enqueueSceneInstance(payload());
+    await markSceneInstanceSending(INSTANCE);
+    expect(await resetSendingSceneInstances(CHARACTER)).toBe(1);
+    expect((await getSceneInstance(INSTANCE))?.syncStatus).toBe('pending');
   });
 
   it('keeps 401 pending without retry penalty', async () => {
