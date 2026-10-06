@@ -64,12 +64,15 @@ jobs:
           psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -f server/db/migrations/002_scene_presentations.sql
           psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -f server/db/migrations/003_persistence_commands.sql
           psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -f server/db/migrations/004_day_complete.sql
+          psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -f server/db/migrations/005_motive_persistence.sql
           psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -f server/generated/content-catalog.v1.sql
+          psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -f server/db/migrations/006_post_catalog_hardening.sql
       - name: Verify catalog
         run: |
           psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -c "SELECT count(*) AS scenes FROM game_scenes;"
           psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -c "SELECT count(*) AS choices FROM game_choices;"
           psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -c "SELECT count(*) AS evidence FROM choice_evidence;"
+          psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -c "SELECT count(*) AS motive_options FROM choice_motive_options;"
 
       - name: Verify day completion command
         run: psql -h 127.0.0.1 -U postgres -d way -v ON_ERROR_STOP=1 -f server/db/tests/complete_day.sql
