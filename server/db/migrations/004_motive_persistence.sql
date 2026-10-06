@@ -4,6 +4,7 @@ CREATE TABLE choice_motive_prompts (
     id BIGINT PRIMARY KEY,
     choice_id BIGINT NOT NULL REFERENCES game_choices(id),
     prompt_key TEXT NOT NULL,
+    prompt_text TEXT NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     UNIQUE (choice_id, prompt_key),
     UNIQUE (choice_id, id)
@@ -14,6 +15,7 @@ CREATE TABLE choice_motive_options (
     choice_id BIGINT NOT NULL REFERENCES game_choices(id),
     prompt_id BIGINT NOT NULL,
     option_key TEXT NOT NULL,
+    option_label TEXT NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     UNIQUE (prompt_id, option_key),
     UNIQUE (choice_id, id),
