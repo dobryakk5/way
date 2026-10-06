@@ -1,8 +1,9 @@
-import { createHash } from 'node:crypto';
+import { createHash, createHmac, timingSafeEqual } from 'node:crypto';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import { z } from 'zod';
 import {
   acceptChoiceEvent,
+  acceptMotiveResolution,
   completeCharacterDay,
   createCharacter,
   getCharacterResume,
@@ -16,16 +17,24 @@ import {
   choiceMadeEventSchema,
   completeDaySchema,
   createCharacterSchema,
+  motiveResolutionSchema,
   rawEventBatchSchema,
+  rawMotiveBatchSchema,
   rawSceneBatchSchema,
   sceneInstanceSchema,
-  type ChoiceMadeEventInput
+  type ChoiceMadeEventInput,
+  type MotiveResolutionInput
 } from './schemas.js';
 
 const PORT = Number(process.env.PORT ?? 8787);
 const MAX_BODY_BYTES = 256 * 1024;
 const FUTURE_SKEW_MS = 5 * 60 * 1000;
 const uuidSchema = z.string().uuid();
+const IS_PRODUCTION = process.env.NODE_ENV === 'production';
+
+if (IS_PRODUCTION && (process.env.GAME_DEV_USER_ID || process.env.GAME_ALLOW_USER_HEADER === 'true')) {
+  throw new Error('Development authentication flags are forbidden in production');
+}
 
 function setCors(req: IncomingMessage, res: ServerResponse): void {
   const allowed = process.env.GAME_CORS_ORIGIN;
@@ -34,7 +43,10 @@ function setCors(req: IncomingMessage, res: ServerResponse): void {
     res.setHeader('access-control-allow-credentials', 'true');
     res.setHeader('vary', 'origin');
   }
-  res.setHeader('access-control-allow-headers', 'content-type,x-user-id');
+  res.setHeader(
+    'access-control-allow-headers',
+    IS_PRODUCTION ? 'content-type' : 'content-type,x-user-id'
+  );
   res.setHeader('access-control-allow-methods', 'GET,POST,OPTIONS');
 }
 
@@ -58,12 +70,31 @@ async function readJson(req: IncomingMessage): Promise<unknown> {
   return JSON.parse(Buffer.concat(chunks).toString('utf8')) as unknown;
 }
 
+function singleHeader(req: IncomingMessage, name: string): string | undefined {
+  const raw = req.headers[name];
+  return Array.isArray(raw) ? raw[0] : raw;
+}
+
+function trustedProxyUserId(req: IncomingMessage): string | undefined {
+  const secret = process.env.GAME_TRUSTED_USER_HEADER_SECRET;
+  if (!secret) return undefined;
+  const value = singleHeader(req, 'x-user-id');
+  const signature = singleHeader(req, 'x-user-signature');
+  if (!value || !signature || !uuidSchema.safeParse(value).success || !/^[0-9a-f]{64}$/i.test(signature)) {
+    return undefined;
+  }
+  const expected = createHmac('sha256', secret).update(value).digest();
+  const supplied = Buffer.from(signature, 'hex');
+  return supplied.length === expected.length && timingSafeEqual(supplied, expected) ? value : undefined;
+}
+
 function userId(req: IncomingMessage): string | undefined {
+  if (IS_PRODUCTION) return trustedProxyUserId(req);
+
   const fixed = process.env.GAME_DEV_USER_ID;
   if (fixed && uuidSchema.safeParse(fixed).success) return fixed;
-  if (process.env.GAME_ALLOW_USER_HEADER !== 'true') return undefined;
-  const raw = req.headers['x-user-id'];
-  const value = Array.isArray(raw) ? raw[0] : raw;
+  if (process.env.GAME_ALLOW_USER_HEADER !== 'true') return trustedProxyUserId(req);
+  const value = singleHeader(req, 'x-user-id');
   return value && uuidSchema.safeParse(value).success ? value : undefined;
 }
 
@@ -77,6 +108,22 @@ function eventHash(event: ChoiceMadeEventInput): string {
     eventType: event.eventType,
     sceneInstanceId: event.sceneInstanceId,
     choiceId: event.choiceId,
+    occurredAt: event.occurredAt
+  });
+  return createHash('sha256').update(canonical).digest('hex');
+}
+
+function motiveHash(event: MotiveResolutionInput): string {
+  const canonical = JSON.stringify({
+    eventId: event.eventId,
+    characterId: event.characterId,
+    gameSessionId: event.gameSessionId,
+    gameDay: event.gameDay,
+    sceneInstanceId: event.sceneInstanceId,
+    choiceId: event.choiceId,
+    promptId: event.promptId,
+    resolutionType: event.resolutionType,
+    ...(event.resolutionType === 'answered' ? { motiveOptionId: event.motiveOptionId } : {}),
     occurredAt: event.occurredAt
   });
   return createHash('sha256').update(canonical).digest('hex');
@@ -212,6 +259,41 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
     return;
   }
 
+  if (req.method === 'POST' && req.url === '/api/v1/game/motives/batch') {
+    const outer = rawMotiveBatchSchema.safeParse(await readJson(req));
+    if (!outer.success) {
+      send(req, res, 422, { code: 'VALIDATION_ERROR' });
+      return;
+    }
+    const results: { eventId: string; status: 'accepted' | 'alreadyAccepted' | 'rejected'; code?: string }[] = [];
+    for (const raw of outer.data.resolutions) {
+      const id = rawUuid(raw, 'eventId');
+      if (!id) {
+        send(req, res, 422, { code: 'VALIDATION_ERROR' });
+        return;
+      }
+      const parsed = motiveResolutionSchema.safeParse(raw);
+      if (!parsed.success) {
+        results.push({ eventId: id, status: 'rejected', code: 'VALIDATION_ERROR' });
+        continue;
+      }
+      if (Date.parse(parsed.data.occurredAt) > Date.now() + FUTURE_SKEW_MS) {
+        results.push({ eventId: id, status: 'rejected', code: 'OCCURRED_AT_IN_FUTURE' });
+        continue;
+      }
+      try {
+        const status = await acceptMotiveResolution(uid, parsed.data, motiveHash(parsed.data));
+        results.push({ eventId: id, status });
+      } catch (error) {
+        const code = persistenceBusinessCode(error);
+        if (!code) throw error;
+        results.push({ eventId: id, status: 'rejected', code });
+      }
+    }
+    send(req, res, 200, { results });
+    return;
+  }
+
   const completeMatch = req.method === 'POST'
     ? req.url?.match(/^\/api\/v1\/characters\/([0-9a-fA-F-]{36})\/days\/(\d+)\/complete$/)
     : undefined;
@@ -239,6 +321,14 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
           .filter(Boolean)
           .map(Number);
         send(req, res, 409, { code: 'DAY_EVENTS_INCOMPLETE', missingSeq });
+        return;
+      }
+      if (code.startsWith('DAY_SLOTS_INCOMPLETE:')) {
+        const missingSlots = code.slice('DAY_SLOTS_INCOMPLETE:'.length)
+          .split(',')
+          .filter(Boolean)
+          .map(Number);
+        send(req, res, 409, { code: 'DAY_SLOTS_INCOMPLETE', missingSlots });
         return;
       }
       send(req, res, code === 'CHARACTER_NOT_FOUND' ? 404 : 409, { code });
