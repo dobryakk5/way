@@ -14,13 +14,17 @@ function utf8(value: string): Uint8Array {
  * dev/staging/prod import the same catalog without relying on database sequences.
  * The content build checks collisions across every catalog entity.
  */
-export function stableContentId(namespace: string, key: string): number {
+function hash64(namespace: string, key: string): bigint {
   let hash = FNV_OFFSET;
   for (const byte of utf8(`${namespace}:\0${key}`)) {
     hash ^= BigInt(byte);
     hash = (hash * FNV_PRIME) & MASK_64;
   }
-  const safe = hash & MASK_SAFE_INTEGER;
+  return hash;
+}
+
+export function stableContentId(namespace: string, key: string): number {
+  const safe = hash64(namespace, key) & MASK_SAFE_INTEGER;
   return Number(safe === 0n ? 1n : safe);
 }
 
@@ -60,4 +64,22 @@ export function choicePresentationId(cardId: string, authorChoiceId: string, rev
     'choice-presentation',
     `${choiceKey(cardId, authorChoiceId)}/${choicePresentationKey()}/r${revision}`
   );
+}
+
+/** Deterministic UUID-shaped id for one presented slot of one character. */
+export function sceneInstanceId(
+  characterId: string,
+  gameDay: number,
+  slot: number,
+  cardId: string
+): string {
+  const key = `${characterId}/${gameDay}/${slot}/${cardId}`;
+  const left = hash64('scene-instance-a', key).toString(16).padStart(16, '0');
+  const right = hash64('scene-instance-b', key).toString(16).padStart(16, '0');
+  const raw = (left + right).slice(0, 32).split('');
+  raw[12] = '5';
+  const variant = (Number.parseInt(raw[16]!, 16) & 0x3) | 0x8;
+  raw[16] = variant.toString(16);
+  const hex = raw.join('');
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
 }
