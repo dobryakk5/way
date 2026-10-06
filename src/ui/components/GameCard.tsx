@@ -8,6 +8,7 @@ interface GameCardProps {
   draw: DrawResult;
   onChoose: (choiceId: string) => void;
   onPreviewChoice: (choice?: Choice) => void;
+  busy: boolean;
 }
 
 type Side = 'left' | 'right';
@@ -28,11 +29,11 @@ export function GameCard(props: GameCardProps) {
   return props.draw.choices.length === 2 ? <SwipeCard {...props} /> : <ListCard {...props} />;
 }
 
-function ListCard({ draw, onChoose, onPreviewChoice }: GameCardProps) {
+function ListCard({ draw, onChoose, onPreviewChoice, busy }: GameCardProps) {
   const [locked, setLocked] = useState(false);
   const committed = useRef(false);
   const commit = (choiceId: string) => {
-    if (committed.current) return;
+    if (committed.current || busy) return;
     committed.current = true; setLocked(true); onPreviewChoice(undefined); onChoose(choiceId);
   };
   function handleKeyboard(event: KeyboardEvent<HTMLDivElement>) {
@@ -52,7 +53,7 @@ function ListCard({ draw, onChoose, onPreviewChoice }: GameCardProps) {
       <ol className="choice-list" aria-label="Варианты выбора">
         {draw.choices.map((choice, index) => (
           <li key={choice.id}>
-            <button type="button" className="choice-button choice-button-list" disabled={locked}
+            <button type="button" className="choice-button choice-button-list" disabled={locked || busy}
               onPointerEnter={() => onPreviewChoice(choice)} onPointerLeave={() => onPreviewChoice(undefined)}
               onFocus={() => onPreviewChoice(choice)} onBlur={() => onPreviewChoice(undefined)} onClick={() => commit(choice.id)}>
               <span className="choice-number" aria-hidden="true">{index + 1}</span>
@@ -65,7 +66,7 @@ function ListCard({ draw, onChoose, onPreviewChoice }: GameCardProps) {
   );
 }
 
-function SwipeCard({ draw, onChoose, onPreviewChoice }: GameCardProps) {
+function SwipeCard({ draw, onChoose, onPreviewChoice, busy }: GameCardProps) {
   const reducedMotion = useReducedMotion();
   const x = useMotionValue(0);
   const committed = useRef(false);
@@ -89,7 +90,7 @@ function SwipeCard({ draw, onChoose, onPreviewChoice }: GameCardProps) {
   }
 
   function commit(side: Side) {
-    if (committed.current) return;
+    if (committed.current || busy) return;
     committed.current = true;
     setLocked(true);
     const choice = side === 'left' ? leftChoice : rightChoice;
@@ -120,7 +121,7 @@ function SwipeCard({ draw, onChoose, onPreviewChoice }: GameCardProps) {
         ref={cardRef}
         className="game-card"
         style={{ x, rotate: reducedMotion ? 0 : rotate }}
-        drag={locked ? false : 'x'}
+        drag={locked || busy ? false : 'x'}
         dragConstraints={{ left: 0, right: 0 }}
         dragElastic={0.82}
         whileDrag={{ scale: reducedMotion ? 1 : 1.015 }}
@@ -152,7 +153,7 @@ function SwipeCard({ draw, onChoose, onPreviewChoice }: GameCardProps) {
         <button
           type="button"
           className="choice-button"
-          disabled={locked}
+          disabled={locked || busy}
           onPointerEnter={() => preview('left')}
           onPointerLeave={() => preview(null)}
           onFocus={() => preview('left')}
@@ -164,7 +165,7 @@ function SwipeCard({ draw, onChoose, onPreviewChoice }: GameCardProps) {
         <button
           type="button"
           className="choice-button"
-          disabled={locked}
+          disabled={locked || busy}
           onPointerEnter={() => preview('right')}
           onPointerLeave={() => preview(null)}
           onFocus={() => preview('right')}

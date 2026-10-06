@@ -68,11 +68,15 @@ export async function syncGamePersistence(options: {
   characterId: string;
   apiBaseUrl: string;
   fetchImpl?: typeof fetch;
+  /** Day completion must wait for any automatic sync, then drain newly queued events. */
+  waitForActive?: boolean;
 }): Promise<GamePersistenceSyncResult> {
   const locks = typeof navigator === 'undefined' ? undefined : navigator.locks;
   if (!locks) {
-    const existing = inFlightWithoutLocks.get(options.characterId);
-    if (existing) return { status: 'locked' };
+    while (inFlightWithoutLocks.has(options.characterId)) {
+      if (!options.waitForActive) return { status: 'locked' };
+      await inFlightWithoutLocks.get(options.characterId);
+    }
     const run = runSync(options).finally(() => inFlightWithoutLocks.delete(options.characterId));
     inFlightWithoutLocks.set(options.characterId, run);
     return run;
@@ -81,7 +85,7 @@ export async function syncGamePersistence(options: {
   let result: GamePersistenceSyncResult = { status: 'locked' };
   await locks.request(
     `put-persistence-sync:${options.characterId}`,
-    { ifAvailable: true },
+    { ifAvailable: !options.waitForActive },
     async lock => {
       if (!lock) return;
       result = await runSync(options);

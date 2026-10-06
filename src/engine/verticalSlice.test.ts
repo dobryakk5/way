@@ -2,8 +2,38 @@ import { describe,it,expect } from 'vitest';
 import { content } from '../content';
 import { play } from '../../scripts/play';
 import { applyChoice,beginSlots,chooseIntention,drawCard,persistDraw,startEpisode } from './index';
-import { useGameStore } from '../store/useGameStore';
+import { present, useGameStore } from '../store/useGameStore';
 describe('v2.2 playable slice',()=>{
+ it('opens the first decision directly and preserves it when presented again',()=>{
+  useGameStore.getState().start(42);
+  const game=useGameStore.getState().game;
+  expect(game.phase).toBe('slot');
+  expect(game.current?.cardId).toBe('c1_alexey_broken_jug');
+  expect(game.morningText).toBeTruthy();
+  expect(present(structuredClone(game))).toEqual(game);
+ });
+ it('opens the following day automatically without losing the night or repeating it',()=>{
+  useGameStore.getState().start(42);
+  let guard=0;
+  while(useGameStore.getState().game.phase!=='evening'&&guard++<30){
+   const s=useGameStore.getState(),g=s.game;
+   if(g.phase==='slot')s.choose(g.current!.cardId,g.current!.choiceIds[0]!);
+   else if(g.phase==='intention')s.setIntention('relationships');
+   else if(g.phase==='dice'){if(g.current)s.openEncounter();else s.roll();}
+   else if(g.phase==='motive')s.skipMotive();
+  }
+  expect(useGameStore.getState().game.phase).toBe('evening');
+  const night=structuredClone(useGameStore.getState().game.nights[0]);
+  useGameStore.getState().finishEvening();
+  const next=useGameStore.getState().game;
+  expect(next.day).toBe(2);
+  expect(next.phase).toBe('slot');
+  expect(next.current?.cardId).toBeTruthy();
+  expect(next.nights).toEqual([night]);
+  useGameStore.getState().finishEvening();
+  expect(useGameStore.getState().game).toEqual(next);
+  expect(present(structuredClone(next))).toEqual(next);
+ });
  it.each(['show','prepare'])('returns cup at day2/0 after %s, even with crises',first=>{
   const {draws,state}=play(42,{choices:{c1_alexey_broken_jug:first},beforeStep:s=>s.day<=2&&s.slot===0?{...s,resources:{wealth:0,strength:0,peace:0,bonds:0}}:s});
   expect(draws.find(d=>d.day===1&&d.slot===0)?.cardId).toBe('c1_alexey_broken_jug');

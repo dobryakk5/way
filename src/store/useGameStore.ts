@@ -37,7 +37,8 @@ const newState = (seed = Date.now() >>> 0) => {
 };
 const gameSessionId = crypto.randomUUID();
 export function present(state: GameState): GameState {
- if (state.phase === 'chapter') return nextChapter(state, content);
+ if (state.phase === 'chapter') return present(nextChapter(state, content));
+ if (state.phase === 'morning') return present(beginSlots(state, content));
  if (state.phase === 'evening') return prepareEvening(state, content);
  if (state.phase !== 'slot') return state;
  const encounter = prepareEncounter(state,content);
@@ -121,21 +122,23 @@ export const useGameStore = create<GameStore>((set,get) => {
    if(initialized)return;initialized=true;
    acquireProfileLock(release=>{
     releaseLock=release;
-    void loadSave().then(saved=>{
+    void loadSave().then(async saved=>{
      if(saved.damaged){set({ready:true,recovery:true,hasBackup:!!saved.backup,saveStatus:'failed',saveError:'Сохранение повреждено или относится к другой версии. Исходная запись сохранена.'});return;}
      if(!saved.record){set({ready:true,saveStatus:'idle'});return;}
-     const game=attachPresentedScenePersistence(saved.record.game);
+     const restored=saved.record.game;
+     const game=attachPresentedScenePersistence(saved.record.started&&['morning','chapter'].includes(restored.phase)?present(restored):restored);
      set({ready:true,saveStatus:'saved',game,started:saved.record.started});
+     if(game!==restored&&!await persist())return;
      void reconcileHeldPersistence(game).then(()=>queuePresentedScene(game)).then(()=>scheduleRemoteSync(game)).catch(e=>{
       set({error:e instanceof Error?e.message:String(e)});
      });
     }).catch(e=>set({ready:true,recovery:true,saveStatus:'failed',saveError:`Не удалось прочитать сохранение: ${String(e)}. Исходный профиль не заменён.`}));
    },()=>set({ready:true,readOnly:true,saveStatus:'readonly',saveError:'Прохождение открыто в другой вкладке или браузер не поддерживает защиту профиля. Закройте другую вкладку и обновите эту.'}));
   },
-  recover:async()=>{if(get().readOnly)return;try{await queue;const record=await restoreBackup();const game=attachPresentedScenePersistence(record.game);set({game,started:record.started,recovery:false,saveStatus:'saved',saveError:undefined,error:undefined});await reconcileHeldPersistence(game);await queuePresentedScene(game);scheduleRemoteSync(game);}catch(e){set({saveStatus:'failed',saveError:String(e)});}},
+  recover:async()=>{if(get().readOnly)return;try{await queue;const record=await restoreBackup();const game=attachPresentedScenePersistence(record.started&&['morning','chapter'].includes(record.game.phase)?present(record.game):record.game);set({game,started:record.started,recovery:false,saveStatus:'saved',saveError:undefined,error:undefined});if(!await persist())return;await reconcileHeldPersistence(game);await queuePresentedScene(game);scheduleRemoteSync(game);}catch(e){set({saveStatus:'failed',saveError:String(e)});}},
   restart:async()=>{if(get().readOnly)return;try{await queue;await preserveAndRestart();set({game:newState(),started:false,recovery:false,paused:false,choiceWritePending:false,error:undefined});void persist();}catch(e){set({saveStatus:'failed',saveError:String(e)});}},
   retrySave:()=>{void persist().then(async saved=>{if(!saved)return;const game=get().game;await reconcileHeldPersistence(game);await queuePresentedScene(game);scheduleRemoteSync(game);});},
-  start:(seed,goal='order')=>{if(get().readOnly||get().recovery)return;const game=chooseGoal(newState(seed),content,goal,'select');set({game,started:true,error:undefined,paused:false,choiceWritePending:false});void persist().then(saved=>afterLocalSave(game,saved));},
+  start:(seed,goal='order')=>{if(get().readOnly||get().recovery)return;const game=present(chooseGoal(newState(seed),content,goal,'select'));set({game,started:true,error:undefined,paused:false,choiceWritePending:false});void persist().then(saved=>afterLocalSave(game,saved));},
   reset:(seed)=>{if(get().readOnly)return;const game=newState(seed);set({game,started:false,error:undefined,choiceWritePending:false});void persist();},
   beginDay:()=>transition(s=>beginSlots(s,content)),
   setGoal:(id,action,wording)=>transition(s=>chooseGoal(s,content,id,action,wording)),
@@ -194,7 +197,7 @@ export const useGameStore = create<GameStore>((set,get) => {
     await queue;
     await reconcileHeldPersistence(source);
     await queuePresentedScene(source);
-    let synced=await syncGamePersistence({characterId:source.runId,apiBaseUrl:persistenceApiBase});
+    let synced=await syncGamePersistence({characterId:source.runId,apiBaseUrl:persistenceApiBase,waitForActive:true});
     if(synced.status!=='done'){
      throw new Error(`Не удалось синхронизировать день: ${synced.status}`);
     }
@@ -206,7 +209,7 @@ export const useGameStore = create<GameStore>((set,get) => {
      apiBaseUrl:persistenceApiBase
     });
     if(completed.status==='incomplete'){
-     synced=await syncGamePersistence({characterId:source.runId,apiBaseUrl:persistenceApiBase});
+     synced=await syncGamePersistence({characterId:source.runId,apiBaseUrl:persistenceApiBase,waitForActive:true});
      if(synced.status!=='done'){
       throw new Error('Не удалось досинхронизировать события дня');
      }

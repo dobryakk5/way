@@ -1313,3 +1313,55 @@ p { line-height: 1.6; }
   color: var(--gold-2);
   font-weight: 600;
 }
+
+/* A continuous day: quiet context, automatic interludes, decisions in focus. */
+.day-progress { display: inline-flex; align-items: center; gap: 5px; }
+.day-progress i { width: 17px; height: 3px; border-radius: 3px; background: rgba(240,210,154,.14); }
+.day-progress i.done { background: var(--gold); }
+.day-progress i.current { background: var(--gold-2); box-shadow: 0 0 8px rgba(240,210,154,.32); }
+.day-progress > span { margin-left: 5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.morning-context { margin: 0 4px 14px; padding: 0 14px; border-left: 2px solid var(--gold-line); color: var(--muted); }
+.morning-context summary { min-height: 36px; display: flex; align-items: center; gap: 10px; font-size: .8rem; color: var(--gold-2); cursor: pointer; list-style: none; }
+.morning-context summary::-webkit-details-marker { display: none; }
+.morning-context summary::after { content: '+'; margin-left: auto; color: var(--muted-2); }
+.morning-context[open] summary::after { content: '−'; }
+.morning-context p { margin: 2px 0 12px; font-size: .86rem; line-height: 1.6; }
+.scene-reveal { min-width: 0; }
+.encounter-result { display: flex; align-items: center; justify-content: center; gap: 9px; margin: 0 0 12px; color: var(--gold-2); font-size: .76rem; }
+.encounter-value { color: var(--muted); }
+.dice-stage { width: min(100%, 500px); text-align: center; }
+.dice-stage h2 { font-size: clamp(1.7rem, 5vw, 2.25rem); }
+.dice-orbit { position: relative; display: grid; place-items: center; width: 240px; height: 240px; margin: 20px auto; border: 1px solid rgba(240,210,154,.1); border-radius: 50%; background: radial-gradient(circle, rgba(217,173,104,.12), transparent 70%); }
+.dice-orbit::after { content: ''; position: absolute; inset: 22px; border: 1px solid rgba(240,210,154,.05); border-radius: 50%; pointer-events: none; }
+.die-face { display: inline-grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 10px; width: 100px; height: 100px; padding: 19px; flex-shrink: 0; border-radius: 23px; border: 1px solid rgba(240,210,154,.5); background: linear-gradient(145deg, #604137, #2f2025); box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 16px 32px rgba(0,0,0,.3); }
+.pip { border-radius: 50%; background: var(--gold-2); opacity: 0; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+.pip.visible { opacity: 1; }
+.die-small { width: 27px; height: 27px; padding: 5px; gap: 2px; border-radius: 7px; box-shadow: none; }
+.die-rolling { animation: dice-tumble .65s cubic-bezier(.2,.65,.25,1) both; }
+.dice-caption { min-height: 24px; color: var(--muted); font-size: .86rem; }
+@keyframes dice-tumble { 0% { transform: rotate(-24deg) scale(.8); } 35% { transform: rotate(150deg) translateY(-12px) scale(1.06); } 70% { transform: rotate(300deg) translateY(-4px); } 100% { transform: rotate(360deg) scale(1); } }
+.transition-note { color: var(--muted-2); font-size: .8rem; margin: 18px 0 24px; }
+.day-transition-progress { height: 2px; overflow: hidden; border-radius: 2px; background: rgba(240,210,154,.08); }
+.day-transition-progress span { display: block; height: 100%; width: 100%; transform-origin: left; background: linear-gradient(90deg, var(--clay), var(--gold-2)); animation: day-progress linear both; }
+@keyframes day-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.transition-actions { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 12px; }
+.text-button { padding: 8px 0; border: 0; background: none; color: var(--muted); font-size: .8rem; cursor: pointer; }
+.text-button:hover { color: var(--gold-2); }
+.transition-next { color: var(--gold-2); }
+.transition-next span { margin-left: 8px; }
+.transition-status { margin: 6px 0 0; min-height: 20px; font-size: .74rem; color: var(--muted-2); }
+@media (max-width: 520px) {
+  .game-screen:has(.morning-context[open]) .card-art { height: 140px; }
+  .game-screen:has(.morning-context[open]) .game-card { min-height: 0; }
+  .transition-actions { gap: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .die-rolling, .day-transition-progress span { animation: none; }
+}
+.scene-reveal .game-card { width: min(100%, 450px); }
+.game-screen:has(.morning-context[open]) .game-card { min-height: 0; }
+.game-screen:has(.morning-context[open]) .card-art { height: 100px; }
+.game-screen:has(.morning-context[open]) .art-vessel { height: 58px; width: 43px; bottom: 14px; }
+.game-screen:has(.morning-context[open]) .art-table { bottom: 9px; }
+.game-screen:has(.morning-context[open]) .card-copy { padding: 16px 20px 20px; }
+.game-screen:has(.morning-context[open]) .card-text { font-size: clamp(1.08rem, 4.6vw, 1.2rem); }
