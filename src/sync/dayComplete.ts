@@ -25,11 +25,13 @@ export type CompleteDayResult =
   | { status: 'paused-auth' }
   | { status: 'retry'; reason: 'network' | 'server' | 'invalid-response' }
   | { status: 'incomplete'; missingSeq: number[] }
+  | { status: 'slots-incomplete'; missingSlots: number[] }
   | { status: 'rejected'; code: string };
 
 const errorSchema = z.object({
   code: z.string().min(1),
-  missingSeq: z.array(z.number().int().positive()).optional()
+  missingSeq: z.array(z.number().int().positive()).optional(),
+  missingSlots: z.array(z.number().int().min(0)).optional()
 }).passthrough();
 
 export async function completeCharacterDay(options: {
@@ -77,6 +79,9 @@ export async function completeCharacterDay(options: {
   if (!error.success) return { status: 'rejected', code: `HTTP_${response.status}` };
   if (error.data.code === 'DAY_EVENTS_INCOMPLETE') {
     return { status: 'incomplete', missingSeq: error.data.missingSeq ?? [] };
+  }
+  if (error.data.code === 'DAY_SLOTS_INCOMPLETE') {
+    return { status: 'slots-incomplete', missingSlots: error.data.missingSlots ?? [] };
   }
   return { status: 'rejected', code: error.data.code };
 }
