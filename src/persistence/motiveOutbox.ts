@@ -62,7 +62,22 @@ function openOutbox(): Promise<IDBDatabase> {
 }
 
 function samePayload(a: MotiveResolutionEvent, b: MotiveResolutionEvent): boolean {
-  return JSON.stringify(a) === JSON.stringify(b);
+  if (
+    a.eventId !== b.eventId ||
+    a.characterId !== b.characterId ||
+    a.gameSessionId !== b.gameSessionId ||
+    a.gameDay !== b.gameDay ||
+    a.sceneInstanceId !== b.sceneInstanceId ||
+    a.choiceId !== b.choiceId ||
+    a.promptId !== b.promptId ||
+    a.resolutionType !== b.resolutionType ||
+    a.occurredAt !== b.occurredAt
+  ) return false;
+
+  if (a.resolutionType === 'answered' && b.resolutionType === 'answered') {
+    return a.motiveOptionId === b.motiveOptionId;
+  }
+  return a.resolutionType === 'skipped' && b.resolutionType === 'skipped';
 }
 
 export async function enqueueMotiveResolution(
