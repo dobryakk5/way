@@ -173,12 +173,31 @@ BEGIN
         position SMALLINT
     );
 
-    UPDATE character_game_state
+    UPDATE character_game_state gs
     SET current_game_day = p_game_day,
         current_scene_id = p_scene_id,
         current_scene_instance_id = p_scene_instance_id,
         updated_at = now()
-    WHERE character_id = p_character_id;
+    WHERE gs.character_id = p_character_id
+      AND NOT EXISTS (
+          SELECT 1
+          FROM character_events e
+          WHERE e.character_id = p_character_id
+            AND e.scene_instance_id = p_scene_instance_id
+            AND e.event_type = 'CHOICE_MADE'
+      )
+      AND (
+          gs.current_scene_instance_id IS NULL
+          OR p_game_day > gs.current_game_day
+          OR (
+              p_game_day = gs.current_game_day
+              AND p_game_slot >= COALESCE((
+                  SELECT current_si.game_slot
+                  FROM scene_instances current_si
+                  WHERE current_si.id = gs.current_scene_instance_id
+              ), -1)
+          )
+      );
 
     RETURN 'accepted';
 EXCEPTION
