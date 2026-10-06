@@ -7,8 +7,14 @@ const paths: Record<FacetIconId, JSX.Element> = {
   inner: <><circle cx="12" cy="12" r="6.2"/><path d="M12 7.2v9.6M7.2 12h9.6"/><path d="M8.7 8.7l6.6 6.6M15.3 8.7l-6.6 6.6"/></>
 };
 
+/** Painted icons; the other facets keep the line drawings until their art is added. */
+const artIcons: Partial<Record<FacetIconId, string>> = { work: 'work', inner: 'inner' };
+
 export function FacetIcon({id,className=''}:{id:FacetIconId;className?:string}) {
-  return <span className={`facet-icon ${className}`} aria-hidden="true">
-    <svg viewBox="0 0 24 24" focusable="false">{paths[id]}</svg>
+  const art = artIcons[id];
+  return <span className={`facet-icon ${art ? 'facet-icon-art ' : ''}${className}`} aria-hidden="true">
+    {art
+      ? <img src={`${import.meta.env.BASE_URL}art/facets/${art}.webp`} alt="" width="160" height="160" decoding="async" />
+      : <svg viewBox="0 0 24 24" focusable="false">{paths[id]}</svg>}
   </span>;
 }

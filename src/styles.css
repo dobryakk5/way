@@ -1308,6 +1308,9 @@ p { line-height: 1.6; }
   line-height: 1;
 }
 .resource-facet-icon { width: 23px; height: 23px; }
+.facet-icon-art { filter: drop-shadow(0 2px 5px rgba(0,0,0,.3)); }
+.facet-icon-art img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.resource-facet-icon.facet-icon-art { width: 26px; height: 26px; }
 .choice-with-icon {
   display: flex;
   align-items: center;
