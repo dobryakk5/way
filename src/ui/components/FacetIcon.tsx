@@ -7,8 +7,8 @@ const paths: Record<FacetIconId, JSX.Element> = {
   inner: <><circle cx="12" cy="12" r="6.2"/><path d="M12 7.2v9.6M7.2 12h9.6"/><path d="M8.7 8.7l6.6 6.6M15.3 8.7l-6.6 6.6"/></>
 };
 
-/** Painted icons; the other facets keep the line drawings until their art is added. */
-const artIcons: Partial<Record<FacetIconId, string>> = { work: 'work', inner: 'inner' };
+/** Painted icons (transparent WebP); the line drawings below are the fallback. */
+const artIcons: Partial<Record<FacetIconId, string>> = { work: 'work', relationships: 'relationships', body: 'body', inner: 'inner' };
 
 export function FacetIcon({id,className=''}:{id:FacetIconId;className?:string}) {
   const art = artIcons[id];
