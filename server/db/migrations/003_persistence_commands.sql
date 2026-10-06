@@ -15,14 +15,23 @@ LANGUAGE plpgsql
 AS $$
 DECLARE
     existing_user UUID;
+    existing_taxonomy TEXT;
+    existing_evidence TEXT;
+    existing_calculation TEXT;
 BEGIN
-    SELECT user_id INTO existing_user
+    SELECT user_id, taxonomy_version, evidence_model_version, calculation_version
+    INTO existing_user, existing_taxonomy, existing_evidence, existing_calculation
     FROM characters
     WHERE id = p_character_id;
 
     IF FOUND THEN
         IF existing_user <> p_user_id THEN
             RAISE EXCEPTION 'CHARACTER_NOT_FOUND' USING ERRCODE = 'P0001';
+        END IF;
+        IF existing_taxonomy <> p_taxonomy_version
+           OR existing_evidence <> p_evidence_model_version
+           OR existing_calculation <> p_calculation_version THEN
+            RAISE EXCEPTION 'CHARACTER_VERSION_MISMATCH' USING ERRCODE = 'P0001';
         END IF;
         RETURN 'alreadyAccepted';
     END IF;
@@ -187,16 +196,21 @@ DECLARE
     existing_hash TEXT;
     existing_choice BIGINT;
 BEGIN
-    SELECT payload_hash
+    SELECT ce.payload_hash
     INTO existing_hash
-    FROM character_events
-    WHERE event_id = p_event_id;
+    FROM character_events ce
+    JOIN characters c ON c.id = ce.character_id
+    WHERE ce.event_id = p_event_id
+      AND ce.character_id = p_character_id
+      AND c.user_id = p_user_id;
 
     IF FOUND THEN
         IF existing_hash <> p_payload_hash THEN
             RAISE EXCEPTION 'EVENT_ID_PAYLOAD_MISMATCH' USING ERRCODE = 'P0001';
         END IF;
         RETURN 'alreadyAccepted';
+    ELSIF EXISTS (SELECT 1 FROM character_events WHERE event_id = p_event_id) THEN
+        RAISE EXCEPTION 'CHARACTER_NOT_FOUND' USING ERRCODE = 'P0001';
     END IF;
 
     SELECT ds.processed_through_day + 1
@@ -239,6 +253,19 @@ BEGIN
     RETURN 'accepted';
 EXCEPTION
     WHEN unique_violation THEN
+        SELECT ce.payload_hash
+        INTO existing_hash
+        FROM character_events ce
+        JOIN characters c ON c.id = ce.character_id
+        WHERE ce.event_id = p_event_id
+          AND ce.character_id = p_character_id
+          AND c.user_id = p_user_id;
+        IF FOUND THEN
+            IF existing_hash = p_payload_hash THEN
+                RETURN 'alreadyAccepted';
+            END IF;
+            RAISE EXCEPTION 'EVENT_ID_PAYLOAD_MISMATCH' USING ERRCODE = 'P0001';
+        END IF;
         IF EXISTS (
             SELECT 1 FROM character_events
             WHERE character_id = p_character_id AND seq = p_seq
