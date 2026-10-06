@@ -160,13 +160,17 @@ export function markChoiceEventRejected(eventId: string, code: string): Promise<
   }));
 }
 
-export function markChoiceEventRetry(eventId: string): Promise<LocalChoiceEvent | undefined> {
+export function markChoiceEventPending(eventId: string, incrementRetry = false): Promise<LocalChoiceEvent | undefined> {
   return updateEvent(eventId, event => ({
     ...event,
     syncStatus: 'pending',
-    retryCount: event.retryCount + 1,
+    retryCount: event.retryCount + (incrementRetry ? 1 : 0),
     updatedAt: new Date().toISOString()
   }));
+}
+
+export function markChoiceEventRetry(eventId: string): Promise<LocalChoiceEvent | undefined> {
+  return markChoiceEventPending(eventId, true);
 }
 
 export async function resetSendingChoiceEvents(characterId?: string): Promise<number> {
