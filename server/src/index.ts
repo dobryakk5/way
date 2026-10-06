@@ -6,7 +6,7 @@ import {
   acceptMotiveResolution,
   completeCharacterDay,
   createCharacter,
-  getCharacterResume,
+  getCharacterPersistenceProjection,
   getDevelopmentHistory,
   getDevelopmentState,
   persistenceBusinessCode,
@@ -194,14 +194,14 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
       return;
     }
 
-    const stateMatch = parsedUrl.pathname.match(/^\/api\/v1\/characters\/([0-9a-fA-F-]{36})\/state$/);
+    const stateMatch = parsedUrl.pathname.match(/^\/api\/v1\/characters\/([0-9a-fA-F-]{36})\/persistence-state$/);
     if (stateMatch) {
       const characterId = stateMatch[1]!;
       if (!uuidSchema.safeParse(characterId).success) {
         send(req, res, 422, { code: 'VALIDATION_ERROR' });
         return;
       }
-      const state = await getCharacterResume(uid, characterId);
+      const state = await getCharacterPersistenceProjection(uid, characterId);
       if (!state) {
         send(req, res, 404, { code: 'CHARACTER_NOT_FOUND' });
         return;
