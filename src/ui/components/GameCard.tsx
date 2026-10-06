@@ -12,27 +12,7 @@ interface GameCardProps {
 
 type Side = 'left' | 'right';
 
-const KEY_CARD_ART: Record<string, string> = {
-  c1_alexey_broken_jug: 'c1_alexey_broken_jug.webp',
-  c1_wounded_road: 'c1_wounded_road.webp',
-  c1_extra_change: 'c1_extra_change.webp',
-  c2_stones_bag: 'c2_stones_bag.webp',
-  c2_liya_arrives: 'c2_liya_arrives.webp',
-  c2_timon_order_result: 'c2_timon_order_result.webp'
-};
-
 function CardArt({ draw }: { draw: DrawResult }) {
-  const keyArt = KEY_CARD_ART[draw.card.id];
-
-  if (keyArt) {
-    return <div
-      className="card-art card-art-key"
-      style={{ backgroundImage: `url(${import.meta.env.BASE_URL}art/cards/${keyArt})` }}
-      data-character={draw.card.character ?? 'city'}
-      aria-hidden="true"
-    />;
-  }
-
   return <div className="card-art" data-character={draw.card.character ?? 'city'} aria-hidden="true">
     <span className="art-halo" />
     <span className="art-window" />
