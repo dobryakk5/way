@@ -30,9 +30,9 @@ function sceneArtForCard(draw: DrawResult): SceneArt {
   if (/(дорог|за город|тракт|путник|повозк|телег)/u.test(text)) return 'country-road';
   if (/(вечер|ноч|свеч|поздн|сумерк)/u.test(text)) return 'workshop-dusk';
 
-  if (draw.card.facets.includes('inner')) return 'workshop-dusk';
-  if (draw.card.facets.includes('body')) return 'country-road';
-  if (draw.card.facets.includes('relationships')) return 'river-bridge';
+  if (draw.card.facets?.includes('inner')) return 'workshop-dusk';
+  if (draw.card.facets?.includes('body')) return 'country-road';
+  if (draw.card.facets?.includes('relationships')) return 'river-bridge';
   return 'workshop-dawn';
 }
 
