@@ -28,12 +28,14 @@ type Evidence = Record<string, unknown>;
 interface CatalogMotiveOption {
   id: number;
   optionKey: string;
+  label: string;
   evidence: Evidence;
 }
 
 interface CatalogMotivePrompt {
   id: number;
   promptKey: string;
+  text: string;
   options: CatalogMotiveOption[];
 }
 
@@ -117,9 +119,12 @@ function motiveOf(card: Card, choice: Choice): CatalogMotivePrompt | undefined {
   return {
     id: promptId,
     promptKey: motivePromptKey(card.id, choice.id, motive.promptId),
+    text: motive.text,
     options: motive.options.map(option => ({
+
       id: motiveOptionId(card.id, choice.id, motive.promptId, option.id),
       optionKey: motiveOptionKey(card.id, choice.id, motive.promptId, option.id),
+      label: option.label,
       evidence: {
         source: 'motive',
         vector: option.signal.vector,
@@ -342,25 +347,28 @@ export function catalogSql(catalog: Catalog): string {
 
       if (choice.motive) {
         lines.push(
-          'INSERT INTO choice_motive_prompts(id, choice_id, prompt_key) VALUES (' +
-          choice.motive.id + ', ' + choice.id + ', ' + sqlString(choice.motive.promptKey) + ') ON CONFLICT DO NOTHING;',
+          'INSERT INTO choice_motive_prompts(id, choice_id, prompt_key, prompt_text) VALUES (' +
+          choice.motive.id + ', ' + choice.id + ', ' + sqlString(choice.motive.promptKey) + ', ' +
+          sqlString(choice.motive.text) + ') ON CONFLICT DO NOTHING;',
           assertSql(
             'EXISTS (SELECT 1 FROM choice_motive_prompts WHERE id = ' + choice.motive.id +
               ' AND choice_id = ' + choice.id +
-              ' AND prompt_key = ' + sqlString(choice.motive.promptKey) + ')',
+              ' AND prompt_key = ' + sqlString(choice.motive.promptKey) +
+              ' AND prompt_text = ' + sqlString(choice.motive.text) + ')',
             'motive-prompt:' + choice.motive.promptKey
           )
         );
         for (const option of choice.motive.options) {
           lines.push(
-            'INSERT INTO choice_motive_options(id, choice_id, prompt_id, option_key) VALUES (' +
-            option.id + ', ' + choice.id + ', ' + choice.motive.id + ', ' + sqlString(option.optionKey) +
-            ') ON CONFLICT DO NOTHING;',
+            'INSERT INTO choice_motive_options(id, choice_id, prompt_id, option_key, option_label) VALUES (' +
+            option.id + ', ' + choice.id + ', ' + choice.motive.id + ', ' + sqlString(option.optionKey) + ', ' +
+            sqlString(option.label) + ') ON CONFLICT DO NOTHING;',
             assertSql(
               'EXISTS (SELECT 1 FROM choice_motive_options WHERE id = ' + option.id +
                 ' AND choice_id = ' + choice.id +
                 ' AND prompt_id = ' + choice.motive.id +
-                ' AND option_key = ' + sqlString(option.optionKey) + ')',
+                ' AND option_key = ' + sqlString(option.optionKey) +
+                ' AND option_label = ' + sqlString(option.label) + ')',
               'motive-option:' + option.optionKey
             ),
             'INSERT INTO choice_motive_evidence(motive_option_id, evidence_model_version, taxonomy_version, evidence) VALUES (' +
