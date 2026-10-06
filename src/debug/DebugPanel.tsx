@@ -1,7 +1,12 @@
 import { content } from '../content';
-import { auditProfile, calculateProfileSlice, drawCard, facetPattern, fitsSchedule, portrait, profileConfig } from '../engine';
+import { auditProfile, calculateProfileSlice, drawCard, facetAttention, facetPattern, facetTargetDistribution, fitsSchedule, portrait, profileConfig } from '../engine';
 import type { GameState } from '../engine';
 const round = (n: number) => Math.round(n * 10000) / 10000;
+// Attention of the last decisions (a distribution of where free choices went, not a state of a sphere) and the target it gives the free story draw.
+const attentionDebug = (game: GameState) => {
+  const config = content.profile.facetAttention, a = facetAttention(game, content, config);
+  return { enabled: content.profile.rollout.facetAttention, window: config.windowSize, evidence: a.evidence, attention: rounded(a.distribution), target: rounded(facetTargetDistribution(a, config)) };
+};
 const rounded = (v?: Record<string, number>) => v && Object.fromEntries(Object.entries(v).map(([k, n]) => [k, round(n)]));
 // Every number of the profile can be traced to an actual card and choice here.
 export function ProfileDebug({game}:{game:GameState}) {
@@ -28,7 +33,7 @@ export function DebugPanel({game}:{game:GameState}) {
  const draw=drawCard(game,content);
  return <><details className="debug-panel"><summary>Отладка</summary><pre>{JSON.stringify({phase:game.phase,day:game.day,slot:game.slot,
  intention:game.declaredIntention,route:game.activeRoute,opportunities:game.opportunityState,exposure:game.opportunityExposure,
- facets:facetPattern(game,content),facts:game.facts,qualities:game.qualities,flags:game.flags,
+ facets:facetPattern(game,content),facetAttention:attentionDebug(game),facts:game.facts,qualities:game.qualities,flags:game.flags,
  current:game.current,baseText:draw?.card.text,variant:draw?.variantId,schedule:game.scheduled,crises:game.pendingCrises,
  deadlinesFit:fitsSchedule(game,content),traces:content.traces.filter(t=>game.history.some(h=>h.cardId===t.source.cardId&&h.choiceId===t.source.choiceId)),
  observations:game.observations,portrait:game.phase==='ending'?portrait(game,content):undefined},null,2)}</pre><ProfileDebug game={game}/></details></>;

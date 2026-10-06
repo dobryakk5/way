@@ -226,10 +226,16 @@ export interface ProfileAlgorithmConfig {
   emerging: { minActions: number; minComponent: number; minContexts: number };
   rubric: { axes: Record<RubricAxis, string>; logics: LogicRubric };
 }
+/** Where free story attention goes (derived from history, never stored). Affects only how often ordinary free story scenes appear. */
+export interface FacetAttentionConfig {
+  windowSize: number; minEvidence: number; playerWeight: number;
+  minMultiplier: number; maxMultiplier: number; declaredIntentionMultiplier: number;
+}
 export interface ProfileConfigRegistry {
   currentAlgorithmVersion: string;
   // Rollout switches live outside immutable algorithm branches: they select content, they never change scoring.
-  rollout: { adaptiveSelection: boolean; developmentArcs: boolean };
+  rollout: { adaptiveSelection: boolean; developmentArcs: boolean; facetAttention: boolean };
+  facetAttention: FacetAttentionConfig;
   algorithms: Record<string, ProfileAlgorithmConfig>;
 }
 export interface HeroDevelopmentProfileEvidence {

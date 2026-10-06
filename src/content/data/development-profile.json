@@ -2,7 +2,16 @@
   "currentAlgorithmVersion": "2",
   "rollout": {
     "adaptiveSelection": false,
-    "developmentArcs": false
+    "developmentArcs": false,
+    "facetAttention": false
+  },
+  "facetAttention": {
+    "windowSize": 16,
+    "minEvidence": 6,
+    "playerWeight": 0.5,
+    "minMultiplier": 0.6,
+    "maxMultiplier": 1.6,
+    "declaredIntentionMultiplier": 1.15
   },
   "algorithms": {
     "1": {

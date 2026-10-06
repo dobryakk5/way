@@ -1,7 +1,7 @@
 import { developmentCardEligible } from './development';
 import { deterministicRandom } from './rng';
 import { eligible } from './schedule';
-import { adaptiveSelectionOn, drawCard, freePool, independentPool, persistDraw, probeScenes } from './draw';
+import { adaptiveSelectionOn, drawCard, facetAdjustedSlice, freePool, independentPool, persistDraw, probeScenes } from './draw';
 import { naturalSelectionOrigin } from './heroDevelopmentProfile';
 import { enterSlot } from './navigation';
 import { choiceById } from './variants';
@@ -30,9 +30,10 @@ export function prepareEncounter(state: GameState, content: GameContent): GameSt
   const adaptive = adaptiveSelectionOn(content);
   const pool = freePool(state, content);
   const base = (adaptive ? independentPool(state, content, pool) : pool).sort(order);
+  const slice = (count: number) => facetAdjustedSlice(state, content, base, count);
   // A probe takes one of the six places; its origin is frozen with the candidate set, like the cards themselves.
   const probe = adaptive ? probeScenes(state, content).sort(order)[0] : undefined;
-  const chosen = probe ? [...base.slice(0, 5), probe].sort(order) : base.slice(0, 6);
+  const chosen = (probe ? [...slice(5), probe] : slice(6)).sort(order);
   if (chosen.length !== 6) return state;
   const candidates = chosen.map(c => c.id);
   const candidateOrigins = chosen.map(c => c === probe ? 'probe' as const : naturalSelectionOrigin(c));

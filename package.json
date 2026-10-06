@@ -21,7 +21,8 @@
     "v25:parse": "node --import tsx scripts/v25/parse-package.ts",
     "v25:source": "node --import tsx scripts/v25/source-checks.ts",
     "v25:simulate": "node --import tsx scripts/v25/simulate-package.ts",
-    "v25:build": "node --import tsx scripts/v25/build-cards.ts"
+    "v25:build": "node --import tsx scripts/v25/build-cards.ts",
+    "facets:simulate": "node --import tsx scripts/simulate-facets.ts"
   },
   "dependencies": {
     "framer-motion": "^12.4.7",

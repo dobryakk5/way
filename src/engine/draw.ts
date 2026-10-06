@@ -5,6 +5,7 @@ import { reconcileCrisisQueue } from './crises';
 import { deterministicRandom } from './rng';
 import { eligible, fitsSchedule, obligations, routeAt } from './schedule';
 import { choiceById, resolveChoices } from './variants';
+import { cardFacetMultiplier, declaredIntentionPrior, facetAttention, facetAttentionOn, facetTargetDistribution, isFacetWeightedDrawCandidate } from './facets';
 import { exposeOpportunity } from './opportunities';
 import type { Card, Choice, DiagnosticSelectionOrigin, GameContent, GameState } from './types';
 export type DrawSource = 'current' | 'at' | 'route' | 'capacity' | 'crisis' | 'mustShowBy' | 'scheduled' | 'pool' | 'development';
@@ -34,14 +35,68 @@ function result(state: GameState, card: Card, content: GameContent, source: Draw
   return { card, choices, ...(leftChoiceId ? { leftChoiceId, rightChoiceId: choices.find(c => c.id !== leftChoiceId)!.id } : {}),
     text: state.current?.text ?? variant?.text ?? card.text, source, ...(variantId ? { variantId } : {}), ...(selectionOrigin ? { selectionOrigin } : {}) };
 }
+const baseWeight = (c: Card) => c.weight ?? (c.type === 'situation' ? 3 : 1);
+const legacyWeight = (state: GameState, c: Card) => baseWeight(c) * (state.declaredIntention && c.facets?.includes(state.declaredIntention) ? 1.2 : 1);
+const drawRoll = (state: GameState) => deterministicRandom(state.seed, state.day, state.slot, 'draw', state.episodeId);
 function weighted(state: GameState, cards: Card[]): Card | undefined {
-  const weights = cards.map(c => (c.weight ?? (c.type === 'situation' ? 3 : 1)) *
-    (state.declaredIntention && c.facets?.includes(state.declaredIntention) ? 1.2 : 1));
+  const weights = cards.map(c => legacyWeight(state, c));
   const total = weights.reduce((a, b) => a + b, 0);
   if (total <= 0) return cards[0];
-  let n = deterministicRandom(state.seed, state.day, state.slot, 'draw', state.episodeId) * total;
+  let n = drawRoll(state) * total;
   for (let i = 0; i < cards.length; i++) { n -= weights[i]!; if (n < 0) return cards[i]; }
   return cards.at(-1);
+}
+/** Facet multiplier of a card for the hero's current attention (derived from history; computed once per draw). */
+function facetMultiplierOf(state: GameState, content: GameContent): (card: Card) => number {
+  const config = content.profile.facetAttention;
+  const attention = facetAttention(state, content, config);
+  const target = facetTargetDistribution(attention, config);
+  return card => cardFacetMultiplier(card, target, config, declaredIntentionPrior(card, state, attention, config));
+}
+/**
+ * Dice flow: the six candidates are the first six of a uniform shuffle of the free pool (`ordered`). Every non-story slot stays exactly
+ * as shuffled, so neutral and other scenes are untouched; only WHICH story scenes fill the story slots is re-picked by facet weight
+ * (weighted sampling without replacement, keys from the same deterministic rng family).
+ */
+export function facetAdjustedSlice(state: GameState, content: GameContent, ordered: Card[], count: number): Card[] {
+  const slice = ordered.slice(0, count);
+  if (!facetAttentionOn(content)) return slice;
+  const story = ordered.filter(isFacetWeightedDrawCandidate);
+  const slots = slice.filter(isFacetWeightedDrawCandidate).length;
+  if (!slots || story.length <= slots) return slice;
+  const multiplier = facetMultiplierOf(state, content);
+  const picked = story.map(c => ({ c, key: Math.log(Math.max(deterministicRandom(state.seed, state.day, state.slot, `facet:${c.id}`, state.episodeId), 1e-12)) / multiplier(c) }))
+    .sort((a, b) => b.key - a.key || a.c.id.localeCompare(b.c.id)).slice(0, slots).map(x => x.c);
+  return [...slice.filter(c => !isFacetWeightedDrawCandidate(c)), ...picked];
+}
+/**
+ * The direct free draw with facet attention (used when the pool is too small for the dice). Stage 1 is the legacy draw and alone decides whether a story candidate came up
+ * (so the share of neutral and other scenes is untouched). Only when a candidate did come up is it re-picked among the
+ * candidates by facet weight, using the same roll as a position inside the candidates' legacy mass.
+ */
+export function drawFreePoolWeighted(state: GameState, content: GameContent, cards: Card[]): Card | undefined {
+  const first = weighted(state, cards);
+  if (!first || !facetAttentionOn(content) || !isFacetWeightedDrawCandidate(first)) return first;
+  const candidates = cards.filter(isFacetWeightedDrawCandidate);
+  const legacy = candidates.map(c => legacyWeight(state, c));
+  const legacyTotal = legacy.reduce((a, b) => a + b, 0);
+  // Position of the roll inside the candidates' legacy mass: uniform in [0, 1) given that a candidate was drawn.
+  let n = drawRoll(state) * cards.reduce((a, c) => a + legacyWeight(state, c), 0);
+  let before = 0;
+  for (const c of cards) {
+    const w = legacyWeight(state, c);
+    if (c === first) break;
+    if (isFacetWeightedDrawCandidate(c)) before += w;
+    n -= w;
+  }
+  const u = legacyTotal > 0 ? Math.min(Math.max((before + n) / legacyTotal, 0), 1 - Number.EPSILON) : 0;
+  const multiplier = facetMultiplierOf(state, content);
+  const weights = candidates.map(c => baseWeight(c) * multiplier(c));
+  const total = weights.reduce((a, b) => a + b, 0);
+  if (total <= 0) return first;
+  let m = u * total;
+  for (let i = 0; i < candidates.length; i++) { m -= weights[i]!; if (m < 0) return candidates[i]; }
+  return candidates.at(-1);
 }
 /** Free scenes a hero may meet now. Probe scenes are chosen only by the selector, never by the ordinary pool. */
 export function freePool(state: GameState, content: GameContent): Card[] {
@@ -125,7 +180,7 @@ export function drawCard(state: GameState, content: GameContent): DrawResult | u
   const probe = adaptive ? weighted(state, probeScenes(state, content)) : undefined;
   if (probe) return result(state, probe, content, 'pool', 'probe');
   const pool = freePool(state, content);
-  const card = weighted(state, adaptive ? independentPool(state, content, pool) : pool);
+  const card = drawFreePoolWeighted(state, content, adaptive ? independentPool(state, content, pool) : pool);
   return card ? result(state,card,content,'pool') : undefined;
 }
 export function persistDraw(state: GameState, draw: DrawResult, content?: GameContent): GameState {

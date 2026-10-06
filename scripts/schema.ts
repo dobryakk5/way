@@ -36,7 +36,9 @@ export const cardDiagnosticSchema = z.object({situationId:text,contextId:text,fa
 export const diagnosticMotiveSchema = z.object({promptId:text,text:text.max(120),optional:z.literal(true),
   options:z.array(z.object({id:text,label:text.max(80),signal:diagnosticSignalSchema}).strict()).min(2).max(4)}).strict();
 export const diagnosticBehaviorSchema = z.object({continuesSituationId:text,signal:diagnosticSignalSchema}).strict();
-export const profileConfigSchema = z.object({currentAlgorithmVersion:text,rollout:z.object({adaptiveSelection:z.boolean(),developmentArcs:z.boolean()}).strict(),
+export const profileConfigSchema = z.object({currentAlgorithmVersion:text,rollout:z.object({adaptiveSelection:z.boolean(),developmentArcs:z.boolean(),facetAttention:z.boolean()}).strict(),
+ facetAttention:z.object({windowSize:z.number().int().positive(),minEvidence:z.number().int().min(0),playerWeight:z.number().min(0).max(1),minMultiplier:z.number().positive().max(1),maxMultiplier:z.number().min(1),declaredIntentionMultiplier:z.number().min(1)}).strict()
+  .refine(c=>c.minEvidence<=c.windowSize,'minEvidence must not exceed windowSize'),
  algorithms:z.record(z.object({scoringVersion:text,rubricVersion:text,scoring:z.enum(['full','contrast']).optional(),windowCases:z.number().int().positive(),defaultExpiresInDays:z.number().int().positive(),motivePrompt:z.object({maxPerDay:z.number().int().positive()}).strict(),
   probe:z.object({maxShareOfIndependentWindow:z.number().positive().max(1),maxBeforeShareRule:z.number().int().min(0),shareRuleFromIndependentCases:z.number().int().positive()}).strict(),
   sourceWeights:z.object({action:z.number().positive(),motive:z.number().positive(),behavior:z.number().positive()}).strict(),
