@@ -1,9 +1,11 @@
+import { content } from '../content';
 import {
   choiceId,
   motiveOptionId,
   motivePromptId,
   sceneInstanceId
 } from '../content/persistenceIds';
+import { allChoices } from '../engine/variants';
 import type { GameState } from '../engine/types';
 import {
   deleteMotiveResolution,
@@ -21,11 +23,17 @@ export async function reconcileHeldMotiveResolutions(
   let removed = 0;
 
   for (const event of held) {
-    const diagnosticCase = state.heroDevelopmentProfile.cases.find(c =>
-      sceneInstanceId(state.runId, c.openedDay, c.openedSlot, c.cardId) === event.sceneInstanceId &&
-      choiceId(c.cardId, c.choiceId) === event.choiceId &&
-      motivePromptId(c.cardId, c.choiceId, state.pendingMotive?.promptId ?? '') !== 0
-    );
+    const diagnosticCase = state.heroDevelopmentProfile.cases.find(c => {
+      if (
+        sceneInstanceId(state.runId, c.openedDay, c.openedSlot, c.cardId) !== event.sceneInstanceId ||
+        choiceId(c.cardId, c.choiceId) !== event.choiceId
+      ) return false;
+      const card = content.cards.find(card => card.id === c.cardId);
+      const choice = card && allChoices(card).find(choice => choice.id === c.choiceId);
+      const prompt = choice?.diagnosticMotive;
+      return !!prompt &&
+        motivePromptId(c.cardId, c.choiceId, prompt.promptId) === event.promptId;
+    });
 
     if (!diagnosticCase) {
       await deleteMotiveResolution(event.eventId);
@@ -33,10 +41,14 @@ export async function reconcileHeldMotiveResolutions(
       continue;
     }
 
+    const card = content.cards.find(card => card.id === diagnosticCase.cardId);
+    const choice = card && allChoices(card).find(choice => choice.id === diagnosticCase.choiceId);
+    const prompt = choice?.diagnosticMotive;
     let committed = false;
+
     if (event.resolutionType === 'skipped') {
       committed = diagnosticCase.motiveState === 'skipped';
-    } else {
+    } else if (prompt) {
       const evidence = state.heroDevelopmentProfile.evidence.find(e =>
         e.caseId === diagnosticCase.id &&
         e.source === 'motive' &&
@@ -46,9 +58,9 @@ export async function reconcileHeldMotiveResolutions(
         motiveOptionId(
           diagnosticCase.cardId,
           diagnosticCase.choiceId,
-          event.promptId.toString(),
+          prompt.promptId,
           evidence.motiveOptionId!
-        ) > 0;
+        ) === event.motiveOptionId;
     }
 
     if (committed) {
