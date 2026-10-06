@@ -1,0 +1,23 @@
+[Unit]
+Description=PUT game persistence API (Node)
+After=network-online.target postgresql@18-main.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/var/py/way/server
+EnvironmentFile=/etc/put-api.env
+ExecStart=/opt/node22/bin/node dist/index.js
+Restart=always
+RestartSec=5
+DynamicUser=yes
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+# the server listens on 0.0.0.0 and the host has no firewall: only loopback traffic may reach it
+IPAddressDeny=any
+IPAddressAllow=localhost
+
+[Install]
+WantedBy=multi-user.target
