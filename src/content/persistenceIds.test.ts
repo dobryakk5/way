@@ -7,6 +7,7 @@ import {
   choicePresentationId,
   sceneId,
   scenePresentationId,
+  sceneInstanceId,
   stableContentId
 } from './persistenceIds';
 
@@ -16,6 +17,12 @@ describe('persistence content ids', () => {
     expect(first).toBe(stableContentId('choice', 'card/answer'));
     expect(Number.isSafeInteger(first)).toBe(true);
     expect(first).toBeGreaterThan(0);
+  });
+
+  it('builds a stable UUID for a presented scene instance', () => {
+    const id = sceneInstanceId('33333333-3333-4333-8333-333333333333', 4, 2, 'card-a');
+    expect(id).toBe(sceneInstanceId('33333333-3333-4333-8333-333333333333', 4, 2, 'card-a'));
+    expect(id).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-5[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
   });
 
   it('does not collide for the current content catalog', () => {
