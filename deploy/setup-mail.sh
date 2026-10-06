@@ -28,6 +28,7 @@ postconf -e "myhostname = $DOMAIN" \
             "smtpd_milters = inet:127.0.0.1:8891" \
             "non_smtpd_milters = inet:127.0.0.1:8891" \
             "milter_default_action = accept" \
+            "smtpd_tls_security_level = none" \
             "smtp_tls_security_level = may" \
             "disable_vrfy_command = yes"
 if [ -n "${RELAYHOST:-}" ]; then
