@@ -3,11 +3,15 @@ import { content } from '../content';
 import { answerMotive, skipMotive, applyChoice, beginSlots, chooseIntention, chooseRoute, drawCard, persistDraw, leaveEvening, nextChapter, prepareEvening, startEpisode, chooseGoal, prepareEncounter, rollEncounter, openEncounter, fairDieFace } from '../engine';
 import type { GameState, GoalId, LifeFacet } from '../engine/types';
 import { acquireProfileLock, loadSave, writeSave, restoreBackup, preserveAndRestart } from '../persistence/save';
-import { attachPresentedScenePersistence } from '../persistence/presentedScene';
+import { attachPresentedScenePersistence, presentedScenePayload } from '../persistence/presentedScene';
+import { enqueueSceneInstance } from '../persistence/sceneInstanceOutbox';
+import { enqueueChoiceEvent, markChoiceEventPending } from '../persistence/eventOutbox';
+import { reconcileHeldChoiceEvents } from '../persistence/outboxRecovery';
+import { syncGamePersistence } from '../sync/gamePersistenceSync';
 interface GameStore {
  game: GameState; started: boolean; error: string | undefined;
  ready: boolean; readOnly: boolean; saveStatus: 'loading' | 'idle' | 'saving' | 'saved' | 'failed' | 'readonly'; saveError: string | undefined;
- recovery: boolean; hasBackup: boolean; paused: boolean;
+ recovery: boolean; hasBackup: boolean; paused: boolean; choiceWritePending: boolean;
  initialize: () => void; recover: () => Promise<void>; restart: () => Promise<void>; retrySave: () => void;
  start: (seed?: number, goal?: GoalId) => void; reset: (seed?: number) => void; beginDay: () => void;
  choose: (cardId: string, choiceId: string) => void; finishEvening: () => void; pause: () => void; resume: () => void;
@@ -17,6 +21,8 @@ interface GameStore {
  answerMotive: (optionId: string) => void; skipMotive: () => void;
 }
 const newState = (seed = Date.now() >>> 0) => startEpisode(content, seed, crypto.randomUUID());
+const gameSessionId = crypto.randomUUID();
+const persistenceApiBase = import.meta.env.VITE_GAME_API_BASE_URL?.trim().replace(/\/$/, '');
 export function present(state: GameState): GameState {
  if (state.phase === 'chapter') return nextChapter(state, content);
  if (state.phase === 'evening') return prepareEvening(state, content);
@@ -35,42 +41,105 @@ if(import.meta.hot){
 }
 let queue=Promise.resolve();let revision=0;
 export const useGameStore = create<GameStore>((set,get) => {
- const persist = () => {
-  const store=get();if(!store.ready || store.readOnly || store.recovery)return;
+ const persist = (): Promise<boolean> => {
+  const store=get();if(!store.ready || store.readOnly || store.recovery)return Promise.resolve(true);
   const game=structuredClone(store.game);const rev=++revision;
   set({saveStatus:'saving',saveError:undefined});
-  queue=queue.catch(()=>{}).then(()=>writeSave({schema:1,started:store.started,game})).then(()=>{
+  const task=queue.catch(()=>{}).then(()=>writeSave({schema:1,started:store.started,game}));
+  queue=task.then(()=>{
    if(rev===revision)set({saveStatus:'saved',saveError:undefined});
   }).catch(e=>{if(rev===revision)set({saveStatus:'failed',saveError:e instanceof Error?e.message:String(e)});});
+  return task.then(()=>true,()=>false);
+ };
+ const queuePresentedScene = async (game: GameState) => {
+  const payload=presentedScenePayload(game);
+  if(payload)await enqueueSceneInstance(payload);
+ };
+ const scheduleRemoteSync = (game: GameState) => {
+  if(!persistenceApiBase||!game.serverPersistence?.enabled)return;
+  void syncGamePersistence({characterId:game.runId,apiBaseUrl:persistenceApiBase}).catch(()=>undefined);
+ };
+ const afterLocalSave = (game: GameState, saved: boolean) => {
+  if(!saved)return;
+  void queuePresentedScene(game).then(()=>scheduleRemoteSync(game)).catch(e=>{
+   set({error:e instanceof Error?e.message:String(e)});
+  });
+ };
+ const commitGame = (game: GameState) => {
+  set({game,error:undefined});
+  void persist().then(saved=>afterLocalSave(game,saved));
  };
  const transition = (fn: (state: GameState) => GameState) => {
-  if(get().readOnly||get().recovery)return;
-  try {const prev=get().game;const next=fn(prev);if(next===prev)return;set({game:present(next),error:undefined});persist();}
+  if(get().readOnly||get().recovery||get().choiceWritePending)return;
+  try {const prev=get().game;const next=fn(prev);if(next===prev)return;commitGame(present(next));}
   catch(e){set({error:e instanceof Error?e.message:String(e)});}
  };
  return {
   error:undefined, game:newState(), started:false,  ready:false,readOnly:false,
-  saveStatus:'loading',saveError:undefined,recovery:false,hasBackup:false,paused:false,
+  saveStatus:'loading',saveError:undefined,recovery:false,hasBackup:false,paused:false,choiceWritePending:false,
   initialize:()=>{
    if(initialized)return;initialized=true;
    acquireProfileLock(release=>{
     releaseLock=release;
     void loadSave().then(saved=>{
-     if(saved.damaged)set({ready:true,recovery:true,hasBackup:!!saved.backup,saveStatus:'failed',saveError:'Сохранение повреждено или относится к другой версии. Исходная запись сохранена.'});
-     else set({ready:true,saveStatus:saved.record?'saved':'idle',...(saved.record?{game:saved.record.game,started:saved.record.started}:{})});
+     if(saved.damaged){set({ready:true,recovery:true,hasBackup:!!saved.backup,saveStatus:'failed',saveError:'Сохранение повреждено или относится к другой версии. Исходная запись сохранена.'});return;}
+     if(!saved.record){set({ready:true,saveStatus:'idle'});return;}
+     const game=attachPresentedScenePersistence(saved.record.game);
+     set({ready:true,saveStatus:'saved',game,started:saved.record.started});
+     void reconcileHeldChoiceEvents(game).then(()=>queuePresentedScene(game)).then(()=>scheduleRemoteSync(game)).catch(e=>{
+      set({error:e instanceof Error?e.message:String(e)});
+     });
     }).catch(e=>set({ready:true,recovery:true,saveStatus:'failed',saveError:`Не удалось прочитать сохранение: ${String(e)}. Исходный профиль не заменён.`}));
    },()=>set({ready:true,readOnly:true,saveStatus:'readonly',saveError:'Прохождение открыто в другой вкладке или браузер не поддерживает защиту профиля. Закройте другую вкладку и обновите эту.'}));
   },
-  recover:async()=>{if(get().readOnly)return;try{await queue;const record=await restoreBackup();set({game:record.game,started:record.started,recovery:false,saveStatus:'saved',saveError:undefined,error:undefined});}catch(e){set({saveStatus:'failed',saveError:String(e)});}},
-  restart:async()=>{if(get().readOnly)return;try{await queue;await preserveAndRestart();set({game:newState(),started:false,recovery:false,paused:false,error:undefined});persist();}catch(e){set({saveStatus:'failed',saveError:String(e)});}},
-  retrySave:persist,
-  start:(seed,goal='order')=>{if(get().readOnly||get().recovery)return;set({game:chooseGoal(newState(seed),content,goal,'select'),started:true,error:undefined,paused:false});persist();},
-  reset:(seed)=>{if(get().readOnly)return;set({game:newState(seed),started:false,error:undefined});persist();},
+  recover:async()=>{if(get().readOnly)return;try{await queue;const record=await restoreBackup();const game=attachPresentedScenePersistence(record.game);set({game,started:record.started,recovery:false,saveStatus:'saved',saveError:undefined,error:undefined});await reconcileHeldChoiceEvents(game);await queuePresentedScene(game);scheduleRemoteSync(game);}catch(e){set({saveStatus:'failed',saveError:String(e)});}},
+  restart:async()=>{if(get().readOnly)return;try{await queue;await preserveAndRestart();set({game:newState(),started:false,recovery:false,paused:false,choiceWritePending:false,error:undefined});void persist();}catch(e){set({saveStatus:'failed',saveError:String(e)});}},
+  retrySave:()=>{void persist().then(async saved=>{if(!saved)return;const game=get().game;await reconcileHeldChoiceEvents(game);await queuePresentedScene(game);scheduleRemoteSync(game);});},
+  start:(seed,goal='order')=>{if(get().readOnly||get().recovery)return;const game=chooseGoal(newState(seed),content,goal,'select');set({game,started:true,error:undefined,paused:false,choiceWritePending:false});void persist().then(saved=>afterLocalSave(game,saved));},
+  reset:(seed)=>{if(get().readOnly)return;const game=newState(seed);set({game,started:false,error:undefined,choiceWritePending:false});void persist();},
   beginDay:()=>transition(s=>beginSlots(s,content)),
   setGoal:(id,action,wording)=>transition(s=>chooseGoal(s,content,id,action,wording)),
   setIntention:(facet)=>transition(s=>chooseIntention(s,content,facet)),
   setRoute:(id)=>transition(s=>chooseRoute(s,content,id)),
-  choose:(cardId,choiceId)=>transition(s=>applyChoice(s,content,cardId,choiceId)),
+  choose:(cardId,authorChoiceId)=>{
+   const store=get();if(store.readOnly||store.recovery||store.choiceWritePending)return;
+   try{
+    const source=attachPresentedScenePersistence(store.game);
+    const next=applyChoice(source,content,cardId,authorChoiceId);
+    if(next===source)return;
+    const shown=present(next);
+    const scene=presentedScenePayload(source);
+    const persistence=source.current?.persistence;
+    const selected=persistence?.choices.find(choice=>choice.authorChoiceId===authorChoiceId);
+    if(!source.serverPersistence?.enabled||!scene||!selected){
+     commitGame(shown);
+     return;
+    }
+    const event={
+     eventId:crypto.randomUUID(),
+     characterId:source.runId,
+     gameSessionId,
+     seq:source.history.length+1,
+     gameDay:source.day,
+     eventType:'CHOICE_MADE' as const,
+     sceneInstanceId:persistence.sceneInstanceId,
+     choiceId:selected.choiceId,
+     occurredAt:new Date().toISOString()
+    };
+    set({choiceWritePending:true,error:undefined});
+    void (async()=>{
+     await enqueueSceneInstance(scene);
+     await enqueueChoiceEvent(event,'held');
+     set({game:shown,error:undefined});
+     const saved=await persist();
+     if(!saved){set({choiceWritePending:false});return;}
+     await markChoiceEventPending(event.eventId,false);
+     await queuePresentedScene(shown);
+     set({choiceWritePending:false});
+     scheduleRemoteSync(shown);
+    })().catch(e=>set({choiceWritePending:false,error:e instanceof Error?e.message:String(e)}));
+   }catch(e){set({choiceWritePending:false,error:e instanceof Error?e.message:String(e)});}
+  },
   finishEvening:()=>transition(s=>leaveEvening(s,content)),
   pause:()=>set({paused:true}),resume:()=>set({paused:false}),
   roll:()=>transition(s=>rollEncounter(s,content,fairDieFace(()=>crypto.getRandomValues(new Uint32Array(1))[0]!))),
