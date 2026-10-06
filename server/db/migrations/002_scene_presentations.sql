@@ -22,7 +22,9 @@ ALTER TABLE characters
 ALTER TABLE scene_instances
     ADD COLUMN scene_presentation_id BIGINT NULL,
     ADD COLUMN game_slot SMALLINT NULL CHECK (game_slot BETWEEN 0 AND 3),
-    ADD COLUMN selection_origin TEXT NULL CHECK (selection_origin IN ('neutral', 'probe', 'adaptive'));
+    ADD COLUMN selection_origin TEXT NULL CHECK (
+        selection_origin IN ('neutral', 'probe', 'adaptive', 'legacy-unknown')
+    );
 
 ALTER TABLE scene_instances
     ADD CONSTRAINT scene_instances_presentation_fk
