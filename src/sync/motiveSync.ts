@@ -18,7 +18,8 @@ export type FlushMotiveResolutionsResult =
   | { status: 'ok'; sent: number }
   | { status: 'paused-auth'; sent: number }
   | { status: 'retry'; sent: number; reason: 'network' | 'server' | 'throttled' | 'invalid-response' }
-  | { status: 'rejected'; sent: number; httpStatus: number };
+  | { status: 'rejected'; sent: number; httpStatus: number }
+  | { status: 'rejected'; sent: number; items: { eventId: string; code: string }[] };
 
 const THROTTLED_STATUSES = new Set([408, 425, 429]);
 
@@ -110,6 +111,7 @@ export async function flushMotiveResolutions(options: {
   }
 
   const results = new Map(parsed.data.results.map(result => [result.eventId, result]));
+  const rejected: { eventId: string; code: string }[] = [];
   await Promise.all(pending.map(async event => {
     const result = results.get(event.eventId);
     if (!result) {
@@ -120,8 +122,12 @@ export async function flushMotiveResolutions(options: {
       await markMotiveResolutionSynced(event.eventId);
       return;
     }
-    await markMotiveResolutionRejected(event.eventId, result.code ?? 'REJECTED');
+    const code = result.code ?? 'REJECTED';
+    rejected.push({ eventId: event.eventId, code });
+    await markMotiveResolutionRejected(event.eventId, code);
   }));
 
-  return { status: 'ok', sent: pending.length };
+  return rejected.length
+    ? { status: 'rejected', sent: pending.length, items: rejected }
+    : { status: 'ok', sent: pending.length };
 }
