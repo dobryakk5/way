@@ -5,6 +5,9 @@ Everything that is deployed comes from git: commit, push, then on the server
 ```bash
 cd /var/py/way && git pull --ff-only && ./deploy/deploy.sh
 ```
+or locally
+
+ssh hetz 'cd /var/py/way && git pull --ff-only && ./deploy/deploy.sh'
 
 `deploy.sh` builds `server/` and the game (with `VITE_GAME_API_BASE_URL=https://putst.ru`),
 publishes the game to `dist/app/`, the landing page and static files to `dist/`,
