@@ -66,6 +66,36 @@ describe('motive outbox', () => {
     expect(await listPendingMotiveResolutions(CHARACTER)).toHaveLength(1);
   });
 
+  it('treats the same event id and API payload as idempotent', async () => {
+    const original = event();
+    await enqueueMotiveResolution(
+      original,
+      { caseId: 'case-1', promptId: 'why', optionId: 'purpose' },
+      'held'
+    );
+
+    const again = await enqueueMotiveResolution(
+      original,
+      { caseId: 'case-1', promptId: 'why', optionId: 'purpose' },
+      'pending'
+    );
+
+    expect(again.syncStatus).toBe('held');
+    expect(await listHeldMotiveResolutions(CHARACTER)).toHaveLength(1);
+  });
+
+  it('rejects reuse of an event id with another motive payload', async () => {
+    await enqueueMotiveResolution(
+      event(),
+      { caseId: 'case-1', promptId: 'why', optionId: 'purpose' }
+    );
+
+    await expect(enqueueMotiveResolution(
+      event({ motiveOptionId: 302 }),
+      { caseId: 'case-1', promptId: 'why', optionId: 'fear' }
+    )).rejects.toThrow('EVENT_ID_PAYLOAD_MISMATCH');
+  });
+
   it('allows only one motive resolution per presented scene', async () => {
     await enqueueMotiveResolution(
       event(),
