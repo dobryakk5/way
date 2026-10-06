@@ -137,8 +137,9 @@ export interface DevelopmentStateView {
   updatedAt: string;
 }
 
-export interface CharacterResumeView {
+export interface CharacterPersistenceProjection {
   characterId: string;
+  resumeCapable: false;
   game: {
     currentGameDay: number;
     currentSceneId: number | null;
@@ -179,13 +180,14 @@ export async function getDevelopmentState(
   return result.rows[0]?.state;
 }
 
-export async function getCharacterResume(
+export async function getCharacterPersistenceProjection(
   userId: string,
   characterId: string
-): Promise<CharacterResumeView | undefined> {
-  const result = await pool.query<{ state: CharacterResumeView }>(
+): Promise<CharacterPersistenceProjection | undefined> {
+  const result = await pool.query<{ state: CharacterPersistenceProjection }>(
     `SELECT jsonb_build_object(
       'characterId', c.id,
+      'resumeCapable', false,
       'game', jsonb_build_object(
         'currentGameDay', gs.current_game_day,
         'currentSceneId', gs.current_scene_id,
