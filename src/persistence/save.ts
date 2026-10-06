@@ -66,7 +66,7 @@ const common = {
  enabled:z.literal(true),schema:z.literal(1),
  processedThroughDay:z.number().int().min(0).optional(),
  lastProcessedSeq:z.number().int().min(0).optional(),
- canonicalDevelopment:z.object({
+ serverDevelopmentProjection:z.object({
   taxonomyVersion:str,evidenceModelVersion:str,calculationVersion:str,
   profileStatus:z.enum(['insufficient_data','provisional','stable','transition']),
   centerScores:z.record(z.number().finite()),
