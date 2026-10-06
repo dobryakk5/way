@@ -3,6 +3,7 @@ import { content } from '../content';
 import { answerMotive, skipMotive, applyChoice, beginSlots, chooseIntention, chooseRoute, drawCard, persistDraw, leaveEvening, nextChapter, prepareEvening, startEpisode, chooseGoal, prepareEncounter, rollEncounter, openEncounter, fairDieFace } from '../engine';
 import type { GameState, GoalId, LifeFacet } from '../engine/types';
 import { acquireProfileLock, loadSave, writeSave, restoreBackup, preserveAndRestart } from '../persistence/save';
+import { attachPresentedScenePersistence } from '../persistence/presentedScene';
 interface GameStore {
  game: GameState; started: boolean; error: string | undefined;
  ready: boolean; readOnly: boolean; saveStatus: 'loading' | 'idle' | 'saving' | 'saved' | 'failed' | 'readonly'; saveError: string | undefined;
@@ -24,7 +25,7 @@ export function present(state: GameState): GameState {
  if (encounter.phase === 'dice') return encounter;
  const draw = drawCard(state, content);
  if (!draw) throw new Error(`Нет ситуации для дня ${state.day}, слот ${state.slot}.`);
- return persistDraw(state, draw, content);
+ return attachPresentedScenePersistence(persistDraw(state, draw, content));
 }
 let initialized=false;
 let releaseLock:(()=>void)|undefined;
