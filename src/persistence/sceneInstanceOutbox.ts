@@ -36,8 +36,8 @@ function openOutbox(): Promise<IDBDatabase> {
   if (!database) {
     database = new Promise((resolve, reject) => {
       const open = indexedDB.open(DB_NAME, DB_VERSION);
-      open.onupgradeneeded = () => {
-        const store = open.oldVersion === 0
+      open.onupgradeneeded = event => {
+        const store = event.oldVersion === 0
           ? open.result.createObjectStore(STORE, { keyPath: 'sceneInstanceId' })
           : open.transaction!.objectStore(STORE);
         if (!store.indexNames.contains(CHARACTER_STATUS_DAY)) {
