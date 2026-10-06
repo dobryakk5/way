@@ -1,5 +1,13 @@
 import type { Resource } from '../../engine/types';
 import { impactDotCount, resourceUi } from '../gameUi';
+import { FacetIcon, type FacetIconId } from './FacetIcon';
+
+const resourceIcons: Record<Resource, FacetIconId> = {
+  wealth: 'work',
+  strength: 'body',
+  peace: 'inner',
+  bonds: 'relationships'
+};
 
 interface ResourceBarProps {
   resource: Resource;
@@ -18,7 +26,7 @@ export function ResourceBar({ resource, value, previewDelta }: ResourceBarProps)
           <span key={index} />
         ))}
       </div>
-      <div className="resource-icon" aria-hidden="true"><span className="resource-symbol">{meta.symbol}</span></div>
+      <div className="resource-icon" aria-hidden="true"><FacetIcon id={resourceIcons[resource]} className="resource-facet-icon" /></div>
       <div className="resource-track" aria-hidden="true">
         <span style={{ width: `${value}%`, height: `${value}%` }} />
       </div>
