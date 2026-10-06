@@ -5,12 +5,12 @@ import {
 
 export type MotiveOutboxStatus = 'held' | 'pending' | 'sending' | 'synced' | 'rejected';
 
-export interface LocalMotiveResolution extends MotiveResolutionEvent {
+export type LocalMotiveResolution = MotiveResolutionEvent & {
   syncStatus: MotiveOutboxStatus;
   retryCount: number;
   rejectCode?: string;
   updatedAt: string;
-}
+};
 
 const DB_NAME = 'put-motive-outbox';
 const DB_VERSION = 1;
