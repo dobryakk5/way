@@ -62,7 +62,7 @@ const persistenceChoice = z.object({authorChoiceId:str,choiceId:z.number().int()
 const presentedPersistence = z.object({sceneInstanceId:z.string().uuid(),sceneId:z.number().int().positive(),scenePresentationId:z.number().int().positive(),choices:z.array(persistenceChoice).min(2).max(4)}).strict();
 const currentOf = (c: typeof choice | typeof choice4) => z.object({cardId:str,leftChoiceId:str.optional(),choiceIds:z.array(str).min(2).max(4),text:str,variantId:str.optional(),choices:z.array(c).min(2).max(4),selectionOrigin:origin.optional(),persistence:presentedPersistence.optional()}).strict();
 const common = {
- episodeId:z.literal(content.episode.id),runId:str,seed:z.number().int().nonnegative(),
+ episodeId:z.literal(content.episode.id),runId:str,seed:z.number().int().nonnegative(),serverPersistence:z.object({enabled:z.literal(true),schema:z.literal(1)}).strict().optional(),
  chapter:z.number().int().positive(),day,slot,
  resources,qualities:z.object({attention:z.number(),honesty:z.number(),compassion:z.number(),letgo:z.number(),courage:z.number()}).strict(),
  declaredIntention:facet.optional(),intentionHistory:z.array(z.object({day,facet}).strict()),
