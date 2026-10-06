@@ -63,7 +63,7 @@ BEGIN
         1,
         v_scene,
         v_scene_presentation,
-        0,
+        0::smallint,
         'neutral',
         jsonb_build_array(
             jsonb_build_object('choiceId', v_choice, 'presentationId', v_choice_presentation, 'position', 1),
