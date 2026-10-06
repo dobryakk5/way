@@ -184,7 +184,7 @@ BEGIN
     );
 
     PERFORM register_scene_instance_v1(
-        v_user, v_character, v_scene_instance, 1, v_scene, v_scene_presentation, 0, 'neutral',
+        v_user, v_character, v_scene_instance, 1, v_scene, v_scene_presentation, 0::smallint, 'neutral',
         jsonb_build_array(
             jsonb_build_object('choiceId', v_choice, 'presentationId', v_choice_presentation, 'position', 1),
             jsonb_build_object('choiceId', v_second_choice, 'presentationId', v_second_presentation, 'position', 2)
