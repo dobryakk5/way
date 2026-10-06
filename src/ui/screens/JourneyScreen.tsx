@@ -15,22 +15,28 @@ export function JourneyScreen({game,onClose}:{game:GameState;onClose:()=>void}) 
  const receipts=game.development.evidence;
  const evidenceHistory=game.history.filter(h=>receipts.some(e=>e.day===h.day&&e.slot===h.slot&&e.cardId===h.cardId));
  const [period,setPeriod]=useState<1|7|30>(7);const report=journeyPeriod(game,content,period);
- return <main className="screen journey-screen"><section className="narrative-card">
-  <button className="choice-button" onClick={onClose}>Вернуться к игре</button><h2>Мой путь</h2>
-  <ProfileSection game={game}/>
-  <section aria-label="Развитие героя"><h3>Подтверждённое развитие</h3>
-  {stage?<><p>Освоенный способ действия: {stage.name}. {stage.description}</p>
-  <p>С ним остаются: {dev.available.map(id=>content.development.stages.find(s=>s.id===id)?.ability).join(' · ')}.</p></>:<p>Линия освоения начнётся, когда способ героя станет заметен по его решениям. Наблюдения за решениями сами по себе развитием не считаются.</p>}
+ return <main className="screen journey-screen"><section className="narrative-card journey-card">
+  <div className="subscreen-head"><button className="subscreen-back" onClick={onClose}>← К игре</button><span>Личная история героя</span></div>
+  <p className="eyebrow">Наблюдения и освоенный опыт</p><h2>Мой путь</h2>
+  <p className="screen-lead">Здесь отдельно показано, как герой обычно принимает решения, и что он уже успел освоить внутри истории. Это разные вещи.</p>
+
+  <div className="journey-primary"><ProfileSection game={game}/></div>
+
+  <section className="development-panel" aria-label="Развитие героя"><p className="section-kicker">Прожитое развитие</p><h3>Подтверждённое развитие</h3>
+  {stage?<><p className="development-current"><span>Освоенный способ</span><strong>{stage.name}</strong></p><p>{stage.description}</p>
+  <p className="retained-abilities"><span>С ним остаются</span>{dev.available.map(id=>content.development.stages.find(s=>s.id===id)?.ability).filter(Boolean).join(' · ')}</p></>:<p>Линия освоения начнётся, когда способ героя станет заметен по его решениям. Наблюдения за решениями сами по себе развитием не считаются.</p>}
   {stage&&!progress&&dev.transitions.length===0&&<p>Для этого способа пока нет написанной линии освоения; жизнь героя продолжается без неё.</p>}
-  {progress&&<><h4>Следующая способность</h4><p>{progress.arc.ability}</p><p>{progress.arc.question}</p><p>{progress.ready?'Герой уже проверил новый способ в разных обстоятельствах. Ночью он сможет его закрепить.':progress.completed.length?'Одна проба разобрана. Что произойдёт, когда новый способ понадобится в другой ситуации и будет стоить времени или дохода?':'Герою ещё предстоит попробовать новый способ, увидеть последствия и разобрать их с Алексеем.'}</p></>}
-  {dev.transitions.filter(t=>t.reason!=='initial-reconciliation').map(t=><p key={t.arcId}>День {t.day}: {content.development.stages.find(s=>s.id===t.from)?.name} → {content.development.stages.find(s=>s.id===t.to)?.name}. Новый способ закрепился; прежнее мастерство осталось.</p>)}
+  {progress&&<div className="next-ability"><p className="section-kicker">Следующая способность</p><h4>{progress.arc.ability}</h4><blockquote>{progress.arc.question}</blockquote><p>{progress.ready?'Герой уже проверил новый способ в разных обстоятельствах. Ночью он сможет его закрепить.':progress.completed.length?'Одна проба разобрана. Что произойдёт, когда новый способ понадобится в другой ситуации и будет стоить времени или дохода?':'Герою ещё предстоит попробовать новый способ, увидеть последствия и разобрать их с Алексеем.'}</p></div>}
+  {dev.transitions.filter(t=>t.reason!=='initial-reconciliation').map(t=><p className="milestone" key={t.arcId}>День {t.day}: {content.development.stages.find(s=>s.id===t.from)?.name} → {content.development.stages.find(s=>s.id===t.to)?.name}. Новый способ закрепился; прежнее мастерство осталось.</p>)}
   <details className="journal"><summary>Сцены развития героя</summary>{evidenceHistory.length?<Evidence items={evidenceHistory}/>:<p>Записи появятся после событий, в которых герой проверяет свой способ работы.</p>}</details></section>
-  <div className="periods" role="group" aria-label="Период">{([1,7,30] as const).map(n=><button className="choice-button" aria-pressed={period===n} key={n} onClick={()=>setPeriod(n)}>{n===1?'День':`${n} дней`}</button>)}</div>
-  <p>{report.available?`Дни ${report.from}–${report.through}. Доступно ${report.available} из ${period} завершённых дней.`:'Пока нет завершённых дней. Записи появятся после первой ночи.'}</p>
-  <h3>Куда уходило время</h3><p>Одно решение может касаться двух граней.</p>
-  {report.facets.map(f=><details className="journal" key={f.facet}><summary>{names[f.facet]} · {f.evidence.length} решений</summary><Evidence items={f.evidence}/></details>)}
-  <h3>Как принимались решения</h3>
-  {report.decisions.map(d=><details className="journal" key={d.kind}><summary>{d.label} · {d.evidence.length+d.reviews.length} поступков</summary><p>{d.recurring?'Этот способ выбора повторялся в нескольких сценах выбранного периода.':'Пока показываем отдельные поступки без вывода о повторяющемся способе выбора.'}</p><Evidence items={d.evidence}/>{d.reviews.map(g=><article key={g.day}><p>День {g.day}: {({select:'Выбрал',keep:'Сохранил',clarify:'Уточнил',change:'Изменил'})[g.action]} цель — {g.wording}</p><details><summary>Сцены перед пересмотром</summary><Evidence items={game.history.filter(h=>h.day===g.day-1)}/></details></article>)}</details>)}
-  <h3>Цель героя</h3>{report.goals.map(g=><article key={g.day}><p>День {g.day}: {({select:'Выбрал',keep:'Сохранил',clarify:'Уточнил',change:'Изменил'})[g.action]} — {g.wording}</p><Evidence items={game.history.filter(h=>h.day===g.day&&h.slot===0)}/></article>)}
+
+  <section className="journey-history" aria-label="История решений"><div className="history-heading"><div><p className="section-kicker">История решений</p><h3>Последние дни</h3></div><div className="periods compact" role="group" aria-label="Период">{([1,7,30] as const).map(n=><button className="choice-button" aria-pressed={period===n} key={n} onClick={()=>setPeriod(n)}>{n===1?'День':`${n} дн.`}</button>)}</div></div>
+  <p className="period-copy">{report.available?`Дни ${report.from}–${report.through}. Доступно ${report.available} из ${period} завершённых дней.`:'Пока нет завершённых дней. Записи появятся после первой ночи.'}</p>
+  <h4>Куда уходило время</h4><p className="section-note">Одно решение может касаться двух граней.</p>
+  {report.facets.map(f=><details className="journal" key={f.facet}><summary>{names[f.facet]} <span>{f.evidence.length}</span></summary><Evidence items={f.evidence}/></details>)}
+  <h4>Как принимались решения</h4>
+  {report.decisions.map(d=><details className="journal" key={d.kind}><summary>{d.label} <span>{d.evidence.length+d.reviews.length}</span></summary><p>{d.recurring?'Этот способ выбора повторялся в нескольких сценах выбранного периода.':'Пока показываем отдельные поступки без вывода о повторяющемся способе выбора.'}</p><Evidence items={d.evidence}/>{d.reviews.map(g=><article key={g.day}><p>День {g.day}: {({select:'Выбрал',keep:'Сохранил',clarify:'Уточнил',change:'Изменил'})[g.action]} цель — {g.wording}</p><details><summary>Сцены перед пересмотром</summary><Evidence items={game.history.filter(h=>h.day===g.day-1)}/></details></article>)}</details>)}
+  <h4>Цель героя</h4>{report.goals.length?report.goals.map(g=><article className="goal-history" key={g.day}><p>День {g.day}: {({select:'Выбрал',keep:'Сохранил',clarify:'Уточнил',change:'Изменил'})[g.action]} — <strong>{g.wording}</strong></p><Evidence items={game.history.filter(h=>h.day===g.day&&h.slot===0)}/></article>):<p className="section-note">Запись появится после первой выбранной цели.</p>}
+  </section>
  </section></main>;
 }

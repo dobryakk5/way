@@ -20,7 +20,7 @@ export function ResourceBar({ resource, value, previewDelta }: ResourceBarProps)
       </div>
       <div className="resource-icon" aria-hidden="true">{meta.symbol}</div>
       <div className="resource-track" aria-hidden="true">
-        <span style={{ height: `${value}%` }} />
+        <span style={{ width: `${value}%`, height: `${value}%` }} />
       </div>
       <span className="resource-label">{meta.label}</span>
     </div>

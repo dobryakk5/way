@@ -12,6 +12,17 @@ interface GameCardProps {
 
 type Side = 'left' | 'right';
 
+function CardArt({ draw }: { draw: DrawResult }) {
+  return <div className="card-art" data-character={draw.card.character ?? 'city'} aria-hidden="true">
+    <span className="art-halo" />
+    <span className="art-window" />
+    <span className="art-thread" />
+    <span className="art-table" />
+    <span className="art-vessel" />
+    <span className="character-monogram">{characterName(draw.card.character).slice(0, 1)}</span>
+  </div>;
+}
+
 /** Two choices keep the swipe pair; three or four are listed in their authored order (the order carries no meaning). */
 export function GameCard(props: GameCardProps) {
   return props.draw.choices.length === 2 ? <SwipeCard {...props} /> : <ListCard {...props} />;
@@ -32,10 +43,7 @@ function ListCard({ draw, onChoose, onPreviewChoice }: GameCardProps) {
   return (
     <div className="card-stage card-stage-list" onKeyDown={handleKeyboard}>
       <div className="game-card game-card-list" tabIndex={0} role="group" aria-label={`Ситуация. ${draw.text}`}>
-        <div className="card-art" aria-hidden="true">
-          <span className="pottery-mark">◯</span>
-          <span className="character-monogram">{characterName(draw.card.character).slice(0, 1)}</span>
-        </div>
+        <CardArt draw={draw} />
         <div className="card-copy">
           <p className="card-character">{characterName(draw.card.character)}</p>
           <p className="card-text">{draw.text}</p>
@@ -133,10 +141,7 @@ function SwipeCard({ draw, onChoose, onPreviewChoice }: GameCardProps) {
         role="group"
         aria-label={`Ситуация. ${draw.text}`}
       >
-        <div className="card-art" aria-hidden="true">
-          <span className="pottery-mark">◯</span>
-          <span className="character-monogram">{characterName(draw.card.character).slice(0, 1)}</span>
-        </div>
+        <CardArt draw={draw} />
         <div className="card-copy">
           <p className="card-character">{characterName(draw.card.character)}</p>
           <p className="card-text">{draw.text}</p>

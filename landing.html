@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#120d12" />
+  <title>Путь: Становление — сюжетная игра о выборе и взрослении</title>
+  <meta name="description" content="Путь: Становление — сюжетная игра, где мир наблюдает за твоими решениями, а история меняется вместе с тобой." />
+  <style>
+    :root{
+      --bg:#100b10;
+      --bg2:#171017;
+      --bg3:#21141d;
+      --text:#f5eee8;
+      --muted:#baaeb5;
+      --line:rgba(255,255,255,.08);
+      --gold:#d9ad68;
+      --gold2:#f0d29a;
+      --clay:#b76d50;
+      --clay2:#7f3f3d;
+      --wine:#522536;
+      --ink:#201418;
+      --glass:rgba(255,255,255,.045);
+      --shadow:0 30px 80px rgba(0,0,0,.34);
+      --r:28px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 8% 10%, rgba(128,58,68,.23), transparent 28%),
+        radial-gradient(circle at 82% 8%, rgba(183,109,80,.16), transparent 26%),
+        linear-gradient(180deg,#120c12 0%,#0f0a0f 36%,#140d14 100%);
+      overflow-x:hidden;
+    }
+    body:before{
+      content:"";
+      position:fixed; inset:0; pointer-events:none; opacity:.18; z-index:-1;
+      background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size:54px 54px;
+      mask-image:linear-gradient(#000,transparent 80%);
+    }
+    a{text-decoration:none;color:inherit}
+    button,input{font:inherit}
+    .wrap{width:min(1180px,calc(100% - 36px));margin:auto}
+    .eyebrow{
+      text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;font-weight:800;color:var(--gold2)
+    }
+
+    /* NAV */
+    .nav{
+      position:sticky;top:0;z-index:50;
+      background:rgba(16,11,16,.68);
+      border-bottom:1px solid rgba(255,255,255,.06);
+      backdrop-filter:blur(18px);
+    }
+    .nav-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800}
+    .seal{
+      width:36px;height:36px;border:1px solid rgba(240,210,154,.4);border-radius:50%;
+      display:grid;place-items:center;font-family:Georgia,serif;color:var(--gold2);
+      box-shadow:inset 0 0 0 6px rgba(217,173,104,.05)
+    }
+    .nav-links{display:flex;gap:24px;color:#a99da4;font-size:.9rem}
+    .nav-links a:hover{color:white}
+    .pill,.btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      border-radius:999px;padding:13px 19px;font-weight:750;cursor:pointer;transition:.25s ease;
+      border:1px solid rgba(240,210,154,.25);background:rgba(255,255,255,.04);color:white;
+    }
+    .pill:hover,.btn:hover{transform:translateY(-2px);border-color:rgba(240,210,154,.5)}
+    .btn.primary{
+      background:linear-gradient(135deg,var(--gold2),var(--gold));
+      color:#231719;border:0;box-shadow:0 14px 36px rgba(217,173,104,.18)
+    }
+
+    /* HERO */
+    .hero{
+      min-height:calc(100vh - 72px);
+      display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:42px;
+      padding:66px 0 62px;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border:1px solid rgba(240,210,154,.2);
+      border-radius:999px;background:rgba(255,255,255,.03);
+      color:#cdbfc6;font-size:.82rem
+    }
+    .kicker:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold2);box-shadow:0 0 14px var(--gold)}
+    h1,h2,h3{font-family:Georgia,"Times New Roman",serif}
+    h1{
+      margin:.24em 0 .22em;font-size:clamp(3.9rem,8vw,7.8rem);
+      line-height:.86;letter-spacing:-.055em;font-weight:500;
+    }
+    h1 span{display:block;color:var(--gold2);font-style:italic}
+    .lead{max-width:700px;color:#d0c3ca;font-size:clamp(1.05rem,2vw,1.31rem);line-height:1.63}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0 24px}
+    .micro{color:#8f838b;font-size:.86rem}
+
+    .scene{
+      position:relative;min-height:560px;
+      display:grid;place-items:center;
+    }
+    .scene-bg{
+      width:min(520px,88vw);aspect-ratio:.92;border-radius:42% 42% 18% 18% / 34% 34% 18% 18%;
+      position:relative;overflow:hidden;
+      border:1px solid rgba(240,210,154,.14);
+      background:
+        radial-gradient(circle at 50% 28%, rgba(232,178,110,.22), transparent 23%),
+        linear-gradient(180deg,#402232 0%,#251723 43%,#140f14 100%);
+      box-shadow:0 45px 100px rgba(0,0,0,.38),inset 0 0 80px rgba(0,0,0,.22)
+    }
+    .scene-bg:before{
+      content:"";position:absolute;left:50%;top:10%;transform:translateX(-50%);
+      width:46%;height:53%;border-radius:50% 50% 40% 40%;
+      border:1px solid rgba(240,210,154,.22);
+      box-shadow:0 0 70px rgba(240,210,154,.05);
+    }
+    .window{
+      position:absolute;left:50%;top:13%;transform:translateX(-50%);
+      width:37%;height:42%;border-radius:50% 50% 44% 44%;
+      background:
+        linear-gradient(180deg,rgba(239,200,139,.34),rgba(154,92,72,.13)),
+        radial-gradient(circle at 50% 60%,rgba(240,210,154,.28),transparent 50%);
+      border:1px solid rgba(240,210,154,.18)
+    }
+    .table{
+      position:absolute;left:14%;right:14%;bottom:14%;height:9%;
+      background:linear-gradient(180deg,#5f392f,#2a1a1b);border-radius:18px 18px 4px 4px;
+      box-shadow:0 22px 30px rgba(0,0,0,.32)
+    }
+    .pot{
+      position:absolute;left:50%;bottom:22%;transform:translateX(-50%);
+      width:145px;height:185px;
+      background:linear-gradient(90deg,#6b3c34 0%,#bd7657 44%,#7b4639 100%);
+      border-radius:24% 24% 38% 38% / 16% 16% 48% 48%;
+      box-shadow:inset -18px -8px 22px rgba(0,0,0,.16),0 20px 24px rgba(0,0,0,.24)
+    }
+    .pot:before{
+      content:"";position:absolute;left:21%;right:21%;top:-11px;height:22px;border-radius:50%;
+      background:#8e503f;border:2px solid rgba(231,171,119,.24)
+    }
+    .pot:after{
+      content:"";position:absolute;left:12%;right:12%;top:28%;
+      border-top:1px solid rgba(250,211,167,.22);
+      box-shadow:0 30px 0 rgba(250,211,167,.16),0 60px 0 rgba(250,211,167,.1)
+    }
+    .hands{
+      position:absolute;left:50%;bottom:27%;transform:translateX(-50%);
+      width:300px;height:130px;
+    }
+    .hand{
+      position:absolute;top:28px;width:118px;height:40px;background:linear-gradient(180deg,#c98768,#875044);
+      border-radius:999px;box-shadow:0 10px 22px rgba(0,0,0,.2)
+    }
+    .hand.left{left:7px;transform:rotate(15deg)}
+    .hand.right{right:7px;transform:rotate(-15deg)}
+    .thread{
+      position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(transparent,var(--gold2),transparent);
+      opacity:.45
+    }
+    .scene-card{
+      position:absolute;
+      max-width:235px;padding:15px 16px;border-radius:18px;
+      border:1px solid rgba(255,255,255,.09);background:rgba(19,13,18,.75);
+      backdrop-filter:blur(12px);box-shadow:var(--shadow);
+      font-size:.84rem;color:#d8ced3;
+    }
+    .scene-card b{display:block;color:var(--gold2);font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:5px}
+    .sc1{left:-10px;top:20%}.sc2{right:-12px;bottom:22%}
+    .choice-chip{
+      position:absolute;left:50%;bottom:2%;transform:translateX(-50%);
+      padding:10px 16px;border-radius:999px;
+      background:rgba(240,210,154,.09);border:1px solid rgba(240,210,154,.18);
+      color:#eadccf;font-size:.77rem;white-space:nowrap
+    }
+
+    /* sections */
+    section{padding:102px 0}
+    .band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(90deg,transparent,rgba(255,255,255,.02),transparent)}
+    .section-head{max-width:800px;margin-bottom:50px}
+    h2{
+      margin:.18em 0 .26em;font-size:clamp(2.5rem,5vw,4.8rem);line-height:.98;letter-spacing:-.045em;font-weight:500
+    }
+    .section-head p,.body-copy{color:var(--muted);font-size:1.07rem}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
+    .quote{font-family:Georgia,serif;font-size:clamp(2rem,4.4vw,4rem);line-height:1.08;letter-spacing:-.03em;margin:0}
+    .quote em{color:var(--gold2);font-weight:400}
+    .body-copy p:first-child{margin-top:0}
+
+    .cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .card{
+      min-height:275px;border:1px solid var(--line);border-radius:var(--r);padding:26px;
+      background:linear-gradient(180deg,rgba(255,255,255,.052),rgba(255,255,255,.02));
+      box-shadow:0 16px 44px rgba(0,0,0,.13)
+    }
+    .num{
+      width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+      border:1px solid rgba(240,210,154,.25);color:var(--gold2);font-size:.8rem;margin-bottom:29px
+    }
+    .card h3{font-family:Inter,sans-serif;font-size:1.18rem;margin:0 0 10px}
+    .card p{margin:0;color:var(--muted)}
+    .card small{display:block;margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);color:#887d84}
+
+    .world-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:68px;align-items:center}
+    .map{
+      position:relative;aspect-ratio:1;max-width:530px;margin:auto;
+      border-radius:50%;border:1px solid rgba(240,210,154,.19);
+      background:
+        radial-gradient(circle at center,rgba(240,210,154,.05) 0 24%,transparent 25%),
+        conic-gradient(
+          rgba(217,173,104,.22) 0 12.5%,
+          rgba(183,109,80,.24) 12.5% 25%,
+          rgba(82,37,54,.42) 25% 37.5%,
+          rgba(217,173,104,.14) 37.5% 50%,
+          rgba(183,109,80,.18) 50% 62.5%,
+          rgba(82,37,54,.28) 62.5% 75%,
+          rgba(217,173,104,.18) 75% 87.5%,
+          rgba(183,109,80,.26) 87.5% 100%);
+      box-shadow:inset 0 0 90px rgba(0,0,0,.26),0 20px 70px rgba(0,0,0,.18)
+    }
+    .map:after{
+      content:"";position:absolute;inset:27%;border-radius:50%;
+      background:#171017;border:1px solid rgba(240,210,154,.22)
+    }
+    .map-center{
+      position:absolute;inset:37%;z-index:2;display:grid;place-items:center;text-align:center;
+      font-size:.72rem;letter-spacing:.16em;color:var(--gold2);font-weight:800
+    }
+    .tag{
+      position:absolute;z-index:3;padding:8px 11px;border-radius:999px;
+      background:rgba(16,11,16,.84);border:1px solid rgba(255,255,255,.08);font-size:.75rem
+    }
+    .t1{left:39%;top:3%}.t2{right:0;top:22%}.t3{right:-2%;top:58%}.t4{right:21%;bottom:5%}
+    .t5{left:19%;bottom:4%}.t6{left:-1%;top:60%}.t7{left:-3%;top:27%}.t8{left:12%;top:11%}
+
+    .bullets{display:grid;gap:15px;margin-top:28px}
+    .bullet{display:flex;gap:13px;color:#d3c7cd}
+    .bullet i{width:8px;height:8px;border-radius:50%;background:var(--gold2);margin-top:8px;box-shadow:0 0 14px rgba(240,210,154,.5);flex:0 0 auto}
+
+    /* interactive story */
+    .story{
+      display:grid;grid-template-columns:.92fr 1.08fr;gap:18px;
+      border:1px solid var(--line);border-radius:32px;padding:18px;background:rgba(255,255,255,.025)
+    }
+    .story-left,.story-right{border-radius:24px;padding:28px;background:rgba(255,255,255,.025)}
+    .story-left{min-height:430px;display:flex;flex-direction:column;justify-content:space-between;
+      background:
+        radial-gradient(circle at 78% 15%,rgba(183,109,80,.16),transparent 26%),
+        linear-gradient(160deg,rgba(82,37,54,.20),rgba(255,255,255,.025))
+    }
+    .story-meta{display:flex;justify-content:space-between;color:#968a91;font-size:.74rem;text-transform:uppercase;letter-spacing:.09em}
+    .story h3{font-size:2rem;font-weight:500;line-height:1.08;margin:24px 0 14px}
+    .story p{color:var(--muted)}
+    .story-character{
+      display:flex;align-items:center;gap:12px;margin-top:20px
+    }
+    .avatar{
+      width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+      background:linear-gradient(145deg,#9d5945,#4e2832);border:1px solid rgba(240,210,154,.18);
+      font-family:Georgia,serif;color:#f1d3a0
+    }
+    .story-character small{color:#8e8289}
+    .options{display:grid;gap:11px;margin-top:12px}
+    .option{
+      width:100%;text-align:left;padding:14px 15px;border-radius:15px;color:#ddd2d7;
+      border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.025);cursor:pointer;transition:.2s
+    }
+    .option:hover{border-color:rgba(240,210,154,.32);background:rgba(217,173,104,.055)}
+    .option.active{border-color:rgba(240,210,154,.5);background:rgba(217,173,104,.09);color:white}
+    .reflection{
+      margin-top:20px;padding:18px;border-radius:18px;border:1px solid rgba(240,210,154,.12);
+      background:rgba(217,173,104,.04);min-height:110px;color:#c9bdc3
+    }
+    .reflection b{display:block;color:var(--gold2);font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}
+
+    .arc{
+      display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:28px;overflow:hidden
+    }
+    .arc>div{padding:26px;min-height:220px;border-right:1px solid var(--line);background:rgba(255,255,255,.022)}
+    .arc>div:last-child{border-right:0}
+    .arc b{color:var(--gold2);font-size:.72rem;text-transform:uppercase;letter-spacing:.12em}
+    .arc h3{font-family:Inter,sans-serif;font-size:1.08rem;margin:16px 0 8px}
+    .arc p{color:var(--muted);font-size:.94rem;margin:0}
+
+    .promise{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:16px
+    }
+    .promise .card{min-height:230px}
+    .promise .card strong{display:block;color:var(--gold2);font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:17px}
+
+    .cta{padding:82px 0 120px}
+    .cta-box{
+      position:relative;overflow:hidden;border-radius:36px;padding:68px;border:1px solid rgba(240,210,154,.18);
+      background:
+        radial-gradient(circle at 82% 15%,rgba(183,109,80,.26),transparent 28%),
+        linear-gradient(135deg,rgba(82,37,54,.2),rgba(255,255,255,.035));
+      box-shadow:var(--shadow)
+    }
+    .cta-box:after{
+      content:"";position:absolute;width:420px;height:420px;border-radius:50%;right:-150px;bottom:-230px;
+      border:1px solid rgba(240,210,154,.18);
+      box-shadow:0 0 0 34px rgba(240,210,154,.025),0 0 0 76px rgba(240,210,154,.017)
+    }
+    .cta-box h2{max-width:760px;margin-top:0}
+    .cta-box p{max-width:660px;color:#c9bdc3}
+    .signup{display:flex;gap:10px;max-width:600px;margin-top:28px}
+    .signup input{
+      flex:1;min-width:0;border-radius:999px;padding:15px 18px;
+      border:1px solid rgba(255,255,255,.1);background:rgba(8,6,8,.38);color:white;outline:none
+    }
+    .signup input:focus{border-color:rgba(240,210,154,.4)}
+    .success{display:none;margin-top:14px;color:var(--gold2);font-size:.9rem}
+
+    footer{padding:28px 0 44px;color:#81767d;font-size:.82rem}
+    .foot{display:flex;justify-content:space-between;gap:18px;border-top:1px solid rgba(255,255,255,.06);padding-top:22px}
+
+    .reveal{opacity:0;transform:translateY(18px);transition:.7s ease}
+    .reveal.show{opacity:1;transform:none}
+
+    @media(max-width:920px){
+      .nav-links{display:none}
+      .hero,.two,.world-grid,.story{grid-template-columns:1fr}
+      .scene{min-height:480px}
+      .cards4,.arc{grid-template-columns:1fr 1fr}
+      .arc>div:nth-child(2){border-right:0}
+      .arc>div{border-bottom:1px solid var(--line)}
+      .promise{grid-template-columns:1fr}
+      .cta-box{padding:46px 30px}
+    }
+    @media(max-width:620px){
+      .wrap{width:min(100% - 28px,1180px)}
+      .pill{display:none}
+      section{padding:76px 0}
+      h1{font-size:3.65rem}
+      .cards4,.arc{grid-template-columns:1fr}
+      .arc>div{border-right:0}
+      .scene{min-height:390px}
+      .scene-card{font-size:.74rem;max-width:190px}
+      .sc1{left:-3px}.sc2{right:-3px}
+      .story-left,.story-right{padding:21px}
+      .signup{flex-direction:column}
+      .signup .btn{width:100%}
+      .cta-box{padding:34px 22px}
+      .foot{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top"><span class="seal">П</span><span>Путь: Становление</span></a>
+    <div class="nav-links">
+      <a href="#about">О игре</a>
+      <a href="#mechanics">Механика</a>
+      <a href="#life">Грани жизни</a>
+      <a href="#scene">Сцена</a>
+      <a href="#growth">Рост</a>
+    </div>
+    <a class="pill" href="/app/">Играть →</a>
+  </div>
+</nav>
+
+<main id="top">
+
+  <div class="wrap hero">
+    <div>
+      <div class="kicker">Сюжетная игра о выборе, взрослении и собственной жизни</div>
+      <h1>Путь:<span>Становление</span></h1>
+      <p class="lead">
+        Мир не спрашивает, кто ты. Он ставит тебя перед выбором —
+        и постепенно запоминает, <strong>как именно ты действуешь</strong>.
+        Из этих решений складывается история героя. И твоя собственная.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="/app/">Играть →</a>
+        <a class="btn" href="#scene">Попробовать сцену</a>
+        <a class="btn" href="#mechanics">Как устроена игра ↓</a>
+      </div>
+      <div class="micro">Не тест. Не тренинг. История, которая меняется вместе с тобой.</div>
+    </div>
+
+    <div class="scene" aria-hidden="true">
+      <div class="scene-bg">
+        <div class="window"></div>
+        <div class="thread"></div>
+        <div class="table"></div>
+        <div class="pot"></div>
+        <div class="hands">
+          <div class="hand left"></div><div class="hand right"></div>
+        </div>
+      </div>
+      <div class="scene-card sc1"><b>Мастер</b>«Форму нельзя приказать. Её можно только удерживать, пока она рождается.»</div>
+      <div class="scene-card sc2"><b>Твой выбор</b>Сохранить себя? Сохранить отношения? Добиться результата? Увидеть больше?</div>
+      <div class="choice-chip">Каждый выбор оставляет след</div>
+    </div>
+  </div>
+
+  <section class="band" id="about">
+    <div class="wrap two reveal">
+      <p class="quote">
+        Ты не выбираешь,<br>
+        <em>кем быть.</em><br>
+        Ты показываешь это<br>
+        своими решениями.
+      </p>
+      <div class="body-copy">
+        <p>
+          В «Пути» нет анкеты в начале и нет заранее назначенного типа личности.
+          Игра начинается открыто: люди, события, возможности, конфликты.
+        </p>
+        <p>
+          Она собирает не ответы о тебе, а свидетельства твоих поступков.
+          Только когда рисунок становится устойчивым, мир начинает отвечать на него —
+          персонажами, последствиями и новыми задачами.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="mechanics">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Скрытая механика</div>
+        <h2>Сначала ты просто живёшь.<br>Потом замечаешь, что изменился.</h2>
+        <p>Развитие героя происходит не по кнопке «повысить уровень», а через прожитые ограничения и новые способы действовать.</p>
+      </div>
+
+      <div class="cards4">
+        <div class="card reveal">
+          <div class="num">01</div>
+          <h3>Открытые ситуации</h3>
+          <p>Игра не говорит, что именно проверяет. Ты реагируешь на события так, как считаешь естественным.</p>
+          <small>Вместо теста — жизнь.</small>
+        </div>
+        <div class="card reveal">
+          <div class="num">02</div>
+          <h3>Свидетельства</h3>
+          <p>Отдельный ответ ничего не решает. Важен повторяющийся способ действовать в разных контекстах.</p>
+          <small>Игра ищет устойчивый рисунок.</small>
+        </div>
+        <div class="card reveal">
+          <div class="num">03</div>
+          <h3>Адаптация мира</h3>
+          <p>Сюжет постепенно подбирает ситуации, в которых твой привычный способ начинает показывать свои пределы.</p>
+          <small>Не наказание. Проверка границы.</small>
+        </div>
+        <div class="card reveal">
+          <div class="num">04</div>
+          <h3>Следующий шаг</h3>
+          <p>Новый способ считается освоенным только тогда, когда герой применяет его не один раз, а устойчиво.</p>
+          <small>Рост должен стать твоим.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="life">
+    <div class="wrap world-grid">
+      <div class="map reveal" aria-hidden="true">
+        <div class="map-center">ТВОЯ<br>ИСТОРИЯ</div>
+        <span class="tag t1">Деньги</span>
+        <span class="tag t2">Отношения</span>
+        <span class="tag t3">Работа</span>
+        <span class="tag t4">Здоровье</span>
+        <span class="tag t5">Смысл</span>
+        <span class="tag t6">Семья</span>
+        <span class="tag t7">Свобода</span>
+        <span class="tag t8">Ответственность</span>
+      </div>
+
+      <div class="reveal">
+        <div class="eyebrow">Грани жизни</div>
+        <h2>Ты не одинаков<br>во всех сферах</h2>
+        <p class="body-copy">
+          Можно быть смелым в работе и зависеть от чужого одобрения в отношениях.
+          Быть собранным в деньгах — и избегать ответственности в семье.
+          Поэтому игра не сводит человека к одной цифре.
+        </p>
+        <div class="bullets">
+          <div class="bullet"><i></i><span><strong>Деньги</strong> — риск, контроль, дальний горизонт, цена решений.</span></div>
+          <div class="bullet"><i></i><span><strong>Отношения</strong> — границы, близость, конфликт, способность видеть другого.</span></div>
+          <div class="bullet"><i></i><span><strong>Работа</strong> — амбиция, компетентность, статус, команда, власть.</span></div>
+          <div class="bullet"><i></i><span><strong>Смысл</strong> — ценности, идентичность и вопрос «ради чего?».</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="scene" class="band">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Попробуй прямо сейчас</div>
+        <h2>Одна сцена.<br>Несколько правд.</h2>
+        <p>Здесь нет варианта, который игра заранее считает «хорошим». Нажми на ответ — и увидишь, какую логику он проявляет в этой ситуации.</p>
+      </div>
+
+      <div class="story reveal">
+        <div class="story-left">
+          <div>
+            <div class="story-meta"><span>Глава 2 · Мастерская</span><span>Вечер</span></div>
+            <h3>Ученик испортил заказ, от которого зависит репутация мастерской.</h3>
+            <p>
+              До сдачи — одна ночь. Он признаётся тебе первым.
+              Если мастер узнает сейчас, ученика почти наверняка выгонят.
+            </p>
+          </div>
+          <div class="story-character">
+            <div class="avatar">А</div>
+            <div><strong>Алексей</strong><br><small>«Что будем делать?»</small></div>
+          </div>
+        </div>
+
+        <div class="story-right">
+          <div class="story-meta"><span>Твой выбор</span><span>Ответ не оценивается</span></div>
+          <div class="options">
+            <button class="option" data-reflection="Ты берёшь ситуацию под личный контроль и защищаешь группу от внешнего давления. В этом есть сила — и риск сделать всех зависимыми от тебя.">«Я сам всё исправлю. Мастеру пока не говорим.»</button>
+            <button class="option" data-reflection="Ты ставишь ответственность выше сохранения комфорта и ведёшь человека к прямому столкновению с последствиями. Это создаёт ясность, но может не учитывать весь контекст.">«Пойдём вместе. Ты сам расскажешь мастеру.»</button>
+            <button class="option" data-reflection="Ты сначала ищешь работающую модель решения и удерживаешь несколько интересов одновременно: заказ, ученика, мастерскую и время. Это прагматично, но может откладывать ценностное решение.">«Сначала поймём, можно ли спасти заказ. Решение примем потом.»</button>
+            <button class="option" data-reflection="Ты подчёркиваешь автономию и личную ответственность: каждый отвечает за свой выбор. Это уважает границы, но иногда игнорирует взаимозависимость людей в системе.">«Это твоя ошибка. Решать тебе.»</button>
+          </div>
+          <div class="reflection" id="reflection">
+            <b>Что увидит игра</b>
+            Выбери вариант. Игра не поставит балл — она добавит ещё одно свидетельство к общей картине твоих решений.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="growth">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Development arc</div>
+        <h2>Рост начинается там,<br>где прежняя логика становится тесной</h2>
+        <p>Игра не объясняет теорию стадий. Она превращает ограничение текущего способа действия в сюжет.</p>
+      </div>
+
+      <div class="arc reveal">
+        <div>
+          <b>01 · Привычка</b>
+          <h3>Рабочий способ</h3>
+          <p>Ты действуешь привычно. Это приносит результат, поэтому стратегия кажется очевидной.</p>
+        </div>
+        <div>
+          <b>02 · Предел</b>
+          <h3>Цена растёт</h3>
+          <p>Ситуации усложняются, и прежний способ начинает разрушать то, что ты хотел сохранить.</p>
+        </div>
+        <div>
+          <b>03 · Проба</b>
+          <h3>Другой взгляд</h3>
+          <p>Через людей и последствия появляется возможность действовать более сложным способом.</p>
+        </div>
+        <div>
+          <b>04 · Освоение</b>
+          <h3>Новая логика</h3>
+          <p>Только повторные решения подтверждают, что герой действительно изменился.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Что мы хотим сохранить</div>
+        <h2>Игра должна оставаться игрой</h2>
+        <p>Развитие работает только тогда, когда игрок не чувствует, что его ведут через замаскированную лекцию.</p>
+      </div>
+      <div class="promise">
+        <div class="card reveal"><strong>Без ярлыков</strong><h3>Никакого «ты — такой-то тип»</h3><p>Профиль существует для адаптации истории, а не для оценки ценности человека.</p></div>
+        <div class="card reveal"><strong>Без морализаторства</strong><h3>У каждого выбора есть причина</h3><p>Игра показывает последствия и ограничения, но не превращает зрелость в набор правильных реплик.</p></div>
+        <div class="card reveal"><strong>Без прямой дидактики</strong><h3>Сначала опыт, потом смысл</h3><p>Главные открытия должны происходить через сюжет, а не через объяснение теории на экране.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="join">
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <div class="eyebrow">Путь начинается с первого выбора</div>
+        <h2>История, которая меняется вместе с тобой.</h2>
+        <p>
+          «Путь: Становление» находится в разработке.
+          Оставь почту — и мы сообщим, когда первая глава будет готова для раннего прохождения.
+        </p>
+        <form class="signup" id="signupForm">
+          <input id="email" type="email" placeholder="your@email.com" required aria-label="Email">
+          <button class="btn primary" type="submit">Хочу в ранний доступ</button>
+        </form>
+        <div class="success" id="success">Заявка принята. Здесь можно подключить реальный backend или форму.</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Путь: Становление</span>
+    <span>Каждый выбор оставляет след.</span>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('show');
+        io.unobserve(e.target);
+      }
+    })
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
+
+  const reflection = document.getElementById('reflection');
+  document.querySelectorAll('.option').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.option').forEach(x=>x.classList.remove('active'));
+      btn.classList.add('active');
+      reflection.innerHTML = '<b>Что проявляет этот выбор</b>' + btn.dataset.reflection;
+    });
+  });
+
+  document.getElementById('signupForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    document.getElementById('success').style.display='block';
+    e.currentTarget.reset();
+  });
+</script>
+
+</body>
+</html>
