@@ -267,7 +267,11 @@ export const useGameStore = create<GameStore>((set,get) => {
     const shown=present(answerMotive(source,content,optionId));
     set({choiceWritePending:true,error:undefined});
     void (async()=>{
-     await enqueueMotiveResolution(event,'held');
+     await enqueueMotiveResolution(event,{
+      caseId:diagnosticCase.id,
+      promptId:source.pendingMotive!.promptId,
+      optionId
+     },'held');
      set({game:shown,error:undefined});
      const saved=await persist();
      if(!saved){set({choiceWritePending:false});return;}
@@ -303,7 +307,10 @@ export const useGameStore = create<GameStore>((set,get) => {
     const shown=present(skipMotive(source,content));
     set({choiceWritePending:true,error:undefined});
     void (async()=>{
-     await enqueueMotiveResolution(event,'held');
+     await enqueueMotiveResolution(event,{
+      caseId:diagnosticCase.id,
+      promptId:source.pendingMotive!.promptId
+     },'held');
      set({game:shown,error:undefined});
      const saved=await persist();
      if(!saved){set({choiceWritePending:false});return;}
