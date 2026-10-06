@@ -1,6 +1,6 @@
 import { choiceMadeEventSchema, type ChoiceMadeEvent } from '../sync/choiceEvent';
 
-export type OutboxSyncStatus = 'pending' | 'sending' | 'synced' | 'rejected';
+export type OutboxSyncStatus = 'held' | 'pending' | 'sending' | 'synced' | 'rejected';
 
 export interface LocalChoiceEvent extends ChoiceMadeEvent {
   syncStatus: OutboxSyncStatus;
@@ -63,7 +63,7 @@ function sameEvent(a: ChoiceMadeEvent, b: ChoiceMadeEvent): boolean {
     a.occurredAt === b.occurredAt;
 }
 
-export async function enqueueChoiceEvent(raw: ChoiceMadeEvent): Promise<LocalChoiceEvent> {
+export async function enqueueChoiceEvent(raw: ChoiceMadeEvent, initialStatus: 'held' | 'pending' = 'pending'): Promise<LocalChoiceEvent> {
   const event = choiceMadeEventSchema.parse(raw);
   const db = await openOutbox();
   const tx = db.transaction(STORE, 'readwrite');
@@ -83,7 +83,7 @@ export async function enqueueChoiceEvent(raw: ChoiceMadeEvent): Promise<LocalCho
 
   const local: LocalChoiceEvent = {
     ...event,
-    syncStatus: 'pending',
+    syncStatus: initialStatus,
     retryCount: 0,
     updatedAt: new Date().toISOString()
   };
@@ -111,6 +111,20 @@ export async function listPendingChoiceEvents(characterId: string, limit = 100):
     [characterId, 'pending', Number.MAX_SAFE_INTEGER]
   );
   const result = await request(index.getAll(range, limit)) as LocalChoiceEvent[];
+  await done;
+  return result;
+}
+
+export async function listHeldChoiceEvents(characterId: string): Promise<LocalChoiceEvent[]> {
+  const db = await openOutbox();
+  const tx = db.transaction(STORE, 'readonly');
+  const done = complete(tx);
+  const index = tx.objectStore(STORE).index(CHARACTER_STATUS_SEQ);
+  const range = IDBKeyRange.bound(
+    [characterId, 'held', 0],
+    [characterId, 'held', Number.MAX_SAFE_INTEGER]
+  );
+  const result = await request(index.getAll(range)) as LocalChoiceEvent[];
   await done;
   return result;
 }
@@ -203,6 +217,14 @@ export async function getChoiceEvent(eventId: string): Promise<LocalChoiceEvent 
   const result = await request(tx.objectStore(STORE).get(eventId)) as LocalChoiceEvent | undefined;
   await done;
   return result;
+}
+
+export async function deleteChoiceEvent(eventId: string): Promise<void> {
+  const db = await openOutbox();
+  const tx = db.transaction(STORE, 'readwrite');
+  const done = complete(tx);
+  tx.objectStore(STORE).delete(eventId);
+  await done;
 }
 
 export async function clearChoiceOutbox(characterId: string): Promise<void> {

@@ -111,18 +111,35 @@ describe('event sync', () => {
     expect(stored?.retryCount).toBe(1);
   });
 
+  it('retries when a successful batch response omits an event result', async () => {
+    await enqueueChoiceEvent(event());
+    const fetchImpl = vi.fn(async () => new Response(JSON.stringify({
+      results: []
+    }), { status: 200, headers: { 'content-type': 'application/json' } }));
+
+    const result = await flushChoiceEvents({
+      characterId: CHARACTER,
+      endpoint: '/api/v1/game/events/batch',
+      fetchImpl: fetchImpl as typeof fetch
+    });
+
+    expect(result.status).toBe('retry');
+    expect((await getChoiceEvent(EVENT))?.syncStatus).toBe('pending');
+  });
+
   it('marks terminal per-event rejection without retry', async () => {
     await enqueueChoiceEvent(event());
     const fetchImpl = vi.fn(async () => new Response(JSON.stringify({
       results: [{ eventId: EVENT, status: 'rejected', code: 'DAY_ALREADY_CLOSED' }]
     }), { status: 200, headers: { 'content-type': 'application/json' } }));
 
-    await flushChoiceEvents({
+    const result = await flushChoiceEvents({
       characterId: CHARACTER,
       endpoint: '/api/v1/game/events/batch',
       fetchImpl: fetchImpl as typeof fetch
     });
 
+    expect(result.status).toBe('rejected');
     const stored = await getChoiceEvent(EVENT);
     expect(stored?.syncStatus).toBe('rejected');
     expect(stored?.rejectCode).toBe('DAY_ALREADY_CLOSED');

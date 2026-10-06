@@ -19,7 +19,8 @@ export type FlushChoiceEventsResult =
   | { status: 'ok'; sent: number }
   | { status: 'paused-auth'; sent: number }
   | { status: 'retry'; sent: number; reason: 'network' | 'server' | 'throttled' | 'invalid-response' }
-  | { status: 'rejected'; sent: number; httpStatus: number };
+  | { status: 'rejected'; sent: number; httpStatus: number }
+  | { status: 'rejected'; sent: number; items: { eventId: string; code: string }[] };
 
 function apiEvent(local: LocalChoiceEvent): ChoiceMadeEvent {
   return choiceMadeEventSchema.parse({
@@ -103,9 +104,12 @@ export async function flushChoiceEvents(options: {
   }
 
   const results = new Map(parsed.data.results.map(result => [result.eventId, result]));
+  let missingResult = false;
+  const rejected: { eventId: string; code: string }[] = [];
   await Promise.all(pending.map(async event => {
     const result = results.get(event.eventId);
     if (!result) {
+      missingResult = true;
       await markChoiceEventRetry(event.eventId);
       return;
     }
@@ -113,10 +117,17 @@ export async function flushChoiceEvents(options: {
       await markChoiceEventSynced(event.eventId);
       return;
     }
-    await markChoiceEventRejected(event.eventId, result.code ?? 'REJECTED');
+    const code = result.code ?? 'REJECTED';
+    rejected.push({ eventId: event.eventId, code });
+    await markChoiceEventRejected(event.eventId, code);
   }));
 
-  return { status: 'ok', sent: pending.length };
+  if (missingResult) {
+    return { status: 'retry', sent: pending.length, reason: 'invalid-response' };
+  }
+  return rejected.length
+    ? { status: 'rejected', sent: pending.length, items: rejected }
+    : { status: 'ok', sent: pending.length };
 }
 
 type SyncOptions = Parameters<typeof flushChoiceEvents>[0];

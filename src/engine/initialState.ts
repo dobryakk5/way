@@ -11,6 +11,7 @@ export function createInitialGameState(seed: number, options: { runId?: string; 
     version: GAME_STATE_VERSION,
     contentVersion: CONTENT_VERSION,
     seed,
+    serverPersistence: { enabled: true, schema: 1 },
     // A new hero starts without a stage and without observations; both appear only from real decisions.
     development: initialDevelopment(),
     heroDevelopmentProfile: createEmptyHeroDevelopmentProfile(profileData as unknown as ProfileConfigRegistry),
