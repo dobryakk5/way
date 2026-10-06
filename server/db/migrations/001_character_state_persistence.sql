@@ -75,6 +75,8 @@ CREATE TABLE scene_instances (
     character_id UUID NOT NULL REFERENCES characters(id) ON DELETE CASCADE,
     scene_id BIGINT NOT NULL REFERENCES game_scenes(id),
     game_day INTEGER NOT NULL CHECK (game_day > 0),
+    game_slot SMALLINT NOT NULL CHECK (game_slot BETWEEN 0 AND 3),
+    selection_origin TEXT NOT NULL CHECK (selection_origin IN ('neutral', 'probe', 'adaptive')),
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     UNIQUE (id, scene_id),
     UNIQUE (id, character_id, game_day)
