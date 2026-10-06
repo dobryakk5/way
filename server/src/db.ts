@@ -17,7 +17,7 @@ export async function createCharacter(userId: string, input: CreateCharacterInpu
 
 export async function registerSceneInstance(userId: string, input: SceneInstanceInput): Promise<AcceptedStatus> {
   const result = await pool.query<{ status: AcceptedStatus }>(
-    'SELECT register_scene_instance_v1($1,$2,$3,$4,$5,$6,$7::jsonb) AS status',
+    'SELECT register_scene_instance_v1($1,$2,$3,$4,$5,$6,$7,$8,$9::jsonb) AS status',
     [
       userId,
       input.characterId,
@@ -25,6 +25,8 @@ export async function registerSceneInstance(userId: string, input: SceneInstance
       input.gameDay,
       input.sceneId,
       input.scenePresentationId,
+      input.gameSlot,
+      input.selectionOrigin,
       JSON.stringify(input.choices)
     ]
   );
