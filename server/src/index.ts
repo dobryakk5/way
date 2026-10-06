@@ -3,6 +3,7 @@ import { createServer, type IncomingMessage, type ServerResponse } from 'node:ht
 import { z } from 'zod';
 import {
   acceptChoiceEvent,
+  completeCharacterDay,
   createCharacter,
   persistenceBusinessCode,
   pool,
@@ -10,6 +11,7 @@ import {
 } from './db.js';
 import {
   choiceMadeEventSchema,
+  completeDaySchema,
   createCharacterSchema,
   rawEventBatchSchema,
   rawSceneBatchSchema,
@@ -148,6 +150,40 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
       }
     }
     send(req, res, 200, { results });
+    return;
+  }
+
+  const completeMatch = req.method === 'POST'
+    ? req.url?.match(/^\/api\/v1\/characters\/([0-9a-fA-F-]{36})\/days\/(\d+)\/complete$/)
+    : undefined;
+  if (completeMatch) {
+    const characterId = completeMatch[1]!;
+    const gameDay = Number(completeMatch[2]);
+    if (!uuidSchema.safeParse(characterId).success || !Number.isSafeInteger(gameDay) || gameDay < 1) {
+      send(req, res, 422, { code: 'VALIDATION_ERROR' });
+      return;
+    }
+    const parsed = completeDaySchema.safeParse(await readJson(req));
+    if (!parsed.success) {
+      send(req, res, 422, { code: 'VALIDATION_ERROR' });
+      return;
+    }
+    try {
+      const result = await completeCharacterDay(uid, characterId, gameDay, parsed.data);
+      send(req, res, 200, result);
+    } catch (error) {
+      const code = persistenceBusinessCode(error);
+      if (!code) throw error;
+      if (code.startsWith('DAY_EVENTS_INCOMPLETE:')) {
+        const missingSeq = code.slice('DAY_EVENTS_INCOMPLETE:'.length)
+          .split(',')
+          .filter(Boolean)
+          .map(Number);
+        send(req, res, 409, { code: 'DAY_EVENTS_INCOMPLETE', missingSeq });
+        return;
+      }
+      send(req, res, code === 'CHARACTER_NOT_FOUND' ? 404 : 409, { code });
+    }
     return;
   }
 
