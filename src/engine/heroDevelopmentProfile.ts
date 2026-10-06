@@ -497,7 +497,7 @@ export function developmentScale(state: Pick<GameState, 'heroDevelopmentProfile'
   const p = state.heroDevelopmentProfile; const config = profileConfig(state, content);
   const now = scalePosition(p.evidence, config);
   if (!now) return undefined;
-  const asOf = p.eveningSnapshots.findLast(s => s.asOfEvidenceCount < p.evidence.length)?.asOfEvidenceCount;
+  const asOf = [...p.eveningSnapshots].reverse().find(s => s.asOfEvidenceCount < p.evidence.length)?.asOfEvidenceCount;
   const before = asOf !== undefined ? scalePosition(p.evidence.slice(0, asOf), config) : undefined;
   return { ...now, ...(before ? { previousPosition: before.position } : {}) };
 }
