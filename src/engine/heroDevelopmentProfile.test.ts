@@ -5,7 +5,7 @@ import { applyChoice } from './apply';
 import { prepareEvening, leaveEvening } from './day';
 import { drawCard, persistDraw } from './draw';
 import {
-  calculateSlice, derivedProfile, developmentCurrentBefore, evaluateEvening, facetSufficient, largestRemainderPercent, probeAllowed, zeroVector,
+  calculateSlice, derivedProfile, developmentCurrentBefore, evaluateEvening, facetSufficient, firstStageReadiness, largestRemainderPercent, probeAllowed, zeroVector,
   independenceStats, openDiagnosticCase, recordDiagnosticBehavior
 } from './heroDevelopmentProfile';
 import { answerMotive, skipMotive } from './navigation';
@@ -186,6 +186,27 @@ describe('evening state machine', () => {
     const later = [...e, evidence('c0', 'kiln', vec('diplomat', 'opportunist'), { source: 'behavior', day: 9 })];
     expect(evaluateEvening(undefined, later.slice(0, first.asOfEvidenceCount), 3, undefined, config)).toEqual(frozen);
     expect(first.asOfEvidenceCount).toBe(12);
+  });
+});
+
+describe('readiness for the first center', () => {
+  const v2 = content.profile.algorithms['2']!;
+  const ready = (evidence: Ev[], candidatePrimary?: ActionLogic) =>
+    firstStageReadiness({ heroDevelopmentProfile: { algorithmVersion: '2', evidence, ...(candidatePrimary ? { candidatePrimary } : {}) } as GameState['heroDevelopmentProfile'] }, content);
+  const twoFacets = (n: number) => journal(n).map((e, i) => ({ ...e, facets: [i % 2 ? 'work' : 'relationships'] as LifeFacet[] }));
+  it('counts what the evening criteria still lack', () => {
+    const r = ready(twoFacets(8));
+    expect(r).toMatchObject({ decisions: 8, neededDecisions: v2.stableCandidate.minCases, enoughDecisions: false, contexts: 4, facets: 2 });
+    expect(ready(journal(14)).facets).toBe(1);
+  });
+  it('names the leader exactly when the evening would take it as a candidate', () => {
+    const evidence = twoFacets(14);
+    expect(ready(evidence).leader).toBe('expert');
+    expect(evaluateEvening(undefined, evidence, 4, undefined, v2).candidatePrimary).toBe('expert');
+    const mixed = evidence.map((e, i) => i % 2 ? e : { ...e, vector: vec('diplomat', 'opportunist') });
+    expect(ready(mixed).leader).toBeUndefined();
+    expect(evaluateEvening(undefined, mixed, 4, undefined, v2).candidatePrimary).toBeUndefined();
+    expect(ready(evidence, 'expert').candidate).toBe('expert');
   });
 });
 

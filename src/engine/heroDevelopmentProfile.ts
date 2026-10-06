@@ -463,6 +463,23 @@ export function establishInitialDevelopmentCurrent(state: GameState, content: Ga
     initialStage: { logic, origin: 'observed-initial', day: state.day, available: [logic] }, available: [logic],
     ...(arc ? { activeArcId: arc.id, transitionTarget: arc.to } : {}) } };
 }
+export interface FirstStageReadiness {
+  decisions: number; neededDecisions: number; enoughDecisions: boolean;
+  contexts: number; neededContexts: number; facets: number; neededFacets: number;
+  /** The live leader when it already passes share, gap and confidence; the evenings still have to confirm it. */
+  leader?: ActionLogic; candidate?: ActionLogic;
+}
+/** What the first stable center is still waiting for, read from the live journal. Explanatory only: the evenings decide. */
+export function firstStageReadiness(state: Pick<GameState, 'heroDevelopmentProfile'>, content: GameContent): FirstStageReadiness {
+  const p = state.heroDevelopmentProfile; const config = profileConfig(state, content); const sc = config.stableCandidate;
+  const views = independentWindow(caseViews(p.evidence), config);
+  const s = sliceOf(views, true, config, config.confidence);
+  const top = s.distribution ? leaders(s.distribution)[0] : undefined;
+  const clear = !!top && ge(s.distribution![top], sc.minLeaderShare) && ge(s.delta, sc.minDelta) && ge(s.confidence, sc.minConfidence);
+  return { decisions: s.N, neededDecisions: sc.minCases, enoughDecisions: s.N >= sc.minCases && ge(s.W, sc.minWeight),
+    contexts: s.K, neededContexts: sc.minContexts, facets: new Set(views.flatMap(v => v.action.facets)).size, neededFacets: sc.minFacetsFirstStable ?? 0,
+    ...(clear ? { leader: top } : {}), ...(p.candidatePrimary ? { candidate: p.candidatePrimary } : {}) };
+}
 
 // ---------------------------------------------------------------------------------------------
 // Targeted probes and independence quota (enabled only through rollout.adaptiveSelection)

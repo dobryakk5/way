@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { content } from '../../content';
 import { developmentProgress } from '../../engine/development';
+import { firstStageReadiness } from '../../engine/heroDevelopmentProfile';
 import { journeyPeriod } from '../../engine/journey';
 import { ProfileSection } from './ProfileSection';
 import type { GameState, LifeFacet } from '../../engine/types';
@@ -9,6 +10,18 @@ const names:Record<LifeFacet,string>={work:'Дело и деньги',relationsh
 const facetIcons:Record<LifeFacet,FacetIconId>={work:'work',relationships:'relationships',body:'body',inner:'inner'};
 function Evidence({items}:{items:GameState['history']}) {
  return <div className="evidence">{items.map(h=><article key={`${h.day}/${h.slot}`}><p className="eyebrow">День {h.day} · Событие {h.slot+1}</p><p>{h.text}</p><p><strong>{h.label}</strong></p>{h.response&&<p>{h.response}</p>}</article>)}</div>;
+}
+function Readiness({game}:{game:GameState}) {
+ const r=firstStageReadiness(game,content);const name=(id:string)=>content.development.stages.find(s=>s.id===id)?.name;
+ const missing=[!r.enoughDecisions&&`решений, по которым виден способ: ${r.decisions} из ${r.neededDecisions}`,
+  r.contexts<r.neededContexts&&`разных обстоятельств: ${r.contexts} из ${r.neededContexts}`,
+  r.facets<r.neededFacets&&`сфер жизни: ${r.facets} из ${r.neededFacets}`].filter((x):x is string=>!!x);
+ let status;
+ if(r.candidate)status=<p>Способ героя почти определился: <strong>{name(r.candidate)}</strong>. Если следующие решения это подтвердят, вечером начнётся линия освоения.</p>;
+ else if(missing.length)status=<><p>Для первого вывода пока не хватает наблюдений:</p><ul className="readiness">{missing.map(m=><li key={m}>{m}</li>)}</ul></>;
+ else if(r.leader)status=<p>Способ уже различим: <strong>{name(r.leader)}</strong>. Вечер это отметит, а следующий вечер с новыми решениями — подтвердит.</p>;
+ else status=<p>Решений уже достаточно, но в них пока смешаны разные способы. Вывод появится, когда один из них станет заметно чаще.</p>;
+ return <div className="development-readiness"><p>Линия освоения начнётся, когда способ героя станет устойчиво заметен по его решениям. Сами наблюдения развитием не считаются.</p>{status}</div>;
 }
 export function JourneyScreen({game,onClose}:{game:GameState;onClose:()=>void}) {
  const dev=game.development;
@@ -26,7 +39,7 @@ export function JourneyScreen({game,onClose}:{game:GameState;onClose:()=>void}) 
 
   <section className="development-panel" aria-label="Развитие героя"><p className="section-kicker">Прожитое развитие</p><h3>Подтверждённое развитие</h3>
   {stage?<><p className="development-current"><span>Освоенный способ</span><strong>{stage.name}</strong></p><p>{stage.description}</p>
-  <p className="retained-abilities"><span>С ним остаются</span>{dev.available.map(id=>content.development.stages.find(s=>s.id===id)?.ability).filter(Boolean).join(' · ')}</p></>:<p>Линия освоения начнётся, когда способ героя станет заметен по его решениям. Наблюдения за решениями сами по себе развитием не считаются.</p>}
+  <p className="retained-abilities"><span>С ним остаются</span>{dev.available.map(id=>content.development.stages.find(s=>s.id===id)?.ability).filter(Boolean).join(' · ')}</p></>:<Readiness game={game}/>}
   {stage&&!progress&&dev.transitions.length===0&&<p>Для этого способа пока нет написанной линии освоения; жизнь героя продолжается без неё.</p>}
   {progress&&<div className="next-ability"><p className="section-kicker">Следующая способность</p><h4>{progress.arc.ability}</h4><blockquote>{progress.arc.question}</blockquote><p>{progress.ready?'Герой уже проверил новый способ в разных обстоятельствах. Ночью он сможет его закрепить.':progress.completed.length?'Одна проба разобрана. Что произойдёт, когда новый способ понадобится в другой ситуации и будет стоить времени или дохода?':'Герою ещё предстоит попробовать новый способ, увидеть последствия и разобрать их с Алексеем.'}</p></div>}
   {dev.transitions.filter(t=>t.reason!=='initial-reconciliation').map(t=><p className="milestone" key={t.arcId}>День {t.day}: {content.development.stages.find(s=>s.id===t.from)?.name} → {content.development.stages.find(s=>s.id===t.to)?.name}. Новый способ закрепился; прежнее мастерство осталось.</p>)}
