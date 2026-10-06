@@ -93,9 +93,9 @@ BEGIN
         RAISE EXCEPTION 'unexpected day/seq result %', v_result;
     END IF;
 END;
-$;
+$$;
 
-DO $
+DO $$
 DECLARE
     v_user UUID := '00000000-0000-4000-8000-000000000001';
     v_character UUID := '00000000-0000-4000-8000-000000000002';
