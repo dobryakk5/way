@@ -15,6 +15,10 @@ CREATE TRIGGER scene_presentations_append_only
 BEFORE UPDATE OR DELETE ON scene_presentations
 FOR EACH ROW EXECUTE FUNCTION forbid_append_only_change();
 
+ALTER TABLE characters
+    ADD COLUMN expected_slots_per_day SMALLINT NOT NULL DEFAULT 4
+    CHECK (expected_slots_per_day BETWEEN 1 AND 16);
+
 ALTER TABLE scene_instances
     ADD COLUMN scene_presentation_id BIGINT NULL,
     ADD COLUMN game_slot SMALLINT NULL CHECK (game_slot BETWEEN 0 AND 3),
