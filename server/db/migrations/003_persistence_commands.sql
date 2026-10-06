@@ -1,8 +1,5 @@
 BEGIN;
 
-ALTER TABLE scene_instances
-    ALTER COLUMN scene_presentation_id SET NOT NULL;
-
 CREATE OR REPLACE FUNCTION create_character_v1(
     p_character_id UUID,
     p_user_id UUID,
