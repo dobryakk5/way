@@ -5,6 +5,7 @@ import { reconcileCrisisQueue } from './crises';
 import { applyEffects } from './effects';
 import { enterSlot } from './navigation';
 import { expireOpportunities } from './opportunities';
+import { buildDaySummary } from './daySummary';
 import type { GameContent, GameState } from './types';
 export function beginSlots(state: GameState, content: GameContent): GameState {
   if (state.phase !== 'morning') return state;
@@ -53,8 +54,10 @@ export function prepareEvening(state: GameState, content: GameContent): GameStat
     ? 'Сегодня герой попробовал другой способ. Что из этого он захочет сохранить в следующем деле?'
     : today.some(h => h.decisionKinds?.includes('cost'))
       ? 'Герой принял конкретную цену решения. Остаётся ли его цель той же?' : undefined;
+  // Projection only: written once, here, and never read back by the engine.
+  const summary = buildDaySummary(next, content);
   return { ...next, nights: [...next.nights.filter(n => n.day !== state.day),
-    { day: state.day, primary: eveningText(next, content), ...(note ? { note } : {}), resources: { ...next.resources } }] };
+    { day: state.day, primary: eveningText(next, content), ...(note ? { note } : {}), resources: { ...next.resources }, summary }] };
 
 }
 export function eveningText(state: GameState, content: GameContent): string {

@@ -1,3 +1,4 @@
+import { COMPATIBLE_CONTENT_VERSIONS } from '../content/version';
 import { ACTION_LOGICS } from './constants';
 import { FACETS } from './facets';
 import { allChoices } from './variants';
@@ -587,7 +588,7 @@ export function validateHeroDevelopmentProfile(state: GameState, content: GameCo
     if (pos < last || e.day > state.day || e.day < 1 || e.slot < 0 || e.slot >= slots) return false; last = pos;
     if (ids.has(e.id) || sources.has(`${e.caseId}|${e.source}`) || e.id !== evidenceId(e.caseId, e.source)) return false;
     ids.add(e.id); sources.add(`${e.caseId}|${e.source}`);
-    if (e.algorithmVersion !== p.algorithmVersion || e.scoringVersion !== config.scoringVersion || e.rubricVersion !== config.rubricVersion || e.contentVersion !== state.contentVersion) return false;
+    if (e.algorithmVersion !== p.algorithmVersion || e.scoringVersion !== config.scoringVersion || e.rubricVersion !== config.rubricVersion || (e.contentVersion !== state.contentVersion && !COMPATIBLE_CONTENT_VERSIONS.includes(e.contentVersion))) return false;
     if (!isValidEvidenceVector(e.vector, config) || !(e.developmentWeight >= 0 && e.developmentWeight <= 1) || !['neutral', 'probe', 'adaptive'].includes(e.selectionOrigin)) return false;
     const card = content.cards.find(c => c.id === e.cardId); const choice = card && allChoices(card).find(c => c.id === e.choiceId);
     if (!card || !choice) return false;

@@ -7,6 +7,101 @@ import { forbiddenText } from './stoplist';
 import { loadSourceJson } from './v25/parse-package';
 import { checkSource } from './v25/source-checks';
 import { checkParity } from './v25/parity';
+/** Before `stable` a text describes repeated actions in concrete situations, never a lasting property of the person. */
+export const PERSONAL_TRAIT_PATTERN=/обычно|всегда|никогда|ты такой|ты из тех|по натуре|свойственн|склонен|склонна|предпочита|для тебя главн|тебе важно|ты —/i;
+/** Day Reflection contract (REQs/DAY-REFLECTION-v1.md, sections 5, 6 and 14). */
+export function summaryErrors(c:GameContent):string[]{
+ const errors:string[]=[];const fail=(x:string)=>errors.push(x);
+ const cardOf=(id:string)=>c.cards.find(x=>x.id===id);
+ const choicesOf=(id:string)=>{const card=cardOf(id);return card?allChoices(card):[];};
+ const schedulers=(cardId:string)=>c.cards.flatMap(card=>allChoices(card).flatMap(ch=>(ch.effects.schedule??[]).filter(sc=>sc.cardId===cardId)));
+ const ids=c.threads.map(t=>t.id);if(new Set(ids).size!==ids.length)fail('Duplicate thread ids');
+ const templateIds=c.summaryTemplates.changes.map(t=>t.id);if(new Set(templateIds).size!==templateIds.length)fail('Duplicate summary template ids');
+ const followCards=c.threads.flatMap(t=>'followUp'in t&&t.followUp?[t.followUp.cardId]:[]);
+ if(new Set(followCards).size!==followCards.length)fail('One follow-up card belongs to two threads');
+ const opportunityFacts=new Set(c.episode.opportunities.map(o=>o.resolvedFact));
+ const opportunityThreads=c.threads.flatMap(t=>t.kind==='opportunity'?[t.opportunityId]:[]);
+ if(new Set(opportunityThreads).size!==opportunityThreads.length)fail('One opportunity belongs to two threads');
+ const soon=/завтра|послезавтра|сегодня/i;
+ for(const t of c.summaryTemplates.changes){
+  if('cardId'in t.source){
+   const ch=choicesOf(t.source.cardId).find(x=>x.id===(t.source as {choiceId:string}).choiceId);
+   if(!ch)fail(`Summary template ${t.id} points at an unknown choice`);
+   else if(t.source.fact&&ch.effects.setFacts?.[t.source.fact.key]!==t.source.fact.value)fail(`Summary template ${t.id} claims a fact its choice does not set`);
+  }else if('insight'in t.source){const id=t.source.insight;if(!c.insights.some(i=>i.id===id))fail(`Summary template ${t.id} points at an unknown insight`);}
+ }
+ const followUp=(t:{id:string},f:{cardId:string;firmTexts:string[];tomorrowTexts?:string[]}|undefined)=>{
+  if(!f)return;
+  const card=cardOf(f.cardId);
+  if(!card){fail(`Thread ${t.id}: unknown follow-up card ${f.cardId}`);return;}
+  // Only a required chain with a latest day can be promised: the engine refuses to skip it.
+  const firm=!!card.required&&schedulers(card.id).some(sc=>sc.latestDay!==undefined);
+  if(card.required&&!firm)fail(`Thread ${t.id}: required follow-up ${card.id} is scheduled without latestDay`);
+  if(firm&&!f.firmTexts.length)fail(`Thread ${t.id}: a firm follow-up needs firmTexts`);
+  if(!firm&&(f.firmTexts.length||f.tomorrowTexts?.length))fail(`Thread ${t.id}: ${card.id} is not guaranteed, it cannot carry a firm promise`);
+  if(f.firmTexts.some(x=>soon.test(x)))fail(`Thread ${t.id}: firmTexts must not name a day`);
+  if(f.tomorrowTexts?.some(x=>!/завтра/i.test(x)))fail(`Thread ${t.id}: tomorrowTexts must say 'завтра'`);
+  if(!schedulers(card.id).length)fail(`Thread ${t.id}: nothing schedules ${card.id}`);
+ };
+ for(const t of c.threads){
+  const soft=t.kind==='fact'?t.texts.open:t.kind==='chain'?t.texts:[...t.texts.open,...t.texts.resolved,...t.texts.abandoned];
+  if(soft.some(x=>soon.test(x)))fail(`Thread ${t.id}: only a firm follow-up may name a day`);
+  if(t.kind==='fact'){
+   const def=c.factsSchema[t.fact];
+   if(!def){fail(`Thread ${t.id}: unknown fact ${t.fact}`);continue;}
+   if(opportunityFacts.has(t.fact))fail(`Thread ${t.id}: ${t.fact} belongs to an opportunity, use an opportunity thread`);
+   const values=def.values.map(String).sort(),stages=Object.keys(t.stages).sort();
+   if(values.join('|')!==stages.join('|'))fail(`Thread ${t.id}: stages must cover exactly the values of ${t.fact}`);
+   if(t.stages[String(def.initial)]!=='dormant')fail(`Thread ${t.id}: the initial value of ${t.fact} must be dormant`);
+   const setters=new Set(c.cards.flatMap(card=>allChoices(card).flatMap(ch=>Object.entries(ch.effects.setFacts??{}).filter(([k])=>k===t.fact).map(([,v])=>String(v)))));
+   for(const [v,stage] of Object.entries(t.stages))if(stage!=='dormant'&&!setters.has(v))fail(`Thread ${t.id}: stage of ${t.fact}=${v} is unreachable`);
+   if(!Object.values(t.stages).includes('open'))fail(`Thread ${t.id}: no open stage`);
+   followUp(t,t.followUp);
+  }else if(t.kind==='opportunity'){
+   if(!c.episode.opportunities.some(o=>o.id===t.opportunityId))fail(`Thread ${t.id}: unknown opportunity ${t.opportunityId}`);
+  }else{
+   if(cardOf(t.followUp.cardId)?.type!=='chain')fail(`Thread ${t.id}: a chain thread needs a chain card`);
+   followUp(t,t.followUp);
+  }
+ }
+ const r=c.summaryTemplates.reflection;
+ for(const logic of ACTION_LOGICS){
+  const p=r.provisional[logic],s=r.stable[logic];
+  if(p.some(x=>s.includes(x)))fail(`Reflection ${logic}: provisional and stable texts must differ`);
+  for(const x of p){
+   if(!/^В нескольких ситуациях ты /.test(x)||!/Посмотрим/.test(x))fail(`Reflection ${logic}: a provisional text describes repeated actions and ends with a caution`);
+  }
+ }
+ const beforeStable:[string,string[]][]=[['just_started',r.just_started],['forming',r.forming],['refining',r.refining],['downgrade',r.downgrade],['unsettled',r.unsettled],
+  ...ACTION_LOGICS.map((l):[string,string[]]=>[`provisional.${l}`,r.provisional[l]])];
+ for(const [name,list] of beforeStable)for(const x of list)if(PERSONAL_TRAIT_PATTERN.test(x))fail(`Reflection ${name}: states a lasting property of the person before stable: ${x}`);
+ for(const e of echoErrors(c))errors.push(e);
+ return errors;
+}
+/** The behavioural echo describes only what the chosen actions literally were (REQs/DAY-REFLECTION-v1.md, 6.3). */
+export function echoErrors(c:GameContent):string[]{
+ const errors:string[]=[];const fail=(x:string)=>errors.push(x);
+ const t=c.summaryTemplates;
+ const ids=t.observations.map(o=>o.id);if(new Set(ids).size!==ids.length)fail('Duplicate observation ids');
+ for(const o of t.observations){
+  if(PERSONAL_TRAIT_PATTERN.test(o.text)||/(^|[^а-яё])ты([^а-яё]|$)/i.test(o.text))fail(`Observation ${o.id} states a property of the person or addresses them`);
+  if(ACTION_LOGICS.some(l=>o.id.includes(l)))fail(`Observation ${o.id} is named after a stage`);
+  if(Object.values(t.observed).filter(v=>v===o.id).length<2)fail(`Observation ${o.id} is used by fewer than two choices, so it can never repeat`);
+ }
+ for(const [key,id] of Object.entries(t.observed)){
+  const [cardId,choiceId]=key.split('/');
+  const card=c.cards.find(x=>x.id===cardId);
+  if(!card||!allChoices(card).some(ch=>ch.id===choiceId))fail(`Observation mapping ${key} points at an unknown choice`);
+  if(!ids.includes(id))fail(`Observation mapping ${key} uses unknown observation ${id}`);
+ }
+ for(const x of t.echo.repeat){
+  if((x.match(/\{action\}/g)??[]).length!==1)fail('An echo repeat text must contain {action} exactly once');
+  if(!/^Сегодня /.test(x)||!/посмотрим/i.test(x))fail('An echo repeat text speaks about today and ends with a caution');
+  if(PERSONAL_TRAIT_PATTERN.test(x))fail(`Echo text states a lasting property: ${x}`);
+ }
+ for(const x of t.echo.varied){if(!/^Сегодня /.test(x)||PERSONAL_TRAIT_PATTERN.test(x))fail(`Echo varied text must speak about today only: ${x}`);}
+ return errors;
+}
 export function validateContent(c: GameContent): string[] {
  const errors: string[]=[]; const fail=(s:string)=>errors.push(s);
  const check=(name:string,schema:{safeParse(v:unknown):{success:boolean;error?:unknown}},v:unknown)=>{const r=schema.safeParse(v);if(!r.success)fail(`${name}: ${JSON.stringify(r.error)}`);};
@@ -16,6 +111,7 @@ export function validateContent(c: GameContent): string[] {
  check('portraits',schemas.portraitFragmentSchema.array(),c.portraitFragments);check('days',schemas.dayTextSchema.array(),c.dayTexts);
  check('insights',schemas.insightSchema.array(),c.insights);check('endings',schemas.endingSchema.array(),c.endings);
  check('wisdoms',schemas.wisdomSchema.array(),c.wisdoms);check('reflections',schemas.reflectionSchema.array(),c.reflections);
+ check('threads',schemas.threadSchema.array(),c.threads);check('summary templates',schemas.summaryTemplatesSchema,c.summaryTemplates);
  if(errors.length)return errors;
  let expectedDay=1;
  for(const chapter of c.episode.chapters){if(chapter.from!==expectedDay||chapter.through<chapter.from)fail('Chapter calendar has a gap or overlap');expectedDay=chapter.through+1;}
@@ -236,6 +332,7 @@ export function validateDiagnostics(c: GameContent, fail:(s:string)=>void) {
  // A diagnostic scene must not depend on an undefined stage, and a required scene cannot be gated.
  for(const card of diagnostic)if(card.development?.stages&&(card.at||card.required||card.mustShowBy))fail(`Gated diagnostic scene cannot be required ${card.id}`);
  void evidenceOf;
+ for(const e of summaryErrors(c))fail(e);
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
  const errors=validateContent(content);if(errors.length){console.error(errors.join('\n'));process.exitCode=1;}else console.log(`CONTENT v2.5 OK: ${content.cards.length} cards, ${content.episode.days} days`);

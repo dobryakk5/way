@@ -1,0 +1,232 @@
+[
+  {
+    "id": "timon_coins",
+    "kind": "fact",
+    "fact": "timon.trust",
+    "stages": {
+      "unknown": "dormant",
+      "open": "open",
+      "guarded": "open"
+    },
+    "texts": {
+      "open": [
+        "Тимон ещё вернётся к тому, как ты обошёлся с его монетами."
+      ]
+    },
+    "followUp": {
+      "cardId": "c1_timon_returns",
+      "firmTexts": [
+        "Тимон вернётся к разговору о монетах в ближайшие дни."
+      ],
+      "tomorrowTexts": [
+        "Завтра Тимон придёт сверять расчёты, и разговор начнётся с тех монет."
+      ]
+    }
+  },
+  {
+    "id": "order_and_fair",
+    "kind": "fact",
+    "fact": "workshop.orderOutcome",
+    "stages": {
+      "unresolved": "dormant",
+      "fulfilled": "open",
+      "revised": "open",
+      "deferred": "open"
+    },
+    "texts": {
+      "open": [
+        "Что будет с работой Алексея на ярмарке, ещё предстоит решить."
+      ]
+    },
+    "followUp": {
+      "cardId": "c2_timon_order_result",
+      "firmTexts": [
+        "На ярмарке тебе предстоит решить, как показать работу Алексея."
+      ],
+      "tomorrowTexts": [
+        "Завтра ярмарка: Алексей принесёт свою чашу, и придётся решить, как показать работу."
+      ]
+    }
+  },
+  {
+    "id": "old_bowl_pause",
+    "kind": "fact",
+    "fact": "inner.pause",
+    "stages": {
+      "unknown": "dormant",
+      "kept": "open",
+      "carried": "open"
+    },
+    "texts": {
+      "open": [
+        "Старая чаша ещё напомнит о себе: мысль о Егоре осталась неоконченной."
+      ]
+    },
+    "followUp": {
+      "cardId": "c2_marta_window_result",
+      "firmTexts": []
+    }
+  },
+  {
+    "id": "hand_and_pace",
+    "kind": "fact",
+    "fact": "body.pace",
+    "stages": {
+      "unknown": "dormant",
+      "shared": "open",
+      "alone": "open"
+    },
+    "texts": {
+      "open": [
+        "О том, как ты бережёшь руку, Алексей ещё скажет своё."
+      ]
+    },
+    "followUp": {
+      "cardId": "c2_alexey_tools_result",
+      "firmTexts": []
+    }
+  },
+  {
+    "id": "marta_help",
+    "kind": "opportunity",
+    "opportunityId": "marta_help",
+    "texts": {
+      "open": [
+        "Марта ещё переносит дрова: можно успеть помочь."
+      ],
+      "resolved": [
+        "Дрова Марты убраны под навес — вы управились вместе."
+      ],
+      "abandoned": [
+        "Марта справилась с дровами без тебя."
+      ]
+    }
+  },
+  {
+    "id": "market_place",
+    "kind": "opportunity",
+    "opportunityId": "market_place",
+    "texts": {
+      "open": [
+        "Тимон придержит место на рынке только до вечера."
+      ],
+      "resolved": [
+        "Место на рынке рядом с Тимоном придержано за тобой."
+      ],
+      "abandoned": [
+        "Тимон предложил место на рынке другому мастеру."
+      ]
+    }
+  },
+  {
+    "id": "quiet_evening",
+    "kind": "opportunity",
+    "opportunityId": "quiet_evening",
+    "texts": {
+      "open": [
+        "Тихий вечер ещё возможен, если закончить раньше."
+      ],
+      "resolved": [
+        "Ты закончил раньше, и вечер остался тихим."
+      ],
+      "abandoned": [
+        "Вечер ушёл на работу: тихого часа не вышло."
+      ]
+    }
+  },
+  {
+    "id": "ilya_talk",
+    "kind": "opportunity",
+    "opportunityId": "ilya_talk",
+    "texts": {
+      "open": [
+        "Егор ждёт в этот вечер: потом перед отъездом останется лишь короткая встреча."
+      ],
+      "resolved": [
+        "Ты успел побыть с Егором до его отъезда."
+      ],
+      "abandoned": [
+        "Егор уехал, а вы так и не поговорили."
+      ]
+    }
+  },
+  {
+    "id": "alexey_cup",
+    "kind": "chain",
+    "texts": [
+      "Алексей ещё вернётся со своей чашкой."
+    ],
+    "followUp": {
+      "cardId": "c1_alexey_after_jug",
+      "firmTexts": [
+        "Алексей придёт с вопросом о своей чашке в ближайшие дни."
+      ],
+      "tomorrowTexts": [
+        "Завтра Алексей придёт с вопросом о своей чашке."
+      ]
+    }
+  },
+  {
+    "id": "wanderer_herbs",
+    "kind": "chain",
+    "texts": [
+      "Странник ещё может появиться у мастерской."
+    ],
+    "followUp": {
+      "cardId": "c1_wanderer_returns",
+      "firmTexts": [
+        "Странник вернётся к мастерской в ближайшие дни."
+      ]
+    }
+  },
+  {
+    "id": "wanderer_bridge",
+    "kind": "chain",
+    "texts": [
+      "На мосту ты ещё можешь встретить человека с дороги."
+    ],
+    "followUp": {
+      "cardId": "c1_wanderer_bridge",
+      "firmTexts": [
+        "Человек с дороги встретится тебе снова в ближайшие дни."
+      ]
+    }
+  },
+  {
+    "id": "ilya_departure",
+    "kind": "chain",
+    "texts": [
+      "Егор ещё скажет своё перед отъездом."
+    ],
+    "followUp": {
+      "cardId": "c2_ilya_leaves",
+      "firmTexts": [
+        "Егор собирается в дорогу: этот разговор вернётся в ближайшие дни."
+      ]
+    }
+  },
+  {
+    "id": "ilya_forgiven",
+    "kind": "chain",
+    "texts": [
+      "Егор ещё ответит тебе по-своему."
+    ],
+    "followUp": {
+      "cardId": "c2_ilya_after_forgive",
+      "firmTexts": [
+        "Егор ответит на твоё прощение в ближайшие дни."
+      ]
+    }
+  },
+  {
+    "id": "liya_letters",
+    "kind": "chain",
+    "texts": [
+      "От Лии, возможно, придёт ещё одно письмо."
+    ],
+    "followUp": {
+      "cardId": "c1_liya_second_letter",
+      "firmTexts": []
+    }
+  }
+]

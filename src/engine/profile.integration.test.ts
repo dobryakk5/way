@@ -125,7 +125,7 @@ describe('legacy runs keep their authored stage', () => {
     let snap: GameState | undefined;
     play(2, { content: oldContent, ...leaning('diplomat', 0.05), start: authored, beforeStep: s => { if (!snap && s.day === 4 && s.phase === 'morning') snap = structuredClone(s); return s; } });
     const { heroDevelopmentProfile: _p, pendingMotive: _m, development: d, current: _c, diceHistory, ...rest } = snap!;
-    const v4 = { schema: 1, started: true, game: { ...rest, version: 4, contentVersion: legacyV4.contentVersion, diceHistory: diceHistory.map(({ candidateOrigins: _o, ...x }) => x),
+    const v4 = { schema: 1, started: true, game: { ...rest, nights: rest.nights.map(({ summary: _s, ...n }) => n), version: 4, contentVersion: legacyV4.contentVersion, diceHistory: diceHistory.map(({ candidateOrigins: _o, ...x }) => x),
       development: { current: d.developmentCurrent, available: d.available, growingEdge: d.transitionTarget, activeArcId: d.activeArcId, evidence: d.evidence, transitions: d.transitions } } };
     const migrated = migrateSave(v4)!.game; expect(migrated.heroDevelopmentProfile.cases).toHaveLength(0);
     const { state } = play(2, { ...leaning('diplomat', 0.05), resume: migrated });

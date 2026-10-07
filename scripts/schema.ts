@@ -88,3 +88,28 @@ export const episodeSchema=z.object({id:z.string(),title:z.string(),days:day,day
 export const factsSchema=z.record(z.object({values:z.array(value).min(1),initial:value,finalValues:z.array(value).optional()}).strict());
 export const traceSchema=z.object({source:z.object({cardId:z.string(),choiceId:z.string()}).strict(),readers:z.array(z.object({kind:z.enum(['card','text','ending','fact']),id:z.string()}).strict()).min(1),response:z.string().min(1).max(280),visibleByDay:day.optional()}).strict();
 export const portraitFragmentSchema=z.object({id:z.string(),text:z.string(),requires:conditionSchema,group:z.enum(['order','alexey','market','relationship','shadow'])}).strict();
+
+// Day Reflection content (REQs/DAY-REFLECTION-v1.md). Cross-references are checked in check-content.
+const texts = z.array(z.string().min(1)).min(1);
+const followUpSchema = z.object({ cardId: z.string().min(1), firmTexts: z.array(z.string().min(1)), tomorrowTexts: z.array(z.string().min(1)).optional() }).strict();
+export const threadSchema = z.discriminatedUnion('kind', [
+  z.object({ id: z.string().min(1), kind: z.literal('fact'), fact: z.string().min(1), stages: z.record(z.enum(['dormant', 'open', 'resolved', 'abandoned'])),
+    texts: z.object({ open: texts }).strict(), followUp: followUpSchema.optional() }).strict(),
+  z.object({ id: z.string().min(1), kind: z.literal('opportunity'), opportunityId: z.string().min(1),
+    texts: z.object({ open: texts, resolved: texts, abandoned: texts }).strict() }).strict(),
+  z.object({ id: z.string().min(1), kind: z.literal('chain'), texts, followUp: followUpSchema }).strict()
+]);
+const logicTexts = z.object(Object.fromEntries(['opportunist', 'diplomat', 'expert', 'achiever', 'individualist', 'strategist', 'alchemist', 'ironic'].map(l => [l, texts]))).strict();
+export const summaryTemplatesSchema = z.object({
+  rulesVersion: z.string().min(1),
+  observations: z.array(z.object({ id: z.string().min(1), text: z.string().min(1) }).strict()).min(1),
+  observed: z.record(z.string().min(1)),
+  echo: z.object({ repeat: texts, varied: texts }).strict(),
+  changes: z.array(z.object({ id: z.string().min(1), priority: range(1, 10), texts,
+    source: z.union([
+      z.object({ cardId: z.string().min(1), choiceId: z.string().min(1), fact: z.object({ key: z.string().min(1), value }).strict().optional() }).strict(),
+      z.object({ observation: z.object({ kind: z.enum(['trace', 'opportunity', 'variant']), id: z.string().min(1) }).strict() }).strict(),
+      z.object({ insight: z.string().min(1) }).strict()
+    ]) }).strict()),
+  reflection: z.object({ just_started: texts, forming: texts, refining: texts, downgrade: texts, unsettled: texts, provisional: logicTexts, stable: logicTexts }).strict()
+}).strict();

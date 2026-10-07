@@ -5,6 +5,7 @@ export * from './conditions';
 export * from './constants';
 export * from './crises';
 export * from './day';
+export * from './daySummary';
 export * from './draw';
 export * from './effects';
 export * from './endings';

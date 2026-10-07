@@ -21,10 +21,12 @@ import episodes from './data/episodes.json';
 import factsSchema from './data/facts.schema.json';
 import traces from './data/traces.json';
 import portraitFragments from './data/portraitFragments.json';
+import threads from './data/threads.json';
+import summaryTemplates from './data/summary-templates.json';
 import type { GameContent } from '../engine/types';
 // JSON is validated by check-content before tests/build. No Zod in the browser bundle.
 export const content = {
   cards: [...cardsCh1, ...cardsCh2, ...cardsCommon, ...continuation, ...developmentCards, ...cardsProbe, ...cardsNeutral, ...cardsArcs], development: { ...development, arcs: [...development.arcs, ...arcsV25] }, profile, insights, endings, reflections,
-  wisdoms, dayTexts: days, episode: episodes[0], factsSchema, traces: [...traces, ...tracesV25], portraitFragments
+  wisdoms, dayTexts: days, episode: episodes[0], factsSchema, traces: [...traces, ...tracesV25], portraitFragments, threads, summaryTemplates
 } as unknown as GameContent;
 export const contentMeta = { characters, ui } as const;

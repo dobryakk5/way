@@ -1445,3 +1445,15 @@ p { line-height: 1.6; }
 .dev-scale-caption { margin: 10px 0 4px; }
 .dev-scale-center { margin: 0; color: var(--muted); font-size: .9rem; }
 .dev-scale-center strong { color: var(--gold-2); font-weight: 500; }
+
+/* day reflection: what changed, what is still open, what the game has noticed */
+.day-summary { display: grid; gap: 16px; margin: 18px 0 4px; text-align: left; }
+.day-summary-block { padding-top: 13px; border-top: 1px solid rgba(255,255,255,.065); }
+.day-summary-title { margin: 0 0 8px; font-size: .74rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--muted-2); }
+.day-summary-block ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 7px; }
+.day-summary-block li, .day-summary-block p { margin: 0; line-height: 1.5; }
+.day-summary-level { font-size: .86rem; color: var(--gold-2); margin-bottom: 7px !important; }
+.day-summary-bar { height: 3px; margin: 0 0 11px; border-radius: 3px; overflow: hidden; background: rgba(240,210,154,.1); }
+.day-summary-bar i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--clay), var(--gold-2)); }
+.day-summary-transition { margin-top: 10px !important; color: var(--muted-2); }
+.day-summary-echo { margin-top: 10px !important; padding-left: 12px; border-left: 2px solid rgba(240,210,154,.28); }

@@ -211,7 +211,7 @@ export interface GameState {
   goalHistory: { day: number; id: GoalId; wording: string; action: 'select' | 'keep' | 'clarify' | 'change' }[];
   evidence: { day: number; slot: number; cardId: string; choiceId: string; line: StoryLine; step: string }[];
   diceHistory: { day: number; slot: number; candidates: string[]; candidateOrigins?: DiagnosticSelectionOrigin[]; face?: number; cardId?: string }[];
-  nights: { day: number; primary: string; note?: string; resources: Record<Resource, number> }[];
+  nights: { day: number; primary: string; note?: string; resources: Record<Resource, number>; /** Projection only: nothing in the engine reads it back. */ summary?: DaySummary }[];
   milestones: Record<string, { day: number; facts: Record<string, FactValue>; text: string }>;
   development: HeroDevelopment;
   heroDevelopmentProfile: HeroDevelopmentProfile;
@@ -234,6 +234,67 @@ export interface GameContent {
   factsSchema: Record<string, FactDefinition>; traces: Trace[]; portraitFragments: PortraitFragment[];
   development: DevelopmentContent;
   profile: ProfileConfigRegistry;
+  threads: ThreadDefinition[];
+  summaryTemplates: SummaryTemplates;
+}
+
+// ---------------------------------------------------------------------------------------------
+// Day Reflection (REQs/DAY-REFLECTION-v1.md): a deterministic projection of the day's proven events. Never an input to the engine.
+// ---------------------------------------------------------------------------------------------
+export type SummarySource =
+  | { kind: 'choice'; day: number; slot: number; cardId: string; choiceId: string }
+  | { kind: 'observation'; day: number; slot: number; observationKind: 'trace' | 'opportunity' | 'variant'; id: string }
+  | { kind: 'insight'; day: number; id: string }
+  | { kind: 'scheduled'; cardId: string; day: number; latestDay?: number }
+  | { kind: 'exposure'; day: number; opportunityId: string }
+  | { kind: 'snapshot'; day: number };
+export type ThreadStage = 'dormant' | 'open' | 'resolved' | 'abandoned';
+/** A promise is firm only when the scheduled card is required and has a latest day; the runtime state proves it, not this record. */
+export interface ThreadFollowUp { cardId: string; firmTexts: string[]; tomorrowTexts?: string[] }
+export type ThreadDefinition =
+  | { id: string; kind: 'fact'; fact: string; stages: Record<string, ThreadStage>;
+      /** Said while the thread is open; the other stages are silent. */ texts: { open: string[] }; followUp?: ThreadFollowUp }
+  | { id: string; kind: 'opportunity'; opportunityId: string; texts: Record<'open' | 'resolved' | 'abandoned', string[]> }
+  | { id: string; kind: 'chain'; texts: string[]; followUp: ThreadFollowUp };
+export interface SummaryChangeTemplate {
+  id: string; priority: number; texts: string[];
+  source: { cardId: string; choiceId: string; fact?: { key: string; value: FactValue } } | { observation: { kind: 'trace' | 'opportunity' | 'variant'; id: string } } | { insight: string };
+}
+/** An authored, neutral description of what a chosen action was, never the name of a stage; completes the sentence "Сегодня… ты <text>". */
+export interface SummaryObservation { id: string; text: string }
+export interface SummaryTemplates {
+  rulesVersion: string;
+  changes: SummaryChangeTemplate[];
+  observations: SummaryObservation[];
+  /** "cardId/choiceId" -> observation id. At most one per choice; kept outside the cards so presented pairs and saves stay byte-identical. */
+  observed: Record<string, string>;
+  echo: { repeat: string[]; varied: string[] };
+  reflection: {
+    just_started: string[]; forming: string[]; refining: string[]; downgrade: string[]; unsettled: string[];
+    provisional: Record<ActionLogic, string[]>; stable: Record<ActionLogic, string[]>;
+  };
+}
+export type ReflectionCase = 'downgrade' | 'refining' | 'provisional' | 'forming' | 'just_started' | 'stable' | 'unsettled';
+/** What the day's own decisions literally were. Not a profile reading: it comes from authored labels of the chosen actions only. */
+export interface DayEcho {
+  kind: 'repeat' | 'varied'; observationId?: string;
+  sources: Extract<SummarySource, { kind: 'choice' }>[];
+  templateId: string; text: string;
+}
+export interface DaySummary {
+  schema: 1; day: number; contentVersion: string; rulesVersion: string;
+  /** The algorithm of this run's profile, never the current default. */
+  profileAlgorithmVersion: string;
+  worldChanges: { source: SummarySource; templateId: string; text: string }[];
+  unfinished: { threadId: string; source: SummarySource; promise: 'firm' | 'soft'; templateId: string; text: string }[];
+  reflection: {
+    status: ProfileStatus; previousStatus?: ProfileStatus; previousCandidate?: ActionLogic; coverage: number;
+    candidate?: ActionLogic; observed?: ActionLogic;
+    case: ReflectionCase; templateId: string; text: string;
+    /** Shown when the profile has nothing content-ful to say yet (not for provisional-with-candidate or stable). */
+    echo?: DayEcho;
+    transition?: { arcId: string; text: string };
+  };
 }
 
 // ---------------------------------------------------------------------------------------------

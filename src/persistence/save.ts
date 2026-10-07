@@ -6,7 +6,7 @@ import { createEmptyHeroDevelopmentProfile } from '../engine/heroDevelopmentProf
 import { allChoices } from '../engine/variants';
 import { developmentEventSchema, diagnosticBehaviorSchema, diagnosticMotiveSchema, diagnosticSignalSchema, logicSchema } from '../../scripts/schema';
 import { content } from '../content';
-import { CONTENT_VERSION } from '../content/version';
+import { COMPATIBLE_CONTENT_VERSIONS, CONTENT_VERSION } from '../content/version';
 import { GAME_STATE_VERSION } from '../engine/initialState';
 import type { ActionLogic, GameContent, GameState } from '../engine/types';
 
@@ -61,6 +61,20 @@ const pendingMotive = z.object({caseId:str,promptId:str,text:str,options:z.array
 const persistenceChoice = z.object({authorChoiceId:str,choiceId:z.number().int().positive(),presentationId:z.number().int().positive(),position:z.number().int().min(1).max(4)}).strict();
 const presentedPersistence = z.object({sceneInstanceId:z.string().uuid(),sceneId:z.number().int().positive(),scenePresentationId:z.number().int().positive(),gameSlot:slot,selectionOrigin:origin,choices:z.array(persistenceChoice).min(2).max(4)}).strict();
 const currentOf = (c: typeof choice | typeof choice4) => z.object({cardId:str,leftChoiceId:str.optional(),choiceIds:z.array(str).min(2).max(4),text:str,variantId:str.optional(),choices:z.array(c).min(2).max(4),selectionOrigin:origin.optional(),persistence:presentedPersistence.optional()}).strict();
+const summarySource = z.discriminatedUnion('kind',[
+ z.object({kind:z.literal('choice'),day,slot,cardId:str,choiceId:str}).strict(),
+ z.object({kind:z.literal('observation'),day,slot,observationKind:z.enum(['trace','opportunity','variant']),id:str}).strict(),
+ z.object({kind:z.literal('insight'),day,id:str}).strict(),
+ z.object({kind:z.literal('scheduled'),cardId:str,day,latestDay:day.optional()}).strict(),
+ z.object({kind:z.literal('exposure'),day,opportunityId:str}).strict(),
+ z.object({kind:z.literal('snapshot'),day}).strict()]);
+const summarySchema = z.object({schema:z.literal(1),day,contentVersion:str,rulesVersion:str,profileAlgorithmVersion:str,
+ worldChanges:z.array(z.object({source:summarySource,templateId:str,text:str}).strict()).max(3),
+ unfinished:z.array(z.object({threadId:str,source:summarySource,promise:z.enum(['firm','soft']),templateId:str,text:str}).strict()).max(2),
+ reflection:z.object({status,previousStatus:status.optional(),previousCandidate:logicSchema.optional(),coverage:num,candidate:logicSchema.optional(),observed:logicSchema.optional(),
+  case:z.enum(['downgrade','refining','provisional','forming','just_started','stable','unsettled']),templateId:str,text:str,
+  echo:z.object({kind:z.enum(['repeat','varied']),observationId:str.optional(),sources:z.array(z.object({kind:z.literal('choice'),day,slot,cardId:str,choiceId:str}).strict()).min(2),templateId:str,text:str}).strict().optional(),
+  transition:z.object({arcId:str,text:str}).strict().optional()}).strict()}).strict();
 const common = {
  episodeId:z.literal(content.episode.id),runId:str,seed:z.number().int().nonnegative(),serverPersistence:z.object({
  enabled:z.literal(true),schema:z.literal(1),
@@ -88,7 +102,7 @@ const common = {
  observations:z.array(z.object({day,slot,kind:z.enum(['variant','trace','insight','opportunity','dropped']),id:str,text:z.string().optional()}).strict()),summaryCommitted:z.boolean(),
  goal:z.object({id:goal,wording:str}).strict().optional(),goalHistory:z.array(z.object({day,id:goal,wording:str,action:z.enum(['select','keep','clarify','change'])}).strict()),
  evidence:z.array(z.object({day,slot,cardId:str,choiceId:str,line,step:str}).strict()),
- nights:z.array(z.object({day,primary:z.string(),note:z.string().optional(),resources}).strict()),
+ nights:z.array(z.object({day,primary:z.string(),note:z.string().optional(),resources,summary:summarySchema.optional()}).strict()),
  milestones:z.record(z.object({day,facts:z.record(fact),text:z.string()}).strict())
 };
 const dice4 = z.array(z.object({day,slot,candidates:z.array(str).length(6),face:z.number().int().min(1).max(6).optional(),cardId:str.optional()}).strict());
@@ -110,6 +124,23 @@ type LegacyV4Record = { schema: 1; started: boolean; game: Omit<GameState,'devel
 function canonical(value:unknown):string { if(Array.isArray(value))return '['+value.map(canonical).join(',')+']';if(value&&typeof value==='object')return '{'+Object.entries(value).sort(([a],[b])=>a.localeCompare(b)).map(([k,v])=>JSON.stringify(k)+':'+canonical(v)).join(',')+'}';return JSON.stringify(value); }
 type Mode = 3 | 4 | 5;
 const knownChoices = (cards:Manifest['cards'],id:string) => { const card=cards.find(c=>c.id===id);return card?allChoices(card):[]; };
+/** A stored day summary must be provable from the rest of the same save: forged text with no source is rejected. */
+function summaryProven(g:GameState,n:GameState['nights'][number]):boolean {
+ const s=n.summary;if(!s)return true;
+ const snap=g.heroDevelopmentProfile.eveningSnapshots.find(x=>x.day===n.day);
+ if(s.day!==n.day||s.profileAlgorithmVersion!==g.heroDevelopmentProfile.algorithmVersion||!snap||s.reflection.status!==snap.status||s.reflection.coverage!==snap.current.coverage)return false;
+ if(s.reflection.candidate!==snap.candidatePrimary||s.reflection.observed!==(snap.status==='stable'?snap.observedPrimary:undefined))return false;
+ const echo=s.reflection.echo;
+ if(echo&&(echo.sources.some(x=>x.day!==n.day)||new Set(echo.sources.map(x=>x.slot)).size!==echo.sources.length||(echo.kind==='repeat')!==(echo.observationId!==undefined)||['provisional','stable'].includes(s.reflection.case)))return false;
+ return [...s.worldChanges.map(x=>x.source),...s.unfinished.map(x=>x.source),...(echo?.sources??[])].every(src=>{
+  if(src.kind==='choice')return src.day===n.day&&g.history.some(h=>h.day===src.day&&h.slot===src.slot&&h.cardId===src.cardId&&h.choiceId===src.choiceId);
+  if(src.kind==='observation')return src.day===n.day&&g.observations.some(o=>o.day===src.day&&o.slot===src.slot&&o.kind===src.observationKind&&o.id===src.id);
+  if(src.kind==='insight')return src.day===n.day&&g.journal.some(j=>j.day===src.day&&j.kind==='insight'&&j.id===src.id);
+  if(src.kind==='exposure')return src.day===n.day&&g.opportunityExposure[src.opportunityId]?.day===src.day;
+  if(src.kind==='scheduled')return src.day>n.day&&content.cards.some(c=>c.id===src.cardId);
+  return src.day===n.day;
+ });
+}
 function validateRecord(raw: unknown, mode: Mode = 5): SaveRecord | LegacyV4Record | undefined {
  const parsed = (mode===3 ? envelopeV3 : mode===4 ? envelopeV4 : envelope).safeParse(raw);
  if (!parsed.success) return undefined;
@@ -124,6 +155,7 @@ function validateRecord(raw: unknown, mode: Mode = 5): SaveRecord | LegacyV4Reco
  const usedToday=['evening','chapter','boundary','ending'].includes(g.phase)?source.episode.slotsPerDay:g.phase==='motive'?g.slot+1:g.slot;
  if(g.history.length!==(g.day-1)*source.episode.slotsPerDay+usedToday)return undefined;
  if(g.nights.some((n,i)=>n.day!==i+1))return undefined;
+ if(mode===5&&g.nights.some(n=>!summaryProven(g,n)))return undefined;
  if (g.current && (!hasCard(g.current.cardId) || (g.current.choiceIds.length===2?!g.current.choiceIds.includes(g.current.leftChoiceId!):g.current.leftChoiceId!==undefined) || g.current.choices!.length!==g.current.choiceIds.length ||
    g.current.choices!.some((c,i) => c.id !== g.current!.choiceIds[i] || ![...knownChoices(source.cards,g.current!.cardId),...history.flatMap(m=>knownChoices(m.cards,g.current!.cardId))].some(known=>canonical(known)===canonical(c))))) return undefined;
  if (g.phase === 'slot' && !g.current || g.phase === 'motive' && g.current || g.phase === 'dice' && !g.diceHistory.some(d=>d.day===g.day&&d.slot===g.slot)) return undefined;
@@ -169,11 +201,15 @@ function v4ToV5(old:LegacyV4Record):SaveRecord {
  * Same version, same content: only these two fields are brought up to date.
  */
 function normalizeDevelopmentV5(raw:unknown):unknown {
- const game=(raw as {game?:{development?:Record<string,unknown>}}|null)?.game;
- if(!game?.development)return raw;
+ const game=(raw as {game?:{development?:Record<string,unknown>;contentVersion?:unknown}}|null)?.game;
+ if(!game)return raw;
+ // Content versions with identical cards, choices and scoring are brought up to the current one; nothing else changes.
+ const upgrade=typeof game.contentVersion==='string'&&COMPATIBLE_CONTENT_VERSIONS.includes(game.contentVersion);
  const d=game.development;
- if(d.currentOrigin!=='transition'&&d.initialRebaseCount!==undefined)return raw;
- return {...(raw as object),game:{...game,development:{...d,...(d.currentOrigin==='transition'?{currentOrigin:'promotion'}:{}),...(d.initialRebaseCount===undefined?{initialRebaseCount:0}:{})}}};
+ const old=!!d&&(d.currentOrigin==='transition'||d.initialRebaseCount===undefined);
+ if(!upgrade&&!old)return raw;
+ return {...(raw as object),game:{...game,...(upgrade?{contentVersion:CONTENT_VERSION}:{}),
+  ...(old&&d?{development:{...d,...(d.currentOrigin==='transition'?{currentOrigin:'promotion'}:{}),...(d.initialRebaseCount===undefined?{initialRebaseCount:0}:{})}}:{})}};
 }
 /**
  * Validate the complete known v3 or v4 contract before copying. Never replay historical choices and never derive

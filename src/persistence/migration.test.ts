@@ -16,7 +16,7 @@ const contentV4={...content,...legacyV4} as unknown as GameContent;
 function v4Game(s:GameState){
  const {heroDevelopmentProfile:_p,pendingMotive:_m,development:d,current,diceHistory,...rest}=s;
  const {selectionOrigin:_o,...oldCurrent}=current??{} as NonNullable<GameState['current']>;
- return {...rest,version:4,contentVersion:legacyV4.contentVersion,...(current?{current:oldCurrent}:{}),diceHistory:diceHistory.map(({candidateOrigins:_c,...x})=>x),
+ return {...rest,nights:rest.nights.map(({summary:_s,...n})=>n),version:4,contentVersion:legacyV4.contentVersion,...(current?{current:oldCurrent}:{}),diceHistory:diceHistory.map(({candidateOrigins:_c,...x})=>x),
   development:{current:d.developmentCurrent,available:d.available,...(d.transitionTarget?{growingEdge:d.transitionTarget}:{}),...(d.activeArcId?{activeArcId:d.activeArcId}:{}),evidence:d.evidence,...(d.pendingPromotion?{pendingPromotion:d.pendingPromotion}:{}),transitions:d.transitions}};
 }
 const recordV4=(s:GameState)=>({schema:1,started:true,game:v4Game(s)});
@@ -49,7 +49,7 @@ describe('known v3 and v4 migrations to v5',()=>{
   const s=snapshotsOf(contentV3,3).find(s=>s.phase==='slot'&&s.day>=3)!;
   const raw=recordV3(s),converted=migrateSave(raw)!;
   expect(converted.game.current).toEqual(s.current&&without(s.current as unknown as Record<string,unknown>,'selectionOrigin'));
-  expect(converted.game.resources).toEqual(s.resources);expect(converted.game.facts).toEqual(s.facts);expect(converted.game.nights).toEqual(s.nights);expect(converted.game.shown).toEqual(s.shown);
+  expect(converted.game.resources).toEqual(s.resources);expect(converted.game.facts).toEqual(s.facts);expect(converted.game.nights).toEqual(s.nights.map(({summary:_s,...n})=>n));expect(converted.game.shown).toEqual(s.shown);
   expect(converted.game.scheduled).toEqual(s.scheduled);expect(converted.game.runId).toBe(s.runId);
  });
  it('v4 with a completed promotion keeps its development evidence and transition, and the stage is not re-derived',()=>{

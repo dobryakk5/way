@@ -1,5 +1,6 @@
 import { content } from '../../content';
 import type { GameState } from '../../engine/types';
+import { DaySummaryView } from './DaySummaryView';
 
 function recordText(entry: GameState['journal'][number]) {
   if (entry.kind === 'insight') return content.insights.find(x => x.id === entry.id)?.text;
@@ -34,6 +35,7 @@ export function JournalScreen({ game, onClose }: { game: GameState; onClose: () 
               <p className="journal-kind">Итог дня</p>
               <p className="journal-entry-text">{night.primary}</p>
               {night.note && <p className="journal-note">{night.note}</p>}
+              {night.summary && <DaySummaryView summary={night.summary} />}
             </article>)}
             {game.journal.filter(x => x.day === day).map((entry, index) => <article className="journal-entry-card" key={`${entry.kind}:${entry.id}:${index}`}>
               <p className="journal-kind">{kindLabel[entry.kind]}</p>

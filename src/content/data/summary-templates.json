@@ -1,0 +1,832 @@
+{
+  "rulesVersion": "2",
+  "changes": [
+    {
+      "id": "change.c1_alexey_broken_jug.show",
+      "priority": 3,
+      "source": {
+        "cardId": "c1_alexey_broken_jug",
+        "choiceId": "show"
+      },
+      "texts": [
+        "Ты посмотрел первую чашку Алексея."
+      ]
+    },
+    {
+      "id": "change.c1_alexey_broken_jug.prepare",
+      "priority": 3,
+      "source": {
+        "cardId": "c1_alexey_broken_jug",
+        "choiceId": "prepare"
+      },
+      "texts": [
+        "Ты занялся упаковкой заказа, а чашка Алексея подождала."
+      ]
+    },
+    {
+      "id": "change.c1_wounded_road.stop",
+      "priority": 6,
+      "source": {
+        "cardId": "c1_wounded_road",
+        "choiceId": "stop"
+      },
+      "texts": [
+        "Ты остановился помочь раненому путнику, хотя это стоило времени."
+      ]
+    },
+    {
+      "id": "change.c1_wounded_road.pass",
+      "priority": 6,
+      "source": {
+        "cardId": "c1_wounded_road",
+        "choiceId": "pass"
+      },
+      "texts": [
+        "Ты проехал мимо раненого путника."
+      ]
+    },
+    {
+      "id": "change.c1_liya_letter.later",
+      "priority": 4,
+      "source": {
+        "cardId": "c1_liya_letter",
+        "choiceId": "later"
+      },
+      "texts": [
+        "Письмо Лии пока осталось без ответа: сначала заказ."
+      ]
+    },
+    {
+      "id": "change.c1_liya_letter.reply",
+      "priority": 4,
+      "source": {
+        "cardId": "c1_liya_letter",
+        "choiceId": "reply"
+      },
+      "texts": [
+        "Ты написал сестре."
+      ]
+    },
+    {
+      "id": "change.c1_alexey_bad_work.together",
+      "priority": 6,
+      "source": {
+        "cardId": "c1_alexey_bad_work",
+        "choiceId": "together",
+        "fact": {
+          "key": "alexey.plan",
+          "value": "together"
+        }
+      },
+      "texts": [
+        "Алексей обожжёт свою чашку вместе с твоим заказом."
+      ]
+    },
+    {
+      "id": "change.c1_alexey_bad_work.independent",
+      "priority": 6,
+      "source": {
+        "cardId": "c1_alexey_bad_work",
+        "choiceId": "independent",
+        "fact": {
+          "key": "alexey.plan",
+          "value": "independent"
+        }
+      },
+      "texts": [
+        "Ты помог Алексею найти другую печь для его чашки."
+      ]
+    },
+    {
+      "id": "change.c1_rain_delivery.finish",
+      "priority": 5,
+      "source": {
+        "cardId": "c1_rain_delivery",
+        "choiceId": "finish",
+        "fact": {
+          "key": "workshop.preparation",
+          "value": "ready"
+        }
+      },
+      "texts": [
+        "Ручки готовы: ты доделал их до ночи."
+      ]
+    },
+    {
+      "id": "change.c1_rain_delivery.revise",
+      "priority": 5,
+      "source": {
+        "cardId": "c1_rain_delivery",
+        "choiceId": "revise",
+        "fact": {
+          "key": "workshop.preparation",
+          "value": "revised"
+        }
+      },
+      "texts": [
+        "Ты договорился с покупателем о меньшей партии — ночной спешки не будет."
+      ]
+    },
+    {
+      "id": "change.c2_shadow_letgo.confirm",
+      "priority": 5,
+      "source": {
+        "cardId": "c2_shadow_letgo",
+        "choiceId": "confirm",
+        "fact": {
+          "key": "workshop.preparation",
+          "value": "ready"
+        }
+      },
+      "texts": [
+        "Партия подтверждена как готовая."
+      ]
+    },
+    {
+      "id": "change.c2_shadow_letgo.revise",
+      "priority": 5,
+      "source": {
+        "cardId": "c2_shadow_letgo",
+        "choiceId": "revise",
+        "fact": {
+          "key": "workshop.preparation",
+          "value": "revised"
+        }
+      },
+      "texts": [
+        "Расчёт меньшей партии готов."
+      ]
+    },
+    {
+      "id": "change.c1_old_bowl.pause",
+      "priority": 4,
+      "source": {
+        "cardId": "c1_old_bowl",
+        "choiceId": "pause",
+        "fact": {
+          "key": "inner.pause",
+          "value": "kept"
+        }
+      },
+      "texts": [
+        "Ты посидел у воды рядом с чашей, которую когда-то слепил вместе с Егором."
+      ]
+    },
+    {
+      "id": "change.c1_old_bowl.return",
+      "priority": 4,
+      "source": {
+        "cardId": "c1_old_bowl",
+        "choiceId": "return",
+        "fact": {
+          "key": "inner.pause",
+          "value": "carried"
+        }
+      },
+      "texts": [
+        "Ты набрал глины и вернулся к работе; старая чаша осталась в корзине."
+      ]
+    },
+    {
+      "id": "change.c1_neighbor_noise.rest",
+      "priority": 5,
+      "source": {
+        "cardId": "c1_neighbor_noise",
+        "choiceId": "rest",
+        "fact": {
+          "key": "body.pace",
+          "value": "shared"
+        }
+      },
+      "texts": [
+        "Часть работы взял на себя Алексей — медленнее, но кисть отдохнула."
+      ]
+    },
+    {
+      "id": "change.c1_neighbor_noise.continue",
+      "priority": 5,
+      "source": {
+        "cardId": "c1_neighbor_noise",
+        "choiceId": "continue",
+        "fact": {
+          "key": "body.pace",
+          "value": "alone"
+        }
+      },
+      "texts": [
+        "Ты доделал сам, сколько успел."
+      ]
+    },
+    {
+      "id": "change.c1_extra_change.return",
+      "priority": 8,
+      "source": {
+        "cardId": "c1_extra_change",
+        "choiceId": "return",
+        "fact": {
+          "key": "timon.trust",
+          "value": "open"
+        }
+      },
+      "texts": [
+        "Ты вернул Тимону лишние монеты."
+      ]
+    },
+    {
+      "id": "change.c1_extra_change.keep",
+      "priority": 8,
+      "source": {
+        "cardId": "c1_extra_change",
+        "choiceId": "keep",
+        "fact": {
+          "key": "timon.trust",
+          "value": "guarded"
+        }
+      },
+      "texts": [
+        "Лишние монеты остались у тебя: Тимон уже отвернулся и не заметил."
+      ]
+    },
+    {
+      "id": "change.c2_timon_joint_order.shared",
+      "priority": 7,
+      "source": {
+        "cardId": "c2_timon_joint_order",
+        "choiceId": "shared",
+        "fact": {
+          "key": "market.arrangement",
+          "value": "shared"
+        }
+      },
+      "texts": [
+        "Вы с Тимоном договорились об общем прилавке."
+      ]
+    },
+    {
+      "id": "change.c2_timon_joint_order.solo",
+      "priority": 7,
+      "source": {
+        "cardId": "c2_timon_joint_order",
+        "choiceId": "solo",
+        "fact": {
+          "key": "market.arrangement",
+          "value": "solo"
+        }
+      },
+      "texts": [
+        "Ты оплатил отдельное место на ярмарке."
+      ]
+    },
+    {
+      "id": "change.c2_timon_joint_order.late_solo",
+      "priority": 7,
+      "source": {
+        "cardId": "c2_timon_joint_order",
+        "choiceId": "late_solo",
+        "fact": {
+          "key": "market.arrangement",
+          "value": "solo"
+        }
+      },
+      "texts": [
+        "Ты взял отдельное место у ворот."
+      ]
+    },
+    {
+      "id": "change.c2_timon_joint_order.absent",
+      "priority": 7,
+      "source": {
+        "cardId": "c2_timon_joint_order",
+        "choiceId": "absent",
+        "fact": {
+          "key": "market.arrangement",
+          "value": "absent"
+        }
+      },
+      "texts": [
+        "Заказ поедет на ярмарку без твоего прилавка."
+      ]
+    },
+    {
+      "id": "change.c2_stones_bag.insist",
+      "priority": 9,
+      "source": {
+        "cardId": "c2_stones_bag",
+        "choiceId": "insist"
+      },
+      "texts": [
+        "Ты потребовал у Егора вернуть долг."
+      ]
+    },
+    {
+      "id": "change.c2_stones_bag.forgive",
+      "priority": 9,
+      "source": {
+        "cardId": "c2_stones_bag",
+        "choiceId": "forgive"
+      },
+      "texts": [
+        "Ты простил Егору долг."
+      ]
+    },
+    {
+      "id": "change.c2_liya_arrives.fulfilled",
+      "priority": 9,
+      "source": {
+        "cardId": "c2_liya_arrives",
+        "choiceId": "fulfilled",
+        "fact": {
+          "key": "workshop.orderOutcome",
+          "value": "fulfilled"
+        }
+      },
+      "texts": [
+        "Заказчику отдана вся согласованная партия."
+      ]
+    },
+    {
+      "id": "change.c2_liya_arrives.revised",
+      "priority": 9,
+      "source": {
+        "cardId": "c2_liya_arrives",
+        "choiceId": "revised",
+        "fact": {
+          "key": "workshop.orderOutcome",
+          "value": "revised"
+        }
+      },
+      "texts": [
+        "Объём партии согласован с заказчиком заново."
+      ]
+    },
+    {
+      "id": "change.c2_liya_arrives.revise_now",
+      "priority": 9,
+      "source": {
+        "cardId": "c2_liya_arrives",
+        "choiceId": "revise_now",
+        "fact": {
+          "key": "workshop.orderOutcome",
+          "value": "revised"
+        }
+      },
+      "texts": [
+        "Ты сдал готовое и изменил объём партии."
+      ]
+    },
+    {
+      "id": "change.c2_liya_arrives.deferred",
+      "priority": 9,
+      "source": {
+        "cardId": "c2_liya_arrives",
+        "choiceId": "deferred",
+        "fact": {
+          "key": "workshop.orderOutcome",
+          "value": "deferred"
+        }
+      },
+      "texts": [
+        "Для всей партии назван новый срок."
+      ]
+    },
+    {
+      "id": "change.c2_timon_order_result.together",
+      "priority": 9,
+      "source": {
+        "cardId": "c2_timon_order_result",
+        "choiceId": "together",
+        "fact": {
+          "key": "alexey.path",
+          "value": "together"
+        }
+      },
+      "texts": [
+        "Работу на ярмарке вы с Алексеем представили вместе."
+      ]
+    },
+    {
+      "id": "change.c2_timon_order_result.independent",
+      "priority": 9,
+      "source": {
+        "cardId": "c2_timon_order_result",
+        "choiceId": "independent",
+        "fact": {
+          "key": "alexey.path",
+          "value": "independent"
+        }
+      },
+      "texts": [
+        "Алексей показал свою работу сам."
+      ]
+    },
+    {
+      "id": "change.c2_timon_order_result.own",
+      "priority": 9,
+      "source": {
+        "cardId": "c2_timon_order_result",
+        "choiceId": "own",
+        "fact": {
+          "key": "alexey.path",
+          "value": "independent"
+        }
+      },
+      "texts": [
+        "Ты побыл рядом с Алексеем на его отдельном показе."
+      ]
+    },
+    {
+      "id": "change.c2_timon_order_result.paused",
+      "priority": 9,
+      "source": {
+        "cardId": "c2_timon_order_result",
+        "choiceId": "paused",
+        "fact": {
+          "key": "alexey.path",
+          "value": "paused"
+        }
+      },
+      "texts": [
+        "Показ работы Алексея отложен на после ярмарки."
+      ]
+    }
+  ],
+  "reflection": {
+    "just_started": [
+      "Мы начали замечать твои решения. Пока слишком рано говорить о повторяющемся способе действия."
+    ],
+    "forming": [
+      "В нескольких разных ситуациях начинает повторяться похожий способ действия. Мы продолжаем наблюдать."
+    ],
+    "refining": [
+      "Картина уточняется. Последние решения показали другой способ действовать, поэтому мы пока не спешим с выводом."
+    ],
+    "downgrade": [
+      "Картина снова стала менее определённой — последние решения не повторили прежний способ действовать."
+    ],
+    "unsettled": [
+      "Способ действовать пока не сложился в одну линию — это тоже результат."
+    ],
+    "provisional": {
+      "opportunist": [
+        "В нескольких ситуациях ты сначала думал о своих границах и о том, что выгодно в эту минуту, и только потом об остальном. Посмотрим, повторится ли это."
+      ],
+      "diplomat": [
+        "В нескольких ситуациях ты сначала смотрел, что принято и чего ждут от тебя близкие, и действовал с оглядкой на это. Посмотрим, повторится ли это."
+      ],
+      "expert": [
+        "В нескольких ситуациях ты сначала старался разобраться, как всё устроено, и только потом действовал. Посмотрим, повторится ли это."
+      ],
+      "achiever": [
+        "В нескольких ситуациях ты сначала сверялся с целью и сроком, а потом проверял, что получилось. Посмотрим, повторится ли это."
+      ],
+      "individualist": [
+        "В нескольких ситуациях ты останавливался и спрашивал себя, что здесь действительно важно, прежде чем решать. Посмотрим, повторится ли это."
+      ],
+      "strategist": [
+        "В нескольких ситуациях ты прикидывал, как решение отзовётся на других людях и на ближайших днях, и только затем выбирал. Посмотрим, повторится ли это."
+      ],
+      "alchemist": [
+        "В нескольких ситуациях ты сначала менял взгляд на саму ситуацию и лишь потом решал, что делать. Посмотрим, повторится ли это."
+      ],
+      "ironic": [
+        "В нескольких ситуациях ты действовал, не цепляясь за первое объяснение, и легко менял его по ходу дела. Посмотрим, повторится ли это."
+      ]
+    },
+    "stable": {
+      "opportunist": [
+        "Сейчас герой чаще опирается на защиту своих границ и на то, что важно сделать в нужный момент. Так выглядит его способ действовать сейчас."
+      ],
+      "diplomat": [
+        "Сейчас герой чаще ищет опору в общих правилах, в принадлежности и в ожиданиях близких. Так выглядит его способ действовать сейчас."
+      ],
+      "expert": [
+        "Сейчас герой чаще опирается на понимание устройства дела и собственную компетентность. Так выглядит его способ действовать сейчас."
+      ],
+      "achiever": [
+        "Сейчас герой чаще соотносит способ работы с целью и проверяет результат. Так выглядит его способ действовать сейчас."
+      ],
+      "individualist": [
+        "Сейчас герой чаще выясняет собственный смысл происходящего и держит рядом разные взгляды. Так выглядит его способ действовать сейчас."
+      ],
+      "strategist": [
+        "Сейчас герой чаще учитывает связи между людьми, целями и долгими последствиями. Так выглядит его способ действовать сейчас."
+      ],
+      "alchemist": [
+        "Сейчас герой чаще замечает, как сами рамки понимания меняют картину ситуации. Так выглядит его способ действовать сейчас."
+      ],
+      "ironic": [
+        "Сейчас герой чаще держит свои объяснения легко и свободно меняет рамку. Так выглядит его способ действовать сейчас."
+      ]
+    }
+  },
+  "echo": {
+    "repeat": [
+      "Сегодня в нескольких ситуациях ты {action}. Это ещё не вывод — посмотрим, повторится ли это в других обстоятельствах."
+    ],
+    "varied": [
+      "Сегодня твои решения были разными — общего рисунка за этот день пока не видно."
+    ]
+  },
+  "observations": [
+    {
+      "id": "check_how_it_works",
+      "text": "сначала старался разобраться, как всё устроено"
+    },
+    {
+      "id": "hold_to_standard",
+      "text": "держался принятого порядка и своей мерки"
+    },
+    {
+      "id": "follow_custom",
+      "text": "сверялся с тем, как принято и чего ждут от тебя"
+    },
+    {
+      "id": "look_after_relationship",
+      "text": "думал о людях рядом и о том, как это скажется на отношениях"
+    },
+    {
+      "id": "protect_own_side",
+      "text": "в первую очередь берёг свои силы, границы и интерес"
+    },
+    {
+      "id": "drive_to_result",
+      "text": "шёл к срокам и результату"
+    },
+    {
+      "id": "ask_what_matters",
+      "text": "останавливался и спрашивал себя, что здесь действительно важно"
+    },
+    {
+      "id": "redesign_arrangement",
+      "text": "менял сам порядок, а не только отдельный случай"
+    },
+    {
+      "id": "keep_it_simple",
+      "text": "решал просто и не усложнял"
+    },
+    {
+      "id": "talk_it_through",
+      "text": "заговаривал о неудобном и выслушивал разные стороны"
+    },
+    {
+      "id": "try_small_first",
+      "text": "начинал с малой пробы и смотрел, что выйдет"
+    },
+    {
+      "id": "reframe_first",
+      "text": "сначала менял взгляд на саму ситуацию"
+    }
+  ],
+  "observed": {
+    "c1_alexey_bad_work/together": "look_after_relationship",
+    "c1_alexey_broken_jug/prepare": "drive_to_result",
+    "c1_alexey_broken_jug/show": "look_after_relationship",
+    "c1_customer_hurry/arrange": "drive_to_result",
+    "c1_customer_hurry/help": "look_after_relationship",
+    "c1_extra_change/keep": "protect_own_side",
+    "c1_extra_change/return": "hold_to_standard",
+    "c1_last_clay/release": "keep_it_simple",
+    "c1_last_clay/reserve": "talk_it_through",
+    "c1_liya_letter/later": "drive_to_result",
+    "c1_liya_letter/reply": "look_after_relationship",
+    "c1_market_spot/release": "keep_it_simple",
+    "c1_market_spot/reserve": "talk_it_through",
+    "c1_marta_firewood/arrange": "drive_to_result",
+    "c1_marta_firewood/help": "look_after_relationship",
+    "c1_neighbor_noise/continue": "drive_to_result",
+    "c1_neighbor_noise/rest": "protect_own_side",
+    "c1_old_bowl/pause": "protect_own_side",
+    "c1_old_bowl/return": "drive_to_result",
+    "c1_rain_delivery/finish": "hold_to_standard",
+    "c1_rain_delivery/revise": "protect_own_side",
+    "c1_wounded_road/pass": "drive_to_result",
+    "c1_wounded_road/stop": "look_after_relationship",
+    "c2_bridge_repair/rest": "protect_own_side",
+    "c2_bridge_repair/walk": "drive_to_result",
+    "c2_gaze_alexey_silence/ask": "talk_it_through",
+    "c2_gaze_alexey_silence/respect": "keep_it_simple",
+    "c2_gaze_marta_window/home": "protect_own_side",
+    "c2_gaze_marta_window/visit": "look_after_relationship",
+    "c2_gaze_wanderer_bread/offer": "look_after_relationship",
+    "c2_gaze_wanderer_bread/watch": "keep_it_simple",
+    "c2_liya_arrives/deferred": "talk_it_through",
+    "c2_liya_arrives/fulfilled": "hold_to_standard",
+    "c2_liya_arrives/revise_now": "drive_to_result",
+    "c2_liya_arrives/revised": "talk_it_through",
+    "c2_old_master_tools/stay": "look_after_relationship",
+    "c2_old_master_tools/trust": "keep_it_simple",
+    "c2_shadow_attention/sit": "protect_own_side",
+    "c2_shadow_attention/walk": "ask_what_matters",
+    "c2_shadow_compassion/rest": "protect_own_side",
+    "c2_shadow_compassion/walk": "drive_to_result",
+    "c2_shadow_courage/pack": "look_after_relationship",
+    "c2_shadow_courage/talk": "talk_it_through",
+    "c2_shadow_honesty/pack": "look_after_relationship",
+    "c2_shadow_honesty/talk": "talk_it_through",
+    "c2_shadow_letgo/confirm": "hold_to_standard",
+    "c2_shadow_letgo/revise": "keep_it_simple",
+    "c2_silence_alexey_hand/look": "look_after_relationship",
+    "c2_silence_alexey_hand/trust": "keep_it_simple",
+    "c2_silence_market_pause/ask": "talk_it_through",
+    "c2_silence_market_pause/deal": "drive_to_result",
+    "c2_silence_marta_cup/ask": "talk_it_through",
+    "c2_silence_marta_cup/leave": "keep_it_simple",
+    "c2_stones_bag/forgive": "look_after_relationship",
+    "c2_stones_bag/insist": "hold_to_standard",
+    "c2_timon_joint_order/absent": "keep_it_simple",
+    "c2_timon_joint_order/late_solo": "protect_own_side",
+    "c2_timon_joint_order/shared": "look_after_relationship",
+    "c2_timon_joint_order/solo": "protect_own_side",
+    "neutral.body.01/A": "protect_own_side",
+    "neutral.body.01/B": "keep_it_simple",
+    "neutral.body.01/C": "hold_to_standard",
+    "neutral.body.01/D": "hold_to_standard",
+    "neutral.body.02/A": "try_small_first",
+    "neutral.body.02/B": "keep_it_simple",
+    "neutral.body.02/C": "ask_what_matters",
+    "neutral.body.02/D": "reframe_first",
+    "neutral.body.03/A": "drive_to_result",
+    "neutral.body.03/B": "ask_what_matters",
+    "neutral.body.03/C": "reframe_first",
+    "neutral.body.03/D": "check_how_it_works",
+    "neutral.body.04/A": "redesign_arrangement",
+    "neutral.body.04/B": "keep_it_simple",
+    "neutral.body.04/C": "drive_to_result",
+    "neutral.body.04/D": "follow_custom",
+    "neutral.body.05/A": "protect_own_side",
+    "neutral.body.05/B": "ask_what_matters",
+    "neutral.body.05/C": "reframe_first",
+    "neutral.body.05/D": "hold_to_standard",
+    "neutral.body.06/A": "talk_it_through",
+    "neutral.body.06/B": "keep_it_simple",
+    "neutral.body.06/C": "look_after_relationship",
+    "neutral.body.06/D": "ask_what_matters",
+    "neutral.body.07/A": "follow_custom",
+    "neutral.body.07/B": "redesign_arrangement",
+    "neutral.body.07/C": "reframe_first",
+    "neutral.body.07/D": "protect_own_side",
+    "neutral.body.08/A": "ask_what_matters",
+    "neutral.body.08/B": "check_how_it_works",
+    "neutral.body.08/C": "keep_it_simple",
+    "neutral.body.08/D": "drive_to_result",
+    "neutral.inner.01/A": "look_after_relationship",
+    "neutral.inner.01/B": "drive_to_result",
+    "neutral.inner.01/C": "protect_own_side",
+    "neutral.inner.01/D": "check_how_it_works",
+    "neutral.inner.02/A": "check_how_it_works",
+    "neutral.inner.02/B": "reframe_first",
+    "neutral.inner.02/C": "ask_what_matters",
+    "neutral.inner.02/D": "keep_it_simple",
+    "neutral.inner.03/A": "ask_what_matters",
+    "neutral.inner.03/B": "protect_own_side",
+    "neutral.inner.03/C": "check_how_it_works",
+    "neutral.inner.03/D": "reframe_first",
+    "neutral.inner.04/A": "drive_to_result",
+    "neutral.inner.04/B": "follow_custom",
+    "neutral.inner.04/C": "keep_it_simple",
+    "neutral.inner.04/D": "reframe_first",
+    "neutral.inner.05/A": "check_how_it_works",
+    "neutral.inner.05/B": "ask_what_matters",
+    "neutral.inner.05/C": "reframe_first",
+    "neutral.inner.05/D": "protect_own_side",
+    "neutral.inner.06/A": "keep_it_simple",
+    "neutral.inner.06/B": "reframe_first",
+    "neutral.inner.06/C": "follow_custom",
+    "neutral.inner.06/D": "redesign_arrangement",
+    "neutral.inner.07/A": "talk_it_through",
+    "neutral.inner.07/B": "drive_to_result",
+    "neutral.inner.07/C": "reframe_first",
+    "neutral.inner.07/D": "try_small_first",
+    "neutral.inner.08/A": "ask_what_matters",
+    "neutral.inner.08/B": "hold_to_standard",
+    "neutral.inner.08/C": "drive_to_result",
+    "neutral.inner.08/D": "keep_it_simple",
+    "neutral.relationships.01/A": "talk_it_through",
+    "neutral.relationships.01/B": "protect_own_side",
+    "neutral.relationships.01/C": "protect_own_side",
+    "neutral.relationships.01/D": "look_after_relationship",
+    "neutral.relationships.02/A": "keep_it_simple",
+    "neutral.relationships.02/B": "reframe_first",
+    "neutral.relationships.02/C": "talk_it_through",
+    "neutral.relationships.02/D": "redesign_arrangement",
+    "neutral.relationships.03/A": "reframe_first",
+    "neutral.relationships.03/B": "protect_own_side",
+    "neutral.relationships.03/C": "check_how_it_works",
+    "neutral.relationships.03/D": "talk_it_through",
+    "neutral.relationships.04/A": "redesign_arrangement",
+    "neutral.relationships.04/B": "look_after_relationship",
+    "neutral.relationships.04/C": "hold_to_standard",
+    "neutral.relationships.04/D": "keep_it_simple",
+    "neutral.relationships.05/A": "protect_own_side",
+    "neutral.relationships.05/B": "check_how_it_works",
+    "neutral.relationships.05/C": "redesign_arrangement",
+    "neutral.relationships.05/D": "ask_what_matters",
+    "neutral.relationships.06/A": "try_small_first",
+    "neutral.relationships.06/B": "hold_to_standard",
+    "neutral.relationships.06/C": "check_how_it_works",
+    "neutral.relationships.06/D": "talk_it_through",
+    "neutral.relationships.07/A": "talk_it_through",
+    "neutral.relationships.07/B": "drive_to_result",
+    "neutral.relationships.07/C": "hold_to_standard",
+    "neutral.relationships.07/D": "look_after_relationship",
+    "neutral.relationships.08/A": "protect_own_side",
+    "neutral.relationships.08/B": "hold_to_standard",
+    "neutral.relationships.08/C": "hold_to_standard",
+    "neutral.relationships.08/D": "ask_what_matters",
+    "neutral.work.01/A": "hold_to_standard",
+    "neutral.work.01/B": "drive_to_result",
+    "neutral.work.01/C": "protect_own_side",
+    "neutral.work.01/D": "follow_custom",
+    "neutral.work.02/A": "talk_it_through",
+    "neutral.work.02/B": "keep_it_simple",
+    "neutral.work.02/C": "ask_what_matters",
+    "neutral.work.02/D": "redesign_arrangement",
+    "neutral.work.03/A": "protect_own_side",
+    "neutral.work.03/B": "redesign_arrangement",
+    "neutral.work.03/C": "check_how_it_works",
+    "neutral.work.03/D": "talk_it_through",
+    "neutral.work.04/A": "protect_own_side",
+    "neutral.work.04/B": "redesign_arrangement",
+    "neutral.work.04/C": "hold_to_standard",
+    "neutral.work.04/D": "keep_it_simple",
+    "neutral.work.05/A": "ask_what_matters",
+    "neutral.work.05/B": "protect_own_side",
+    "neutral.work.05/C": "try_small_first",
+    "neutral.work.05/D": "check_how_it_works",
+    "neutral.work.06/A": "check_how_it_works",
+    "neutral.work.06/B": "follow_custom",
+    "neutral.work.06/C": "keep_it_simple",
+    "neutral.work.06/D": "ask_what_matters",
+    "neutral.work.07/A": "look_after_relationship",
+    "neutral.work.07/B": "redesign_arrangement",
+    "neutral.work.07/C": "reframe_first",
+    "neutral.work.07/D": "drive_to_result",
+    "neutral.work.08/A": "ask_what_matters",
+    "neutral.work.08/B": "check_how_it_works",
+    "neutral.work.08/C": "keep_it_simple",
+    "neutral.work.08/D": "drive_to_result",
+    "probe.ai.01/examine-goal": "ask_what_matters",
+    "probe.ai.01/redesign-role": "redesign_arrangement",
+    "probe.ai.01/take-promotion": "drive_to_result",
+    "probe.ai.02/life-fit": "ask_what_matters",
+    "probe.ai.02/maximize-return": "drive_to_result",
+    "probe.ai.02/protect-cash": "protect_own_side",
+    "probe.ai.03/find-protocol": "check_how_it_works",
+    "probe.ai.03/keep-metrics": "hold_to_standard",
+    "probe.ai.03/redefine-health": "reframe_first",
+    "probe.alir.01/preserve-relationship": "look_after_relationship",
+    "probe.alir.01/simple-boundary": "hold_to_standard",
+    "probe.alir.01/transform-pattern": "reframe_first",
+    "probe.alir.02/fix-now": "keep_it_simple",
+    "probe.alir.02/prevent-systemically": "redesign_arrangement",
+    "probe.alir.02/use-crisis": "reframe_first",
+    "probe.alir.03/adaptive-system": "try_small_first",
+    "probe.alir.03/hold-transformation": "talk_it_through",
+    "probe.alir.03/temporary-frame": "try_small_first",
+    "probe.de.01/follow-team": "follow_custom",
+    "probe.de.01/ship-on-time": "drive_to_result",
+    "probe.de.01/verify-formula": "check_how_it_works",
+    "probe.de.02/reconsider-purchase": "ask_what_matters",
+    "probe.de.02/set-criteria": "check_how_it_works",
+    "probe.de.02/trust-family": "follow_custom",
+    "probe.de.03/adjust-to-goal": "drive_to_result",
+    "probe.de.03/check-technique": "check_how_it_works",
+    "probe.de.03/follow-group": "follow_custom",
+    "probe.ea.01/polish": "hold_to_standard",
+    "probe.ea.01/question-goal": "ask_what_matters",
+    "probe.ea.01/ship-critical": "drive_to_result",
+    "probe.ea.02/decide-by-plan": "drive_to_result",
+    "probe.ea.02/follow-circle": "follow_custom",
+    "probe.ea.02/research-more": "check_how_it_works",
+    "probe.ea.03/full-protocol": "hold_to_standard",
+    "probe.ea.03/minimum-effective": "drive_to_result",
+    "probe.ea.03/rethink-running": "ask_what_matters",
+    "probe.is.01/change-mechanism": "redesign_arrangement",
+    "probe.is.01/deepen-dialogue": "talk_it_through",
+    "probe.is.01/restore-harmony": "follow_custom",
+    "probe.is.02/focus-delivery": "drive_to_result",
+    "probe.is.02/individual-agreements": "talk_it_through",
+    "probe.is.02/redesign-flow": "redesign_arrangement",
+    "probe.is.03/build-minimum": "try_small_first",
+    "probe.is.03/listen-context": "keep_it_simple",
+    "probe.is.03/set-target": "drive_to_result",
+    "probe.od.01/protect-self": "protect_own_side",
+    "probe.od.01/reconstruct-facts": "check_how_it_works",
+    "probe.od.01/share-responsibility": "look_after_relationship",
+    "probe.od.02/keep-confidence": "hold_to_standard",
+    "probe.od.02/reconsider-deal": "ask_what_matters",
+    "probe.od.02/use-information": "protect_own_side",
+    "probe.od.03/keep-seat": "protect_own_side",
+    "probe.od.03/replan-transport": "drive_to_result",
+    "probe.od.03/switch-car": "look_after_relationship",
+    "probe.sa.01/deliver-anyway": "drive_to_result",
+    "probe.sa.01/improve-system": "redesign_arrangement",
+    "probe.sa.01/reframe-together": "reframe_first",
+    "probe.sa.02/explore-identity": "ask_what_matters",
+    "probe.sa.02/keep-together": "look_after_relationship",
+    "probe.sa.02/set-rules": "redesign_arrangement",
+    "probe.sa.03/bounded-experiments": "try_small_first",
+    "probe.sa.03/integrated-plan": "redesign_arrangement",
+    "probe.sa.03/question-role": "ask_what_matters"
+  }
+}

@@ -16,6 +16,7 @@
     "smoke:phase4": "node --import tsx scripts/smoke-phase4.ts",
     "simulate:development": "node --import tsx scripts/simulate-development.ts",
     "simulate:profile": "node --import tsx scripts/simulate-profile.ts",
+    "summary:simulate": "node --import tsx scripts/simulate-summary.ts",
     "profile:calibration": "node --import tsx scripts/profile-calibration.ts",
     "profile:proposals": "node --import tsx scripts/profile-proposals.ts reports/profile-vectors-before-tuning.json",
     "v25:parse": "node --import tsx scripts/v25/parse-package.ts",

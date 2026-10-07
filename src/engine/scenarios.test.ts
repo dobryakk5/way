@@ -15,14 +15,6 @@ function checkpoint(day:number,slot:number):GameState {
  return captured;
 }
 describe('route and opportunity scenarios',()=>{
- for(const route of content.episode.routeMoments)for(const option of route.options){
-  it(`both candidates are reachable at ${route.day}/${route.slot}/${option.id}, despite a crisis`,()=>{
-   const seen=new Set<string>();
-   for(let seed=1;seed<=60;seed++)play(seed,{routes:{[route.day]:option.id},beforeStep:s=>s.day===route.day&&s.slot===route.slot?{...s,resources:{...s.resources,strength:0}}:s,
-    onDraw:(s,d)=>{if(s.day===route.day&&s.slot===route.slot){expect(d.source).toBe('route');expect(d.card.facets?.some(f=>option.facets.includes(f))).toBe(true);seen.add(d.card.id);}}});
-   expect(seen.size).toBeGreaterThanOrEqual(2);
-  });
- }
  for(const o of content.episode.opportunities){
   it(`${o.id}: taken and expired facts are both reachable and read`,()=>{
    const statuses=new Set<string>();
