@@ -36,7 +36,9 @@ function createMailer(): Mailer | undefined {
   if (!url) return undefined;
   const from = process.env.MAIL_FROM ?? 'Путь <noreply@putst.ru>';
   const transport = nodemailer.createTransport(url);
-  return { send: async message => { await transport.sendMail({ from, ...message }); } };
+  // Machine-generated: keeps auto-responders quiet and marks the message as transactional.
+  const headers = { 'Auto-Submitted': 'auto-generated', 'X-Auto-Response-Suppress': 'All' };
+  return { send: async message => { await transport.sendMail({ from, headers, ...message }); } };
 }
 
 const mailer = createMailer();
