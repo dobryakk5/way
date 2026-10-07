@@ -326,12 +326,16 @@ function CardArt({ draw }: { draw: DrawResult }) {
   const scene = sceneArtForCard(draw);
   const character = draw.card.character;
   const portrait = character && CHARACTER_PORTRAITS.has(character) ? character : undefined;
+  // The image of this presentation is frozen with the scene (`draw.visual`); without one the scene art follows the card as before.
+  const visual = draw.visual;
+  const image = visual ? visual.image.replace(/^\/+/, '') : `art/backgrounds/${scene}.webp`;
   return <div
     className={`card-art card-art-scene${portrait ? ' has-portrait' : ''}`}
     data-character={character ?? 'city'}
     data-scene={scene}
-    style={{ backgroundImage: `url(${import.meta.env.BASE_URL}art/backgrounds/${scene}.webp)` }}
-    aria-hidden="true"
+    {...(visual?.variantId ? { 'data-visual': visual.variantId } : {})}
+    style={{ backgroundImage: `url(${import.meta.env.BASE_URL}${image})` }}
+    {...(visual?.alt ? { role: 'img', 'aria-label': visual.alt } : { 'aria-hidden': true })}
   >
     {portrait
       ? <img className="character-portrait" src={`${import.meta.env.BASE_URL}art/characters/${portrait}.webp`} alt="" width="480" height="600" decoding="async" />

@@ -1,6 +1,9 @@
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { content, contentMeta } from '../src/content';
 import { ACTION_LOGICS, allChoices, evaluateCondition, startEpisode, FACETS, fitsSchedule } from '../src/engine';
+import { buildImpactGraph, conditionReachable, decisionAtoms, impactOf } from '../src/engine/impact';
 import type { Card, Condition, GameContent } from '../src/engine/types';
 import * as schemas from './schema';
 import { forbiddenText } from './stoplist';
@@ -102,6 +105,50 @@ export function echoErrors(c:GameContent):string[]{
  for(const x of t.echo.varied){if(!/^Сегодня /.test(x)||PERSONAL_TRAIT_PATTERN.test(x))fail(`Echo varied text must speak about today only: ${x}`);}
  return errors;
 }
+/** Files of the visual layer live under public/; a content path is relative to it, with or without a leading slash. */
+export const publicAsset = (image: string) => join(process.cwd(), 'public', image.replace(/^\/+/, ''));
+/**
+ * World impact contract (REQs/WORLD-IMPACT-v1.md, sections 6, 13, 15, 16): variants must be reachable and unambiguous, and a choice
+ * that claims to matter must have consequences the hero can actually meet. The consequences are read from the real content.
+ */
+export function impactErrors(c: GameContent, assetExists: (image: string) => boolean = image => existsSync(publicAsset(image))): string[] {
+ const errors: string[] = []; const fail = (x: string) => errors.push(x);
+ for (const card of c.cards) {
+  for (const v of card.textVariants ?? []) if (!conditionReachable(c, v.when)) fail(`Text variant ${card.id}/${v.id} can never hold: nothing writes what it reads`);
+  card.choiceVariants?.forEach((v, i) => {
+   if (!conditionReachable(c, v.when)) fail(`Choice variant #${i} of ${card.id} can never hold: nothing writes what it reads`);
+   const ids = v.choices.map(ch => ch.id).join('|');
+   if (ids === card.choices.map(ch => ch.id).join('|')) fail(`Choice variant #${i} of ${card.id} offers the same choices as the base pair`);
+  });
+  if (card.image && !assetExists(card.image)) fail(`Card ${card.id}: image ${card.image} does not exist`);
+  const variants = card.visualVariants ?? [];
+  if (new Set(variants.map(v => v.id)).size !== variants.length) fail(`Duplicate visualVariant ids in ${card.id}`);
+  variants.forEach((v, i) => {
+   if (!assetExists(v.image)) fail(`Visual variant ${card.id}/${v.id}: image ${v.image} does not exist`);
+   if (!conditionReachable(c, v.when)) fail(`Visual variant ${card.id}/${v.id} can never hold: nothing writes what it reads`);
+   if (!decisionAtoms(v.when).length) fail(`Visual variant ${card.id}/${v.id} does not depend on any decision`);
+   // First match wins: a later variant whose conjunction contains an earlier one's can never be reached (an exact duplicate included).
+   const conj = (x: Condition): string[] => 'all' in x ? x.all.flatMap(conj) : [JSON.stringify(x)];
+   const mine = conj(v.when);
+   for (const earlier of variants.slice(0, i)) if (conj(earlier.when).every(a => mine.includes(a))) fail(`Visual variant ${card.id}/${v.id} is shadowed by ${earlier.id}`);
+  });
+ }
+ const graph = buildImpactGraph(c);
+ for (const card of c.cards) for (const ch of allChoices(card)) {
+  if (!ch.impact) continue;
+  const where = `${card.id}/${ch.id}`;
+  const { count, kinds } = impactOf(graph, card.id, ch.id);
+  const base = ch.impact.level === 'minor' ? 0 : ch.impact.level === 'meaningful' ? 1 : 2;
+  const need = Math.max(base, ch.impact.require?.minObservable ?? 0);
+  if (count < need) fail(`${ch.impact.level} choice ${where} has ${count} observable consequence(s), needs ${need}`);
+  if (ch.impact.level === 'major' && count >= need && !(kinds.has('delayed') || kinds.has('cross-character') || kinds.has('choice')))
+   fail(`major choice ${where} has only immediate consequences: it needs a delayed, cross-character or future-choice one`);
+  if (ch.impact.require?.delayed && !kinds.has('delayed')) fail(`Choice ${where} requires a delayed consequence and has none`);
+  if (ch.impact.require?.crossCharacter && !kinds.has('cross-character')) fail(`Choice ${where} requires a cross-character consequence and has none`);
+  if (ch.impact.require?.minObservable !== undefined && ch.impact.level === 'minor') fail(`Choice ${where}: a minor choice has no requirements`);
+ }
+ return errors;
+}
 export function validateContent(c: GameContent): string[] {
  const errors: string[]=[]; const fail=(s:string)=>errors.push(s);
  const check=(name:string,schema:{safeParse(v:unknown):{success:boolean;error?:unknown}},v:unknown)=>{const r=schema.safeParse(v);if(!r.success)fail(`${name}: ${JSON.stringify(r.error)}`);};
@@ -171,6 +218,7 @@ export function validateContent(c: GameContent): string[] {
   unique(`choice ids ${card.id}`,allChoices(card).map(ch=>ch.id));
   for(const v of card.textVariants??[]){walk(v.when);texts.push(v.text);if(v.familiarCardId&&!ids.has(v.familiarCardId))fail(`Unknown familiar scene ${v.id}`);}
   for(const v of card.choiceVariants??[])walk(v.when);
+  for(const v of card.visualVariants??[])walk(v.when);
   for(const ch of allChoices(card)){
    texts.push(ch.label);if(!ch.servesFacets?.length)fail(`Missing servesFacets ${card.id}/${ch.id}`);
    if(!card.key&&Object.values(ch.effects.qualities??{}).some(n=>Math.abs(n)>1))fail(`Non-key quality ±2 ${card.id}`);
@@ -223,6 +271,7 @@ export function validateContent(c: GameContent): string[] {
   try{if(!fitsSchedule(state,c))fail('Required deadline capacity is insufficient');}catch(e){fail(String(e));}
  }
  validateDiagnostics(c,fail);
+ for(const e of impactErrors(c))fail(e);
  // v2.5 package: the extraction itself, and its structural parity with whatever of it is already in the runtime content.
  try{const source=loadSourceJson();for(const e of checkSource(source).errors)fail(`v2.5 source: ${e}`);for(const e of checkParity(source,c))fail(e);}catch(e){fail(`v2.5 source unreadable: ${String(e)}`);}
  unique('opportunity facet',c.episode.opportunities.map(o=>o.facet));

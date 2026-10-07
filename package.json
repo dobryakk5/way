@@ -15,6 +15,7 @@
     "simulate": "node --import tsx scripts/simulate.ts",
     "smoke:phase4": "node --import tsx scripts/smoke-phase4.ts",
     "simulate:development": "node --import tsx scripts/simulate-development.ts",
+    "simulate:impact": "node --import tsx scripts/simulate-impact.ts",
     "simulate:profile": "node --import tsx scripts/simulate-profile.ts",
     "summary:simulate": "node --import tsx scripts/simulate-summary.ts",
     "profile:calibration": "node --import tsx scripts/profile-calibration.ts",

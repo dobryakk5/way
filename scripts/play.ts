@@ -27,12 +27,14 @@ export interface PlayOptions {
  resume?:GameState;
  onDraw?:(state:GameState,draw:DrawResult)=>void;
  beforeStep?:(state:GameState)=>GameState;
+ // Stop early (for example after the first week) instead of playing the whole episode.
+ stopWhen?:(state:GameState)=>boolean;
 }
 export function play(seed:number,options:PlayOptions={}) {
  const c=options.content??content;const policy=options.policy??'random';
  let state=options.resume??chooseGoal(startEpisode(c,seed,`sim-${seed}`),c,'order','select');if(options.start)state=options.start(state);let transitions=0;let crises=0;
  const draws:{day:number;slot:number;cardId:string;source:string;variantId?:string}[]=[];
- while(state.phase!=='boundary'&&state.phase!=='ending'){
+ while(state.phase!=='boundary'&&state.phase!=='ending'&&!options.stopWhen?.(state)){
   if(++transitions>400)throw new Error('Transition loop');
   if(options.beforeStep)state=options.beforeStep(state);
   switch(state.phase){

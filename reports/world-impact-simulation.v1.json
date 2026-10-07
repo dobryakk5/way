@@ -1,0 +1,1597 @@
+{
+ "contentVersion": "mvp-v2.5-alpha.2",
+ "runsPerPolicy": 300,
+ "throughDay": 30,
+ "reportDays": [
+  1,
+  2,
+  3,
+  7
+ ],
+ "policies": {
+  "always-first": {
+   "runs": 300,
+   "observableImpactPerRunByDay": {
+    "1": 1,
+    "2": 2,
+    "3": 3.43,
+    "7": 1.56
+   },
+   "kindsPerRunByDay": {
+    "1": {
+     "callback": 1,
+     "choice": 0,
+     "visual": 0,
+     "delayed": 0,
+     "cross-character": 0
+    },
+    "2": {
+     "callback": 1,
+     "choice": 0,
+     "visual": 1,
+     "delayed": 2,
+     "cross-character": 0
+    },
+    "3": {
+     "callback": 3.43,
+     "choice": 1,
+     "visual": 1,
+     "delayed": 0.43,
+     "cross-character": 1
+    },
+    "7": {
+     "callback": 0.1,
+     "choice": 0,
+     "visual": 0,
+     "delayed": 1.56,
+     "cross-character": 0.06
+    }
+   },
+   "firstObservableImpact": {
+    "day1Pct": 100,
+    "byEndOfDay2Pct": 100,
+    "byEndOfDay3Pct": 100,
+    "laterPct": 0,
+    "neverPct": 0,
+    "medianDay": 1
+   },
+   "distinctSourceChoicesSeenByDay3": 3.43,
+   "perRun": {
+    "delayed": 13.57,
+    "crossCharacter": 4.37,
+    "choiceChanging": 2,
+    "visual": 3
+   },
+   "openingCriterion": {
+    "day1Pct": 100,
+    "day3Pct": 100
+   }
+  },
+  "always-second": {
+   "runs": 300,
+   "observableImpactPerRunByDay": {
+    "1": 1,
+    "2": 3,
+    "3": 3.49,
+    "7": 1.41
+   },
+   "kindsPerRunByDay": {
+    "1": {
+     "callback": 1,
+     "choice": 0,
+     "visual": 0,
+     "delayed": 0,
+     "cross-character": 0
+    },
+    "2": {
+     "callback": 3,
+     "choice": 0,
+     "visual": 1,
+     "delayed": 1,
+     "cross-character": 1
+    },
+    "3": {
+     "callback": 3.49,
+     "choice": 0,
+     "visual": 1,
+     "delayed": 0.49,
+     "cross-character": 1
+    },
+    "7": {
+     "callback": 1.08,
+     "choice": 0,
+     "visual": 0,
+     "delayed": 0.41,
+     "cross-character": 0
+    }
+   },
+   "firstObservableImpact": {
+    "day1Pct": 100,
+    "byEndOfDay2Pct": 100,
+    "byEndOfDay3Pct": 100,
+    "laterPct": 0,
+    "neverPct": 0,
+    "medianDay": 1
+   },
+   "distinctSourceChoicesSeenByDay3": 4.49,
+   "perRun": {
+    "delayed": 10.93,
+    "crossCharacter": 5,
+    "choiceChanging": 1,
+    "visual": 2
+   },
+   "openingCriterion": {
+    "day1Pct": 100,
+    "day3Pct": 100
+   }
+  },
+  "always-costly": {
+   "runs": 300,
+   "observableImpactPerRunByDay": {
+    "1": 1,
+    "2": 2.47,
+    "3": 3.46,
+    "7": 1.62
+   },
+   "kindsPerRunByDay": {
+    "1": {
+     "callback": 1,
+     "choice": 0,
+     "visual": 0,
+     "delayed": 0,
+     "cross-character": 0
+    },
+    "2": {
+     "callback": 1.94,
+     "choice": 0,
+     "visual": 1,
+     "delayed": 1.53,
+     "cross-character": 0.47
+    },
+    "3": {
+     "callback": 3.46,
+     "choice": 0,
+     "visual": 1,
+     "delayed": 0.46,
+     "cross-character": 1
+    },
+    "7": {
+     "callback": 0.61,
+     "choice": 0,
+     "visual": 0,
+     "delayed": 1.09,
+     "cross-character": 0.05
+    }
+   },
+   "firstObservableImpact": {
+    "day1Pct": 100,
+    "byEndOfDay2Pct": 100,
+    "byEndOfDay3Pct": 100,
+    "laterPct": 0,
+    "neverPct": 0,
+    "medianDay": 1
+   },
+   "distinctSourceChoicesSeenByDay3": 3.93,
+   "perRun": {
+    "delayed": 12.49,
+    "crossCharacter": 4.85,
+    "choiceChanging": 1,
+    "visual": 3
+   },
+   "openingCriterion": {
+    "day1Pct": 100,
+    "day3Pct": 100
+   }
+  },
+  "greedy-resources": {
+   "runs": 300,
+   "observableImpactPerRunByDay": {
+    "1": 1,
+    "2": 2.47,
+    "3": 3.46,
+    "7": 2.04
+   },
+   "kindsPerRunByDay": {
+    "1": {
+     "callback": 1,
+     "choice": 0,
+     "visual": 0,
+     "delayed": 0,
+     "cross-character": 0
+    },
+    "2": {
+     "callback": 1.94,
+     "choice": 0,
+     "visual": 1,
+     "delayed": 1.53,
+     "cross-character": 0.47
+    },
+    "3": {
+     "callback": 3.46,
+     "choice": 0.52,
+     "visual": 1,
+     "delayed": 0.46,
+     "cross-character": 1
+    },
+    "7": {
+     "callback": 0.59,
+     "choice": 0.49,
+     "visual": 0,
+     "delayed": 1.05,
+     "cross-character": 0
+    }
+   },
+   "firstObservableImpact": {
+    "day1Pct": 100,
+    "byEndOfDay2Pct": 100,
+    "byEndOfDay3Pct": 100,
+    "laterPct": 0,
+    "neverPct": 0,
+    "medianDay": 1
+   },
+   "distinctSourceChoicesSeenByDay3": 3.93,
+   "perRun": {
+    "delayed": 12.43,
+    "crossCharacter": 4.47,
+    "choiceChanging": 2.66,
+    "visual": 2
+   },
+   "openingCriterion": {
+    "day1Pct": 100,
+    "day3Pct": 100
+   }
+  },
+  "greedy-qualities": {
+   "runs": 300,
+   "observableImpactPerRunByDay": {
+    "1": 1,
+    "2": 2.47,
+    "3": 3.46,
+    "7": 1.79
+   },
+   "kindsPerRunByDay": {
+    "1": {
+     "callback": 1,
+     "choice": 0,
+     "visual": 0,
+     "delayed": 0,
+     "cross-character": 0
+    },
+    "2": {
+     "callback": 1.94,
+     "choice": 0,
+     "visual": 1,
+     "delayed": 1.53,
+     "cross-character": 0.47
+    },
+    "3": {
+     "callback": 3.46,
+     "choice": 0.52,
+     "visual": 1,
+     "delayed": 0.46,
+     "cross-character": 1
+    },
+    "7": {
+     "callback": 0.57,
+     "choice": 0.25,
+     "visual": 0,
+     "delayed": 1.05,
+     "cross-character": 0.06
+    }
+   },
+   "firstObservableImpact": {
+    "day1Pct": 100,
+    "byEndOfDay2Pct": 100,
+    "byEndOfDay3Pct": 100,
+    "laterPct": 0,
+    "neverPct": 0,
+    "medianDay": 1
+   },
+   "distinctSourceChoicesSeenByDay3": 3.93,
+   "perRun": {
+    "delayed": 12.63,
+    "crossCharacter": 4.93,
+    "choiceChanging": 3.13,
+    "visual": 3
+   },
+   "openingCriterion": {
+    "day1Pct": 100,
+    "day3Pct": 100
+   }
+  },
+  "random": {
+   "runs": 300,
+   "observableImpactPerRunByDay": {
+    "1": 1,
+    "2": 2.47,
+    "3": 3.46,
+    "7": 1.77
+   },
+   "kindsPerRunByDay": {
+    "1": {
+     "callback": 1,
+     "choice": 0,
+     "visual": 0,
+     "delayed": 0,
+     "cross-character": 0
+    },
+    "2": {
+     "callback": 1.94,
+     "choice": 0,
+     "visual": 1,
+     "delayed": 1.53,
+     "cross-character": 0.47
+    },
+    "3": {
+     "callback": 3.46,
+     "choice": 0.52,
+     "visual": 1,
+     "delayed": 0.46,
+     "cross-character": 1
+    },
+    "7": {
+     "callback": 0.57,
+     "choice": 0.25,
+     "visual": 0,
+     "delayed": 1.02,
+     "cross-character": 0.02
+    }
+   },
+   "firstObservableImpact": {
+    "day1Pct": 100,
+    "byEndOfDay2Pct": 100,
+    "byEndOfDay3Pct": 100,
+    "laterPct": 0,
+    "neverPct": 0,
+    "medianDay": 1
+   },
+   "distinctSourceChoicesSeenByDay3": 3.93,
+   "perRun": {
+    "delayed": 12.5,
+    "crossCharacter": 4.65,
+    "choiceChanging": 2.2,
+    "visual": 2.5
+   },
+   "openingCriterion": {
+    "day1Pct": 100,
+    "day3Pct": 100
+   }
+  },
+  "mixed": {
+   "runs": 300,
+   "observableImpactPerRunByDay": {
+    "1": 1,
+    "2": 2.47,
+    "3": 3.46,
+    "7": 1.74
+   },
+   "kindsPerRunByDay": {
+    "1": {
+     "callback": 1,
+     "choice": 0,
+     "visual": 0,
+     "delayed": 0,
+     "cross-character": 0
+    },
+    "2": {
+     "callback": 1.94,
+     "choice": 0,
+     "visual": 1,
+     "delayed": 1.53,
+     "cross-character": 0.47
+    },
+    "3": {
+     "callback": 3.46,
+     "choice": 0.17,
+     "visual": 1,
+     "delayed": 0.46,
+     "cross-character": 1
+    },
+    "7": {
+     "callback": 0.58,
+     "choice": 0.16,
+     "visual": 0,
+     "delayed": 1.08,
+     "cross-character": 0.03
+    }
+   },
+   "firstObservableImpact": {
+    "day1Pct": 100,
+    "byEndOfDay2Pct": 100,
+    "byEndOfDay3Pct": 100,
+    "laterPct": 0,
+    "neverPct": 0,
+    "medianDay": 1
+   },
+   "distinctSourceChoicesSeenByDay3": 3.93,
+   "perRun": {
+    "delayed": 12.62,
+    "crossCharacter": 4.75,
+    "choiceChanging": 1.57,
+    "visual": 2.67
+   },
+   "openingCriterion": {
+    "day1Pct": 100,
+    "day3Pct": 100
+   }
+  }
+ },
+ "scripted": {
+  "runs": 1500,
+  "observableImpactPerRunByDay": {
+   "1": 1,
+   "2": 2.48,
+   "3": 3.46,
+   "7": 1.68
+  },
+  "kindsPerRunByDay": {
+   "1": {
+    "callback": 1,
+    "choice": 0,
+    "visual": 0,
+    "delayed": 0,
+    "cross-character": 0
+   },
+   "2": {
+    "callback": 1.96,
+    "choice": 0,
+    "visual": 1,
+    "delayed": 1.52,
+    "cross-character": 0.48
+   },
+   "3": {
+    "callback": 3.46,
+    "choice": 0.41,
+    "visual": 1,
+    "delayed": 0.46,
+    "cross-character": 1
+   },
+   "7": {
+    "callback": 0.59,
+    "choice": 0.15,
+    "visual": 0,
+    "delayed": 1.03,
+    "cross-character": 0.03
+   }
+  },
+  "firstObservableImpact": {
+   "day1Pct": 100,
+   "byEndOfDay2Pct": 100,
+   "byEndOfDay3Pct": 100,
+   "laterPct": 0,
+   "neverPct": 0,
+   "medianDay": 1
+  },
+  "distinctSourceChoicesSeenByDay3": 3.94,
+  "perRun": {
+   "delayed": 12.41,
+   "crossCharacter": 4.72,
+   "choiceChanging": 1.96,
+   "visual": 2.6
+  },
+  "openingCriterion": {
+   "day1Pct": 100,
+   "day3Pct": 100
+  }
+ },
+ "stochastic": {
+  "runs": 600,
+  "observableImpactPerRunByDay": {
+   "1": 1,
+   "2": 2.47,
+   "3": 3.46,
+   "7": 1.75
+  },
+  "kindsPerRunByDay": {
+   "1": {
+    "callback": 1,
+    "choice": 0,
+    "visual": 0,
+    "delayed": 0,
+    "cross-character": 0
+   },
+   "2": {
+    "callback": 1.94,
+    "choice": 0,
+    "visual": 1,
+    "delayed": 1.53,
+    "cross-character": 0.47
+   },
+   "3": {
+    "callback": 3.46,
+    "choice": 0.34,
+    "visual": 1,
+    "delayed": 0.46,
+    "cross-character": 1
+   },
+   "7": {
+    "callback": 0.58,
+    "choice": 0.2,
+    "visual": 0,
+    "delayed": 1.05,
+    "cross-character": 0.03
+   }
+  },
+  "firstObservableImpact": {
+   "day1Pct": 100,
+   "byEndOfDay2Pct": 100,
+   "byEndOfDay3Pct": 100,
+   "laterPct": 0,
+   "neverPct": 0,
+   "medianDay": 1
+  },
+  "distinctSourceChoicesSeenByDay3": 3.93,
+  "perRun": {
+   "delayed": 12.56,
+   "crossCharacter": 4.7,
+   "choiceChanging": 1.89,
+   "visual": 2.59
+  },
+  "openingCriterion": {
+   "day1Pct": 100,
+   "day3Pct": 100
+  }
+ },
+ "audit": [
+  {
+   "card": "c1_alexey_broken_jug",
+   "choice": "show",
+   "day": 1,
+   "level": "major",
+   "writes": {
+    "facts": {},
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "c1_alexey_after_jug",
+     "kinds": [
+      "delayed",
+      "callback",
+      "visual"
+     ],
+     "via": [
+      "schedule",
+      "text",
+      "visual",
+      "trace"
+     ]
+    },
+    {
+     "reader": "c1_wounded_road",
+     "kinds": [
+      "callback",
+      "cross-character"
+     ],
+     "via": [
+      "text"
+     ]
+    },
+    {
+     "reader": "c1_marta_firewood",
+     "kinds": [
+      "callback",
+      "cross-character"
+     ],
+     "via": [
+      "text"
+     ]
+    },
+    {
+     "reader": "c1_customer_hurry",
+     "kinds": [
+      "callback",
+      "cross-character"
+     ],
+     "via": [
+      "text"
+     ]
+    },
+    {
+     "reader": "daytext:evening_1",
+     "kinds": [
+      "callback"
+     ],
+     "via": [
+      "daytext"
+     ]
+    }
+   ],
+   "chosenInRuns": 1112,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 1,
+   "shownKinds": [
+    "callback",
+    "visual",
+    "delayed",
+    "cross-character"
+   ],
+   "crossCharacter": true,
+   "delayed": true,
+   "visual": true,
+   "futureChoice": false
+  },
+  {
+   "card": "c1_alexey_broken_jug",
+   "choice": "prepare",
+   "day": 1,
+   "level": "major",
+   "writes": {
+    "facts": {},
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "c1_alexey_after_jug",
+     "kinds": [
+      "delayed",
+      "callback",
+      "visual"
+     ],
+     "via": [
+      "schedule",
+      "text",
+      "visual",
+      "trace"
+     ]
+    },
+    {
+     "reader": "c1_wounded_road",
+     "kinds": [
+      "callback",
+      "cross-character"
+     ],
+     "via": [
+      "text"
+     ]
+    },
+    {
+     "reader": "c1_marta_firewood",
+     "kinds": [
+      "callback",
+      "cross-character"
+     ],
+     "via": [
+      "text"
+     ]
+    },
+    {
+     "reader": "c1_customer_hurry",
+     "kinds": [
+      "callback",
+      "cross-character"
+     ],
+     "via": [
+      "text"
+     ]
+    },
+    {
+     "reader": "daytext:evening_1",
+     "kinds": [
+      "callback"
+     ],
+     "via": [
+      "daytext"
+     ]
+    }
+   ],
+   "chosenInRuns": 988,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 1,
+   "shownKinds": [
+    "callback",
+    "visual",
+    "delayed",
+    "cross-character"
+   ],
+   "crossCharacter": true,
+   "delayed": true,
+   "visual": true,
+   "futureChoice": false
+  },
+  {
+   "card": "c1_wounded_road",
+   "choice": "stop",
+   "day": 3,
+   "level": "major",
+   "writes": {
+    "facts": {},
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "c1_wanderer_returns",
+     "kinds": [
+      "delayed",
+      "callback"
+     ],
+     "via": [
+      "schedule",
+      "trace"
+     ]
+    },
+    {
+     "reader": "c1_extra_change",
+     "kinds": [
+      "callback",
+      "cross-character",
+      "visual"
+     ],
+     "via": [
+      "text",
+      "visual"
+     ]
+    },
+    {
+     "reader": "c2_shadow_compassion",
+     "kinds": [
+      "callback"
+     ],
+     "via": [
+      "text"
+     ]
+    },
+    {
+     "reader": "c2_gaze_wanderer_bread",
+     "kinds": [
+      "delayed"
+     ],
+     "via": [
+      "requires"
+     ]
+    },
+    {
+     "reader": "c2_gaze_marta_window",
+     "kinds": [
+      "delayed",
+      "cross-character"
+     ],
+     "via": [
+      "requires"
+     ]
+    },
+    {
+     "reader": "c2_gaze_alexey_silence",
+     "kinds": [
+      "delayed",
+      "cross-character"
+     ],
+     "via": [
+      "requires"
+     ]
+    },
+    {
+     "reader": "daytext:evening_3",
+     "kinds": [
+      "callback"
+     ],
+     "via": [
+      "daytext"
+     ]
+    }
+   ],
+   "chosenInRuns": 1251,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 3,
+   "shownKinds": [
+    "callback",
+    "visual",
+    "cross-character",
+    "delayed"
+   ],
+   "crossCharacter": true,
+   "delayed": true,
+   "visual": true,
+   "futureChoice": false
+  },
+  {
+   "card": "c1_wounded_road",
+   "choice": "pass",
+   "day": 3,
+   "level": "major",
+   "writes": {
+    "facts": {},
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "c1_wanderer_bridge",
+     "kinds": [
+      "delayed",
+      "callback"
+     ],
+     "via": [
+      "schedule",
+      "trace"
+     ]
+    },
+    {
+     "reader": "c1_extra_change",
+     "kinds": [
+      "callback",
+      "cross-character"
+     ],
+     "via": [
+      "text"
+     ]
+    },
+    {
+     "reader": "daytext:evening_3",
+     "kinds": [
+      "callback"
+     ],
+     "via": [
+      "daytext"
+     ]
+    }
+   ],
+   "chosenInRuns": 849,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 3,
+   "shownKinds": [
+    "callback",
+    "cross-character",
+    "delayed"
+   ],
+   "crossCharacter": true,
+   "delayed": true,
+   "visual": false,
+   "futureChoice": false
+  },
+  {
+   "card": "c1_marta_firewood",
+   "choice": "help",
+   "level": "meaningful",
+   "writes": {
+    "facts": {
+     "liaison.martaHelp": "hero"
+    },
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "daytext:evening_2",
+     "kinds": [
+      "callback"
+     ],
+     "via": [
+      "daytext"
+     ]
+    }
+   ],
+   "chosenInRuns": 164,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 2,
+   "shownKinds": [
+    "callback"
+   ],
+   "crossCharacter": false,
+   "delayed": false,
+   "visual": false,
+   "futureChoice": false
+  },
+  {
+   "card": "c1_marta_firewood",
+   "choice": "arrange",
+   "level": "meaningful",
+   "writes": {
+    "facts": {},
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "daytext:evening_2",
+     "kinds": [
+      "callback"
+     ],
+     "via": [
+      "daytext"
+     ]
+    }
+   ],
+   "chosenInRuns": 336,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 2,
+   "shownKinds": [
+    "callback"
+   ],
+   "crossCharacter": false,
+   "delayed": false,
+   "visual": false,
+   "futureChoice": false
+  },
+  {
+   "card": "c1_alexey_bad_work",
+   "choice": "together",
+   "day": 3,
+   "level": "meaningful",
+   "writes": {
+    "facts": {
+     "alexey.plan": "together"
+    },
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "c2_timon_order_result",
+     "kinds": [
+      "callback"
+     ],
+     "via": [
+      "trace"
+     ]
+    }
+   ],
+   "chosenInRuns": 525,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 10,
+   "shownKinds": [
+    "callback"
+   ],
+   "crossCharacter": false,
+   "delayed": false,
+   "visual": false,
+   "futureChoice": false
+  },
+  {
+   "card": "c1_alexey_bad_work",
+   "choice": "independent",
+   "day": 3,
+   "level": "meaningful",
+   "writes": {
+    "facts": {
+     "alexey.plan": "independent"
+    },
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "c2_timon_order_result",
+     "kinds": [
+      "choice",
+      "callback"
+     ],
+     "via": [
+      "choices",
+      "trace"
+     ]
+    }
+   ],
+   "chosenInRuns": 760,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 10,
+   "shownKinds": [
+    "choice",
+    "callback"
+   ],
+   "crossCharacter": false,
+   "delayed": false,
+   "visual": false,
+   "futureChoice": true
+  },
+  {
+   "card": "c1_alexey_bad_work",
+   "choice": "together_solo",
+   "day": 3,
+   "level": "unmarked",
+   "writes": {
+    "facts": {
+     "alexey.plan": "together"
+    },
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "c2_timon_order_result",
+     "kinds": [
+      "callback"
+     ],
+     "via": [
+      "trace"
+     ]
+    }
+   ],
+   "chosenInRuns": 392,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 10,
+   "shownKinds": [
+    "callback"
+   ],
+   "crossCharacter": false,
+   "delayed": false,
+   "visual": false,
+   "futureChoice": false
+  },
+  {
+   "card": "c1_alexey_bad_work",
+   "choice": "own_kiln",
+   "day": 3,
+   "level": "unmarked",
+   "writes": {
+    "facts": {
+     "alexey.plan": "independent"
+    },
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "c2_timon_order_result",
+     "kinds": [
+      "choice",
+      "callback"
+     ],
+     "via": [
+      "choices",
+      "trace"
+     ]
+    }
+   ],
+   "chosenInRuns": 223,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 10,
+   "shownKinds": [
+    "choice",
+    "callback"
+   ],
+   "crossCharacter": false,
+   "delayed": false,
+   "visual": false,
+   "futureChoice": true
+  },
+  {
+   "card": "c1_alexey_bad_work",
+   "choice": "independent_solo",
+   "day": 3,
+   "level": "unmarked",
+   "writes": {
+    "facts": {
+     "alexey.plan": "independent"
+    },
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "c2_timon_order_result",
+     "kinds": [
+      "choice",
+      "callback"
+     ],
+     "via": [
+      "choices",
+      "trace"
+     ]
+    }
+   ],
+   "chosenInRuns": 200,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 10,
+   "shownKinds": [
+    "choice",
+    "callback"
+   ],
+   "crossCharacter": false,
+   "delayed": false,
+   "visual": false,
+   "futureChoice": true
+  },
+  {
+   "card": "c1_liya_letter",
+   "choice": "later",
+   "level": "meaningful",
+   "writes": {
+    "facts": {},
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "c1_liya_second_letter",
+     "kinds": [
+      "delayed",
+      "callback"
+     ],
+     "via": [
+      "schedule",
+      "trace"
+     ]
+    }
+   ],
+   "chosenInRuns": 390,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 3,
+   "shownKinds": [
+    "delayed",
+    "callback"
+   ],
+   "crossCharacter": false,
+   "delayed": true,
+   "visual": false,
+   "futureChoice": false
+  },
+  {
+   "card": "c1_liya_letter",
+   "choice": "reply",
+   "level": "meaningful",
+   "writes": {
+    "facts": {},
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "c1_liya_second_letter",
+     "kinds": [
+      "delayed",
+      "callback"
+     ],
+     "via": [
+      "schedule",
+      "trace"
+     ]
+    }
+   ],
+   "chosenInRuns": 692,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 3,
+   "shownKinds": [
+    "delayed",
+    "callback"
+   ],
+   "crossCharacter": false,
+   "delayed": true,
+   "visual": false,
+   "futureChoice": false
+  },
+  {
+   "card": "c1_rain_delivery",
+   "choice": "finish",
+   "level": "unmarked",
+   "writes": {
+    "facts": {
+     "workshop.preparation": "ready"
+    },
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "c2_shadow_courage",
+     "kinds": [
+      "callback"
+     ],
+     "via": [
+      "text"
+     ]
+    }
+   ],
+   "chosenInRuns": 505,
+   "consequenceSeenPct": 6.5,
+   "firstVisibleDay": 9,
+   "shownKinds": [
+    "callback"
+   ],
+   "crossCharacter": false,
+   "delayed": false,
+   "visual": false,
+   "futureChoice": false
+  },
+  {
+   "card": "c1_rain_delivery",
+   "choice": "revise",
+   "level": "unmarked",
+   "writes": {
+    "facts": {
+     "workshop.preparation": "revised"
+    },
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "c2_liya_arrives",
+     "kinds": [
+      "choice"
+     ],
+     "via": [
+      "choices"
+     ]
+    },
+    {
+     "reader": "c2_shadow_letgo",
+     "kinds": [
+      "callback"
+     ],
+     "via": [
+      "text"
+     ]
+    }
+   ],
+   "chosenInRuns": 300,
+   "consequenceSeenPct": 67.7,
+   "firstVisibleDay": 9,
+   "shownKinds": [
+    "choice",
+    "callback"
+   ],
+   "crossCharacter": false,
+   "delayed": false,
+   "visual": false,
+   "futureChoice": true
+  },
+  {
+   "card": "c1_old_bowl",
+   "choice": "pause",
+   "level": "meaningful",
+   "writes": {
+    "facts": {
+     "inner.pause": "kept"
+    },
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "c2_marta_window_result",
+     "kinds": [
+      "delayed",
+      "callback"
+     ],
+     "via": [
+      "schedule",
+      "text",
+      "trace"
+     ]
+    },
+    {
+     "reader": "c2_shadow_attention",
+     "kinds": [
+      "callback"
+     ],
+     "via": [
+      "text"
+     ]
+    },
+    {
+     "reader": "c2_silence_marta_cup",
+     "kinds": [
+      "delayed"
+     ],
+     "via": [
+      "requires"
+     ]
+    },
+    {
+     "reader": "c2_silence_alexey_hand",
+     "kinds": [
+      "delayed"
+     ],
+     "via": [
+      "requires"
+     ]
+    },
+    {
+     "reader": "c2_silence_market_pause",
+     "kinds": [
+      "delayed"
+     ],
+     "via": [
+      "requires"
+     ]
+    }
+   ],
+   "chosenInRuns": 698,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 5,
+   "shownKinds": [
+    "callback",
+    "delayed"
+   ],
+   "crossCharacter": false,
+   "delayed": true,
+   "visual": false,
+   "futureChoice": false
+  },
+  {
+   "card": "c1_old_bowl",
+   "choice": "return",
+   "level": "meaningful",
+   "writes": {
+    "facts": {
+     "inner.pause": "carried"
+    },
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "c2_marta_window_result",
+     "kinds": [
+      "delayed",
+      "callback"
+     ],
+     "via": [
+      "schedule",
+      "text",
+      "trace"
+     ]
+    },
+    {
+     "reader": "c2_shadow_letgo",
+     "kinds": [
+      "callback"
+     ],
+     "via": [
+      "text"
+     ]
+    }
+   ],
+   "chosenInRuns": 374,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 6,
+   "shownKinds": [
+    "callback",
+    "delayed"
+   ],
+   "crossCharacter": false,
+   "delayed": true,
+   "visual": false,
+   "futureChoice": false
+  },
+  {
+   "card": "c1_customer_hurry",
+   "choice": "help",
+   "level": "meaningful",
+   "writes": {
+    "facts": {
+     "liaison.martaHelp": "hero"
+    },
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "daytext:evening_2",
+     "kinds": [
+      "callback"
+     ],
+     "via": [
+      "daytext"
+     ]
+    }
+   ],
+   "chosenInRuns": 147,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 2,
+   "shownKinds": [
+    "callback"
+   ],
+   "crossCharacter": false,
+   "delayed": false,
+   "visual": false,
+   "futureChoice": false
+  },
+  {
+   "card": "c1_customer_hurry",
+   "choice": "arrange",
+   "level": "meaningful",
+   "writes": {
+    "facts": {},
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "daytext:evening_2",
+     "kinds": [
+      "callback"
+     ],
+     "via": [
+      "daytext"
+     ]
+    }
+   ],
+   "chosenInRuns": 358,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 2,
+   "shownKinds": [
+    "callback"
+   ],
+   "crossCharacter": false,
+   "delayed": false,
+   "visual": false,
+   "futureChoice": false
+  },
+  {
+   "card": "c1_neighbor_noise",
+   "choice": "rest",
+   "level": "meaningful",
+   "writes": {
+    "facts": {
+     "body.pace": "shared"
+    },
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "c2_alexey_tools_result",
+     "kinds": [
+      "delayed",
+      "callback"
+     ],
+     "via": [
+      "schedule",
+      "text",
+      "trace"
+     ]
+    }
+   ],
+   "chosenInRuns": 579,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 6,
+   "shownKinds": [
+    "callback",
+    "delayed"
+   ],
+   "crossCharacter": false,
+   "delayed": true,
+   "visual": false,
+   "futureChoice": false
+  },
+  {
+   "card": "c1_neighbor_noise",
+   "choice": "continue",
+   "level": "meaningful",
+   "writes": {
+    "facts": {
+     "body.pace": "alone"
+    },
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "c2_alexey_tools_result",
+     "kinds": [
+      "delayed",
+      "callback"
+     ],
+     "via": [
+      "schedule",
+      "text",
+      "trace"
+     ]
+    },
+    {
+     "reader": "c2_shadow_compassion",
+     "kinds": [
+      "callback"
+     ],
+     "via": [
+      "text"
+     ]
+    },
+    {
+     "reader": "c2_shadow_courage",
+     "kinds": [
+      "callback"
+     ],
+     "via": [
+      "text"
+     ]
+    }
+   ],
+   "chosenInRuns": 596,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 6,
+   "shownKinds": [
+    "callback",
+    "delayed"
+   ],
+   "crossCharacter": false,
+   "delayed": true,
+   "visual": false,
+   "futureChoice": false
+  },
+  {
+   "card": "c1_alexey_after_jug",
+   "choice": "work",
+   "day": 2,
+   "level": "meaningful",
+   "writes": {
+    "facts": {},
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "c1_alexey_bad_work",
+     "kinds": [
+      "callback",
+      "choice",
+      "visual"
+     ],
+     "via": [
+      "text",
+      "choices",
+      "visual"
+     ]
+    }
+   ],
+   "chosenInRuns": 815,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 3,
+   "shownKinds": [
+    "callback",
+    "choice",
+    "visual"
+   ],
+   "crossCharacter": false,
+   "delayed": false,
+   "visual": true,
+   "futureChoice": true
+  },
+  {
+   "card": "c1_alexey_after_jug",
+   "choice": "teach",
+   "day": 2,
+   "level": "meaningful",
+   "writes": {
+    "facts": {},
+    "flags": []
+   },
+   "readers": [
+    {
+     "reader": "c1_alexey_bad_work",
+     "kinds": [
+      "callback",
+      "visual"
+     ],
+     "via": [
+      "text",
+      "visual"
+     ]
+    }
+   ],
+   "chosenInRuns": 1285,
+   "consequenceSeenPct": 100,
+   "firstVisibleDay": 3,
+   "shownKinds": [
+    "callback",
+    "visual"
+   ],
+   "crossCharacter": false,
+   "delayed": false,
+   "visual": true,
+   "futureChoice": false
+  },
+  {
+   "card": "c1_liya_second_letter",
+   "choice": "shelve",
+   "level": "unmarked",
+   "writes": {
+    "facts": {},
+    "flags": []
+   },
+   "readers": [],
+   "chosenInRuns": 430,
+   "consequenceSeenPct": 0,
+   "firstVisibleDay": null,
+   "shownKinds": [],
+   "crossCharacter": false,
+   "delayed": false,
+   "visual": false,
+   "futureChoice": false
+  },
+  {
+   "card": "c1_liya_second_letter",
+   "choice": "read",
+   "level": "unmarked",
+   "writes": {
+    "facts": {},
+    "flags": []
+   },
+   "readers": [],
+   "chosenInRuns": 533,
+   "consequenceSeenPct": 0,
+   "firstVisibleDay": null,
+   "shownKinds": [],
+   "crossCharacter": false,
+   "delayed": false,
+   "visual": false,
+   "futureChoice": false
+  }
+ ],
+ "poolChoicesNotListed": 209,
+ "majorWithoutObservableConsequence": [],
+ "failures": []
+}

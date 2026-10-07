@@ -448,6 +448,51 @@
       "texts": [
         "Показ работы Алексея отложен на после ярмарки."
       ]
+    },
+    {
+      "id": "change.c1_alexey_bad_work.together_solo",
+      "priority": 6,
+      "source": {
+        "cardId": "c1_alexey_bad_work",
+        "choiceId": "together_solo",
+        "fact": {
+          "key": "alexey.plan",
+          "value": "together"
+        }
+      },
+      "texts": [
+        "Алексей обожжёт свою чашку вместе с твоим заказом."
+      ]
+    },
+    {
+      "id": "change.c1_alexey_bad_work.independent_solo",
+      "priority": 6,
+      "source": {
+        "cardId": "c1_alexey_bad_work",
+        "choiceId": "independent_solo",
+        "fact": {
+          "key": "alexey.plan",
+          "value": "independent"
+        }
+      },
+      "texts": [
+        "Ты помог Алексею найти другую печь для его чашки."
+      ]
+    },
+    {
+      "id": "change.c1_alexey_bad_work.own_kiln",
+      "priority": 6,
+      "source": {
+        "cardId": "c1_alexey_bad_work",
+        "choiceId": "own_kiln",
+        "fact": {
+          "key": "alexey.plan",
+          "value": "independent"
+        }
+      },
+      "texts": [
+        "Алексей сам обожжёт свою чашку в малой печи."
+      ]
     }
   ],
   "reflection": {
@@ -579,6 +624,7 @@
   ],
   "observed": {
     "c1_alexey_bad_work/together": "look_after_relationship",
+    "c1_alexey_bad_work/together_solo": "look_after_relationship",
     "c1_alexey_broken_jug/prepare": "drive_to_result",
     "c1_alexey_broken_jug/show": "look_after_relationship",
     "c1_customer_hurry/arrange": "drive_to_result",

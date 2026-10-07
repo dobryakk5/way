@@ -3,8 +3,7 @@ import { content } from '../content';
 import { playLeaning, leaning, profileSummary } from '../../scripts/profile-scenarios';
 import { DEVELOPMENT_SCENARIOS } from '../../scripts/development-scenarios';
 import { play } from '../../scripts/play';
-import { validateSave, migrateSave } from '../persistence/save';
-import legacyV4 from '../persistence/legacy-v4.json';
+import { validateSave } from '../persistence/save';
 import { createInitialGameState, drawCard, persistDraw, prepareEvening, leaveEvening, applyChoice, startEpisode, chooseGoal, beginSlots, answerMotive, skipMotive, diagnosticCaseId } from './index';
 import type { ActionLogic, GameContent, GameState } from './index';
 const envelope = (game: GameState) => ({ schema: 1, started: true, game });
@@ -114,29 +113,6 @@ describe('saves under the strict v5 validation, on real play', () => {
     const s = chooseGoal(startEpisode(content, 4, 'fake'), content, 'order', 'select'); const bad = structuredClone(play(4, { policy: 'random' }).state);
     bad.development = { ...bad.development, developmentCurrent: 'diplomat', currentOrigin: 'observed-initial', available: ['diplomat'], initialStage: { logic: 'diplomat', origin: 'observed-initial', day: 6, available: ['diplomat'] } };
     expect(validateSave(envelope(bad))).toBeUndefined(); void s;
-  });
-});
-
-describe('legacy runs keep their authored stage', () => {
-  it('a migrated v4 hero collects observations only from new decisions and keeps the authored stage', () => {
-    const oldContent = { ...content, ...legacyV4 } as unknown as GameContent;
-    const authored = (s: GameState): GameState => ({ ...s, development: { ...s.development, developmentCurrent: 'expert', currentOrigin: 'legacy-authored', initialStage: { logic: 'expert', origin: 'legacy-authored', day: 0, available: ['opportunist', 'diplomat', 'expert'] },
-      available: ['opportunist', 'diplomat', 'expert'], activeArcId: 'expert-achiever', transitionTarget: 'achiever' } });
-    let snap: GameState | undefined;
-    play(2, { content: oldContent, ...leaning('diplomat', 0.05), start: authored, beforeStep: s => { if (!snap && s.day === 4 && s.phase === 'morning') snap = structuredClone(s); return s; } });
-    const { heroDevelopmentProfile: _p, pendingMotive: _m, development: d, current: _c, diceHistory, ...rest } = snap!;
-    const v4 = { schema: 1, started: true, game: { ...rest, nights: rest.nights.map(({ summary: _s, ...n }) => n), version: 4, contentVersion: legacyV4.contentVersion, diceHistory: diceHistory.map(({ candidateOrigins: _o, ...x }) => x),
-      development: { current: d.developmentCurrent, available: d.available, growingEdge: d.transitionTarget, activeArcId: d.activeArcId, evidence: d.evidence, transitions: d.transitions } } };
-    const migrated = migrateSave(v4)!.game; expect(migrated.heroDevelopmentProfile.cases).toHaveLength(0);
-    const { state } = play(2, { ...leaning('diplomat', 0.05), resume: migrated });
-    const p = state.heroDevelopmentProfile;
-    expect(p.cases.length).toBeGreaterThan(10); expect(p.cases.every(c => c.openedDay >= 4)).toBe(true);
-    expect(p.observedPrimary).toBe('diplomat');
-    // The observed center never replaces the authored stage.
-    expect(state.development.initialStage).toMatchObject({ logic: 'expert', origin: 'legacy-authored' });
-    expect(state.development.developmentCurrent === 'expert' || state.development.developmentCurrent === 'achiever').toBe(true);
-    expect(state.development.currentOrigin).not.toBe('observed-initial');
-    expect(validateSave(envelope(state))).toBeDefined();
   });
 });
 

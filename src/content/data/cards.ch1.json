@@ -43,6 +43,13 @@
         "lineStep": {
           "line": "apprentice",
           "step": "habitual"
+        },
+        "impact": {
+          "level": "major",
+          "require": {
+            "delayed": true,
+            "crossCharacter": true
+          }
         }
       },
       {
@@ -79,6 +86,13 @@
         "lineStep": {
           "line": "apprentice",
           "step": "habitual"
+        },
+        "impact": {
+          "level": "major",
+          "require": {
+            "delayed": true,
+            "crossCharacter": true
+          }
         }
       }
     ],
@@ -127,6 +141,12 @@
         "lineStep": {
           "line": "pace",
           "step": "habitual"
+        },
+        "impact": {
+          "level": "major",
+          "require": {
+            "delayed": true
+          }
         }
       },
       {
@@ -164,6 +184,12 @@
         "lineStep": {
           "line": "pace",
           "step": "habitual"
+        },
+        "impact": {
+          "level": "major",
+          "require": {
+            "delayed": true
+          }
         }
       }
     ],
@@ -178,6 +204,30 @@
     "key": true,
     "tags": [
       "parable"
+    ],
+    "textVariants": [
+      {
+        "id": "road_cup_show",
+        "kind": "consequence",
+        "when": {
+          "chose": {
+            "card": "c1_alexey_broken_jug",
+            "choice": "show"
+          }
+        },
+        "text": "Ты везёшь чашки на рынок и торопишься. Среди них — чашка Алексея, которую похвалил покупатель. У дороги лежит раненый путник. Остановишься — опоздаешь и потеряешь часть заказа. Проедешь — он будет ждать другую повозку."
+      },
+      {
+        "id": "road_cup_prepare",
+        "kind": "consequence",
+        "when": {
+          "chose": {
+            "card": "c1_alexey_broken_jug",
+            "choice": "prepare"
+          }
+        },
+        "text": "Ты везёшь чашки на рынок и торопишься. Чашки Алексея среди них нет: она осталась у него на столе. У дороги лежит раненый путник. Остановишься — опоздаешь и потеряешь часть заказа. Проедешь — он будет ждать другую повозку."
+      }
     ]
   },
   {
@@ -273,6 +323,43 @@
     "key": true,
     "tags": [
       "parable"
+    ],
+    "textVariants": [
+      {
+        "id": "change_after_stop",
+        "kind": "consequence",
+        "when": {
+          "chose": {
+            "card": "c1_wounded_road",
+            "choice": "stop"
+          }
+        },
+        "text": "Тимон сверяет привезённые чашки с договорённостью: части заказа не хватает, и он молча делает пометку. Потом торопливо отсчитывает тебе монеты и отдаёт лишние. Он уже отвернулся к следующему покупателю."
+      },
+      {
+        "id": "change_after_pass",
+        "kind": "consequence",
+        "when": {
+          "chose": {
+            "card": "c1_wounded_road",
+            "choice": "pass"
+          }
+        },
+        "text": "Тимон принимает заказ целиком и торопливо отсчитывает тебе монеты, отдаёт лишние. Он уже отвернулся к следующему покупателю."
+      }
+    ],
+    "visualVariants": [
+      {
+        "id": "stall-empty-basket",
+        "when": {
+          "chose": {
+            "card": "c1_wounded_road",
+            "choice": "stop"
+          }
+        },
+        "image": "art/scenes/market-empty-basket.webp",
+        "alt": "У прилавка стоит пустая корзина: часть заказа осталась в мастерской."
+      }
     ]
   },
   {
@@ -311,6 +398,9 @@
         "lineStep": {
           "line": "pace",
           "step": "habitual"
+        },
+        "impact": {
+          "level": "meaningful"
         }
       },
       {
@@ -340,6 +430,9 @@
         "lineStep": {
           "line": "pace",
           "step": "habitual"
+        },
+        "impact": {
+          "level": "meaningful"
         }
       }
     ],
@@ -350,6 +443,30 @@
     },
     "tags": [
       "route-only"
+    ],
+    "textVariants": [
+      {
+        "id": "c1_marta_firewood_cup_show",
+        "kind": "consequence",
+        "when": {
+          "chose": {
+            "card": "c1_alexey_broken_jug",
+            "choice": "show"
+          }
+        },
+        "text": "Марта, твоя соседка, окликает тебя от забора: «Слышала, покупатель расспрашивал про чашку Алексея». До темноты ей надо убрать дрова под навес. Ты обещал закончить ручки для заказа. Помочь самому или позвать на помощь другого соседа?"
+      },
+      {
+        "id": "c1_marta_firewood_cup_prepare",
+        "kind": "consequence",
+        "when": {
+          "chose": {
+            "card": "c1_alexey_broken_jug",
+            "choice": "prepare"
+          }
+        },
+        "text": "Марта, твоя соседка, окликает тебя от забора: «Алексей полдня ходит по двору с подставкой для своей чашки». До темноты ей надо убрать дрова под навес. Ты обещал закончить ручки для заказа. Помочь самому или позвать на помощь другого соседа?"
+      }
     ]
   },
   {
@@ -392,6 +509,9 @@
         "lineStep": {
           "line": "apprentice",
           "step": "habitual"
+        },
+        "impact": {
+          "level": "meaningful"
         }
       },
       {
@@ -424,6 +544,9 @@
         "lineStep": {
           "line": "apprentice",
           "step": "habitual"
+        },
+        "impact": {
+          "level": "meaningful"
         }
       }
     ],
@@ -435,6 +558,28 @@
     "key": true,
     "textVariants": [
       {
+        "id": "bw_taught",
+        "kind": "consequence",
+        "when": {
+          "chose": {
+            "card": "c1_alexey_after_jug",
+            "choice": "teach"
+          }
+        },
+        "text": "Алексей приносит листок с вашим расчётом обжига: цифры лежат так, как вы вдвоём их вывели. Он решил везти свою чашку на ярмарку. Обжечь её вместе с твоим заказом или помочь найти другую печь?"
+      },
+      {
+        "id": "bw_alone",
+        "kind": "consequence",
+        "when": {
+          "chose": {
+            "card": "c1_alexey_after_jug",
+            "choice": "work"
+          }
+        },
+        "text": "Алексей пришёл без расчёта: ты не мешал ему, и всё посчитано его рукой, местами на глаз. Он решил везти свою чашку на ярмарку. Обжечь её вместе с твоим заказом, помочь найти другую печь или оставить обжиг ему?"
+      },
+      {
         "id": "alexey_glaze_detail",
         "kind": "perception",
         "familiarCardId": "c1_alexey_broken_jug",
@@ -442,6 +587,136 @@
           "shown": "c1_alexey_broken_jug"
         },
         "text": "Алексей снова ставит свою чашку на свет и показывает пробу глазури: он решил везти её на ярмарку. Обжечь её вместе с твоим заказом или помочь найти другую печь?"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "chose": {
+            "card": "c1_alexey_after_jug",
+            "choice": "work"
+          }
+        },
+        "choices": [
+          {
+            "id": "together_solo",
+            "label": "Обжечь вместе с заказом",
+            "effects": {
+              "resources": {
+                "strength": -5,
+                "bonds": 4
+              },
+              "qualities": {
+                "compassion": 1,
+                "honesty": -1
+              },
+              "setFacts": {
+                "alexey.plan": "together"
+              }
+            },
+            "servesFacets": [
+              "relationships"
+            ],
+            "obligation": "Обжечь вместе с заказом",
+            "decisionKinds": [
+              "cost",
+              "pursue"
+            ],
+            "pursuesGoals": [
+              "alexey"
+            ],
+            "lineStep": {
+              "line": "apprentice",
+              "step": "habitual"
+            }
+          },
+          {
+            "id": "own_kiln",
+            "label": "Оставить обжиг ему самому",
+            "effects": {
+              "resources": {
+                "peace": 3,
+                "bonds": -2
+              },
+              "qualities": {
+                "letgo": 1
+              },
+              "setFacts": {
+                "alexey.plan": "independent"
+              }
+            },
+            "servesFacets": [
+              "relationships"
+            ],
+            "obligation": "Оставить обжиг ему самому",
+            "decisionKinds": [
+              "pursue"
+            ],
+            "pursuesGoals": [
+              "alexey"
+            ],
+            "lineStep": {
+              "line": "apprentice",
+              "step": "habitual"
+            }
+          },
+          {
+            "id": "independent_solo",
+            "label": "Помочь найти другую печь",
+            "effects": {
+              "resources": {
+                "wealth": -4,
+                "peace": 4
+              },
+              "qualities": {
+                "honesty": 1,
+                "letgo": 1
+              },
+              "setFacts": {
+                "alexey.plan": "independent"
+              }
+            },
+            "servesFacets": [
+              "work",
+              "relationships"
+            ],
+            "obligation": "Помочь найти другую печь",
+            "decisionKinds": [
+              "pursue"
+            ],
+            "pursuesGoals": [
+              "alexey"
+            ],
+            "lineStep": {
+              "line": "apprentice",
+              "step": "habitual"
+            }
+          }
+        ]
+      }
+    ],
+    "visualVariants": [
+      {
+        "id": "kiln-plan",
+        "when": {
+          "chose": {
+            "card": "c1_alexey_after_jug",
+            "choice": "teach"
+          }
+        },
+        "image": "art/scenes/kiln-plan.webp",
+        "alt": "У печи на стене висит листок с расчётом обжига."
+      },
+      {
+        "id": "kiln-alone",
+        "when": {
+          "chose": {
+            "card": "c1_alexey_after_jug",
+            "choice": "work"
+          }
+        },
+        "image": "art/scenes/kiln-alone.webp",
+        "alt": "У печи на полке стоит одна маленькая чашка Алексея."
       }
     ]
   },
@@ -482,6 +757,9 @@
         "lineStep": {
           "line": "commitments",
           "step": "habitual"
+        },
+        "impact": {
+          "level": "meaningful"
         }
       },
       {
@@ -514,6 +792,9 @@
         "lineStep": {
           "line": "commitments",
           "step": "habitual"
+        },
+        "impact": {
+          "level": "meaningful"
         }
       }
     ],
@@ -719,6 +1000,9 @@
         "lineStep": {
           "line": "pace",
           "step": "habitual"
+        },
+        "impact": {
+          "level": "meaningful"
         }
       },
       {
@@ -756,6 +1040,9 @@
         "lineStep": {
           "line": "pace",
           "step": "habitual"
+        },
+        "impact": {
+          "level": "meaningful"
         }
       }
     ],
@@ -800,6 +1087,9 @@
         "lineStep": {
           "line": "pace",
           "step": "habitual"
+        },
+        "impact": {
+          "level": "meaningful"
         }
       },
       {
@@ -829,6 +1119,9 @@
         "lineStep": {
           "line": "pace",
           "step": "habitual"
+        },
+        "impact": {
+          "level": "meaningful"
         }
       }
     ],
@@ -841,6 +1134,28 @@
       "route-only"
     ],
     "textVariants": [
+      {
+        "id": "c1_customer_hurry_cup_show",
+        "kind": "consequence",
+        "when": {
+          "chose": {
+            "card": "c1_alexey_broken_jug",
+            "choice": "show"
+          }
+        },
+        "text": "Марта, твоя соседка, окликает тебя от забора: «Слышала, покупатель расспрашивал про чашку Алексея». До темноты ей надо убрать дрова под навес. Помочь самому или позвать на помощь другого соседа?"
+      },
+      {
+        "id": "c1_customer_hurry_cup_prepare",
+        "kind": "consequence",
+        "when": {
+          "chose": {
+            "card": "c1_alexey_broken_jug",
+            "choice": "prepare"
+          }
+        },
+        "text": "Марта, твоя соседка, окликает тебя от забора: «Алексей полдня ходит по двору с подставкой для своей чашки». До темноты ей надо убрать дрова под навес. Помочь самому или позвать на помощь другого соседа?"
+      },
       {
         "id": "c1_customer_hurry_detail",
         "kind": "perception",
@@ -902,6 +1217,9 @@
         "lineStep": {
           "line": "pace",
           "step": "habitual"
+        },
+        "impact": {
+          "level": "meaningful"
         }
       },
       {
@@ -939,6 +1257,9 @@
         "lineStep": {
           "line": "pace",
           "step": "habitual"
+        },
+        "impact": {
+          "level": "meaningful"
         }
       }
     ],
@@ -1082,6 +1403,9 @@
         "lineStep": {
           "line": "apprentice",
           "step": "habitual"
+        },
+        "impact": {
+          "level": "meaningful"
         }
       },
       {
@@ -1111,6 +1435,9 @@
         "lineStep": {
           "line": "apprentice",
           "step": "habitual"
+        },
+        "impact": {
+          "level": "meaningful"
         }
       }
     ],
@@ -1145,6 +1472,30 @@
           }
         },
         "text": "Вчера ты занимался упаковкой заказа, и показ чашки отложили. Сегодня Алексей сам сделал для неё подставку. Не мешать ему готовить чашку к ярмарке или вместе рассчитать обжиг?"
+      }
+    ],
+    "visualVariants": [
+      {
+        "id": "cup-shown",
+        "when": {
+          "chose": {
+            "card": "c1_alexey_broken_jug",
+            "choice": "show"
+          }
+        },
+        "image": "art/scenes/workshop-cup-shown.webp",
+        "alt": "На столе рядом с глиной стоит чашка Алексея."
+      },
+      {
+        "id": "cup-stand",
+        "when": {
+          "chose": {
+            "card": "c1_alexey_broken_jug",
+            "choice": "prepare"
+          }
+        },
+        "image": "art/scenes/workshop-cup-stand.webp",
+        "alt": "Рядом с глиной лежит подставка, которую сделал Алексей."
       }
     ]
   },

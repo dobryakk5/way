@@ -71,8 +71,14 @@ export interface DiagnosticMotivePrompt {
   options: { id: string; label: string; signal: DiagnosticSignalDefinition }[];
 }
 export interface DiagnosticBehaviorDefinition { continuesSituationId: string; signal: DiagnosticSignalDefinition }
+// WORLD-IMPACT v1 (REQs/WORLD-IMPACT-v1.md): content-side audit metadata only. Never a fact of the world, never read by a Condition.
+export type ImpactLevel = 'minor' | 'meaningful' | 'major';
+export interface ChoiceImpactMeta {
+  level: ImpactLevel;
+  require?: { minObservable?: number; delayed?: boolean; crossCharacter?: boolean };
+}
 export interface Choice {
-  id: string; label: string; effects: Effects; servesFacets?: LifeFacet[];
+  id: string; label: string; effects: Effects; servesFacets?: LifeFacet[]; impact?: ChoiceImpactMeta;
   obligation?: string; decisionKinds?: DecisionKind[]; pursuesGoals?: GoalId[]; lineStep?: { line: StoryLine; step: string }; response?: string;
   developmentEvents?: DevelopmentEvent[];
   diagnosticAction?: DiagnosticSignalDefinition;
@@ -85,6 +91,10 @@ export interface CardTextVariant {
   familiarCardId?: string;
 }
 export interface ChoiceVariant { when: Condition; choices: Choice[] }
+/** The first variant whose `when` holds replaces the card image; same order semantics as `textVariants`. */
+export interface VisualVariant { id: string; when: Condition; image: string; alt?: string }
+/** The image a presented scene carries; chosen once when the scene is first shown and never recomputed. */
+export interface ResolvedCardVisual { variantId?: string; image: string; alt?: string }
 export interface CardDiagnostic {
   situationId: string; contextId: string; facets: LifeFacet[];
   developmentWeight: number; pressure?: boolean; expiresInDays?: number;
@@ -98,6 +108,8 @@ export interface Card {
   // 2 choices: the classic swipe pair. 3..4: shown in authored order (the diagnostic and development packages are position-balanced).
   choices: Choice[];
   textVariants?: CardTextVariant[]; choiceVariants?: ChoiceVariant[];
+  // Optional base image (path under public/, no leading slash needed). Cards without one keep the UI's own scene art.
+  image?: string; visualVariants?: VisualVariant[];
   key?: boolean; required?: boolean; at?: { day: number; slot: number };
   requires?: Condition; mustShowBy?: number; fixedSides?: boolean; weight?: number;
   once?: boolean; cooldownDays?: number;
@@ -175,6 +187,8 @@ export interface GameState {
   current?: { cardId: string; /** Legacy side of a two-choice card only. */ leftChoiceId?: string; /** Authored semantic ids; semantics always follow choiceId, never the index. */ choiceIds: string[]; text: string; variantId?: string; choices?: Choice[];
     // Frozen at first presentation; never recomputed after a reload or a profile update.
     selectionOrigin?: DiagnosticSelectionOrigin;
+    // Frozen at first presentation like the text: a later change of facts never repaints a scene already shown.
+    visual?: ResolvedCardVisual;
     // Stable server-persistence identity for this exact presentation. Numeric ids are derived from author keys.
     persistence?: {
       sceneInstanceId: string;
@@ -373,4 +387,16 @@ export interface HeroDevelopmentProfile {
 export interface PendingMotive {
   caseId: string; promptId: string; text: string; options: { id: string; label: string }[];
   resume: { day: number; slot: number; next: 'next-slot' | 'evening' };
+}
+
+// ---------------------------------------------------------------------------------------------
+// World impact (REQs/WORLD-IMPACT-v1.md): what the hero can actually see of her own past decisions.
+// Reports and tests only; nothing here is stored in GameState.
+// ---------------------------------------------------------------------------------------------
+export type ObservableImpactKind = 'callback' | 'choice' | 'visual' | 'delayed' | 'cross-character';
+export interface ObservableImpactEvent {
+  sourceCardId: string; sourceChoiceId: string; day: number; visibleCardId: string;
+  kinds: ObservableImpactKind[]; sourceCharacter?: string; visibleCharacter?: string;
+  /** Day of the source decision, to tell an immediate reaction from a later one. */
+  sourceDay: number;
 }

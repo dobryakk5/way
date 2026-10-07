@@ -7,21 +7,32 @@ import { eligible, fitsSchedule, obligations, routeAt } from './schedule';
 import { choiceById, resolveChoices } from './variants';
 import { cardFacetMultiplier, declaredIntentionPrior, facetAttention, facetAttentionOn, facetTargetDistribution, isFacetWeightedDrawCandidate } from './facets';
 import { exposeOpportunity } from './opportunities';
-import type { Card, Choice, DiagnosticSelectionOrigin, GameContent, GameState } from './types';
+import type { Card, Choice, DiagnosticSelectionOrigin, GameContent, GameState, ResolvedCardVisual } from './types';
 export type DrawSource = 'current' | 'at' | 'route' | 'capacity' | 'crisis' | 'mustShowBy' | 'scheduled' | 'pool' | 'development';
 export interface DrawResult {
   card: Card; choices: Choice[]; /** Sides exist only for a two-choice card; 3..4 choices are shown in authored order. */ leftChoiceId?: string; rightChoiceId?: string;
   text: string; source: DrawSource; variantId?: string;
   // How this scene reached the hero; fixed when it is first shown and carried by the saved `current`.
   selectionOrigin?: DiagnosticSelectionOrigin;
+  // The image of this presentation; like the text it is frozen at first presentation (WORLD-IMPACT v1).
+  visual?: ResolvedCardVisual;
 }
 export function resolveCardText(state: GameState, card: Card, content: GameContent): string {
   return card.textVariants?.find(v => evaluateCondition(v.when, state, content))?.text ?? card.text;
 }
+/**
+ * The image a scene would carry for the state it is shown in: the first `visualVariants` entry whose condition holds, else the
+ * base `image`, else nothing (the UI keeps its own scene art). Pure and ordered like `textVariants`; no randomness.
+ */
+export function resolveCardVisual(state: GameState, content: GameContent, card: Card): ResolvedCardVisual | undefined {
+  const variant = card.visualVariants?.find(v => evaluateCondition(v.when, state, content));
+  if (variant) return { variantId: variant.id, image: variant.image, ...(variant.alt ? { alt: variant.alt } : {}) };
+  return card.image ? { image: card.image } : undefined;
+}
 function result(state: GameState, card: Card, content: GameContent, source: DrawSource, origin?: DiagnosticSelectionOrigin): DrawResult {
   const choices = state.current?.cardId === card.id
-    ? state.current.choices ?? state.current.choiceIds.map(id => choiceById(card, id)) as Choice[]
-    : resolveChoices(state, card, content);
+    ? state.current.choices ?? state.current.choiceIds.map(id => withoutImpact(choiceById(card, id)!))
+    : resolveChoices(state, card, content).map(withoutImpact);
   if (choices.some(c => !c)) throw new Error('Saved choice pair requires an explicit content migration');
   const two = choices.length === 2;
   const swapped = two && !card.fixedSides && deterministicRandom(state.seed, state.day, state.slot, `sides:${card.id}`, state.episodeId) >= .5;
@@ -32,8 +43,10 @@ function result(state: GameState, card: Card, content: GameContent, source: Draw
   const variantId = state.current?.variantId ?? variant?.id;
   const shown = state.current?.cardId === card.id;
   const selectionOrigin = shown ? state.current!.selectionOrigin : origin ?? naturalSelectionOrigin(card, variantId, choices);
+  // A scene already shown keeps what it showed: a save written before visuals existed carries none and stays without one.
+  const visual = shown ? state.current!.visual : resolveCardVisual(state, content, card);
   return { card, choices, ...(leftChoiceId ? { leftChoiceId, rightChoiceId: choices.find(c => c.id !== leftChoiceId)!.id } : {}),
-    text: state.current?.text ?? variant?.text ?? card.text, source, ...(variantId ? { variantId } : {}), ...(selectionOrigin ? { selectionOrigin } : {}) };
+    text: state.current?.text ?? variant?.text ?? card.text, source, ...(variantId ? { variantId } : {}), ...(selectionOrigin ? { selectionOrigin } : {}), ...(visual ? { visual } : {}) };
 }
 const baseWeight = (c: Card) => c.weight ?? (c.type === 'situation' ? 3 : 1);
 const legacyWeight = (state: GameState, c: Card) => baseWeight(c) * (state.declaredIntention && c.facets?.includes(state.declaredIntention) ? 1.2 : 1);
@@ -183,11 +196,17 @@ export function drawCard(state: GameState, content: GameContent): DrawResult | u
   const card = drawFreePoolWeighted(state, content, adaptive ? independentPool(state, content, pool) : pool);
   return card ? result(state,card,content,'pool') : undefined;
 }
+/** Audit metadata of a choice is content only: neither a presented pair nor a saved one carries it, so editing it cannot invalidate a save. */
+export function withoutImpact(choice: Choice): Choice {
+  const { impact: _impact, ...rest } = structuredClone(choice);
+  return rest;
+}
 export function persistDraw(state: GameState, draw: DrawResult, content?: GameContent): GameState {
   if (state.current) return state;
   let next: GameState = { ...state, current: { cardId: draw.card.id, ...(draw.leftChoiceId ? { leftChoiceId: draw.leftChoiceId } : {}),
-    choiceIds: draw.choices.map(c => c.id), choices: structuredClone(draw.choices), text: draw.text,
-    ...(draw.variantId ? { variantId: draw.variantId } : {}), ...(draw.selectionOrigin ? { selectionOrigin: draw.selectionOrigin } : {}) } };
+    choiceIds: draw.choices.map(c => c.id), choices: draw.choices.map(withoutImpact), text: draw.text,
+    ...(draw.variantId ? { variantId: draw.variantId } : {}), ...(draw.selectionOrigin ? { selectionOrigin: draw.selectionOrigin } : {}),
+    ...(draw.visual ? { visual: structuredClone(draw.visual) } : {}) } };
   if (draw.variantId) next = { ...next, observations: [...next.observations, { day: state.day, slot: state.slot, kind: 'variant', id: draw.variantId }] };
   if (draw.variantId && draw.card.textVariants?.some(v => v.id === draw.variantId && v.kind === 'shadow') && draw.card.shadow)
     next = { ...next, flags: [...new Set([...next.flags, `observed_shadow_${draw.card.shadow.quality}`])] };

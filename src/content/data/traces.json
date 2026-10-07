@@ -3148,5 +3148,59 @@
       }
     ],
     "response": "План прибыльнее, но собственный замысел ученика ждёт следующей пробы."
+  },
+  {
+    "source": {
+      "cardId": "c1_alexey_bad_work",
+      "choiceId": "together_solo"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_alexey_bad_work/together_solo"
+      },
+      {
+        "kind": "card",
+        "id": "c2_timon_order_result"
+      }
+    ],
+    "response": "Чашка Алексея встала в печь рядом с твоим заказом.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c1_alexey_bad_work",
+      "choiceId": "independent_solo"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_alexey_bad_work/independent_solo"
+      },
+      {
+        "kind": "card",
+        "id": "c2_timon_order_result"
+      }
+    ],
+    "response": "Алексей пошёл узнавать про другую печь, а ты помог ему с первым знакомством.",
+    "visibleByDay": 10
+  },
+  {
+    "source": {
+      "cardId": "c1_alexey_bad_work",
+      "choiceId": "own_kiln"
+    },
+    "readers": [
+      {
+        "kind": "text",
+        "id": "choice:c1_alexey_bad_work/own_kiln"
+      },
+      {
+        "kind": "card",
+        "id": "c2_timon_order_result"
+      }
+    ],
+    "response": "Алексей сам растопил малую печь и поставил в неё свою чашку; ты остался у большой.",
+    "visibleByDay": 10
   }
 ]
