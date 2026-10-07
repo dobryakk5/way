@@ -70,8 +70,8 @@ const CARD_SCENE_ART: Partial<Record<string, SceneArt>> = {
   c2_gaze_wanderer_bread: 'village-street',
   c2_gaze_marta_window: 'village-street',
   c2_gaze_alexey_silence: 'workshop-dusk',
-  c2_ilya_after_forgive: 'courtyard',
-  c2_ilya_leaves: 'country-road',
+  c2_egor_after_forgive: 'courtyard',
+  c2_egor_leaves: 'country-road',
   c2_timon_order_result: 'market-fair',
   c2_alexey_tools_result: 'workshop-dawn',
   c2_marta_window_result: 'night-room',
@@ -318,7 +318,7 @@ function sceneArtForCard(draw: DrawResult): SceneArt {
 
 /** Painted portraits in public/art/characters/<id>.webp; characters without one keep the monogram. */
 const CHARACTER_PORTRAITS = new Set([
-  'alexey', 'daria', 'fekla', 'ilya', 'liya', 'marta',
+  'alexey', 'daria', 'fekla', 'egor', 'liya', 'marta',
   'miron', 'radim', 'savva', 'timon', 'ulyana', 'wanderer'
 ]);
 

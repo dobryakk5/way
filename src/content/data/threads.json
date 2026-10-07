@@ -135,9 +135,9 @@
     }
   },
   {
-    "id": "ilya_talk",
+    "id": "egor_talk",
     "kind": "opportunity",
-    "opportunityId": "ilya_talk",
+    "opportunityId": "egor_talk",
     "texts": {
       "open": [
         "Егор ждёт в этот вечер: потом перед отъездом останется лишь короткая встреча."
@@ -193,26 +193,26 @@
     }
   },
   {
-    "id": "ilya_departure",
+    "id": "egor_departure",
     "kind": "chain",
     "texts": [
       "Егор ещё скажет своё перед отъездом."
     ],
     "followUp": {
-      "cardId": "c2_ilya_leaves",
+      "cardId": "c2_egor_leaves",
       "firmTexts": [
         "Егор собирается в дорогу: этот разговор вернётся в ближайшие дни."
       ]
     }
   },
   {
-    "id": "ilya_forgiven",
+    "id": "egor_forgiven",
     "kind": "chain",
     "texts": [
       "Егор ещё ответит тебе по-своему."
     ],
     "followUp": {
-      "cardId": "c2_ilya_after_forgive",
+      "cardId": "c2_egor_after_forgive",
       "firmTexts": [
         "Егор ответит на твоё прощение в ближайшие дни."
       ]

@@ -89,7 +89,7 @@
     ],
     "initial": "waiting"
   },
-  "ilya.meeting": {
+  "egor.meeting": {
     "values": [
       "waiting",
       "talked",

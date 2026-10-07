@@ -197,19 +197,19 @@
     "text": "Мастерская закрыта до утра. Часть дел закончена, остальные дождутся следующего разговора.",
     "textVariants": [
       {
-        "id": "ilya_talk_talked",
+        "id": "egor_talk_talked",
         "kind": "consequence",
         "when": {
-          "fact": "ilya.meeting",
+          "fact": "egor.meeting",
           "equals": "talked"
         },
         "text": "Перед дорогой у Егора было время для разговора и сборов вместе."
       },
       {
-        "id": "ilya_talk_departed",
+        "id": "egor_talk_departed",
         "kind": "consequence",
         "when": {
-          "fact": "ilya.meeting",
+          "fact": "egor.meeting",
           "equals": "missed"
         },
         "text": "Егор закончил сборы сам. Завтра остаётся только короткая встреча перед дорогой."

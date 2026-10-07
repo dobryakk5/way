@@ -543,7 +543,7 @@
       },
       {
         "kind": "card",
-        "id": "c2_ilya_leaves"
+        "id": "c2_egor_leaves"
       }
     ],
     "response": "Егор услышал, что долг остаётся обязательством перед отъездом.",
@@ -561,7 +561,7 @@
       },
       {
         "kind": "card",
-        "id": "c2_ilya_after_forgive"
+        "id": "c2_egor_after_forgive"
       }
     ],
     "response": "Денежное требование снято; у разговора с Егором остались другие слова.",
@@ -1051,52 +1051,52 @@
   },
   {
     "source": {
-      "cardId": "c2_ilya_after_forgive",
+      "cardId": "c2_egor_after_forgive",
       "choiceId": "take"
     },
     "readers": [
       {
         "kind": "text",
-        "id": "choice:c2_ilya_after_forgive/take"
+        "id": "choice:c2_egor_after_forgive/take"
       }
     ],
     "response": "Возвращённый резец снова лежит среди инструментов мастерской."
   },
   {
     "source": {
-      "cardId": "c2_ilya_after_forgive",
+      "cardId": "c2_egor_after_forgive",
       "choiceId": "refuse"
     },
     "readers": [
       {
         "kind": "text",
-        "id": "choice:c2_ilya_after_forgive/refuse"
+        "id": "choice:c2_egor_after_forgive/refuse"
       }
     ],
     "response": "Резец остался у Егора; герой назвал то, что не сводится к возврату вещи."
   },
   {
     "source": {
-      "cardId": "c2_ilya_leaves",
+      "cardId": "c2_egor_leaves",
       "choiceId": "catch"
     },
     "readers": [
       {
         "kind": "text",
-        "id": "choice:c2_ilya_leaves/catch"
+        "id": "choice:c2_egor_leaves/catch"
       }
     ],
     "response": "Он вышел к Егору перед отъездом; часть долга осталась у двери."
   },
   {
     "source": {
-      "cardId": "c2_ilya_leaves",
+      "cardId": "c2_egor_leaves",
       "choiceId": "leave"
     },
     "readers": [
       {
         "kind": "text",
-        "id": "choice:c2_ilya_leaves/leave"
+        "id": "choice:c2_egor_leaves/leave"
       }
     ],
     "response": "Егор ушёл без нового разговора. Часть долга лежит у двери мастерской."

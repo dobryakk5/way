@@ -27,7 +27,7 @@
 | 7/2 | Остаться с Алексеем | `c2_old_master_tools`, `r_kiln` |
 | 7/2 | Закончить раньше | `c2_bridge_repair`, `c2_shadow_compassion` |
 | 9/1 | Проверить большой заказ | `c2_shadow_letgo`, `r_coins` |
-| 9/1 | Встретиться с Ильёй | `c2_shadow_honesty`, `c2_shadow_courage` |
+| 9/1 | Встретиться с Егором | `c2_shadow_honesty`, `c2_shadow_courage` |
 
 ## Окна возможностей
 
@@ -36,7 +36,7 @@
 | `marta_help` | 2 | `liaison.martaHelp` | `hero` / `other` |
 | `market_place` | 5 | `market.window` | `reserved` / `other` |
 | `quiet_evening` | 7 | `rest.beforeFair` | `kept` / `missed` |
-| `ilya_talk` | 9 | `ilya.meeting` | `talked` / `missed` |
+| `egor_talk` | 9 | `egor.meeting` | `talked` / `missed` |
 
 Сначала фиксируется реальное предъявление маршрута или сцены. Закрытие окна идемпотентно, без списания ресурсов. Последствия читаются в тексте вечера и дальнейших вариантах.
 
@@ -56,8 +56,8 @@
 | `c1_old_bowl` | `return` | 3 | — | `c2_marta_window_result` |
 | `c1_neighbor_noise` | `rest` | 3 | — | `c2_alexey_tools_result` |
 | `c1_neighbor_noise` | `continue` | 3 | — | `c2_alexey_tools_result` |
-| `c2_stones_bag` | `insist` | 2 | 10 | `c2_ilya_leaves` |
-| `c2_stones_bag` | `forgive` | 2 | 10 | `c2_ilya_after_forgive` |
+| `c2_stones_bag` | `insist` | 2 | 10 | `c2_egor_leaves` |
+| `c2_stones_bag` | `forgive` | 2 | 10 | `c2_egor_after_forgive` |
 | `c2_liya_arrives` | `fulfilled` | 1 | 10 | `c2_timon_order_result` |
 | `c2_liya_arrives` | `revised` | 1 | 10 | `c2_timon_order_result` |
 | `c2_liya_arrives` | `revise_now` | 1 | 10 | `c2_timon_order_result` |

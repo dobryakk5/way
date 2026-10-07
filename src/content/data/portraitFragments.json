@@ -135,20 +135,20 @@
     }
   },
   {
-    "id": "ilya.meeting_talked",
+    "id": "egor.meeting_talked",
     "group": "relationship",
     "text": "Перед дорогой у Егора было время для разговора и сборов вместе.",
     "requires": {
-      "fact": "ilya.meeting",
+      "fact": "egor.meeting",
       "equals": "talked"
     }
   },
   {
-    "id": "ilya.meeting_departed",
+    "id": "egor.meeting_departed",
     "group": "relationship",
     "text": "Егор закончил сборы сам. Завтра остаётся только короткая встреча перед дорогой.",
     "requires": {
-      "fact": "ilya.meeting",
+      "fact": "egor.meeting",
       "equals": "missed"
     }
   },

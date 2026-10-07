@@ -3,7 +3,7 @@
     "id": "c2_stones_bag",
     "chapter": 2,
     "type": "situation",
-    "character": "ilya",
+    "character": "egor",
     "text": "Егор пришёл мириться. Долг он не вернул. Говорит, что пока не может, и ждёт твоего ответа.",
     "choices": [
       {
@@ -21,7 +21,7 @@
           "wisdomId": "w_road_waits",
           "schedule": [
             {
-              "cardId": "c2_ilya_leaves",
+              "cardId": "c2_egor_leaves",
               "inDays": 2,
               "latestDay": 10
             }
@@ -54,7 +54,7 @@
           "wisdomId": "w_two_prices",
           "schedule": [
             {
-              "cardId": "c2_ilya_after_forgive",
+              "cardId": "c2_egor_after_forgive",
               "inDays": 2,
               "latestDay": 10
             }
@@ -655,7 +655,7 @@
             "compassion": -1
           },
           "setFacts": {
-            "ilya.meeting": "talked"
+            "egor.meeting": "talked"
           }
         },
         "servesFacets": [
@@ -683,7 +683,7 @@
             "compassion": 1
           },
           "setFacts": {
-            "ilya.meeting": "talked"
+            "egor.meeting": "talked"
           }
         },
         "servesFacets": [
@@ -704,7 +704,7 @@
         }
       }
     ],
-    "character": "ilya",
+    "character": "egor",
     "requires": {
       "dayGte": 9,
       "dayLte": 9
@@ -1018,7 +1018,7 @@
             "compassion": -1
           },
           "setFacts": {
-            "ilya.meeting": "talked"
+            "egor.meeting": "talked"
           }
         },
         "servesFacets": [
@@ -1046,7 +1046,7 @@
             "compassion": 1
           },
           "setFacts": {
-            "ilya.meeting": "talked"
+            "egor.meeting": "talked"
           }
         },
         "servesFacets": [
@@ -1067,7 +1067,7 @@
         }
       }
     ],
-    "character": "ilya",
+    "character": "egor",
     "requires": {
       "dayGte": 9,
       "dayLte": 9
@@ -1732,10 +1732,10 @@
     ]
   },
   {
-    "id": "c2_ilya_after_forgive",
+    "id": "c2_egor_after_forgive",
     "chapter": 2,
     "type": "chain",
-    "character": "ilya",
+    "character": "egor",
     "text": "Через два дня Егор приносит не деньги, а старый резец, который когда-то одолжил у тебя.",
     "choices": [
       {
@@ -1795,10 +1795,10 @@
     "required": true
   },
   {
-    "id": "c2_ilya_leaves",
+    "id": "c2_egor_leaves",
     "chapter": 2,
     "type": "chain",
-    "character": "ilya",
+    "character": "egor",
     "text": "Егор собирается уехать. Перед дорогой он оставляет у двери часть долга, не заходя внутрь.",
     "choices": [
       {

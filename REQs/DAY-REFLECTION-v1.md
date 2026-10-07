@@ -133,7 +133,7 @@ type ThreadDefinition =
 Валидатор (`summaryErrors`, `scripts/check-content.ts`; схемы — `scripts/schema.ts`):
 
 - `stages` покрывают **ровно** значения `FactDefinition.values`, начальное значение — `dormant`, каждое значение не-`dormant` достижимо хотя бы одним выбором, есть хотя бы одна `open`-стадия;
-- нить `kind: 'fact'` запрещена на факте, который является `resolvedFact` какой-либо opportunity (иначе одно событие попало бы в итог дважды): `liaison.martaHelp`, `market.window`, `rest.beforeFair`, `ilya.meeting`;
+- нить `kind: 'fact'` запрещена на факте, который является `resolvedFact` какой-либо opportunity (иначе одно событие попало бы в итог дважды): `liaison.martaHelp`, `market.window`, `rest.beforeFair`, `egor.meeting`;
 - одна карточка `followUp` принадлежит одной нити, одна opportunity — одной нити;
 - у `followUp` на `required`-карточку обязательны `firmTexts`, и некий выбор обязан планировать её с `latestDay`; у необязательной карточки `firmTexts` и `tomorrowTexts` должны быть пустыми;
 - `firmTexts` и все мягкие тексты не называют день (`завтра`, `послезавтра`, `сегодня`), `tomorrowTexts` обязаны сказать «завтра»;
@@ -147,10 +147,10 @@ type ThreadDefinition =
 | `order_and_fair` | fact `workshop.orderOutcome` | `c2_timon_order_result`, `required`, день 10 | `firm`, «завтра» накануне |
 | `old_bowl_pause` | fact `inner.pause` | `c2_marta_window_result`, не `required` | только `soft` |
 | `hand_and_pace` | fact `body.pace` | `c2_alexey_tools_result`, не `required` | только `soft` |
-| `marta_help`, `market_place`, `quiet_evening`, `ilya_talk` | opportunity | — | `soft` |
+| `marta_help`, `market_place`, `quiet_evening`, `egor_talk` | opportunity | — | `soft` |
 | `alexey_cup` | chain | `c1_alexey_after_jug`, `required`, день 2 | `firm`, «завтра» |
 | `wanderer_herbs`, `wanderer_bridge` | chain | `c1_wanderer_returns` / `c1_wanderer_bridge`, `required`, `latestDay 6` | `firm` без даты |
-| `ilya_departure`, `ilya_forgiven` | chain | `c2_ilya_leaves` / `c2_ilya_after_forgive`, `required`, `latestDay 10` | `firm` без даты |
+| `egor_departure`, `egor_forgiven` | chain | `c2_egor_leaves` / `c2_egor_after_forgive`, `required`, `latestDay 10` | `firm` без даты |
 | `liya_letters` | chain | `c1_liya_second_letter`, не `required` | только `soft` |
 
 Шаблонов `changes` — 32 (`src/content/data/summary-templates.json`): каждый привязан к выбору (и, где выбор ставит факт, к `fact`, значение которого ещё должно быть верным вечером). Выборы, которые уже рассказывает главный текст вечера (`eveningPrimaryId`), повторно не пересказываются.

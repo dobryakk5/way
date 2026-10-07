@@ -109,7 +109,7 @@
             "routePool": "r9_work"
           },
           {
-            "id": "ilya",
+            "id": "egor",
             "label": "Встретиться с Егором",
             "facets": [
               "relationships",
@@ -237,7 +237,7 @@
         "offerText": "Сегодня можно закончить раньше; дальше начнётся последняя подготовка."
       },
       {
-        "id": "ilya_talk",
+        "id": "egor_talk",
         "facet": "inner",
         "opensWhen": {
           "all": [
@@ -250,7 +250,7 @@
           ]
         },
         "throughDay": 9,
-        "resolvedFact": "ilya.meeting",
+        "resolvedFact": "egor.meeting",
         "takenValue": "talked",
         "expiredValue": "missed",
         "offeredAt": {
@@ -279,7 +279,7 @@
       "liaison.martaHelp": "waiting",
       "market.window": "waiting",
       "rest.beforeFair": "waiting",
-      "ilya.meeting": "waiting",
+      "egor.meeting": "waiting",
       "body.pace": "unknown",
       "inner.pause": "unknown"
     },

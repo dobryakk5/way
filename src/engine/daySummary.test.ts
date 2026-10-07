@@ -177,7 +177,7 @@ describe('Day Reflection: the content contract', () => {
     expect(mutate(c => { const t = c.threads.find(x => x.kind === 'fact')!; if (t.kind === 'fact') delete t.stages['unknown']; }).join()).toMatch(/cover exactly/);
   });
   it('rejects a fact thread on a fact that an opportunity already reports', () => {
-    expect(mutate(c => { c.threads.push({ id: 'dup', kind: 'fact', fact: 'ilya.meeting', stages: { waiting: 'dormant', talked: 'open', missed: 'abandoned' }, texts: { open: ['x'] } }); }).join()).toMatch(/belongs to an opportunity/);
+    expect(mutate(c => { c.threads.push({ id: 'dup', kind: 'fact', fact: 'egor.meeting', stages: { waiting: 'dormant', talked: 'open', missed: 'abandoned' }, texts: { open: ['x'] } }); }).join()).toMatch(/belongs to an opportunity/);
   });
   it('rejects a firm promise on a card the engine does not guarantee', () => {
     expect(mutate(c => { const t = c.threads.find(x => x.id === 'liya_letters')!; if (t.kind === 'chain') t.followUp.firmTexts = ['Письмо придёт.']; }).join()).toMatch(/cannot carry a firm promise/);
