@@ -60,6 +60,8 @@ export function prepareEvening(state: GameState, content: GameContent): GameStat
     { day: state.day, primary: eveningText(next, content), ...(note ? { note } : {}), resources: { ...next.resources }, summary }] };
 
 }
+/** Appended to the evening text when an insight opened on a day whose main text is something else. */
+export const INSIGHT_NOTE = 'В привычных разговорах теперь замечаются новые детали; запись осталась в дневнике.';
 export function eveningText(state: GameState, content: GameContent): string {
   const id = state.eveningPrimaryId;
   const observed = [...state.observations].reverse().find(o => o.id === id && o.text);
@@ -68,7 +70,7 @@ export function eveningText(state: GameState, content: GameContent): string {
   const activated = state.observations.find(o => o.kind === 'insight' && o.day === state.day);
   const transition = state.development.transitions.find(t => t.day === state.day);
   const promotion = transition ? content.development.arcs.find(a => a.id === transition.arcId)?.promotionText : undefined;
-  return (promotion ? base + ' ' + promotion : base) + (activated && activated.id !== id ? ' В привычных разговорах теперь замечаются новые детали; запись осталась в дневнике.' : '');
+  return (promotion ? base + ' ' + promotion : base) + (activated && activated.id !== id ? ' ' + INSIGHT_NOTE : '');
 }
 export function prepareMorning(state: GameState, content: GameContent): GameState {
   const base = content.dayTexts.find(t => t.part === 'morning' && t.day === state.day);

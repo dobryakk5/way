@@ -23,7 +23,16 @@ function Readiness({game}:{game:GameState}) {
  else status=<p>Решений уже достаточно, но в них пока смешаны разные способы. Вывод появится, когда один из них станет заметно чаще.</p>;
  return <div className="development-readiness"><p>Линия освоения начнётся, когда способ героя станет устойчиво заметен по его решениям. Сами наблюдения развитием не считаются.</p>{status}</div>;
 }
-export function JourneyScreen({game,onClose}:{game:GameState;onClose:()=>void}) {
+/** Starting over never deletes: the current run is archived in this browser and the game opens on the start screen. */
+function Restart({onRestart}:{onRestart:()=>void}) {
+ const [asking,setAsking]=useState(false);
+ return <section className="restart-panel" aria-label="Начать заново">
+  {asking?<><p>Начать путь с первого дня? Текущее прохождение не удалится: оно останется в архиве этого браузера, но продолжить его будет нельзя.</p>
+   <div className="restart-actions"><button type="button" className="choice-button restart-confirm" onClick={onRestart}>Да, начать заново</button><button type="button" className="choice-button" onClick={()=>setAsking(false)}>Отмена</button></div></>
+  :<button type="button" className="text-button restart-open" onClick={()=>setAsking(true)}>Начать игру заново</button>}
+ </section>;
+}
+export function JourneyScreen({game,onClose,onRestart}:{game:GameState;onClose:()=>void;onRestart:()=>void}) {
  const dev=game.development;
  const stage=content.development.stages.find(s=>s.id===dev.developmentCurrent);
  const progress=developmentProgress(game,content);
@@ -53,5 +62,6 @@ export function JourneyScreen({game,onClose}:{game:GameState;onClose:()=>void}) 
   {report.decisions.map(d=><details className="journal" key={d.kind}><summary>{d.label} <span>{d.evidence.length+d.reviews.length}</span></summary><p>{d.recurring?'Этот способ выбора повторялся в нескольких сценах выбранного периода.':'Пока показываем отдельные поступки без вывода о повторяющемся способе выбора.'}</p><Evidence items={d.evidence}/>{d.reviews.map(g=><article key={g.day}><p>День {g.day}: {({select:'Выбрал',keep:'Сохранил',clarify:'Уточнил',change:'Изменил'})[g.action]} цель — {g.wording}</p><details><summary>Сцены перед пересмотром</summary><Evidence items={game.history.filter(h=>h.day===g.day-1)}/></details></article>)}</details>)}
   <h4>Цель героя</h4>{report.goals.length?report.goals.map(g=><article className="goal-history" key={g.day}><p>День {g.day}: {({select:'Выбрал',keep:'Сохранил',clarify:'Уточнил',change:'Изменил'})[g.action]} — <strong>{g.wording}</strong></p><Evidence items={game.history.filter(h=>h.day===g.day&&h.slot===0)}/></article>):<p className="section-note">Запись появится после первой выбранной цели.</p>}
   </section>
+  <Restart onRestart={onRestart}/>
  </section></main>;
 }

@@ -1,35 +1,35 @@
-import { useState } from 'react';
 import { m } from 'framer-motion';
 import { content } from '../../content';
 import { eveningText } from '../../engine/day';
 import type { GameState } from '../../engine/types';
-import { useAutoAdvance, usePageVisible } from '../useAutoAdvance';
-import { DaySummaryView } from './DaySummaryView';
+import { journalChanges, journeyChanges } from '../dayChanges';
+import { NightRecap } from './NightRecap';
 
-export function EveningScreen({ game, onContinue, blocked }: { game: GameState; onContinue: () => void; blocked: boolean }) {
-  const [paused, setPaused] = useState(false);
-  const visible = usePageVisible();
+export type EveningLink = 'journal' | 'journey';
+
+/**
+ * The evening is read, not timed: the next day starts only when the player presses the button.
+ * It says how the day ended; what changed in the records and on the path is one link away, shown only when something did.
+ */
+export function EveningScreen({ game, onContinue, onOpen, blocked }: { game: GameState; onContinue: () => void; onOpen: (to: EveningLink) => void; blocked: boolean }) {
   const night = game.nights.find(n => n.day === game.day);
-  const summary = night?.primary || eveningText(game, content);
-  const duration = Math.min(6500, Math.max(2800, summary.split(/\s+/).length * 180));
-  // A day with a written summary is read, not timed: the player decides when to go on.
-  const readable = !!night?.summary;
-  const running = !readable && !paused && !blocked && visible;
   const lastDay = game.day >= content.episode.days;
-  useAutoAdvance(running, duration, onContinue);
+  const links = ([['journal', 'Записи', journalChanges(game, night)], ['journey', 'Мой путь', journeyChanges(game)]] as const).filter(([, , items]) => items.length > 0);
 
   return <main className="screen narrative-screen evening-screen"><m.section className="narrative-card evening-card" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
     <p className="eyebrow">Вечер · День {game.day}</p>
     <div className="evening-ornament" aria-hidden="true"><i /></div>
     <h2 className="evening-title">Мастерская затихает</h2>
-    <div className="evening-summary"><p>{summary}</p></div>
-    {night?.summary && <DaySummaryView summary={night.summary} />}
-    <p className="transition-note">Итоги останутся в дневнике.</p>
-    {!readable && <div className="day-transition-progress" aria-hidden="true">{running && <span style={{ animationDuration: `${duration}ms` }} />}</div>}
+    {night ? <NightRecap game={game} night={night} details={false} /> : <div className="evening-summary"><p>{eveningText(game, content)}</p></div>}
+    {links.length > 0 && <nav className="evening-links" aria-label="Подробнее о дне">
+      {links.map(([to, title, items]) => <button key={to} type="button" className="evening-link" onClick={() => onOpen(to)}>
+        <span className="evening-link-title">{title} <span aria-hidden="true">→</span></span>
+        <span className="evening-link-items">{items.join(' · ')}</span>
+      </button>)}
+    </nav>}
     <div className="transition-actions">
-      {!readable && <button type="button" className="text-button" onClick={() => setPaused(!paused)}>{paused ? 'Продолжить автоматически' : 'Задержаться'}</button>}
-      <button type="button" className="text-button transition-next" disabled={blocked} onClick={onContinue}>{lastDay ? 'Эпилог' : `День ${game.day + 1}`} <span aria-hidden="true">→</span></button>
+      <button type="button" className="primary-button evening-next" disabled={blocked} onClick={onContinue}>{lastDay ? 'Эпилог' : `Перейти к дню ${game.day + 1}`} <span aria-hidden="true">→</span></button>
     </div>
-    <p className="transition-status" role="status">{blocked ? 'Сохраняем день…' : readable ? 'Когда будешь готов — дальше' : paused ? 'Можно остаться здесь сколько хочется' : lastDay ? 'История подходит к завершению…' : 'Утро наступит само…'}</p>
+    <p className="transition-status" role="status">{blocked ? 'Сохраняем день…' : 'Когда будешь готов — дальше'}</p>
   </m.section></main>;
 }
