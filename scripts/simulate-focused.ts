@@ -4,6 +4,9 @@
 // Acceptance rules are fixed here BEFORE any result is looked at (section 12.4 of the brief): zero tolerance for the structural
 // checks; a diagnostic mean (N, W, K, coverage, confidence) that moves by more than 3 standard errors, or a status/stage share that moves by more than
 // 3 standard errors, is flagged "needs analysis" and blocks the rollout until it is explained.
+// ONE accepted exception (owner's decision of 2026-10-08): fewer dice rolls per run. It is accepted only while it is explained by the recollection
+// scenes the hero meets more often (the `scheduled` source grows by at least 80% of what the dice lose) and stays within 0.3 rolls per run;
+// otherwise the flag fires as for every other measure. The remaining criteria are unchanged.
 import { spawn } from 'node:child_process';
 import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -166,11 +169,21 @@ function report(results: WorkerResult[]): string {
   };
   metric('N (независимых действий)', r => r.profile.N); metric('W', r => r.profile.W); metric('K', r => r.profile.K);
   metric('coverage', r => r.profile.coverage); metric('confidence', r => r.profile.confidence);
-  metric('показано neutral', r => r.neutralShown); metric('показано probe', r => r.probeShown); metric('кубиков за прогон', r => r.diceDays);
+  metric('показано neutral', r => r.neutralShown); metric('показано probe', r => r.probeShown);
+  const all = (k: 'on' | 'off') => results.flatMap(r => r.mode[k].metrics);
+  const src = (k: 'on' | 'off', name: string) => mean(all(k).map(x => x.sources[name] ?? 0));
+  const dDice = mean(all('on').map(x => x.diceDays)) - mean(all('off').map(x => x.diceDays)), dSched = src('on', 'scheduled') - src('off', 'scheduled');
+  const diceAccepted = dDice >= -0.3 && (dDice >= 0 || dSched >= 0.8 * -dDice);
+  {
+    const a = all('off').map(x => x.diceDays), b = all('on').map(x => x.diceDays), se = Math.sqrt(sd(a) ** 2 / a.length + sd(b) ** 2 / b.length);
+    L.push(`| кубиков за прогон | ${f(mean(a), 3)} | ${f(mean(b), 3)} | ${f(dDice, 3)} | ${f(se ? dDice / se : 0, 1)} | ${Math.abs(se ? dDice / se : 0) <= 3 ? 'ок' : diceAccepted ? '**принято владельцем**: объяснено ростом `scheduled` на ' + f(dSched, 3) : '**нужен анализ**'} |`);
+  }
   metric('прямых pool-показов за прогон', r => r.directPoolDraws);
   for (const st of ['stable', 'provisional']) metric(`доля статуса ${st}`, r => r.profile.status === st ? 1 : 0);
   const stages = [...new Set(results.flatMap(r => [...r.mode.off.metrics, ...r.mode.on.metrics].map(x => x.profile.stage ?? '-')))].sort();
   for (const st of stages) metric(`доля стадии развития ${st}`, r => (r.profile.stage ?? '-') === st ? 1 : 0);
+  L.push('', 'Источники показов (среднее за прогон), OFF → ON:', '', '| Источник | OFF | ON | Δ |', '|---|---:|---:|---:|');
+  for (const k of ['current', 'pool', 'scheduled', 'crisis', 'development', 'route', 'mustShowBy', 'at']) L.push(`| ${k === 'current' ? 'кубик (current)' : k} | ${f(src('off', k), 3)} | ${f(src('on', k), 3)} | ${f(src('on', k) - src('off', k), 3)} |`);
   L.push('', '### 5. По политикам: диагностика', '', '| Политика | Режим | N | W | K | coverage | confidence | stable | neutral показано | probe показано | кубиков | прямых |', '|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|');
   for (const r of results) for (const k of ['off', 'on'] as const) {
     const ms = r.mode[k].metrics, a = (p: (x: RunMetrics) => number) => f(mean(ms.map(p)), 2);

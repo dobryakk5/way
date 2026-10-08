@@ -12,7 +12,7 @@ const chose = (cardId: string, choiceId: string, day = 7): GameState['history'][
 const RETURNS: [host: string, variant: string, source: string, choice: string, mustSay: RegExp][] = [
   ['r_customer_wait', 'r_customer_wait_alexey_spoke', 'c2_gaze_alexey_silence', 'ask', /сам говорит, что боится/],
   ['r_customer_wait', 'r_customer_wait_alexey_silent', 'c2_gaze_alexey_silence', 'respect', /не спрашивает/],
-  ['r_sweep', 'r_sweep_hand_shown', 'c2_silence_alexey_hand', 'look', /ладонь в повязке/],
+  ['r_sweep', 'r_sweep_hand_shown', 'c2_silence_alexey_hand', 'look', /след ожога/],
   ['r_sweep', 'r_sweep_hand_hidden', 'c2_silence_alexey_hand', 'trust', /в рукаве/],
   ['r_evening_light', 'r_evening_light_marta_visited', 'c2_gaze_marta_window', 'visit', /снова светится/],
   ['r_evening_light', 'r_evening_light_marta_passed', 'c2_gaze_marta_window', 'home', /прошёл мимо/],
@@ -20,7 +20,7 @@ const RETURNS: [host: string, variant: string, source: string, choice: string, m
   ['r_marta_hello', 'r_marta_hello_cup_silent', 'c2_silence_marta_cup', 'leave', /«нормально»/],
   ['r_market_price', 'r_market_price_asked_about_stall', 'c2_silence_market_pause', 'ask', /про пустую лавку.*уже спросил/],
   ['r_market_price', 'r_market_price_dealt_only', 'c2_silence_market_pause', 'deal', /на пустую лавку.*не смотрит/],
-  ['r_river', 'r_river_boy_fed', 'c2_gaze_wanderer_bread', 'offer', /жуёт хлеб/],
+  ['r_river', 'r_river_boy_fed', 'c2_gaze_wanderer_bread', 'offer', /кому ты предложил хлеб/],
   ['r_river', 'r_river_boy_alone', 'c2_gaze_wanderer_bread', 'watch', /смотрит на воду/]
 ];
 
@@ -36,6 +36,15 @@ describe('chapter 2 decisions come back (no existing choice is edited)', () => {
     // the scene still ends with its own question: the variant only changes what the hero notices before it
     const lastSentence = (t: string) => t.trim().split(/(?<=[.?!])\s+/).at(-1)!;
     expect(lastSentence(text)).toBe(lastSentence(card(host).text));
+  });
+  it('a recollection is fresh for about a week and never mentions the fair (everyday scenes also run after day 10)', () => {
+    for (const [host, variant, source, choice] of RETURNS) {
+      const v = card(host).textVariants!.find(x => x.id === variant)!;
+      expect(v.text).not.toMatch(/ярмарк/i);
+      const at = (day: number) => resolveCardText(makeState({ day, history: [chose(source, choice)] }), card(host), content);
+      expect(at(16)).toBe(v.text);
+      expect(at(17)).toBe(card(host).text);
+    }
   });
   it('the twelve decisions are marked meaningful and the validator finds a reader for each', () => {
     const graph = buildImpactGraph(content);

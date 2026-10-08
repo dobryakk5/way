@@ -58,21 +58,35 @@
       {
         "id": "r_sweep_hand_shown",
         "when": {
-          "chose": {
-            "card": "c2_silence_alexey_hand",
-            "choice": "look"
-          }
+          "all": [
+            {
+              "chose": {
+                "card": "c2_silence_alexey_hand",
+                "choice": "look"
+              }
+            },
+            {
+              "dayLte": 16
+            }
+          ]
         },
-        "text": "Глину на полу Алексей сметает левой: правую он больше не прячет, ладонь в повязке. А твоя чаша на круге ещё не закончена. Убрать сейчас и размять спину или сначала довести чашу до конца?",
+        "text": "Глину на полу Алексей сметает левой: правую он больше не прячет, и виден след ожога. А твоя чаша на круге ещё не закончена. Убрать сейчас и размять спину или сначала довести чашу до конца?",
         "kind": "consequence"
       },
       {
         "id": "r_sweep_hand_hidden",
         "when": {
-          "chose": {
-            "card": "c2_silence_alexey_hand",
-            "choice": "trust"
-          }
+          "all": [
+            {
+              "chose": {
+                "card": "c2_silence_alexey_hand",
+                "choice": "trust"
+              }
+            },
+            {
+              "dayLte": 16
+            }
+          ]
         },
         "text": "Глину на полу Алексей сметает молча, правую ладонь по-прежнему держит в рукаве. А твоя чаша на круге ещё не закончена. Убрать сейчас и размять спину или сначала довести чашу до конца?",
         "kind": "consequence"
@@ -194,10 +208,17 @@
       {
         "id": "r_market_price_asked_about_stall",
         "when": {
-          "chose": {
-            "card": "c2_silence_market_pause",
-            "choice": "ask"
-          }
+          "all": [
+            {
+              "chose": {
+                "card": "c2_silence_market_pause",
+                "choice": "ask"
+              }
+            },
+            {
+              "dayLte": 16
+            }
+          ]
         },
         "text": "Тимон говорит, что глина подорожала, и называет цены прямо: про пустую лавку напротив ты уже спросил. Можно сравнить цены у других продавцов или взять привычную смесь, как всегда.",
         "kind": "consequence"
@@ -205,10 +226,17 @@
       {
         "id": "r_market_price_dealt_only",
         "when": {
-          "chose": {
-            "card": "c2_silence_market_pause",
-            "choice": "deal"
-          }
+          "all": [
+            {
+              "chose": {
+                "card": "c2_silence_market_pause",
+                "choice": "deal"
+              }
+            },
+            {
+              "dayLte": 16
+            }
+          ]
         },
         "text": "Тимон говорит, что глина подорожала, и сразу переводит речь на условия: на пустую лавку напротив он не смотрит. Можно сравнить цены у других продавцов или взять привычную смесь, как всегда.",
         "kind": "consequence"
@@ -277,10 +305,17 @@
       {
         "id": "r_marta_hello_cup_on_table",
         "when": {
-          "chose": {
-            "card": "c2_silence_marta_cup",
-            "choice": "ask"
-          }
+          "all": [
+            {
+              "chose": {
+                "card": "c2_silence_marta_cup",
+                "choice": "ask"
+              }
+            },
+            {
+              "dayLte": 16
+            }
+          ]
         },
         "text": "Марта остановилась у двери и сама начинает с главного: чашка теперь стоит у неё на столе. Поговорить сейчас или договориться о разговоре на вечер?",
         "kind": "consequence"
@@ -288,10 +323,17 @@
       {
         "id": "r_marta_hello_cup_silent",
         "when": {
-          "chose": {
-            "card": "c2_silence_marta_cup",
-            "choice": "leave"
-          }
+          "all": [
+            {
+              "chose": {
+                "card": "c2_silence_marta_cup",
+                "choice": "leave"
+              }
+            },
+            {
+              "dayLte": 16
+            }
+          ]
         },
         "text": "Марта остановилась у двери. О чашке она молчит, о дне говорит одно слово: «нормально». Поговорить сейчас или договориться о разговоре на вечер?",
         "kind": "consequence"
@@ -468,21 +510,35 @@
       {
         "id": "r_river_boy_fed",
         "when": {
-          "chose": {
-            "card": "c2_gaze_wanderer_bread",
-            "choice": "offer"
-          }
+          "all": [
+            {
+              "chose": {
+                "card": "c2_gaze_wanderer_bread",
+                "choice": "offer"
+              }
+            },
+            {
+              "dayLte": 16
+            }
+          ]
         },
-        "text": "У реки лодочник чинит сеть. Рядом сидит мальчик со стены и жуёт хлеб — тот, что ты предложил. Можно присесть рядом и дать рукам отдохнуть или пройтись вдоль воды, ни с кем не разговаривая.",
+        "text": "У реки лодочник чинит сеть. Рядом сидит мальчик со стены, тот, кому ты предложил хлеб. Можно присесть рядом и дать рукам отдохнуть или пройтись вдоль воды, ни с кем не разговаривая.",
         "kind": "consequence"
       },
       {
         "id": "r_river_boy_alone",
         "when": {
-          "chose": {
-            "card": "c2_gaze_wanderer_bread",
-            "choice": "watch"
-          }
+          "all": [
+            {
+              "chose": {
+                "card": "c2_gaze_wanderer_bread",
+                "choice": "watch"
+              }
+            },
+            {
+              "dayLte": 16
+            }
+          ]
         },
         "text": "У реки лодочник чинит сеть. Мальчик со стены сидит неподалёку и смотрит на воду. Можно присесть рядом и дать рукам отдохнуть или пройтись вдоль воды, ни с кем не разговаривая.",
         "kind": "consequence"
@@ -606,21 +662,35 @@
       {
         "id": "r_customer_wait_alexey_spoke",
         "when": {
-          "chose": {
-            "card": "c2_gaze_alexey_silence",
-            "choice": "ask"
-          }
+          "all": [
+            {
+              "chose": {
+                "card": "c2_gaze_alexey_silence",
+                "choice": "ask"
+              }
+            },
+            {
+              "dayLte": 16
+            }
+          ]
         },
-        "text": "Партия чашек сохнет у окна. Алексей сам говорит, что боится за ручки к ярмарке. Проверить каждую или оставить осмотр на утро?",
+        "text": "Партия чашек сохнет у окна. Алексей сам говорит, что боится за ручки: вдруг покупатель вернёт партию. Проверить каждую или оставить осмотр на утро?",
         "kind": "consequence"
       },
       {
         "id": "r_customer_wait_alexey_silent",
         "when": {
-          "chose": {
-            "card": "c2_gaze_alexey_silence",
-            "choice": "respect"
-          }
+          "all": [
+            {
+              "chose": {
+                "card": "c2_gaze_alexey_silence",
+                "choice": "respect"
+              }
+            },
+            {
+              "dayLte": 16
+            }
+          ]
         },
         "text": "Партия чашек сохнет у окна. Алексей про ручки не спрашивает, только поглядывает на них. Проверить каждую или оставить осмотр на утро?",
         "kind": "consequence"
@@ -683,10 +753,17 @@
       {
         "id": "r_evening_light_marta_visited",
         "when": {
-          "chose": {
-            "card": "c2_gaze_marta_window",
-            "choice": "visit"
-          }
+          "all": [
+            {
+              "chose": {
+                "card": "c2_gaze_marta_window",
+                "choice": "visit"
+              }
+            },
+            {
+              "dayLte": 16
+            }
+          ]
         },
         "text": "Окно Марты снова светится — с того вечера, когда ты зашёл к ней. Сегодня она зовёт тебя во двор к соседям. Остаться дома в тишине или выйти к ним?",
         "kind": "consequence"
@@ -694,10 +771,17 @@
       {
         "id": "r_evening_light_marta_passed",
         "when": {
-          "chose": {
-            "card": "c2_gaze_marta_window",
-            "choice": "home"
-          }
+          "all": [
+            {
+              "chose": {
+                "card": "c2_gaze_marta_window",
+                "choice": "home"
+              }
+            },
+            {
+              "dayLte": 16
+            }
+          ]
         },
         "text": "Окно Марты то светится, то нет: в тот вечер ты прошёл мимо. Сегодня она зовёт тебя во двор к соседям. Остаться дома в тишине или выйти к ним?",
         "kind": "consequence"
