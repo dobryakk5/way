@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { content } from './index';
+import { recollectionWindowErrors } from '../../scripts/check-content';
 import { drawCard, resolveCardText, applyChoice, persistDraw, eligible } from '../engine';
 import { makeState } from '../engine/testUtils';
 import { buildImpactGraph, impactOf } from '../engine/impact';
@@ -71,12 +72,13 @@ describe('chapter 2 decisions come back (no existing choice is edited)', () => {
     const lastSentence = (t: string) => t.trim().split(/(?<=[.?!])\s+/).at(-1)!;
     expect(lastSentence(text)).toBe(lastSentence(card(host).text));
   });
-  it('a recollection stays fresh for about a week (a chapter 1 decision through day 12, a chapter 2 one through day 20) and never mentions the fair', () => {
+  it('a recollection holds up to an ABSOLUTE day (dayLte: chapter 1 decisions through day 12, chapter 2 ones through day 20; the evening with Marta has no cut-off) and never mentions the fair', () => {
     for (const [host, variant, source, choice, , fresh] of RETURNS) {
       const v = card(host).textVariants!.find(x => x.id === variant)!;
       expect(v.text).not.toMatch(/ярмарк/i);
       const history = [chose(source, choice, source.startsWith('c1_') ? 2 : source === 'r_marta_evening' ? 5 : 7)];
       const at = (day: number) => resolveCardText(makeState({ day, history }), card(host), content);
+      if (source === 'r_marta_evening') { expect([host, variant, at(30)]).toEqual([host, variant, v.text]); continue; }
       const until = fresh ?? 20;
       expect([host, variant, at(until)]).toEqual([host, variant, v.text]);
       expect([host, variant, at(until + 1)]).toEqual([host, variant, card(host).text]);
@@ -129,6 +131,32 @@ describe('r_marta_hello keeps the evening it offers', () => {
   });
 });
 
+describe('a repeated promise to Marta is kept as well (day 4 → evening on day 5 → promise again on day 14 → evening on day 15)', () => {
+  const present = (s: GameState, cardId: string) => persistDraw(s, { card: card(cardId), choices: card(cardId).choices, text: resolveCardText(s, card(cardId), content), source: 'pool' }, content);
+  const free = (s: GameState): GameState => { const { current: _shown, ...rest } = s; void _shown; return rest as GameState; };
+  it('the evening card shows up again and no promise is left dangling', () => {
+    let s = makeState({ day: 4, slot: 0, phase: 'slot' });
+    s = applyChoice(present(s, 'r_marta_hello'), content, 'r_marta_hello', 'b');                      // day 4: «Договориться на вечер»
+    s = { ...free(s), day: 5, slot: 2, phase: 'slot' };
+    const first = drawCard(s, content)!; expect([first.card.id, first.source]).toEqual(['r_marta_evening', 'scheduled']);
+    s = applyChoice(persistDraw(s, first, content), content, 'r_marta_evening', 'wait');                // day 5: the evening
+    expect(s.scheduled.some(x => x.cardId === 'r_marta_evening')).toBe(false);
+    s = { ...free(s), day: 14, slot: 0, phase: 'slot' };
+    s = applyChoice(present(s, 'r_marta_hello'), content, 'r_marta_hello', 'b');                      // day 14: promised again
+    s = { ...free(s), day: 15, slot: 1, phase: 'slot' };
+    const second = drawCard(s, content)!;
+    expect([second.card.id, second.source]).toEqual(['r_marta_evening', 'scheduled']);                 // the second promise is kept
+    expect(second.text).toMatch(/снова пришла/);
+    s = applyChoice(persistDraw(s, second, content), content, 'r_marta_evening', 'first');
+    expect(s.scheduled.some(x => x.cardId === 'r_marta_evening')).toBe(false);                         // nothing dangling
+    expect(s.shown.r_marta_evening).toEqual([5, 15]);
+  });
+  it('the first evening keeps its own text, the repeat says that she came again', () => {
+    expect(resolveCardText(makeState({ day: 5 }), card('r_marta_evening'), content)).toBe(card('r_marta_evening').text);
+    expect(resolveCardText(makeState({ day: 15, shown: { r_marta_evening: [5] } }), card('r_marta_evening'), content)).toMatch(/снова пришла/);
+  });
+});
+
 describe('everyday scenes fixed by review', () => {
   it('r_letter_stack does not lie on the table before the first letter', () => {
     expect(eligible(makeState({ day: 1 }), card('r_letter_stack'), content)).toBe(false);
@@ -154,5 +182,15 @@ describe('the six chapter 2 scenes keep their setup in every version of the text
     const t = (id: string, ch: string) => content.traces.find(x => x.source.cardId === id && x.source.choiceId === ch)!.response;
     expect(t('c2_gaze_marta_window', 'visit')).not.toMatch(/свеч/i);
     expect(t('c2_gaze_marta_window', 'home')).not.toMatch(/свеч|тёмн/i);
+  });
+});
+
+describe('the recollection window validator', () => {
+  it('flags a window that the latest possible decision day leaves (almost) empty, and accepts a roomy one', () => {
+    const variant = (dayLte: number) => ({ id: 'v', kind: 'consequence' as const, text: 't', when: { all: [{ chose: { card: 'c2_gaze_alexey_silence', choice: 'ask' } }, { dayLte }] } });
+    const withVariant = (dayLte: number) => ({ ...content, cards: content.cards.map(c => c.id === 'r_kiln' ? { ...c, textVariants: [...(c.textVariants ?? []).filter(v => v.id !== 'v'), variant(dayLte)] } : c) });
+    expect(recollectionWindowErrors(withVariant(11)).join('\n')).toMatch(/r_kiln\/v stops at day 11/);
+    expect(recollectionWindowErrors(withVariant(13))).toEqual([]);
+    expect(recollectionWindowErrors(content)).toEqual([]);
   });
 });

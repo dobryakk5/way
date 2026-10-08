@@ -415,17 +415,10 @@
       {
         "id": "r_marta_hello_after_evening_wait",
         "when": {
-          "all": [
-            {
-              "chose": {
-                "card": "r_marta_evening",
-                "choice": "wait"
-              }
-            },
-            {
-              "dayLte": 20
-            }
-          ]
+          "chose": {
+            "card": "r_marta_evening",
+            "choice": "wait"
+          }
         },
         "text": "Марта остановилась у двери и молчит, давая тебе спросить: после вечера у печи она знает, что ты умеешь ждать. Поговорить сейчас или договориться о разговоре на вечер?",
         "kind": "consequence"
@@ -433,17 +426,10 @@
       {
         "id": "r_marta_hello_after_evening_first",
         "when": {
-          "all": [
-            {
-              "chose": {
-                "card": "r_marta_evening",
-                "choice": "first"
-              }
-            },
-            {
-              "dayLte": 20
-            }
-          ]
+          "chose": {
+            "card": "r_marta_evening",
+            "choice": "first"
+          }
         },
         "text": "Марта остановилась у двери и сама начинает с дня: после вечера у печи ей проще говорить первой. Поговорить сейчас или договориться о разговоре на вечер?",
         "kind": "consequence"
@@ -1249,17 +1235,10 @@
       {
         "id": "r_evening_light_after_evening_wait",
         "when": {
-          "all": [
-            {
-              "chose": {
-                "card": "r_marta_evening",
-                "choice": "wait"
-              }
-            },
-            {
-              "dayLte": 20
-            }
-          ]
+          "chose": {
+            "card": "r_marta_evening",
+            "choice": "wait"
+          }
         },
         "text": "Свет ещё держится в окне, а Марта зовёт во двор к соседям и не спорит заранее, если ты откажешься: у печи ты дал ей время. Остаться дома в тишине или выйти к ним?",
         "kind": "consequence"
@@ -1267,17 +1246,10 @@
       {
         "id": "r_evening_light_after_evening_first",
         "when": {
-          "all": [
-            {
-              "chose": {
-                "card": "r_marta_evening",
-                "choice": "first"
-              }
-            },
-            {
-              "dayLte": 20
-            }
-          ]
+          "chose": {
+            "card": "r_marta_evening",
+            "choice": "first"
+          }
         },
         "text": "Свет ещё держится в окне, а Марта зовёт во двор к соседям: после вечера у твоей печи она зовёт уже не стесняясь. Остаться дома в тишине или выйти к ним?",
         "kind": "consequence"
@@ -1702,6 +1674,17 @@
         "impact": {
           "level": "meaningful"
         }
+      }
+    ],
+    "once": false,
+    "textVariants": [
+      {
+        "id": "r_marta_evening_again",
+        "when": {
+          "shown": "r_marta_evening"
+        },
+        "kind": "consequence",
+        "text": "Марта снова пришла, как вы договорились, и села на то же место у печи. Чайник ты поставил ещё до её стука. Заговорить первым или дать ей начать?"
       }
     ]
   }

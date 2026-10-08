@@ -164,6 +164,30 @@ function earliestDay(x:Condition|undefined):number{
  if('dayGte'in x&&x.dayGte!==undefined)return x.dayGte;
  return 1;
 }
+/**
+ * A recollection is a text variant that reads an earlier decision (`chose`) and stops at an ABSOLUTE day (`dayLte`): it is not "N days after the decision".
+ * The window must not be empty by accident: from the latest day the decision can still be made to the cut-off there must be room (at least 3 days).
+ */
+export function recollectionWindowErrors(c:GameContent):string[]{
+ const errors:string[]=[];
+ const bounds=(x:Condition|undefined):number=>!x?c.episode.days:'dayLte'in x?x.dayLte??c.episode.days:'all'in x?Math.min(...x.all.map(bounds)):c.episode.days;
+ const lastDay=(id:string):number|undefined=>{
+  const card=c.cards.find(x=>x.id===id);if(!card)return undefined;
+  return card.at?.day??Math.min(c.episode.chapters.find(ch=>ch.id===card.chapter)?.through??c.episode.days,bounds(card.requires));
+ };
+ const parts=(x:Condition):Condition[]=>'all'in x?x.all.flatMap(parts):[x];
+ for(const card of c.cards)for(const v of card.textVariants??[]){
+  const flat=parts(v.when);
+  const cutoffs=flat.flatMap(x=>'dayLte'in x&&x.dayLte!==undefined?[x.dayLte]:[]);
+  if(!cutoffs.length)continue;
+  const cutoff=Math.min(...cutoffs);
+  for(const x of flat)if('chose'in x){
+   const last=lastDay(x.chose.card);
+   if(last!==undefined&&cutoff-last<3)errors.push(`Recollection ${card.id}/${v.id} stops at day ${cutoff}, only ${cutoff-last} day(s) after the latest day ${x.chose.card} can be chosen (day ${last}): the window is (almost) empty`);
+  }
+ }
+ return errors;
+}
 export function focusedEncountersErrors(c:GameContent):string[]{
  const errors:string[]=[];const fail=(x:string)=>errors.push(x);
  const threadIds=new Set(c.threads.map(t=>t.id));
@@ -419,6 +443,7 @@ export function validateDiagnostics(c: GameContent, fail:(s:string)=>void) {
  void evidenceOf;
  for(const e of summaryErrors(c))fail(e);
  for(const e of focusedEncountersErrors(c))fail(e);
+ for(const e of recollectionWindowErrors(c))fail(e);
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
  const errors=validateContent(content);if(errors.length){console.error(errors.join('\n'));process.exitCode=1;}else console.log(`CONTENT v2.5 OK: ${content.cards.length} cards, ${content.episode.days} days`);
