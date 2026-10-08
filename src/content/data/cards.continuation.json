@@ -3577,7 +3577,111 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "character": "liya",
+    "story": {
+      "lines": [
+        "pace"
+      ],
+      "goalIds": [
+        "order",
+        "workshop"
+      ],
+      "role": "complication"
+    },
+    "textVariants": [
+      {
+        "id": "enc_3_0_alone",
+        "when": {
+          "fact": "body.pace",
+          "equals": "alone"
+        },
+        "text": "Поздно. Лия поставила на стол воду и смотрит на твои плечи: с той недели, когда ты доделывал всё сам, они так и не опустились. Заготовка почти закончена.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_0_shared",
+        "when": {
+          "fact": "body.pace",
+          "equals": "shared"
+        },
+        "text": "Поздно. Лия поставила на стол воду и смотрит на твои плечи: часть работы ты тогда отдал Алексею, а напряжение осталось. Заготовка почти закончена.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_0_letter",
+        "when": {
+          "chose": {
+            "card": "c1_liya_letter",
+            "choice": "reply"
+          }
+        },
+        "text": "Поздно. Лия поставила на стол воду и смотрит на твои плечи. В письме ты писал ей, что работа не отпускает; теперь она видит это сама. Заготовка почти закончена.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_0_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Поздно. Лия поставила на стол воду и смотрит на твои плечи: ты держишь их поднятыми даже над пустым столом. Заготовка почти закончена.",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Отложить работу и посидеть с ней",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "body"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "pace",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Закончить заготовку",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "inner"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "pace",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "order",
+              "workshop"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "enc_3_1",
@@ -3637,7 +3741,120 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "character": "alexey",
+    "story": {
+      "lines": [
+        "apprentice"
+      ],
+      "goalIds": [
+        "alexey"
+      ],
+      "role": "opportunity"
+    },
+    "textVariants": [
+      {
+        "id": "enc_3_1_spoke",
+        "when": {
+          "chose": {
+            "card": "c2_gaze_alexey_silence",
+            "choice": "ask"
+          }
+        },
+        "text": "Алексей кладёт перед тобой две ручки: с того разговора он говорит, что у него на уме, а не ждёт, пока спросят. Просит выбрать признак для сравнения. Партия ждёт.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_1_silent",
+        "when": {
+          "chose": {
+            "card": "c2_gaze_alexey_silence",
+            "choice": "respect"
+          }
+        },
+        "text": "Алексей молча кладёт перед тобой две ручки: просить вслух он так и не научился. Нужно выбрать признак для сравнения. Партия ждёт.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_1_independent",
+        "when": {
+          "fact": "alexey.path",
+          "equals": "independent"
+        },
+        "text": "Алексей кладёт перед тобой две ручки. Свою чашу на ярмарке он показал сам, и теперь просит выбрать признак вместе, а не за него. Партия ждёт.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_1_paused",
+        "when": {
+          "fact": "alexey.path",
+          "equals": "paused"
+        },
+        "text": "Алексей кладёт перед тобой две ручки и просит выбрать признак. Свою чашу после ярмарки он убрал и о ней не заговаривает. Партия ждёт.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_1_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Алексей кладёт перед тобой две ручки и просит выбрать, по какому признаку их сравнивать. Партия ждёт.",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Спросить, по какому признаку выбирал он",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "apprentice",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Назвать свой признак и поручить ему партию",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "apprentice",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "alexey"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "enc_3_2",
@@ -3698,7 +3915,148 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "character": "marta",
+    "story": {
+      "lines": [
+        "commitments"
+      ],
+      "goalIds": [
+        "order",
+        "workshop"
+      ],
+      "role": "relationship"
+    },
+    "textVariants": [
+      {
+        "id": "enc_3_2_evening_first",
+        "when": {
+          "chose": {
+            "card": "r_marta_evening",
+            "choice": "first"
+          }
+        },
+        "text": "Марта встретила тебя у колодца и сама говорит о главном: после вечера у твоей печи ей легче. У вас обоих только короткий час.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_2_evening_wait",
+        "when": {
+          "chose": {
+            "card": "r_marta_evening",
+            "choice": "wait"
+          }
+        },
+        "text": "Марта встретила тебя у колодца и молчит, давая тебе начать: у печи ты показал, что умеешь ждать. У вас обоих только короткий час.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_2_cup_asked",
+        "when": {
+          "chose": {
+            "card": "c2_silence_marta_cup",
+            "choice": "ask"
+          }
+        },
+        "text": "Марта встретила тебя у колодца с той чашкой, что раньше прятала: ты спросил второй раз, и она не обиделась. У вас обоих только короткий час.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_2_cup_left",
+        "when": {
+          "chose": {
+            "card": "c2_silence_marta_cup",
+            "choice": "leave"
+          }
+        },
+        "text": "Марта встретила тебя у колодца без чашки и без вопросов: ты тогда не настаивал, и она ничего не рассказала. У вас обоих только короткий час.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_2_window_visited",
+        "when": {
+          "chose": {
+            "card": "c2_gaze_marta_window",
+            "choice": "visit"
+          }
+        },
+        "text": "Марта встретила тебя у колодца: свечу в окне она теперь не гасит и о том вечере, когда ты зашёл, не заговаривает. У вас обоих только короткий час.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_2_window_passed",
+        "when": {
+          "chose": {
+            "card": "c2_gaze_marta_window",
+            "choice": "home"
+          }
+        },
+        "text": "Марта встретила тебя у колодца и спрашивает не про день, а про то, видел ли ты её тёмное окно. У вас обоих только короткий час.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_2_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Марта встретила тебя у колодца. У вас обоих только короткий час, и она ждёт, на что ты его потратишь.",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Остаться поговорить",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "commitments",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Назвать другой час",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "commitments",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "order",
+              "workshop"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "enc_3_3",
@@ -3759,7 +4117,99 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "story": {
+      "lines": [
+        "pace"
+      ],
+      "goalIds": [
+        "order",
+        "workshop"
+      ],
+      "role": "opportunity"
+    },
+    "textVariants": [
+      {
+        "id": "enc_3_3_alone",
+        "when": {
+          "fact": "body.pace",
+          "equals": "alone"
+        },
+        "text": "Повар из общей кухни предлагает приносить воду к мастерской. Ты привык делать всё сам, и предложение застаёт врасплох. Ходить самому — полчаса дороги.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_3_shared",
+        "when": {
+          "fact": "body.pace",
+          "equals": "shared"
+        },
+        "text": "Повар из общей кухни предлагает приносить воду к мастерской. Помощь ты уже принимал от Алексея, и отказаться теперь труднее. Ходить самому — полчаса дороги.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_3_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Повар из общей кухни предлагает приносить воду к мастерской, пока ты работаешь с глиной. Ходить самому — полчаса дороги.",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Принять помощь",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "body"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "pace",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Ходить за водой самому",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "inner"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "pace",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "order",
+              "workshop"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "enc_3_4",
@@ -3819,7 +4269,108 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "story": {
+      "lines": [
+        "apprentice"
+      ],
+      "goalIds": [
+        "alexey"
+      ],
+      "role": "opportunity"
+    },
+    "textVariants": [
+      {
+        "id": "enc_3_4_independent",
+        "when": {
+          "fact": "alexey.path",
+          "equals": "independent"
+        },
+        "text": "Покупатель берёт со стола небольшую чашу без подписи и спрашивает, кто её сделал. Подписать её Алексей мог бы сам, как свою чашу на ярмарке.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_4_paused",
+        "when": {
+          "fact": "alexey.path",
+          "equals": "paused"
+        },
+        "text": "Покупатель берёт со стола небольшую чашу без подписи и спрашивает, кто её сделал. Подписи Алексей после ярмарки не ставит: свои чаши он прячет от чужих глаз.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_4_hand",
+        "when": {
+          "chose": {
+            "card": "c2_silence_alexey_hand",
+            "choice": "look"
+          }
+        },
+        "text": "Покупатель берёт со стола небольшую чашу без подписи и спрашивает, кто её сделал. Алексей делал её левой рукой, после ожога, и ждёт, что ты ответишь.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_4_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Покупатель берёт со стола небольшую чашу без подписи и спрашивает, кто её сделал.",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Назвать Алексея и позвать его",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "apprentice",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Ответить за мастерскую в целом",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "apprentice",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "alexey"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "enc_3_5",
@@ -3880,7 +4431,126 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "character": "timon",
+    "story": {
+      "lines": [
+        "commitments"
+      ],
+      "goalIds": [
+        "order",
+        "workshop"
+      ],
+      "role": "complication"
+    },
+    "textVariants": [
+      {
+        "id": "enc_3_5_asked_stall",
+        "when": {
+          "chose": {
+            "card": "c2_silence_market_pause",
+            "choice": "ask"
+          }
+        },
+        "text": "Тимон предлагает ещё одну доставку: с той беседы о пустой лавке он ничего не прячет и честно признаёт, что час возвращения назвать не может.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_5_dealt_only",
+        "when": {
+          "chose": {
+            "card": "c2_silence_market_pause",
+            "choice": "deal"
+          }
+        },
+        "text": "Тимон предлагает ещё одну доставку, условия называет бойко, а про час возвращения молчит, как тогда про пустую лавку.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_5_change_kept",
+        "when": {
+          "chose": {
+            "card": "c1_extra_change",
+            "choice": "keep"
+          }
+        },
+        "text": "Тимон предлагает ещё одну доставку и денег вперёд не даёт: монеты, что ты тогда оставил себе, он помнит. Час возвращения не называет.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_5_change_returned",
+        "when": {
+          "chose": {
+            "card": "c1_extra_change",
+            "choice": "return"
+          }
+        },
+        "text": "Тимон предлагает ещё одну доставку и отдаёт задаток без слов: лишние монеты ты вернул ему сам. Час возвращения не называет.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_5_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Тимон предлагает ещё одну доставку по дороге к кухне, но час возвращения не называет.",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Уточнить время до согласия",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "commitments",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Согласиться на гибкое время",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "commitments",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "order",
+              "workshop"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "enc_3_6",
@@ -3941,7 +4611,99 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "story": {
+      "lines": [
+        "pace"
+      ],
+      "goalIds": [
+        "order",
+        "workshop"
+      ],
+      "role": "ambient"
+    },
+    "textVariants": [
+      {
+        "id": "enc_3_6_kept",
+        "when": {
+          "fact": "inner.pause",
+          "equals": "kept"
+        },
+        "text": "Дверь закрыта, в мастерской тихо. Ты сидел так же у воды с чашей Егора, и дыхание выравнивается само.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_6_carried",
+        "when": {
+          "fact": "inner.pause",
+          "equals": "carried"
+        },
+        "text": "Дверь закрыта, в мастерской тихо. Тогда ты вернулся к работе с чашей в корзине, и теперь тишина кажется непривычной.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_6_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Дверь закрыта, в мастерской тихо. Дыхание после тяжёлой работы постепенно выравнивается.",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Посидеть несколько минут",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "body"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "pace",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Вернуться к делу сразу",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "inner"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "pace",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "order",
+              "workshop"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "enc_3_7",
@@ -4001,7 +4763,113 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "character": "alexey",
+    "story": {
+      "lines": [
+        "apprentice"
+      ],
+      "goalIds": [
+        "alexey"
+      ],
+      "role": "consequence"
+    },
+    "textVariants": [
+      {
+        "id": "enc_3_7_hand_shown",
+        "when": {
+          "chose": {
+            "card": "c2_silence_alexey_hand",
+            "choice": "look"
+          }
+        },
+        "text": "Алексей не знает, стоит ли оставлять на полке неудачный образец: он делал его, оберегая ожог, и стыдится руки больше, чем чаши.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_7_hand_hidden",
+        "when": {
+          "chose": {
+            "card": "c2_silence_alexey_hand",
+            "choice": "trust"
+          }
+        },
+        "text": "Алексей не знает, стоит ли оставлять на полке неудачный образец: он делал его, пряча ладонь, и объяснять ошибку не хочет.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_7_spoke",
+        "when": {
+          "chose": {
+            "card": "c2_gaze_alexey_silence",
+            "choice": "ask"
+          }
+        },
+        "text": "Алексей не знает, стоит ли оставлять на полке неудачный образец, и спрашивает у тебя сам: молчать об этом он больше не станет.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_7_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Алексей не знает, стоит ли оставлять на полке неудачный образец: показывать его стыдно.",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Оставить его для сравнения",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "apprentice",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Освободить полку для удачных чаш",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "apprentice",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "alexey"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "enc_3_8",
@@ -4062,7 +4930,104 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "character": "egor",
+    "story": {
+      "lines": [
+        "commitments"
+      ],
+      "goalIds": [
+        "order",
+        "workshop"
+      ],
+      "role": "relationship"
+    },
+    "textVariants": [
+      {
+        "id": "enc_3_8_forgiven",
+        "when": {
+          "chose": {
+            "card": "c2_stones_bag",
+            "choice": "forgive"
+          }
+        },
+        "text": "Егор зовёт пройти часть дороги вместе. Долг ты ему простил, и теперь он просит не расплаты, а твоего времени.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_8_insisted",
+        "when": {
+          "chose": {
+            "card": "c2_stones_bag",
+            "choice": "insist"
+          }
+        },
+        "text": "Егор зовёт пройти часть дороги вместе и обещает не говорить о долге, который ты потребовал вернуть.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_8_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Егор зовёт пройти часть дороги вместе и обещает не говорить о долге.",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Пойти с ним и выслушать",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "commitments",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Назвать другой день",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "commitments",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "order",
+              "workshop"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "enc_3_9",
@@ -4123,7 +5088,99 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "story": {
+      "lines": [
+        "pace"
+      ],
+      "goalIds": [
+        "order",
+        "workshop"
+      ],
+      "role": "complication"
+    },
+    "textVariants": [
+      {
+        "id": "enc_3_9_alone",
+        "when": {
+          "fact": "body.pace",
+          "equals": "alone"
+        },
+        "text": "У знакомой чаши треснула ручка. Рука болит так же, как после того дня, когда ты доделывал всё сам. Починить сегодня или записать ремонт на завтра?",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_9_shared",
+        "when": {
+          "fact": "body.pace",
+          "equals": "shared"
+        },
+        "text": "У знакомой чаши треснула ручка. Часть работы ты уже отдавал Алексею, а эту отдавать некому. Починить сегодня или записать ремонт на завтра?",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_9_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "У знакомой чаши треснула ручка. Починить сегодня или записать ремонт на завтра?",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Починить сегодня",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "body"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "pace",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Назначить ремонт на завтра",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "inner"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "pace",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "order",
+              "workshop"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "enc_3_10",
@@ -4183,7 +5240,120 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "character": "timon",
+    "story": {
+      "lines": [
+        "apprentice"
+      ],
+      "goalIds": [
+        "alexey"
+      ],
+      "role": "opportunity"
+    },
+    "textVariants": [
+      {
+        "id": "enc_3_10_spoke",
+        "when": {
+          "chose": {
+            "card": "c2_gaze_alexey_silence",
+            "choice": "ask"
+          }
+        },
+        "text": "Тимон спрашивает Алексея о цене маленькой партии. Алексей смотрит на тебя, но уже не молчит: «Я посчитал, дай сказать».",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_10_silent",
+        "when": {
+          "chose": {
+            "card": "c2_gaze_alexey_silence",
+            "choice": "respect"
+          }
+        },
+        "text": "Тимон спрашивает Алексея о цене маленькой партии. Алексей смотрит на тебя и молчит: сказать цену вслух он так и не решился.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_10_independent",
+        "when": {
+          "fact": "alexey.path",
+          "equals": "independent"
+        },
+        "text": "Тимон спрашивает Алексея о цене маленькой партии. Свою чашу на ярмарке Алексей показал сам, и теперь он не смотрит на тебя, а ждёт ответа.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_10_paused",
+        "when": {
+          "fact": "alexey.path",
+          "equals": "paused"
+        },
+        "text": "Тимон спрашивает Алексея о цене маленькой партии. После ярмарки Алексей прячет свои расчёты и смотрит на тебя.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_10_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Тимон спрашивает Алексея о цене маленькой партии. Алексей смотрит на тебя.",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Дать ему назвать расчёт",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "apprentice",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Назвать цену самому",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "apprentice",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "alexey"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "enc_3_11",
@@ -4244,7 +5414,111 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "character": "marta",
+    "story": {
+      "lines": [
+        "commitments"
+      ],
+      "goalIds": [
+        "order",
+        "workshop"
+      ],
+      "role": "relationship"
+    },
+    "textVariants": [
+      {
+        "id": "enc_3_11_circle_open",
+        "when": {
+          "fact": "marta.circle",
+          "equals": "open"
+        },
+        "text": "Марта вернула пустую корзину и осталась у двери: с тех пор как ты стал её гостем по вечерам, она не торопится. Спросить, как прошёл её день, или сразу взять корзину под доставку?",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_11_circle_apart",
+        "when": {
+          "fact": "marta.circle",
+          "equals": "apart"
+        },
+        "text": "Марта вернула пустую корзину и ушла сразу, вежливо и коротко: так у вас стало с тех пор, как вы перестали договариваться. Спросить, как прошёл её день, или сразу взять корзину под доставку?",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_11_evening_wait",
+        "when": {
+          "chose": {
+            "card": "r_marta_evening",
+            "choice": "wait"
+          }
+        },
+        "text": "Марта вернула пустую корзину. После вечера у печи она знает, что может не спешить с рассказом. Спросить, как прошёл её день, или сразу взять корзину под доставку?",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_3_11_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Марта вернула пустую корзину. Спросить, как прошёл её день, или сразу взять корзину под доставку?",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Спросить о её дне",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "commitments",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Взять корзину под заказ",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "commitments",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "order",
+              "workshop"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "enc_4_0",
@@ -4305,7 +5579,100 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "character": "liya",
+    "story": {
+      "lines": [
+        "pace"
+      ],
+      "goalIds": [
+        "order",
+        "workshop"
+      ],
+      "role": "complication"
+    },
+    "textVariants": [
+      {
+        "id": "enc_4_0_alone",
+        "when": {
+          "fact": "body.pace",
+          "equals": "alone"
+        },
+        "text": "Завтра первый обжиг для общей кухни. Лия оставила свет и молчит: ты слишком часто делал всё сам, чтобы она уговаривала. Лечь спать или сверить расчёт сейчас?",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_0_shared",
+        "when": {
+          "fact": "body.pace",
+          "equals": "shared"
+        },
+        "text": "Завтра первый обжиг для общей кухни. Лия оставила свет и напоминает, что часть работы можно отдать, как ты уже делал. Лечь спать или сверить расчёт сейчас?",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_0_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Завтра первый обжиг для общей кухни. Лия оставила в мастерской свет и спрашивает, ляжешь ли ты спать или сверишь расчёт.",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Лечь спать, расчёт сверить утром",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "body"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "pace",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Сверить расчёт сейчас",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "inner"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "pace",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "order",
+              "workshop"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "enc_4_1",
@@ -4368,12 +5735,118 @@
     "cooldownDays": 3,
     "textVariants": [
       {
+        "id": "enc_4_1_reins_loose",
+        "when": {
+          "fact": "alexey.reins",
+          "equals": "loose"
+        },
+        "text": "Алексей рисует ручки для кухонных кружек и просит позволения поставить на каждой свой знак: малую партию Тимона он вёл сам, и ты видел, как она прошла.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_1_independent",
+        "when": {
+          "fact": "alexey.path",
+          "equals": "independent"
+        },
+        "text": "Алексей рисует ручки для кухонных кружек и просит позволения поставить на каждой свой знак, как на чаше, которую сам показал на ярмарке.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_1_paused",
+        "when": {
+          "fact": "alexey.path",
+          "equals": "paused"
+        },
+        "text": "Алексей рисует ручки для кухонных кружек и просит позволения поставить на каждой свой знак. Так он когда-то прятал свою чашу, а теперь спрашивает.",
+        "kind": "consequence"
+      },
+      {
+        "id": "ironic_enc_4_1_v2",
+        "when": {
+          "heroStage": "ironic"
+        },
+        "text": "Алексей рисует ручки для кухонных кружек и просит позволения поставить на каждой свой знак. Ты вдруг замечаешь: знак может быть любым, и можно просто посмотреть, что из этого выйдет.",
+        "kind": "perception"
+      },
+      {
         "id": "ironic_enc_4_1",
         "kind": "perception",
         "when": {
           "heroStage": "ironic"
         },
         "text": "В новом заказе Алексей показывает две ручки и просит выбрать критерий сравнения. Ты вдруг замечаешь: критерий можно взять любой — и просто попробовать."
+      },
+      {
+        "id": "enc_4_1_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Алексей рисует ручки для кухонных кружек и просит позволения поставить на каждой свой знак.",
+        "kind": "consequence"
+      }
+    ],
+    "character": "alexey",
+    "story": {
+      "lines": [
+        "apprentice"
+      ],
+      "goalIds": [
+        "alexey"
+      ],
+      "role": "opportunity"
+    },
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Спросить, что для него значит знак",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "apprentice",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Разрешить знак и поручить ему партию",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "apprentice",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "alexey"
+            ]
+          }
+        ]
       }
     ]
   },
@@ -4436,7 +5909,111 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "character": "marta",
+    "story": {
+      "lines": [
+        "commitments"
+      ],
+      "goalIds": [
+        "order",
+        "workshop"
+      ],
+      "role": "relationship"
+    },
+    "textVariants": [
+      {
+        "id": "enc_4_2_circle_open",
+        "when": {
+          "fact": "marta.circle",
+          "equals": "open"
+        },
+        "text": "Марта напоминает про вечер: он стал вашим, и она не просит, а ждёт. Но вечер выпал на день, когда кухня ждёт первую партию. Времени хватит на одно из двух.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_2_circle_apart",
+        "when": {
+          "fact": "marta.circle",
+          "equals": "apart"
+        },
+        "text": "Марта напоминает про вечер сухо и коротко, как человек, который не ждёт ответа: он выпал на день, когда кухня ждёт первую партию. Времени хватит на одно из двух.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_2_evening_wait",
+        "when": {
+          "chose": {
+            "card": "r_marta_evening",
+            "choice": "wait"
+          }
+        },
+        "text": "Марта напоминает про вечер, зная, что ты умеешь ждать, но кухня ждёт первую партию. Времени хватит на одно из двух.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_2_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Марта напоминает про вечер: он выпал на день, когда кухня ждёт первую партию. Времени хватит на одно из двух.",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Прийти к Марте, как обещал",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "commitments",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Предупредить Марту и работать",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "commitments",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "order",
+              "workshop"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "enc_4_3",
@@ -4497,7 +6074,99 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "story": {
+      "lines": [
+        "pace"
+      ],
+      "goalIds": [
+        "order",
+        "workshop"
+      ],
+      "role": "opportunity"
+    },
+    "textVariants": [
+      {
+        "id": "enc_4_3_alone",
+        "when": {
+          "fact": "body.pace",
+          "equals": "alone"
+        },
+        "text": "Помощник готов носить глину с берега, но просит платить за каждую ходку. Рука помнит, чем кончилось, когда ты всё делал сам. Можно таскать и самому: дольше, зато бесплатно.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_3_shared",
+        "when": {
+          "fact": "body.pace",
+          "equals": "shared"
+        },
+        "text": "Помощник готов носить глину с берега, но просит платить за каждую ходку. Часть работы ты уже отдавал Алексею и знаешь, что это не слабость. Можно таскать и самому: дольше, зато бесплатно.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_3_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Помощник готов носить глину с берега, но просит платить за каждую ходку. Можно таскать самому: дольше, зато бесплатно.",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Нанять помощника на день",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "body"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "pace",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Таскать глину самому",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "inner"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "pace",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "order",
+              "workshop"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "enc_4_4",
@@ -4560,12 +6229,122 @@
     "cooldownDays": 3,
     "textVariants": [
       {
+        "id": "enc_4_4_reins_loose",
+        "when": {
+          "fact": "alexey.reins",
+          "equals": "loose"
+        },
+        "text": "Повар кухни спрашивает, кто отвечает за небольшую партию мисок без подписи. Алексей стоит рядом: такую партию он уже вёл сам.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_4_spoke",
+        "when": {
+          "chose": {
+            "card": "c2_gaze_alexey_silence",
+            "choice": "ask"
+          }
+        },
+        "text": "Повар кухни спрашивает, кто отвечает за небольшую партию мисок без подписи. Алексей стоит рядом и сам просит слова.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_4_silent",
+        "when": {
+          "chose": {
+            "card": "c2_gaze_alexey_silence",
+            "choice": "respect"
+          }
+        },
+        "text": "Повар кухни спрашивает, кто отвечает за небольшую партию мисок без подписи. Алексей стоит рядом и молчит, как всегда, когда нужно просить слова.",
+        "kind": "consequence"
+      },
+      {
+        "id": "ironic_enc_4_4_v2",
+        "when": {
+          "heroStage": "ironic"
+        },
+        "text": "Повар кухни спрашивает, кто отвечает за небольшую партию мисок без подписи. Ты усмехаешься: ответить можно просто, а Алексей стоит рядом.",
+        "kind": "perception"
+      },
+      {
         "id": "ironic_enc_4_4",
         "kind": "perception",
         "when": {
           "heroStage": "ironic"
         },
         "text": "В новом заказе покупатель спрашивает, кто сделал небольшую чашу без подписи. Ты усмехаешься: ответить можно просто."
+      },
+      {
+        "id": "enc_4_4_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Повар кухни спрашивает, кто отвечает за небольшую партию мисок без подписи. Алексей стоит рядом.",
+        "kind": "consequence"
+      }
+    ],
+    "character": "alexey",
+    "story": {
+      "lines": [
+        "apprentice"
+      ],
+      "goalIds": [
+        "alexey"
+      ],
+      "role": "opportunity"
+    },
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Назвать Алексея и дать ему ответить",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "apprentice",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Ответить за мастерскую целиком",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "apprentice",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "alexey"
+            ]
+          }
+        ]
       }
     ]
   },
@@ -4628,7 +6407,113 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "character": "timon",
+    "story": {
+      "lines": [
+        "commitments"
+      ],
+      "goalIds": [
+        "order",
+        "workshop"
+      ],
+      "role": "complication"
+    },
+    "textVariants": [
+      {
+        "id": "enc_4_5_asked_stall",
+        "when": {
+          "chose": {
+            "card": "c2_silence_market_pause",
+            "choice": "ask"
+          }
+        },
+        "text": "Тимон везёт кухне вторую партию и просит подписать общий счёт. Он не прячет цену: про пустую лавку ты уже спрашивал, и он помнит. Его цена выше твоей.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_5_dealt_only",
+        "when": {
+          "chose": {
+            "card": "c2_silence_market_pause",
+            "choice": "deal"
+          }
+        },
+        "text": "Тимон везёт кухне вторую партию и просит подписать общий счёт, не давая его вчитать, как тогда уходил от разговора о лавке. Его цена выше твоей.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_5_arrangement_shared",
+        "when": {
+          "fact": "market.arrangement",
+          "equals": "shared"
+        },
+        "text": "Тимон везёт кухне вторую партию и просит подписать общий счёт: общий прилавок вы делили, и он считает, что делить придётся и это. Его цена выше твоей.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_5_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Тимон везёт кухне вторую партию и просит подписать общий счёт. Его цена выше твоей, а вернуться можно позже.",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Сверить счёт вдвоём до подписи",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "commitments",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Подписать общий счёт сразу",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "commitments",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "order",
+              "workshop"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "enc_4_6",
@@ -4689,7 +6574,99 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "story": {
+      "lines": [
+        "pace"
+      ],
+      "goalIds": [
+        "order",
+        "workshop"
+      ],
+      "role": "ambient"
+    },
+    "textVariants": [
+      {
+        "id": "enc_4_6_kept",
+        "when": {
+          "fact": "inner.pause",
+          "equals": "kept"
+        },
+        "text": "Вечер после тяжёлого дня. Дом тих, и ты знаешь эту тишину: так же было у воды, когда ты сидел с чашей Егора. Тело просит остановиться.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_6_carried",
+        "when": {
+          "fact": "inner.pause",
+          "equals": "carried"
+        },
+        "text": "Вечер после тяжёлого дня. Дом тих, и тишина кажется чужой: чашу Егора ты тогда унёс обратно, не присев. Тело просит остановиться.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_6_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Вечер после тяжёлого дня. Дом тих, и тело просит остановиться.",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Остановиться и посидеть",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "body"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "pace",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Дожать начатое",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "inner"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "pace",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "order",
+              "workshop"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "enc_4_7",
@@ -4749,7 +6726,111 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "character": "alexey",
+    "story": {
+      "lines": [
+        "apprentice"
+      ],
+      "goalIds": [
+        "alexey"
+      ],
+      "role": "consequence"
+    },
+    "textVariants": [
+      {
+        "id": "enc_4_7_hand_shown",
+        "when": {
+          "chose": {
+            "card": "c2_silence_alexey_hand",
+            "choice": "look"
+          }
+        },
+        "text": "Одна из мисок Алексея треснула при обжиге. Он держал её левой, правую после ожога всё ещё бережёт. Спрашивает, показывать ли её повару вместе с остальными.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_7_hand_hidden",
+        "when": {
+          "chose": {
+            "card": "c2_silence_alexey_hand",
+            "choice": "trust"
+          }
+        },
+        "text": "Одна из мисок Алексея треснула при обжиге. Он держит её, пряча правую ладонь, и спрашивает, показывать ли её повару вместе с остальными.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_7_reins_loose",
+        "when": {
+          "fact": "alexey.reins",
+          "equals": "loose"
+        },
+        "text": "Одна из мисок Алексея, из партии, которую он вёл сам, треснула при обжиге. Он спрашивает, показывать ли её повару вместе с остальными.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_7_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Одна из мисок Алексея треснула при обжиге. Он спрашивает, показывать ли её повару вместе с остальными.",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Показать повару и объяснить, что случилось",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "apprentice",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Убрать в брак и сделать новую",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "apprentice",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "alexey"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "enc_4_8",
@@ -4810,7 +6891,160 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "character": "wanderer",
+    "story": {
+      "lines": [
+        "commitments"
+      ],
+      "goalIds": [
+        "order",
+        "workshop"
+      ],
+      "role": "relationship"
+    },
+    "textVariants": [
+      {
+        "id": "enc_4_8_boy_gone",
+        "when": {
+          "fact": "wanderer.boy",
+          "equals": "gone"
+        },
+        "text": "На дороге к кухне тебя нагоняет Странник. Мальчика с ним нет: он ушёл со Странником, и тот просит проводить его до моста, чтобы рассказать, как мальчик устроился. Доставка ждёт.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_8_boy_apprentice",
+        "when": {
+          "fact": "wanderer.boy",
+          "equals": "apprentice"
+        },
+        "text": "На дороге к кухне тебя нагоняет Странник и спрашивает про мальчика, которого ты оставил в мастерской: учится ли. Просит проводить его до моста. Доставка ждёт.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_8_boy_sent",
+        "when": {
+          "fact": "wanderer.boy",
+          "equals": "sent"
+        },
+        "text": "На дороге к кухне тебя нагоняет Странник. Мальчика со стены, которому ты не дал остаться, он с собой не взял. Просит проводить его до моста. Доставка ждёт.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_8_boy_fed",
+        "when": {
+          "fact": "wanderer.boy",
+          "equals": "fed"
+        },
+        "text": "На дороге к кухне тебя нагоняет Странник и благодарит за хлеб, оставленный мальчику у реки. Просит проводить его до моста. Доставка ждёт.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_8_boy_passed",
+        "when": {
+          "fact": "wanderer.boy",
+          "equals": "passed"
+        },
+        "text": "На дороге к кухне тебя нагоняет Странник и молча смотрит туда, где у реки ты прошёл мимо мальчика. Просит проводить его до моста. Доставка ждёт.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_8_bread_offered",
+        "when": {
+          "chose": {
+            "card": "c2_gaze_wanderer_bread",
+            "choice": "offer"
+          }
+        },
+        "text": "На дороге к кухне тебя нагоняет Странник. Мальчик со стены идёт рядом и помнит, кто предложил ему хлеб. Просят проводить их до моста. Доставка ждёт.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_8_bread_watched",
+        "when": {
+          "chose": {
+            "card": "c2_gaze_wanderer_bread",
+            "choice": "watch"
+          }
+        },
+        "text": "На дороге к кухне тебя нагоняет Странник. Мальчик со стены идёт чуть позади и держится от тебя подальше. Просят проводить их до моста. Доставка ждёт.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_8_helped_on_road",
+        "when": {
+          "chose": {
+            "card": "c1_wounded_road",
+            "choice": "stop"
+          }
+        },
+        "text": "На дороге к кухне тебя нагоняет Странник, тот самый путник, которому ты помог у дороги. Просит проводить его до моста. Доставка ждёт.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_8_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "На дороге к кухне тебя нагоняет Странник и просит проводить его до моста. Доставка ждёт.",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Проводить его до моста",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "commitments",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Сказать, что спешишь",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "commitments",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "order",
+              "workshop"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "enc_4_9",
@@ -4874,12 +7108,110 @@
     "cooldownDays": 3,
     "textVariants": [
       {
+        "id": "enc_4_9_alone",
+        "when": {
+          "fact": "body.pace",
+          "equals": "alone"
+        },
+        "text": "К концу недели руки дрожат, как в тот месяц, когда ты делал всё сам. Можно сделать две кружки сверх плана, чтобы кухня получила партию с запасом.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_9_shared",
+        "when": {
+          "fact": "body.pace",
+          "equals": "shared"
+        },
+        "text": "К концу недели руки дрожат, но ты знаешь, что часть работы можно отдать. Можно сделать две кружки сверх плана, чтобы кухня получила партию с запасом.",
+        "kind": "consequence"
+      },
+      {
+        "id": "ironic_enc_4_9_v2",
+        "when": {
+          "heroStage": "ironic"
+        },
+        "text": "К концу недели руки дрожат. Дело простое: можно сделать две кружки сверх плана, не выясняя, что это говорит обо всей партии.",
+        "kind": "perception"
+      },
+      {
         "id": "ironic_enc_4_9",
         "kind": "perception",
         "when": {
           "heroStage": "ironic"
         },
         "text": "В новом заказе ручка знакомой чаши треснула. Дело простое: можно починить сегодня, не выясняя, что это говорит обо всём заказе."
+      },
+      {
+        "id": "enc_4_9_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "К концу недели руки дрожат. Можно сделать две кружки сверх плана, чтобы кухня получила партию с запасом.",
+        "kind": "consequence"
+      }
+    ],
+    "story": {
+      "lines": [
+        "pace"
+      ],
+      "goalIds": [
+        "order",
+        "workshop"
+      ],
+      "role": "complication"
+    },
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Остановиться на плане",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "body"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "pace",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Сделать ещё две кружки",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "inner"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "pace",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "order",
+              "workshop"
+            ]
+          }
+        ]
       }
     ]
   },
@@ -4941,7 +7273,107 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "character": "timon",
+    "story": {
+      "lines": [
+        "apprentice"
+      ],
+      "goalIds": [
+        "alexey"
+      ],
+      "role": "opportunity"
+    },
+    "textVariants": [
+      {
+        "id": "enc_4_10_reins_loose",
+        "when": {
+          "fact": "alexey.reins",
+          "equals": "loose"
+        },
+        "text": "Тимон просит цену следующей партии для кухни. Алексей уже посчитал и держит листок в руке: малую партию он вёл сам и знает, как это делается.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_10_reins_shared",
+        "when": {
+          "fact": "alexey.reins",
+          "equals": "shared"
+        },
+        "text": "Тимон просит цену следующей партии для кухни. Алексей уже посчитал и держит листок в руке, но смотрит на тебя: свою часть он ведёт только вместе с тобой.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_10_independent",
+        "when": {
+          "fact": "alexey.path",
+          "equals": "independent"
+        },
+        "text": "Тимон просит цену следующей партии для кухни. Алексей уже посчитал и держит листок в руке: свою чашу на ярмарке он показал сам и ждёт того же теперь.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_10_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Тимон просит цену следующей партии для кухни. Алексей уже посчитал и держит листок в руке.",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Дать Алексею назвать цену",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "apprentice",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Назвать цену самому",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "apprentice",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "alexey"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "enc_4_11",
@@ -5002,6 +7434,878 @@
       }
     ],
     "once": false,
-    "cooldownDays": 3
+    "cooldownDays": 3,
+    "character": "marta",
+    "story": {
+      "lines": [
+        "commitments"
+      ],
+      "goalIds": [
+        "order",
+        "workshop"
+      ],
+      "role": "relationship"
+    },
+    "textVariants": [
+      {
+        "id": "enc_4_11_circle_open",
+        "when": {
+          "fact": "marta.circle",
+          "equals": "open"
+        },
+        "text": "Марта зовёт помочь с крышей, пока не стемнело: она просит, как просят своего. Партию для кухни нужно закончить к утру.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_11_circle_apart",
+        "when": {
+          "fact": "marta.circle",
+          "equals": "apart"
+        },
+        "text": "Марта зовёт помочь с крышей коротко, как чужого: ответа она не ждёт. Партию для кухни нужно закончить к утру.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_11_evening_first",
+        "when": {
+          "chose": {
+            "card": "r_marta_evening",
+            "choice": "first"
+          }
+        },
+        "text": "Марта зовёт помочь с крышей, пока не стемнело: вечер у твоей печи она не забыла. Партию для кухни нужно закончить к утру.",
+        "kind": "consequence"
+      },
+      {
+        "id": "enc_4_11_v2",
+        "when": {
+          "dayGte": 1
+        },
+        "text": "Марта зовёт помочь с крышей, пока не стемнело. Партию для кухни нужно закончить к утру.",
+        "kind": "consequence"
+      }
+    ],
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Помочь Марте с крышей",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "wealth": -1
+              }
+            },
+            "servesFacets": [
+              "relationships"
+            ],
+            "decisionKinds": [
+              "perspective",
+              "cost"
+            ],
+            "lineStep": {
+              "line": "commitments",
+              "step": "encounter"
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Закончить партию и зайти позже",
+            "effects": {
+              "resources": {
+                "wealth": 2,
+                "strength": -1
+              }
+            },
+            "servesFacets": [
+              "work"
+            ],
+            "decisionKinds": [
+              "pursue"
+            ],
+            "lineStep": {
+              "line": "commitments",
+              "step": "encounter"
+            },
+            "pursuesGoals": [
+              "order",
+              "workshop"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "x3_marta_second_cup",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships",
+      "inner"
+    ],
+    "text": "Марта ставит на твой стол вторую чашку, ту, что стояла у свободного стула. «Пусть будет здесь, — говорит она. — Зайдёшь вечером, будет из чего пить».",
+    "choices": [
+      {
+        "id": "take",
+        "label": "Принять чашку и назвать вечер",
+        "servesFacets": [
+          "relationships"
+        ],
+        "effects": {
+          "resources": {
+            "bonds": 3,
+            "strength": -1
+          },
+          "setFacts": {
+            "marta.circle": "open"
+          }
+        },
+        "decisionKinds": [
+          "perspective",
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "encounter"
+        },
+        "impact": {
+          "level": "meaningful"
+        }
+      },
+      {
+        "id": "wait",
+        "label": "Поблагодарить и пока не брать",
+        "servesFacets": [
+          "inner"
+        ],
+        "effects": {
+          "resources": {
+            "peace": 2,
+            "bonds": -1
+          },
+          "setFacts": {
+            "marta.circle": "apart"
+          }
+        },
+        "decisionKinds": [
+          "pursue"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "encounter"
+        },
+        "impact": {
+          "level": "meaningful"
+        }
+      }
+    ],
+    "requires": {
+      "all": [
+        {
+          "dayGte": 11
+        },
+        {
+          "dayLte": 24
+        },
+        {
+          "any": [
+            {
+              "chose": {
+                "card": "c2_gaze_marta_window",
+                "choice": "visit"
+              }
+            },
+            {
+              "chose": {
+                "card": "c2_silence_marta_cup",
+                "choice": "ask"
+              }
+            },
+            {
+              "chose": {
+                "card": "r_marta_evening",
+                "choice": "first"
+              }
+            },
+            {
+              "chose": {
+                "card": "r_marta_evening",
+                "choice": "wait"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "once": true,
+    "weight": 6,
+    "story": {
+      "lines": [
+        "commitments"
+      ],
+      "role": "consequence"
+    },
+    "character": "marta"
+  },
+  {
+    "id": "x3_marta_apart",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships",
+      "inner"
+    ],
+    "text": "Марта проходит мимо мастерской и кивает, как всем. В её окне давно нет свечи, а о чашке она больше не говорит. Окликнуть её или оставить как есть?",
+    "choices": [
+      {
+        "id": "call",
+        "label": "Окликнуть и спросить, не нужна ли помощь",
+        "servesFacets": [
+          "relationships"
+        ],
+        "effects": {
+          "resources": {
+            "bonds": 2,
+            "strength": -1
+          },
+          "setFacts": {
+            "marta.circle": "open"
+          }
+        },
+        "decisionKinds": [
+          "perspective",
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "encounter"
+        },
+        "impact": {
+          "level": "meaningful"
+        }
+      },
+      {
+        "id": "nod",
+        "label": "Кивнуть в ответ и вернуться к работе",
+        "servesFacets": [
+          "work"
+        ],
+        "effects": {
+          "resources": {
+            "wealth": 2
+          },
+          "setFacts": {
+            "marta.circle": "apart"
+          }
+        },
+        "decisionKinds": [
+          "pursue"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "encounter"
+        },
+        "impact": {
+          "level": "meaningful"
+        }
+      }
+    ],
+    "requires": {
+      "all": [
+        {
+          "dayGte": 11
+        },
+        {
+          "dayLte": 24
+        },
+        {
+          "all": [
+            {
+              "any": [
+                {
+                  "chose": {
+                    "card": "c2_gaze_marta_window",
+                    "choice": "home"
+                  }
+                },
+                {
+                  "chose": {
+                    "card": "c2_silence_marta_cup",
+                    "choice": "leave"
+                  }
+                }
+              ]
+            },
+            {
+              "not": {
+                "any": [
+                  {
+                    "chose": {
+                      "card": "c2_gaze_marta_window",
+                      "choice": "visit"
+                    }
+                  },
+                  {
+                    "chose": {
+                      "card": "c2_silence_marta_cup",
+                      "choice": "ask"
+                    }
+                  },
+                  {
+                    "chose": {
+                      "card": "r_marta_evening",
+                      "choice": "first"
+                    }
+                  },
+                  {
+                    "chose": {
+                      "card": "r_marta_evening",
+                      "choice": "wait"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "once": true,
+    "weight": 6,
+    "story": {
+      "lines": [
+        "commitments"
+      ],
+      "role": "relationship"
+    },
+    "character": "marta"
+  },
+  {
+    "id": "x3_boy_at_door",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships",
+      "work"
+    ],
+    "text": "У двери мастерской стоит мальчик со стены, тот, кому ты предложил хлеб. Он ничего не просит и только смотрит, как крутится круг.",
+    "choices": [
+      {
+        "id": "stay",
+        "label": "Дать ему подмести пол за ломоть хлеба",
+        "servesFacets": [
+          "relationships"
+        ],
+        "effects": {
+          "resources": {
+            "bonds": 2,
+            "wealth": -1
+          },
+          "setFacts": {
+            "wanderer.boy": "stays"
+          }
+        },
+        "decisionKinds": [
+          "perspective",
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "encounter"
+        },
+        "impact": {
+          "level": "meaningful"
+        }
+      },
+      {
+        "id": "send",
+        "label": "Сказать, что мастерская не место для мальчика",
+        "servesFacets": [
+          "work"
+        ],
+        "effects": {
+          "resources": {
+            "peace": 1,
+            "bonds": -2
+          },
+          "setFacts": {
+            "wanderer.boy": "sent"
+          }
+        },
+        "decisionKinds": [
+          "pursue"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "encounter"
+        },
+        "impact": {
+          "level": "meaningful"
+        }
+      }
+    ],
+    "requires": {
+      "all": [
+        {
+          "dayGte": 11
+        },
+        {
+          "dayLte": 24
+        },
+        {
+          "chose": {
+            "card": "c2_gaze_wanderer_bread",
+            "choice": "offer"
+          }
+        }
+      ]
+    },
+    "once": true,
+    "weight": 6,
+    "story": {
+      "lines": [
+        "commitments"
+      ],
+      "role": "consequence"
+    }
+  },
+  {
+    "id": "x3_boy_by_river",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "relationships",
+      "inner"
+    ],
+    "text": "У реки сидит мальчик со стены и ест что-то из горсти. Хлеба Странника при нём больше нет.",
+    "choices": [
+      {
+        "id": "feed",
+        "label": "Остановиться, оставить ему ломоть",
+        "servesFacets": [
+          "relationships"
+        ],
+        "effects": {
+          "resources": {
+            "bonds": 2,
+            "wealth": -1
+          },
+          "setFacts": {
+            "wanderer.boy": "fed"
+          }
+        },
+        "decisionKinds": [
+          "perspective",
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "encounter"
+        },
+        "impact": {
+          "level": "meaningful"
+        }
+      },
+      {
+        "id": "pass",
+        "label": "Пройти мимо, не останавливаясь",
+        "servesFacets": [
+          "inner"
+        ],
+        "effects": {
+          "resources": {
+            "peace": 1
+          },
+          "setFacts": {
+            "wanderer.boy": "passed"
+          }
+        },
+        "decisionKinds": [
+          "pursue"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "encounter"
+        },
+        "impact": {
+          "level": "meaningful"
+        }
+      }
+    ],
+    "requires": {
+      "all": [
+        {
+          "dayGte": 11
+        },
+        {
+          "dayLte": 24
+        },
+        {
+          "chose": {
+            "card": "c2_gaze_wanderer_bread",
+            "choice": "watch"
+          }
+        }
+      ]
+    },
+    "once": true,
+    "weight": 6,
+    "story": {
+      "lines": [
+        "commitments"
+      ],
+      "role": "consequence"
+    }
+  },
+  {
+    "id": "x3_alexey_asks_for_order",
+    "chapter": "any",
+    "type": "situation",
+    "facets": [
+      "work",
+      "relationships"
+    ],
+    "text": "Алексей стоит у твоего стола с листком расчёта. Малая партия Тимона ждёт хозяина.",
+    "choices": [
+      {
+        "id": "whole",
+        "label": "Отдать ему партию целиком",
+        "servesFacets": [
+          "relationships"
+        ],
+        "effects": {
+          "resources": {
+            "bonds": 2,
+            "peace": -1
+          },
+          "setFacts": {
+            "alexey.reins": "loose"
+          }
+        },
+        "decisionKinds": [
+          "pursue"
+        ],
+        "pursuesGoals": [
+          "alexey"
+        ],
+        "lineStep": {
+          "line": "apprentice",
+          "step": "encounter"
+        },
+        "impact": {
+          "level": "meaningful"
+        }
+      },
+      {
+        "id": "part",
+        "label": "Взять партию себе, а ему поручить часть",
+        "servesFacets": [
+          "work"
+        ],
+        "effects": {
+          "resources": {
+            "wealth": 2
+          },
+          "setFacts": {
+            "alexey.reins": "shared"
+          }
+        },
+        "decisionKinds": [
+          "pursue"
+        ],
+        "pursuesGoals": [
+          "alexey"
+        ],
+        "lineStep": {
+          "line": "apprentice",
+          "step": "encounter"
+        },
+        "impact": {
+          "level": "meaningful"
+        }
+      }
+    ],
+    "requires": {
+      "all": [
+        {
+          "dayGte": 11
+        },
+        {
+          "dayLte": 24
+        },
+        {
+          "any": [
+            {
+              "chose": {
+                "card": "c2_gaze_alexey_silence",
+                "choice": "ask"
+              }
+            },
+            {
+              "chose": {
+                "card": "c2_gaze_alexey_silence",
+                "choice": "respect"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "once": true,
+    "weight": 6,
+    "story": {
+      "lines": [
+        "apprentice"
+      ],
+      "goalIds": [
+        "alexey"
+      ],
+      "role": "opportunity"
+    },
+    "character": "alexey",
+    "textVariants": [
+      {
+        "id": "x3_alexey_asks_for_order_ask",
+        "when": {
+          "chose": {
+            "card": "c2_gaze_alexey_silence",
+            "choice": "ask"
+          }
+        },
+        "text": "Алексей приходит с листком: «Тимон просил малую партию. Отдай её мне целиком, я всё посчитал». Он смотрит прямо.",
+        "kind": "consequence"
+      },
+      {
+        "id": "x3_alexey_asks_for_order_respect",
+        "when": {
+          "chose": {
+            "card": "c2_gaze_alexey_silence",
+            "choice": "respect"
+          }
+        },
+        "text": "Алексей молча стоит у твоего стола с листком расчёта. Малая партия Тимона ждёт хозяина, а просить о ней вслух он не умеет.",
+        "kind": "consequence"
+      }
+    ]
+  },
+  {
+    "id": "x4_marta_keeps_word",
+    "chapter": 4,
+    "type": "situation",
+    "facets": [
+      "relationships",
+      "work"
+    ],
+    "text": "Марта заходит в мастерскую и кладёт на стол свечу. «Кухня ждёт до девяти, вечер ждёт до десяти, — говорит она. — Решай, что подождёт сильнее».",
+    "choices": [
+      {
+        "id": "come",
+        "label": "Прийти в десять, как договорились",
+        "servesFacets": [
+          "relationships"
+        ],
+        "effects": {
+          "resources": {
+            "bonds": 3,
+            "strength": -2
+          }
+        },
+        "decisionKinds": [
+          "perspective",
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "encounter"
+        }
+      },
+      {
+        "id": "move",
+        "label": "Попросить вечер на другой день",
+        "servesFacets": [
+          "work"
+        ],
+        "effects": {
+          "resources": {
+            "wealth": 2,
+            "bonds": -1
+          }
+        },
+        "decisionKinds": [
+          "pursue"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "encounter"
+        }
+      }
+    ],
+    "requires": {
+      "fact": "marta.circle",
+      "equals": "open"
+    },
+    "once": true,
+    "weight": 6,
+    "story": {
+      "lines": [
+        "commitments"
+      ],
+      "role": "consequence"
+    },
+    "character": "marta"
+  },
+  {
+    "id": "x4_marta_note",
+    "chapter": 4,
+    "type": "situation",
+    "facets": [
+      "relationships",
+      "inner"
+    ],
+    "text": "У двери лежит завёрнутая свеча и записка от Марты: «Окно открыто, если захочешь поговорить».",
+    "choices": [
+      {
+        "id": "go",
+        "label": "Зайти к ней сегодня",
+        "servesFacets": [
+          "relationships"
+        ],
+        "effects": {
+          "resources": {
+            "bonds": 3,
+            "strength": -1
+          },
+          "setFacts": {
+            "marta.circle": "open"
+          }
+        },
+        "decisionKinds": [
+          "perspective",
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "encounter"
+        },
+        "impact": {
+          "level": "meaningful"
+        }
+      },
+      {
+        "id": "later",
+        "label": "Оставить записку на потом",
+        "servesFacets": [
+          "inner"
+        ],
+        "effects": {
+          "resources": {
+            "peace": 1
+          }
+        },
+        "decisionKinds": [
+          "pursue"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "encounter"
+        }
+      }
+    ],
+    "requires": {
+      "fact": "marta.circle",
+      "equals": "apart"
+    },
+    "once": true,
+    "weight": 6,
+    "story": {
+      "lines": [
+        "commitments"
+      ],
+      "role": "relationship"
+    },
+    "character": "marta"
+  },
+  {
+    "id": "x4_wanderer_takes_the_boy",
+    "chapter": 4,
+    "type": "situation",
+    "facets": [
+      "relationships",
+      "inner"
+    ],
+    "text": "Странник пришёл к мастерской за мальчиком. Тот сметает глину у твоей печи и не знает, уходить ему или остаться.",
+    "choices": [
+      {
+        "id": "let_go",
+        "label": "Отпустить мальчика со Странником",
+        "servesFacets": [
+          "inner"
+        ],
+        "effects": {
+          "resources": {
+            "peace": 1,
+            "bonds": -1
+          },
+          "setFacts": {
+            "wanderer.boy": "gone"
+          }
+        },
+        "decisionKinds": [
+          "pursue"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "encounter"
+        },
+        "impact": {
+          "level": "meaningful"
+        }
+      },
+      {
+        "id": "keep",
+        "label": "Предложить мальчику остаться насовсем",
+        "servesFacets": [
+          "relationships"
+        ],
+        "effects": {
+          "resources": {
+            "bonds": 3,
+            "wealth": -2
+          },
+          "setFacts": {
+            "wanderer.boy": "apprentice"
+          }
+        },
+        "decisionKinds": [
+          "perspective",
+          "cost"
+        ],
+        "lineStep": {
+          "line": "commitments",
+          "step": "encounter"
+        },
+        "impact": {
+          "level": "meaningful"
+        }
+      }
+    ],
+    "requires": {
+      "fact": "wanderer.boy",
+      "equals": "stays"
+    },
+    "once": true,
+    "weight": 6,
+    "story": {
+      "lines": [
+        "commitments"
+      ],
+      "role": "consequence"
+    },
+    "character": "wanderer"
   }
 ]

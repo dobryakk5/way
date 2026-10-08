@@ -537,6 +537,15 @@ describe('scenarios B and D: a change of goal keeps the promises; obligations an
   });
 });
 
+describe('readiness of the markup for the whole episode', () => {
+  it('every ordinary scene that can be met on days 1–30 carries a story anchor (the range could be widened to 30 without a lint error)', () => {
+    expect(focusedEncountersErrors(configured(content, { range: [1, 30] }))).toEqual([]);
+    const ordinary = content.cards.filter(isFacetWeightedDrawCandidate);
+    expect(ordinary.every(c => c.story)).toBe(true);
+    expect(ordinary.length).toBeGreaterThanOrEqual(51);
+  });
+});
+
 describe('static lint of the story metadata (section 12.1)', () => {
   const lint = (patch: (c: GameContent) => GameContent) => focusedEncountersErrors(patch(content)).join('\n');
   const withStory = (id: string, meta: FocusedStoryMeta) => (c: GameContent): GameContent => ({ ...c, cards: c.cards.map(card => card.id === id ? { ...card, story: meta } : card) });
@@ -548,7 +557,7 @@ describe('static lint of the story metadata (section 12.1)', () => {
     expect(lint(withStory(ordinary.id, { threadIds: ['no_such_thread'], role: 'ambient' }))).toMatch(/unknown thread/);
     expect(lint(withStory(protectedCard.id, { goalIds: ['alexey'], role: 'ambient' }))).toMatch(/protected or non-ordinary/);
     expect(lint(c => ({ ...withStory(ordinary.id, { lines: ['pace'], role: 'ambient' })(c), cards: withStory(ordinary.id, { lines: ['pace'], role: 'ambient' })(c).cards
-      .map(card => ({ ...card, choices: card.choices.map(({ lineStep: _step, ...ch }) => { void _step; return ch; }) })) }))).toMatch(/no choice ever writes/);
+      .map(card => { const bare = ({ lineStep: _step, ...ch }: Card['choices'][number]) => { void _step; return ch; }; return { ...card, choices: card.choices.map(bare), ...(card.choiceVariants ? { choiceVariants: card.choiceVariants.map(v => ({ ...v, choices: v.choices.map(bare) })) } : {}) }; }) }))).toMatch(/no choice ever writes/);
     expect(lint(c => ({ ...withStory(ordinary.id, { goalIds: ['alexey'], role: 'ambient' })(c), cards: withStory(ordinary.id, { goalIds: ['alexey'], role: 'ambient' })(c).cards
       .map(card => card.id === ordinary.id ? { ...card, requires: { fact: 'no.such.fact', equals: 'x' } } : card) }))).toMatch(/can never hold/);
   });

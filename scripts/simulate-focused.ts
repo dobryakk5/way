@@ -18,8 +18,9 @@ import { runMetrics, type RunMetrics } from './focused-metrics';
 import { play, POLICIES, type PolicyName } from './play';
 
 const GOALS: GoalId[] = ['order', 'workshop', 'alexey'];
-const RANGE = content.profile.focusedEncounters;
-const on: GameContent = { ...content, profile: { ...content.profile, rollout: { ...content.profile.rollout, focusedEncounters: true } } };
+// FOCUSED_THROUGH=30 is a what-if for the coverage of the whole episode (the shipped range stays 1-10): it changes this process only.
+const RANGE = { ...content.profile.focusedEncounters, ...(process.env.FOCUSED_THROUGH ? { throughDay: Number(process.env.FOCUSED_THROUGH) } : {}) };
+const on: GameContent = { ...content, profile: { ...content.profile, rollout: { ...content.profile.rollout, focusedEncounters: true }, focusedEncounters: RANGE } };
 const off: GameContent = { ...content, profile: { ...content.profile, rollout: { ...content.profile.rollout, focusedEncounters: false } } };
 const cardOf = new Map(content.cards.map(c => [c.id, c]));
 const isOrdinary = (id: string) => isFacetWeightedDrawCandidate(cardOf.get(id)!);

@@ -112,5 +112,33 @@
       "carried"
     ],
     "initial": "unknown"
+  },
+  "marta.circle": {
+    "values": [
+      "none",
+      "open",
+      "apart"
+    ],
+    "initial": "none"
+  },
+  "wanderer.boy": {
+    "values": [
+      "none",
+      "stays",
+      "sent",
+      "fed",
+      "passed",
+      "gone",
+      "apprentice"
+    ],
+    "initial": "none"
+  },
+  "alexey.reins": {
+    "values": [
+      "none",
+      "loose",
+      "shared"
+    ],
+    "initial": "none"
   }
 }
