@@ -1,5 +1,7 @@
 # FOCUSED-ENCOUNTERS — baseline (этап 0)
 
+> **Исторический отчёт этапа 0.** Отпечаток `focused-encounters-baseline.json` перезаписывался при законных изменениях контента старым (этапа 0) селектором: `npm run focused:baseline:rerecord`; при текущем контенте `npm run focused:baseline` даёт «IDENTICAL to the recorded baseline».
+
 ТЗ: `REQs/FOCUSED-ENCOUNTERS-v1.1.md`. Ветка работы: `feature/focused-encounters-v1-1` (от `main`). Ничего в `main` не вливалось.
 
 ## 1. Зафиксированное состояние

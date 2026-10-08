@@ -1,5 +1,7 @@
 # FOCUSED-ENCOUNTERS v1.1 — этап 1: движок под выключенным флагом
 
+> **Исторический отчёт этапа 1.** Актуально после этапов 2–3: веса прямого отбора **8:5:3:1:0,5** (здесь упомянуто 8:5:3:2:1), 51 размеченная обычная сцена, аддитивная политика контента и проверка сохранений — `FOCUSED-ENCOUNTERS-CONTENT-AUDIT.md` §0, `-SAVE-COMPAT.md`, `-SIMULATION.md`.
+
 Ветка `feature/focused-encounters-v1-1`. ТЗ: `REQs/FOCUSED-ENCOUNTERS-v1.1.md`. Baseline: `reports/FOCUSED-ENCOUNTERS-BASELINE.md`.
 Флаг `rollout.focusedEncounters = false` — в поставляемом контенте поведение игры **побитно прежнее**. Блоков `Card.story` в контенте пока нет (сюжетные карточки не трогались — по поручению ждём review движка).
 
