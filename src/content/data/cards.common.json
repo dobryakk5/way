@@ -46,7 +46,14 @@
     "facets": [
       "body",
       "work"
-    ]
+    ],
+    "story": {
+      "goalIds": [
+        "alexey",
+        "workshop"
+      ],
+      "role": "ambient"
+    }
   },
   {
     "id": "r_breakfast",
@@ -95,7 +102,14 @@
     "facets": [
       "body",
       "work"
-    ]
+    ],
+    "story": {
+      "goalIds": [
+        "alexey",
+        "order"
+      ],
+      "role": "ambient"
+    }
   },
   {
     "id": "r_market_price",
@@ -144,7 +158,14 @@
     "facets": [
       "work",
       "inner"
-    ]
+    ],
+    "story": {
+      "goalIds": [
+        "workshop",
+        "order"
+      ],
+      "role": "complication"
+    }
   },
   {
     "id": "r_marta_hello",
@@ -193,7 +214,13 @@
     "facets": [
       "relationships",
       "work"
-    ]
+    ],
+    "story": {
+      "lines": [
+        "commitments"
+      ],
+      "role": "relationship"
+    }
   },
   {
     "id": "r_kiln",
@@ -242,7 +269,14 @@
     "facets": [
       "relationships",
       "work"
-    ]
+    ],
+    "story": {
+      "goalIds": [
+        "alexey",
+        "workshop"
+      ],
+      "role": "opportunity"
+    }
   },
   {
     "id": "r_coins",
@@ -291,7 +325,14 @@
     "facets": [
       "work",
       "body"
-    ]
+    ],
+    "story": {
+      "goalIds": [
+        "order",
+        "workshop"
+      ],
+      "role": "ambient"
+    }
   },
   {
     "id": "r_river",
@@ -340,7 +381,11 @@
     "facets": [
       "body",
       "inner"
-    ]
+    ],
+    "story": {
+      "role": "ambient",
+      "worldFallback": true
+    }
   },
   {
     "id": "r_letter_stack",
@@ -389,7 +434,13 @@
     "facets": [
       "relationships",
       "inner"
-    ]
+    ],
+    "story": {
+      "threadIds": [
+        "liya_letters"
+      ],
+      "role": "relationship"
+    }
   },
   {
     "id": "r_customer_wait",
@@ -438,7 +489,14 @@
     "facets": [
       "work",
       "body"
-    ]
+    ],
+    "story": {
+      "goalIds": [
+        "order",
+        "alexey"
+      ],
+      "role": "ambient"
+    }
   },
   {
     "id": "r_evening_light",
@@ -487,7 +545,11 @@
     "facets": [
       "inner",
       "relationships"
-    ]
+    ],
+    "story": {
+      "role": "ambient",
+      "worldFallback": true
+    }
   },
   {
     "id": "cr_wealth_zero",

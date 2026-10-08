@@ -1229,7 +1229,13 @@
         "text": "Марта снова держит чашку у стола. Прежде она ставила её сразу; сегодня обхватила обеими ладонями и ждёт, пока ты сядешь.",
         "familiarCardId": "c1_marta_firewood"
       }
-    ]
+    ],
+    "story": {
+      "lines": [
+        "commitments"
+      ],
+      "role": "relationship"
+    }
   },
   {
     "id": "c2_silence_alexey_hand",
@@ -1329,7 +1335,16 @@
         "text": "Алексей вновь поворачивает чашку к свету. Теперь заметно, как он меняет хват, оберегая большой палец.",
         "familiarCardId": "c1_alexey_broken_jug"
       }
-    ]
+    ],
+    "story": {
+      "lines": [
+        "apprentice"
+      ],
+      "goalIds": [
+        "alexey"
+      ],
+      "role": "consequence"
+    }
   },
   {
     "id": "c2_silence_market_pause",
@@ -1429,7 +1444,17 @@
         "text": "Тимон, как тогда со сдачей, отсчитывает монеты. Перед последней задерживает руку и смотрит на пустую лавку напротив.",
         "familiarCardId": "c1_extra_change"
       }
-    ]
+    ],
+    "story": {
+      "lines": [
+        "commitments"
+      ],
+      "goalIds": [
+        "order",
+        "workshop"
+      ],
+      "role": "opportunity"
+    }
   },
   {
     "id": "c2_gaze_wanderer_bread",
@@ -1525,7 +1550,17 @@
         "text": "Путник снова делит хлеб. Теперь он оставляет ломоть рядом с собой, прежде чем протянуть другой.",
         "familiarCardId": "c1_wounded_road"
       }
-    ]
+    ],
+    "story": {
+      "lines": [
+        "pace"
+      ],
+      "threadIds": [
+        "wanderer_herbs",
+        "wanderer_bridge"
+      ],
+      "role": "relationship"
+    }
   },
   {
     "id": "c2_gaze_marta_window",
@@ -1623,7 +1658,13 @@
         "text": "У Марты снова горит окно. Рядом с её чашкой стоит вторая; она переставляет её ближе к свободному стулу.",
         "familiarCardId": "c1_marta_firewood"
       }
-    ]
+    ],
+    "story": {
+      "lines": [
+        "commitments"
+      ],
+      "role": "relationship"
+    }
   },
   {
     "id": "c2_gaze_alexey_silence",
@@ -1729,7 +1770,16 @@
         "text": "Чашка Алексея снова на краю стола. Ученик уже не прячет дно с неровной подписью, а поворачивает его к свету.",
         "familiarCardId": "c1_alexey_broken_jug"
       }
-    ]
+    ],
+    "story": {
+      "lines": [
+        "apprentice"
+      ],
+      "goalIds": [
+        "alexey"
+      ],
+      "role": "consequence"
+    }
   },
   {
     "id": "c2_egor_after_forgive",

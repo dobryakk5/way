@@ -153,7 +153,8 @@ export function impactErrors(c: GameContent, assetExists: (image: string) => boo
 /**
  * FOCUSED-ENCOUNTERS v1.1, section 12.1. `story` is a content anchor of an ORDINARY free scene only; the protected categories stay unmarked.
  * Anchors are checked against what can really happen (a line some choice writes, a thread that exists, a `requires` that can be met),
- * not only against non-empty fields. When the rollout flag is on, every ordinary scene of the covered chapters needs an anchor.
+ * not only against non-empty fields. Every ordinary scene that can be met inside the focused range (chapter covered or 'any', and not gated to a later day)
+ * needs an anchor, whether or not the rollout flag is on yet: the markup must be ready before the flag is.
  */
 /** The first day a condition can hold, looking only at calendar terms (a card gated to a later day is not available inside an earlier range). */
 function earliestDay(x:Condition|undefined):number{
@@ -178,7 +179,7 @@ export function focusedEncountersErrors(c:GameContent):string[]{
   if(story.worldFallback&&story.role!=='ambient')fail(`worldFallback needs role ambient ${card.id}`);
   if(card.requires&&!conditionReachable(c,card.requires))fail(`story scene ${card.id} has a requires that can never hold`);
  }
- if(c.profile.rollout.focusedEncounters){
+ {
   const covered=c.episode.chapters.filter(ch=>ch.from<=range.throughDay&&ch.through>=range.fromDay).map(ch=>ch.id);
   for(const card of c.cards)if(isFacetWeightedDrawCandidate(card)&&!card.story&&(card.chapter==='any'||covered.includes(card.chapter))&&earliestDay(card.requires)<=range.throughDay)fail(`ordinary scene ${card.id} has no story anchor inside the focused range ${range.fromDay}-${range.throughDay}`);
  }

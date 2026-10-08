@@ -147,7 +147,8 @@ describe('rollout gate (section 9)', () => {
   it('the shipped content has the flag off and the range 1–10', () => {
     expect(content.profile.rollout.focusedEncounters).toBe(false);
     expect(content.profile.focusedEncounters).toEqual({ fromDay: 1, throughDay: 10 });
-    expect(content.cards.some(c => c.story)).toBe(false);
+    // Only ordinary free scenes carry a story block; the protected categories never do.
+    expect(content.cards.filter(c => c.story).every(isFacetWeightedDrawCandidate)).toBe(true);
   });
   it('off or outside the range the slice is the legacy slice, call for call', () => {
     const cards = [...ALL, ...neutrals];
@@ -375,22 +376,23 @@ describe('what the selector must not touch (section 8)', () => {
       for (const d of state.diceHistory) { expect(new Set(d.candidates).size).toBe(6); expect(d.candidateOrigins!.filter(o => o === 'probe').length).toBeLessThanOrEqual(1); }
     }
   });
+  const stripStory = (c: GameContent): GameContent => ({ ...c, cards: c.cards.map(({ story: _s, ...card }) => { void _s; return card; }) });
   const freeStates = (seed: number, from: number, through: number): GameState[] => {
     const seen: GameState[] = [];
     play(seed, { policy: 'mixed', beforeStep: s => { if (s.phase === 'slot' && !s.current && s.day >= from && s.day <= through) seen.push(s); return s; } });
     return seen;
   };
   it('H: before coverage is extended, days after the range are exactly the legacy algorithm even for unmarked content', () => {
-    const unmarked = configured(content);                       // flag on, range 1–10, nothing marked
+    const unmarked = configured(stripStory(content));           // flag on, range 1–10, nothing marked
     const states = freeStates(3, 11, 30);
     expect(states.length).toBeGreaterThan(20);
     for (const s of states) {
-      expect(drawCard(s, unmarked)).toEqual(drawCard(s, content));
-      expect(prepareEncounter(s, unmarked)).toEqual(prepareEncounter(s, content));
+      expect(drawCard(s, unmarked)).toEqual(drawCard(s, stripStory(content)));
+      expect(prepareEncounter(s, unmarked)).toEqual(prepareEncounter(s, stripStory(content)));
     }
   });
   it('I / AC-2: unmarked content inside the range never shows an ordinary story scene from the free pool; it fails loudly (FOCUS_POOL_EMPTY) or shows a protected scene', () => {
-    const unmarked = configured(content);
+    const unmarked = configured(stripStory(content));
     const ordinary = new Set(content.cards.filter(isFacetWeightedDrawCandidate).map(c => c.id));
     let empty = 0, protectedShown = 0;
     for (const s of [...freeStates(3, 1, 10), ...freeStates(4, 1, 10)]) {
@@ -486,6 +488,23 @@ describe('the declared-intention bonus (x1.15) inside a tier, never applied twic
   });
 });
 
+describe('real content with the selector on (days 1–10)', () => {
+  const onReal = configured(content);
+  it('never runs out of scenes: no FOCUS_POOL_EMPTY for any goal, intention or policy; every ordinary scene shown from the pool is relevant', () => {
+    const ordinary = new Set(content.cards.filter(isFacetWeightedDrawCandidate).map(c => c.id));
+    let checked = 0;
+    for (const policy of ['mixed', 'always-first', 'always-costly'] as const) for (const goal of ['order', 'workshop', 'alexey'] as const) for (let seed = 1; seed <= 4; seed++) {
+      const { state } = play(seed, { policy, goal, content: onReal, goalAt: seed % 2 ? { 11: 'workshop', 21: 'alexey' } : { 11: 'alexey', 21: 'order' },
+        onDraw: (s, draw) => {
+          if (draw.source !== 'pool' || s.day > 10 || !ordinary.has(draw.card.id)) return;
+          expect(rankFocusedStory(s, onReal, freePool(s, onReal)).some(r => r.card.id === draw.card.id)).toBe(true); checked++;
+        } });
+      expect(state.history).toHaveLength(120);
+    }
+    expect(checked).toBeGreaterThan(30);
+  });
+});
+
 describe('scenarios B and D: a change of goal keeps the promises; obligations and crises are not displaced', () => {
   const chainThread = content.threads.find(t => t.kind === 'chain')!;
   const follow = chainThread.kind === 'chain' ? chainThread.followUp.cardId : '';
@@ -533,12 +552,14 @@ describe('static lint of the story metadata (section 12.1)', () => {
     expect(lint(c => ({ ...withStory(ordinary.id, { goalIds: ['alexey'], role: 'ambient' })(c), cards: withStory(ordinary.id, { goalIds: ['alexey'], role: 'ambient' })(c).cards
       .map(card => card.id === ordinary.id ? { ...card, requires: { fact: 'no.such.fact', equals: 'x' } } : card) }))).toMatch(/can never hold/);
   });
-  it('demands an anchor for every ordinary scene of the covered chapters once the flag is on, and a range inside the episode', () => {
-    const flagged = (c: GameContent) => configured(c);
-    expect(focusedEncountersErrors(flagged(content)).join('\n')).toMatch(/has no story anchor inside the focused range/);
+  it('demands an anchor for every ordinary scene available inside the focused range (flag on or off), and a range inside the episode', () => {
+    const stripped = (c: GameContent): GameContent => ({ ...c, cards: c.cards.map(({ story: _s, ...card }) => { void _s; return card; }) });
+    expect(focusedEncountersErrors(stripped(content)).join('\n')).toMatch(/has no story anchor inside the focused range/);
+    expect(focusedEncountersErrors(configured(stripped(content), { on: false })).join('\n')).toMatch(/has no story anchor inside the focused range/);
+    expect(focusedEncountersErrors(content)).toEqual([]);
     expect(focusedEncountersErrors(configured(content, { on: false, range: [1, 40] })).join('\n')).toMatch(/beyond the episode/);
     const gated = { ...content, cards: content.cards.map(card => card.id === ordinary.id ? { ...card, chapter: 'any' as const, requires: { dayGte: 15 } } : card) };
-    expect(focusedEncountersErrors(configured(gated)).join('\n')).not.toContain(ordinary.id);   // not available on days 1–10: no anchor needed there
+    expect(focusedEncountersErrors(configured({ ...gated, cards: gated.cards.map(({ story: _s, ...card }) => { void _s; return card; }) })).join('\n')).not.toContain(ordinary.id);   // not available on days 1–10: no anchor needed there
     const everything = { ...content, cards: content.cards.map(card => isFacetWeightedDrawCandidate(card) ? { ...card, story: { goalIds: ['order' as const], role: 'ambient' as const } } : card) };
     expect(focusedEncountersErrors(configured(everything))).toEqual([]);
   });

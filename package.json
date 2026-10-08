@@ -27,6 +27,7 @@
     "facets:simulate": "node --import tsx scripts/simulate-facets.ts",
     "focused:baseline": "node --import tsx scripts/focused-baseline.ts",
     "focused:metrics": "node --import tsx scripts/focused-metrics.ts",
+    "focused:simulate": "node --import tsx scripts/simulate-focused.ts",
     "cards:lint": "node --import tsx scripts/cards-lint.ts",
     "persistence:catalog": "node --import tsx scripts/persistence/build-content-catalog.ts --write",
     "persistence:catalog:check": "node --import tsx scripts/persistence/build-content-catalog.ts"

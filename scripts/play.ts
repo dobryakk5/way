@@ -1,6 +1,6 @@
 import { content } from '../src/content';
 import { answerMotive, skipMotive, applyChoice, beginSlots, chooseIntention, chooseRoute, deterministicRandom, drawCard, enterSlot, leaveEvening, nextChapter, persistDraw, startEpisode, chooseGoal, prepareEncounter, rollEncounter, openEncounter, fairDieFace } from '../src/engine';
-import type { Choice, DrawResult, GameContent, GameState, LifeFacet, Quality } from '../src/engine';
+import type { Choice, DrawResult, GameContent, GameState, GoalId, LifeFacet, Quality } from '../src/engine';
 export const POLICIES = ['random','always-first','always-second','always-costly','greedy-resources','greedy-qualities','mixed'] as const;
 export type PolicyName = typeof POLICIES[number];
 export const resourceScore = (c:Choice) => Object.values(c.effects.resources??{}).reduce((a,b)=>a+b,0);
@@ -16,6 +16,8 @@ export function chooseByPolicy(policy:PolicyName,state:GameState,choices:Choice[
 export interface PlayOptions {
  content?:GameContent; policy?:PolicyName; facet?:LifeFacet; quality?:Quality;
  choices?:Record<string,string>; routes?:Record<number,string>;
+ // The goal chosen on day 1 (default 'order') and goal changes on the review days (11, 21) by day; without them the goal is kept.
+ goal?:GoalId; goalAt?:Record<number,GoalId>;
  // Motive answers by card id: an option id, or 'skip'. Without an entry the answer is deterministic pseudo-random (about a third are skipped).
  motives?:Record<string,string>;
  // Policies that read the shown pair: a choice id for a scene, an option id (or 'skip') for a motive question.
@@ -32,13 +34,13 @@ export interface PlayOptions {
 }
 export function play(seed:number,options:PlayOptions={}) {
  const c=options.content??content;const policy=options.policy??'random';
- let state=options.resume??chooseGoal(startEpisode(c,seed,`sim-${seed}`),c,'order','select');if(options.start)state=options.start(state);let transitions=0;let crises=0;
+ let state=options.resume??chooseGoal(startEpisode(c,seed,`sim-${seed}`),c,options.goal??'order','select');if(options.start)state=options.start(state);let transitions=0;let crises=0;
  const draws:{day:number;slot:number;cardId:string;source:string;variantId?:string}[]=[];
  while(state.phase!=='boundary'&&state.phase!=='ending'&&!options.stopWhen?.(state)){
   if(++transitions>400)throw new Error('Transition loop');
   if(options.beforeStep)state=options.beforeStep(state);
   switch(state.phase){
-   case 'goal':state=chooseGoal(state,c,state.goal?.id??'order','keep');break;
+   case 'goal':{const next=options.goalAt?.[state.day];state=next&&next!==state.goal?.id?chooseGoal(state,c,next,'change'):chooseGoal(state,c,state.goal?.id??'order','keep');break;}
    case 'dice':state=state.current?openEncounter(state):rollEncounter(state,c,fairDieFace(()=>Math.floor(deterministicRandom(seed,state.day,state.slot,'die',state.episodeId)*4294967292)));break;
    case 'morning':state=beginSlots(state,c);break;
    case 'chapter':state=nextChapter(state,c);break;
