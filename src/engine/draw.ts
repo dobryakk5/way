@@ -6,7 +6,7 @@ import { deterministicRandom } from './rng';
 import { eligible, fitsSchedule, obligations, routeAt } from './schedule';
 import { choiceById, resolveChoices } from './variants';
 import { baseCardWeight, cardFacetMultiplier, declaredIntentionPrior, facetAttention, facetAttentionOn, facetTargetDistribution, isFacetWeightedDrawCandidate } from './facets';
-import { FocusPoolEmptyError, focusedEncountersOn, focusedStoryPositions, pickFocusedStory, rankFocusedStory, traceFocused } from './focusedEncounters';
+import { FocusPoolEmptyError, focusedEncountersOn, focusedStoryPositions, pickDirectFocusedStory, rankFocusedStory, traceFocused } from './focusedEncounters';
 import { exposeOpportunity } from './opportunities';
 import type { Card, Choice, DiagnosticSelectionOrigin, GameContent, GameState, ResolvedCardVisual } from './types';
 export type DrawSource = 'current' | 'at' | 'route' | 'capacity' | 'crisis' | 'mustShowBy' | 'scheduled' | 'pool' | 'development';
@@ -94,17 +94,17 @@ export function encounterSlice(state: GameState, content: GameContent, ordered: 
 /**
  * The direct free draw inside FOCUSED-ENCOUNTERS (second selection point; same filter as the dice). Stage 1 is the legacy draw and alone decides
  * protected vs story, so the share of neutral and other protected scenes is untouched; a protected pick is returned as it is. A story pick is
- * replaced by the best relevant story scene (tier order, facet weight used once). Without any relevant story scene a protected scene is
+ * replaced by a relevant story scene (a non-empty tier drawn with weights 8:5:3:2:1, then a card inside it by weight used once). Without any relevant story scene a protected scene is
  * drawn by the same roll; with neither the slot cannot be filled and that is a data error (FOCUS_POOL_EMPTY), never a silent general story.
  */
 function drawFocusedFreePool(state: GameState, content: GameContent, cards: Card[]): Card | undefined {
   const first = weighted(state, cards);
   if (!first || !isFacetWeightedDrawCandidate(first)) return first;
   const ranked = rankFocusedStory(state, content, cards);
-  const { picked } = pickFocusedStory(state, content, ranked, 1);
-  if (picked[0]) {
-    traceFocused({ kind: 'direct', day: state.day, slot: state.slot, relevant: ranked.length, picks: picked.map(p => ({ id: p.card.id, tier: p.tier, basis: p.basis })) });
-    return picked[0].card;
+  const picked = pickDirectFocusedStory(state, content, ranked);
+  if (picked) {
+    traceFocused({ kind: 'direct', day: state.day, slot: state.slot, relevant: ranked.length, picks: [{ id: picked.card.id, tier: picked.tier, basis: picked.basis }] });
+    return picked.card;
   }
   const protectedCards = cards.filter(c => !isFacetWeightedDrawCandidate(c));
   if (protectedCards.length) {

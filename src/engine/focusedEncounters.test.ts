@@ -8,7 +8,7 @@ import { auditProfile } from './heroDevelopmentProfile';
 import { drawCard, encounterSlice, facetAdjustedSlice, freePool } from './draw';
 import { fairDieFace, openEncounter, prepareEncounter, rollEncounter } from './journey';
 import { isFacetWeightedDrawCandidate } from './facets';
-import { FocusPoolEmptyError, focusBasis, focusTier, focusedEncountersOn, pickFocusedStory, rankFocusedStory, selectFocusedStoryCandidates, setFocusedTrace } from './focusedEncounters';
+import { DIRECT_TIER_WEIGHTS, FocusPoolEmptyError, focusBasis, focusTier, focusedEncountersOn, pickDirectFocusedStory, pickFocusedStory, rankFocusedStory, selectFocusedStoryCandidates, setFocusedTrace } from './focusedEncounters';
 import type { FocusedTraceEvent } from './focusedEncounters';
 import { deriveStoryContext } from './storyContext';
 import { deterministicRandom } from './rng';
@@ -254,7 +254,7 @@ describe('deficit and direct draw (point 2: drawCard, section 7)', () => {
     }
     expect(deficits).toBeGreaterThan(0); expect(dice).toBeGreaterThan(0);
   });
-  it('AC-7: the direct draw uses the same relevant list and tier order as the dice', () => {
+  it('AC-7: the direct draw uses the same relevant list as the dice and never leaves it', () => {
     const cards = [...ALL, ...neutrals];
     const c = configured(makeContent({ cards }));
     for (let i = 0; i < 300; i++) {
@@ -262,8 +262,8 @@ describe('deficit and direct draw (point 2: drawCard, section 7)', () => {
       if (card.diagnostic) continue;
       const { cards: relevant, tiers } = selectFocusedStoryCandidates(s, c, freePool(s, c));
       expect(relevant.map(x => x.id)).toContain(card.id);
-      expect(tiers[card.id]).toBe(1);                   // best tier is always taken first by a one-place draw
-      expect(['unmarked', 'off_topic', 'p4', 'p5']).not.toContain(card.id);
+      expect(tiers[card.id]).toBeGreaterThanOrEqual(1);
+      expect(['unmarked', 'off_topic']).not.toContain(card.id);
     }
   });
   it('keeps the legacy share of protected scenes: a protected first pick is returned untouched', () => {
@@ -394,6 +394,82 @@ describe('what the selector must not touch (section 8)', () => {
     const { state } = play(5, { policy: 'mixed', content: onReal, stopWhen: s => s.phase === 'dice' && !s.current && s.day >= 2 });
     expect(state.phase).toBe('dice');
     expect(validateSave({ schema: 1, started: true, game: state })).toBeDefined();
+  });
+});
+
+describe('direct draw: tier weights 8:5:3:2:1 and variety', () => {
+  const oneEach = [P1, P2L, P3, P4, P5];
+  const c = (cards: Card[]) => makeContent({ cards });
+  const tierShares = (cards: Card[], n = 6000, over: Partial<GameState> = {}) => {
+    const counts: Record<number, number> = {};
+    for (let i = 0; i < n; i++) {
+      const state = storyState(i, over), ranked = rankFocusedStory(state, c(cards), cards);
+      const t = pickDirectFocusedStory(state, c(cards), ranked)!.tier;
+      counts[t] = (counts[t] ?? 0) + 1;
+    }
+    return Object.fromEntries(Object.entries(counts).map(([k, v]) => [k, v / n]));
+  };
+  it('the weights are the ones the review decided', () => { expect(DIRECT_TIER_WEIGHTS).toEqual({ 1: 8, 2: 5, 3: 3, 4: 2, 5: 1 }); });
+  it('with all five tiers present the tiers are drawn 8:5:3:2:1', () => {
+    const shares = tierShares(oneEach);
+    [8, 5, 3, 2, 1].forEach((w, i) => expect(Math.abs((shares[i + 1] ?? 0) - w / 19)).toBeLessThan(.02));
+  });
+  it('an empty tier is excluded and the others are renormalised; the number of cards in a tier does not change the tier odds', () => {
+    const shares = tierShares([P1, P1b, P3]);
+    expect(Math.abs(shares[1]! - 8 / 11)).toBeLessThan(.02); expect(Math.abs(shares[3]! - 3 / 11)).toBeLessThan(.02); expect(shares[2]).toBeUndefined();
+    expect(tierShares([P5], 50)).toEqual({ 5: 1 });
+  });
+  it('is not always the best tier and keeps variety: several tiers and several cards of one tier appear', () => {
+    const picks = new Set<string>(), tiers = new Set<number>();
+    for (let i = 0; i < 400; i++) {
+      const state = storyState(i), ranked = rankFocusedStory(state, c(ALL), ALL), r = pickDirectFocusedStory(state, c(ALL), ranked)!;
+      picks.add(r.card.id); tiers.add(r.tier);
+    }
+    expect([...tiers].sort()).toEqual([1, 2, 3, 4, 5]);
+    expect(picks.has('p1') && picks.has('p1b')).toBe(true);
+    expect(picks.size).toBe(7);
+  });
+  it('is deterministic and gives nothing when nothing is relevant', () => {
+    const state = storyState(9), ranked = rankFocusedStory(state, c(ALL), ALL);
+    expect(pickDirectFocusedStory(state, c(ALL), ranked)!.card.id).toBe(pickDirectFocusedStory(state, c(ALL), ranked)!.card.id);
+    expect(pickDirectFocusedStory(state, c(ALL), [])).toBeUndefined();
+  });
+  it('through drawCard: the story share of the legacy split is kept, and tiers below the best are really shown', () => {
+    const cards = [...oneEach, ...neutrals];
+    const on = configured(makeContent({ cards })), off = configured(makeContent({ cards }), { on: false });
+    const shown: Record<string, number> = {};
+    let storyOn = 0, storyOff = 0;
+    for (let i = 0; i < 1500; i++) {
+      const s = storyState(i), a = drawCard(s, on)!.card, b = drawCard(s, off)!.card;
+      if (isFacetWeightedDrawCandidate(a)) { storyOn++; shown[a.id] = (shown[a.id] ?? 0) + 1; }
+      if (isFacetWeightedDrawCandidate(b)) storyOff++;
+    }
+    expect(storyOn).toBe(storyOff);
+    for (const id of ['p1', 'p2l', 'p3', 'p4', 'p5']) expect(shown[id]).toBeGreaterThan(0);
+    expect(shown.p1!).toBeGreaterThan(shown.p5!);
+  });
+});
+
+describe('the declared-intention bonus (x1.15) inside a tier, never applied twice', () => {
+  const inner = story('i_in', ['inner'], { goalIds: ['alexey'], role: 'complication' });
+  const body = story('i_out', ['body'], { goalIds: ['alexey'], role: 'complication' });
+  const uniform = Array.from({ length: 16 }, (_, k) => ({ day: 1, slot: k % 4, cardId: 'h', choiceId: 'a', facets: [(['work', 'relationships', 'body', 'inner'] as LifeFacet[])[k % 4]!] }));
+  const share = (c: GameContent, over: Partial<GameState>) => Array.from({ length: 8000 }, (_, i) => {
+    const state = storyState(i, over), ranked = rankFocusedStory(state, c, [inner, body]);
+    return pickFocusedStory(state, c, ranked, 1).picked[0]!.card.id;
+  }).filter(id => id === 'i_in').length / 8000;
+  const world = (facetAttention: boolean) => configured(makeContent({ cards: [inner, body, story('h', ['work'])] }), { facetAttention });
+  it('facet attention off: the scene of the intention weighs 1.15 against 1', () => {
+    expect(Math.abs(share(world(false), {}) - 1.15 / 2.15)).toBeLessThan(.02);
+  });
+  it('facet attention off: no intention, no bonus', () => {
+    expect(Math.abs(share(world(false), { declaredIntention: 'work' }) - .5)).toBeLessThan(.02);
+  });
+  it('facet attention on, few own decisions: the bonus comes from facet attention alone, once (not 1.15 squared)', () => {
+    expect(Math.abs(share(world(true), {}) - 1.15 / 2.15)).toBeLessThan(.02);
+  });
+  it('facet attention on, enough own decisions: the bonus has faded, as facet attention itself defines', () => {
+    expect(Math.abs(share(world(true), { history: uniform }) - .5)).toBeLessThan(.02);
   });
 });
 

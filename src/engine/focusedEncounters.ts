@@ -3,7 +3,7 @@
 // Dice and direct draw only change WHICH ordinary story scenes can be offered. Neutral, probe, development, route-only, fixed and
 // obligatory scenes never pass through here, and nothing here reads the diagnostic or development profile (see storyContext.ts).
 import { deterministicRandom } from './rng';
-import { baseCardWeight, cardFacetMultiplier, facetAttention, facetAttentionOn, facetTargetDistribution, isFacetWeightedDrawCandidate } from './facets';
+import { baseCardWeight, cardFacetMultiplier, declaredIntentionPrior, facetAttention, facetAttentionOn, facetTargetDistribution, isFacetWeightedDrawCandidate } from './facets';
 import { deriveStoryContext, type StoryContext } from './storyContext';
 import type { Card, GameContent, GameState } from './types';
 
@@ -64,13 +64,25 @@ export function selectFocusedStoryCandidates(state: GameState, content: GameCont
   return { cards: ranked.map(r => r.card), tiers: Object.fromEntries(ranked.map(r => [r.card.id, r.tier])) };
 }
 
-/** Card weight, used once: the authored weight times the facet-attention multiplier when that mechanism is on. The intention enters through tier P4 only. */
+/**
+ * Card weight inside a tier, used once. The authored weight times:
+ * - with facet attention off: the declared-intention bonus (`facetAttention.declaredIntentionMultiplier`, 1.15) for a scene of the intention's sphere;
+ * - with facet attention on: only its own multiplier, which already carries the same bonus while the hero's own decisions are too few
+ *   (`declaredIntentionPrior`), so the bonus is never applied twice.
+ */
 function weightOf(state: GameState, content: GameContent): (card: Card) => number {
-  if (!facetAttentionOn(content)) return baseCardWeight;
   const config = content.profile.facetAttention;
-  const target = facetTargetDistribution(facetAttention(state, content, config), config);
-  return card => baseCardWeight(card) * cardFacetMultiplier(card, target, config);
+  if (!facetAttentionOn(content)) {
+    const intention = state.declaredIntention;
+    return card => baseCardWeight(card) * (intention && card.facets?.includes(intention) ? config.declaredIntentionMultiplier : 1);
+  }
+  const attention = facetAttention(state, content, config);
+  const target = facetTargetDistribution(attention, config);
+  return card => baseCardWeight(card) * cardFacetMultiplier(card, target, config, declaredIntentionPrior(card, state, attention, config));
 }
+
+/** Direct draw only: how likely each non-empty tier is to be the one drawn from (P1 … P5). */
+export const DIRECT_TIER_WEIGHTS: Record<FocusTier, number> = { 1: 8, 2: 5, 3: 3, 4: 2, 5: 1 };
 
 /**
  * Takes up to `count` scenes, tier by tier (P1 → P5, no card twice). Inside a tier: deterministic weighted sampling without replacement
@@ -93,6 +105,19 @@ export function pickFocusedStory(state: GameState, content: GameContent, ranked:
   }
   for (const r of order) { if (picked.length >= count) break; if (!picked.includes(r)) picked.push(r); }
   return { picked: picked.slice(0, count), ...(variety ? { variety } : {}) };
+}
+
+/**
+ * The direct draw's single story pick: first a tier among the NON-EMPTY ones with weights 8:5:3:2:1 (one deterministic roll), then a card
+ * inside that tier by the same weighted key as the dice. Better tiers are likelier, not certain, so the direct path keeps variety.
+ */
+export function pickDirectFocusedStory(state: GameState, content: GameContent, ranked: RankedStory[]): RankedStory | undefined {
+  const tiers = ([1, 2, 3, 4, 5] as FocusTier[]).filter(t => ranked.some(r => r.tier === t));
+  if (!tiers.length) return undefined;
+  const total = tiers.reduce((a, t) => a + DIRECT_TIER_WEIGHTS[t], 0);
+  let n = deterministicRandom(state.seed, state.day, state.slot, 'focus-tier', state.episodeId) * total;
+  const tier = tiers.find(t => (n -= DIRECT_TIER_WEIGHTS[t]) < 0) ?? tiers.at(-1)!;
+  return pickFocusedStory(state, content, ranked.filter(r => r.tier === tier), 1).picked[0];
 }
 
 /**
