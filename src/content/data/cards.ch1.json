@@ -274,6 +274,9 @@
         "lineStep": {
           "line": "commitments",
           "step": "habitual"
+        },
+        "impact": {
+          "level": "meaningful"
         }
       },
       {
@@ -309,6 +312,9 @@
         "lineStep": {
           "line": "commitments",
           "step": "habitual"
+        },
+        "impact": {
+          "level": "meaningful"
         }
       }
     ],
