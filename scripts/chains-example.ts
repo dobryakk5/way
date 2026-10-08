@@ -17,7 +17,7 @@ const at = (s: GameState, day: number, slot: number) => s.history.find(h => h.da
 interface Target { title: string; source: [string, string]; host: string; hostVariant?: string }
 const TARGETS: Target[] = [
   { title: 'Алексей молчит, а ты спросил', source: ['c2_gaze_alexey_silence', 'ask'], host: 'r_customer_wait', hostVariant: 'r_customer_wait_alexey_spoke' },
-  { title: 'Вечер, о котором договорились с Мартой', source: ['r_marta_hello', 'b'], host: 'r_marta_evening' },
+  { title: 'Вечер, о котором договорились с Мартой', source: ['r_marta_hello', 'b2'], host: 'r_marta_evening' },
   { title: 'Пустая лавка Тимона', source: ['c2_silence_market_pause', 'ask'], host: 'r_coins', hostVariant: 'r_coins_asked_about_stall' },
   { title: 'Лишние монеты Тимона (первые дни)', source: ['c1_extra_change', 'keep'], host: 'c1_timon_returns' },
   { title: 'Старая чаша Егора (из первых дней в главу 2)', source: ['c1_old_bowl', 'pause'], host: 'c2_marta_window_result' }

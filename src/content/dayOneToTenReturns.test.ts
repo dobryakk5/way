@@ -109,9 +109,9 @@ describe('chapter 2 decisions come back (no existing choice is edited)', () => {
 });
 
 describe('r_marta_hello keeps the evening it offers', () => {
-  const stateWithCard = () => persistDraw(makeState({ day: 4, slot: 0, phase: 'slot' }), { card: card('r_marta_hello'), choices: card('r_marta_hello').choices, text: card('r_marta_hello').text, source: 'pool' }, content);
-  it('"Договориться на вечер" schedules r_marta_evening for the next day, which is then shown', () => {
-    const next = applyChoice(stateWithCard(), content, 'r_marta_hello', 'b');
+  const stateWithCard = () => persistDraw(makeState({ day: 4, slot: 0, phase: 'slot' }), { card: card('r_marta_hello'), choices: card('r_marta_hello').choiceVariants![0]!.choices, text: card('r_marta_hello').text, source: 'pool' }, content);
+  it('"Договориться на вечер" (b2) schedules r_marta_evening for the next day, which is then shown', () => {
+    const next = applyChoice(stateWithCard(), content, 'r_marta_hello', 'b2');
     expect(next.scheduled).toContainEqual({ cardId: 'r_marta_evening', day: 5 });
     const { current: _shown, ...rest } = next; void _shown;
     const tomorrow = { ...rest, day: 5, slot: 0, phase: 'slot' as const } as GameState;
@@ -119,7 +119,7 @@ describe('r_marta_hello keeps the evening it offers', () => {
     expect(draw.card.id).toBe('r_marta_evening'); expect(draw.source).toBe('scheduled');
   });
   it('"Поговорить сейчас" promises nothing and schedules nothing', () => {
-    expect(applyChoice(stateWithCard(), content, 'r_marta_hello', 'a').scheduled.some(s => s.cardId === 'r_marta_evening')).toBe(false);
+    expect(applyChoice(stateWithCard(), content, 'r_marta_hello', 'a2').scheduled.some(s => s.cardId === 'r_marta_evening')).toBe(false);
   });
   it('is an ambient world-fallback scene without an artificial line, and is not offered on the last day (the evening would fall outside the episode)', () => {
     expect(card('r_marta_hello').story).toEqual({ role: 'ambient', worldFallback: true });
@@ -132,17 +132,18 @@ describe('r_marta_hello keeps the evening it offers', () => {
 });
 
 describe('a repeated promise to Marta is kept as well (day 4 → evening on day 5 → promise again on day 14 → evening on day 15)', () => {
-  const present = (s: GameState, cardId: string) => persistDraw(s, { card: card(cardId), choices: card(cardId).choices, text: resolveCardText(s, card(cardId), content), source: 'pool' }, content);
+  const shownChoices = (c: ReturnType<typeof card>) => c.choiceVariants?.[0]?.choices ?? c.choices;
+  const present = (s: GameState, cardId: string) => persistDraw(s, { card: card(cardId), choices: shownChoices(card(cardId)), text: resolveCardText(s, card(cardId), content), source: 'pool' }, content);
   const free = (s: GameState): GameState => { const { current: _shown, ...rest } = s; void _shown; return rest as GameState; };
   it('the evening card shows up again and no promise is left dangling', () => {
     let s = makeState({ day: 4, slot: 0, phase: 'slot' });
-    s = applyChoice(present(s, 'r_marta_hello'), content, 'r_marta_hello', 'b');                      // day 4: «Договориться на вечер»
+    s = applyChoice(present(s, 'r_marta_hello'), content, 'r_marta_hello', 'b2');                      // day 4: «Договориться на вечер»
     s = { ...free(s), day: 5, slot: 2, phase: 'slot' };
     const first = drawCard(s, content)!; expect([first.card.id, first.source]).toEqual(['r_marta_evening', 'scheduled']);
     s = applyChoice(persistDraw(s, first, content), content, 'r_marta_evening', 'wait');                // day 5: the evening
     expect(s.scheduled.some(x => x.cardId === 'r_marta_evening')).toBe(false);
     s = { ...free(s), day: 14, slot: 0, phase: 'slot' };
-    s = applyChoice(present(s, 'r_marta_hello'), content, 'r_marta_hello', 'b');                      // day 14: promised again
+    s = applyChoice(present(s, 'r_marta_hello'), content, 'r_marta_hello', 'b2');                      // day 14: promised again
     s = { ...free(s), day: 15, slot: 1, phase: 'slot' };
     const second = drawCard(s, content)!;
     expect([second.card.id, second.source]).toEqual(['r_marta_evening', 'scheduled']);                 // the second promise is kept
@@ -174,7 +175,7 @@ describe('the six chapter 2 scenes keep their setup in every version of the text
     ['c2_silence_marta_cup', /у неё всё в порядке/], ['c2_silence_market_pause', /предлагает сделку/], ['c2_gaze_wanderer_bread', /делит хлеб с мальчиком/]];
   it.each(SIX)('%s: base text and the familiar-scene detail both state the situation the choices answer', (id, setup) => {
     const c = card(id);
-    const detail = c.textVariants!.find(v => v.id === `${id}_detail`)!;
+    const detail = c.textVariants!.find(v => v.id === `${id}_detail_v2`)!;
     expect(detail.text).toMatch(setup);
     expect(detail.text.length).toBeLessThanOrEqual(200);
   });

@@ -58,4 +58,8 @@ in DNS.
   `sudo -u postgres psql -v ON_ERROR_STOP=1 -d way_db -c 'SET ROLE way_user' -f server/db/migrations/00N_*.sql`
   (the cluster is `18-main` on port 5433).
 - **Content catalog**: after changing game content run `npm run persistence:catalog` and load
-  `server/generated/content-catalog.v1.sql` into `way_db`.
+  `server/generated/content-catalog.v1.sql` into `way_db` **before** `deploy.sh`: a client that meets a new scene or choice
+  reports it to the server, which rejects what it does not know yet. The catalog is append-only (`ON CONFLICT DO NOTHING`, append-only
+  triggers): a text, label or presented choice that was already published must never be edited in place — add a new text variant
+  or a new choice id instead. `npm run compat:snapshot` (part of the tests) enforces it; after a release is live run it with `-- --write`
+  to add the new entries to the published snapshot. `npm run compat:old-saves` plays saves of the published build under the current one.

@@ -391,13 +391,7 @@
           },
           "qualities": {
             "honesty": 1
-          },
-          "schedule": [
-            {
-              "cardId": "r_marta_evening",
-              "inDays": 1
-            }
-          ]
+          }
         }
       }
     ],
@@ -565,7 +559,56 @@
     ],
     "requires": {
       "dayLte": 29
-    }
+    },
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Поговорить сейчас",
+            "servesFacets": [
+              "relationships"
+            ],
+            "obligation": "Поговорить сейчас",
+            "effects": {
+              "resources": {
+                "strength": 2,
+                "wealth": -1
+              },
+              "qualities": {
+                "compassion": 1
+              }
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Договориться на вечер",
+            "servesFacets": [
+              "work"
+            ],
+            "obligation": "Договориться на вечер",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "strength": -1
+              },
+              "qualities": {
+                "honesty": 1
+              },
+              "schedule": [
+                {
+                  "cardId": "r_marta_evening",
+                  "inDays": 1
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "r_kiln",

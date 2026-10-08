@@ -1233,12 +1233,21 @@
     ],
     "textVariants": [
       {
-        "id": "c2_silence_marta_cup_detail",
+        "id": "c2_silence_marta_cup_detail_v2",
         "kind": "perception",
         "when": {
           "shown": "c1_marta_firewood"
         },
         "text": "Марта говорит, что у неё всё в порядке. Чашку, которую прежде ставила сразу, она обхватила обеими ладонями и ждёт, пока ты сядешь.",
+        "familiarCardId": "c1_marta_firewood"
+      },
+      {
+        "id": "c2_silence_marta_cup_detail",
+        "kind": "perception",
+        "when": {
+          "shown": "c1_marta_firewood"
+        },
+        "text": "Марта снова держит чашку у стола. Прежде она ставила её сразу; сегодня обхватила обеими ладонями и ждёт, пока ты сядешь.",
         "familiarCardId": "c1_marta_firewood"
       }
     ],
@@ -1351,12 +1360,21 @@
     ],
     "textVariants": [
       {
-        "id": "c2_silence_alexey_hand_detail",
+        "id": "c2_silence_alexey_hand_detail_v2",
         "kind": "perception",
         "when": {
           "shown": "c1_alexey_broken_jug"
         },
         "text": "Алексей молча убирает осколки и прячет ладонь в рукав. Теперь заметно, как он меняет хват, оберегая большой палец.",
+        "familiarCardId": "c1_alexey_broken_jug"
+      },
+      {
+        "id": "c2_silence_alexey_hand_detail",
+        "kind": "perception",
+        "when": {
+          "shown": "c1_alexey_broken_jug"
+        },
+        "text": "Алексей вновь поворачивает чашку к свету. Теперь заметно, как он меняет хват, оберегая большой палец.",
         "familiarCardId": "c1_alexey_broken_jug"
       }
     ],
@@ -1472,12 +1490,21 @@
     ],
     "textVariants": [
       {
-        "id": "c2_silence_market_pause_detail",
+        "id": "c2_silence_market_pause_detail_v2",
         "kind": "perception",
         "when": {
           "shown": "c1_extra_change"
         },
         "text": "Тимон предлагает сделку и, как тогда со сдачей, отсчитывает монеты. Перед последней задерживает руку и смотрит на пустую лавку напротив.",
+        "familiarCardId": "c1_extra_change"
+      },
+      {
+        "id": "c2_silence_market_pause_detail",
+        "kind": "perception",
+        "when": {
+          "shown": "c1_extra_change"
+        },
+        "text": "Тимон, как тогда со сдачей, отсчитывает монеты. Перед последней задерживает руку и смотрит на пустую лавку напротив.",
         "familiarCardId": "c1_extra_change"
       }
     ],
@@ -1590,12 +1617,21 @@
     ],
     "textVariants": [
       {
-        "id": "c2_gaze_wanderer_bread_detail",
+        "id": "c2_gaze_wanderer_bread_detail_v2",
         "kind": "perception",
         "when": {
           "shown": "c1_wounded_road"
         },
         "text": "Странник снова делит хлеб с мальчиком у стены. Теперь он сначала кладёт ломоть рядом с собой, а потом протягивает другой.",
+        "familiarCardId": "c1_wounded_road"
+      },
+      {
+        "id": "c2_gaze_wanderer_bread_detail",
+        "kind": "perception",
+        "when": {
+          "shown": "c1_wounded_road"
+        },
+        "text": "Путник снова делит хлеб. Теперь он оставляет ломоть рядом с собой, прежде чем протянуть другой.",
         "familiarCardId": "c1_wounded_road"
       }
     ],
@@ -1710,12 +1746,21 @@
     ],
     "textVariants": [
       {
-        "id": "c2_gaze_marta_window_detail",
+        "id": "c2_gaze_marta_window_detail_v2",
         "kind": "perception",
         "when": {
           "shown": "c1_marta_firewood"
         },
         "text": "Окно Марты светится позже обычного. Рядом с её чашкой стоит вторая: Марта придвинула её к свободному стулу.",
+        "familiarCardId": "c1_marta_firewood"
+      },
+      {
+        "id": "c2_gaze_marta_window_detail",
+        "kind": "perception",
+        "when": {
+          "shown": "c1_marta_firewood"
+        },
+        "text": "У Марты снова горит окно. Рядом с её чашкой стоит вторая; она переставляет её ближе к свободному стулу.",
         "familiarCardId": "c1_marta_firewood"
       }
     ],
@@ -1834,12 +1879,21 @@
     ],
     "textVariants": [
       {
-        "id": "c2_gaze_alexey_silence_detail",
+        "id": "c2_gaze_alexey_silence_detail_v2",
         "kind": "perception",
         "when": {
           "shown": "c1_alexey_broken_jug"
         },
         "text": "Алексей весь день работает без обычных вопросов. Чашку с неровной подписью он уже не прячет, а поворачивает дно к свету.",
+        "familiarCardId": "c1_alexey_broken_jug"
+      },
+      {
+        "id": "c2_gaze_alexey_silence_detail",
+        "kind": "perception",
+        "when": {
+          "shown": "c1_alexey_broken_jug"
+        },
+        "text": "Чашка Алексея снова на краю стола. Ученик уже не прячет дно с неровной подписью, а поворачивает его к свету.",
         "familiarCardId": "c1_alexey_broken_jug"
       }
     ],

@@ -25,6 +25,8 @@
     "v25:simulate": "node --import tsx scripts/v25/simulate-package.ts",
     "v25:build": "node --import tsx scripts/v25/build-cards.ts",
     "facets:simulate": "node --import tsx scripts/simulate-facets.ts",
+    "compat:snapshot": "node --import tsx scripts/compat-snapshot.ts",
+    "compat:old-saves": "bash scripts/compat-old-saves.sh",
     "focused:baseline": "node --import tsx scripts/focused-baseline.ts",
     "focused:baseline:rerecord": "bash scripts/focused-baseline-rerecord.sh",
     "focused:metrics": "node --import tsx scripts/focused-metrics.ts",

@@ -46,7 +46,14 @@ export function rollEncounter(state: GameState, content: GameContent, face: numb
   if (!Number.isInteger(face) || face < 1 || face > 6) throw new Error('Invalid die face');
   const cardId = dice.candidates[face - 1]!;
   const card = content.cards.find(c => c.id === cardId);
-  if (!card || !developmentCardEligible(state, card) || !eligible(state, card, content)) throw new Error('Encounter is no longer eligible');
+  if (!card || !developmentCardEligible(state, card) || !eligible(state, card, content)) {
+    // The set was prepared before a content update that made one of its scenes unavailable (a save from an older build). The hero never saw the
+    // candidates, only the die, so the set is prepared again from the current content BEFORE the roll and the same face is rolled on it. Without this the
+    // roll would fail and the hero would be stuck on the dice screen.
+    const fresh = prepareEncounter({ ...state, phase: 'slot', diceHistory: state.diceHistory.slice(0, -1) }, content);
+    if (fresh.phase === 'dice') return rollEncounter(fresh, content, face);
+    return { ...state, phase: 'slot', diceHistory: state.diceHistory.slice(0, -1) };   // no set can be made any more: the slot is drawn directly
+  }
   // Use the normal text/side resolver against this exact card, without modifying content effects.
   const draw = drawCard({ ...state, phase: 'slot' }, { ...content, cards: [{ ...card, at: { day: state.day, slot: state.slot } }] });
   if (!draw) throw new Error('Missing encounter');
