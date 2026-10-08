@@ -46,13 +46,13 @@ export function runMetrics(state: GameState, draws: { source: string; cardId: st
 }
 const avg = (l: number[]) => l.length ? l.reduce((a, b) => a + b, 0) / l.length : 0;
 const f = (n: number, d = 2) => n.toFixed(d);
-export interface FocusCounters { dice: number; deficit: number; empty: number; failedRuns: number; unjustified: number }
+export interface FocusCounters { dice: number; deficit: number; empty: number; failedRuns: number }
 export interface PolicyAggregate { policy: PolicyName; runs: number; rows: RunMetrics[]; focus: FocusCounters }
 export function collect(policy: PolicyName, seeds: number, c: GameContent = content): PolicyAggregate {
   const rows: RunMetrics[] = [];
-  const focus: FocusCounters = { dice: 0, deficit: 0, empty: 0, failedRuns: 0, unjustified: 0 };
+  const focus: FocusCounters = { dice: 0, deficit: 0, empty: 0, failedRuns: 0 };
   setFocusedTrace(e => {
-    if (e.kind === 'dice') { focus.dice++; if (e.deficit) focus.deficit++; if (e.picks?.some(p => p.tier < 1 || p.tier > 5)) focus.unjustified++; }
+    if (e.kind === 'dice') { focus.dice++; if (e.deficit) focus.deficit++; }
     else if (e.kind === 'empty') focus.empty++;
   });
   try {

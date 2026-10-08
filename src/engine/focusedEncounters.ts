@@ -93,8 +93,10 @@ export const DIRECT_TIER_WEIGHTS: Record<FocusTier, number> = { 1: 8, 2: 5, 3: 3
 export function pickFocusedStory(state: GameState, content: GameContent, ranked: RankedStory[], count: number): { picked: RankedStory[]; variety?: string } {
   if (count < 1 || !ranked.length) return { picked: [] };
   const weight = weightOf(state, content);
-  const key = new Map(ranked.map(r => [r.card.id, Math.log(Math.max(deterministicRandom(state.seed, state.day, state.slot, `focus:${r.card.id}`, state.episodeId), 1e-12)) / weight(r.card)]));
-  const order = [...ranked].sort((a, b) => a.tier - b.tier || key.get(b.card.id)! - key.get(a.card.id)! || a.card.id.localeCompare(b.card.id));
+  // A card of weight 0 is never preferred (as in the legacy draw): it sorts after every card that has weight, and only fills a place if nothing else is left.
+  const key = new Map(ranked.map(r => { const w = weight(r.card); return [r.card.id, w > 0 ? Math.log(Math.max(deterministicRandom(state.seed, state.day, state.slot, `focus:${r.card.id}`, state.episodeId), 1e-12)) / w : -Infinity]; }));
+  const byKey = (a: RankedStory, b: RankedStory) => { const ka = key.get(a.card.id)!, kb = key.get(b.card.id)!; return ka === kb ? 0 : kb > ka ? 1 : -1; };
+  const order = [...ranked].sort((a, b) => a.tier - b.tier || byKey(a, b) || a.card.id.localeCompare(b.card.id));
   const picked = order.slice(0, 1);
   let variety: string | undefined;
   if (count >= 2 && order.length > 1) {
@@ -132,8 +134,8 @@ export function focusedStoryPositions(state: GameState, content: GameContent, or
   if (!places) return kept;
   const ranked = rankFocusedStory(state, content, ordered);
   const { picked, variety } = pickFocusedStory(state, content, ranked, places);
-  traceFocused({ kind: 'dice', day: state.day, slot: state.slot, places, relevant: ranked.length, picks: picked.map(p => ({ id: p.card.id, tier: p.tier, basis: p.basis })),
-    ...(variety ? { variety } : {}), ...(picked.length < places ? { deficit: true } : {}) });
+  traceFocused(() => ({ kind: 'dice', day: state.day, slot: state.slot, places, relevant: ranked.length, picks: picked.map(p => ({ id: p.card.id, tier: p.tier, basis: p.basis })),
+    ...(variety ? { variety } : {}), ...(picked.length < places ? { deficit: true } : {}) }));
   return [...kept, ...picked.map(p => p.card)];
 }
 
@@ -146,4 +148,5 @@ export interface FocusedTraceEvent {
 }
 let traceSink: ((event: FocusedTraceEvent) => void) | undefined;
 export function setFocusedTrace(sink?: (event: FocusedTraceEvent) => void): void { traceSink = sink; }
-export function traceFocused(event: FocusedTraceEvent): void { traceSink?.(event); }
+/** The event is built only when somebody listens: the trace costs nothing in the game. */
+export function traceFocused(make: () => FocusedTraceEvent): void { if (traceSink) traceSink(make()); }

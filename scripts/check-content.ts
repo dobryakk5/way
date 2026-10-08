@@ -155,6 +155,14 @@ export function impactErrors(c: GameContent, assetExists: (image: string) => boo
  * Anchors are checked against what can really happen (a line some choice writes, a thread that exists, a `requires` that can be met),
  * not only against non-empty fields. When the rollout flag is on, every ordinary scene of the covered chapters needs an anchor.
  */
+/** The first day a condition can hold, looking only at calendar terms (a card gated to a later day is not available inside an earlier range). */
+function earliestDay(x:Condition|undefined):number{
+ if(!x)return 1;
+ if('all'in x)return Math.max(1,...x.all.map(earliestDay));
+ if('any'in x)return Math.min(...x.any.map(earliestDay));
+ if('dayGte'in x&&x.dayGte!==undefined)return x.dayGte;
+ return 1;
+}
 export function focusedEncountersErrors(c:GameContent):string[]{
  const errors:string[]=[];const fail=(x:string)=>errors.push(x);
  const threadIds=new Set(c.threads.map(t=>t.id));
@@ -172,7 +180,7 @@ export function focusedEncountersErrors(c:GameContent):string[]{
  }
  if(c.profile.rollout.focusedEncounters){
   const covered=c.episode.chapters.filter(ch=>ch.from<=range.throughDay&&ch.through>=range.fromDay).map(ch=>ch.id);
-  for(const card of c.cards)if(isFacetWeightedDrawCandidate(card)&&!card.story&&(card.chapter==='any'||covered.includes(card.chapter)))fail(`ordinary scene ${card.id} has no story anchor inside the focused range ${range.fromDay}-${range.throughDay}`);
+  for(const card of c.cards)if(isFacetWeightedDrawCandidate(card)&&!card.story&&(card.chapter==='any'||covered.includes(card.chapter))&&earliestDay(card.requires)<=range.throughDay)fail(`ordinary scene ${card.id} has no story anchor inside the focused range ${range.fromDay}-${range.throughDay}`);
  }
  return errors;
 }

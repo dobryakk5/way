@@ -107,6 +107,16 @@ describe('filling the story places (section 6.2)', () => {
     for (let i = 0; i < 20; i++) expect(pick(2, [P1, P1b], i).variety).toBeUndefined();
     expect(pick(1, [P1, P1b, P2L]).variety).toBeUndefined();
   });
+  it('a card of weight 0 is never preferred over a card that has weight, and sorting stays well-defined', () => {
+    const zero = story('zero', ['work'], { goalIds: ['alexey'], role: 'complication' }, { weight: 0 });
+    const zero2 = story('zero2', ['work'], { goalIds: ['alexey'], role: 'complication' }, { weight: 0 });
+    const light = story('light', ['work'], { goalIds: ['alexey'], role: 'complication' }, { weight: 1 });
+    for (let i = 0; i < 60; i++) {
+      expect(pick(1, [zero, light], i).picked[0]!.card.id).toBe('light');
+      expect(pick(3, [zero, zero2, light], i).picked.map(r => r.card.id)).toEqual(['light', 'zero', 'zero2']);
+    }
+    expect(pick(1, [zero], 3).picked[0]!.card.id).toBe('zero');
+  });
   it('is deterministic for a fixed state and spreads over a tier by weight', () => {
     const heavy = story('h', ['work'], { goalIds: ['alexey'], role: 'complication' }, { weight: 9 });
     const light = story('l', ['work'], { goalIds: ['alexey'], role: 'complication' }, { weight: 1 });
@@ -151,14 +161,17 @@ describe('rollout gate (section 9)', () => {
       }
     }
   });
-  it('AC-1: with the flag off, or on but outside every played day, whole runs are identical to the recorded baseline', () => {
+  it('AC-1 (self-referential, survives content edits): the flag on but outside every played day gives the same runs as the flag off', () => {
     const outside = configured(content, { range: [31, 31] });
-    for (const [policy, seed] of [['mixed', 1], ['mixed', 2], ['always-costly', 3], ['random', 4]] as const) {
-      expect([policy, seed, runFingerprint(policy, seed)]).toEqual([policy, seed, baseline.runs[policy]![seed - 1]]);
-      expect([policy, seed, runFingerprint(policy, seed, outside)]).toEqual([policy, seed, baseline.runs[policy]![seed - 1]]);
-    }
+    for (const [policy, seed] of [['mixed', 1], ['mixed', 2], ['always-costly', 3], ['random', 4], ['greedy-qualities', 5]] as const)
+      expect([policy, seed, runFingerprint(policy, seed, outside)]).toEqual([policy, seed, runFingerprint(policy, seed)]);
   });
-  it('the protected cards (neutral, probe, development) are byte-identical to the baseline', () => { expect(protectedCardsHash()).toBe(baseline.protectedCardsHash); });
+  const REGENERATE = 'The content changed since reports/focused-encounters-baseline.json was recorded. If that is intended, record a new reference with `npm run focused:baseline -- --write` on a build whose selectors are the reference, and say so in the review.';
+  it('AC-1 (recorded): with the flag off whole runs equal the baseline recorded at the stage 0 SHA', () => {
+    for (const [policy, seed] of [['mixed', 1], ['mixed', 2], ['always-costly', 3], ['random', 4]] as const)
+      expect(runFingerprint(policy, seed), `${policy}/${seed}: ${REGENERATE}`).toBe(baseline.runs[policy]![seed - 1]);
+  });
+  it('the protected cards (neutral, probe, development) are byte-identical to the baseline', () => { expect(protectedCardsHash(), `Protected diagnostic/development cards differ from the baseline. ${REGENERATE}`).toBe(baseline.protectedCardsHash); });
 });
 
 describe('the dice set (point 1: prepareEncounter)', () => {
@@ -524,6 +537,8 @@ describe('static lint of the story metadata (section 12.1)', () => {
     const flagged = (c: GameContent) => configured(c);
     expect(focusedEncountersErrors(flagged(content)).join('\n')).toMatch(/has no story anchor inside the focused range/);
     expect(focusedEncountersErrors(configured(content, { on: false, range: [1, 40] })).join('\n')).toMatch(/beyond the episode/);
+    const gated = { ...content, cards: content.cards.map(card => card.id === ordinary.id ? { ...card, chapter: 'any' as const, requires: { dayGte: 15 } } : card) };
+    expect(focusedEncountersErrors(configured(gated)).join('\n')).not.toContain(ordinary.id);   // not available on days 1–10: no anchor needed there
     const everything = { ...content, cards: content.cards.map(card => isFacetWeightedDrawCandidate(card) ? { ...card, story: { goalIds: ['order' as const], role: 'ambient' as const } } : card) };
     expect(focusedEncountersErrors(configured(everything))).toEqual([]);
   });

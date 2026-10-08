@@ -49,8 +49,7 @@ function result(state: GameState, card: Card, content: GameContent, source: Draw
   return { card, choices, ...(leftChoiceId ? { leftChoiceId, rightChoiceId: choices.find(c => c.id !== leftChoiceId)!.id } : {}),
     text: state.current?.text ?? variant?.text ?? card.text, source, ...(variantId ? { variantId } : {}), ...(selectionOrigin ? { selectionOrigin } : {}), ...(visual ? { visual } : {}) };
 }
-const baseWeight = baseCardWeight;
-const legacyWeight = (state: GameState, c: Card) => baseWeight(c) * (state.declaredIntention && c.facets?.includes(state.declaredIntention) ? 1.2 : 1);
+const legacyWeight = (state: GameState, c: Card) => baseCardWeight(c) * (state.declaredIntention && c.facets?.includes(state.declaredIntention) ? 1.2 : 1);
 const drawRoll = (state: GameState) => deterministicRandom(state.seed, state.day, state.slot, 'draw', state.episodeId);
 function weighted(state: GameState, cards: Card[]): Card | undefined {
   const weights = cards.map(c => legacyWeight(state, c));
@@ -103,15 +102,15 @@ function drawFocusedFreePool(state: GameState, content: GameContent, cards: Card
   const ranked = rankFocusedStory(state, content, cards);
   const picked = pickDirectFocusedStory(state, content, ranked);
   if (picked) {
-    traceFocused({ kind: 'direct', day: state.day, slot: state.slot, relevant: ranked.length, picks: [{ id: picked.card.id, tier: picked.tier, basis: picked.basis }] });
+    traceFocused(() => ({ kind: 'direct', day: state.day, slot: state.slot, relevant: ranked.length, picks: [{ id: picked.card.id, tier: picked.tier, basis: picked.basis }] }));
     return picked.card;
   }
   const protectedCards = cards.filter(c => !isFacetWeightedDrawCandidate(c));
   if (protectedCards.length) {
-    traceFocused({ kind: 'direct-protected', day: state.day, slot: state.slot, relevant: 0 });
+    traceFocused(() => ({ kind: 'direct-protected', day: state.day, slot: state.slot, relevant: 0 }));
     return weighted(state, protectedCards);
   }
-  traceFocused({ kind: 'empty', day: state.day, slot: state.slot, relevant: 0 });
+  traceFocused(() => ({ kind: 'empty', day: state.day, slot: state.slot, relevant: 0 }));
   throw new FocusPoolEmptyError(state.day, state.slot);
 }
 /**
@@ -137,7 +136,7 @@ export function drawFreePoolWeighted(state: GameState, content: GameContent, car
   }
   const u = legacyTotal > 0 ? Math.min(Math.max((before + n) / legacyTotal, 0), 1 - Number.EPSILON) : 0;
   const multiplier = facetMultiplierOf(state, content);
-  const weights = candidates.map(c => baseWeight(c) * multiplier(c));
+  const weights = candidates.map(c => baseCardWeight(c) * multiplier(c));
   const total = weights.reduce((a, b) => a + b, 0);
   if (total <= 0) return first;
   let m = u * total;
