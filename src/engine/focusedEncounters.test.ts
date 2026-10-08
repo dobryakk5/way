@@ -167,7 +167,7 @@ describe('rollout gate (section 9)', () => {
     for (const [policy, seed] of [['mixed', 1], ['mixed', 2], ['always-costly', 3], ['random', 4], ['greedy-qualities', 5]] as const)
       expect([policy, seed, runFingerprint(policy, seed, outside)]).toEqual([policy, seed, runFingerprint(policy, seed)]);
   });
-  const REGENERATE = 'The content changed since reports/focused-encounters-baseline.json was recorded. If that is intended, record a new reference with `npm run focused:baseline -- --write` on a build whose selectors are the reference, and say so in the review.';
+  const REGENERATE = 'The content changed since reports/focused-encounters-baseline.json was recorded. If that is intended, re-record the reference with `npm run focused:baseline:rerecord` (it uses the ORIGINAL selectors of the stage 0 commit on the current content) and say so in the review.';
   it('AC-1 (recorded): with the flag off whole runs equal the baseline recorded at the stage 0 SHA', () => {
     for (const [policy, seed] of [['mixed', 1], ['mixed', 2], ['always-costly', 3], ['random', 4]] as const)
       expect(runFingerprint(policy, seed), `${policy}/${seed}: ${REGENERATE}`).toBe(baseline.runs[policy]![seed - 1]);

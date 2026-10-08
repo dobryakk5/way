@@ -26,8 +26,10 @@
     "v25:build": "node --import tsx scripts/v25/build-cards.ts",
     "facets:simulate": "node --import tsx scripts/simulate-facets.ts",
     "focused:baseline": "node --import tsx scripts/focused-baseline.ts",
+    "focused:baseline:rerecord": "bash scripts/focused-baseline-rerecord.sh",
     "focused:metrics": "node --import tsx scripts/focused-metrics.ts",
     "focused:simulate": "node --import tsx scripts/simulate-focused.ts",
+    "focused:returns": "node --import tsx scripts/simulate-returns.ts",
     "cards:lint": "node --import tsx scripts/cards-lint.ts",
     "persistence:catalog": "node --import tsx scripts/persistence/build-content-catalog.ts --write",
     "persistence:catalog:check": "node --import tsx scripts/persistence/build-content-catalog.ts"
