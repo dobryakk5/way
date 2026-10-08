@@ -37,6 +37,11 @@ const RETURNS: [host: string, variant: string, source: string, choice: string, m
   ['r_evening_light', 'r_evening_light_cup_silent', 'c2_silence_marta_cup', 'leave', /держит при себе/],
   ['r_marta_hello', 'r_marta_hello_window_visited', 'c2_gaze_marta_window', 'visit', /свечу в окне/],
   ['r_marta_hello', 'r_marta_hello_window_passed', 'c2_gaze_marta_window', 'home', /тёмное окно/],
+  // the evening Marta was promised: she remembers how it went
+  ['r_marta_hello', 'r_marta_hello_after_evening_first', 'r_marta_evening', 'first', /после вечера у печи ей проще/],
+  ['r_marta_hello', 'r_marta_hello_after_evening_wait', 'r_marta_evening', 'wait', /умеешь ждать/],
+  ['r_evening_light', 'r_evening_light_after_evening_first', 'r_marta_evening', 'first', /зовёт уже не стесняясь/],
+  ['r_evening_light', 'r_evening_light_after_evening_wait', 'r_marta_evening', 'wait', /дал ей время/],
   // the guaranteed decisions of the first days (they are made in every run), recalled for about a week
   ['r_coins', 'r_coins_change_returned', 'c1_extra_change', 'return', /лишние монеты ты вернул/, 12],
   ['r_coins', 'r_coins_change_kept', 'c1_extra_change', 'keep', /лишние монеты остались у тебя/, 12],
@@ -57,7 +62,7 @@ describe('chapter 2 decisions come back (no existing choice is edited)', () => {
   it.each(RETURNS)('%s shows %s after %s/%s, and the question of the scene is kept', (host, variant, source, choice, mustSay) => {
     const base = makeState({ day: 9, history: [] });
     expect(resolveCardText(base, card(host), content)).toBe(card(host).text);
-    const state = makeState({ day: 9, history: [chose(source, choice, source.startsWith('c1_') ? 2 : 7)] });
+    const state = makeState({ day: 9, history: [chose(source, choice, source.startsWith('c1_') ? 2 : source === 'r_marta_evening' ? 5 : 7)] });
     const text = resolveCardText(state, card(host), content);
     const v = card(host).textVariants!.find(x => x.id === variant)!;
     expect(text).toBe(v.text);
@@ -70,7 +75,7 @@ describe('chapter 2 decisions come back (no existing choice is edited)', () => {
     for (const [host, variant, source, choice, , fresh] of RETURNS) {
       const v = card(host).textVariants!.find(x => x.id === variant)!;
       expect(v.text).not.toMatch(/ярмарк/i);
-      const history = [chose(source, choice, source.startsWith('c1_') ? 2 : 7)];
+      const history = [chose(source, choice, source.startsWith('c1_') ? 2 : source === 'r_marta_evening' ? 5 : 7)];
       const at = (day: number) => resolveCardText(makeState({ day, history }), card(host), content);
       const until = fresh ?? 20;
       expect([host, variant, at(until)]).toEqual([host, variant, v.text]);

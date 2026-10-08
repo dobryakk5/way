@@ -4,7 +4,7 @@
 //   FILLER_RUNS=300 FILLER_OUT=file.md npm run focused:filler
 import { writeFileSync } from 'node:fs';
 import { content } from '../src/content';
-import { freePool, isFacetWeightedDrawCandidate, rankFocusedStory } from '../src/engine';
+import { DIRECT_TIER_WEIGHTS, freePool, isFacetWeightedDrawCandidate, rankFocusedStory } from '../src/engine';
 import { buildImpactGraph, impactOf } from '../src/engine/impact';
 import type { GameContent, GoalId } from '../src/engine';
 import { play, POLICIES } from './play';
@@ -15,7 +15,9 @@ const RANGE = content.profile.focusedEncounters;
 const graph = buildImpactGraph(content);
 const on: GameContent = { ...content, profile: { ...content.profile, rollout: { ...content.profile.rollout, focusedEncounters: true } } };
 const off: GameContent = { ...content, profile: { ...content.profile, rollout: { ...content.profile.rollout, focusedEncounters: false } } };
-interface Row { path: 'dice' | 'direct'; tier: string; inbound: boolean; outbound: boolean; id: string }
+interface Row { run: string; path: 'dice' | 'direct'; tier: string; inbound: boolean; outbound: boolean; id: string }
+// What-if for the owner: FILLER_WEIGHTS=8,5,3,1,.5 replaces the direct-draw tier weights for this process only (ON mode); FILLER_MODES=on skips the legacy run.
+if (process.env.FILLER_WEIGHTS) process.env.FILLER_WEIGHTS.split(',').forEach((w, i) => { DIRECT_TIER_WEIGHTS[(i + 1) as 1 | 2 | 3 | 4 | 5] = Number(w); });
 
 function rows(c: GameContent): Row[] {
   const out: Row[] = [];
@@ -34,7 +36,7 @@ function rows(c: GameContent): Row[] {
       const p = pending[`${h.day}/${h.slot}`];
       if (!p) continue;
       const landed = [...diceDays.values()].some(d => d.day === h.day && d.cardId === h.cardId);
-      out.push({ path: landed ? 'dice' : 'direct', tier: p.tier, inbound: p.inbound, outbound: impactOf(graph, h.cardId, h.choiceId).count > 0, id: p.id });
+      out.push({ run: `${policy}/${seed}`, path: landed ? 'dice' : 'direct', tier: p.tier, inbound: p.inbound, outbound: impactOf(graph, h.cardId, h.choiceId).count > 0, id: p.id });
     }
   }
   return out;
@@ -49,12 +51,17 @@ function table(name: string, r: Row[]): string[] {
   L.push('', '| Уровень (прямой путь) | Показов | Наполнитель |', '|---|---:|---:|');
   for (const t of ['1', '2', '3', '4', '5', 'none']) { const x = r.filter(y => y.path === 'direct' && y.tier === t); if (x.length) L.push(`| P${t === 'none' ? ' —' : t} | ${x.length} | ${pct(x.filter(y => !y.inbound && !y.outbound).length, x.length)} |`); }
   const top = Object.entries(r.filter(y => y.path === 'direct' && !y.inbound && !y.outbound).reduce<Record<string, number>>((a, y) => (a[y.id] = (a[y.id] ?? 0) + 1, a), {})).sort((a, b) => b[1] - a[1]).slice(0, 6);
+  const direct = r.filter(y => y.path === 'direct'), p45 = direct.filter(y => y.tier === '4' || y.tier === '5').length;
+  const perRun = new Map<string, Set<string>>(); for (const y of r) (perRun.get(y.run) ?? perRun.set(y.run, new Set()).get(y.run)!).add(y.id);
+  L.push('', `Доля P4+P5 среди прямых показов: ${pct(p45, direct.length)}; различных обычных сцен за прогон (оба пути): ${([...perRun.values()].reduce((a, v) => a + v.size, 0) / Math.max(perRun.size, 1)).toFixed(2)}.`);
   L.push('', `Чаще всего «наполнитель» в прямом отборе: ${top.map(([k, v]) => `${k} (${v})`).join(', ') || '—'}.`, '');
   return L;
 }
 if (process.argv[1]?.endsWith('simulate-filler.ts')) {
   const L = [`Прогонов: ${RUNS} × ${POLICIES.length} политик в каждом режиме; дни 1–${RANGE.throughDay}; цели вращаются по seed.`, ''];
-  L.push(...table('OFF (легаси-отбор)', rows(off)), ...table('ON (фокус)', rows(on)));
+  const weights = (['1', '2', '3', '4', '5'] as const).map(k => DIRECT_TIER_WEIGHTS[Number(k) as 1 | 2 | 3 | 4 | 5]).join(':');
+  if (process.env.FILLER_MODES !== 'on') L.push(...table('OFF (легаси-отбор)', rows(off)));
+  L.push(...table(`ON (фокус), веса уровней прямого отбора ${weights}`, rows(on)));
   const md = L.join('\n'); console.log(md);
   if (process.env.FILLER_OUT) writeFileSync(process.env.FILLER_OUT, md + '\n');
 }
