@@ -7544,6 +7544,9 @@
     "id": "x3_marta_second_cup",
     "chapter": "any",
     "type": "situation",
+    "tags": [
+      "follow-up"
+    ],
     "facets": [
       "relationships",
       "inner"
@@ -7656,6 +7659,9 @@
     "id": "x3_marta_apart",
     "chapter": "any",
     "type": "situation",
+    "tags": [
+      "follow-up"
+    ],
     "facets": [
       "relationships",
       "inner"
@@ -7789,6 +7795,9 @@
     "id": "x3_boy_at_door",
     "chapter": "any",
     "type": "situation",
+    "tags": [
+      "follow-up"
+    ],
     "facets": [
       "relationships",
       "work"
@@ -7878,6 +7887,9 @@
     "id": "x3_boy_by_river",
     "chapter": "any",
     "type": "situation",
+    "tags": [
+      "follow-up"
+    ],
     "facets": [
       "relationships",
       "inner"
@@ -7966,6 +7978,9 @@
     "id": "x3_alexey_asks_for_order",
     "chapter": "any",
     "type": "situation",
+    "tags": [
+      "follow-up"
+    ],
     "facets": [
       "work",
       "relationships"

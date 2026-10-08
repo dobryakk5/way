@@ -43,7 +43,11 @@ if (mode === 'generate') {
       completed++;
     } catch (e) { failed.push(`${f}: cannot be continued: ${(e as Error).message}`); }
   }
-  console.log(JSON.stringify({ saves: files.length, load: valid, continuedToTheEnd: completed, scenesOnScreen: Object.keys(inFlight).length, onScreenByCard: Object.fromEntries(Object.entries(inFlight).sort((a, b) => b[1] - a[1]).slice(0, 8)), failures: failed.length }, null, 1));
+  const changed = (id: string) => /^enc_[34]_\d+$/.test(id) || id === 'r_marta_hello' || /^c2_(gaze|silence)_/.test(id) || /^r_/.test(id);
+  const phases: Record<string, number> = {}; for (const f of files) { const g = (JSON.parse(readFileSync(join(dir, f), 'utf8')) as { game: GameState }).game; phases[g.phase] = (phases[g.phase] ?? 0) + 1; }
+  console.log(JSON.stringify({ saves: files.length, load: valid, continuedToTheEnd: completed, byPhase: phases, scenesOnScreen: Object.keys(inFlight).length,
+    onScreenOfTheCardsThatChanged: Object.fromEntries(Object.entries(inFlight).filter(([id]) => changed(id)).sort((a, b) => b[1] - a[1]).slice(0, 12)),
+    onScreenTotalOfTheCardsThatChanged: Object.entries(inFlight).filter(([id]) => changed(id)).reduce((a, [, n]) => a + n, 0), failures: failed.length }, null, 1));
   for (const x of failed.slice(0, 20)) console.error(x);
   if (failed.length) process.exitCode = 1;
 }
