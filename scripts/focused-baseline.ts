@@ -8,7 +8,7 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { content } from '../src/content';
 import { CONTENT_VERSION } from '../src/content/version';
 import { isFacetWeightedDrawCandidate } from '../src/engine';
-import type { Card } from '../src/engine';
+import type { Card, GameContent } from '../src/engine';
 import { play, POLICIES } from './play';
 
 const FILE = new URL('../reports/focused-encounters-baseline.json', import.meta.url);
@@ -28,8 +28,8 @@ export function protectedCardsHash(): string {
     .sort((a, b) => String(a.id).localeCompare(String(b.id)));
   return sha(canonical(protectedCards));
 }
-export function runFingerprint(policy: (typeof POLICIES)[number], seed: number): string {
-  const { state, draws } = play(seed, { policy });
+export function runFingerprint(policy: (typeof POLICIES)[number], seed: number, c: GameContent = content): string {
+  const { state, draws } = play(seed, { policy, content: c });
   return sha(canonical({ draws, dice: state.diceHistory, history: state.history.map(h => [h.day, h.slot, h.cardId, h.choiceId]), facts: state.facts,
     origins: state.heroDevelopmentProfile.evidence.map(e => [e.cardId, e.selectionOrigin]) })).slice(0, 16);
 }

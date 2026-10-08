@@ -31,6 +31,8 @@ export function intentionPortrait(state: GameState, content: GameContent): strin
 export type FacetDistribution = Record<LifeFacet, number>;
 export interface FacetAttention { distribution: FacetDistribution; /** Evidence decisions inside the window. */ evidence: number }
 const uniformFacets = (): FacetDistribution => ({ work: .25, relationships: .25, body: .25, inner: .25 });
+/** The authored weight of a free scene in a draw: situations count three times a routine unless the card says otherwise. */
+export const baseCardWeight = (card: Card): number => card.weight ?? (card.type === 'situation' ? 3 : 1);
 export const facetAttentionOn = (content: GameContent): boolean => content.profile.rollout.facetAttention;
 /** The choice made on this card reflects where the player voluntarily put attention (a route-only scene is a decision the player made too). */
 export function isFacetAttentionEvidenceSource(card: Card): boolean {

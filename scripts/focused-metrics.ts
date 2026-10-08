@@ -5,7 +5,8 @@
 import { writeFileSync } from 'node:fs';
 import { content } from '../src/content';
 import { CONTENT_VERSION } from '../src/content/version';
-import type { Card, GameContent, GameState } from '../src/engine';
+import { FocusPoolEmptyError, isFacetWeightedDrawCandidate, setFocusedTrace } from '../src/engine';
+import type { Card, FocusedStoryMeta, GameContent, GameState } from '../src/engine';
 import { kindOf } from './focused-baseline';
 import { play, POLICIES, type PolicyName } from './play';
 
@@ -16,6 +17,8 @@ export interface RunMetrics {
   uniqueCandidates: boolean; unfinishedRequired: number;
   profile: { status: string; N: number; W: number; K: number; coverage: number; confidence: number; observed?: string; stage?: string };
   neutralShown: number; probeShown: number; storyShown: number; storySeen: string[];
+  /** Shown from the free pool by a direct draw (not via the die), split by kind. */
+  directStory: number; directProtected: number;
 }
 export function runMetrics(state: GameState, draws: { source: string; cardId: string }[], c: GameContent): RunMetrics {
   const kind = (id: string) => kindOf(c.cards.find(x => x.id === id) as Card);
@@ -37,16 +40,28 @@ export function runMetrics(state: GameState, draws: { source: string; cardId: st
       confidence: state.heroDevelopmentProfile.confidence, ...(state.heroDevelopmentProfile.observedPrimary ? { observed: state.heroDevelopmentProfile.observedPrimary } : {}),
       ...(state.development.developmentCurrent ? { stage: state.development.developmentCurrent } : {}) },
     neutralShown: shownKinds.filter(k => k === 'neutral').length, probeShown: shownKinds.filter(k => k === 'probe').length,
+    directStory: draws.filter(d => d.source === 'pool' && kind(d.cardId) === 'ordinary-story').length, directProtected: draws.filter(d => d.source === 'pool' && kind(d.cardId) !== 'ordinary-story').length,
     storyShown: shownKinds.filter(k => k === 'ordinary-story').length, storySeen: [...new Set(state.history.filter(h => kind(h.cardId) === 'ordinary-story').map(h => h.cardId))]
   };
 }
 const avg = (l: number[]) => l.length ? l.reduce((a, b) => a + b, 0) / l.length : 0;
 const f = (n: number, d = 2) => n.toFixed(d);
-export interface PolicyAggregate { policy: PolicyName; runs: number; rows: RunMetrics[] }
+export interface FocusCounters { dice: number; deficit: number; empty: number; failedRuns: number; unjustified: number }
+export interface PolicyAggregate { policy: PolicyName; runs: number; rows: RunMetrics[]; focus: FocusCounters }
 export function collect(policy: PolicyName, seeds: number, c: GameContent = content): PolicyAggregate {
   const rows: RunMetrics[] = [];
-  for (let seed = 1; seed <= seeds; seed++) { const { state, draws } = play(seed, { policy, content: c }); rows.push(runMetrics(state, draws, c)); }
-  return { policy, runs: seeds, rows };
+  const focus: FocusCounters = { dice: 0, deficit: 0, empty: 0, failedRuns: 0, unjustified: 0 };
+  setFocusedTrace(e => {
+    if (e.kind === 'dice') { focus.dice++; if (e.deficit) focus.deficit++; if (e.picks?.some(p => p.tier < 1 || p.tier > 5)) focus.unjustified++; }
+    else if (e.kind === 'empty') focus.empty++;
+  });
+  try {
+    for (let seed = 1; seed <= seeds; seed++) {
+      try { const { state, draws } = play(seed, { policy, content: c }); rows.push(runMetrics(state, draws, c)); }
+      catch (e) { if (e instanceof FocusPoolEmptyError) focus.failedRuns++; else throw e; }
+    }
+  } finally { setFocusedTrace(undefined); }
+  return { policy, runs: seeds, rows, focus };
 }
 export function summarize(a: PolicyAggregate) {
   const r = a.rows; const sum = (k: keyof RunMetrics['candidateKinds'] & string) => avg(r.map(x => x.candidateKinds[k] ?? 0));
@@ -76,9 +91,22 @@ export function baselineTables(seeds: number, c: GameContent = content): string 
   out.push('', `Проверки: у всех прогонов 120 решений — ${sums.every(s => s.slotsOk) ? 'да' : 'НЕТ'}; шесть уникальных кандидатов в каждом наборе — ${sums.every(s => s.uniqueCandidates) ? 'да' : 'НЕТ'}; максимум probe в одном наборе — ${Math.max(...sums.map(s => s.maxProbesInOneDice))}; неисполненных required-продолжений — ${sums.reduce((a, s) => a + s.unfinishedRequired, 0)}.`);
   return out.join('\n');
 }
+/** MECHANICS ONLY: every ordinary scene is marked "goal-relevant" and the flag is on for days 1–10. Not a content test. */
+export const syntheticOn = (c: GameContent = content): GameContent => ({ ...c,
+  cards: c.cards.map(card => isFacetWeightedDrawCandidate(card) ? { ...card, story: { goalIds: ['order', 'workshop', 'alexey'], role: 'ambient' } as FocusedStoryMeta } : card),
+  profile: { ...c.profile, rollout: { ...c.profile.rollout, focusedEncounters: true }, focusedEncounters: { fromDay: 1, throughDay: 10 } } });
+export function focusTable(seeds: number, c: GameContent): string {
+  const out = ['| Политика | Прогонов | Упало с FOCUS_POOL_EMPTY | Наборов с story-позициями | Дефицит → прямой отбор | Прямых показов story | Прямых показов protected | Пустых (FOCUS_POOL_EMPTY) | 120 слотов | Макс. probe | Уникальные 6 | required не исполнено |', '|---|---:|---:|---:|---:|---:|---:|---:|---|---:|---|---:|'];
+  for (const p of POLICIES) {
+    const a = collect(p, seeds, c), s = summarize(a);
+    out.push(`| ${p} | ${a.rows.length} | ${a.focus.failedRuns} | ${a.focus.dice} | ${a.focus.deficit} | ${a.rows.reduce((n, r) => n + r.directStory, 0)} | ${a.rows.reduce((n, r) => n + r.directProtected, 0)} | ${a.focus.empty} | ${s.slotsOk ? 'да' : '**НЕТ**'} | ${s.maxProbesInOneDice} | ${s.uniqueCandidates ? 'да' : '**НЕТ**'} | ${s.unfinishedRequired} |`);
+  }
+  return out.join('\n');
+}
 if (process.argv[1]?.endsWith('focused-metrics.ts')) {
   const seeds = Number(process.env.FOCUSED_SEEDS ?? 100);
-  const tables = baselineTables(seeds);
+  const mode = process.env.FOCUSED_MODE;
+  const tables = mode === 'on-synthetic' ? focusTable(seeds, syntheticOn()) : mode === 'compare-synthetic' ? baselineTables(seeds, syntheticOn()) : baselineTables(seeds);
   console.log(tables);
   if (process.env.FOCUSED_OUT) writeFileSync(process.env.FOCUSED_OUT, tables + '\n');
 }

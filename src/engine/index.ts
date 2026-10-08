@@ -13,6 +13,8 @@ export * from './initialState';
 export * from './rng';
 export * from './types';
 export * from './facets';
+export * from './storyContext';
+export * from './focusedEncounters';
 export * from './navigation';
 export * from './opportunities';
 export * from './schedule';

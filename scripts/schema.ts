@@ -36,7 +36,8 @@ export const cardDiagnosticSchema = z.object({situationId:text,contextId:text,fa
 export const diagnosticMotiveSchema = z.object({promptId:text,text:text.max(120),optional:z.literal(true),
   options:z.array(z.object({id:text,label:text.max(80),signal:diagnosticSignalSchema}).strict()).min(2).max(4)}).strict();
 export const diagnosticBehaviorSchema = z.object({continuesSituationId:text,signal:diagnosticSignalSchema}).strict();
-export const profileConfigSchema = z.object({currentAlgorithmVersion:text,rollout:z.object({adaptiveSelection:z.boolean(),developmentArcs:z.boolean(),facetAttention:z.boolean()}).strict(),
+export const profileConfigSchema = z.object({currentAlgorithmVersion:text,rollout:z.object({adaptiveSelection:z.boolean(),developmentArcs:z.boolean(),facetAttention:z.boolean(),focusedEncounters:z.boolean()}).strict(),
+ focusedEncounters:z.object({fromDay:day,throughDay:day}).strict().refine(c=>c.fromDay<=c.throughDay,'fromDay must not exceed throughDay'),
  facetAttention:z.object({windowSize:z.number().int().positive(),minEvidence:z.number().int().min(0),playerWeight:z.number().min(0).max(1),minMultiplier:z.number().positive().max(1),maxMultiplier:z.number().min(1),declaredIntentionMultiplier:z.number().min(1)}).strict()
   .refine(c=>c.minEvidence<=c.windowSize,'minEvidence must not exceed windowSize'),
  algorithms:z.record(z.object({scoringVersion:text,rubricVersion:text,scoring:z.enum(['full','contrast']).optional(),windowCases:z.number().int().positive(),defaultExpiresInDays:z.number().int().positive(),motivePrompt:z.object({maxPerDay:z.number().int().positive()}).strict(),
@@ -60,13 +61,17 @@ const pair=z.array(choiceSchema).min(2).max(4);
 const position=z.object({day,slot:range(0,3)}).strict();
 export const textVariantSchema=z.object({id:z.string().min(1),when:conditionSchema,text:z.string().min(1).max(500),kind:z.enum(['perception','consequence','shadow','intention']),familiarCardId:z.string().optional()}).strict();
 export const visualVariantSchema=z.object({id:z.string().min(1),when:conditionSchema,image:z.string().min(1),alt:z.string().min(1).max(160).optional()}).strict();
+export const focusedStorySchema=z.object({lines:z.array(z.enum(['pace','apprentice','commitments'])).min(1).optional(),threadIds:z.array(z.string().min(1)).min(1).optional(),
+ goalIds:z.array(z.enum(['order','workshop','alexey'])).min(1).optional(),role:z.enum(['complication','opportunity','consequence','relationship','ambient']),worldFallback:z.boolean().optional()}).strict()
+ .refine(s=>!s.worldFallback||s.role==='ambient',{message:'worldFallback requires role ambient'})
+ .refine(s=>Boolean(s.lines?.length||s.threadIds?.length||s.goalIds?.length||s.worldFallback),{message:'story needs at least one anchor: lines, threadIds, goalIds or worldFallback'});
 export const cardSchema=z.object({
  id:z.string().min(1),chapter:z.union([z.number().int().min(1),z.literal('any')]),type:z.enum(['situation','chain','routine','crisis']),character:z.string().optional(),
  facets:z.array(facetSchema).min(1).max(2),text:z.string().min(1).max(500),choices:pair,textVariants:z.array(textVariantSchema).optional(),
  choiceVariants:z.array(z.object({when:conditionSchema,choices:pair}).strict()).optional(),image:z.string().min(1).optional(),visualVariants:z.array(visualVariantSchema).min(1).optional(),key:z.boolean().optional(),required:z.boolean().optional(),at:position.optional(),
  mustShowBy:day.optional(),requires:conditionSchema.optional(),fixedSides:z.boolean().optional(),weight:z.number().nonnegative().optional(),once:z.boolean().optional(),
  cooldownDays:day.optional(),crisis:z.object({resource:resourceSchema,edge:z.union([z.literal(0),z.literal(100)])}).strict().optional(),
- development:z.object({stages:z.array(logicSchema).min(1).optional(),arcId:z.string().optional(),presentedEvents:z.array(developmentEventSchema).optional()}).strict().optional(),diagnostic:cardDiagnosticSchema.optional(),
+ development:z.object({stages:z.array(logicSchema).min(1).optional(),arcId:z.string().optional(),presentedEvents:z.array(developmentEventSchema).optional()}).strict().optional(),diagnostic:cardDiagnosticSchema.optional(),story:focusedStorySchema.optional(),
  shadow:z.object({quality:qualitySchema,evidence:conditionSchema}).strict().optional(),tags:z.array(z.string()).optional()
 }).strict().superRefine((c,ctx)=>{
  const fail=(message:string)=>ctx.addIssue({code:z.ZodIssueCode.custom,message});

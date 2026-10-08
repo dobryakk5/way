@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { content, contentMeta } from '../src/content';
 import { ACTION_LOGICS, allChoices, evaluateCondition, startEpisode, FACETS, fitsSchedule } from '../src/engine';
+import { isFacetWeightedDrawCandidate } from '../src/engine/facets';
 import { buildImpactGraph, conditionReachable, decisionAtoms, impactOf } from '../src/engine/impact';
 import type { Card, Condition, GameContent } from '../src/engine/types';
 import * as schemas from './schema';
@@ -146,6 +147,32 @@ export function impactErrors(c: GameContent, assetExists: (image: string) => boo
   if (ch.impact.require?.delayed && !kinds.has('delayed')) fail(`Choice ${where} requires a delayed consequence and has none`);
   if (ch.impact.require?.crossCharacter && !kinds.has('cross-character')) fail(`Choice ${where} requires a cross-character consequence and has none`);
   if (ch.impact.require?.minObservable !== undefined && ch.impact.level === 'minor') fail(`Choice ${where}: a minor choice has no requirements`);
+ }
+ return errors;
+}
+/**
+ * FOCUSED-ENCOUNTERS v1.1, section 12.1. `story` is a content anchor of an ORDINARY free scene only; the protected categories stay unmarked.
+ * Anchors are checked against what can really happen (a line some choice writes, a thread that exists, a `requires` that can be met),
+ * not only against non-empty fields. When the rollout flag is on, every ordinary scene of the covered chapters needs an anchor.
+ */
+export function focusedEncountersErrors(c:GameContent):string[]{
+ const errors:string[]=[];const fail=(x:string)=>errors.push(x);
+ const threadIds=new Set(c.threads.map(t=>t.id));
+ const writtenLines=new Set(c.cards.flatMap(card=>allChoices(card).flatMap(ch=>ch.lineStep?[ch.lineStep.line]:[])));
+ const range=c.profile.focusedEncounters;
+ if(range.throughDay>c.episode.days)fail(`focusedEncounters.throughDay ${range.throughDay} is beyond the episode (${c.episode.days} days)`);
+ for(const card of c.cards){
+  const story=card.story;
+  if(!story)continue;
+  if(!isFacetWeightedDrawCandidate(card))fail(`story on a protected or non-ordinary scene ${card.id}: neutral, probe, development, route-only, fixed, obligatory and chain scenes are not marked`);
+  for(const id of story.threadIds??[])if(!threadIds.has(id))fail(`story.threadIds of ${card.id} names an unknown thread ${id}`);
+  for(const line of story.lines??[])if(!writtenLines.has(line))fail(`story.lines of ${card.id}: no choice ever writes the line ${line}, it can never be fresh`);
+  if(story.worldFallback&&story.role!=='ambient')fail(`worldFallback needs role ambient ${card.id}`);
+  if(card.requires&&!conditionReachable(c,card.requires))fail(`story scene ${card.id} has a requires that can never hold`);
+ }
+ if(c.profile.rollout.focusedEncounters){
+  const covered=c.episode.chapters.filter(ch=>ch.from<=range.throughDay&&ch.through>=range.fromDay).map(ch=>ch.id);
+  for(const card of c.cards)if(isFacetWeightedDrawCandidate(card)&&!card.story&&(card.chapter==='any'||covered.includes(card.chapter)))fail(`ordinary scene ${card.id} has no story anchor inside the focused range ${range.fromDay}-${range.throughDay}`);
  }
  return errors;
 }
@@ -382,6 +409,7 @@ export function validateDiagnostics(c: GameContent, fail:(s:string)=>void) {
  for(const card of diagnostic)if(card.development?.stages&&(card.at||card.required||card.mustShowBy))fail(`Gated diagnostic scene cannot be required ${card.id}`);
  void evidenceOf;
  for(const e of summaryErrors(c))fail(e);
+ for(const e of focusedEncountersErrors(c))fail(e);
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
  const errors=validateContent(content);if(errors.length){console.error(errors.join('\n'));process.exitCode=1;}else console.log(`CONTENT v2.5 OK: ${content.cards.length} cards, ${content.episode.days} days`);

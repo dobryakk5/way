@@ -5,7 +5,8 @@ import { reconcileCrisisQueue } from './crises';
 import { deterministicRandom } from './rng';
 import { eligible, fitsSchedule, obligations, routeAt } from './schedule';
 import { choiceById, resolveChoices } from './variants';
-import { cardFacetMultiplier, declaredIntentionPrior, facetAttention, facetAttentionOn, facetTargetDistribution, isFacetWeightedDrawCandidate } from './facets';
+import { baseCardWeight, cardFacetMultiplier, declaredIntentionPrior, facetAttention, facetAttentionOn, facetTargetDistribution, isFacetWeightedDrawCandidate } from './facets';
+import { FocusPoolEmptyError, focusedEncountersOn, focusedStoryPositions, pickFocusedStory, rankFocusedStory, traceFocused } from './focusedEncounters';
 import { exposeOpportunity } from './opportunities';
 import type { Card, Choice, DiagnosticSelectionOrigin, GameContent, GameState, ResolvedCardVisual } from './types';
 export type DrawSource = 'current' | 'at' | 'route' | 'capacity' | 'crisis' | 'mustShowBy' | 'scheduled' | 'pool' | 'development';
@@ -48,7 +49,7 @@ function result(state: GameState, card: Card, content: GameContent, source: Draw
   return { card, choices, ...(leftChoiceId ? { leftChoiceId, rightChoiceId: choices.find(c => c.id !== leftChoiceId)!.id } : {}),
     text: state.current?.text ?? variant?.text ?? card.text, source, ...(variantId ? { variantId } : {}), ...(selectionOrigin ? { selectionOrigin } : {}), ...(visual ? { visual } : {}) };
 }
-const baseWeight = (c: Card) => c.weight ?? (c.type === 'situation' ? 3 : 1);
+const baseWeight = baseCardWeight;
 const legacyWeight = (state: GameState, c: Card) => baseWeight(c) * (state.declaredIntention && c.facets?.includes(state.declaredIntention) ? 1.2 : 1);
 const drawRoll = (state: GameState) => deterministicRandom(state.seed, state.day, state.slot, 'draw', state.episodeId);
 function weighted(state: GameState, cards: Card[]): Card | undefined {
@@ -83,11 +84,43 @@ export function facetAdjustedSlice(state: GameState, content: GameContent, order
   return [...slice.filter(c => !isFacetWeightedDrawCandidate(c)), ...picked];
 }
 /**
+ * The six dice places (or five, when a probe takes one). With FOCUSED-ENCOUNTERS off or outside its day range this IS `facetAdjustedSlice`, call for call;
+ * inside the range the ordinary story places are filled by `focusedStoryPositions` and the facet re-pick is not applied a second time.
+ * The result is shorter than `count` when the context leaves too few story scenes: the caller then makes no dice set and the slot is drawn directly.
+ */
+export function encounterSlice(state: GameState, content: GameContent, ordered: Card[], count: number): Card[] {
+  return focusedEncountersOn(state, content) ? focusedStoryPositions(state, content, ordered, ordered.slice(0, count)) : facetAdjustedSlice(state, content, ordered, count);
+}
+/**
+ * The direct free draw inside FOCUSED-ENCOUNTERS (second selection point; same filter as the dice). Stage 1 is the legacy draw and alone decides
+ * protected vs story, so the share of neutral and other protected scenes is untouched; a protected pick is returned as it is. A story pick is
+ * replaced by the best relevant story scene (tier order, facet weight used once). Without any relevant story scene a protected scene is
+ * drawn by the same roll; with neither the slot cannot be filled and that is a data error (FOCUS_POOL_EMPTY), never a silent general story.
+ */
+function drawFocusedFreePool(state: GameState, content: GameContent, cards: Card[]): Card | undefined {
+  const first = weighted(state, cards);
+  if (!first || !isFacetWeightedDrawCandidate(first)) return first;
+  const ranked = rankFocusedStory(state, content, cards);
+  const { picked } = pickFocusedStory(state, content, ranked, 1);
+  if (picked[0]) {
+    traceFocused({ kind: 'direct', day: state.day, slot: state.slot, relevant: ranked.length, picks: picked.map(p => ({ id: p.card.id, tier: p.tier, basis: p.basis })) });
+    return picked[0].card;
+  }
+  const protectedCards = cards.filter(c => !isFacetWeightedDrawCandidate(c));
+  if (protectedCards.length) {
+    traceFocused({ kind: 'direct-protected', day: state.day, slot: state.slot, relevant: 0 });
+    return weighted(state, protectedCards);
+  }
+  traceFocused({ kind: 'empty', day: state.day, slot: state.slot, relevant: 0 });
+  throw new FocusPoolEmptyError(state.day, state.slot);
+}
+/**
  * The direct free draw with facet attention (used when the pool is too small for the dice). Stage 1 is the legacy draw and alone decides whether a story candidate came up
  * (so the share of neutral and other scenes is untouched). Only when a candidate did come up is it re-picked among the
  * candidates by facet weight, using the same roll as a position inside the candidates' legacy mass.
  */
 export function drawFreePoolWeighted(state: GameState, content: GameContent, cards: Card[]): Card | undefined {
+  if (focusedEncountersOn(state, content)) return drawFocusedFreePool(state, content, cards);
   const first = weighted(state, cards);
   if (!first || !facetAttentionOn(content) || !isFacetWeightedDrawCandidate(first)) return first;
   const candidates = cards.filter(isFacetWeightedDrawCandidate);

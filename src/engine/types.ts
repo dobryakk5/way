@@ -102,6 +102,21 @@ export interface CardDiagnostic {
   distinguishes?: ActionLogic[];
 }
 export type CardType = 'situation' | 'routine' | 'chain' | 'crisis';
+/**
+ * FOCUSED-ENCOUNTERS v1.1: authored story anchors of an ORDINARY free scene. Content only: never saved, never read by scoring,
+ * diagnostics or development. It says what story the scene belongs to; `requires` still decides whether it can happen at all.
+ */
+export interface FocusedStoryMeta {
+  /** Existing story lines only (never a new registry). */
+  lines?: StoryLine[];
+  /** Ids of existing `threads.json` records. */
+  threadIds?: string[];
+  goalIds?: GoalId[];
+  /** Literary role of the circumstance; independent of `Card.type`. */
+  role: 'complication' | 'opportunity' | 'consequence' | 'relationship' | 'ambient';
+  /** Only for a specially approved everyday scene (tier P5); requires `role: 'ambient'`. */
+  worldFallback?: boolean;
+}
 export interface Card {
   id: string; chapter: number | 'any'; type: CardType; character?: string;
   facets?: LifeFacet[]; text: string;
@@ -118,6 +133,7 @@ export interface Card {
   tags?: string[];
   development?: { stages?: ActionLogic[]; arcId?: string; presentedEvents?: DevelopmentEvent[] };
   diagnostic?: CardDiagnostic;
+  story?: FocusedStoryMeta;
 }
 export interface Insight {
   id: string; title: string; text: string; requires: Condition; effects: Effects;
@@ -339,11 +355,14 @@ export interface FacetAttentionConfig {
   windowSize: number; minEvidence: number; playerWeight: number;
   minMultiplier: number; maxMultiplier: number; declaredIntentionMultiplier: number;
 }
+/** FOCUSED-ENCOUNTERS v1.1: the days (inclusive) on which the context-aware selector applies when `rollout.focusedEncounters` is on. */
+export interface FocusedEncountersConfig { fromDay: number; throughDay: number }
 export interface ProfileConfigRegistry {
   currentAlgorithmVersion: string;
   // Rollout switches live outside immutable algorithm branches: they select content, they never change scoring.
-  rollout: { adaptiveSelection: boolean; developmentArcs: boolean; facetAttention: boolean };
+  rollout: { adaptiveSelection: boolean; developmentArcs: boolean; facetAttention: boolean; focusedEncounters: boolean };
   facetAttention: FacetAttentionConfig;
+  focusedEncounters: FocusedEncountersConfig;
   algorithms: Record<string, ProfileAlgorithmConfig>;
 }
 export interface HeroDevelopmentProfileEvidence {

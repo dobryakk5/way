@@ -3,7 +3,12 @@
   "rollout": {
     "adaptiveSelection": true,
     "developmentArcs": true,
-    "facetAttention": false
+    "facetAttention": false,
+    "focusedEncounters": false
+  },
+  "focusedEncounters": {
+    "fromDay": 1,
+    "throughDay": 10
   },
   "facetAttention": {
     "windowSize": 16,

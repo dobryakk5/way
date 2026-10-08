@@ -7,7 +7,7 @@ import { validateSave } from '../persistence/save';
 import { createInitialGameState, drawCard, persistDraw, prepareEvening, leaveEvening, applyChoice, startEpisode, chooseGoal, beginSlots, answerMotive, skipMotive, diagnosticCaseId } from './index';
 import type { ActionLogic, GameContent, GameState } from './index';
 const envelope = (game: GameState) => ({ schema: 1, started: true, game });
-const adaptiveContent: GameContent = { ...content, profile: { ...content.profile, rollout: { adaptiveSelection: true, developmentArcs: false, facetAttention: false } } };
+const adaptiveContent: GameContent = { ...content, profile: { ...content.profile, rollout: { adaptiveSelection: true, developmentArcs: false, facetAttention: false, focusedEncounters: false } } };
 
 describe('a new hero', () => {
   it('has no stage, no available logics and no observations', () => {
