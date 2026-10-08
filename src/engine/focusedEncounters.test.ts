@@ -412,7 +412,7 @@ describe('what the selector must not touch (section 8)', () => {
   });
 });
 
-describe('direct draw: tier weights 8:5:3:2:1 and variety', () => {
+describe('direct draw: tier weights 8:5:3:1:0.5 and variety', () => {
   const oneEach = [P1, P2L, P3, P4, P5];
   const c = (cards: Card[]) => makeContent({ cards });
   const tierShares = (cards: Card[], n = 6000, over: Partial<GameState> = {}) => {
@@ -424,10 +424,10 @@ describe('direct draw: tier weights 8:5:3:2:1 and variety', () => {
     }
     return Object.fromEntries(Object.entries(counts).map(([k, v]) => [k, v / n]));
   };
-  it('the weights are the ones the review decided', () => { expect(DIRECT_TIER_WEIGHTS).toEqual({ 1: 8, 2: 5, 3: 3, 4: 2, 5: 1 }); });
-  it('with all five tiers present the tiers are drawn 8:5:3:2:1', () => {
+  it('the weights are the ones the review decided', () => { expect(DIRECT_TIER_WEIGHTS).toEqual({ 1: 8, 2: 5, 3: 3, 4: 1, 5: 0.5 }); });
+  it('with all five tiers present the tiers are drawn 8:5:3:1:0.5', () => {
     const shares = tierShares(oneEach);
-    [8, 5, 3, 2, 1].forEach((w, i) => expect(Math.abs((shares[i + 1] ?? 0) - w / 19)).toBeLessThan(.02));
+    [8, 5, 3, 1, 0.5].forEach((w, i) => expect(Math.abs((shares[i + 1] ?? 0) - w / 17.5)).toBeLessThan(.02));
   });
   it('an empty tier is excluded and the others are renormalised; the number of cards in a tier does not change the tier odds', () => {
     const shares = tierShares([P1, P1b, P3]);

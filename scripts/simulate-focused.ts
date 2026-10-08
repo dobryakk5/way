@@ -36,6 +36,8 @@ export interface WorkerResult {
     lines: number[];                        // per run: distinct story lines among them
     cards: Record<string, number>;          // how often each ordinary scene was shown inside the range
     cardsByPath: Record<'dice' | 'direct', Record<string, number>>;
+    /** Story-line steps written on the days of the range (what the hero's decisions advanced), summed over runs. */
+    lineSteps: Record<string, number>;
     /** Per run and path: distinct ordinary scenes met through that path. */
     distinctByPath: Record<'dice' | 'direct', number[]>;
     goalMatch: { matched: number; total: number };
@@ -44,7 +46,7 @@ export interface WorkerResult {
 }
 
 function blank(): WorkerResult['mode']['on'] {
-  return { metrics: [], failures: {}, atMisses: 0, unfinishedRequired: 0, shown: { dice: {}, direct: {} }, offered: {}, distinct: [], lines: [], cards: {}, cardsByPath: { dice: {}, direct: {} }, distinctByPath: { dice: [], direct: [] }, goalMatch: { matched: 0, total: 0 } };
+  return { metrics: [], failures: {}, atMisses: 0, unfinishedRequired: 0, shown: { dice: {}, direct: {} }, offered: {}, distinct: [], lines: [], cards: {}, cardsByPath: { dice: {}, direct: {} }, lineSteps: {}, distinctByPath: { dice: [], direct: [] }, goalMatch: { matched: 0, total: 0 } };
 }
 
 function runOne(policy: PolicyName, seed: number, c: GameContent, mode: 'on' | 'off', out: WorkerResult): void {
@@ -103,6 +105,7 @@ function runOne(policy: PolicyName, seed: number, c: GameContent, mode: 'on' | '
   m.distinct.push(ids.length);
   m.lines.push(new Set(ids.flatMap(id => cardOf.get(id)!.story?.lines ?? [])).size);
   for (const s of seen) { m.goalMatch.total++; if (cardOf.get(s.id)!.story?.goalIds?.includes(goalAtDay(goal, goalAt, s.day))) m.goalMatch.matched++; }
+  for (const e of state.evidence) if (e.day >= RANGE.fromDay && e.day <= RANGE.throughDay) bump(m.lineSteps, e.line);
   if (state.history.length !== 120) bump(m.failures, 'not 120 decisions');
   for (const card of content.cards.filter(x => x.at)) if (!draws.some(d => d.cardId === card.id && d.day === card.at!.day && d.slot === card.at!.slot)) m.atMisses++;
   if (state.scheduled.some(sc => content.cards.find(x => x.id === sc.cardId)?.required)) m.unfinishedRequired++;
@@ -126,6 +129,7 @@ const shareRow = (r: Record<string, number>) => { const n = sum(r) || 1; return 
 
 function report(results: WorkerResult[]): string {
   const L: string[] = [];
+  const all2 = (k: 'on' | 'off') => results.flatMap(r => r.mode[k].metrics);
   const total = (k: 'on' | 'off', pick: (m: WorkerResult['mode']['on']) => number[]) => results.flatMap(r => pick(r.mode[k]));
   const runs = results.reduce((a, r) => a + r.runs, 0);
   L.push(`Прогонов: ${runs} на режим (${results.length} политик × ${results[0]!.runs}); цели вращаются по seed (order/workshop/alexey), чётные seeds меняют цель в дни 11 и 21. Диапазон фокуса: дни ${RANGE.fromDay}–${RANGE.throughDay}.`, '');
@@ -152,7 +156,16 @@ function report(results: WorkerResult[]): string {
   const cardsOn = merge(results.map(r => r.mode.on.cards)), cardsOff = merge(results.map(r => r.mode.off.cards));
   L.push('', 'Показы каждой размеченной обычной сцены на днях диапазона (всех прогонов), OFF → ON:', '', '| Сцена | OFF | ON |', '|---|---:|---:|');
   for (const id of [...new Set([...Object.keys(cardsOn), ...Object.keys(cardsOff)])].sort()) L.push(`| ${id} | ${cardsOff[id] ?? 0} | ${cardsOn[id] ?? 0} |`);
-  L.push('', '### 3b. Кубик и прямой отбор рядом', '', 'Прямой отбор берёт уровень с весами 8:5:3:2:1 среди непустых; кубик заполняет места по порядку P1→P5 с резервом под другую линию. Ниже видно, чем они различаются на реальной разметке.', '');
+  L.push('', 'Сюжетные линии, продвинутые решениями героя в днях диапазона (шагов за прогон, доля):', '', '| Режим | pace | apprentice | commitments |', '|---|---:|---:|---:|');
+  for (const k of ['off', 'on'] as const) {
+    const t = merge(results.map(r => r.mode[k].lineSteps)), n = results.reduce((a, r) => a + r.mode[k].metrics.length, 0) || 1, all = sum(t) || 1;
+    L.push(`| ${k.toUpperCase()} | ${['pace', 'apprentice', 'commitments'].map(l => `${f((t[l] ?? 0) / n)} (${f(100 * (t[l] ?? 0) / all, 1)}%)`).join(' | ')} |`);
+  }
+  {
+    const share = (k: 'on' | 'off') => { const m = all2(k); return 100 * mean(m.map(x => x.directPoolDraws)) / Math.max(mean(m.map(x => x.directPoolDraws + x.diceDays)), 1); };
+    L.push('', `Доля прямых показов среди свободных (кубик + прямой): OFF ${f(share('off'), 1)}%, ON ${f(share('on'), 1)}%.`);
+  }
+  L.push('', '### 3b. Кубик и прямой отбор рядом', '', 'Прямой отбор берёт уровень с весами 8:5:3:1:0,5 среди непустых; кубик заполняет места по порядку P1→P5 с резервом под другую линию. Ниже видно, чем они различаются на реальной разметке.', '');
   L.push('| Режим / путь | Показов за прогон | Различных сцен за прогон | Доля P1 | Доля P1+P2 | Доля P4+P5 |', '|---|---:|---:|---:|---:|---:|');
   for (const k of ['off', 'on'] as const) for (const via of ['dice', 'direct'] as const) {
     const rec = merge(results.map(r => r.mode[k].shown[via])), n = sum(rec) || 1, runsK = results.reduce((a, r) => a + r.mode[k].metrics.length, 0) || 1;

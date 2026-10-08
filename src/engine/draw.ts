@@ -93,7 +93,7 @@ export function encounterSlice(state: GameState, content: GameContent, ordered: 
 /**
  * The direct free draw inside FOCUSED-ENCOUNTERS (second selection point; same filter as the dice). Stage 1 is the legacy draw and alone decides
  * protected vs story, so the share of neutral and other protected scenes is untouched; a protected pick is returned as it is. A story pick is
- * replaced by a relevant story scene (a non-empty tier drawn with weights 8:5:3:2:1, then a card inside it by weight used once). Without any relevant story scene a protected scene is
+ * replaced by a relevant story scene (a non-empty tier drawn with weights 8:5:3:1:0.5, then a card inside it by weight used once). Without any relevant story scene a protected scene is
  * drawn by the same roll; with neither the slot cannot be filled and that is a data error (FOCUS_POOL_EMPTY), never a silent general story.
  */
 function drawFocusedFreePool(state: GameState, content: GameContent, cards: Card[]): Card | undefined {
