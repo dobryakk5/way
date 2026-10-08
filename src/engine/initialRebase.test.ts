@@ -85,7 +85,8 @@ describe('single correction of a wrong first center (initial rebase)', () => {
   const corrected = (g: GameState) => g.development.initialRebaseCount === 1 && g.development.transitions.some(t => t.reason === 'initial-reconciliation');
 
   it('corrects a real run (opportunist first, then diplomatic decisions) and the saved state replays and validates', () => {
-    const game = find('opportunist', 'diplomat', corrected);
+    // Exactly one transition: the correction itself, with no later promotion (which seed gives that depends on the whole draw sequence).
+    const game = find('opportunist', 'diplomat', g => corrected(g) && g.development.transitions.length === 1);
     expect(game.development.initialRebaseCount).toBe(1);
     const rebase = game.development.transitions.filter(t => t.reason === 'initial-reconciliation');
     expect(rebase).toHaveLength(1); expect(rebase[0]).toMatchObject({ from: 'opportunist', to: 'diplomat', evidenceIds: [] });

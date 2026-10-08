@@ -338,7 +338,6 @@
     "id": "r_river",
     "chapter": "any",
     "type": "routine",
-    "character": "wanderer",
     "text": "У реки лодочник чинит сеть. Можно присесть рядом и дать рукам отдохнуть или пройтись вдоль воды, ни с кем не разговаривая.",
     "choices": [
       {
@@ -440,6 +439,9 @@
         "liya_letters"
       ],
       "role": "relationship"
+    },
+    "requires": {
+      "shown": "c1_liya_letter"
     }
   },
   {

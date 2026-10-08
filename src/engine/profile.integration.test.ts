@@ -128,7 +128,9 @@ describe('adaptive selection (rollout flag)', () => {
       expect(probeCases / Math.max(1, independent.length)).toBeLessThanOrEqual(1 / 3 + 1e-9);
       expect(validateSave(envelope(state))).toBeDefined();
     }
-    const off = play(1, { policy: 'mixed' }).draws; expect(off.some(d => content.cards.find(c => c.id === d.cardId)?.tags?.includes('probe-only'))).toBe(false);
+    // With adaptive selection really off (the shipped content has it on) no probe scene is ever drawn.
+    const nonAdaptive: GameContent = { ...content, profile: { ...content.profile, rollout: { ...content.profile.rollout, adaptiveSelection: false } } };
+    const off = play(1, { content: nonAdaptive, policy: 'mixed' }).draws; expect(off.some(d => content.cards.find(c => c.id === d.cardId)?.tags?.includes('probe-only'))).toBe(false);
   });
   it('freezes the candidate origins together with the six dice cards', () => {
     const { state } = play(6, { content: adaptiveContent, policy: 'mixed' });
