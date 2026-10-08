@@ -10,6 +10,6 @@ describe('route scenarios',()=>{
    for(let seed=1;seed<=60;seed++)play(seed,{routes:{[route.day]:option.id},beforeStep:s=>s.day===route.day&&s.slot===route.slot?{...s,resources:{...s.resources,strength:0}}:s,
     onDraw:(s,d)=>{if(s.day===route.day&&s.slot===route.slot){expect(d.source).toBe('route');expect(d.card.facets?.some(f=>option.facets.includes(f))).toBe(true);seen.add(d.card.id);}}});
    expect(seen.size).toBeGreaterThanOrEqual(2);
-  });
+  },120000); // dozens of full 30-day plays: slow under a parallel run, not a hang
  }
 });

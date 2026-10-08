@@ -139,3 +139,20 @@ describe('everyday scenes fixed by review', () => {
     expect(card('r_river').text).toMatch(/лодочник/);
   });
 });
+
+describe('the six chapter 2 scenes keep their setup in every version of the text', () => {
+  const SIX: [string, RegExp][] = [
+    ['c2_gaze_alexey_silence', /без обычных вопросов/], ['c2_silence_alexey_hand', /прячет ладонь/], ['c2_gaze_marta_window', /свободному стулу|Окно Марты/],
+    ['c2_silence_marta_cup', /у неё всё в порядке/], ['c2_silence_market_pause', /предлагает сделку/], ['c2_gaze_wanderer_bread', /делит хлеб с мальчиком/]];
+  it.each(SIX)('%s: base text and the familiar-scene detail both state the situation the choices answer', (id, setup) => {
+    const c = card(id);
+    const detail = c.textVariants!.find(v => v.id === `${id}_detail`)!;
+    expect(detail.text).toMatch(setup);
+    expect(detail.text.length).toBeLessThanOrEqual(200);
+  });
+  it('the immediate reactions do not depend on which version of the scene was shown (no candle that ran out in a lit window)', () => {
+    const t = (id: string, ch: string) => content.traces.find(x => x.source.cardId === id && x.source.choiceId === ch)!.response;
+    expect(t('c2_gaze_marta_window', 'visit')).not.toMatch(/свеч/i);
+    expect(t('c2_gaze_marta_window', 'home')).not.toMatch(/свеч|тёмн/i);
+  });
+});

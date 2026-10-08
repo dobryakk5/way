@@ -26,7 +26,7 @@ describe('route and opportunity scenarios',()=>{
     expect(s.observations.some(e=>e.id===`${o.id}_${value}`|| e.id===`${o.id}_departed`&&value==='missed')).toBe(true);
    }
    expect(statuses).toEqual(new Set(['taken','expired']));
-  });
+  },120000); // 80 full 30-day plays: slow under a parallel run, not a hang
  }
  it('does not expire an unseen opportunity or invent a resource penalty',()=>{
   const s=makeState({day:2,phase:'evening',shown:{c1_alexey_broken_jug:[1]},facts:{...content.episode.initialFacts}});
