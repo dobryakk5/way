@@ -17,11 +17,14 @@ export function StartScreen({ onStart }: StartScreenProps) {
         <p className="tagline">{contentMeta.ui.tagline}</p>
         <p className="start-note">Большой заказ, ученик и люди рядом. Мир не спрашивает, кто ты — он запоминает, как ты поступаешь.</p>
 
-        <div className="start-vignette" aria-hidden="true">
-          <span className="vignette-halo" />
-          <span className="vignette-line" />
-          <span className="vignette-table" />
-          <span className="vignette-pot" />
+        <div className="start-illustration">
+          <img
+            src="/art/start-pottery-workshop.webp"
+            alt="Гончарная мастерская в закатном свете: керамика на столе и горящая печь"
+            width={960}
+            height={720}
+            decoding="async"
+          />
         </div>
 
         <fieldset className="goal-options"><legend>С чего начинается путь</legend>{content.episode.goals.map(g=><label key={g.id}><input type="radio" name="goal" checked={goal===g.id} onChange={()=>setGoal(g.id)}/>{g.label}</label>)}</fieldset>
