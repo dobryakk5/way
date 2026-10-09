@@ -22,7 +22,7 @@ export interface RunMetrics {
   /** Per day and true display source: how many slots, neutral cards and probes were actually shown. */
   dailyKinds: Record<number, Record<string, { total: number; neutral: number; probe: number }>>;
 }
-export function runMetrics(state: GameState, draws: { source: string; cardId: string }[], c: GameContent): RunMetrics {
+export function runMetrics(state: GameState, draws: { day: number; slot: number; source: string; cardId: string }[], c: GameContent): RunMetrics {
   const kind = (id: string) => kindOf(c.cards.find(x => x.id === id) as Card);
   const sources: Record<string, number> = {}; for (const d of draws) sources[d.source] = (sources[d.source] ?? 0) + 1;
   const candidateKinds: Record<string, number> = {}, landedKinds: Record<string, number> = {};
