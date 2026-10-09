@@ -140,13 +140,23 @@ export function collectPaired(rows: WorkerResult[]): PairedTrial<RunMetrics>[] {
     });
   });
 }
+/** Uncertainty is clustered by seed because one seed is reused across all seven policies. */
 export function pairedStatistic<T>(rows: PairedTrial<T>[], pick: (m: T) => number) {
-  const a = rows.map(r => pick(r.off)), b = rows.map(r => pick(r.on));
-  const diffs = rows.map((_, i) => b[i]! - a[i]!);
+  const bySeed = new Map<number, { off: number[]; on: number[] }>();
+  let changed = 0;
+  for (const pair of rows) {
+    const a = pick(pair.off), b = pick(pair.on);
+    const group = bySeed.get(pair.seed) ?? { off: [], on: [] };
+    group.off.push(a); group.on.push(b); bySeed.set(pair.seed, group);
+    if (a !== b) changed++;
+  }
+  const a = [...bySeed.values()].map(row => mean(row.off));
+  const b = [...bySeed.values()].map(row => mean(row.on));
+  const diffs = a.map((value, i) => b[i]! - value);
   const delta = mean(diffs), se = sd(diffs) / Math.sqrt(diffs.length || 1);
   return { off: mean(a), on: mean(b), delta, se,
     z: se === 0 ? (delta === 0 ? 0 : Math.sign(delta) * Infinity) : delta / se,
-    n: diffs.length, changed: diffs.filter(d => d !== 0).length };
+    n: rows.length, seeds: bySeed.size, changed };
 }
 
 function report(results: WorkerResult[]): string {
@@ -197,7 +207,7 @@ function report(results: WorkerResult[]): string {
   const byPathOn = results.map(r => r.mode.on.cardsByPath), diceOn = merge(byPathOn.map(x => x.dice)), directOn = merge(byPathOn.map(x => x.direct));
   L.push('', 'Показы по сценам в режиме ON: кубик / прямой (доля кубика):', '', '| Сцена | Кубик | Прямой | Доля кубика |', '|---|---:|---:|---:|');
   for (const id of [...new Set([...Object.keys(diceOn), ...Object.keys(directOn)])].sort()) L.push(`| ${id} | ${diceOn[id] ?? 0} | ${directOn[id] ?? 0} | ${f(100 * (diceOn[id] ?? 0) / Math.max((diceOn[id] ?? 0) + (directOn[id] ?? 0), 1), 0)}% |`);
-  L.push('', '### 4. Диагностика: OFF → ON на тех же seeds', '', 'Парная стандартная ошибка: sd(ON − OFF) / sqrt(n), пара = политика + seed. Порог >3 SE требует анализа.', '', '| Показатель | OFF | ON | Δ | Δ / SE | Флаг |', '|---|---:|---:|---:|---:|---|');
+  L.push('', '### 4. Диагностика: OFF → ON на тех же seeds', '', 'Сравнение пар (политика + seed), SE кластеризуется по seed: средняя разность семи политик для одного seed — одно независимое наблюдение. Порог >3 SE требует анализа.', '', '| Показатель | OFF | ON | Δ | Δ / SE | Флаг |', '|---|---:|---:|---:|---:|---|');
   const metric = (name: string, pick: (r: RunMetrics) => number) => {
     const v = pairedStatistic(paired, pick);
     L.push(`| ${name} | ${f(v.off, 3)} | ${f(v.on, 3)} | ${f(v.delta, 3)} | ${f(v.z, 1)} | ${Math.abs(v.z) > 3 ? '**нужен анализ**' : 'ок'} |`);
@@ -236,7 +246,7 @@ function report(results: WorkerResult[]): string {
     const v = pairedStatistic(paired, r => Object.values(r.dailyKinds).reduce((n, day) => n + (day[source]?.total ?? 0), 0));
     L.push(`| ${source} | ${f(v.off, 3)} | ${f(v.on, 3)} | ${f(v.delta, 3)} | ${f(v.z, 1)} |`);
   }
-  L.push('', `Полных пар (политика + seed): ${paired.length} из ${runs}. Пар с изменённым количеством neutral: ${pairedStatistic(paired, x => x.neutralShown).changed}.`);
+  L.push('', `Полных пар (политика + seed): ${paired.length} из ${runs}; независимых seed-кластеров: ${pairedStatistic(paired, x => x.neutralShown).seeds}. Пар с изменённым количеством neutral: ${pairedStatistic(paired, x => x.neutralShown).changed}.`);
   if (paired.length !== runs) L.push('**BLOCKED:** некоторые прогоны не имеют пары — нельзя интерпретировать статистику без разбора ошибок.');
   L.push('', '### 5. По политикам: диагностика', '', '| Политика | Режим | N | W | K | coverage | confidence | stable | neutral показано | probe показано | кубиков | прямых |', '|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|');
   for (const r of results) for (const k of ['off', 'on'] as const) {
