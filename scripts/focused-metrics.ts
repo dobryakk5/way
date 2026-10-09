@@ -19,6 +19,8 @@ export interface RunMetrics {
   neutralShown: number; probeShown: number; storyShown: number; storySeen: string[];
   /** Shown from the free pool by a direct draw (not via the die), split by kind. */
   directStory: number; directProtected: number;
+  /** Per day and true display source: how many slots, neutral cards and probes were actually shown. */
+  dailyKinds: Record<number, Record<string, { total: number; neutral: number; probe: number }>>;
 }
 export function runMetrics(state: GameState, draws: { source: string; cardId: string }[], c: GameContent): RunMetrics {
   const kind = (id: string) => kindOf(c.cards.find(x => x.id === id) as Card);
@@ -30,8 +32,19 @@ export function runMetrics(state: GameState, draws: { source: string; cardId: st
   }
   const last = state.heroDevelopmentProfile.eveningSnapshots.at(-1)?.current;
   const shownKinds = state.history.map(h => kind(h.cardId));
+  const diceSlots = new Set(state.diceHistory.filter(d => d.cardId).map(d => `${d.day}/${d.slot}`));
+  const sourceBySlot = new Map(draws.map(d => [`${d.day}/${d.slot}`, d.source]));
+  const dailyKinds: RunMetrics['dailyKinds'] = {};
+  for (const h of state.history) {
+    const src = diceSlots.has(`${h.day}/${h.slot}`) ? 'dice' : sourceBySlot.get(`${h.day}/${h.slot}`) ?? 'unknown';
+    const row = (dailyKinds[h.day] ??= {});
+    const cell = (row[src] ??= { total: 0, neutral: 0, probe: 0 });
+    cell.total++;
+    if (kind(h.cardId) === 'neutral') cell.neutral++;
+    if (kind(h.cardId) === 'probe') cell.probe++;
+  }
   return {
-    slots: state.history.length, sources, diceDays: state.diceHistory.length, directPoolDraws: sources.pool ?? 0,
+    slots: state.history.length, sources, diceDays: state.diceHistory.length, directPoolDraws: sources.pool ?? 0, dailyKinds,
     candidateKinds, landedKinds, faces: state.diceHistory.map(d => d.face ?? 0),
     probesPerDice: state.diceHistory.map(d => d.candidateOrigins?.filter(o => o === 'probe').length ?? 0),
     uniqueCandidates: state.diceHistory.every(d => new Set(d.candidates).size === 6 && d.candidates.length === 6),
