@@ -2,6 +2,7 @@ import { writeFileSync } from 'node:fs';
 import { content } from '../src/content';
 import { CONTENT_VERSION } from '../src/content/version';
 import { eligible, freePool, evaluateCondition, facetPattern, dominantFacet, pickEnding, portrait, FACETS } from '../src/engine';
+import type { Condition } from '../src/engine';
 import { play, POLICIES } from './play';
 import { shadowScenarios } from './shadow-scenarios';
 const runs=Number(process.env.SIM_RUNS??1000);
@@ -12,6 +13,18 @@ const conditionalFollowups = content.cards.filter(c=>c.tags?.includes('follow-up
 // Do not use a global >=50% visibility rule for scenes gated by one particular prior choice.
 const MIN_FOLLOWUP_ELIGIBLE_RUNS = 25;
 const MIN_FOLLOWUP_SHOW_RATE = 0.35;
+const hasChoicePrerequisite = (condition: Condition | undefined): boolean => {
+ if(!condition)return false;
+ if('chose' in condition)return true;
+ if('all' in condition)return condition.all.some(hasChoicePrerequisite);
+ if('any' in condition)return condition.any.some(hasChoicePrerequisite);
+ if('not' in condition)return hasChoicePrerequisite(condition.not);
+ return false;
+};
+for(const card of conditionalFollowups){
+ if(!hasChoicePrerequisite(card.requires))failures.push(`follow-up ${card.id} needs an authored chose prerequisite (tag cannot waive visibility otherwise)`);
+ if(card.required || card.mustShowBy!==undefined)failures.push(`follow-up ${card.id} should not be a global required scene`);
+}
 const summaries=POLICIES.map(policy=>{
  const endings:Record<string,number>={},facts:Record<string,Record<string,number>>={},opportunities:Record<string,Record<string,number>>={},seen:Record<string,number>={},insights:Record<string,number[]>={},shadows:Record<string,number>={};
  let crises=0,dropped=0,scheduled=0,mismatches=0;const facets={work:0,relationships:0,body:0,inner:0};
