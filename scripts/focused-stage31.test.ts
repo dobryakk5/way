@@ -21,6 +21,21 @@ describe('Stage 3.1 independent analysis', () => {
     expect(result.on).toBe(22);
   });
 
+  it('clusters uncertainty across policies that reuse the same seed', () => {
+    const onePolicy = [
+      { policy: 'random', seed: 1, off: { n: 10 }, on: { n: 10 } },
+      { policy: 'random', seed: 2, off: { n: 20 }, on: { n: 22 } },
+      { policy: 'random', seed: 3, off: { n: 30 }, on: { n: 34 } }
+    ];
+    const twoPolicies = [...onePolicy, ...onePolicy.map(p => ({ ...p, policy: 'mixed' }))];
+    const first = pairedStatistic(onePolicy, x => x.n);
+    const second = pairedStatistic(twoPolicies, x => x.n);
+    expect(second.n).toBe(6);
+    expect(second.seeds).toBe(3);
+    expect(second.delta).toBeCloseTo(first.delta);
+    expect(second.se).toBeCloseTo(first.se);
+    expect(second.z).toBeCloseTo(first.z);
+  });
   it('pairs by seed rather than array position, omitting unmatched runs', () => {
     const m = (n: number) => ({ neutralShown: n }) as RunMetrics;
     const rows = [{
