@@ -29,7 +29,7 @@ const bump = (t: Record<string, number>, k: string | number, n = 1) => { t[Strin
 export interface WorkerResult {
   policy: PolicyName; runs: number;
   mode: Record<'on' | 'off', {
-    metrics: RunMetrics[]; failures: Record<string, number>; atMisses: number; unfinishedRequired: number;
+    metrics: RunMetrics[]; seeds: number[]; failures: Record<string, number>; atMisses: number; unfinishedRequired: number;
     /** Ordinary story scenes shown on days inside the range, by path ('dice' = landed, 'direct'), with the tier they have in the context they were shown in ('none' = no relevance). */
     shown: Record<'dice' | 'direct', Record<string, number>>;
     offered: Record<string, number>;        // tiers of the story candidates among the six faces
@@ -47,7 +47,7 @@ export interface WorkerResult {
 }
 
 function blank(): WorkerResult['mode']['on'] {
-  return { metrics: [], failures: {}, atMisses: 0, unfinishedRequired: 0, shown: { dice: {}, direct: {} }, offered: {}, distinct: [], lines: [], cards: {}, cardsByPath: { dice: {}, direct: {} }, lineSteps: {}, distinctByPath: { dice: [], direct: [] }, goalMatch: { matched: 0, total: 0 } };
+  return { metrics: [], seeds: [], failures: {}, atMisses: 0, unfinishedRequired: 0, shown: { dice: {}, direct: {} }, offered: {}, distinct: [], lines: [], cards: {}, cardsByPath: { dice: {}, direct: {} }, lineSteps: {}, distinctByPath: { dice: [], direct: [] }, goalMatch: { matched: 0, total: 0 } };
 }
 
 function runOne(policy: PolicyName, seed: number, c: GameContent, mode: 'on' | 'off', out: WorkerResult): void {
@@ -110,6 +110,7 @@ function runOne(policy: PolicyName, seed: number, c: GameContent, mode: 'on' | '
   if (state.history.length !== 120) bump(m.failures, 'not 120 decisions');
   for (const card of content.cards.filter(x => x.at)) if (!draws.some(d => d.cardId === card.id && d.day === card.at!.day && d.slot === card.at!.slot)) m.atMisses++;
   if (state.scheduled.some(sc => content.cards.find(x => x.id === sc.cardId)?.required)) m.unfinishedRequired++;
+  m.seeds.push(seed);
   m.metrics.push(runMetrics(state, draws, c));
 }
 function goalAtDay(goal: GoalId, goalAt: Record<number, GoalId> | undefined, day: number): GoalId { return goalAt && day >= 21 ? goalAt[21]! : goalAt && day >= 11 ? goalAt[11]! : goal; }
@@ -128,11 +129,32 @@ const sum = (r: Record<string, number>) => Object.values(r).reduce((a, b) => a +
 const merge = (list: Record<string, number>[]) => { const t: Record<string, number> = {}; for (const r of list) for (const [k, v] of Object.entries(r)) bump(t, k, v); return t; };
 const shareRow = (r: Record<string, number>) => { const n = sum(r) || 1; return ['1', '2', '3', '4', '5', 'none'].map(k => `${f(100 * (r[k] ?? 0) / n, 1)}%`).join(' | '); };
 
+/** Same policy + seed is a paired trial. Do not treat matched runs as independent. */
+export interface PairedTrial<T> { policy: string; seed: number; off: T; on: T }
+export function collectPaired(rows: WorkerResult[]): PairedTrial<RunMetrics>[] {
+  return rows.flatMap(row => {
+    const off = new Map(row.mode.off.seeds.map((seed, i) => [seed, row.mode.off.metrics[i]!]));
+    return row.mode.on.seeds.flatMap((seed, i) => {
+      const baseline = off.get(seed);
+      return baseline ? [{ policy: row.policy, seed, off: baseline, on: row.mode.on.metrics[i]! }] : [];
+    });
+  });
+}
+export function pairedStatistic<T>(rows: PairedTrial<T>[], pick: (m: T) => number) {
+  const a = rows.map(r => pick(r.off)), b = rows.map(r => pick(r.on));
+  const diffs = rows.map((_, i) => b[i]! - a[i]!);
+  const delta = mean(diffs), se = sd(diffs) / Math.sqrt(diffs.length || 1);
+  return { off: mean(a), on: mean(b), delta, se,
+    z: se === 0 ? (delta === 0 ? 0 : Math.sign(delta) * Infinity) : delta / se,
+    n: diffs.length, changed: diffs.filter(d => d !== 0).length };
+}
+
 function report(results: WorkerResult[]): string {
   const L: string[] = [];
   const all2 = (k: 'on' | 'off') => results.flatMap(r => r.mode[k].metrics);
   const total = (k: 'on' | 'off', pick: (m: WorkerResult['mode']['on']) => number[]) => results.flatMap(r => pick(r.mode[k]));
   const runs = results.reduce((a, r) => a + r.runs, 0);
+  const paired = collectPaired(results);
   L.push(`Прогонов: ${runs} на режим (${results.length} политик × ${results[0]!.runs}); цели вращаются по seed (order/workshop/alexey), чётные seeds меняют цель в дни 11 и 21. Диапазон фокуса: дни ${RANGE.fromDay}–${RANGE.throughDay}.`, '');
   L.push('### 1. Структурные проверки (допуск ноль)', '', '| Политика | Падений ON | Падений OFF | FOCUS_POOL_EMPTY | Не 120 решений ON | Пропущено `at` ON | required не исполнено ON | Сравнений наборов | Расхождений protected | Необоснованных (кубик / прямой) | Дефицитов (ON без набора, OFF с набором) |', '|---|---:|---:|---:|---:|---:|---:|---:|---:|---|---:|');
   for (const r of results) {
@@ -175,11 +197,10 @@ function report(results: WorkerResult[]): string {
   const byPathOn = results.map(r => r.mode.on.cardsByPath), diceOn = merge(byPathOn.map(x => x.dice)), directOn = merge(byPathOn.map(x => x.direct));
   L.push('', 'Показы по сценам в режиме ON: кубик / прямой (доля кубика):', '', '| Сцена | Кубик | Прямой | Доля кубика |', '|---|---:|---:|---:|');
   for (const id of [...new Set([...Object.keys(diceOn), ...Object.keys(directOn)])].sort()) L.push(`| ${id} | ${diceOn[id] ?? 0} | ${directOn[id] ?? 0} | ${f(100 * (diceOn[id] ?? 0) / Math.max((diceOn[id] ?? 0) + (directOn[id] ?? 0), 1), 0)}% |`);
-  L.push('', '### 4. Диагностика: OFF → ON на тех же seeds', '', 'Правило заранее: отличие среднего больше 3 стандартных ошибок помечается «нужен анализ» и блокирует включение.', '', '| Показатель | OFF | ON | Δ | Δ / SE | Флаг |', '|---|---:|---:|---:|---:|---|');
+  L.push('', '### 4. Диагностика: OFF → ON на тех же seeds', '', 'Парная стандартная ошибка: sd(ON − OFF) / sqrt(n), пара = политика + seed. Порог >3 SE требует анализа.', '', '| Показатель | OFF | ON | Δ | Δ / SE | Флаг |', '|---|---:|---:|---:|---:|---|');
   const metric = (name: string, pick: (r: RunMetrics) => number) => {
-    const a = results.flatMap(r => r.mode.off.metrics.map(pick)), b = results.flatMap(r => r.mode.on.metrics.map(pick));
-    const se = Math.sqrt(sd(a) ** 2 / a.length + sd(b) ** 2 / b.length), d = mean(b) - mean(a), z = se ? d / se : 0;
-    L.push(`| ${name} | ${f(mean(a), 3)} | ${f(mean(b), 3)} | ${f(d, 3)} | ${f(z, 1)} | ${Math.abs(z) > 3 ? '**нужен анализ**' : 'ок'} |`);
+    const v = pairedStatistic(paired, pick);
+    L.push(`| ${name} | ${f(v.off, 3)} | ${f(v.on, 3)} | ${f(v.delta, 3)} | ${f(v.z, 1)} | ${Math.abs(v.z) > 3 ? '**нужен анализ**' : 'ок'} |`);
   };
   metric('N (независимых действий)', r => r.profile.N); metric('W', r => r.profile.W); metric('K', r => r.profile.K);
   metric('coverage', r => r.profile.coverage); metric('confidence', r => r.profile.confidence);
@@ -189,8 +210,8 @@ function report(results: WorkerResult[]): string {
   const dDice = mean(all('on').map(x => x.diceDays)) - mean(all('off').map(x => x.diceDays)), dSched = src('on', 'scheduled') - src('off', 'scheduled');
   const diceAccepted = dDice >= -0.3 && (dDice >= 0 || dSched >= 0.8 * -dDice);
   {
-    const a = all('off').map(x => x.diceDays), b = all('on').map(x => x.diceDays), se = Math.sqrt(sd(a) ** 2 / a.length + sd(b) ** 2 / b.length);
-    L.push(`| кубиков за прогон | ${f(mean(a), 3)} | ${f(mean(b), 3)} | ${f(dDice, 3)} | ${f(se ? dDice / se : 0, 1)} | ${Math.abs(se ? dDice / se : 0) <= 3 ? 'ок' : diceAccepted ? '**принято владельцем**: объяснено ростом `scheduled` на ' + f(dSched, 3) : '**нужен анализ**'} |`);
+    const v = pairedStatistic(paired, x => x.diceDays);
+    L.push(`| кубиков за прогон | ${f(v.off, 3)} | ${f(v.on, 3)} | ${f(v.delta, 3)} | ${f(v.z, 1)} | ${Math.abs(v.z) <= 3 ? 'ок' : diceAccepted ? '**принято владельцем**: объяснено ростом scheduled на ' + f(dSched, 3) : '**нужен анализ**'} |`);
   }
   metric('прямых pool-показов за прогон', r => r.directPoolDraws);
   for (const st of ['stable', 'provisional']) metric(`доля статуса ${st}`, r => r.profile.status === st ? 1 : 0);
@@ -198,6 +219,25 @@ function report(results: WorkerResult[]): string {
   for (const st of stages) metric(`доля стадии развития ${st}`, r => (r.profile.stage ?? '-') === st ? 1 : 0);
   L.push('', 'Источники показов (среднее за прогон), OFF → ON:', '', '| Источник | OFF | ON | Δ |', '|---|---:|---:|---:|');
   for (const k of ['current', 'pool', 'scheduled', 'crisis', 'development', 'route', 'mustShowBy', 'at']) L.push(`| ${k === 'current' ? 'кубик (current)' : k} | ${f(src('off', k), 3)} | ${f(src('on', k), 3)} | ${f(src('on', k) - src('off', k), 3)} |`);
+  L.push('', '### 4b. Источники neutral по каждому дню (парные прогоны)',
+    'Учтены реально показанные сцены; подготовительные вызовы drawCard не считаются. Данные позволяют отличить изменения внутри дней 1–10 от последствий в днях 11–30.',
+    '', '| День | Neutral OFF | Neutral ON | Δ | Δ dice | Δ pool | Δ scheduled | Δ other | Δ кубиков всего | Δ pool всего | Δ scheduled всего |',
+    '|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|');
+  const cell = (r: RunMetrics, day: number, source: string, field: 'neutral' | 'total'): number =>
+    source === '*' ? Object.values(r.dailyKinds[day] ?? {}).reduce((n, row) => n + row[field], 0)
+      : r.dailyKinds[day]?.[source]?.[field] ?? 0;
+  for (let day = 1; day <= content.episode.days; day++) {
+    const diff = (source: string, field: 'neutral' | 'total') => pairedStatistic(paired, r => cell(r, day, source, field));
+    const total = diff('*', 'neutral'), dice = diff('dice', 'neutral'), pool = diff('pool', 'neutral'), scheduled = diff('scheduled', 'neutral');
+    L.push(`| ${day} | ${f(total.off, 3)} | ${f(total.on, 3)} | ${f(total.delta, 3)} | ${f(dice.delta, 3)} | ${f(pool.delta, 3)} | ${f(scheduled.delta, 3)} | ${f(total.delta - dice.delta - pool.delta - scheduled.delta, 3)} | ${f(diff('dice','total').delta, 3)} | ${f(diff('pool','total').delta, 3)} | ${f(diff('scheduled','total').delta, 3)} |`);
+  }
+  L.push('', '### 4c. Источники за весь эпизод', '', '| Источник | OFF | ON | Δ | Δ / парная SE |', '|---|---:|---:|---:|---:|');
+  for (const source of ['dice','pool','scheduled','crisis','development','route','mustShowBy','at','capacity','unknown']) {
+    const v = pairedStatistic(paired, r => Object.values(r.dailyKinds).reduce((n, day) => n + (day[source]?.total ?? 0), 0));
+    L.push(`| ${source} | ${f(v.off, 3)} | ${f(v.on, 3)} | ${f(v.delta, 3)} | ${f(v.z, 1)} |`);
+  }
+  L.push('', `Полных пар (политика + seed): ${paired.length} из ${runs}. Пар с изменённым количеством neutral: ${pairedStatistic(paired, x => x.neutralShown).changed}.`);
+  if (paired.length !== runs) L.push('**BLOCKED:** некоторые прогоны не имеют пары — нельзя интерпретировать статистику без разбора ошибок.');
   L.push('', '### 5. По политикам: диагностика', '', '| Политика | Режим | N | W | K | coverage | confidence | stable | neutral показано | probe показано | кубиков | прямых |', '|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|');
   for (const r of results) for (const k of ['off', 'on'] as const) {
     const ms = r.mode[k].metrics, a = (p: (x: RunMetrics) => number) => f(mean(ms.map(p)), 2);
