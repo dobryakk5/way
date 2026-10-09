@@ -42,6 +42,6 @@ export default defineConfig({
     // Every scenario plays complete 30-day runs; the profile adds bookkeeping to each decision.
     testTimeout: 20000,
     environment: 'node',
-    include: ['src/**/*.test.ts', 'server/src/**/*.test.ts']
+    include: ['src/**/*.test.ts', 'server/src/**/*.test.ts', 'scripts/focused-stage31.test.ts']
   }
 });
