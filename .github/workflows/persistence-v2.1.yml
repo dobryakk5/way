@@ -18,6 +18,9 @@ jobs:
       - run: npm ci
       - run: npm run persistence:catalog:check
       - run: npm run typecheck
+      # Frontend's Vitest suite also discovers server/src/*.test.ts, which import pg.
+      - run: npm ci
+        working-directory: server
       - run: npm test
 
   server:

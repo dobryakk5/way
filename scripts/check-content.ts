@@ -153,7 +153,8 @@ export function impactErrors(c: GameContent, assetExists: (image: string) => boo
 /**
  * FOCUSED-ENCOUNTERS v1.1, section 12.1. `story` is a content anchor of an ORDINARY free scene only; the protected categories stay unmarked.
  * Anchors are checked against what can really happen (a line some choice writes, a thread that exists, a `requires` that can be met),
- * not only against non-empty fields. When the rollout flag is on, every ordinary scene of the covered chapters needs an anchor.
+ * not only against non-empty fields. Every ordinary scene that can be met inside the focused range (chapter covered or 'any', and not gated to a later day)
+ * needs an anchor, whether or not the rollout flag is on yet: the markup must be ready before the flag is.
  */
 /** The first day a condition can hold, looking only at calendar terms (a card gated to a later day is not available inside an earlier range). */
 function earliestDay(x:Condition|undefined):number{
@@ -162,6 +163,30 @@ function earliestDay(x:Condition|undefined):number{
  if('any'in x)return Math.min(...x.any.map(earliestDay));
  if('dayGte'in x&&x.dayGte!==undefined)return x.dayGte;
  return 1;
+}
+/**
+ * A recollection is a text variant that reads an earlier decision (`chose`) and stops at an ABSOLUTE day (`dayLte`): it is not "N days after the decision".
+ * The window must not be empty by accident: from the latest day the decision can still be made to the cut-off there must be room (at least 3 days).
+ */
+export function recollectionWindowErrors(c:GameContent):string[]{
+ const errors:string[]=[];
+ const bounds=(x:Condition|undefined):number=>!x?c.episode.days:'dayLte'in x?x.dayLte??c.episode.days:'all'in x?Math.min(...x.all.map(bounds)):c.episode.days;
+ const lastDay=(id:string):number|undefined=>{
+  const card=c.cards.find(x=>x.id===id);if(!card)return undefined;
+  return card.at?.day??Math.min(c.episode.chapters.find(ch=>ch.id===card.chapter)?.through??c.episode.days,bounds(card.requires));
+ };
+ const parts=(x:Condition):Condition[]=>'all'in x?x.all.flatMap(parts):[x];
+ for(const card of c.cards)for(const v of card.textVariants??[]){
+  const flat=parts(v.when);
+  const cutoffs=flat.flatMap(x=>'dayLte'in x&&x.dayLte!==undefined?[x.dayLte]:[]);
+  if(!cutoffs.length)continue;
+  const cutoff=Math.min(...cutoffs);
+  for(const x of flat)if('chose'in x){
+   const last=lastDay(x.chose.card);
+   if(last!==undefined&&cutoff-last<3)errors.push(`Recollection ${card.id}/${v.id} stops at day ${cutoff}, only ${cutoff-last} day(s) after the latest day ${x.chose.card} can be chosen (day ${last}): the window is (almost) empty`);
+  }
+ }
+ return errors;
 }
 export function focusedEncountersErrors(c:GameContent):string[]{
  const errors:string[]=[];const fail=(x:string)=>errors.push(x);
@@ -178,7 +203,7 @@ export function focusedEncountersErrors(c:GameContent):string[]{
   if(story.worldFallback&&story.role!=='ambient')fail(`worldFallback needs role ambient ${card.id}`);
   if(card.requires&&!conditionReachable(c,card.requires))fail(`story scene ${card.id} has a requires that can never hold`);
  }
- if(c.profile.rollout.focusedEncounters){
+ {
   const covered=c.episode.chapters.filter(ch=>ch.from<=range.throughDay&&ch.through>=range.fromDay).map(ch=>ch.id);
   for(const card of c.cards)if(isFacetWeightedDrawCandidate(card)&&!card.story&&(card.chapter==='any'||covered.includes(card.chapter))&&earliestDay(card.requires)<=range.throughDay)fail(`ordinary scene ${card.id} has no story anchor inside the focused range ${range.fromDay}-${range.throughDay}`);
  }
@@ -418,6 +443,7 @@ export function validateDiagnostics(c: GameContent, fail:(s:string)=>void) {
  void evidenceOf;
  for(const e of summaryErrors(c))fail(e);
  for(const e of focusedEncountersErrors(c))fail(e);
+ for(const e of recollectionWindowErrors(c))fail(e);
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
  const errors=validateContent(content);if(errors.length){console.error(errors.join('\n'));process.exitCode=1;}else console.log(`CONTENT v2.5 OK: ${content.cards.length} cards, ${content.episode.days} days`);

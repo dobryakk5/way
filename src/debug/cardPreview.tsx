@@ -5,9 +5,11 @@ import { GameScreen } from '../ui/screens/GameScreen';
 import { createInitialGameState } from '../engine/initialState';
 import type { DrawResult } from '../engine/draw';
 import type { Choice } from '../engine/types';
+import { content } from '../content';
 import '../styles.css';
 
-// Development-only page: /dev-card-preview.html?n=2|3|4&long=1 renders a card with that many choices so the layout can be checked at phone width.
+// Development-only page: /dev-card-preview.html?n=2|3|4&long=1 renders a card with that many choices so the layout can be checked at phone width;
+// /dev-card-preview.html?card=<id> renders the real card from the content (portrait, scene art, text, choices).
 const params = new URLSearchParams(location.search);
 const n = Math.min(4, Math.max(2, Number(params.get('n') ?? 4)));
 const long = params.get('long') === '1';
@@ -15,7 +17,8 @@ const label = (i: number) => long ? `Вариант ${'ABCD'[i]}. Спокойн
 const choices: Choice[] = Array.from({ length: n }, (_, i) => ({ id: 'ABCD'[i]!, label: label(i), effects: { resources: { wealth: i === 0 ? 2 : 0, peace: i === 1 ? -1 : 0 } }, servesFacets: ['work'] }));
 const game = { ...createInitialGameState(1), phase: 'slot' as const, day: 3, slot: 1 };
 const text = 'Ученик показывает чашку и спрашивает, можно ли выставить её на ярмарке. Глазурь легла неровно, но он очень ждал этого дня. Остаётся решить, что сказать ему сейчас и как поступить с заказом Тимона.';
-const draw: DrawResult = {
+const real = content.cards.find(c => c.id === params.get('card'));
+const draw: DrawResult = real ? { card: real, choices: real.choices, text: real.text, source: 'pool', ...(real.choices.length === 2 ? { leftChoiceId: real.choices[0]!.id, rightChoiceId: real.choices[1]!.id } : {}) } : {
   card: { id: 'preview', chapter: 1, type: 'situation', character: 'alexey', text, choices } as DrawResult['card'], choices, text, source: 'pool',
   ...(n === 2 ? { leftChoiceId: 'A', rightChoiceId: 'B' } : {})
 };

@@ -277,14 +277,23 @@ const CARD_SCENE_ART: Partial<Record<string, SceneArt>> = {
   enc_4_1: 'workshop-dawn',
   enc_4_2: 'courtyard',
   enc_4_3: 'workshop-dawn',
-  enc_4_4: 'market-fair',
+  enc_4_4: 'kitchen-home',
   enc_4_5: 'country-road',
   enc_4_6: 'night-room',
   enc_4_7: 'workshop-dawn',
   enc_4_8: 'country-road',
   enc_4_9: 'workshop-dawn',
   enc_4_10: 'market-fair',
-  enc_4_11: 'courtyard'
+  enc_4_11: 'courtyard',
+  // Continuation scenes of the chapter 2 decisions (FOCUSED-ENCOUNTERS stage 3)
+  x3_marta_second_cup: 'kitchen-home',
+  x3_marta_apart: 'village-street',
+  x3_boy_at_door: 'workshop-dawn',
+  x3_boy_by_river: 'river-bridge',
+  x3_alexey_asks_for_order: 'workshop-dawn',
+  x4_marta_keeps_word: 'workshop-dusk',
+  x4_marta_note: 'village-street',
+  x4_wanderer_takes_the_boy: 'country-road'
 };
 
 function sceneArtForCard(draw: DrawResult): SceneArt {

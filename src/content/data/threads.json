@@ -228,5 +228,16 @@
       "cardId": "c1_liya_second_letter",
       "firmTexts": []
     }
+  },
+  {
+    "id": "marta_evening",
+    "kind": "chain",
+    "texts": [
+      "Марта ещё зайдёт, как вы договорились."
+    ],
+    "followUp": {
+      "cardId": "r_marta_evening",
+      "firmTexts": []
+    }
   }
 ]

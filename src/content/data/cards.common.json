@@ -46,6 +46,51 @@
     "facets": [
       "body",
       "work"
+    ],
+    "story": {
+      "goalIds": [
+        "alexey",
+        "workshop"
+      ],
+      "role": "ambient"
+    },
+    "textVariants": [
+      {
+        "id": "r_sweep_hand_shown",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_silence_alexey_hand",
+                "choice": "look"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Глину на полу Алексей сметает левой: правую он больше не прячет, и виден след ожога. А твоя чаша на круге ещё не закончена. Убрать сейчас и размять спину или сначала довести чашу до конца?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_sweep_hand_hidden",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_silence_alexey_hand",
+                "choice": "trust"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Глину на полу Алексей сметает молча, правую ладонь по-прежнему держит в рукаве. А твоя чаша на круге ещё не закончена. Убрать сейчас и размять спину или сначала довести чашу до конца?",
+        "kind": "consequence"
+      }
     ]
   },
   {
@@ -95,6 +140,87 @@
     "facets": [
       "body",
       "work"
+    ],
+    "story": {
+      "goalIds": [
+        "alexey",
+        "order"
+      ],
+      "role": "ambient"
+    },
+    "textVariants": [
+      {
+        "id": "r_breakfast_alexey_spoke",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_gaze_alexey_silence",
+                "choice": "ask"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Алексей принёс еду и зовёт за стол. После того разговора он садится рядом сам, а не ждёт приглашения, но обжиг ещё не закончен. Сесть поесть или сначала закончить обжиг?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_breakfast_alexey_silent",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_gaze_alexey_silence",
+                "choice": "respect"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Алексей молча ставит еду на край стола и не зовёт. Обжиг ещё не закончен. Сесть поесть или сначала закончить обжиг?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_breakfast_hand_shown",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_silence_alexey_hand",
+                "choice": "look"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Алексей принёс еду, придерживая миску левой: на правой ладони виден след ожога. Обжиг ещё не закончен. Сесть поесть или сначала закончить обжиг?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_breakfast_hand_hidden",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_silence_alexey_hand",
+                "choice": "trust"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Алексей принёс еду, прижимая миску локтем: правая ладонь по-прежнему в рукаве. Обжиг ещё не закончен. Сесть поесть или сначала закончить обжиг?",
+        "kind": "consequence"
+      }
     ]
   },
   {
@@ -144,6 +270,87 @@
     "facets": [
       "work",
       "inner"
+    ],
+    "story": {
+      "goalIds": [
+        "workshop",
+        "order"
+      ],
+      "role": "complication"
+    },
+    "textVariants": [
+      {
+        "id": "r_market_price_asked_about_stall",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_silence_market_pause",
+                "choice": "ask"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Тимон говорит, что глина подорожала, и называет цены прямо: про пустую лавку напротив ты уже спросил. Можно сравнить цены у других продавцов или взять привычную смесь, как всегда.",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_market_price_dealt_only",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_silence_market_pause",
+                "choice": "deal"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Тимон говорит, что глина подорожала, и сразу переводит речь на условия: на пустую лавку напротив он не смотрит. Можно сравнить цены у других продавцов или взять привычную смесь, как всегда.",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_market_price_change_returned",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c1_extra_change",
+                "choice": "return"
+              }
+            },
+            {
+              "dayLte": 12
+            }
+          ]
+        },
+        "text": "Тимон, торговец, говорит, что глина на рынке подорожала, и открыто показывает цены в тетради: ты вернул ему лишние монеты. Можно сравнить цены у других продавцов или взять привычную смесь, как всегда.",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_market_price_change_kept",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c1_extra_change",
+                "choice": "keep"
+              }
+            },
+            {
+              "dayLte": 12
+            }
+          ]
+        },
+        "text": "Тимон, торговец, говорит, что глина на рынке подорожала, и закрывает тетрадь, прежде чем ты успеешь заглянуть: лишние монеты он не забыл. Можно сравнить цены у других продавцов или взять привычную смесь, как всегда.",
+        "kind": "consequence"
+      }
     ]
   },
   {
@@ -193,6 +400,214 @@
     "facets": [
       "relationships",
       "work"
+    ],
+    "story": {
+      "role": "ambient",
+      "worldFallback": true
+    },
+    "textVariants": [
+      {
+        "id": "r_marta_hello_after_evening_wait",
+        "when": {
+          "chose": {
+            "card": "r_marta_evening",
+            "choice": "wait"
+          }
+        },
+        "text": "Марта остановилась у двери и молчит, давая тебе спросить: после вечера у печи она знает, что ты умеешь ждать. Поговорить сейчас или договориться о разговоре на вечер?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_marta_hello_after_evening_first",
+        "when": {
+          "chose": {
+            "card": "r_marta_evening",
+            "choice": "first"
+          }
+        },
+        "text": "Марта остановилась у двери и сама начинает с дня: после вечера у печи ей проще говорить первой. Поговорить сейчас или договориться о разговоре на вечер?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_marta_hello_cup_on_table",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_silence_marta_cup",
+                "choice": "ask"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Марта остановилась у двери и сама начинает с главного: чашка теперь стоит у неё на столе. Поговорить сейчас или договориться о разговоре на вечер?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_marta_hello_cup_silent",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_silence_marta_cup",
+                "choice": "leave"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Марта остановилась у двери. О чашке она молчит, о дне говорит одно слово: «нормально». Поговорить сейчас или договориться о разговоре на вечер?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_marta_hello_window_visited",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_gaze_marta_window",
+                "choice": "visit"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Марта остановилась у двери: свечу в окне она теперь не гасит и о том вечере, когда ты зашёл, не заговаривает. Поговорить сейчас или договориться о разговоре на вечер?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_marta_hello_window_passed",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_gaze_marta_window",
+                "choice": "home"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Марта остановилась у двери и спрашивает не про день, а про то, видел ли ты её тёмное окно. Поговорить сейчас или договориться о разговоре на вечер?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_marta_hello_firewood_helped",
+        "when": {
+          "all": [
+            {
+              "any": [
+                {
+                  "chose": {
+                    "card": "c1_marta_firewood",
+                    "choice": "help"
+                  }
+                },
+                {
+                  "chose": {
+                    "card": "c1_customer_hurry",
+                    "choice": "help"
+                  }
+                }
+              ]
+            },
+            {
+              "dayLte": 12
+            }
+          ]
+        },
+        "text": "Марта остановилась у двери: дрова, которые вы вместе убрали под навес, лежат ровно, и она это помнит. Поговорить сейчас или договориться о разговоре на вечер?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_marta_hello_firewood_arranged",
+        "when": {
+          "all": [
+            {
+              "any": [
+                {
+                  "chose": {
+                    "card": "c1_marta_firewood",
+                    "choice": "arrange"
+                  }
+                },
+                {
+                  "chose": {
+                    "card": "c1_customer_hurry",
+                    "choice": "arrange"
+                  }
+                }
+              ]
+            },
+            {
+              "dayLte": 12
+            }
+          ]
+        },
+        "text": "Марта остановилась у двери: дрова ей убрал другой сосед, пока ты вернулся к чашкам. Поговорить сейчас или договориться о разговоре на вечер?",
+        "kind": "consequence"
+      }
+    ],
+    "requires": {
+      "dayLte": 29
+    },
+    "choiceVariants": [
+      {
+        "when": {
+          "dayGte": 1
+        },
+        "choices": [
+          {
+            "id": "a2",
+            "label": "Поговорить сейчас",
+            "servesFacets": [
+              "relationships"
+            ],
+            "obligation": "Поговорить сейчас",
+            "effects": {
+              "resources": {
+                "strength": 2,
+                "wealth": -1
+              },
+              "qualities": {
+                "compassion": 1
+              }
+            }
+          },
+          {
+            "id": "b2",
+            "label": "Договориться на вечер",
+            "servesFacets": [
+              "work"
+            ],
+            "obligation": "Договориться на вечер",
+            "effects": {
+              "resources": {
+                "peace": 2,
+                "strength": -1
+              },
+              "qualities": {
+                "honesty": 1
+              },
+              "schedule": [
+                {
+                  "cardId": "r_marta_evening",
+                  "inDays": 1
+                }
+              ]
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -242,6 +657,123 @@
     "facets": [
       "relationships",
       "work"
+    ],
+    "story": {
+      "goalIds": [
+        "alexey",
+        "workshop"
+      ],
+      "role": "opportunity"
+    },
+    "textVariants": [
+      {
+        "id": "r_kiln_alexey_spoke",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_gaze_alexey_silence",
+                "choice": "ask"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Алексей разбирает остывшую печь и сам объясняет, зачем ставит перегородки так: за работой он больше не молчит. Помочь ему с перегородками или доверить сборку ему?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_kiln_alexey_silent",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_gaze_alexey_silence",
+                "choice": "respect"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Алексей разбирает остывшую печь молча, как всю последнюю неделю. Помочь ему с перегородками или доверить сборку ему?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_kiln_hand_shown",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_silence_alexey_hand",
+                "choice": "look"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Алексей разбирает остывшую печь левой рукой: правая после ожога ещё не держит тяжёлое. Помочь ему с перегородками или доверить сборку ему?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_kiln_hand_hidden",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_silence_alexey_hand",
+                "choice": "trust"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Алексей разбирает остывшую печь, не поднимая правую руку выше пояса. Помочь ему с перегородками или доверить сборку ему?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_kiln_calculated_together",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c1_alexey_after_jug",
+                "choice": "teach"
+              }
+            },
+            {
+              "dayLte": 12
+            }
+          ]
+        },
+        "text": "Алексей разбирает остывшую печь и ставит чаши по листку с расчётом обжига, который вы составили вместе. Помочь ему с перегородками или доверить сборку ему?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_kiln_calculated_alone",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c1_alexey_after_jug",
+                "choice": "work"
+              }
+            },
+            {
+              "dayLte": 12
+            }
+          ]
+        },
+        "text": "Алексей разбирает остывшую печь и готовит чаши по-своему: расчёт обжига он вёл сам, ты не вмешивался. Помочь ему с перегородками или доверить сборку ему?",
+        "kind": "consequence"
+      }
     ]
   },
   {
@@ -291,13 +823,93 @@
     "facets": [
       "work",
       "body"
+    ],
+    "story": {
+      "goalIds": [
+        "order",
+        "workshop"
+      ],
+      "role": "ambient"
+    },
+    "textVariants": [
+      {
+        "id": "r_coins_asked_about_stall",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_silence_market_pause",
+                "choice": "ask"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Ты пересчитываешь готовые чаши, а Тимон ждёт у двери и не торопит: про лавку напротив он сказал тебе прямо. Проверить ещё одну полку или закончить на сегодня?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_coins_dealt_only",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_silence_market_pause",
+                "choice": "deal"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Ты пересчитываешь готовые чаши, а Тимон ждёт у двери и поглядывает на пустую лавку напротив. Проверить ещё одну полку или закончить на сегодня?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_coins_change_returned",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c1_extra_change",
+                "choice": "return"
+              }
+            },
+            {
+              "dayLte": 12
+            }
+          ]
+        },
+        "text": "Ты пересчитываешь готовые чаши, а Тимон ждёт у двери и не заглядывает тебе в руки: лишние монеты ты вернул ему сам. Проверить ещё одну полку или закончить на сегодня?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_coins_change_kept",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c1_extra_change",
+                "choice": "keep"
+              }
+            },
+            {
+              "dayLte": 12
+            }
+          ]
+        },
+        "text": "Ты пересчитываешь готовые чаши, а Тимон ждёт у двери и считает про себя: лишние монеты остались у тебя, и кассу он ещё не сверил. Проверить ещё одну полку или закончить на сегодня?",
+        "kind": "consequence"
+      }
     ]
   },
   {
     "id": "r_river",
     "chapter": "any",
     "type": "routine",
-    "character": "wanderer",
     "text": "У реки лодочник чинит сеть. Можно присесть рядом и дать рукам отдохнуть или пройтись вдоль воды, ни с кем не разговаривая.",
     "choices": [
       {
@@ -340,6 +952,84 @@
     "facets": [
       "body",
       "inner"
+    ],
+    "story": {
+      "role": "ambient",
+      "worldFallback": true
+    },
+    "textVariants": [
+      {
+        "id": "r_river_boy_fed",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_gaze_wanderer_bread",
+                "choice": "offer"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "У реки лодочник чинит сеть. Рядом сидит мальчик со стены, тот, кому ты предложил хлеб. Можно присесть рядом и дать рукам отдохнуть или пройтись вдоль воды, ни с кем не разговаривая.",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_river_boy_alone",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_gaze_wanderer_bread",
+                "choice": "watch"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "У реки лодочник чинит сеть. Мальчик со стены сидит неподалёку и смотрит на воду. Можно присесть рядом и дать рукам отдохнуть или пройтись вдоль воды, ни с кем не разговаривая.",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_river_traveller_helped",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c1_wounded_road",
+                "choice": "stop"
+              }
+            },
+            {
+              "dayLte": 12
+            }
+          ]
+        },
+        "text": "У реки лодочник чинит сеть и спрашивает, дошёл ли до села путник, которому ты помог на дороге. Можно присесть рядом и дать рукам отдохнуть или пройтись вдоль воды, ни с кем не разговаривая.",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_river_traveller_passed",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c1_wounded_road",
+                "choice": "pass"
+              }
+            },
+            {
+              "dayLte": 12
+            }
+          ]
+        },
+        "text": "У реки лодочник чинит сеть и говорит, что раненого путника у дороги подобрали не сразу. Можно присесть рядом и дать рукам отдохнуть или пройтись вдоль воды, ни с кем не разговаривая.",
+        "kind": "consequence"
+      }
     ]
   },
   {
@@ -389,6 +1079,53 @@
     "facets": [
       "relationships",
       "inner"
+    ],
+    "story": {
+      "threadIds": [
+        "liya_letters"
+      ],
+      "role": "relationship"
+    },
+    "requires": {
+      "shown": "c1_liya_letter"
+    },
+    "textVariants": [
+      {
+        "id": "r_letter_stack_replied",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c1_liya_letter",
+                "choice": "reply"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "На столе лежат письма от Лии, твоей сестры; на первое ты ответил. Ответить на одно сейчас или сначала перечитать и подобрать слова?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_letter_stack_waiting",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c1_liya_letter",
+                "choice": "later"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "На столе лежат письма от Лии, твоей сестры; первое так и ждёт ответа. Ответить на одно сейчас или сначала перечитать и подобрать слова?",
+        "kind": "consequence"
+      }
     ]
   },
   {
@@ -438,6 +1175,51 @@
     "facets": [
       "work",
       "body"
+    ],
+    "story": {
+      "goalIds": [
+        "order",
+        "alexey"
+      ],
+      "role": "ambient"
+    },
+    "textVariants": [
+      {
+        "id": "r_customer_wait_alexey_spoke",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_gaze_alexey_silence",
+                "choice": "ask"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Партия чашек сохнет у окна. Алексей сам говорит, что боится за ручки: вдруг покупатель вернёт партию. Проверить каждую или оставить осмотр на утро?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_customer_wait_alexey_silent",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_gaze_alexey_silence",
+                "choice": "respect"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Партия чашек сохнет у окна. Алексей про ручки не спрашивает, только поглядывает на них. Проверить каждую или оставить осмотр на утро?",
+        "kind": "consequence"
+      }
     ]
   },
   {
@@ -487,6 +1269,134 @@
     "facets": [
       "inner",
       "relationships"
+    ],
+    "story": {
+      "role": "ambient",
+      "worldFallback": true
+    },
+    "textVariants": [
+      {
+        "id": "r_evening_light_after_evening_wait",
+        "when": {
+          "chose": {
+            "card": "r_marta_evening",
+            "choice": "wait"
+          }
+        },
+        "text": "Свет ещё держится в окне, а Марта зовёт во двор к соседям и не спорит заранее, если ты откажешься: у печи ты дал ей время. Остаться дома в тишине или выйти к ним?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_evening_light_after_evening_first",
+        "when": {
+          "chose": {
+            "card": "r_marta_evening",
+            "choice": "first"
+          }
+        },
+        "text": "Свет ещё держится в окне, а Марта зовёт во двор к соседям: после вечера у твоей печи она зовёт уже не стесняясь. Остаться дома в тишине или выйти к ним?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_evening_light_marta_visited",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_gaze_marta_window",
+                "choice": "visit"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Окно Марты снова светится — с того вечера, когда ты зашёл к ней. Сегодня она зовёт тебя во двор к соседям. Остаться дома в тишине или выйти к ним?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_evening_light_marta_passed",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_gaze_marta_window",
+                "choice": "home"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Окно Марты то светится, то нет: в тот вечер ты прошёл мимо. Сегодня она зовёт тебя во двор к соседям. Остаться дома в тишине или выйти к ним?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_evening_light_cup_on_table",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_silence_marta_cup",
+                "choice": "ask"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Свет ещё держится в окне, а Марта зовёт во двор к соседям и берёт с собой чашку, которую раньше не ставила на стол. Остаться дома в тишине или выйти к ним?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_evening_light_cup_silent",
+        "when": {
+          "all": [
+            {
+              "chose": {
+                "card": "c2_silence_marta_cup",
+                "choice": "leave"
+              }
+            },
+            {
+              "dayLte": 20
+            }
+          ]
+        },
+        "text": "Свет ещё держится в окне, а Марта зовёт во двор к соседям, но чашку, как и раньше, держит при себе. Остаться дома в тишине или выйти к ним?",
+        "kind": "consequence"
+      },
+      {
+        "id": "r_evening_light_firewood_helped",
+        "when": {
+          "all": [
+            {
+              "any": [
+                {
+                  "chose": {
+                    "card": "c1_marta_firewood",
+                    "choice": "help"
+                  }
+                },
+                {
+                  "chose": {
+                    "card": "c1_customer_hurry",
+                    "choice": "help"
+                  }
+                }
+              ]
+            },
+            {
+              "dayLte": 12
+            }
+          ]
+        },
+        "text": "Свет ещё держится в окне, а Марта зовёт во двор к соседям: под навесом ровно лежат дрова, которые ты помог убрать. Остаться дома в тишине или выйти к ним?",
+        "kind": "consequence"
+      }
     ]
   },
   {
@@ -759,6 +1669,65 @@
           "shown": "cr_bonds_zero"
         },
         "text": "Это состояние уже знакомо. Сегодня снова нужно освободить немного места для восстановления. Сегодня никто не заходит в мастерскую без дела. Даже Алексей говорит только о ра"
+      }
+    ]
+  },
+  {
+    "id": "r_marta_evening",
+    "chapter": "any",
+    "type": "chain",
+    "character": "marta",
+    "facets": [
+      "relationships",
+      "inner"
+    ],
+    "text": "Марта пришла, как вы договорились, и села у печи. Пока ты ставишь чайник, она молчит. Заговорить первым или дать ей начать?",
+    "choices": [
+      {
+        "id": "first",
+        "label": "Заговорить первым",
+        "servesFacets": [
+          "relationships"
+        ],
+        "effects": {
+          "resources": {
+            "bonds": 2,
+            "peace": -1
+          }
+        },
+        "impact": {
+          "level": "meaningful"
+        }
+      },
+      {
+        "id": "wait",
+        "label": "Дать ей начать",
+        "servesFacets": [
+          "inner"
+        ],
+        "effects": {
+          "resources": {
+            "peace": 2,
+            "strength": -1
+          },
+          "qualities": {
+            "attention": 1
+          }
+        },
+        "impact": {
+          "level": "meaningful"
+        }
+      }
+    ],
+    "once": false,
+    "textVariants": [
+      {
+        "id": "r_marta_evening_again",
+        "when": {
+          "shown": "r_marta_evening"
+        },
+        "kind": "consequence",
+        "text": "Марта снова пришла, как вы договорились, и села на то же место у печи. Чайник ты поставил ещё до её стука. Заговорить первым или дать ей начать?"
       }
     ]
   }

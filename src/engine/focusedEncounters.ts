@@ -81,8 +81,11 @@ function weightOf(state: GameState, content: GameContent): (card: Card) => numbe
   return card => baseCardWeight(card) * cardFacetMultiplier(card, target, config, declaredIntentionPrior(card, state, attention, config));
 }
 
-/** Direct draw only: how likely each non-empty tier is to be the one drawn from (P1 … P5). */
-export const DIRECT_TIER_WEIGHTS: Record<FocusTier, number> = { 1: 8, 2: 5, 3: 3, 4: 2, 5: 1 };
+/**
+ * Direct draw only: how likely each non-empty tier is to be the one drawn from (P1 … P5). 8:5:3:1:0.5 by the owner's decision of 2026-10-08
+ * (it was 8:5:3:2:1: P4/P5 are tiers without a tie to the story, and at 2:1 they made a third of the direct shows). Not to be lowered further without a new decision.
+ */
+export const DIRECT_TIER_WEIGHTS: Record<FocusTier, number> = { 1: 8, 2: 5, 3: 3, 4: 1, 5: 0.5 };
 
 /**
  * Takes up to `count` scenes, tier by tier (P1 → P5, no card twice). Inside a tier: deterministic weighted sampling without replacement
@@ -110,7 +113,7 @@ export function pickFocusedStory(state: GameState, content: GameContent, ranked:
 }
 
 /**
- * The direct draw's single story pick: first a tier among the NON-EMPTY ones with weights 8:5:3:2:1 (one deterministic roll), then a card
+ * The direct draw's single story pick: first a tier among the NON-EMPTY ones with weights 8:5:3:1:0.5 (one deterministic roll), then a card
  * inside that tier by the same weighted key as the dice. Better tiers are likelier, not certain, so the direct path keeps variety.
  */
 export function pickDirectFocusedStory(state: GameState, content: GameContent, ranked: RankedStory[]): RankedStory | undefined {
